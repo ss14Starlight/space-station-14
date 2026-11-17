@@ -1,0 +1,20 @@
+- type: !PartialOnly entity
+  id: SignalTimerElectronics
+  components:
+  - type: Tag
+    tags:
+    - RamChip # FH
+
+- type: !PartialOnly entity
+  id: ScreenTimerElectronics
+  components:
+  - type: Tag
+    tags:
+    - RamChip # FH
+
+- type: !PartialOnly entity
+  id: BrigTimerElectronics
+  components:
+  - type: Tag
+    tags:
+    - RamChip # FH

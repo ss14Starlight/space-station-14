@@ -11,6 +11,7 @@
     SyndicateBrutePack: 3
     SyndicateOintment: 3
     Bloodpack: 3
+    OilPack: 2
     ChemistryBottleEpinephrine: 2
     Syringe: 3
     PillCanisterTricordrazine: 1
@@ -32,6 +33,7 @@
     SyndicateBrutePack: 3
     SyndicateOintment: 3
     Bloodpack: 3
+    OilPack: 2
     ChemistryBottleEpinephrine: 2
     Syringe: 3
     PillTricordrazine: 10
@@ -53,6 +55,7 @@
     SyndicateBrutePack: 5
     SyndicateOintment: 5
     Bloodpack: 5
+    OilPack: 2
     Tourniquet: 2
     ChemistryBottleEpinephrine: 2
     ChemistryBottleBicaridine: 1
@@ -65,7 +68,6 @@
     SyringeIpecac: 1
     ClothingEyesHudMedical: 2
     ClothingEyesEyepatchHudMedical: 2
-    ClothingEyeGlassesMedicalPrescription: 2
     AutoMenderBruteFilled: 1
     AutoMenderBurnFilled: 1
     SpaceMedipen: 1
@@ -87,6 +89,7 @@
     SyndicateBrutePack: 5
     SyndicateOintment: 5
     Bloodpack: 5
+    OilPack: 2
     ChemistryBottleEpinephrine: 2
     Syringe: 5
     BoxBottle: 3

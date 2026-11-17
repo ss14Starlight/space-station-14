@@ -1,0 +1,38 @@
+# Left speed boots with removed lathe recipe as an admeme item
+- type: !PartialOnly entity
+  id: ClothingShoesBootsSpeed
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        blacklist:
+          tags:
+          - MechReactor
+
+- type: !PartialOnly entity
+  id: ClothingShoesLeather
+  components:
+  - type: FootstepTimbre
+    pitch: 1.08
+    volume: 0.5
+
+- type: !PartialOnly entity
+  id: ClothingShoesDameDane
+  components:
+  - type: FootstepTimbre
+    pitch: 1.1
+    volume: 0.5
+
+- type: !PartialOnly entity
+  id: ClothingShoesSnakeskinBoots
+  components:
+  - type: FootstepTimbre
+    pitch: 0.96
+    volume: 0.5
+
+- type: !PartialOnly entity
+  id: ClothingShoesTourist
+  components:
+  - type: FootstepTimbre
+    pitch: 1.12
+    volume: -4

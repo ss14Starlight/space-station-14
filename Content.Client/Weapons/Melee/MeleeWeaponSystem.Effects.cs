@@ -35,7 +35,7 @@ public sealed partial class MeleeWeaponSystem
         // Starlight Begin - Mech wideswing
         var originEntity = GetOriginEntity(user);
 
-        if (!_xformQuery.TryGetComponent(originEntity, out var userXform) || userXform.MapID == MapId.Nullspace)
+        if (!TryComp(originEntity, out TransformComponent? userXform) || userXform.MapID == MapId.Nullspace)
             return;
         // Starlight End
 
@@ -69,10 +69,12 @@ public sealed partial class MeleeWeaponSystem
                     angle *= -1;
             }
         }
-        // Starlight-end
+        sprite.NoRotation = false;
+        _sprite.SetSnapCardinals((animationUid, sprite), false);
+        // Starlight end
         _sprite.SetRotation((animationUid, sprite), localPos.ToWorldAngle());
 
-        var xform = _xformQuery.GetComponent(animationUid);
+        var xform = Transform(animationUid);
         TrackUserComponent track;
 
         switch (arcComponent.Animation)
@@ -162,7 +164,6 @@ public sealed partial class MeleeWeaponSystem
 
         startRotation += spriteRotation;
         endRotation += spriteRotation;
-        sprite.Comp.NoRotation = true;
 
         return new Animation()
         {

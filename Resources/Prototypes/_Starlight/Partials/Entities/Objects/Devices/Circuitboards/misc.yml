@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: StationMapCircuitboard
+  components:
+  - type: Tag
+    tags:
+      - RamChip # FH

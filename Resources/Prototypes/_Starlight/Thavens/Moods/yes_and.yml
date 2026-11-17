@@ -68,6 +68,15 @@
     - AmateurPhotographer
     - Insecure
     - LiveLaughLove
+    - Knightly
+    - FalseMemories
+    - RealityLeak
+    - DepartmentConspiracy
+    - FormalIntroductions
+    - SilenceMeansAgreement
+    - Copycat
+    - CommunicationsAgent
+    - TheCurtainsMustRise
 
 
 # You are extremely possessive of your property. Refuse to relinquish it, and if it is misplaced or stolen, it must be retrieved at all costs.
@@ -569,3 +578,70 @@
   id: LiveLaughLove
   moodName: thaven-mood-live-laugh-love-name
   moodDesc: thaven-mood-live-laugh-love-desc
+
+# Knightly: Pick one person and declare your undying fealty to them, do as they say and protect them at all costs.
+- type: thavenMood
+  id: Knightly
+  moodName: thaven-mood-knightly-name
+  moodDesc: thaven-mood-knightly-desc
+  conflicts:
+  - MostImportant
+  - LoneActor
+
+# False Memories: You possess vivid memories of important events that never happened. Convince others to help you investigate them and publicize them.
+- type: thavenMood
+  id: FalseMemories
+  moodName: thaven-mood-false-memories-name
+  moodDesc: thaven-mood-false-memories-desc
+
+# Reality Leak: You believe objects and events occasionally arrive from parallel universes. Determine their origin and effects through tests you conduct on them.
+- type: thavenMood
+  id: RealityLeak
+  moodName: thaven-mood-reality-leak-name
+  moodDesc: thaven-mood-reality-leak-desc
+
+# Department Conspiracy: The [DEPARTMENT] department secretly controls the station from behind the scenes. Gather evidence and expose the truth.
+- type: thavenMood
+  id: DepartmentConspiracy
+  moodName: thaven-mood-department-conspiracy-name
+  moodDesc: thaven-mood-department-conspiracy-desc
+  moodVars:
+    department: Departments
+
+# Formal Introductions: Speaking to someone before properly introducing yourself is exceptionally rude.
+- type: thavenMood
+  id: FormalIntroductions
+  moodName: thaven-mood-formal-introductions-name
+  moodDesc: thaven-mood-formal-introductions-desc
+  conflicts:
+  - Unknown
+
+# Silence Means Agreement: A failure to object is a form of agreement. You naturally assume others agree unless they say otherwise.
+- type: thavenMood
+  id: SilenceMeansAgreement
+  moodName: thaven-mood-silence-means-agreement-name
+  moodDesc: thaven-mood-silence-means-agreement-desc
+
+# Copycat: Pick one person. You should dress similarly, behave similarly, and strive to be as much like them as possible.
+- type: thavenMood
+  id: Copycat
+  moodName: thaven-mood-copycat-name
+  moodDesc: thaven-mood-copycat-desc
+  conflicts:
+  - MostImportant
+
+# Communications Agent: You need to make sure your co-workers are excessively informed of almost every happening and discovery related to your department, no matter how insignificant or meaningless, and for you to stay informed.
+- type: thavenMood
+  id: CommunicationsAgent
+  moodName: thaven-mood-communications-agent-name
+  moodDesc: thaven-mood-communications-agent-desc
+
+# The Curtains Must Rise: Privacy is a sacred right. Build and install curtains to shield yourself from prying eyes. No one should witness what is meant to be private.
+- type: thavenMood
+  id: TheCurtainsMustRise
+  moodName: thaven-mood-the-curtains-must-rise-name
+  moodDesc: thaven-mood-the-curtains-must-rise-desc
+  conflicts:
+  - TheCurtainsMustRiseForAll
+  - StationIsAlive
+  - PublicSector

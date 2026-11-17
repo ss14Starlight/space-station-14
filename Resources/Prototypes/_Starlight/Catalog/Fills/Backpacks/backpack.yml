@@ -56,3 +56,78 @@
             - id: SmokeGrenade
             - id: GrenadeFlashBang
             - id: DrinkMREFlask
+
+# Emergency Response Teams
+
+- type: entity
+  id: ClothingBackpackERTSecurityBallisticRiflemenFilled
+  parent: ClothingBackpackERTSecurity
+  suffix: Filled, Ballistics
+  categories: [ DoNotMap, HideSpawnMenu ]
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: MagazineRifleFMJ
+              amount: 4
+            - id: MagazineRifleIncendiary
+            - id: MaterialSandbag
+            - id: MedkitCombatFilled
+            - id: TelescopicShield
+
+- type: entity
+  id: ClothingBackpackERTSecurityLaserVanguardFilled
+  parent: ClothingBackpackERTSecurity
+  suffix: Filled, Lasers
+  categories: [ DoNotMap, HideSpawnMenu ]
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: WeaponSubMachineGunEnergy
+            - id: MedkitCombatFilled
+            - id: MedkitCombatFilled
+            - id: SyringeEphedrine
+            - id: AntiPoisonMedipen
+            - id: HoloprojectorField
+            - id: PowerCellHigh
+            - id: TelescopicShield
+            - id: TelescopicShield
+
+- type: entity
+  id: ClothingBackpackERTSecurityLaserBreacherFilled
+  parent: ClothingBackpackERTSecurity
+  suffix: Filled, Lasers
+  categories: [ DoNotMap, HideSpawnMenu ]
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: HammerBreachingNT
+            - id: BoxDetonator
+            - id: CableDetStack
+            - id: CableDetStack
+            - id: C4
+            - id: RemoteSignallerCombat
+            - id: MedkitCombatFilled
+
+- type: entity
+  id: ClothingBackpackERTSecurityLaserSniperFilled
+  parent: ClothingBackpackERTSecurity
+  suffix: Filled, Lasers
+  categories: [ DoNotMap, HideSpawnMenu ]
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: MaterialSandbag
+            - id: MaterialSandbag
+            - id: SingularityGrenade
+            - id: WhiteholeGrenade
+            - id: SmokeGrenade
+            - id: SmokeGrenade
+            - id: MedkitCombatFilled

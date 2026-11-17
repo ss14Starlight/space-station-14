@@ -7,6 +7,7 @@ using Content.Shared.Examine;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Maps;
+using Content.Shared.Movement.Components;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.RCD.Components;
@@ -23,7 +24,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using System.Linq;
 using Content.Shared._ES.Sparks;
-// Starlight Start
 using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Atmos.Components;
 using Content.Shared._Starlight.Atmos.EntitySystems;
@@ -38,7 +38,7 @@ using Content.Shared._Starlight.Atmos.Components;
 using Content.Shared.Prototypes;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Doors.Components;
-// Starlight End
+using Content.Shared.Conveyor;
 
 namespace Content.Shared.RCD.Systems;
 
@@ -457,7 +457,7 @@ public sealed partial class RCDSystem : EntitySystem
         }
 
         // Finalize the operation (this should handle prediction properly)
-        FinalizeRCDOperation(uid, component, gridUid, mapGrid, tile, position, args.Direction, args.PipeLayer, args.Target, args.User);         // Starlight Edit: Include layer from do-after event to avoid finalize time drift.
+        FinalizeRCDOperation(uid, component, gridUid, mapGrid, tile, position, args.Direction, args.PipeLayer, args.Target, args.User); // Starlight edit: Use the layer captured by the do-after event.
 
         // Play audio and consume charges
         _audio.PlayPredicted(component.SuccessSound, uid, args.User);
@@ -472,7 +472,14 @@ public sealed partial class RCDSystem : EntitySystem
         if (session.SenderSession.AttachedEntity is not { } player)
             return;
 
-        if (_hands.GetActiveItem(player) != uid)
+        // Starlight start
+        var handOwner = TryComp<RelayInputMoverComponent>(player, out var relay)
+            && relay.RelayEntity is { } relayEntity
+            ? relayEntity
+            : player;
+        // Starlight end
+
+        if (_hands.GetActiveItem(handOwner) != uid) // Starlight
             return;
 
         if (!TryComp<RCDComponent>(uid, out var rcd))
@@ -676,19 +683,20 @@ public sealed partial class RCDSystem : EntitySystem
         var isCatwalk = prototype.ConstructionRules.Contains(RcdConstructionRule.IsCatwalk);
         var isAirlock = prototype.ConstructionRules.Contains(RcdConstructionRule.IsAirlock); // Starlight: airlocks can be built over firelocks
         var isFirelock = prototype.ConstructionRules.Contains(RcdConstructionRule.IsFirelock); // Starlight: firelocks can be built over airlocks
-        // Starlight Start: RPLD
+        // Starlight-start
         var isPlumbingMachinePlacement = component.IsRPLD
             && prototype.Prototype != null
             && _protoManager.TryIndex<EntityPrototype>(prototype.Prototype, out var constructionProto)
             && constructionProto.HasComponent<PlumbingConnectorAppearanceComponent>(_entityManager.ComponentFactory);
-        // Starlight End: RPLD
-        // Starlight Start: RPD
         var isUnstackablePlacement = prototype.Prototype != null
              && _protoManager.TryIndex<EntityPrototype>(prototype.Prototype, out var constructionRpdProto)
              && constructionRpdProto.TryGetComponent<TagComponent>(out var buildTags, _entityManager.ComponentFactory)
              && _tags.HasTag(buildTags, _unstackableTag);
         var usesLayeredPipePlacement = prototype.HasLayers && (component.IsRpd || component.IsRPLD);
-        // Starlight End: RPD
+        var isGrillePlacement = prototype.Prototype != null
+            && _protoManager.TryIndex<EntityPrototype>(prototype.Prototype, out var grilleProto)
+            && grilleProto.HasComponent<SharedCanBuildWindowOnTopComponent>(_entityManager.ComponentFactory);
+        // Starlight-end
         _intersectingEntities.Clear();
         _lookup.GetLocalEntitiesIntersecting(gridUid, position, _intersectingEntities, -0.05f, LookupFlags.Uncontained);
 
@@ -719,13 +727,18 @@ public sealed partial class RCDSystem : EntitySystem
 
             if (isWindow && HasComp<SharedCanBuildWindowOnTopComponent>(ent))
                 continue;
-            // Starlight Start: Airlocks and Firelocks can be built on top of one another
+            // Starlight-start
             if (isAirlock && HasComp<FirelockComponent>(ent))
                 continue;
             if (isFirelock && HasComp<AirlockComponent>(ent))
                 continue;
-            // Starlight End
-            // Starlight Start: RPLD
+            if (isGrillePlacement && HasComp<ConveyorComponent>(ent))
+            {
+                if (popMsgs)
+                    _popup.PopupClient(Loc.GetString("rcd-component-cannot-build-on-occupied-tile-message"), uid, user);
+
+                return false;
+            }
             if (isPlumbingMachinePlacement && Transform(ent).Anchored && HasComp<PlumbingConnectorAppearanceComponent>(ent))
             {
                 if (popMsgs)
@@ -733,7 +746,7 @@ public sealed partial class RCDSystem : EntitySystem
 
                 return false;
             }
-            // Starlight End: RPLD
+            // Starlight-end
             if (isCatwalk && _tags.HasTag(ent, CatwalkTag))
             {
                 if (popMsgs)

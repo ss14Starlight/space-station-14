@@ -1,0 +1,67 @@
+- type: !PartialOnly entity
+  id: BedsheetSyndie
+  components:
+  - type: Contraband
+    tier: Tier1
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: BedsheetBase
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 15
+      - ReagentId: Flour # Hydrocarbons?
+        Quantity: 5
+  - type: Tag
+    tags:
+    - ClothMade
+  - type: Edible
+    requiresSpecialDigestion: true
+    solution: food
+  - type: FlavorProfile
+    flavors:
+    - fiber
+  - type: BadFood
+
+# Not quite all of them are affected
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+      - BedsheetBlack
+      - BedsheetBlue
+      - BedsheetBrown
+      - BedsheetCaptain
+      - BedsheetCE
+      - BedsheetCentcom
+      - BedsheetClown
+      - BedsheetCMO
+      - BedsheetGreen
+      - BedsheetGrey
+      - BedsheetHOP
+      - BedsheetHOS
+      - BedsheetIan
+      - BedsheetMedical
+      - BedsheetMime
+      - BedsheetNT
+      - BedsheetOrange
+      - BedsheetPurple
+      - BedsheetQM
+      - BedsheetRainbow
+      - BedsheetRD
+      - BedsheetBrigmedic
+      - BedsheetRed
+      - BedsheetSyndie
+      - BedsheetUSA
+      - BedsheetWhite
+      - BedsheetYellow
+  components:
+  - type: Tag
+    tags:
+    - Bedsheet
+    - ClothMade
+    - CorgiWearable

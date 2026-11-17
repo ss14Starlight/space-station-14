@@ -4,6 +4,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Input;
 using Content.Shared.Interaction;
+using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Localizations;
 using Robust.Shared.Input.Binding;
@@ -91,10 +92,22 @@ public abstract partial class SharedHandsSystem : EntitySystem
 
     private void SwapHands(ICommonSession? session, bool reverse)
     {
-        if (!TryComp(session?.AttachedEntity, out HandsComponent? component))
+        if (session?.AttachedEntity is not { } attachedEntity)
             return;
 
-        if (!_actionBlocker.CanInteract(session.AttachedEntity.Value, null))
+        // Starlight start
+        var handsEntity = attachedEntity;
+        if (TryComp<InteractionRelayComponent>(attachedEntity, out var relay)
+            && relay.RelayEntity is { } relayEntity)
+        {
+            handsEntity = relayEntity;
+        }
+        // Starlight end
+
+        if (!TryComp(handsEntity, out HandsComponent? component))
+            return;
+
+        if (!_actionBlocker.CanInteract(attachedEntity, null))
             return;
 
         if (component.ActiveHandId == null || component.Hands.Count < 2)
@@ -103,8 +116,7 @@ public abstract partial class SharedHandsSystem : EntitySystem
         var currentIndex = component.SortedHands.IndexOf(component.ActiveHandId);
         var newActiveIndex = (currentIndex + (reverse ? -1 : 1) + component.Hands.Count) % component.Hands.Count;
         var nextHand = component.SortedHands[newActiveIndex];
-
-        TrySetActiveHand((session.AttachedEntity.Value, component), nextHand);
+        TrySetActiveHand((handsEntity, component), nextHand);
     }
 
     private bool DropPressed(ICommonSession? session, EntityCoordinates coords, EntityUid netEntity)

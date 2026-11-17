@@ -94,7 +94,7 @@ public sealed partial class EmergencyShuttleCommand : ToolshedCommand
         }
         _eShuttle.DockEmergencyShuttle();
         _log.Add(LogType.AdminCommands,
-            $"{CommandHelpers.PlayerNameOrServer(ctx)} has caused the emergency shuttle to dock prematurely.");
+            $"{SharedCommandHelpers.PlayerNameOrServer(ctx)} has caused the emergency shuttle to dock prematurely.");
     }
 
     /// <summary>

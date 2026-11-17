@@ -2,6 +2,7 @@
     "version": 1,
     "license": "CC0-1.0",
     "copyright": "Made by baltdev for SS14. Feel free to use for whatever.",
+    "metaAtlas": false,
     "size": {
         "x": 512,
         "y": 256

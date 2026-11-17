@@ -3,7 +3,6 @@
 - type: latheRecipePack
   id: StarlightSecurityEquipmentStatic
   recipes:
-  - ClothingEyesHudSecurity
   - ForensicPad
   - Handcuffs
   - TargetClown
@@ -115,6 +114,12 @@
   - SpeedLoaderShotgunEmpty
   - SpeedLoaderShotgunSlug
   - SpeedLoaderShotgunBeanbag
+# Bolt
+  - MagazineBoltRifleEmpty
+  - MagazineBoltRifle
+  - MagazineBoltPistolEmpty
+  - MagazineBoltPistol
+  - MagazineBoxBoltRifle
 # Battery
   - MagazineBatteryLr30
 # Peacekeeper
@@ -261,6 +266,8 @@
   - WeaponLaserSvalinn
   - WeaponTemperatureGun
   - FiringPinLaser
+  - FiringPinAdvancedLaserReplacement
+  - FiringPinSmartLMGReplacement
 
 - type: latheRecipePack
   id: StarlightSecurityMechsWeapons

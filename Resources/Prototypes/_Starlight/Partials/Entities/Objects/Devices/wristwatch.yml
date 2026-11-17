@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: Wristwatch
+  components:
+  - type: Engraveable
+    engraveVerb: "engraving-verb-engrave"

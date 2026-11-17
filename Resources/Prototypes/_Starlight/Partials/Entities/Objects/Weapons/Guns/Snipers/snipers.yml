@@ -38,10 +38,11 @@
   id: WeaponPistolFlintlock
   components:
   - type: Gun
-    minAngle: 7
+    minAngle: 0
     maxAngle: 30
-    angleIncrease: 8
-    angleDecay: 18
+    angleIncrease: 10
+    angleDecay: 22
+    movingMinAngle: 7
   - type: GunWieldBonus
     angleIncreaseDivider: 1.5
     minAngleDivider: 1.5

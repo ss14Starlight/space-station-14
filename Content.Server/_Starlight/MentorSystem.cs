@@ -128,31 +128,32 @@ public sealed partial class MentorSystem : SharedMentorSystem
             PlaySound = true
         };
         _sawmill.Info($"mhelp message: {text}");
-        if (ticket.Mentor is null && (senderIsMentor || senderIsAdmin))
-        {
-            ticket.Mentor = senderSession.UserId;
-            var @event = new MHelpTextMessage()
-            {
-                Sender = senderSession.UserId,
-                Ticket = ticketId,
-                Title = ticket.Title,
-                Text = Loc.GetString("mentor-system-ticket-claimed", ("name", senderSession.Name)),
-                PlaySound = false,
-                TicketClosed = true
-            };
-            var nonparticipantsRecipients = _nullLinkPlayers.Mentors
-                .Except([_playerManager.GetSessionById(ticket.Creator), _playerManager.GetSessionById(ticket.Mentor.Value)])
-                .Except(_adminManager.ActiveAdmins);
-            foreach (var channel in nonparticipantsRecipients)
-                RaiseNetworkEvent(@event, channel);
-
-            @event.TicketClosed = false;
-            var participantsRecipients = _adminManager.ActiveAdmins
-                .Concat([_playerManager.GetSessionById(ticket.Creator), _playerManager.GetSessionById(ticket.Mentor.Value)])
-                .Distinct();
-            foreach (var channel in participantsRecipients)
-                RaiseNetworkEvent(@event, channel);
-        }
+        // Commented out on request of Tess.
+        // if (ticket.Mentor is null && (senderIsMentor || senderIsAdmin))
+        // {
+        //     ticket.Mentor = senderSession.UserId;
+        //     var @event = new MHelpTextMessage()
+        //     {
+        //         Sender = senderSession.UserId,
+        //         Ticket = ticketId,
+        //         Title = ticket.Title,
+        //         Text = Loc.GetString("mentor-system-ticket-claimed", ("name", senderSession.Name)),
+        //         PlaySound = false,
+        //         TicketClosed = true
+        //     };
+        //     var nonparticipantsRecipients = _nullLinkPlayers.Mentors
+        //         .Except([_playerManager.GetSessionById(ticket.Creator), _playerManager.GetSessionById(ticket.Mentor.Value)])
+        //         .Except(_adminManager.ActiveAdmins);
+        //     foreach (var channel in nonparticipantsRecipients)
+        //         RaiseNetworkEvent(@event, channel);
+        //
+        //     @event.TicketClosed = false;
+        //     var participantsRecipients = _adminManager.ActiveAdmins
+        //         .Concat([_playerManager.GetSessionById(ticket.Creator), _playerManager.GetSessionById(ticket.Mentor.Value)])
+        //         .Distinct();
+        //     foreach (var channel in participantsRecipients)
+        //         RaiseNetworkEvent(@event, channel);
+        // }
 
         var recipients = _adminManager.ActiveAdmins
             .Concat([_playerManager.GetSessionById(ticket.Creator)])

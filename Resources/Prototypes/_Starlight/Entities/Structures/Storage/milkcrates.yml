@@ -1,17 +1,10 @@
-# Milk crates with gradual fill sprites, using the same StorageFillVisualizer pattern as CdRack.
+# Milk crates. Plain ones are storage with gradual fill sprites; record crates file records instead.
 - type: entity
   abstract: true
-  id: BaseMilkCrate
+  id: BaseMilkCrateBody
   parent: BaseStructureDynamic
   components:
   - type: Appearance
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
   - type: InteractionOutline
   - type: Transform
     noRot: true
@@ -45,28 +38,88 @@
         acts: ["Destruction"]
 
 - type: entity
+  abstract: true
+  id: BaseMilkCrate
+  parent: BaseMilkCrateBody
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+
+# Record crates file records one after another instead of holding a storage grid: slot one in,
+# click to take the front one out, or pick any from the context menu. Spines show the sleeve colours.
+- type: entity
+  abstract: true
+  id: BaseRecordCrate
+  parent: BaseMilkCrateBody
+  components:
+  - type: RecordCrate
+    whitelist:
+      tags:
+      - VinylSleeve
+      - VinylSleeveFit
+  - type: DiscSpines # Spines in the colours of the sleeves filed in.
+    container: records
+  - type: ContainerContainer
+    containers:
+      records: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:EmptyAllContainersBehaviour
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetPlastic1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
   id: RecordMilkCrate
-  parent: BaseMilkCrate
+  parent: BaseRecordCrate
   name: record crate
-  description: A sturdy plastic milk crate repurposed for filing away sleeved vinyls. It won't hold anything else.
+  description: A sturdy plastic milk crate repurposed for filing away records. Flip through it to pick one.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Storage/milkcrate.rsi
     snapCardinals: true
     layers:
-      - map: ["enum.StorageFillLayers.Fill"]
-        state: recordcrate-0
-  - type: StorageFillVisualizer
-    maxFillLevels: 6
-    fillBaseName: recordcrate
-  - type: Storage
-    grid:
-    - 0,0,3,3
-    maxItemSize: Normal
-    whitelist:
-      tags:
-        - VinylSleeve
-        - VinylSleeveFit
+      - state: recordcrate-0
+      - state: spine0
+        map: [ "spine0" ]
+        visible: false
+      - state: spine1
+        map: [ "spine1" ]
+        visible: false
+      - state: spine2
+        map: [ "spine2" ]
+        visible: false
+      - state: spine3
+        map: [ "spine3" ]
+        visible: false
+      - state: spine4
+        map: [ "spine4" ]
+        visible: false
+      - state: spine5
+        map: [ "spine5" ]
+        visible: false
+      - state: spine6
+        map: [ "spine6" ]
+        visible: false
+      - state: spine7
+        map: [ "spine7" ]
+        visible: false
   - type: Construction
     graph: MilkCrateGraph
     node: recordMilkCrate
@@ -76,12 +129,12 @@
   suffix: Filled
   parent: RecordMilkCrate
   components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:NestedSelector
-        tableId: RandomVinylSleeve
-        rolls: !type:RangeNumberSelector
-          range: 6, 8
+  - type: UniqueDiscFill # Every record different, each in its own sleeve.
+    table: RandomVinylDisc
+    min: 6
+    max: 8
+    wrapper: VinylSleeve
+    container: records
 
 - type: entity
   id: MilkCrate
@@ -111,26 +164,39 @@
 
 - type: entity
   id: SyndicateMilkCrate
-  parent: [BaseMilkCrate, BaseSyndicateContraband]
+  parent: [BaseRecordCrate, BaseSyndicateContraband]
   name: syndicate milk crate
-  description: A blood-red plastic milk crate for filing away sleeved vinyls. Nanotrasen would rather you didn't listen to these.
+  description: A blood-red plastic milk crate for filing away records. Nanotrasen would rather you didn't listen to these.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Storage/milkcrate.rsi
     snapCardinals: true
     layers:
-      - map: ["enum.StorageFillLayers.Fill"]
-        state: syndicrate-0
-  - type: StorageFillVisualizer
-    maxFillLevels: 6
-    fillBaseName: syndicrate
-  - type: Storage
-    grid:
-    - 0,0,3,3
-    maxItemSize: Normal
-    whitelist:
-      tags:
-        - VinylSleeve
+      - state: syndicrate-0
+      - state: spine0
+        map: [ "spine0" ]
+        visible: false
+      - state: spine1
+        map: [ "spine1" ]
+        visible: false
+      - state: spine2
+        map: [ "spine2" ]
+        visible: false
+      - state: spine3
+        map: [ "spine3" ]
+        visible: false
+      - state: spine4
+        map: [ "spine4" ]
+        visible: false
+      - state: spine5
+        map: [ "spine5" ]
+        visible: false
+      - state: spine6
+        map: [ "spine6" ]
+        visible: false
+      - state: spine7
+        map: [ "spine7" ]
+        visible: false
   - type: Construction
     graph: MilkCrateGraph
     node: syndicateMilkCrate

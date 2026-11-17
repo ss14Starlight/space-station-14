@@ -81,7 +81,6 @@ public sealed partial class SlimeSystem : EntitySystem
         var newNutrition = 0F;
         if (TryComp<HungerComponent>(slime, out var hunger))
             newNutrition = _hungerSystem.GetHunger(hunger) / split_amount;
-        var random = _robustRandom.GetRandom();
         for (int i = 0; i < split_amount; i++)
         {
             string protoName;
@@ -89,9 +88,9 @@ public sealed partial class SlimeSystem : EntitySystem
             {
                 protoName = slime.Comp.MutationOnMaxSplit;
             }
-            else if (random.NextFloat() < slime.Comp.MutationChance && slime.Comp.SplitIntoMutation.Count > 0)
+            else if (_robustRandom.NextFloat() < slime.Comp.MutationChance && slime.Comp.SplitIntoMutation.Count > 0)
             {
-                var randomIndex = random.Next(slime.Comp.SplitIntoMutation.Count);
+                var randomIndex = _robustRandom.Next(slime.Comp.SplitIntoMutation.Count);
                 protoName = slime.Comp.SplitIntoMutation[randomIndex];
             }
             else

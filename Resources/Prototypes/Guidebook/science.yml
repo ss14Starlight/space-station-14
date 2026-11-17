@@ -1,6 +1,7 @@
 - type: guideEntry
   id: Science
   name: guide-entry-science
+  department: Science # Starlight
   text: "/ServerInfo/Guidebook/Science/Science.xml"
   children:
   - Technologies
@@ -60,4 +61,5 @@
 - type: guideEntry
   id: Cyborgs
   name: guide-entry-cyborgs
+  department: Silicon # Starlight
   text: "/ServerInfo/_Starlight/Guidebook/Science/Cyborgs.xml" #Starlight Edit

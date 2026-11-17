@@ -32,7 +32,6 @@
     - type: Tag
       tags:
         - WallmountSubstationElectronics
-        - RamChip # FH + Starlight
 
 # Wallmount Generator
 - type: entity
@@ -52,7 +51,6 @@
   - type: Tag
     tags:
       - WallmountGeneratorElectronics
-      - RamChip # FH + Starlight
 
 # APU
 - type: entity
@@ -69,7 +67,6 @@
     - type: Tag
       tags:
         - WallmountGeneratorAPUElectronics
-        - RamChip # FH + Starlight
 
 # Solar Tracker Electronics
 - type: entity
@@ -86,4 +83,3 @@
     - type: Tag
       tags:
         - SolarTrackerElectronics
-        - RamChip # FH + Starlight

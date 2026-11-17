@@ -48,7 +48,11 @@
     - UniversalCollapse
     - SiliconsMustBeUsed
     - FishAncestry
-
+    - ConfusingPerspective
+    - MonsterHunter
+    - RespectThroughViolence
+    - Spite
+    - Extremist
 
 # You must always lie, and can never acknowledge that you are lying. If anyone asks, you're incapable of deception.
 - type: thavenMood
@@ -398,3 +402,43 @@
   id: FishAncestry
   moodName: thaven-mood-fish-ancestry-name
   moodDesc: thaven-mood-fish-ancestry-desc
+
+# Confusing Perspective: Positive news is saddening to you while disaster and other bad news are cause for celebration. React accordingly regardless of how everyone else feels.
+- type: thavenMood
+  id: ConfusingPerspective
+  moodName: thaven-mood-confusing-perspective-name
+  moodDesc: thaven-mood-confusing-perspective-desc
+  conflicts:
+  - Optimist
+  - Empath
+
+# Monster Hunter: Dangerous creatures lurk throughout the station. Determine what qualifies as a monster and find them.
+- type: thavenMood
+  id: MonsterHunter
+  moodName: thaven-mood-monster-hunter-name
+  moodDesc: thaven-mood-monster-hunter-desc
+
+# Respect Through Violence: The proper way to introduce yourself to someone is through a brief fight. A relationship that has not survived violence is built on a shaky foundation.
+- type: thavenMood
+  id: RespectThroughViolence
+  moodName: thaven-mood-respect-through-violence-name
+  moodDesc: thaven-mood-respect-through-violence-desc
+  conflicts:
+  - ViolenceDistasteful
+  - AngerProblems
+
+# Spite: You want nothing more than to directly witness others not getting what they want.
+- type: thavenMood
+  id: Spite
+  moodName: thaven-mood-spite-name
+  moodDesc: thaven-mood-spite-desc
+  conflicts:
+  - Generous
+
+# Extremist: You feel the need to go above and beyond with your other moods and act upon absolute extreme versions of them.
+- type: thavenMood
+  id: Extremist
+  moodName: thaven-mood-extremist-name
+  moodDesc: thaven-mood-extremist-desc
+  conflicts:
+  - WhatsAMood

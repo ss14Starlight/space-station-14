@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: TrashBag
+  components:
+  - type: Tag
+    tags:
+    - Recyclable
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 25

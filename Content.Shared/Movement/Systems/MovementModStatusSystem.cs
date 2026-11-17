@@ -52,7 +52,7 @@ public sealed partial class MovementModStatusSystem : EntitySystem
         ref StatusEffectRelayedEvent<RefreshMovementSpeedModifiersEvent> args
     )
     {
-        args.Args.ModifySpeed(entity.Comp.WalkSpeedModifier, entity.Comp.WalkSpeedModifier);
+        args.Args.ModifySpeed(entity.Comp.WalkSpeedModifier, entity.Comp.SprintSpeedModifier); // Starlight edit
     }
 
     private void OnRefreshFrictionStatus(Entity<FrictionStatusEffectComponent> ent, ref StatusEffectRelayedEvent<RefreshFrictionModifiersEvent> args)
@@ -170,6 +170,9 @@ public sealed partial class MovementModStatusSystem : EntitySystem
 
         status.Comp.SprintSpeedModifier = sprintSpeedModifier;
         status.Comp.WalkSpeedModifier = walkSpeedModifier;
+        // Starlight - without this the client keeps the prototype's default modifiers, so any predicted
+        // speed refresh (standing up, equipping clothing...) mispredicts until the server corrects it.
+        Dirty(status.Owner, status.Comp);
 
         _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
 

@@ -1,3 +1,4 @@
+using Content.Shared._Funkystation.Footprints;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reaction;
@@ -5,8 +6,8 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Content.Shared.Fluids.Components;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
-using System.Linq;
 
 namespace Content.Server.Chemistry.TileReactions;
 
@@ -26,7 +27,7 @@ public sealed partial class CleanTileReaction : ITileReaction
     public float CleanAmountMultiplier { get; private set; } = 0.25f;
 
     /// <summary>
-    /// What reagent to replace the tile conents with.
+    /// What reagent to replace the tile contents with.
     /// </summary>
     [DataField("reagent")]
     public ProtoId<ReagentPrototype> ReplacementReagent = "Water";
@@ -37,30 +38,57 @@ public sealed partial class CleanTileReaction : ITileReaction
         IEntityManager entityManager
         , List<ReagentData>? data)
     {
-        var entities = entityManager.System<EntityLookupSystem>().GetLocalEntitiesIntersecting(tile, 0f).ToArray();
-        var puddleQuery = entityManager.GetEntityQuery<PuddleComponent>();
+        #region Starlight
+        if (!entityManager.TryGetComponent<MapGridComponent>(tile.GridUid, out var grid))
+            return FixedPoint2.Zero;
+
+        var mapSystem = entityManager.System<SharedMapSystem>();
+        var entities = mapSystem.GetAnchoredEntities(tile.GridUid, grid, tile.GridIndices);
+        #endregion
+        var puddleQuery = entityManager.GetEntityQuery<PuddleComponent>(); // Starlight
+        var footprintQuery = entityManager.GetEntityQuery<FootprintComponent>();
         var solutionContainerSystem = entityManager.System<SharedSolutionContainerSystem>();
         // Multiply as the amount we can actually purge is higher than the react amount.
         var purgeAmount = reactVolume / CleanAmountMultiplier;
 
-        foreach (var entity in entities)
+        #region Starlight
+        // Lot of new footprint logic here
+        while (entities.MoveNext(out var entity))
         {
-            if (!puddleQuery.TryGetComponent(entity, out var puddle) ||
-                !solutionContainerSystem.TryGetSolution(entity, puddle.SolutionName, out var puddleSolution, out _))
+            var uid = entity.Value;
+            Entity<SolutionComponent>? floorSolution = null;
+            if (puddleQuery.TryGetComponent(uid, out var puddle))
             {
-                continue;
+                solutionContainerSystem.TryGetSolution(uid,
+                    puddle.SolutionName,
+                    out floorSolution,
+                    out _);
+            }
+            else if (footprintQuery.HasComponent(uid))
+            {
+                solutionContainerSystem.TryGetSolution(uid,
+                    FootprintComponent.SolutionName,
+                    out floorSolution,
+                    out _);
             }
 
-            var purgeable = solutionContainerSystem.SplitSolutionWithout(puddleSolution.Value, purgeAmount, ReplacementReagent, reagent.ID);
+            if (floorSolution is not { } solution)
+                continue;
+
+            var purgeable = solutionContainerSystem.SplitSolutionWithout(solution,
+                purgeAmount,
+                ReplacementReagent,
+                reagent.ID);
 
             purgeAmount -= purgeable.Volume;
 
-            solutionContainerSystem.TryAddSolution(puddleSolution.Value, new Solution(ReplacementReagent, purgeable.Volume));
+            solutionContainerSystem.TryAddSolution(solution, new Solution(ReplacementReagent, purgeable.Volume));
+            #endregion
 
             if (purgeable.Volume <= FixedPoint2.Zero)
                 break;
         }
 
-        return (reactVolume / CleanAmountMultiplier - purgeAmount) * CleanAmountMultiplier;
+        return ((reactVolume / CleanAmountMultiplier) - purgeAmount) * CleanAmountMultiplier;
     }
 }

@@ -1,0 +1,59 @@
+- type: !PartialOnly entity
+  id: BaseTree
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Decoration/Flora/flora_trees.rsi
+
+- type: !PartialOnly entity
+  id: BaseTreeSnow
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Decoration/Flora/tree_snow.rsi
+
+- type: !PartialOnly entity
+  id: BaseTreeLarge
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Decoration/Flora/flora_treeslarge.rsi
+
+- type: !PartialOnly entity
+  id: BaseTreeConifer
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Decoration/Flora/tree_spruce_medium.rsi
+
+- type: !PartialOnly entity
+  id: FloraTreeSnow
+  components:
+  - type: Sprite
+    layers:
+    - !CombineIndex:0 state: tree01
+  - type: RandomSprite
+    available: !Clear
+      - random:
+          tree01: ""
+          tree02: ""
+          tree03: ""
+          tree04: ""
+          tree05: ""
+          tree06: ""
+
+- type: !PartialOnly entity
+  id: FloraTreeStump
+  components:
+  - type: Sprite
+    sprite: Objects/Decoration/Flora/flora_treessnow.rsi
+
+- type: !PartialOnly entity
+  id: FloraTreeConifer
+  components:
+  - type: Sprite
+    layers:
+    - !CombineIndex:0 state: tree01
+  - type: RandomSprite
+    available: !Clear
+      - random:
+          tree01: ""
+          tree02: ""
+          tree03: ""
+          tree04: ""

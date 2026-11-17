@@ -145,7 +145,6 @@
     lightSoftness: 1
     BurningTemperature: 350 #LEDs are colder than incandescent bulbs
     PowerUse: 6 #LEDs are more power efficient than incandescent bulbs
-    dimmable: false # Starlight
   - type: Tag
     tags:
     - LightBulb
@@ -163,7 +162,6 @@
     lightEnergy: 0.5
     lightRadius: 5
     lightSoftness: 3
-    dimmable: false # Starlight
   - type: Tag
     tags:
     - LightBulb
@@ -252,7 +250,6 @@
     lightRadius: 10
     lightSoftness: 1
     PowerUse: 10
-    dimmable: false # Starlight
 
 - type: entity
   suffix: Broken
@@ -273,7 +270,7 @@
   - type: LightBulb
     color: "#EEEEFF"
     lightEnergy: 1
-    lightRadius: 13 #SL Edit
+    lightRadius: 15
     lightSoftness: 0.9
     BurningTemperature: 350
     PowerUse: 12
@@ -286,9 +283,9 @@
   components:
   - type: LightBulb
     color: "#B4FCF0"
-    lightEnergy: 4 #SL 4.5 -> 4
+    lightEnergy: 4.5
     lightRadius: 12
-    lightSoftness: 0.8 #SL 0.5 -> 0.8
+    lightSoftness: 0.5
     BurningTemperature: 350
     PowerUse: 100
 
@@ -326,7 +323,7 @@
   id: LightTubeCrystalCyan
   components:
   - type: LightBulb
-    color: "#5ae8ed" #SL Edit
+    color: "#47f8ff"
   - type: Construction
     graph: CyanLight
     node: icon
@@ -341,7 +338,7 @@
   id: LightTubeCrystalBlue
   components:
   - type: LightBulb
-    color: "#4ca1eb" #SL Edit
+    color: "#39a1ff"
   - type: Construction
     graph: BlueLight
     node: icon
@@ -356,7 +353,7 @@
   id: LightTubeCrystalYellow
   components:
   - type: LightBulb
-    color: "#edd25a" #SL Edit
+    color: "#ffde46"
   - type: Construction
     graph: YellowLight
     node: icon
@@ -371,7 +368,7 @@
   id: LightTubeCrystalPink
   components:
   - type: LightBulb
-    color: "#f075c7" #SL Edit
+    color: "#ff66cc"
   - type: Construction
     graph: PinkLight
     node: icon
@@ -386,7 +383,7 @@
   id: LightTubeCrystalOrange
   components:
   - type: LightBulb
-    color: "#ea863e" #SL Edit
+    color: "#ff8227"
   - type: Construction
     graph: OrangeLight
     node: icon
@@ -402,10 +399,9 @@
   id: LightTubeCrystalBlack
   components:
   - type: LightBulb
-    color: "#4d4d4d" #SL Edit
+    color: "#363636"
     lightEnergy: 1
     lightRadius: 8
-  - type: DarkLight # Starlight
   - type: Construction
     graph: BlackLight
     node: icon
@@ -420,7 +416,7 @@
   id: LightTubeCrystalRed
   components:
   - type: LightBulb
-    color: "#ec5555" #SL Edit
+    color: "#fb4747"
   - type: Construction
     graph: RedLight
     node: icon
@@ -435,7 +431,7 @@
   id: LightTubeCrystalGreen
   components:
   - type: LightBulb
-    color: "#7eeb4c" #SL Edit
+    color: "#52ff39"
   - type: Construction
     graph: GreenLight
     node: icon
@@ -467,7 +463,7 @@
   id: LightBulbCrystalCyan
   components:
   - type: LightBulb
-    color: "#5ae8ed" #SL Edit
+    color: "#47f8ff"
   - type: Construction
     graph: CyanLightBulb
     node: icon
@@ -482,7 +478,7 @@
   id: LightBulbCrystalBlue
   components:
   - type: LightBulb
-    color: "#4ca1eb" #SL Edit
+    color: "#39a1ff"
   - type: Construction
     graph: BlueLightBulb
     node: icon
@@ -497,7 +493,7 @@
   id: LightBulbCrystalYellow
   components:
   - type: LightBulb
-    color: "#edd25a" #SL Edit
+    color: "#ffde46"
   - type: Construction
     graph: YellowLightBulb
     node: icon
@@ -512,7 +508,7 @@
   id: LightBulbCrystalPink
   components:
   - type: LightBulb
-    color: "#f075c7" #SL Edit
+    color: "#ff66cc"
   - type: Construction
     graph: PinkLightBulb
     node: icon
@@ -527,7 +523,7 @@
   id: LightBulbCrystalOrange
   components:
   - type: LightBulb
-    color: "#ea863e" #SL Edit
+    color: "#ff8227"
   - type: Construction
     graph: OrangeLightBulb
     node: icon
@@ -543,10 +539,9 @@
   id: LightBulbCrystalBlack
   components:
   - type: LightBulb
-    color: "#4d4d4d" #SL Edit
+    color: "#363636"
     lightEnergy: 1
     lightRadius: 8
-  - type: DarkLight # Starlight
   - type: Construction
     graph: BlackLightBulb
     node: icon
@@ -561,7 +556,7 @@
   id: LightBulbCrystalRed
   components:
   - type: LightBulb
-    color: "#ec5555" #SL Edit
+    color: "#fb4747"
   - type: Construction
     graph: RedLightBulb
     node: icon
@@ -576,7 +571,7 @@
   id: LightBulbCrystalGreen
   components:
   - type: LightBulb
-    color: "#7eeb4c" #SL Edit
+    color: "#52ff39"
   - type: Construction
     graph: GreenLightBulb
     node: icon

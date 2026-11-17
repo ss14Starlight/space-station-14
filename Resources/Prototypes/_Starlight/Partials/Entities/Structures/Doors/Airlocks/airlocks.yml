@@ -1,0 +1,4 @@
+# Keep alphabetical
+- type: !PartialOnly entity
+  id: AirlockMaintGlass
+  name: maintenance access

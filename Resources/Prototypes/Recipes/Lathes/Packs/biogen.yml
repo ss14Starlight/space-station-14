@@ -21,7 +21,6 @@
   - BioGenEZNutrient
   - BioGenRobustHarvest
   - BioGenDiseaseSwab
-  - BioGenCompostAmmonia # Starlight-edit: Added compost recipe.
 
 - type: latheRecipePack
   id: BioGenMaterialsStatic

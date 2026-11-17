@@ -12,7 +12,7 @@ namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators.Combat.Melee;
 public sealed partial class MeleeAttackOperator : HTNOperator
 {
     [Dependency] private IEntityManager _entManager = default!;
-    private SharedMeleeWeaponSystem _melee;
+    private SharedMeleeWeaponSystem _melee = null!; // Starlight - Suppress warn as error.
 
     /// <summary>
     /// Key that contains the target entity.

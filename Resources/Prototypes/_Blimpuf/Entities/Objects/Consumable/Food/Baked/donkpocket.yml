@@ -1,0 +1,75 @@
+# Emagged Donk On The Go
+- type: entity
+  name: mime-pocket
+  parent: FoodDonkpocketBase
+  id: FoodDonkpocketMime
+  description: A desaturated donk-pocket that will leave you speechless.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - cheap
+    - mindful
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 15
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 2
+      - ReagentId: MuteToxin
+        Quantity: 10
+  - type: Sprite
+    state: mime
+
+- type: entity
+  name: warm mime-pocket
+  parent: FoodDonkpocketMime
+  id: FoodDonkpocketMimeWarm
+  components:
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 2
+      - ReagentId: MuteToxin
+        Quantity: 10
+      - ReagentId: Omnizine
+        Quantity: 2
+
+- type: entity
+  name: wonk-pocket
+  parent: FoodDonkpocketBase
+  id: FoodDonkpocketWonk
+  description: It smells and looks... breathtaking. Breathtakingly bad.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - cheap
+    - horrible
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 2
+      - ReagentId: Lexorin
+        Quantity: 3
+  - type: Sprite
+    state: wonk
+
+- type: entity
+  name: warm wonk-pocket
+  parent: FoodDonkpocketWonk
+  id: FoodDonkpocketWonkWarm
+  components:
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 2
+      - ReagentId: Lexorin
+        Quantity: 3
+      - ReagentId: Omnizine
+        Quantity: 2

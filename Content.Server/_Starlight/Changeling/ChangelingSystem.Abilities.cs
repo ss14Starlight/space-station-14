@@ -1,47 +1,46 @@
-using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.Reagent;
-using Content.Shared._Starlight.Actions.Components;
-using Content.Shared.Cuffs.Components;
-using Content.Shared.DoAfter;
-using Content.Shared.FixedPoint;
-using Content.Shared.IdentityManagement;
-using Content.Shared.Mobs;
-using Content.Shared.Store.Components;
-using Content.Shared.Popups;
-using Robust.Shared.Prototypes;
-using Content.Shared.Damage.Prototypes;
-using Content.Shared.Eye.Blinding.Systems;
-using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Movement.Pulling.Components;
-using Content.Shared.Stealth.Components;
-using Content.Shared.Damage.Components;
-using Content.Shared.Movement.Systems;
-using Content.Shared.Flash.Components;
-using Content.Shared.Mindshield.Components;
-using Content.Shared.Mindshield.FakeMindShield;
-using Content.Shared.StatusEffect;
-using Content.Shared.Light.Components;
-using Content.Shared.Actions.Events;
-using Content.Shared.RetractableItemAction;
-using Content.Shared.Changeling.Systems;
-using Content.Shared.Changeling.Components;
-using Content.Server.Changeling.Systems;
-// Starlight edit start
-using Content.Shared.Humanoid;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
+using System.Linq;
 using Content.Server._Starlight.Language;
+using Content.Server._Starlight.Objectives.Components;
+using Content.Server.Changeling.Systems;
+using Content.Server.Ensnaring;
+using Content.Shared._Starlight.Actions.Components;
+using Content.Shared._Starlight.Changeling;
 using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Overlay.Components;
-using Content.Shared._Starlight.Changeling;
-using Content.Server._Starlight.Objectives.Components;
-using Content.Shared.Flash;
+using Content.Shared.Actions.Components;
+using Content.Shared.Actions.Events;
 using Content.Shared.Atmos.Rotting;
-using Content.Shared.Store;
-using Content.Server.Ensnaring;
+using Content.Shared.Body.Components;
+using Content.Shared.Body.Systems;
+using Content.Shared.Changeling.Components;
+using Content.Shared.Changeling.Systems;
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Cuffs.Components;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.DoAfter;
 using Content.Shared.Ensnaring.Components;
+using Content.Shared.Eye.Blinding.Components;
+using Content.Shared.FixedPoint;
+using Content.Shared.Flash;
+using Content.Shared.Flash.Components;
+using Content.Shared.Humanoid;
+using Content.Shared.IdentityManagement;
+using Content.Shared.Light.Components;
+using Content.Shared.Mindshield.Components;
+using Content.Shared.Mindshield.FakeMindShield;
+using Content.Shared.Mobs;
+using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.Movement.Systems;
+using Content.Shared.Popups;
+using Content.Shared.RetractableItemAction;
+using Content.Shared.StatusEffectNew;
+using Content.Shared.Stealth.Components;
+using Content.Shared.Store;
+using Content.Shared.Store.Components;
 using Content.Shared.Tag;
-// Starlight edit end
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Changeling;
 
@@ -296,13 +295,16 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         PlayMeatySound(uid, comp);
     }
-    private void OnToggleArmor(EntityUid uid, ChangelingComponent comp, ref ToggleChitinousArmorEvent args)
+    private void OnToggleArmor(EntityUid uid, ChangelingComponent comp, ref ToggleChitinousArmorEvent args) => ToggleArmor(uid, comp);
+    private void ToggleArmor(EntityUid uid, ChangelingComponent comp)
     {
         if (!TryToggleItem(uid, ArmorPrototype, comp, "outerClothing")
         || !TryToggleItem(uid, ArmorHelmetPrototype, comp, "head"))
         {
             _popup.PopupEntity(Loc.GetString("changeling-equip-armor-fail"), uid, uid);
-            comp.Chemicals += Comp<ChangelingActionComponent>(args.Action).ChemicalCost;
+            var action = _actions.GetActions(uid).FirstOrDefault(a => MetaData(a).EntityPrototype?.ID == "ActionToggleChitinousArmor");
+            _actions.SetToggled(action.Owner, false);
+            comp.Chemicals += Comp<ChangelingActionComponent>(action).ChemicalCost;
             return;
         }
 
@@ -345,6 +347,8 @@ public sealed partial class ChangelingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("changeling-muscles-end"), uid, uid);
             comp.StrainedMusclesActive = false;
         }
+        var action = _actions.GetActions(uid).FirstOrDefault(a => MetaData(a).EntityPrototype?.ID == "ActionToggleStrainedMuscles");
+        _actions.SetToggled(action.Owner, comp.StrainedMusclesActive);
 
         _speed.RefreshMovementSpeedModifiers(uid);
         PlayMeatySound(uid, comp);
@@ -372,7 +376,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         _blindable.AdjustEyeDamage((target, blindable), 2);
         var timeSpan = TimeSpan.FromSeconds(5f);
-        _statusEffect.TryAddStatusEffect(target, TemporaryBlindnessSystem.BlindingStatusEffect, timeSpan, false, TemporaryBlindnessSystem.BlindingStatusEffect);
+        _statusEffect.TryAddStatusEffectDuration(target, "StatusEffectTemporaryBlindness", timeSpan);
     }
 
     private void OnStingChem(Entity<ChangelingComponent> ent, ref StingChemEvent ev) => TryReagentSting(ent.Owner, ent.Comp, ev, ev.Chems);
@@ -544,6 +548,8 @@ public sealed partial class ChangelingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("changeling-chameleon-start"), uid, uid);
             comp.StealthEnabled = true;
         }
+        var action = _actions.GetActions(uid).FirstOrDefault(a => MetaData(a).EntityPrototype?.ID == "ActionChameleonSkin");
+        _actions.SetToggled(action.Owner, comp.StealthEnabled);
     }
 
     private void OnEphedrineOverdose(EntityUid uid, ChangelingComponent comp, ref ActionEphedrineOverdoseEvent args)
@@ -686,6 +692,12 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
         }
 
+        if (!TryComp<ActionComponent>(ent.Owner, out var action))
+        {
+            Log.Debug($"No action component found for {ent.Owner}");
+            ev.Cancelled = true;
+            return;
+        }
         var lingAction = ent.Comp;
 
         if (comp.Biomass < 1 && lingAction.RequireBiomass)
@@ -702,13 +714,6 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
         }
 
-        if (comp.Chemicals < lingAction.ChemicalCost)
-        {
-            _popup.PopupEntity(Loc.GetString("changeling-chemicals-deficit"), uid, uid);
-            ev.Cancelled = true;
-            return;
-        }
-
         if (lingAction.RequireAbsorbed > comp.TotalAbsorbedEntities)
         {
             var delta = lingAction.RequireAbsorbed - comp.TotalAbsorbedEntities;
@@ -716,6 +721,22 @@ public sealed partial class ChangelingSystem : EntitySystem
             ev.Cancelled = true;
             return;
         }
+
+        if (lingAction.Togglable && action.Toggled)
+        {
+            _actions.SetToggled(ent.Owner, false);
+            return;
+        }
+
+        if (comp.Chemicals < lingAction.ChemicalCost)
+        {
+            _popup.PopupEntity(Loc.GetString("changeling-chemicals-deficit"), uid, uid);
+            ev.Cancelled = true;
+            return;
+        }
+
+        if (lingAction.Togglable)
+            _actions.SetToggled(ent.Owner, true);
 
         UpdateChemicals(uid, comp, -lingAction.ChemicalCost);
         UpdateBiomass(uid, comp, -lingAction.BiomassCost);

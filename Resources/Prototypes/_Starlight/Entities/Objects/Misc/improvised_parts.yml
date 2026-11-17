@@ -489,3 +489,16 @@
   - type: Construction
     graph: ClothingHeadHelmetPaladinGraph
     node: helmet
+
+- type: entity
+  name: Saw blade
+  description: Blade for create a saw, requires a sharp tool.
+  id: SawBlade
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/sawform.rsi
+    state: icon
+  - type: Construction
+    graph: ImprovisedSawGraph
+    node: start

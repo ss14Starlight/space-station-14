@@ -45,9 +45,15 @@ public sealed partial class ReplayObserverSystem : EntitySystem
     private bool _drawFov;
     private bool _drawLight = true;
     private bool _personalLight;
+    private bool _halfBright;
     private bool _ghostsVisible = true;
 
     public bool IsReplayActive => _replayPlayback.Replay != null;
+
+    /// <summary>
+    /// Set while recorded messages are dispatched, which happens just before the tick's system updates.
+    /// </summary>
+    public bool IsApplyingRecordedMessages { get; set; }
 
     public override void Initialize()
     {
@@ -56,18 +62,13 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         // Replay playback only runs Update for systems that opt in to running outside prediction.
         UpdatesOutsidePrediction = true;
 
-        SubscribeLocalEvent<ReplaySpectatorComponent, LocalPlayerAttachedEvent>(OnAttached);
-        SubscribeLocalEvent<ReplaySpectatorComponent, ToggleGhostsActionEvent>(OnToggleGhosts);
-        SubscribeLocalEvent<ReplaySpectatorComponent, ToggleGhostHearingActionEvent>(OnToggleHearing);
-        SubscribeLocalEvent<ReplaySpectatorComponent, ReplayTogglePlayerOverlayActionEvent>(OnTogglePlayerOverlay);
-        SubscribeLocalEvent<ReplaySpectatorComponent, ReplayToggleStatusIconsActionEvent>(OnToggleStatusIcons);
-
         _replayPlayback.ReplayPlaybackStarted += OnPlaybackStarted;
         _replayPlayback.ReplayPlaybackStopped += OnPlaybackStopped;
+        _replayPlayback.BeforeApplyState += OnBeforeApplyStateFollow;
 
         InitializeRoundSummary();
         InitializeViewer();
-        InitializeLaws();
+        InitializeAudio();
     }
 
     public override void Shutdown()
@@ -76,6 +77,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
 
         _replayPlayback.ReplayPlaybackStarted -= OnPlaybackStarted;
         _replayPlayback.ReplayPlaybackStopped -= OnPlaybackStopped;
+        _replayPlayback.BeforeApplyState -= OnBeforeApplyStateFollow;
 
         ShutdownRoundSummary();
         ShutdownViewer();
@@ -87,6 +89,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
     {
         ShutdownPlayerOverlay();
         ResetActionsBarOffset();
+        RestoreWeather();
         ResetState();
     }
 
@@ -98,6 +101,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         _drawFov = false;
         _drawLight = true;
         _personalLight = false;
+        _halfBright = false;
         _ghostsVisible = true;
         _hearAll = true;
         _overlayEnabled = false;
@@ -106,10 +110,19 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         _statusIconsEnabled = true;
         _statusIconsShown = false;
         _statusIconsAction = null;
+        _factionIconsEnabled = false;
+        _factionIconsShown = false;
+        _factionIconsAction = null;
+        DetachRoundTimeControls();
         _viewing.Clear();
+        _pendingViews.Clear();
+        _refollowCore = null;
+        _refollowOldEye = null;
         _radarAccumulator = 0f;
+        CloseSolutionWindows();
     }
 
+    [SubscribeLocalEvent]
     private void OnAttached(EntityUid uid, ReplaySpectatorComponent component, LocalPlayerAttachedEvent args)
     {
         // Spectated recorded mobs also get ReplaySpectatorComponent.
@@ -138,14 +151,22 @@ public sealed partial class ReplayObserverSystem : EntitySystem
 
         UpdatePlayerOverlay(frameTime, IsHudHidden());
         UpdateStatusIcons();
+        UpdateFactionIcons();
+        UpdateRoundTimeWidget();
         EnsureStatusIconOverlay();
         UpdateActionsBarOffset();
         UpdateRadar(frameTime);
+        UpdateRefollow();
+        UpdateSolutionWindows(frameTime);
+        UpdateMutedSounds();
+        UpdateAudioAudiences();
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        IsApplyingRecordedMessages = false;
 
         if (!IsReplayActive)
             return;
@@ -155,6 +176,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         // Replay playback only updates systems that opt in to running outside prediction, and the UI system doesn't,
         // so no UI window would ever open or close. Run it here; live play updates it normally.
         _ui.Update(frameTime);
+        UpdateClosedViews();
     }
 
     private void SetupObserver(EntityUid uid)
@@ -181,6 +203,9 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         _actions.SetToggled(_statusIconsAction, _statusIconsEnabled);
         _statusIconsShown = false; // A fresh observer has none of the HUD components yet.
 
+        AddWeatherAction(uid);
+        AddFactionIconsAction(uid);
+
         ApplyViewSettings(uid);
         _ghost.ToggleGhostVisibility(_ghostsVisible);
 
@@ -197,6 +222,8 @@ public sealed partial class ReplayObserverSystem : EntitySystem
 
         if (_lights.TryGetLight(uid, out var light))
             _lights.SetEnabled(uid, _personalLight, light);
+
+        _ghost.SetHalfBright(_halfBright);
     }
 
     private void SaveViewSettings(EntityUid uid)
@@ -209,8 +236,11 @@ public sealed partial class ReplayObserverSystem : EntitySystem
 
         if (_lights.TryGetLight(uid, out var light))
             _personalLight = light.Enabled;
+
+        _halfBright = _ghost.HalfBright;
     }
 
+    [SubscribeLocalEvent]
     private void OnToggleGhosts(EntityUid uid, ReplaySpectatorComponent component, ToggleGhostsActionEvent args)
     {
         // GhostSystem does the toggle and ignores handled events, so leave this unhandled.

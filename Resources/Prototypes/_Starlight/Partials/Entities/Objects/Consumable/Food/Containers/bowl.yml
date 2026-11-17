@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - FoodBowlBig
+    - FoodBowlFancy
+  components:
+  - type: Tag
+    tags:
+    - Dinnerware

@@ -7,6 +7,7 @@ using Content.Server.Voting.Managers;
 using Content.Shared._Starlight.Commands;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
+using Content.Shared.GameTicking;
 using Robust.Shared.Player;
 using Timer = Robust.Shared.Timing.Timer;
 
@@ -27,9 +28,9 @@ public sealed partial class RoundEndSystem
         _countdownTokenSource.Cancel();
         _countdownTokenSource = null;
         _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
-            $"Round restart timer was delayed by {CommandHelpers.PlayerNameOrServer(canceller)}");
+            $"Round restart timer was delayed by {SharedCommandHelpers.PlayerNameOrServer(canceller)}");
         _chatManager.SendAdminAnnouncement(
-            $"Round restart timer was delayed by {CommandHelpers.PlayerNameOrServer(canceller)}");
+            $"Round restart timer was delayed by {SharedCommandHelpers.PlayerNameOrServer(canceller)}");
     }
 
     public void StartRestartTimer(TimeSpan? countdownTime = null)
@@ -67,6 +68,21 @@ public sealed partial class RoundEndSystem
                 ("time", time),
                 ("units", Loc.GetString(unitsLocString))));
         Timer.Spawn(countdownTime.Value, AfterEndRoundRestart, _countdownTokenSource.Token);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnRoundEndCancelled(RoundEndCancelMessageEvent ev)
+    {
+        _countdownTokenSource?.Cancel();
+        _countdownTokenSource = null;
+        _cooldownTokenSource?.Cancel();
+        _cooldownTokenSource = null;
+
+        CantRecall = false;
+        LastCountdownStart = null;
+        ExpectedCountdownEnd = null;
+        SetAutoCallTime();
+        RaiseLocalEvent(RoundEndSystemChangedEvent.Default);
     }
 
     public bool IsRestartTimerActive() =>
@@ -110,7 +126,7 @@ public sealed partial class RoundEndSystem
     {
         StartTimerOnRestart = state;
         _adminLogger.Add(LogType.AdminCommands, LogImpact.Medium,
-            $"{CommandHelpers.PlayerNameOrServer(session)} toggled {(state ? "on" : "off")} the restart timer on round end.");
+            $"{SharedCommandHelpers.PlayerNameOrServer(session)} toggled {(state ? "on" : "off")} the restart timer on round end.");
     }
 
     public void DelayShuttleTimer(float seconds)

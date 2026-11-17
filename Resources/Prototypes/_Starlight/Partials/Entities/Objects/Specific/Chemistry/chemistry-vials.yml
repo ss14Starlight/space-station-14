@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: BaseChemistryVial
+  components:
+  - type: Tag
+    tags:
+    - Vial

@@ -141,6 +141,7 @@
     - map: [ "belt" ]
     - map: [ "neck" ]
     - map: [ "back" ]
+    - map: [ "suitstorage" ]
     - map: [ "enum.HumanoidVisualLayers.TailExtras" ]
     - map: [ "enum.HumanoidVisualLayers.Tail" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
@@ -151,10 +152,10 @@
     - map: [ "head" ]
     - map: [ "pocket1" ]
     - map: [ "pocket2" ]
-    - map: [ "clownedon" ]
-      sprite: "_Starlight/Effects/creampie.rsi"
-      state: "creampie_resomi"
-      visible: false
+  - type: CreamPied
+    sprite:
+      sprite: _Starlight/Effects/creampie.rsi
+      state: creampie_resomi
   - type: Vocal
   - type: Speech
     speechVerb: Resomi

@@ -15,11 +15,10 @@
     - MonkeyWearable
     - CorgiWearable
     - WhitelistChameleon
-    - CorgiWearable
 
 #Syndicate EVA
 - type: entity
-  parent: [ ClothingOuterEVASuitBase, BaseMinorContraband ] #SL edit Syndie > Minor Contra
+  parent: [ ClothingOuterEVASuitBase, BaseMinorContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: ClothingOuterEVASuitSyndicate
   name: syndicate EVA suit
   description: "Has a tag on the back that reads: 'Totally not property of an enemy corporation, honest!'"
@@ -65,7 +64,6 @@
     - CorgiWearable
     - ScurretWearable
     - MonkeyWearable
-    - SuitEVA #Starlight
     - WhitelistChameleon
 
 #Prisoner EVA
@@ -126,8 +124,8 @@
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
   - type: ClothingSpeedModifier
-    walkModifier: 1.0 # Starlight Edit
-    sprintModifier: 1.0 # Starlight Edit
+    walkModifier: 0.9
+    sprintModifier: 0.9
     requireActivated: false
   - type: HeldSpeedModifier
   - type: TemperatureProtection
@@ -141,15 +139,11 @@
         Heat: 0.90
         Radiation: 0.75
         Caustic: 0.5
-        Cold: 0.7 # Starlight
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.5 # Starlight Edit
   - type: GroupExamine
   - type: StealTarget
     stealGroup: ClothingOuterHardsuitVoidParamed
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetVoidParamed
-    redirectDraw: true # Starlight-edit
   - type: ItemToggle
     onUse: false
     soundActivate:
@@ -177,20 +171,8 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
-      cell_slot: !type:ContainerSlot # Starlight-edit
+      cell_slot: !type:ContainerSlot # Starlight-edit - left in place: a partial cannot add an empty-valued key
   - type: Tag
     tags:
     - CorgiWearable
     - WhitelistChameleon
-  # Starlight-start
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMedium
-        blacklist:
-          tags:
-          - MechReactor
-  # Starlight-end

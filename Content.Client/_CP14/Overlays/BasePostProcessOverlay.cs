@@ -25,6 +25,7 @@ public sealed partial class CP14BasePostProcessOverlay : Overlay
     public CP14BasePostProcessOverlay()
     {
         IoCManager.InjectDependencies(this);
+        ZIndex = -120; // Starlight
         _basePostProcessShader = _prototypeManager.Index(_basePostProcessShaderId).InstanceUnique();
     }
 

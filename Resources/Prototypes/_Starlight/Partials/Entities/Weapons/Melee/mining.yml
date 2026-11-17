@@ -1,0 +1,17 @@
+- type: !PartialOnly entity
+  id: WeaponCrusher
+  components:
+  - type: Contraband
+    allowedDepartments: [ITG, Security, Cargo]
+
+- type: !PartialOnly entity
+  id: WeaponCrusherDagger
+  components:
+  - type: Contraband
+    allowedDepartments: [ITG, Security, Cargo]
+
+- type: !PartialOnly entity
+  id: WeaponCrusherGlaive
+  components:
+  - type: Contraband
+    allowedDepartments: [ITG, Security, Cargo]

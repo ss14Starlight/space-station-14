@@ -1,11 +1,13 @@
 using System.Numerics;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.Weapons.Hitscan.Events;
+using Content.Shared.Damage.Components;
 using Content.Shared.Mech.Components;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Hitscan.Systems;
 using Content.Shared.Weapons.Ranged.Components;
+using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
@@ -25,18 +27,18 @@ public sealed partial class GunSystem
     private const double MispredictAngleDegrees = 1;
     private const float MispredictDistance = 0.5f;
 
-    private readonly List<PendingHitscan> _pendingHitscans = new();
+    private readonly List<PendingHitscan> _pendingHitscans = [];
 
     /// <summary>
     /// Effects of a predicted trace, kept so they can be removed if the server disagrees with the prediction.
     /// </summary>
     private sealed class PredictedHitscanEffects
     {
-        public readonly List<EntityUid> Entities = new();
+        public readonly List<EntityUid> Entities = [];
         public bool Cancelled;
     }
 
-    private readonly record struct PendingHitscan(NetEntity Gun, int Seed, TimeSpan Expires, HitscanTrace Predicted, PredictedHitscanEffects Effects);
+    private readonly record struct PendingHitscan(NetEntity Gun, int Seed, TimeSpan Expires, List<HitscanTrace> Predicted, PredictedHitscanEffects Effects, string? Prototype);
 
     /// <summary>
     /// Set while a predicted trace is being rendered, so every spawned effect gets recorded.
@@ -90,11 +92,8 @@ public sealed partial class GunSystem
         var fromCoordinates = MapManager.TryFindGridAt(from, out var gridUid, out _)
             ? TransformSystem.ToCoordinates(gridUid, from)
             : TransformSystem.ToCoordinates(from);
-        var trace = _hitscan.PredictTrace((shot, raycast), user!.Value, fromCoordinates, direction, pointer, gun.Comp.Target, seed);
-        var traces = new List<HitscanTrace>
-        {
-            trace
-        };
+
+        var traces = _hitscan.PredictTrace((shot, raycast), user!.Value, fromCoordinates, direction, pointer, gun.Comp.Target, seed);
 
         var ev = new HitscanEvent
         {
@@ -107,8 +106,17 @@ public sealed partial class GunSystem
         };
 
         var effects = new PredictedHitscanEffects();
-        FireEffect(ev, 0f, trace, effects);
-        _pendingHitscans.Add(new PendingHitscan(GetNetEntity(gun), seed, Timing.RealTime + _pendingHitscanTimeout, trace, effects));
+        var delay = 0f;
+        foreach (var trace in traces)
+        {
+            delay = FireEffect(ev, delay, trace, effects);
+        }
+
+        if (TryComp<HitscanBasicEffectsComponent>(shot, out var impactEffects))
+            PlayPredictedImpactSound(CompOrNull<HitscanBasicDamageComponent>(shot), impactEffects, traces[0]);
+
+        _pendingHitscans.Add(new PendingHitscan(GetNetEntity(gun), seed, Timing.RealTime + _pendingHitscanTimeout, traces, effects,
+            MetaData(shot).EntityPrototype?.ID));
     }
 
     private MapCoordinates MuzzleFrom(MapCoordinates from, Vector2 direction, EntityUid? user)
@@ -119,18 +127,14 @@ public sealed partial class GunSystem
         return from.Offset(direction.Normalized() * MechMuzzleOffset);
     }
 
-    /// <summary>
-    /// Matches a server trace to the pending prediction of the same shot.
-    /// </summary>
-    /// <returns>True if the first trace was predicted correctly and is already on screen.</returns>
-    private bool TryConsumePredictedHitscan(HitscanEvent ev)
+    private int TryConsumePredictedHitscan(HitscanEvent ev)
     {
         if (_pendingHitscans.Count == 0
             || ev.Shooter is not { } shooter
             || ev.Gun is not { } gun
             || ev.PredictionSeed is not { } seed
             || GetEntity(shooter) != _player.LocalEntity)
-            return false;
+            return 0;
 
         var now = Timing.RealTime;
         _pendingHitscans.RemoveAll(pending => pending.Expires < now);
@@ -142,17 +146,31 @@ public sealed partial class GunSystem
             index = _pendingHitscans.FindIndex(pending => pending.Gun == gun);
 
         if (index < 0)
-            return false;
+            return 0;
 
         var pending = _pendingHitscans[index];
         _pendingHitscans.RemoveAt(index);
 
-        if (seedMatched && ev.Traces.Count > 0 && IsPredictedCorrectly(gun, pending.Predicted, ev.Traces[0]))
-            return true;
+        if (seedMatched
+            && ev.Traces.Count >= pending.Predicted.Count
+            && (ev.Prototype == null || ev.Prototype == pending.Prototype)
+            && IsPredictedCorrectly(gun, pending.Predicted, ev.Traces))
+            return pending.Predicted.Count;
 
         // The server disagrees: drop what we drew and let the authoritative trace render instead.
         CancelPredictedEffects(pending.Effects);
-        return false;
+        return 0;
+    }
+
+    private bool IsPredictedCorrectly(NetEntity gun, List<HitscanTrace> predicted, List<HitscanTrace> actual)
+    {
+        for (var i = 0; i < predicted.Count; i++)
+        {
+            if (!IsPredictedCorrectly(gun, predicted[i], actual[i]))
+                return false;
+        }
+
+        return true;
     }
 
     private void CancelPredictedEffects(PredictedHitscanEffects effects)
@@ -170,6 +188,35 @@ public sealed partial class GunSystem
 
     private void RecordPredictedEffect(EntityUid ent)
         => _recordingEffects?.Entities.Add(ent);
+
+    private bool IsOwnPredictedShot(HitscanEvent ev)
+        => _hitscanPrediction
+        && ev.Shooter is { } shooter
+        && GetEntity(shooter) == _player.LocalEntity;
+
+    private void PlayPredictedImpactSound(HitscanEvent ev)
+    {
+        if (ev.Traces.Count == 0
+            || ev.Prototype == null
+            || !ProtoManager.TryIndex<EntityPrototype>(ev.Prototype, out var proto)
+            || !proto.TryComp<HitscanBasicEffectsComponent>(out var effects, Factory))
+            return;
+
+        _ = proto.TryComp<HitscanBasicDamageComponent>(out var damage, Factory);
+        PlayPredictedImpactSound(damage, effects, ev.Traces[0]);
+    }
+
+    private void PlayPredictedImpactSound(HitscanBasicDamageComponent? damage, HitscanBasicEffectsComponent effects, HitscanTrace trace)
+    {
+        if (trace.ImpactedEnt is not { } netHit
+            || !TryGetEntity(netHit, out var hit)
+            || !HasComp<DamageableComponent>(hit))
+            return;
+
+        var sound = GetImpactSound(hit.Value, damage?.Damage, effects.Sound, effects.ForceSound, out var variation);
+        Audio.PlayPredicted(sound, hit.Value, _player.LocalEntity,
+            variation ? AudioParams.Default.WithVariation(DamagePitchVariation) : null);
+    }
 
     private bool IsPredictedCorrectly(NetEntity gun, HitscanTrace predicted, HitscanTrace actual)
     {

@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Audio;
 using Content.Server.Explosion.EntitySystems;
@@ -12,6 +13,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Database;
 using Content.Shared.Ghost;
 using Content.Shared.Interaction;
 using Content.Shared.Projectiles;
@@ -27,12 +29,14 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared._Starlight.Abstract;
+using Content.Shared.Radiation.Systems;
 
 namespace Content.Server._Starlight.Energy.Supermatter;
 
 public sealed partial class SupermatterSystem : AccUpdateEntitySystem
 {
     [Dependency] private AchievementSystem _achievements = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private AudioSystem _audio = default!;
@@ -45,6 +49,7 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ExplosionSystem _explosion = default!;
     [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedRadiationSystem _radiation = default!; // using upstream radiation system
 
     private readonly Dictionary<EntityUid, Entity<SupermatterComponent>> _supermatters = [];
     private DamageGroupPrototype? _brute;
@@ -84,10 +89,18 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
         _damageable.TryChangeDamage(ent.Owner, new(_burn, damage), true);
 
         QueueDel(args.User);
+        args.Handled = true;
+
+        _adminLogger.Add(LogType.EntityDelete,
+                        LogImpact.Medium,
+                        $"Entity {ToPrettyString(args.User):entity} interacted with {ToPrettyString(ent):supermatter} and was deleted");
     }
 
     private void OnCollide(Entity<SupermatterComponent> ent, ref EndCollideEvent args)
     {
+        if (TerminatingOrDeleted(args.OtherEntity) || EntityManager.IsQueuedForDeletion(args.OtherEntity))
+            return;
+
         ent.Comp.Activated = true;
 
         if (HasComp<ProjectileComponent>(args.OtherEntity)
@@ -108,6 +121,10 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
         _damageable.TryChangeDamage(ent.Owner, new(_burn, damage), true);
 
         QueueDel(args.OtherEntity);
+
+        _adminLogger.Add(LogType.EntityDelete,
+                        LogImpact.Medium,
+                        $"Entity {ToPrettyString(args.OtherEntity):entity} collided with {ToPrettyString(ent):supermatter} and was deleted");
     }
 
     // Check if entity is immune to supermatter (directly or via worn items)
@@ -193,7 +210,7 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
             _ambient.SetSound(supermatter.Owner, Const.AmbienceCalm, ambience);
     }
 
-    private void HandleDestruction(Entity<SupermatterComponent> supermatter)
+    private static void HandleDestruction(Entity<SupermatterComponent> supermatter)
     {
         var regen = Const.RegenerationPerSecond * supermatter.Comp.RegenerationModifier;
         var damageToApply = MathHelper.Clamp((supermatter.Comp.AccBreak / 10) - regen, -regen, Const.MaxDamagePerSecond);
@@ -212,8 +229,8 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
     private void HandleRadiation(Entity<SupermatterComponent> supermatter)
     {
         var radComp = EnsureComp<RadiationSourceComponent>(supermatter.Owner);
-        radComp.Intensity = supermatter.Comp.AccRadiation.Float();
-        radComp.Slope = Math.Max(0.15f, supermatter.Comp.AccRadiation.Float() / 10f); ///As radiation gets stronger, the slope increases, ensuring the rads don't pierce the entire fucking station
+        _radiation.SetIntensity(supermatter.Owner, supermatter.Comp.AccRadiation.Float()); // changed to use upstream radiation system
+        _radiation.SetSlope((supermatter.Owner, radComp), Math.Max(0.15f, supermatter.Comp.AccRadiation.Float() / 10f)); ///As radiation gets stronger, the slope increases, ensuring the rads don't pierce the entire fucking station
 
         supermatter.Comp.AccRadiation /= supermatter.Comp.RadiationStability;
     }

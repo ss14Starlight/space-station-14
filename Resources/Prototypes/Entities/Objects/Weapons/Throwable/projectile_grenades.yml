@@ -43,7 +43,7 @@
         friction: 0.2
 
 - type: entity
-  parent: [FragileGrenadeBase, ProjectileGrenadeBase, BaseSecurityContraband]
+  parent: [ BaseContrabandTier2, FragileGrenadeBase, ProjectileGrenadeBase, BaseSecurityContraband ] # Blimpuf
   id: GrenadeStinger
   name: stinger grenade
   description: Nothing to see here, please disperse.
@@ -75,7 +75,6 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Effects/countdown.ogg
-  - type: EorgPreventTrigger # Starlight
 
 - type: entity
   parent: [FragileGrenadeBase, ProjectileGrenadeBase, BaseSyndicateContraband]
@@ -108,7 +107,6 @@
     positional: true
   - type: StaticPrice
     price: 1500
-  - type: EorgPreventTrigger # Starlight
 
 - type: entity
   parent: [FragileGrenadeBase, ProjectileGrenadeBase, BaseSyndicateContraband]
@@ -141,4 +139,3 @@
     positional: true
   - type: StaticPrice
     price: 1500
-  - type: EorgPreventTrigger # Starlight

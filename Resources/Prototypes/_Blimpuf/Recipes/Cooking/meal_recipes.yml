@@ -1,0 +1,15 @@
+- type: microwaveMealRecipe
+  id: RecipeDonkpocketMime
+  name: warm mime-pocket recipe
+  result: FoodDonkpocketMimeWarm
+  time: 5
+  solids:
+    FoodDonkpocketMime: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkpocketWonk
+  name: warm wonk-pocket recipe
+  result: FoodDonkpocketWonkWarm
+  time: 5
+  solids:
+    FoodDonkpocketWonk: 1

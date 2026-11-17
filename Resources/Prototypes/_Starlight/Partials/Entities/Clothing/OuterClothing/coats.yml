@@ -1,0 +1,13 @@
+- type: !PartialOnly entity
+  id: ClothingOuterCoatSyndieCap
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: ClothingOuterCoatSyndieCapArmored
+  components:
+  - type: Contraband
+    tier: Tier4

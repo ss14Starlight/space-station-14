@@ -32,18 +32,29 @@ public sealed partial class PaperComponent : Component
     [DataField("sound")]
     public SoundSpecifier? Sound { get; private set; } = new SoundCollectionSpecifier("PaperScribbles", AudioParams.Default.WithVariation(0.1f));
 
+    #region Starlight
+
+    /// <summary>
+    /// Permits extended markup, as in, allows all markup tags to be written on the page. Intended for admin usage.
+    /// </summary>
+    [DataField, AutoNetworkedField] public bool ExtendedMarkup;
+
+    #endregion
+
     [Serializable, NetSerializable]
     public sealed class PaperBoundUserInterfaceState : BoundUserInterfaceState
     {
         public readonly string Text;
         public readonly List<StampDisplayInfo> StampedBy;
         public readonly PaperAction Mode;
+        public readonly bool ExtendedMarkup; // Starlight
 
-        public PaperBoundUserInterfaceState(string text, List<StampDisplayInfo> stampedBy, PaperAction mode = PaperAction.Read)
+        public PaperBoundUserInterfaceState(string text, List<StampDisplayInfo> stampedBy, PaperAction mode = PaperAction.Read, bool extendedMarkup = false) // Starlight edit
         {
             Text = text;
             StampedBy = stampedBy;
             Mode = mode;
+            ExtendedMarkup = extendedMarkup; // Starlight
         }
     }
 

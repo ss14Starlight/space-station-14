@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: ChangelingSurviveObjective
+  components:
+  - type: Objective
+    difficulty: 0

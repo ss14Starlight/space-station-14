@@ -1,0 +1,26 @@
+- type: !PartialOnly entity
+  id: MobBatRemilia
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Bat
+    - Mouse
+    understands:
+    - GalacticCommon
+    - Bat
+    - Mouse
+
+- type: !PartialOnly entity
+  id: MobCorgiCerberus
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Dog
+    - DogFeral
+    - Darktongue
+    understands:
+    - GalacticCommon
+    - Dog
+    - DogFeral
+    - Fox
+    - Darktongue

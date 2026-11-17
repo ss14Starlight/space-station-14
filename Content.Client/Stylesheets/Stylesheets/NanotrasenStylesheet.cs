@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Client._Starlight.Stylesheets;
 using Content.Client.Stylesheets.Fonts;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
@@ -8,7 +9,7 @@ using static Robust.Client.UserInterface.StylesheetHelpers;
 
 namespace Content.Client.Stylesheets.Stylesheets;
 
-public partial class NanotrasenStylesheet : CommonStylesheet
+public sealed partial class NanotrasenStylesheet : CommonStylesheet
 {
     public override string StylesheetName => "Nanotrasen";
 
@@ -54,6 +55,7 @@ public partial class NanotrasenStylesheet : CommonStylesheet
             // Finally, load all the other sheetlets.
             GetAllSheetletRules<PalettedStylesheet, CommonSheetletAttribute>(man),
             GetAllSheetletRules<NanotrasenStylesheet, CommonSheetletAttribute>(man),
+            GetAllSheetletRules<NanotrasenStylesheet, StarlightSheetletAttribute>(man), // Starlight
         };
 
         Stylesheet = new Stylesheet(rules.SelectMany(x => x).ToArray());

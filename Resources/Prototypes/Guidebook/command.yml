@@ -1,6 +1,7 @@
 - type: guideEntry
   id: Command
   name: guide-entry-command
+  department: Command # Starlight
   text: "/ServerInfo/Guidebook/Command.xml"
   children:
     - secure-terminal-guide

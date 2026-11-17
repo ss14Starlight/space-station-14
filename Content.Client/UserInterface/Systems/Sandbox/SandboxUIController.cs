@@ -142,6 +142,7 @@ public sealed partial class SandboxUIController : UIController, IOnStateChanged<
         _window.ToggleLightButton.OnToggled += _ => _sandbox.ToggleLight();
         _window.ToggleFovButton.OnToggled += _ => _sandbox.ToggleFov();
         _window.ToggleShadowsButton.OnToggled += _ => _sandbox.ToggleShadows();
+        ConfigureWeatherToggle(_window); // Starlight
         _window.SuicideButton.OnPressed += _ => _sandbox.Suicide();
         _window.ToggleSubfloorButton.OnPressed += _ => _sandbox.ToggleSubFloor();
         _window.ShowMarkersButton.OnPressed += _ => _sandbox.ShowMarkers();

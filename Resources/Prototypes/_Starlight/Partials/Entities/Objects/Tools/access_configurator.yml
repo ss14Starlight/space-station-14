@@ -1,0 +1,67 @@
+- type: !PartialOnly entity
+  id: AccessConfigurator
+  components:
+    - type: AccessOverrider
+      accessLevels: !Remove
+      accessGroups:
+      - General
+      - Security
+      - Cargo
+      - Command
+      - Research
+      - Medical
+      - Service
+      - Engineering
+      - Law
+      privilegedIdSlot:
+        name: AccessOverrider-privilegedId
+    - type: StealTarget
+      stealGroup: AccessConfigurator
+
+- type: !PartialOnly entity
+  id: AccessConfiguratorUniversal
+  components:
+    - type: AccessOverrider
+      accessLevels: !Remove
+      accessGroups:
+      - General
+      - Security
+      - Cargo
+      - Command
+      - Research
+      - Medical
+      - Service
+      - Engineering
+      - Law
+      - Misc
+      - CentralCommand
+      - NanoTrasen
+      - Syndicate
+      - Silicon
+      - Xenoborg
+      overridesTargetRestrictions: true
+      privilegedIdSlot:
+        name: AccessOverrider-privilegedId
+    - type: UserInterface
+      interfaces:
+        enum.AccessOverriderUiKey.Key:
+          type: AccessOverriderBoundUserInterface
+    - type: ActivatableUI
+      key: enum.AccessOverriderUiKey.Key
+      requiresComplex: true
+      requireActiveHand: false
+      singleUser: true
+      inHandsOnly: true
+    - type: ItemSlots
+    - type: ContainerContainer
+      containers:
+        AccessOverrider-privilegedId: !type:ContainerSlot
+
+# accessLevels -> accessGroups
+- type: !PartialOnly entity
+  id: AccessConfiguratorXenoborg
+  components:
+  - type: AccessOverrider
+    accessLevels: !Remove
+    accessGroups:
+    - Xenoborg

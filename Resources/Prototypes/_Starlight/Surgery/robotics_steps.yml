@@ -10,6 +10,7 @@
   - type: SurgeryStepOrganExtract
     organ:
     - type: HandImplant
+    slot: hand_implant
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
@@ -26,6 +27,7 @@
   - type: SurgeryStepOrganExtract
     organ:
     - type: BrainImplant
+    slot: brain_implant
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map

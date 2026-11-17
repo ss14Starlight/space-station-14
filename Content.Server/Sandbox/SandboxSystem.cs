@@ -13,6 +13,7 @@ using Robust.Server.Console;
 using Robust.Server.Placement;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
+using Robust.Shared.Network.Messages;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using System.Linq;
@@ -59,20 +60,13 @@ namespace Content.Server.Sandbox
 
             _placementManager.AllowPlacementFunc = placement =>
             {
-                if (IsSandboxEnabled)
-                {
-                    return true;
-                }
+                // Starlight start - attach tiles placed in space to adjacent grids
+                if (!CanPlace(placement))
+                    return false;
 
-                var channel = placement.MsgChannel;
-                var player = _playerManager.GetSessionByChannel(channel);
-
-                if (_conGroupController.CanAdminPlace(player))
-                {
-                    return true;
-                }
-
-                return false;
+                TryRedirectToAdjacentGrid(placement);
+                return true;
+                // Starlight end
             };
         }
 

@@ -23,7 +23,7 @@ public sealed partial class TargetCryoTeleportationComponent : Component
     public NetUserId? UserId;
 
     /// <summary>
-    /// Job this body spawned as. Reopened on cryo if the player has moved on.
+    /// Job this body spawned as. Reopened on cryo if the player has moved on, and cleared once its slot reopens.
     /// </summary>
     [DataField]
     public ProtoId<JobPrototype>? Job;

@@ -1,7 +1,7 @@
 - type: entity
   id: BaseMagazineMagnum
   name: pistol magazine (.45 magnum)
-  parent: [ BaseSecuritySalvageContraband, BaseMagazinePistol ]
+  parent: [ BaseContrabandTier3, BaseSecurityContraband, BaseSalvageContraband, BaseMagazinePistol ] # Blimpuf
   abstract: true
   components:
   - type: Tag
@@ -17,7 +17,7 @@
 - type: entity
   id: BaseMagazineMagnumSubMachineGun
   name: SMG magazine (.45 magnum)
-  parent: [BaseItem, BaseSecuritySalvageContraband]
+  parent: [ BaseContrabandTier3, BaseItem, BaseSecurityContraband, BaseSalvageContraband ] # Blimpuf
   abstract: true
   components:
   - type: Tag

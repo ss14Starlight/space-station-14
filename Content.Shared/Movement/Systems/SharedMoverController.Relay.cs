@@ -1,4 +1,7 @@
+using Content.Shared.Mobs;
 using Content.Shared.Movement.Components;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
 
 namespace Content.Shared.Movement.Systems;
 
@@ -8,6 +11,9 @@ public abstract partial class SharedMoverController
     {
         SubscribeLocalEvent<RelayInputMoverComponent, ComponentShutdown>(OnRelayShutdown);
         SubscribeLocalEvent<MovementRelayTargetComponent, ComponentShutdown>(OnTargetRelayShutdown);
+        // Starlight - start
+        SubscribeLocalEvent<MovementRelayTargetComponent, MobStateChangedEvent>(OnRelayTargetMobStateChanged);
+        // Starlight - end
         SubscribeLocalEvent<MovementRelayTargetComponent, AfterAutoHandleStateEvent>(OnAfterRelayTargetState);
         SubscribeLocalEvent<RelayInputMoverComponent, AfterAutoHandleStateEvent>(OnAfterRelayState);
     }
@@ -38,8 +44,16 @@ public abstract partial class SharedMoverController
         if (component.RelayEntity == relayEntity)
             return;
 
+        // Starlight - start
+        StopRelayMovement(uid);
+        // Starlight - end
+
         if (TryComp(component.RelayEntity, out MovementRelayTargetComponent? oldTarget))
         {
+            // Starlight - start
+            StopRelayMovement(component.RelayEntity);
+            // Starlight - end
+
             oldTarget.Source = EntityUid.Invalid;
             RemComp(component.RelayEntity, oldTarget);
             PhysicsSystem.UpdateIsPredicted(component.RelayEntity);
@@ -63,13 +77,34 @@ public abstract partial class SharedMoverController
         UpdateMoverStatus((relayEntity, null, targetComp));
     }
 
+    #region Starlight
+    private void StopRelayMovement(EntityUid uid)
+    {
+        if (TryComp<InputMoverComponent>(uid, out var inputMover))
+        {
+            SetMoveInput((uid, inputMover), MoveButtons.None);
+            inputMover.CurTickWalkMovement = default;
+            inputMover.CurTickSprintMovement = default;
+            SetWishDir((uid, inputMover), default);
+        }
+
+        if (!Timing.ApplyingState
+            && TryComp<PhysicsComponent>(uid, out var physics)
+            && physics.BodyType != BodyType.Static)
+        {
+            PhysicsSystem.SetLinearVelocity(uid, default, body: physics);
+        }
+    }
+    #endregion
+
     private void OnRelayShutdown(Entity<RelayInputMoverComponent> entity, ref ComponentShutdown args)
     {
         PhysicsSystem.UpdateIsPredicted(entity.Owner);
         PhysicsSystem.UpdateIsPredicted(entity.Comp.RelayEntity);
 
-        if (TryComp<InputMoverComponent>(entity.Comp.RelayEntity, out var inputMover))
-            SetMoveInput((entity.Comp.RelayEntity, inputMover), MoveButtons.None);
+        // Starlight - start
+        StopRelayMovement(entity.Comp.RelayEntity);
+        // Starlight - end
 
         if (Timing.ApplyingState)
             return;

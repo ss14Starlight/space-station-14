@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: FirelockElectronics
+  components:
+  - type: Tag
+    tags:
+    - RamChip # FH

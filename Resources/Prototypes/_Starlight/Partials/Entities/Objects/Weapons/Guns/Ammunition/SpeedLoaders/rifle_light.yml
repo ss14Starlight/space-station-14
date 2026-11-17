@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: SpeedLoaderLightRifle
+  name: "speed loader (.45 magnum)"
+  description: !Remove
+  components:
+  - type: BallisticAmmoProvider
+    fillDelay: 0.1
+    whitelist:
+      tags: !Clear
+        - CartridgeMagnum
+    proto: CartridgeMagnumSP

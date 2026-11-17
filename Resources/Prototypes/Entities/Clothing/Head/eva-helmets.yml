@@ -34,7 +34,7 @@
 
 #Syndicate EVA Helmet
 - type: entity
-  parent: [ ClothingHeadEVAHelmetBase, BaseMinorContraband ] #SL Edit Syndie > Minor Contra
+  parent: [ ClothingHeadEVAHelmetBase, BaseMinorContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: ClothingHeadHelmetSyndicate
   name: syndicate EVA helmet
   description: A simple, stylish EVA helmet. Designed for maximum humble space-badassery.
@@ -72,7 +72,7 @@
 
 #Paramedic Void Helmet
 - type: entity
-  parent: [ ClothingHeadSuitWithLightBase, ClothingHeadEVAHelmetBase, ClothingHeadLightParamsIntermediate ] #Despite acting like a hardsuit helmet, since it inherits from EVA Helmet, it goes here.
+  parent: [ ClothingHeadSuitWithLightBase, ClothingHeadEVAHelmetBase, ClothingHeadLightParamsIntermediate ] #Despite acting like a hardsuit helmet, since it inherits from EVA Helmet, it goes here. # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: ClothingHeadHelmetVoidParamed
   name: paramedic void helmet
   description: A void helmet made for paramedics.
@@ -91,8 +91,6 @@
       - state: equipped-head-light-vox
       head-dog:
       - state: equipped-head-light-dog
-      head-avali: #starlight
-      - state: equipped-head-light-avali
   - type: Clothing
     clothingVisuals:
       head:
@@ -101,8 +99,6 @@
       - state: equipped-head-vox
       head-dog:
       - state: equipped-head-dog
-      head-avali: #starlight
-      - state: equipped-head-avali
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
@@ -112,7 +108,8 @@
         Heat: 0.90
         Radiation: 0.75
   - type: PointLight
-    # Starlight: PointLight energy/radius moved to ClothingHeadLightParams(..) prototypes
+    radius: 5
+    energy: 2
     color: "#00ffff"
   - type: Tag
     tags:

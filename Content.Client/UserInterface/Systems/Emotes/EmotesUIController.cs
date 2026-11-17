@@ -153,6 +153,15 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
                 || whitelistSystem.IsWhitelistPass(emote.Blacklist, player.Value))
                 continue;
 
+            // Starlight - start
+            if (emote.Category == EmoteCategory.Vocal
+                && player.HasValue
+                && EntityManager.TryGetComponent<SpeechComponent>(player.Value, out var restrictedSpeech)
+                && restrictedSpeech.RestrictVocalEmotesToAllowed
+                && !restrictedSpeech.AllowedEmotes.Contains(emote.ID))
+                continue;
+            // Starlight - end
+
             if (!emote.Available
                 && EntityManager.TryGetComponent<SpeechComponent>(player.Value, out var speech)
                 && !speech.AllowedEmotes.Contains(emote.ID))

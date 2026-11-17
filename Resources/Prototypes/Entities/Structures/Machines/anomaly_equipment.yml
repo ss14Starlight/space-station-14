@@ -64,8 +64,8 @@
           Growing: { state: anomaly-3 }
       enum.WiresVisuals.MaintenancePanelState:
         enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: false }
-          False: { visible: true }
+          True: { visible: true } # Starlight
+          False: { visible: false } # Starlight
   - type: Explosive
     explosionType: Default
     maxIntensity: 20

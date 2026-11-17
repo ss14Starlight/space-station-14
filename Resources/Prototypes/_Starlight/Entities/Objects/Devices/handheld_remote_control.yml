@@ -1,0 +1,109 @@
+- type: entity
+  id: HandheldRemoteControl
+  parent: [ PowerCellSlotMediumItem, BaseHandheldComputer ] # Starlight
+  name: handheld remote control
+  description: A tablet computer, able to remotely control an entity by its channel.
+  components:
+  - type: Item
+    sprite: Objects/Devices/tablets.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: Sprite
+    sprite: Objects/Devices/tablets.rsi
+    state: tabletsol
+    layers:
+    - state: tabletsol
+    - sprite: Objects/Specific/Engineering/handheldengineeringmonitor.rsi
+      state: power
+      shader: unshaded
+      visible: false
+      map: [ "screen" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        screen:
+          True: { visible: true }
+          False: { visible: false }
+  - type: PowerCellDraw
+    drawRate: 1.5
+  - type: ActivatableUI
+    key: enum.RemoteControlUIKey.Key
+    inHandsOnly: true
+    singleUser: true
+  - type: RemoteControlConsole
+    remoteControlPower: 10
+  - type: DeviceLinkSource
+    ports: [ RemoteControl ]
+  - type: UserInterface
+    interfaces:
+      enum.RemoteControlUIKey.Key:
+        type: RemoteControlConsoleBoundUserInterface
+      enum.RemoteControlSettingsUIKey.Key:
+        type: RemoteControlSettingsBoundUserInterface
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  id: HandheldRemoteControlAntag
+  parent: HandheldRemoteControl
+  name: handheld remote control antag
+  description: A tablet computer, a powerful remote control.
+  components:
+  - type: RemoteControlConsole
+    remoteControlPower: 20
+
+- type: entity
+  id: HandheldRemoteControlAntagMind
+  parent: HandheldRemoteControl
+  name: handheld remote control mind
+  description: A tablet computer, an impossible powerful remote control.
+  components:
+  - type: RemoteControlConsole
+    remoteControlPower: 51
+
+- type: entity
+  id: HandheldRemoteControlExpedition
+  parent: [ PowerCellSlotSmallItem, BaseHandheldComputer ] # Starlight
+  name: toy remote control
+  description: A compact remote control without a screen, meant for RC toys.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/toy_remote_control.rsi
+    layers:
+    - state: toyremote_off
+    - map: [ "enum.ToggleableVisuals.Layer" ]
+      state: toyremote_on
+      visible: false
+  - type: Item
+    sprite: _Starlight/Objects/Devices/toy_remote_control.rsi
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+  - type: PowerCellDraw
+    drawRate: 0.5
+  - type: ItemToggle
+    onUse: true
+    onActivate: false
+  - type: ActivatableUI
+    key: enum.RemoteControlSettingsUIKey.Key
+    inHandsOnly: true
+    singleUser: true
+  - type: RemoteControlConsole
+    enableRemoteView: false
+    remoteControlPower: 5
+  - type: DeviceLinkSource
+    ports: [ RemoteControl ]
+  - type: UserInterface
+    interfaces:
+      enum.RemoteControlSettingsUIKey.Key:
+        type: RemoteControlSettingsBoundUserInterface
+  - type: StaticPrice
+    price: 500

@@ -10,7 +10,6 @@
   - type: Tag
     tags:
       - AirAlarmElectronics
-      - RamChip # FH + Starlight
   - type: StaticPrice
     price: 61
 
@@ -28,6 +27,5 @@
   - type: Tag
     tags:
       - FireAlarmElectronics
-      - RamChip # FH + Starlight
   - type: StaticPrice
     price: 61

@@ -1,9 +1,13 @@
 using System.Linq;
 using System.Numerics;
+using System.Runtime.InteropServices;
+using Content.Server._Starlight.Toolshed;
 using Content.Shared._Starlight.Commands;
 using Content.Server.Administration;
 using Content.Shared.Administration;
+using Content.Shared.Ghost;
 using Robust.Server.GameObjects;
+using Robust.Server.Player;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
@@ -16,8 +20,10 @@ namespace Content.Server._Starlight.Map;
 /// Not to be confused with <see cref="Content.Server.Administration.Commands.LoadGameMapCommand"/>.
 [ToolshedCommand]
 [AdminCommand(AdminFlags.Admin)]
-public sealed class GameMapCommand : ToolshedCommand
+public sealed partial class GameMapCommand : ToolshedCommand
 {
+    [Dependency] private IPlayerManager _plr = null!;
+
     private MapLoaderSystem? _loader;
     private MapSystem? _map;
 
@@ -30,16 +36,44 @@ public sealed class GameMapCommand : ToolshedCommand
     [CommandImplementation("getid")]
     public EntityUid GetMapById(IInvocationContext ctx, int id)
     {
-        _map ??= EntitySystemManager.GetEntitySystem<MapSystem>();
+        _map ??= GetSys<MapSystem>();
         if (_map.TryGetMap(new MapId(id), out var map)) return map.Value;
         CommandMarkup.Error(ctx, $"No map with the id {id} was found.");
         return EntityUid.Invalid;
     }
 
+    [CommandImplementation("getplayers")]
+    public IEnumerable<EntityUid> GetPlayers([PipedArgument] EntityUid uid,
+        [Optional] [DefaultParameterValue(false)] bool excludeGhosts)
+    {
+        var sessions = _plr.Sessions.Where(session =>
+            session.AttachedEntity is not null && Transform(session.AttachedEntity.Value).MapUid == uid);
+        List<EntityUid> entities = [];
+        foreach (var session in sessions)
+        {
+            if (session.AttachedEntity is null) continue;
+            entities.Add(session.AttachedEntity.Value);
+        }
+
+        if (excludeGhosts) entities.RemoveAll(HasComp<GhostComponent>);
+        return entities;
+    }
+
+    [CommandImplementation("getplayersid")]
+    public IEnumerable<EntityUid> GetPlayersById(int id,
+        [Optional] [DefaultParameterValue(false)]
+        bool excludeGhosts)
+    {
+        _map ??= GetSys<MapSystem>();
+        return !_map.TryGetMap(new MapId(id), out var map)
+            ? throw new ArgumentException($"Map with id {id} does not exist.", nameof(id))
+            : GetPlayers(map.Value, excludeGhosts);
+    }
+
     [CommandImplementation("init")]
     public EntityUid MapInit(IInvocationContext ctx, [PipedArgument] EntityUid uid)
     {
-        _map ??= EntitySystemManager.GetEntitySystem<MapSystem>();
+        _map ??= GetSys<MapSystem>();
         if (!TryComp<MapComponent>(uid, out var map))
         {
             CommandMarkup.Error(ctx, $"Entity {uid} either does not exist or is not a map.");
@@ -64,7 +98,7 @@ public sealed class GameMapCommand : ToolshedCommand
     [CommandImplementation("initid")]
     public EntityUid MapInit(IInvocationContext ctx, int id)
     {
-        _map ??= EntitySystemManager.GetEntitySystem<MapSystem>();
+        _map ??= GetSys<MapSystem>();
         var mapId = new MapId(id);
         if (!_map.TryGetMap(mapId, out var map))
         {
@@ -102,7 +136,7 @@ public sealed class GameMapCommand : ToolshedCommand
     [CommandImplementation("pauseid")]
     public EntityUid PauseById(IInvocationContext ctx, int id)
     {
-        _map ??= EntitySystemManager.GetEntitySystem<MapSystem>();
+        _map ??= GetSys<MapSystem>();
         if (_map.TryGetMap(new MapId(id), out var map))
             return SetPaused(ctx, map.Value, true) ? map.Value : EntityUid.Invalid;
         CommandMarkup.Error(ctx, $"No map with the id {id} was found.");
@@ -112,7 +146,7 @@ public sealed class GameMapCommand : ToolshedCommand
     [CommandImplementation("unpauseid")]
     public EntityUid UnpauseById(IInvocationContext ctx, int id)
     {
-        _map ??= EntitySystemManager.GetEntitySystem<MapSystem>();
+        _map ??= GetSys<MapSystem>();
         if (_map.TryGetMap(new MapId(id), out var map))
             return SetPaused(ctx, map.Value, false) ? map.Value : EntityUid.Invalid;
         CommandMarkup.Error(ctx, $"No map with the id {id} was found.");
@@ -122,7 +156,7 @@ public sealed class GameMapCommand : ToolshedCommand
     [CommandImplementation("add")]
     public EntityUid AddMap(IInvocationContext ctx, int id, bool init)
     {
-        _map ??= EntitySystemManager.GetEntitySystem<MapSystem>();
+        _map ??= GetSys<MapSystem>();
         var mapId = new MapId(id);
         if (_map.MapExists(mapId))
         {
@@ -138,7 +172,7 @@ public sealed class GameMapCommand : ToolshedCommand
     [CommandImplementation("rm")]
     public void RemoveMap(IInvocationContext ctx, [PipedArgument] EntityUid uid)
     {
-        _map ??= EntitySystemManager.GetEntitySystem<MapSystem>();
+        _map ??= GetSys<MapSystem>();
         if (!TryComp<MapComponent>(uid, out var map))
         {
             CommandMarkup.Error(ctx, $"Entity {uid} either does not exist or is not a map.");
@@ -159,7 +193,7 @@ public sealed class GameMapCommand : ToolshedCommand
     [CommandImplementation("rmid")]
     public void RemoveMap(IInvocationContext ctx, int id)
     {
-        _map ??= EntitySystemManager.GetEntitySystem<MapSystem>();
+        _map ??= GetSys<MapSystem>();
         var mapId = new MapId(id);
         if (!_map.TryGetMap(mapId, out _))
         {
@@ -171,9 +205,10 @@ public sealed class GameMapCommand : ToolshedCommand
     }
 
     [CommandImplementation("load")]
-    public EntityUid LoadMap(IInvocationContext ctx, int id, ResPath path, bool useStoredUids)
+    public EntityUid LoadMap(IInvocationContext ctx, int id,
+        [CommandArgument(typeof(ResPathCompletionParser))] ResPath path, bool useStoredUids)
     {
-        _loader ??= EntitySystemManager.GetEntitySystem<MapLoaderSystem>();
+        _loader ??= GetSys<MapLoaderSystem>();
         var opts = new DeserializationOptions { StoreYamlUids = useStoredUids };
         if (_loader.TryLoadMapWithId(new MapId(id), path, out var map, out _, opts, Vector2.Zero,
                 Angle.Zero)) return map.Value;
@@ -182,10 +217,11 @@ public sealed class GameMapCommand : ToolshedCommand
     }
 
     [CommandImplementation("loadoffset")]
-    public EntityUid LoadMapOffset(IInvocationContext ctx, int id, ResPath path, bool useStoredUids, float xOff,
-        float yOff, float rotation)
+    public EntityUid LoadMapOffset(IInvocationContext ctx, int id,
+        [CommandArgument(typeof(ResPathCompletionParser))] ResPath path, bool useStoredUids, float xOff, float yOff,
+        float rotation)
     {
-        _loader ??= EntitySystemManager.GetEntitySystem<MapLoaderSystem>();
+        _loader ??= GetSys<MapLoaderSystem>();
         var opts = new DeserializationOptions { StoreYamlUids = useStoredUids };
         if (_loader.TryLoadMapWithId(new MapId(id), path, out var map, out _, opts, new Vector2(xOff, yOff),
                 Angle.FromDegrees(rotation))) return map.Value;
@@ -194,9 +230,10 @@ public sealed class GameMapCommand : ToolshedCommand
     }
 
     [CommandImplementation("save")]
-    public EntityUid SaveMap(IInvocationContext ctx, [PipedArgument] EntityUid uid, string path)
+    public EntityUid SaveMap(IInvocationContext ctx, [PipedArgument] EntityUid uid,
+        [CommandArgument(typeof(ResPathCompletionParser))] ResPath path)
     {
-        _map ??= EntitySystemManager.GetEntitySystem<MapSystem>();
+        _map ??= GetSys<MapSystem>();
         if (!TryComp<MapComponent>(uid, out var map))
         {
             CommandMarkup.Error(ctx, $"Entity {uid} either does not exist or is not a map.");
@@ -207,9 +244,10 @@ public sealed class GameMapCommand : ToolshedCommand
     }
 
     [CommandImplementation("saveid")]
-    public EntityUid SaveMap(IInvocationContext ctx, int id, string path)
+    public EntityUid SaveMap(IInvocationContext ctx, int id,
+        [CommandArgument(typeof(ResPathCompletionParser))] ResPath path)
     {
-        _map ??= EntitySystemManager.GetEntitySystem<MapSystem>();
+        _map ??= GetSys<MapSystem>();
         var mapId = new MapId(id);
         if (!_map.TryGetMap(mapId, out var uid))
         {
@@ -222,7 +260,7 @@ public sealed class GameMapCommand : ToolshedCommand
 
     private bool SetPaused(IInvocationContext ctx, EntityUid uid, bool paused)
     {
-        _map ??= EntitySystemManager.GetEntitySystem<MapSystem>();
+        _map ??= GetSys<MapSystem>();
         if (!TryComp<MapComponent>(uid, out var map))
         {
             CommandMarkup.Error(ctx, $"Entity {uid} either does not exist or is not a map.");
@@ -234,10 +272,10 @@ public sealed class GameMapCommand : ToolshedCommand
         return true;
     }
 
-    private bool DoSaveMap(IInvocationContext ctx, MapId id, string path)
+    private bool DoSaveMap(IInvocationContext ctx, MapId id, ResPath path)
     {
-        _map ??= EntitySystemManager.GetEntitySystem<MapSystem>();
-        _loader ??= EntitySystemManager.GetEntitySystem<MapLoaderSystem>();
+        _map ??= GetSys<MapSystem>();
+        _loader ??= GetSys<MapLoaderSystem>();
         if (id == MapId.Nullspace)
         {
             CommandMarkup.Error(ctx, "Cannot save nullspace.");
@@ -250,7 +288,7 @@ public sealed class GameMapCommand : ToolshedCommand
             ctx.WriteLine("As much as it sucks, you are going to need to remap the entire thing on an uninitialized map. Sorry! :(");
         }
 
-        if(_loader.TrySaveMap(id, new ResPath(path)))
+        if(_loader.TrySaveMap(id, path))
             ctx.WriteLine($"Map saved to {path}.");
         else
             CommandMarkup.Error(ctx, "There was an error saving the map.");

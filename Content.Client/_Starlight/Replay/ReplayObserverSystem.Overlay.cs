@@ -21,6 +21,7 @@ public sealed partial class ReplayObserverSystem
     private bool _overlayShown;
     private float _overlayRefreshAccumulator;
 
+    [SubscribeLocalEvent]
     private void OnTogglePlayerOverlay(EntityUid uid, ReplaySpectatorComponent component, ReplayTogglePlayerOverlayActionEvent args)
     {
         if (args.Handled || !IsReplayActive)
@@ -118,7 +119,8 @@ public sealed partial class ReplayObserverSystem
                 userId,
                 connected,
                 true,
-                null);
+                null,
+                jobProto?.ID);
         }
 
         _admin.SetPlayerList(players.Values);

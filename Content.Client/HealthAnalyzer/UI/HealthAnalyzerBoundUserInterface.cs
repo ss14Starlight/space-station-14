@@ -47,13 +47,14 @@ namespace Content.Client.HealthAnalyzer.UI
             if (message is not HealthAnalyzerScannedUserMessage cast)
                 return;
 
-            if (_window == null)
+            if (_window is not { Disposed: false } window)
             {
+                _window = null;
                 _pendingMessage = cast;
                 return;
             }
             // Starlight-end
-            _window.Populate(cast);
+            window.Populate(cast);
         }
     }
 }

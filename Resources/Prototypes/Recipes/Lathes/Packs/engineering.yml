@@ -22,6 +22,8 @@
   - HandheldStationMap
   - ClothingHeadHatWelding
   - ClothingHeadHatCone
+  - Binoculars
+  - JerryCan # Starlight Edit
 
 - type: latheRecipePack
   id: AtmosStatic

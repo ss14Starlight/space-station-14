@@ -45,8 +45,6 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     #endregion
     [Dependency] private IConfigurationManager _cfg = default!;
 
-    private EntityQuery<TransformComponent> _xformQuery;
-
     private const string MeleeLungeKey = "melee-lunge";
     private const string HitRecoilAnimationKey = "hit-recoil"; // Starlight-edit
 
@@ -62,7 +60,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     public override void Initialize()
     {
         base.Initialize();
-        _xformQuery = GetEntityQuery<TransformComponent>();
+
         SubscribeNetworkEvent<MeleeLungeEvent>(OnMeleeLunge);
         UpdatesOutsidePrediction = true;
     }
@@ -304,26 +302,27 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     private void ClientHeavyAttack(EntityUid user, EntityCoordinates coordinates, EntityUid meleeUid, MeleeWeaponComponent component)
     {
         // Only run on first prediction to avoid the potential raycast entities changing.
-        if (!_xformQuery.TryGetComponent(user, out var userXform) ||
-            !Timing.IsFirstTimePredicted)
-        {
+        if (!Timing.IsFirstTimePredicted) // Starlight edit
             return;
-        }
+
+        // Starlight - Mech wideswing handling
+        var originUid = GetOriginEntity(user);
+        if (!TryComp(originUid, out TransformComponent? originXform))
+            return;
 
         var targetMap = TransformSystem.ToMapCoordinates(coordinates);
 
-        if (targetMap.MapId != userXform.MapID)
+        if (targetMap.MapId != originXform.MapID) // Starlight edit
             return;
 
-        var userPos = TransformSystem.GetWorldPosition(userXform);
-        var direction = targetMap.Position - userPos;
+        var originPos = TransformSystem.GetWorldPosition(originXform); // Starlight edit
+        var direction = targetMap.Position - originPos; // Starlight edit
         var distance = MathF.Min(component.Range, direction.Length());
-
-        var ignoreUid = GetOriginEntity(user); // Starlight - Mech wideswing handling
 
         // This should really be improved. GetEntitiesInArc uses pos instead of bounding boxes.
         // Server will validate it with InRangeUnobstructed.
-        var entities = GetNetEntitySet(ArcRayCast(userPos, direction.ToWorldAngle(), component.Angle, distance, userXform.MapID, user));
+        var entities = GetNetEntitySet(ArcRayCast(originPos, direction.ToWorldAngle(), component.Angle, distance, originXform.MapID, originUid)); // Starlight edit
+        entities.Remove(GetNetEntity(user)); // Starlight edit
         entities = entities.Take(Math.Min(MaxTargets, entities.Count)).ToHashSet();
         RaisePredictiveEvent(new HeavyAttackEvent(GetNetEntity(meleeUid), entities, GetNetCoordinates(coordinates)));
     }

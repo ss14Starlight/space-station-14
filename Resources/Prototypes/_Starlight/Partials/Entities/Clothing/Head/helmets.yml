@@ -1,4 +1,16 @@
 - type: !PartialOnly entity
+  id: ClothingHeadHelmetSwatSyndicate
+  components:
+  - type: Contraband
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetRaid
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
   id: ClothingHeadHelmetBase
   components:
   - type: EmitSoundOnPickup
@@ -11,3 +23,16 @@
     equipSound:
       path: /Audio/_Starlight/Items/Equip/helmet_equip1.ogg
 
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetAtmosFire
+  components:
+  - type: Tag
+    tags:
+      - AtmosFireHelmet
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetMetalHydrogen
+  components:
+  - type: Tag
+    tags:
+      - MetalHydrogenHelmet

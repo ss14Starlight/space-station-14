@@ -13,12 +13,7 @@
             <BoxContainer Name="HighlightsVBox" MinWidth="160" Margin="0 10" Orientation="Vertical" SeparationOverride="4">
                 <!-- Starlight end -->
                 <Label Text="{Loc 'hud-chatbox-highlights'}"/>
-                <PanelContainer>
-                    <!-- Begin custom background for TextEdit -->
-                    <PanelContainer.PanelOverride>
-                        <gfx:StyleBoxFlat BackgroundColor="#323446"/>
-                    </PanelContainer.PanelOverride>
-                    <!-- End custom background -->
+                <PanelContainer StyleClasses="InsetPanel"> <!-- Starlight: was a hardcoded background -->
                     <!-- Starlight start -->
                     <TextEdit Name="HighlightEdit" MinHeight="75" Margin="5 5"/>
                     <!-- Starlight end -->

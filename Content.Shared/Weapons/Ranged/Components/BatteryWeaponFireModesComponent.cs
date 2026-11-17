@@ -57,6 +57,13 @@ public sealed partial class BatteryWeaponFireMode
     [NonSerialized]
     public List<FireModeCondition>? Conditions;
 
+    // Starlight-start
+    /// <summary>
+    /// Means that this condition will work only on server, i.e. unpredicted, useful for important conditions like alert level.
+    /// </summary>
+    public bool ServerOnly;
+    // Starlight-end
+
     [DataField("heldPrefix")]
     public string? HeldPrefix;
 

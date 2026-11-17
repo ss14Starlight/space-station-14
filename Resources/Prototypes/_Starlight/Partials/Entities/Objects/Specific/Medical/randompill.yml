@@ -1,0 +1,5 @@
+- type: !PartialOnly weightedRandomFillSolution
+  id: RandomFillStrangePill
+  fills:
+  - !CombineIndex:11 reagents: # Very Bad, quantity 10
+    - Phenylpiperidine

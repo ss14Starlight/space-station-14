@@ -1,0 +1,36 @@
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband ]
+  id: LoneopDeclarationOfWar
+  name: war declarator
+  description: Use to send a declaration of hostilities to the target. Such a brazen move will attract the attention of powerful benefactors within the Syndicate, who will supply you with a massive amount of bonus telecrystals. Must be used at start of mission, or your benefactors will lose interest.
+  components:
+    - type: Sprite
+      sprite: Objects/Devices/declaration_of_war.rsi
+      layers:
+        - state: declarator
+    - type: SpawnItemsOnUse
+      items:
+       - id: LoneopDeclarationOfWarAnnouncementSpawner
+       - id: Telecrystal
+    - type: TimedDespawn
+      lifetime: 300
+
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband ]
+  id: LoneopDeclarationOfWarAnnouncementSpawner
+  name: used war declarator
+  description: Used up war declaration, you shouldnt be seeing this...
+  components:
+    - type: Sprite
+      sprite: Objects/Devices/declaration_of_war.rsi
+      layers:
+        - state: declarator
+    - type: AnnounceOnSpawn
+      message: war-declarator-default-message
+      ignoreASpace: true
+      globalAnnounce: true
+      sound:
+       path: /Audio/Announcements/war.ogg
+      color: red
+    - type: TimedDespawn
+      lifetime: 1

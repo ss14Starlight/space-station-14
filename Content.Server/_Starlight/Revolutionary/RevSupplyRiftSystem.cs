@@ -18,6 +18,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Linq;
 using Content.Server.AlertLevel;
+using Content.Server.Chat.Managers;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Shared._Starlight.CCVar;
@@ -28,6 +29,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Content.Shared._Starlight.Revolutionary.Components;
 using Content.Shared._Starlight.Store.Events;
+using Content.Server.GameTicking.Rules;
 
 namespace Content.Server._Starlight.Revolutionary;
 
@@ -37,7 +39,7 @@ namespace Content.Server._Starlight.Revolutionary;
 public sealed partial class RevSupplyRiftSystem : EntitySystem
 {
     [Dependency] private ChatSystem _chat = default!;
-    [Dependency] private Chat.Managers.IChatManager _chatManager = default!;
+    [Dependency] private IChatManager _chatManager = default!;
     [Dependency] private NavMapSystem _navMap = default!;
     [Dependency] private StoreSystem _store = default!;
     [Dependency] private IGameTiming _timing = default!;
@@ -310,8 +312,7 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
     private void UpdateRiftDestroyedListing()
     {
         // Find all store components
-        var query = EntityQueryEnumerator<StoreComponent>();
-        while (query.MoveNext(out var uid, out var store))
+        foreach (var (uid, store) in EnumerateHeadRevStores())
         {
             // Find the supply rift listing
             foreach (var listing in store.FullListingsCatalog)
@@ -393,8 +394,7 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
         locationString = _navMap.GetNearestBeaconString((_activeRift.Value, xform));
 
         // Find all store components
-        var query = EntityQueryEnumerator<StoreComponent>();
-        while (query.MoveNext(out var uid, out var store))
+        foreach (var (uid, store) in EnumerateHeadRevStores())
         {
             // Find the supply rift listing
             foreach (var listing in store.FullListingsCatalog)
@@ -431,8 +431,7 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
     private void DisableSupplyRiftListing()
     {
         // Find all store components
-        var query = EntityQueryEnumerator<StoreComponent>();
-        while (query.MoveNext(out var uid, out var store))
+        foreach (var (uid, store) in EnumerateHeadRevStores())
         {
             // Find the supply rift listing
             foreach (var listing in store.FullListingsCatalog)
@@ -495,8 +494,7 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
         } //#endregion Starlight Autogamma
 
         // Find all store components
-        var query = EntityQueryEnumerator<StoreComponent>();
-        while (query.MoveNext(out var uid, out var store))
+        foreach (var (uid, store) in EnumerateHeadRevStores())
         {
             // Find the supply rift listing
             foreach (var listing in store.FullListingsCatalog)
@@ -526,8 +524,7 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
     private void EnableSupplyRiftListing()
     {
         // Find all store components
-        var query = EntityQueryEnumerator<StoreComponent>();
-        while (query.MoveNext(out var uid, out var store))
+        foreach (var (uid, store) in EnumerateHeadRevStores())
         {
             // Find the supply rift listing
             foreach (var listing in store.FullListingsCatalog)
@@ -666,5 +663,14 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
             .Recipients
             .Union(_adminManager.ActiveAdmins)
             .Select(p => p.Channel);
+    }
+
+    private IEnumerable<(EntityUid Uid, StoreComponent Store)> EnumerateHeadRevStores()
+    {
+        foreach (var uid in EntityManager.System<RevolutionaryRuleSystem>().EnumerateHeadStores())
+        {
+            if (TryComp<StoreComponent>(uid, out var store))
+                yield return (uid, store);
+        }
     }
 }

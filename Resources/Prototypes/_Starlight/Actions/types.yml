@@ -14,3 +14,16 @@
     useDelay: 1
   - type: InstantAction
     event: !type:ToggleActionEvent
+
+- type: entity
+  parent: [BaseSuicideAction, BaseImplantAction]
+  id: ActionActivatePicoBomb
+  name: Activate Picobomb
+  description: Activates your internal picobomb, completely destroying you and your equipment
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: Interface/Actions/Implants/implants.rsi
+      state: explosive

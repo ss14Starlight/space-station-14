@@ -1,6 +1,7 @@
 - type: guideEntry
   id: Antagonists
   name: guide-entry-antagonists
+  color: "#B02E26" # Starlight: Sixteen dark red
   text: "/ServerInfo/Guidebook/Antagonist/Antagonists.xml"
   children:
   - Traitors

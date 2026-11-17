@@ -13,7 +13,6 @@
   - type: Tag
     tags:
     - TurretControlElectronics
-    - RamChip # FH + Starlight
 
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelElectronicsBase
@@ -23,7 +22,7 @@
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelElectronicsBase
   id: WeaponEnergyTurretAIControlPanelElectronics
-  suffix: AI
+  suffix: AI, Silicon
   components:
   - type: Sprite
     sprite: Objects/Misc/module.rsi

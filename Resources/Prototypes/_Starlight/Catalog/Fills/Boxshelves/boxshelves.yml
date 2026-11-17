@@ -72,6 +72,42 @@
 
 - type: entity
   parent: BoxShelf
+  id: BoxShelfChemistry
+  suffix: Chemistry
+  components:
+  - type: ItemSlots
+    slots:
+      fill4:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 9
+        startingItem: CardboardBoxLargeChemistryJugsExtra
+      fill3:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 8
+        startingItem: CardboardBoxLargeChemistryJugs
+      fill2:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 7
+        startingItem: CardboardBoxLargeChemistryJugs
+      fill1:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 6
+        startingItem: CardboardBoxLargeChemistry
+
+- type: entity
+  parent: BoxShelf
   id: BoxShelfSecurity
   suffix: Security
   components:

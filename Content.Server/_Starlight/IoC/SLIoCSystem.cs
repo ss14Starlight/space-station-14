@@ -7,6 +7,7 @@ public sealed partial class SLIoCSystem : SharedSLIoCSystem
 {
     [Dependency] private IDependencyCollection _dependency = default!;
 
+    [Obsolete]
     public override void ServerInitIoC()
     {
         // TODO STARLIGHT delete this when SharedVendingMachineSystem.OnVendingGetState is fixed

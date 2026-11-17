@@ -16,7 +16,7 @@ public sealed class FollowCommand : ToolshedCommand
     [CommandImplementation]
     public EntityUid Follow(IInvocationContext ctx, [PipedArgument] EntityUid uid)
     {
-        if (CommandHelpers.NoSession(ctx)) return uid;
+        if (SharedCommandHelpers.NoSession(ctx)) return uid;
         if (ctx.Session?.AttachedEntity is null)
         {
             CommandMarkup.Error(ctx, "Not currently controlling any entity.");
@@ -37,7 +37,7 @@ public sealed class FollowCommand : ToolshedCommand
     [CommandImplementation]
     public ICommonSession Follow(IInvocationContext ctx, [PipedArgument] ICommonSession session)
     {
-        if (CommandHelpers.NoSession(ctx)) return session;
+        if (SharedCommandHelpers.NoSession(ctx)) return session;
         if (ctx.Session?.AttachedEntity is null)
         {
             CommandMarkup.Error(ctx, "Not currently controlling any entity.");

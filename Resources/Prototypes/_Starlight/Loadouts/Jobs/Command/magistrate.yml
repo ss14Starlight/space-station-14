@@ -47,14 +47,3 @@
   id: MagistrateHeadBeret
   equipment:
     head: ClothingHeadHatBeretMagistrate
-
-#Eyewear
-- type: loadout
-  id: MagistrateSecGlasses
-  equipment:
-    eyes: ClothingEyesGlassesSecurity
-
-- type: loadout
-  id: MagistrateSkillGlasses
-  equipment:
-    eyes: ClothingEyesSunGlassesHudSkill

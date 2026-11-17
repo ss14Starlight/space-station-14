@@ -1,0 +1,27 @@
+# Moffstation - Neutral faction color for the character menu.
+- type: !PartialOnly roleType
+  id: Neutral
+  color: LightBlue
+  faction: role-subtype-contractor
+  alignment: character-info-alignment-crew
+
+- type: !PartialOnly roleType
+  id: FreeAgent
+  alignment: character-info-alignment-free-agent
+  factionColor: "#D95F3D"
+
+- type: !PartialOnly roleType
+  id: SoloAntagonist
+  factionColor: "#D95F3D"
+
+- type: !PartialOnly roleType
+  id: TeamAntagonist
+  factionColor: "#D95F3D"
+
+- type: !PartialOnly roleType
+  id: Silicon
+  faction: role-subtype-silicon
+
+- type: !PartialOnly roleType
+  id: SiliconAntagonist
+  faction: role-subtype-silicon

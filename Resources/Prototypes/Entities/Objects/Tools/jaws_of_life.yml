@@ -25,10 +25,8 @@
     useSound: /Audio/Items/jaws_pry.ogg
   - type: Prying
     speedModifier: 1.5
+    pryPowered: true
     useSound: /Audio/Items/jaws_pry.ogg
-    pryPowered: true #SL
-    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
-    playSoundOnDoafter: true #SL
   - type: MultipleTool
     statusShowBehavior: true
     entries:
@@ -51,28 +49,6 @@
         Blunt: 10
     soundHit:
       collection: MetalThud
-  # 🌟Starlight-start🌟
-  - type: SurgeryTool
-  - type: BoneSaw
-    successRate: 0.8
-    speed: 0.8
-    startSound:
-      path: /Audio/Items/jaws_cut.ogg
-    endSound:
-      path: /Audio/Items/change_jaws.ogg
-  - type: WirecutterSurgery
-    speed: 0.6
-    startSound:
-      path: /Audio/Items/jaws_cut.ogg
-    endSound:
-      path: /Audio/Items/change_jaws.ogg
-  - type: CrowbarSurgery
-    speed: 0.6
-    startSound:
-      path: /Audio/Items/jaws_cut.ogg
-    endSound:
-      path: /Audio/Items/change_jaws.ogg
-  # 🌟Starlight-end🌟
 
 - type: entity
   name: syndicate jaws of death
@@ -80,11 +56,6 @@
   id: SyndicateJawsOfLife
   description: Useful for breaking into secure areas and other nefarious activities.
   components:
-  # 🌟Starlight-start🌟
-  - type: Tag
-    tags:
-    - SyndicateJawsOfLife
-  # 🌟Starlight-end🌟
   - type: Sprite
     sprite: Objects/Tools/jaws_of_life.rsi
     state: syn_jaws_pry
@@ -98,7 +69,6 @@
   - type: Prying
     force: true
     speedModifier: 3.0
-    playSoundOnDoafter: false #SL
   - type: MultipleTool
     entries:
       - behavior: [ Prying ]

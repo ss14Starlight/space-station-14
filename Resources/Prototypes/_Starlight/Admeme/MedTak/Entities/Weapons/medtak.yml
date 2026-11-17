@@ -2,7 +2,7 @@
 - type: entity
   name: CODE-6 "Arbitration"
   id: WeaponMedTakLightMachineGun
-  parent: [ BaseWeaponLightMachineGun, BaseVariableHeavySettings, BaseMedTakContraband ]
+  parent: [ BaseWeaponLightMachineGun, BaseVariableHeavySettings, BaseMedTakContraband ] # Blimpuf
   description: "An ultralight assault LMG developed for MedTak security.\nAccepts HVA box magazines."
   suffix: Admeme
   components:
@@ -62,7 +62,7 @@
 # Rifle
 - type: entity
   name: CODE-9 "Compliance"
-  parent: [ BaseWeaponRifle, BaseVariableMediumSettings, BaseMedTakContraband ]
+  parent: [ BaseWeaponRifle, BaseVariableMediumSettings, BaseMedTakContraband ] # Blimpuf
   id: WeaponMedTakRifle
   description: "A bullpuped rifle designed for MedTak operators.\nAccepts MVA magazines."
   suffix: Admeme
@@ -114,7 +114,7 @@
 
 - type: entity
   name: CODE-9 ROW
-  parent: [ BaseItem, BaseVariableMediumSettings]
+  parent: [ BaseItem, BaseVariableMediumSettings, BaseMedTakContraband ] # Blimpuf
   id: WeaponMedTakRifleROW
   description: "A cut-down CODE-9 designed for cyborgs, feeding from a slowly recharging internal ammo fabricator"
   suffix: Admeme
@@ -162,7 +162,7 @@
 - type: entity
   name: CODE-4 "Triage"
   description: "A heavy sidearm issued to MedTak operators.\nAccepts .40 pistol magazines."
-  parent: [ BaseWeaponPistol, BaseMedTakContraband ]
+  parent: [ BaseWeaponPistol, BaseMedTakContraband ] # Blimpuf
   id: WeaponMedTakPistol
   components:
     - type: Gun
@@ -196,7 +196,7 @@
 # SMG
 - type: entity
   name: CODE-10 "Intervention"
-  parent: [BaseWeaponSubMachineGun, BaseVariableLightSettings, BaseMedTakContraband]
+  parent: [BaseWeaponSubMachineGun, BaseVariableLightSettings, BaseMedTakContraband] # Blimpuf
   id: WeaponMedTakSubMachineGun
   description: "A compact submachine gun with an integral supressor. It features an advanced recoil system, but suffers slightly in rate of fire.\nAccepts LVA magazines."
   components:
@@ -253,7 +253,7 @@
 # Shotgun
 - type: entity
   name: CODE-11 "Compromise"
-  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseMedTakContraband]
+  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseMedTakContraband] # Blimpuf
   id: WeaponMedTakShotgun
   description: An sleek drum-fed shotgun, rounds are chambered semi-automatically with the secondary trigger.
   components:

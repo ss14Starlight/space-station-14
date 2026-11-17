@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Rinary for Starlight",
+  "size": {
+    "x": 16,
+    "y": 16
+  },
+  "states": [
+    {
+      "name": "bolt_open",
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Made by Rinary for Starlight"
+    },
+    {
+      "name": "jammed",
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Made by Rinary for Starlight"
+    }
+  ]
+}

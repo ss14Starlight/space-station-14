@@ -8,6 +8,14 @@ public sealed partial class XATCompNearbySystem
 {
     [Dependency] private TagSystem _tag = default!;
 
+    public override void Update(float frameTime)
+    {
+        if (Timing.CurTick.Value % (uint) Timing.TickRate != 0)
+            return;
+
+        base.Update(frameTime);
+    }
+
     private int CountMatchingEntities(XATCompNearbyComponent comp, HashSet<Entity<IComponent>> entities)
     {
         var matched = 0;

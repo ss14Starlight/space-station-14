@@ -1,0 +1,17 @@
+- type: !PartialOnly latheRecipePack
+  id: EngineeringBoardsStatic
+  recipes:
+  - CombustionTurbineComputerCircuitboard
+  - IgniterMachineCircuitboard
+
+- type: !PartialOnly latheRecipePack
+  id: EngineeringBoards
+  recipes:
+  - CombustionTurbineCompressorMachineCircuitboard
+  - CombustionTurbineRotorMachineCircuitboard
+  - CombustionTurbineOutletMachineCircuitboard
+
+- type: !PartialOnly latheRecipePack
+  id: ElectronicsStatic
+  recipes:
+  - AirlockCyclerElectronics

@@ -53,7 +53,7 @@ public sealed partial class SharedTimedSpawnerSystem : EntitySystem
         var random = RandomPredicted.GetPredictedRandom(_random, _timing, GetNetEntity(uid).Id);
 
         if ((component.RequiredState != MobState.Invalid && (!TryComp<MobStateComponent>(uid, out var stateComp) || stateComp.CurrentState != component.RequiredState))
-            || !random.Prob(component.Chance))
+            || !(random.NextDouble() < component.Chance))
             return;
 
         var number = random.Next(component.MinimumEntitiesSpawned, component.MaximumEntitiesSpawned);
@@ -64,7 +64,7 @@ public sealed partial class SharedTimedSpawnerSystem : EntitySystem
 
         for (var i = 0; i < number; i++)
         {
-            var entity = random.Pick(component.Prototypes);
+            var entity = component.Prototypes[random.Next(component.Prototypes.Count)];
             if (component.AllowContainerPlacement)
             {
                 PredictedSpawnNextToOrDrop(entity, uid);

@@ -228,6 +228,9 @@
       - id: EndymionMonumentFlatpack
     - id: PrintedDocumentEndymionMemorial
     - id: Multitool
+    - id: PhotoCamera
+    - id: PhotoCartridge
+    - id: BlankPhotographBox
     - id: WashingMachineFlatpack # Starlight - TODO remove once laundromats are implemented in most maps
     # Starlight End
     - id: PlushieLizardJobHeadofpersonnel
@@ -559,6 +562,8 @@
     - id: SpaceCash1000
     - id: BeachBall
     - id: BikeHorn
+    - id: Telecrystal1 # Starlight - Alternative TC Sources
+      amount: 3 # Starlight
 
 - type: entity
   id: LockerFreezerVaultFilled

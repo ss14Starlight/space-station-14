@@ -1,0 +1,3 @@
+- type: !PartialOnly entity
+  id: MysteryLighterBox
+  description: A box of discontinued promotional lighters. A faded and scratched label on the side reads, "May contain contraband."

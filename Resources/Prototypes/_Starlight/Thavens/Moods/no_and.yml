@@ -59,7 +59,12 @@
     - Allergies
     - ClownHatred
     - CoverYourHead
-
+    - DangerousItems
+    - NoEyeContact
+    - DistrustWitnesses
+    - ClosedDoorsBad
+    - WhatsAMood
+    - Illiterate
 
 # Your Moods are a strictly-kept secret, and should never be revealed to anyone.
 - type: thavenMood
@@ -532,3 +537,43 @@
   moodDesc: thaven-mood-cover-your-head-desc
   conflicts:
     - HatHair
+
+# Dangerous Items: [ITEM]s is highly dangerous. All of them should be secured, destroyed, or disposed of.
+- type: thavenMood
+  id: DangerousItems
+  moodName: thaven-mood-dangerous-items-name
+  moodDesc: thaven-mood-dangerous-items-desc
+  moodVars:
+    item: Items
+
+# No Eye Contact: Direct eye contact is uncomfortable and should be avoided whenever possible.
+- type: thavenMood
+  id: NoEyeContact
+  moodName: thaven-mood-no-eye-contact-name
+  moodDesc: thaven-mood-no-eye-contact-desc
+
+# Distrust Witnesses: Eyewitness accounts are unreliable and prone to error. Anyone claiming certainty is probably mistaken.
+- type: thavenMood
+  id: DistrustWitnesses
+  moodName: thaven-mood-distrust-witnesses-name
+  moodDesc: thaven-mood-distrust-witnesses-desc
+
+# Closed Doors Are Suspicious: Honest people have nothing to hide. Closed and locked doors make you deeply uneasy, keep open doors where possible.
+- type: thavenMood
+  id: ClosedDoorsBad
+  moodName: thaven-mood-closed-doors-bad-name
+  moodDesc: thaven-mood-closed-doors-bad-desc
+
+# What's A Mood?: You don't understand the concept of Thaven moods. You are incapable of realizing when you're acting upon a mood, and will try to justify your actions to yourself with logic.
+- type: thavenMood
+  id: WhatsAMood
+  moodName: thaven-mood-whats-a-mood-name
+  moodDesc: thaven-mood-whats-a-mood-desc
+  conflicts:
+  - YouAndYourDamnMoods
+
+# Illiterate: Reading is difficult for you. You'd much rather avoid it. If you do have to read something, it helps to say some of it outloud and very slowly.
+- type: thavenMood
+  id: Illiterate
+  moodName: thaven-mood-illiterate-name
+  moodDesc: thaven-mood-illiterate-desc

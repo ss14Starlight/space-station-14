@@ -23,6 +23,7 @@ using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Wieldable.Components;
 using Content.Shared._Starlight.Weapons.Ranged.Systems;
+using Content.Shared._Starlight.Wieldable;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
 using Robust.Shared.Network;
@@ -216,6 +217,15 @@ public abstract partial class SharedWieldableSystem : EntitySystem
                 && chamber.BoltClosed == false
                 && _hands.GetEmptyHandCount(args.User) == 0)) // Starlight-end
             return;
+
+        // Starlight-start: a one-handed gun with several fire modes switches the mode on use.
+        // It is wielded through the verb, or on use if the player wields before racking (WieldOrderSystem).
+        if (!component.Wielded
+            && HasComp<UseBeforeWieldComponent>(uid)
+            && TryComp<BatteryWeaponFireModesComponent>(uid, out var fireModes)
+            && fireModes.FireModes.Count > 1)
+            return;
+        // Starlight-end
 
         if (!component.Wielded)
         {

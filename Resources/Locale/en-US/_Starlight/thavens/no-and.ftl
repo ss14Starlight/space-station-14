@@ -182,3 +182,21 @@ thaven-mood-clown-hatred-desc =Clowns are not funny. They are just some sick jok
 
 thaven-mood-cover-your-head-name = Cover Your Head
 thaven-mood-cover-your-head-desc = Bald, hairy, it doesn't matter. You must be wearing a hat at all times, not wearing a hat is rude and unprofessional. Anyone not wearing a hat doesn't deserve respect.
+
+thaven-mood-dangerous-items-name = Dangerous Items
+thaven-mood-dangerous-items-desc = {$item}s are highly dangerous. All of them should be secured, destroyed, or disposed of.
+
+thaven-mood-no-eye-contact-name = No Eye Contact
+thaven-mood-no-eye-contact-desc = Direct eye contact is uncomfortable and should be avoided whenever possible.
+
+thaven-mood-distrust-witnesses-name = Distrust Witnesses
+thaven-mood-distrust-witnesses-desc = Eyewitness accounts are unreliable and prone to error. Anyone claiming certainty is probably mistaken.
+
+thaven-mood-closed-doors-bad-name = Closed Doors Are Suspicious
+thaven-mood-closed-doors-bad-desc = Honest people have nothing to hide. Closed and locked doors make you deeply uneasy, so you should keep doors open where possible.
+
+thaven-mood-whats-a-mood-name = What's A Mood?
+thaven-mood-whats-a-mood-desc = You don't understand the concept of Thaven moods. You are incapable of realizing when you're acting upon a mood, and will try to justify your actions to yourself with logic.
+
+thaven-mood-illiterate-name = Illiterate
+thaven-mood-illiterate-desc = Reading is difficult for you. You'd much rather avoid it. If you do have to read something, it helps to say some of it out loud and very slowly.

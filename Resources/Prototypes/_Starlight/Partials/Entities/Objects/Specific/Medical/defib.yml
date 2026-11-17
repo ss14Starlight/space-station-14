@@ -1,0 +1,18 @@
+- type: !PartialOnly entity
+  id: DefibrillatorEmpty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        blacklist:
+          tags:
+          - MechReactor
+
+- type: !PartialOnly entity
+  id: DefibrillatorSyndicate
+  components:
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Blunt: !Remove
+        Shock: 10 # 16 -> 10

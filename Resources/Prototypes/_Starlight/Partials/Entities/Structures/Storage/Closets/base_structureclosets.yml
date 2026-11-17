@@ -1,0 +1,12 @@
+- type: !PartialOnly entity
+  id: ClosetBase
+  components:
+  - type: FlippableStructure
+    delay: 3
+    unflipDelay: 4
+    coverChance: 0.55
+    disablePower: false
+    flippedBounds: "-0.48,-0.3,0.48,0.3"
+    crushDamage:
+      types:
+        Blunt: 12

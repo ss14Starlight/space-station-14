@@ -32,7 +32,8 @@ namespace Content.Client.ContextMenu.UI
 
         private ContextMenuUIController _uiController;
 
-        public ContextMenuPopup (ContextMenuUIController uiController, ContextMenuElement? parentElement) : base()
+        public ContextMenuPopup(ContextMenuUIController uiController, ContextMenuElement? parentElement,
+            UIRoot? uiRoot = null) : base() // Starlight: optional uiRoot support
         {
             RobustXamlLoader.Load(this);
             MenuPanel.SetOnlyStyleClass(StyleClassContextMenuPopup);
@@ -50,7 +51,7 @@ namespace Content.Client.ContextMenu.UI
             var styleSize = (box?.MinimumSize ?? Vector2.Zero) / UIScale;
             MenuPanel.MaxHeight = MaxItemsBeforeScroll * (ContextMenuElement.ElementHeight + 2 * ContextMenuElement.ElementMargin) + styleSize.Y;
 
-            UserInterfaceManager.ModalRoot.AddChild(this);
+            (uiRoot?.ModalRoot ?? UserInterfaceManager.ModalRoot).AddChild(this);
             MenuBody.OnChildRemoved += ctrl => _uiController.OnRemoveElement(this, ctrl);
             MenuBody.VSeparationOverride = 0;
             MenuBody.HSeparationOverride = 0;

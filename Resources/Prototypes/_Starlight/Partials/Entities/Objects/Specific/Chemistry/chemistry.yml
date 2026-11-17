@@ -28,6 +28,13 @@
       path: /Audio/_Starlight/Items/Handling/beaker_place.ogg
 
 - type: !PartialOnly entity
+  id: Pill
+  components:
+  - type: Tag
+    tags:
+    - Recyclable
+
+- type: !PartialOnly entity
   id: PillCanister
   components:
   - type: EmitSoundOnPickup
@@ -36,4 +43,9 @@
   - type: EmitSoundOnLand
     sound:
       path: /Audio/_Starlight/Items/Handling/pill_bottle_place.ogg
-
+  - type: Tag
+    tags:
+    - Recyclable
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 25

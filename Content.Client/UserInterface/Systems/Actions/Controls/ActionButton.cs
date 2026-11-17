@@ -4,6 +4,7 @@ using Content.Client.Actions.UI;
 using Content.Client.Cooldown;
 using Content.Shared.Actions.Components;
 using Content.Shared.Examine;
+using Content.Shared.Input;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
@@ -22,7 +23,7 @@ using Robust.Client.UserInterface.Themes;
 
 namespace Content.Client.UserInterface.Systems.Actions.Controls;
 
-public sealed class ActionButton : Control, IEntityControl
+public sealed partial class ActionButton : Control, IEntityControl
 {
     public const string StyleClassActionHighlightRect = "ActionHighlightRect";
 
@@ -176,10 +177,10 @@ public sealed class ActionButton : Control, IEntityControl
 
     private void OnPressed(GUIBoundKeyEventArgs args)
     {
-        if (args.Function != EngineKeyFunctions.UIClick && args.Function != EngineKeyFunctions.UIRightClick)
+        if (args.Function != EngineKeyFunctions.UIClick && args.Function != ContentKeyFunctions.HotbarRemove && args.Function != EngineKeyFunctions.UIRightClick) // Starlight
             return;
 
-        if (args.Function == EngineKeyFunctions.UIRightClick)
+        if (args.Function == ContentKeyFunctions.HotbarRemove) // Starlight
             Depress(args, true);
 
         ActionPressed?.Invoke(args, this);
@@ -187,10 +188,10 @@ public sealed class ActionButton : Control, IEntityControl
 
     private void OnUnpressed(GUIBoundKeyEventArgs args)
     {
-        if (args.Function != EngineKeyFunctions.UIClick && args.Function != EngineKeyFunctions.UIRightClick)
+        if (args.Function != EngineKeyFunctions.UIClick && args.Function != ContentKeyFunctions.HotbarRemove) // Starlight
             return;
 
-        if (args.Function == EngineKeyFunctions.UIRightClick)
+        if (args.Function == ContentKeyFunctions.HotbarRemove) // Starlight
             Depress(args, false);
 
         ActionUnpressed?.Invoke(args, this);
@@ -348,6 +349,10 @@ public sealed class ActionButton : Control, IEntityControl
         Cooldown.Progress = 1;
         Label.Visible = false;
         UpdateIcons();
+        // Starlight-start: Depress(false) can't run once Action is null
+        _depressed = false;
+        DrawModeChanged();
+        // Starlight-end
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
@@ -364,7 +369,14 @@ public sealed class ActionButton : Control, IEntityControl
             Cooldown.FromTime(cooldown.Start, cooldown.End);
 
         if (_toggled != action.Toggled)
+        {
             _toggled = action.Toggled;
+            // Starlight - start
+            // Remote action buttons must refresh their visual state after server-side toggles.
+            UpdateIcons();
+            DrawModeChanged();
+            // Starlight - end
+        }
     }
 
     protected override void MouseEntered()
@@ -426,7 +438,7 @@ public sealed class ActionButton : Control, IEntityControl
         }
 
         // if it's toggled on, always show the toggled on style (currently same as depressed style)
-        if (action.Toggled || _controller.SelectingTargetFor == Action?.Owner)
+        if (action.Toggled || RemoteSelected || _controller.SelectingTargetFor == Action?.Owner) // Starlight: RemoteControl selection
         {
             // when there's a toggle sprite, we're showing that sprite instead of highlighting this slot
             SetOnlyStylePseudoClass(action.IconOn != null

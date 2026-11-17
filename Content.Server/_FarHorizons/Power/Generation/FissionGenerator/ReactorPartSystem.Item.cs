@@ -6,6 +6,7 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Nutrition;
 using Content.Shared.Radiation.Components;
+using Content.Shared.Radiation.Systems;
 
 namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
 
@@ -33,8 +34,10 @@ public sealed partial class ReactorPartSystem
         var radvalue = (component.Properties.Radioactivity * 0.1f) + (component.Properties.NeutronRadioactivity * 0.15f) + (component.Properties.FissileIsotopes * 0.125f);
         if (radvalue > 0)
         {
-            var radcomp = EnsureComp<RadiationSourceComponent>(uid);
-            radcomp.Intensity = radvalue;
+            // Starlight start - using upstream shared radiation system
+            EnsureComp<RadiationSourceComponent>(uid);
+            _entityManager.System<SharedRadiationSystem>().SetIntensity((uid, null), radvalue);
+            // Starlight end
         }
 
         if (component.Properties.NeutronRadioactivity > 0)

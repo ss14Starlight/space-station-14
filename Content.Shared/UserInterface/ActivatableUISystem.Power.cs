@@ -1,8 +1,8 @@
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
-using Content.Shared.PowerCell;
 using Content.Shared.Power;
 using Content.Shared.Power.Components;
+using Content.Shared.PowerCell;
 
 namespace Content.Shared.UserInterface;
 
@@ -23,7 +23,9 @@ public sealed partial class ActivatableUISystem
     private void OnToggled(Entity<ActivatableUIRequiresPowerCellComponent> ent, ref ItemToggledEvent args)
     {
         // only close ui when losing power
-        if (args.Activated || !TryComp<ActivatableUIComponent>(ent, out var activatable))
+        if (args.Activated ||
+            IsApcPoweredFallback(ent.Owner) || // Starlight
+            !TryComp<ActivatableUIComponent>(ent, out var activatable))
             return;
 
         if (activatable.Key == null)
@@ -42,7 +44,10 @@ public sealed partial class ActivatableUISystem
         if (!args.UiKey.Equals(activatable.Key))
             return;
 
-        _toggle.TryActivate(uid);
+        if (IsApcPoweredFallback(uid)) // Starlight
+            _toggle.TryDeactivate(uid);
+        else
+            _toggle.TryActivate(uid);
     }
 
     private void OnBatteryClosed(EntityUid uid, ActivatableUIRequiresPowerCellComponent component, BoundUIClosedEvent args)
@@ -60,7 +65,7 @@ public sealed partial class ActivatableUISystem
     private void OnBatteryStateChanged(Entity<ActivatableUIRequiresPowerCellComponent> ent, ref BatteryStateChangedEvent args)
     {
         // Deactivate when empty.
-        if (args.NewState != BatteryState.Empty)
+        if (args.NewState != BatteryState.Empty || IsApcPoweredFallback(ent.Owner)) // Starlight
             return;
 
         var activatable = Comp<ActivatableUIComponent>(ent);
@@ -70,7 +75,7 @@ public sealed partial class ActivatableUISystem
 
     private void OnBatteryOpenAttempt(EntityUid uid, ActivatableUIRequiresPowerCellComponent component, ActivatableUIOpenAttemptEvent args)
     {
-        if (args.Cancelled)
+        if (args.Cancelled || IsApcPoweredFallback(uid)) // Starlight
             return;
 
         // Check if we have the appropriate drawrate / userate to even open it.
@@ -81,4 +86,6 @@ public sealed partial class ActivatableUISystem
             args.Cancel();
         }
     }
+
+    private partial bool IsApcPoweredFallback(EntityUid uid); // Starlight
 }

@@ -49,10 +49,7 @@ public abstract partial class SharedBorgSwitchableSubtypeSystem : EntitySystem
         SelectBorgSubtype(ent);
     }
 
-    protected virtual void SelectBorgSubtype(Entity<BorgSwitchableSubtypeComponent> ent)
-    {
-        UpdateEntityAppearance(ent);
-    }
+    protected virtual void SelectBorgSubtype(Entity<BorgSwitchableSubtypeComponent> ent) => UpdateEntityAppearance(ent); // Starlight
 
     private void UpdateEntityAppearance(Entity<BorgSwitchableSubtypeComponent> entity)
     {
@@ -65,7 +62,7 @@ public abstract partial class SharedBorgSwitchableSubtypeSystem : EntitySystem
     protected virtual void UpdateEntityAppearance(Entity<BorgSwitchableSubtypeComponent> entity,
         EntityPrototype borgSubtypePrototype)
     {
-        if (!borgSubtypePrototype.TryGetComponent<BorgSubtypeDefinitionComponent>(out var borgSubtype, ComponentFactory))
+        if (!borgSubtypePrototype.TryComp<BorgSubtypeDefinitionComponent>(out var borgSubtype, ComponentFactory)) // Starlight
             return;
 
         if (TryComp(entity, out InteractionPopupComponent? popup))

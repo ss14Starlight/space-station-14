@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State Based Copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+	    "copyright": "ItsMaitake, Recoloured by RoseHB",
+	    "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "equipped-NECK",
+      "directions": 4,
+	    "copyright": "deltaVelocity, ItsMaitake, Recoloured by RoseHB"
+    }
+  ]
+}

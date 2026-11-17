@@ -116,11 +116,17 @@ public sealed partial class MonumentMenu : FancyWindow
         {
             var boxContainer = new BoxContainer();
             var unlocked = _unlockedGlyphProtoIds.Contains(glyph.ID);
+            var tooltip = Loc.GetString(glyph.Tooltip);
+            if (_proto.TryIndex<EntityPrototype>(glyph.Entity, out var glyphEntityProto) &&
+                glyphEntityProto.TryComp<CosmicGlyphComponent>(out var glyphComp, _ent.ComponentFactory))
+            {
+                tooltip += "\n" + Loc.GetString("monument-interface-glyphs-requires-cultists", ("count", glyphComp.RequiredCultists));
+            }
             var button = new Button
             {
                 HorizontalExpand = true,
                 StyleClasses = { StyleClass.ButtonSquare },
-                ToolTip = Loc.GetString(glyph.Tooltip),
+                ToolTip = tooltip,
                 Group = _glyphButtonGroup,
                 Pressed = glyph.ID == _selectedGlyphProtoId,
                 Disabled = !unlocked,
@@ -176,7 +182,8 @@ public sealed partial class MonumentMenu : FancyWindow
         if (unlocked)
         {
             //if it's unlocked, do we have enough entropy to buy it?
-            return influence.Cost > cultComp.EntropyBudget ? InfluenceUIBox.InfluenceUIBoxState.UnlockedAndNotEnoughEntropy : InfluenceUIBox.InfluenceUIBoxState.UnlockedAndEnoughEntropy;
+            var cost = _ent.System<SharedMonumentSystem>().GetInfluenceCost(influence);
+            return cost > cultComp.EntropyBudget ? InfluenceUIBox.InfluenceUIBoxState.UnlockedAndNotEnoughEntropy : InfluenceUIBox.InfluenceUIBoxState.UnlockedAndEnoughEntropy;
         }
 
         return InfluenceUIBox.InfluenceUIBoxState.Locked;

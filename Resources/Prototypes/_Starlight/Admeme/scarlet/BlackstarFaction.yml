@@ -1,8 +1,8 @@
 # Blackstar NPC Faction
-
 - type: npcFaction
   id: Blackstar
   hostile:
+  - BloodBound
   - NanoTrasen
   - NanoTrasenSilicon
   - PetsNT

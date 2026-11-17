@@ -1,0 +1,8 @@
+- type: !PartialOnly entity
+  id: RemoteSignallerAdvanced
+  components:
+  - type: Tag
+    tags:
+      - Payload
+      - RemoteSignaller
+      - RemoteSignallerAdvanced

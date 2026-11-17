@@ -31,6 +31,7 @@ namespace Content.Shared.Entry
 
         public override void Init()
         {
+            _prototypeManager.RegisterIgnore("contrabandSeverity"); // Starlight, ignore severity, we use a different system
             IgnorePrototypes();
             PartialPrototypes();
         }

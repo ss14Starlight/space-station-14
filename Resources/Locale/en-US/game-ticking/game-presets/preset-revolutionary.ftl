@@ -1,6 +1,6 @@
 ## Rev Head
 
-roles-antag-rev-head-name = USSP SKB agent
+roles-antag-rev-head-name = USSP SKB Agent
 roles-antag-rev-head-objective = Your objective is to take over the station by bringing back people to your cause, setting up supply rifts, killing, converting or imprisoning all of Command staff on station.
 
 head-rev-role-greeting =

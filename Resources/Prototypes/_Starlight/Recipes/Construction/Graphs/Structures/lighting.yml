@@ -24,3 +24,36 @@
               prototype: SheetSteel1
               amount: 1
             - !type:DeleteEntity {}
+
+- type: constructionGraph
+  id: LightFloor
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: lightTile
+          steps:
+            - material: Glass
+              amount: 1
+            - material: Cable
+              amount: 1
+            - material: Steel
+              amount: 1
+    - node: lightTile
+      entity: FloorTileItemLight
+    - node: lightFloor
+      entity: LightFloorEmpty
+      edges:
+        - to: start
+          conditions:
+            - !type:WirePanel {}
+            - !type:ContainerEmpty
+              container: "light_bulb"
+          steps:
+            - tool: Prying
+              doAfter: 1
+          completed:
+            - !type:SpawnPrototype
+              prototype: FloorTileItemLight
+              amount: 1
+            - !type:DeleteEntity {}

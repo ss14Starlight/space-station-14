@@ -1,0 +1,31 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      Title="{Loc 'objective-picker-window-title'}"
+                      MinSize="420 300"
+                      SetSize="600 525">
+    <BoxContainer Orientation="Vertical" VerticalExpand="True">
+        <PanelContainer StyleClasses="BackgroundDark" VerticalExpand="True" Margin="10 5 5 0">
+            <BoxContainer Orientation="Vertical" VerticalExpand="True">
+                <BoxContainer Orientation="Horizontal" Margin="8 5 8 5">
+                    <Label Text="{Loc 'objective-picker-column-objective'}" HorizontalExpand="True"/>
+                    <Label Text="{Loc 'objective-picker-column-difficulty'}" SetWidth="90" Align="Right"/>
+                </BoxContainer>
+                <PanelContainer StyleClasses="LowDivider"/>
+                <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                    <BoxContainer Name="ObjectiveList" Orientation="Vertical" VerticalExpand="True"/>
+                </ScrollContainer>
+            </BoxContainer>
+        </PanelContainer>
+        <BoxContainer Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5">
+            <RichTextLabel Name="SelectionTip" Margin="2" HorizontalAlignment="Center"/>
+            <RichTextLabel Name="PickerFeedback" Margin="2" HorizontalAlignment="Center"/>
+            <Button Name="MulliganButton" Margin="5" HorizontalExpand="True" Text="{Loc 'objective-picker-window-mulligan'}"/>
+            <RichTextLabel Name="TimeLeftTip" Margin="2" HorizontalAlignment="Center"/>
+            <BoxContainer Orientation="Horizontal">
+                <Button Name="RandomizeButton" SetHeight="30" HorizontalExpand="True" Margin="0 5 10 0" Text="{Loc 'objective-picker-window-random'}"/>
+                <Button Name="ClearButton" SetHeight="30" HorizontalExpand="True" Margin="10 5 0 0" Text="{Loc 'objective-picker-window-clear'}"/>
+            </BoxContainer>
+            <controls:ConfirmButton Name="SubmitButton" Margin="5" HorizontalExpand="True" Text="{Loc 'objective-picker-window-submit'}"/>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

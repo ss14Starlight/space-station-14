@@ -82,6 +82,7 @@
   - AssistantManagerOuterClothing
   - AssistantManagerShoes
   - Survival
+  - Glasses
   - Trinkets
   - Scarves
   - Pins
@@ -203,6 +204,28 @@
   - SurvivalExtended
   - Trinkets
   - Scarves
+  - Pins
+  - Pens
+  - SecurityJobTrinkets
+  - GroupSpeciesBreathToolSecurity
+
+- type: roleLoadout
+  id: JobGunnerySergeant
+  groups:
+  - GunnerySergeantHead
+  - EliteSecurityMask
+  - GunnerySergeantNeck
+  - GunnerySergeantJumpsuit
+  - SecurityBackpack
+  - SecurityBelt
+  - GunnerySergeantOuterClothing
+  - SecurityEyewear
+  - SecurityShoes
+  - SurvivalExtended
+  - InsulsCombat
+  - SecurityNonLethalWeapon
+  - SecuritySidearm
+  - Trinkets
   - Pins
   - Pens
   - SecurityJobTrinkets
@@ -366,10 +389,13 @@
   id: JobSalvageMedic
   groups:
   - GroupTankHarness
+  - SalvageMedicJumpsuit
+  - SalvageMedicPDA
+  - SalvageMedicNeck
   - SalvageSpecialistBackpack
   - SalvageSpecialistOuterClothing
   - SalvageSpecialistShoes
-  - Glasses
+  - MedicalEyewear
   - Survival
   - Trinkets
   - Scarves

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using Content.Shared._Starlight.Light;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared._ST.Interaction;
 using Content.Shared._FarHorizons.Util;
@@ -31,7 +32,7 @@ using Content.Shared.Timing;
 using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
 using Content.Shared.Wall;
-using Content.Shared.Inventory.VirtualItem; // Stellar - interaction particles
+using Content.Shared.Inventory.VirtualItem;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
 using Robust.Shared.Input;
@@ -170,8 +171,17 @@ namespace Content.Shared.Interaction
             _uiQuery.TryComp(ev.Target, out var aUiComp);
 
             var slottedPAI = IsSlottedPAI(ev.Actor, ev.Target);  // Starlight-edit: PAI's can be slotted into and use console BUIs.
+            // Starlight - start
+            var interactionActor = slottedPAI
+                ? ev.Actor
+                : GetPAIRemoteUiInteractionActor(
+                    ev.Actor,
+                    ev.Target,
+                    ev.UiKey,
+                    ev.Message is OpenBoundInterfaceMessage);
+            // Starlight - end
 
-            if (!_actionBlockerSystem.CanInteract(ev.Actor, ev.Target) && !slottedPAI) // Starlight-edit: PAI's can be slotted into and use console BUIs.
+            if (!_actionBlockerSystem.CanInteract(interactionActor, ev.Target) && !slottedPAI) // Starlight-edit: PAI's can be slotted into and use console BUIs.
             {
                 // We permit ghosts to open uis unless explicitly blocked
                 if (ev.Message is not OpenBoundInterfaceMessage
@@ -182,13 +192,39 @@ namespace Content.Shared.Interaction
                     return;
                 }
             }
+            // Starlight - start
+            if (!_ui.TryGetInterfaceData(ent.Owner, ev.UiKey, out var interfaceData))
+            {
+                ev.Cancel();
+                return;
+            }
 
-            var range = _ui.GetUiRange(ev.Target, ev.UiKey);
+            var range = interfaceData.InteractionRange;
 
-            // As long as range>0, the UI frame updates should have auto-closed the UI if it is out of range.
-            DebugTools.Assert(range <= 0 || UiRangeCheck(ev.Actor, ev.Target, range));
+            if (range > 0)
+            {
+                // Use the same range overrides as the periodic UI checks, including remote control.
+                var checkRange = new BoundUserInterfaceCheckRangeEvent(
+                    (ev.Target, Transform(ev.Target)),
+                    ev.UiKey,
+                    interfaceData,
+                    (ev.Actor, Transform(ev.Actor)));
+                RaiseLocalEvent(ev.Target, ref checkRange, true);
 
-            if (range <= 0 && !IsAccessible(ev.Actor, ev.Target))
+                if (checkRange.Result != BoundUserInterfaceRangeResult.Pass
+                    && !_ignoreUiRangeQuery.HasComp(ev.Actor))
+                {
+                    ev.Cancel();
+                    return;
+                }
+            }
+            // Starlight - end
+
+            // Starlight - start
+            if (range <= 0
+                && !IsAccessible(ev.Actor, ev.Target)
+                && (interactionActor == ev.Actor || !IsAccessible(interactionActor, ev.Target)))
+            // Starlight - end
             {
                 ev.Cancel();
                 return;
@@ -203,7 +239,7 @@ namespace Content.Shared.Interaction
                 return;
             }
 
-            if (aUiComp.RequiresComplex && !_actionBlockerSystem.CanComplexInteract(ev.Actor) && !slottedPAI)
+            if (aUiComp.RequiresComplex && !_actionBlockerSystem.CanComplexInteract(interactionActor) && !slottedPAI) // Starlight
                 ev.Cancel();
         }
 
@@ -280,19 +316,27 @@ namespace Content.Shared.Interaction
                 return true;
             }
 
-            //is this user trying to pull themself?
-            if (userEntity.Value == uid)
-                return false;
-
-            if (Deleted(uid))
-                return false;
-
-            if (!InRangeUnobstructed(userEntity.Value, uid, popup: true))
-                return false;
-
-            _pullSystem.TogglePull(uid, userEntity.Value);
+            TryPullObject(userEntity.Value, uid);
             return false;
         }
+
+        #region Starlight
+        /// <summary>
+        ///     Attempts to toggle pulling <paramref name="uid"/> with <paramref name="user"/>.
+        /// </summary>
+        /// <param name="user">The entity initiating the pull.</param>
+        /// <param name="uid">The entity to pull.</param>
+        /// <remarks>
+        ///     Pulling is skipped for self-pulls, deleted targets, and targets outside unobstructed interaction range.
+        /// </remarks>
+        public void TryPullObject(EntityUid user, EntityUid uid)
+        {
+            if (user == uid || Deleted(uid) || !InRangeUnobstructed(user, uid, popup: true))
+                return;
+
+            _pullSystem.TogglePull(uid, user);
+        }
+        #endregion
 
         /// <summary>
         ///     Handles the event were a client uses an item in their inventory or in their hands, either by
@@ -404,10 +448,15 @@ namespace Content.Shared.Interaction
             bool checkAccess = true,
             bool checkCanUse = true)
         {
-            if (_relayQuery.TryComp(user, out var relay) && relay.RelayEntity is not null)
+            // Starlight: Activatable UIs must remain owned by the controller. Mouse interaction uses this path,
+            // while the direct activation key already bypasses the relay and uses the controller as the actor
+            if ((target is not { } activatableTarget || !_uiQuery.HasComp(activatableTarget))
+                && _relayQuery.TryComp(user, out var relay)
+                && relay.RelayEntity is not null)
             {
                 // TODO this needs to be handled better. This probably bypasses many complex can-interact checks in weird roundabout ways.
-                if (_actionBlockerSystem.CanInteract(user, target))
+                // Starlight: controller blockers are checked on the source and target checks run for the relay body
+                if (_actionBlockerSystem.CanInteract(user, null))
                 {
                     UserInteraction(relay.RelayEntity.Value,
                         coordinates,
@@ -1180,15 +1229,21 @@ namespace Content.Shared.Interaction
             bool checkDeletion = true)
         {
             if (checkDeletion && (IsDeleted(user) || IsDeleted(used)))
+            {
                 return false;
+            }
 
             DebugTools.Assert(!IsDeleted(user) && !IsDeleted(used));
             _delayQuery.TryComp(used, out var delayComponent);
             if (checkUseDelay && delayComponent != null && _useDelay.IsDelayed((used, delayComponent)))
+            {
                 return false;
+            }
 
             if (checkCanInteract && !_actionBlockerSystem.CanInteract(user, used))
+            {
                 return false;
+            }
 
             if (checkAccess && !InRangeUnobstructed(user, used))
                 return false;
@@ -1305,6 +1360,12 @@ namespace Content.Shared.Interaction
             {
                 rotation = mover.TargetRelativeRotation;
             }
+
+            // Starlight-start
+            var rotationEv = new DropRotationEvent(user, rotation);
+            RaiseLocalEvent(item, ref rotationEv);
+            rotation = rotationEv.Rotation;
+            // Starlight-end
 
             Transform(item).LocalRotation = rotation;
         }
@@ -1520,10 +1581,10 @@ namespace Content.Shared.Interaction
             // End Stellar/ES Additions - Interaction particles
         }
 
-
         private void HandleUserInterfaceRangeCheck(ref BoundUserInterfaceCheckRangeEvent ev)
         {
-            if (ev.Result == BoundUserInterfaceRangeResult.Fail)
+            // Starlight: Respect explicit range results from specialized UI handlers.
+            if (ev.Result != BoundUserInterfaceRangeResult.Default)
                 return;
 
             ev.Result = UiRangeCheck(ev.Actor!, ev.Target, ev.Data.InteractionRange)

@@ -24,6 +24,22 @@
   radioChannels:
   - Supply
 
+- type: technology
+  id: ModularHudModulesIndustrialT1
+  name: research-technology-modular-hud-modules-industrial-t1
+  icon:
+    entity: HudModuleShowAccessReaderSettings
+  discipline: Industrial
+  tier: 1
+  cost: 1000
+  technologyPrerequisites:
+  - ModularHudFrames
+  recipeUnlocks:
+  - HudModuleShowAccessReaderSettings
+  - HudModuleShowInorganicHealthBars
+  radioChannels:
+  - Engineering
+
 # Tier 2
 
 - type: technology
@@ -104,6 +120,41 @@
   radioChannels:
   - Medical
   - Supply
+
+- type: technology
+  id: CombustionTurbines
+  name: research-technology-combustion-turbines
+  icon:
+    sprite: _Starlight/Structures/Power/Generation/combustion_turbine.rsi
+    state: core_rotor
+  discipline: Industrial
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - CombustionTurbineCompressorMachineCircuitboard
+  - CombustionTurbineRotorMachineCircuitboard
+  - CombustionTurbineOutletMachineCircuitboard
+  technologyPrerequisites:
+  - PowerGeneration
+  radioChannels:
+  - Engineering
+
+- type: technology
+  id: ModularHudModulesIndustrialT2
+  name: research-technology-modular-hud-modules-industrial-t2
+  icon:
+    entity: HudModuleEyeProtection
+  discipline: Industrial
+  tier: 2
+  cost: 3500
+  technologyPrerequisites:
+  - ModularHudFrames
+  - ModularHudModulesIndustrialT1
+  recipeUnlocks:
+  - HudModuleEyeProtection
+  - HudModuleThermalSight
+  radioChannels:
+  - Engineering
 
 # Tier 3
 

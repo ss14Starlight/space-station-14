@@ -1,0 +1,31 @@
+- type: !PartialOnly entity
+  id: FloorTileItemBase
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
+  - type: !Remove DamageOnLand
+    damage: !Remove
+
+- type: !PartialOnly entity
+  id: FloorTileItemWeb
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 10
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 10
+  - type: Tag
+    tags:
+    - ClothMade
+  - type: Edible
+    requiresSpecialDigestion: true
+    solution: food
+  - type: FlavorProfile
+    flavors:
+      - cobwebs
+    ignoreReagents:
+      - Fiber

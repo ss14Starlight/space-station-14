@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using Content.Client._Starlight.Stylesheets;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Numerics;
 using Content.Client.Stylesheets;
@@ -67,14 +68,13 @@ public sealed class DraggableJobTarget : Control
     public DraggableJobTarget()
     {
         // Add the panel used to highlight the target when hovered
-        var panelStyle = new StyleBoxFlat { BackgroundColor = StyleNano.NanoGold };
-        _backgroundPanel = new PanelContainer { Visible = false, PanelOverride = panelStyle };
+        _backgroundPanel = new PanelContainer { Visible = false, StyleClasses = { StarlightStyleClass.JobDropHighlight } };
         AddChild(_backgroundPanel);
 
         // Add the main content box
         _mainBox = new BoxContainer()
         {
-            Margin = new Thickness(10, 0),
+            Margin = new Thickness(2, 0),
             Orientation = BoxContainer.LayoutOrientation.Vertical,
             HorizontalExpand = true,
         };
@@ -118,8 +118,8 @@ public sealed class DraggableJobTarget : Control
         {
             Text = Loc.GetString($"humanoid-profile-editor-job-priority-{Priority.ToString().ToLower()}-button"),
             HorizontalAlignment = HAlignment.Center,
-            StyleClasses = { "LabelBig" },
-            Margin = new Thickness(0, 6),
+            StyleClasses = { "LabelSubText" },
+            Margin = new Thickness(0, 4),
         };
 
         _mainBox.AddChild(header);

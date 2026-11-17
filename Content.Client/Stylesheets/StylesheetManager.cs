@@ -54,12 +54,13 @@ namespace Content.Client.Stylesheets
             UnusedSheetlets = [..tys];
 
             Stylesheets = new Dictionary<string, Stylesheet>();
-            SheetNanotrasen = Init(new NanotrasenStylesheet(new BaseStylesheet.NoConfig(), this));
+            SheetNanotrasen = Init(new NanotrasenStylesheet(ResolveStyleTheme(), this)); // Starlight: themed
             SheetSystem = Init(new SystemStylesheet(new BaseStylesheet.NoConfig(), this));
             SheetNano = new StyleNano(_resCache).Stylesheet; // TODO: REMOVE (obsolete)
             SheetSpace = new StyleSpace(_resCache).Stylesheet; // TODO: REMOVE (obsolete)
             Starlight = new StyleStarlight(_resCache).Stylesheet; //🌟Starlight🌟 TODO: REMOVE (obsolete)
             _userInterfaceManager.Stylesheet = SheetNanotrasen;
+            InitializeStyleTheme(); // Starlight
 
             // warn about unused sheetlets
             if (UnusedSheetlets.Count > 0)

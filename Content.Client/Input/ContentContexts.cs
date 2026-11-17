@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Input;
 using Robust.Shared.Input;
+using Content.Shared._Starlight.Input;
 
 namespace Content.Client.Input
 {
@@ -33,6 +34,7 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.MoveStoredItem);
             common.AddFunction(ContentKeyFunctions.RotateStoredItem);
             common.AddFunction(ContentKeyFunctions.SaveItemLocation);
+            common.AddFunction(ContentKeyFunctions.HotbarRemove); // Starlight
             common.AddFunction(ContentKeyFunctions.Point);
             common.AddFunction(ContentKeyFunctions.ZoomOut);
             common.AddFunction(ContentKeyFunctions.ZoomIn);
@@ -94,6 +96,7 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.Arcade1);
             human.AddFunction(ContentKeyFunctions.Arcade2);
             human.AddFunction(ContentKeyFunctions.Arcade3);
+            human.AddFunction(CMKeyFunctions.SLInteractWithOtherHand); //Starlight, Ported from RMC14, Prefixes changed from RMC to SL to allow rebinds without affecting RMC or vice versa
 
             // actions should be common (for ghosts, mobs, etc)
             common.AddFunction(ContentKeyFunctions.OpenActionsMenu);

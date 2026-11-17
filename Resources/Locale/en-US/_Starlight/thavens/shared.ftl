@@ -102,3 +102,30 @@ thaven-mood-trendy-words-desc = Thaven are always on the frontlines of coolness 
 
 thaven-mood-gossipers-name = Gossipers
 thaven-mood-gossipers-desc = Drama is the highest form of entertainment.
+
+thaven-mood-blood-feud-name = Blood Feud
+thaven-mood-blood-feud-desc = Two Thaven groups have held a feud for centuries. Decide who's in which group and continue the dispute.
+
+thaven-mood-star-actors-name = Star Actors
+thaven-mood-star-actors-desc = You and your fellow Thaven are all actors in a movie. Decide what film you will be creating and assign roles and then act it out for the station's crew to their enjoyment or detriment.
+
+thaven-mood-monument-building-name = Monument Building
+thaven-mood-monument-building-desc = Great achievements deserve permanent memorials. Construct a monument to honor the station's achievements.
+
+thaven-mood-department-of-the-day-name = Department Of The Day
+thaven-mood-department-of-the-day-desc = Today is dedicated to the achievements of the {$department} department. All Thaven should celebrate and assist it.
+
+thaven-mood-hall-monitor-name = Hall Monitor
+thaven-mood-hall-monitor-desc = The station's corridors must be kept orderly. Create a list of rules and punish any infraction by pinching.
+
+thaven-mood-honourable-ambushes-name = Honorable Ambushes
+thaven-mood-honourable-ambushes-desc = Surprise attacks are an important sign of mutual respect amongst Thaven. Conduct them on Thaven as often as possible.
+
+thaven-mood-traders-name = Traders
+thaven-mood-traders-desc = You must regularly meet up and exchange high value items with other Thaven. Barter until agreeing on a fair deal.
+
+thaven-mood-the-collective-name = The Collective
+thaven-mood-the-collective-desc = Thaven culture thrives through mutual understanding. You are compelled to follow and mimic the ideals of your other Thaven.
+
+thaven-mood-the-curtains-must-rise-for-all-name = The Curtains Must Rise For All
+thaven-mood-the-curtains-must-rise-for-all-desc = Privacy is a sacred right. Build and install curtains to shield yourself from prying eyes. No one should witness what is meant to be private. Thaven should install curtains wherever possible and meet in secret.

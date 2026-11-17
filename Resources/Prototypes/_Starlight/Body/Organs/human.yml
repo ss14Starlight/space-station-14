@@ -42,8 +42,8 @@
       - Meat
   - type: SolutionManager
     solutions:
-    - SolutionOrganNutriment
-    - SolutionOrganFoodGreyMatter
+    - SolutionOrganBrain
+    - SolutionOrganFoodNeuralPrion
   - type: FlavorProfile
     flavors:
       - people
@@ -139,6 +139,10 @@
   name: heart
   description: "I feel bad for the heartless bastard who lost this."
   components:
+  - type: Tag
+    tags:
+    - Meat
+    - Heart
   - type: Sprite
     state: heart-on
   # The heart 'metabolizes' medicines and poisons that aren't filtered out by other organs.

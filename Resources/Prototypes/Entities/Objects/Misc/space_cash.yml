@@ -15,13 +15,7 @@
       Credit: 1
   - type: StaticPrice
     price: 0
-  # Starlight start
-  - type: UserInterface
-    interfaces:
-      enum.StackCustomSplitUiKey.Key:
-        type: StackCustomSplitBoundUserInterface
   - type: Stack
-  # Starlight end
     stackType: Credit
     count: 1
     baseLayer: base

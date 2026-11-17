@@ -41,6 +41,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NukeOps;
 using Content.Shared.Nutrition.Components;
+using Content.Shared.Objectives.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Power.Components;
 using Content.Shared.PowerCell;
@@ -69,6 +70,7 @@ using Content.Shared._Starlight.Revolutionary.Components;
 using Content.Shared._Starlight.Store.Events;
 using Content.Server._Starlight.Roles;
 using Content.Shared._Starlight.Medical.HealthAnalyzer;
+using Content.Shared._Starlight.Objectives.ObjectivePicker;
 
 namespace Content.Server._Starlight.Achievement;
 
@@ -168,15 +170,45 @@ public sealed partial class AchievementSystem : EntitySystem
         if (await HasAchievementUnlockedAsync(session, achievementId))
             return false;
 
+        if (_prototypeManager.TryIndex<AchievementPrototype>(achievementId, out var achievement))
+        {
+            foreach (var required in achievement.RequiredAchievements)
+            {
+                if (!await HasAchievementUnlockedAsync(session, required.Id))
+                    return false;
+            }
+        }
+
         var result = await UnlockAchievement(session, achievementId, characterName);
         if (result)
         {
             _achievementRewards.GrantRewards(session, achievementId);
             _nullLinkPlayers.SendAchievementNotification(session.UserId, achievementId);
             _nullLinkPlayers.SendAchievementList(session.UserId);
+            await CheckPrerequisiteAchievementsAsync(session, characterName);
         }
 
         return result;
+    }
+
+    /// <summary>
+    /// Awards achievements whose prerequisites and any ordinary progress requirements are met.
+    /// </summary>
+    public async ValueTask CheckPrerequisiteAchievementsAsync(ICommonSession session, string? characterName = null)
+    {
+        foreach (var achievement in _prototypeManager.EnumeratePrototypes<AchievementPrototype>())
+        {
+            if (achievement.RequiredAchievements.Count == 0 || achievement.DifficultyAntag != null)
+                continue;
+
+            if (achievement.Requirements.Count > 0
+                && !achievement.AreRequirementsMet((type, perRound) => perRound
+                    ? GetRoundProgress(session.UserId, type)
+                    : GetProgress(session, type)))
+                continue;
+
+            await TryUnlockAchievementAsync(session, achievement.ID, characterName);
+        }
     }
 
     public async ValueTask<bool> TryLockAchievementAsync(ICommonSession session, string achievementId)
@@ -307,18 +339,8 @@ public sealed partial class AchievementSystem : EntitySystem
         switch (e.NewStatus)
         {
             case SessionStatus.Connected:
-                QueueAchievementHydration(e.Session);
-                break;
             case SessionStatus.InGame:
-                if (_nullLinkPlayers.TryGetPlayerData(e.Session.UserId, out var playerData)
-                    && playerData.AchievementCacheHydrated)
-                {
-                    _nullLinkPlayers.SendAchievementList(e.Session.UserId);
-                }
-                else
-                {
-                    QueueAchievementHydration(e.Session);
-                }
+                QueueAchievementHydration(e.Session);
                 break;
             case SessionStatus.Disconnected:
                 _achievementFetchInFlight.Remove(e.Session.UserId);
@@ -590,11 +612,11 @@ public sealed partial class AchievementSystem : EntitySystem
         QueueUnlockAchievement(killerSession, "paradox_undone");
     }
 
-    private void OnDamageableChanged(EntityUid uid, DamageableComponent damageable, ref DamageChangedEvent args)
+    private void OnDamageableChanged(EntityUid uid, DamageableComponent _, ref DamageChangedEvent args)
     {
         if (!_playerManager.TryGetSessionByEntity(uid, out var session)
             || _damageableSystem.GetTotalDamage(uid).Float() < HesDeadJimDamageThreshold
-            || !HasRequiredDamageGroups(damageable))
+            || !HasRequiredDamageGroups(uid))
         {
             return;
         }
@@ -628,6 +650,17 @@ public sealed partial class AchievementSystem : EntitySystem
 
     private void OnRoundEndText(RoundEndTextAppendEvent ev)
     {
+        var query = EntityQueryEnumerator<MindComponent>();
+        while (query.MoveNext(out var mindId, out var antagMind))
+        {
+            if ((antagMind.OriginalOwnerUserId ?? antagMind.UserId) is not { } player ||
+                !_playerManager.TryGetSessionById(player, out var ownerSession))
+                continue;
+
+            foreach (var achievement in GetEligibleDifficultyAntagAchievements((mindId, antagMind)))
+                QueueUnlockAchievement(ownerSession, achievement.ID, antagMind.CharacterName);
+        }
+
         foreach (var session in _playerManager.Sessions)
         {
             if (!_mind.TryGetMind(session.UserId, out Entity<MindComponent>? mindEnt)
@@ -701,6 +734,28 @@ public sealed partial class AchievementSystem : EntitySystem
     #endregion
 
     #region Helpers
+
+    /// <summary>
+    /// Returns the configured antagonist difficulty awards earned by this mind in the current round.
+    /// </summary>
+    public IEnumerable<AchievementPrototype> GetEligibleDifficultyAntagAchievements(Entity<MindComponent> mind)
+    {
+        var score = new ObjectiveDifficultyScore();
+        foreach (var objective in mind.Comp.Objectives)
+        {
+            if (TryComp<ObjectiveComponent>(objective, out var comp))
+                score = score.Add(comp.Difficulty, _objectives.IsCompleted(objective, mind));
+        }
+
+        var roles = mind.Comp.MindRoleContainer.ContainedEntities.Select(uid => Prototype(uid))
+            .OfType<EntityPrototype>().SelectMany(role =>
+                _prototypeManager.EnumerateParents<EntityPrototype>(role.ID, includeSelf: true))
+            .Select(role => role.ID).ToHashSet();
+        return _prototypeManager.EnumeratePrototypes<AchievementPrototype>().Where(achievement =>
+            achievement.DifficultyAntag is { } requirement && roles.Contains(requirement.Role.Id) &&
+            float.IsFinite(requirement.RequiredDifficulty) && requirement.RequiredDifficulty > 0 &&
+            score.Completed + ObjectivePickerSelection.Tolerance >= requirement.RequiredDifficulty);
+    }
 
     private void QueueUnlockAchievement(ICommonSession session, string achievementId, string? characterName = null)
     {
@@ -858,11 +913,11 @@ public sealed partial class AchievementSystem : EntitySystem
         return requiredDepartmentId == null || JobHasDepartment(job.ID, requiredDepartmentId);
     }
 
-    private bool HasRequiredDamageGroups(DamageableComponent damageable)
+    private bool HasRequiredDamageGroups(EntityUid uid)
     {
         foreach (var groupId in HealthAnalyzerFormatting.DamageGroupOrder)
         {
-            if (!_damageableSystem.GetDamagePerGroup(damageable.Owner).TryGetValue(groupId, out var damage)
+            if (!_damageableSystem.GetDamagePerGroup(uid).TryGetValue(groupId, out var damage)
                 || damage.Float() <= 0f)
             {
                 return false;
@@ -956,6 +1011,9 @@ public sealed partial class AchievementSystem : EntitySystem
         if (_nullLinkPlayers.TryGetPlayerData(session.UserId, out var playerData)
             && playerData.AchievementCacheHydrated)
         {
+            CheckPrerequisiteAchievementsAsync(session)
+                .AsTask()
+                .FireAndForget();
             _nullLinkPlayers.SendAchievementList(session.UserId);
             return;
         }
@@ -986,6 +1044,7 @@ public sealed partial class AchievementSystem : EntitySystem
 
         if (playerData.AchievementCacheHydrated)
         {
+            await CheckPrerequisiteAchievementsAsync(playerData.Session);
             _nullLinkPlayers.SendAchievementList(userId);
             return;
         }

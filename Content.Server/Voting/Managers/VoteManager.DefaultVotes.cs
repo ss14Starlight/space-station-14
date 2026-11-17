@@ -317,7 +317,7 @@ namespace Content.Server.Voting.Managers
                 // Starlight End
                 //add the key we picked to the cooldown list
                 //if its secret, never add it
-                if (!(secretPreset != null && pickedPreset.ID == secretPreset.ID))
+                if (!(secretPreset != null && pickedPreset.ID == secretPreset.ID) && !pickedPreset.BypassCooldowns) // Starlight
                 {
                     _presetCooldown.Add(pickedPreset.ID, pickedPreset.VoteCooldown);
                     _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Preset {pickedPreset.ID} added to cooldown for {pickedPreset.VoteCooldown} votes.");
@@ -716,7 +716,7 @@ namespace Content.Server.Voting.Managers
                 //STARLIGHT
                 //check if its on the cooldown list
                 //if the cooldown number is 0 or lower, we dont cooldown this selection anyway
-                if (preset.VoteCooldown > 0)
+                if (preset.VoteCooldown > 0 && !preset.BypassCooldowns) // Starlight
                 {
                     if (_presetCooldown.ContainsKey(preset.ID))
                     {

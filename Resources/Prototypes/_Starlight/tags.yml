@@ -15,6 +15,12 @@
   id: AdminSpawnedPlayer # Signifies that this player entity was spawned via the "Spawn here" admin verb.
 
 - type: Tag
+  id: AnimalCube
+
+- type: Tag
+  id: AnimalCubeBox
+
+- type: Tag
   id: AnomalyCoreShadow
 
 - type: Tag
@@ -22,6 +28,9 @@
 
 - type: Tag
   id: Arachnid
+
+- type: Tag
+  id: AtmosFireHelmet # ConstructionGraph: AtmosianHelmet
 
 - type: Tag
   id: AutoMender
@@ -136,6 +145,12 @@
 
 - type: Tag
   id: CasinoChip
+
+- type: Tag
+  id: CD
+
+- type: Tag
+  id: CDCase
 
 - type: Tag
   id: CentcommVibroblade
@@ -321,6 +336,9 @@
   id: FringeTraitBackground
 
 - type: Tag
+  id: FragileImplant # Implant disintegrates on extraction
+
+- type: Tag
   id: FrontierTraitBackground
 
 - type: Tag
@@ -343,6 +361,15 @@
 
 - type: Tag
   id: GrenadeLessLethal #Ammo for the peacekeeper
+
+- type: Tag
+  id: GunUpgradeDamageExp
+
+- type: Tag
+  id: GunUpgradeRangeExp
+
+- type: Tag
+  id: GunUpgradeReloadSpeedExp
 
 - type: Tag
   id: GygaxArmor
@@ -373,6 +400,9 @@
 
 - type: Tag
   id: HandheldEngineeringMonitor #CE's handheld monitor
+
+- type: Tag
+  id: Heart
 
 - type: Tag
   id: HighTierCell #Blacklist for stunprod, used by the hyper and microreactor.
@@ -475,6 +505,21 @@
 
 - type: Tag
   id: MagazineBattery
+
+- type: Tag
+  id: MagazineBoltPistol
+
+- type: Tag
+  id: MagazineBoltRifle
+
+- type: Tag
+  id: MagazineBoxBoltRifle
+
+- type: Tag
+  id: MetalHydrogenHelmet # ConstructionGraph: AtmosianHelmet
+
+- type: Tag
+  id: CartridgeImpactBolt
 
 - type: Tag
   id: MagazineL10DMR
@@ -589,6 +634,15 @@
   id: ModularBarrel
 
 - type: Tag
+  id: ModularHudGoggles
+
+- type: Tag
+  id: ModularHudSingleEye
+
+- type: Tag
+  id: ModularHudSyndicate
+
+- type: Tag
   id: ModuleBlacklistXenoborgEngiWeapon
 
 - type: Tag
@@ -604,6 +658,9 @@
   id: Nexus
 
 - type: Tag
+  id: NonAnimalCube
+
+- type: Tag
   id: NonLethalMech # Used to allow nonlethal mech equipment on a mech.
 
 - type: Tag
@@ -617,6 +674,9 @@
 
 - type: Tag
   id: OmniCyberEyes
+
+- type: Tag
+  id: Outbreak
 
 - type: Tag
   id: OvenMachineBoard
@@ -661,9 +721,6 @@
   id: RemoteSignallerAdvanced # Crafting whitelist: Advanced Deadman remote trigger
 
 - type: Tag
-  id: RequiredForLmgTag
-
-- type: Tag
   id: Resomi
 
 - type: Tag
@@ -688,6 +745,9 @@
 
 - type: Tag
   id: Salad # BountySalad
+
+- type: Tag
+  id: SalvageExperimentStar
 
 - type: Tag
   id: SalvageTicket
@@ -813,10 +873,19 @@
   id: VinylSleeve # Storage whitelist: RecordMilkCrate, SyndicateMilkCrate
 
 - type: Tag
+  id: VinylSleeveFit
+
+- type: Tag
   id: WallmountMassScannerElectronics
 
 - type: Tag
+  id: WhitelistChameleonCollar # Chameleon key for chameleon collars
+
+- type: Tag
   id: Wizard
+
+- type: Tag
+  id: WrappedCube
 
 - type: Tag
   id: RawXenoMeat #BountySalvageRawXenoMeat
@@ -826,3 +895,9 @@
 
 - type: Tag
   id: XenosDisasterSurvivorTraitBackground
+
+- type: Tag
+  id: StationRadioCircuitboard
+
+- type: Tag
+  id: AirlockCyclerElectronics # ConstructionGraph: AirlockCycler

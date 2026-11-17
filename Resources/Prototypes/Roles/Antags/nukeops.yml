@@ -166,7 +166,7 @@
     back: ClothingBackpackDuffelSyndicate
     mask: ClothingMaskGasSyndicate
     eyes: ClothingEyesHudSyndicate
-    ears: ClothingHeadsetAltSyndicate
+    ears: ClothingHeadsetAltGorlex # Starlight
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitSyndie
     shoes: ClothingShoesBootsCombatFilled

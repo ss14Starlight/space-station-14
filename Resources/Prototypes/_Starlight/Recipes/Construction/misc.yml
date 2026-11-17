@@ -1,0 +1,10 @@
+
+
+- type: construction
+  id: HandheldStationRadio
+  name: construction-recipe-handheld-station-radio
+  graph: HandheldStationRadio
+  startNode: start
+  targetNode: done
+  category: construction-category-misc
+  objectType: Item

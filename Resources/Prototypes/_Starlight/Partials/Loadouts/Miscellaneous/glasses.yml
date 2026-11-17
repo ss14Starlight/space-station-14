@@ -1,0 +1,7 @@
+- type: !PartialOnly loadout
+  id: !type:CreateVariants
+    values:
+    - Glasses
+    - GlassesJamjar
+    - GlassesJensen
+  groupBy: eyewear

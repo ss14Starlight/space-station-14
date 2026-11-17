@@ -116,7 +116,7 @@
     state: "l_leg"
   - type: HumanoidEMPCompositeElement
     effect:
-      knockdownAmount: 0.5
+      knockdownAmount: 0.25
       slowdownAmount: 2.5
       walkSpeedModifier: 0.5
       sprintSpeedModifier: 0.5
@@ -135,7 +135,7 @@
     state: "r_leg"
   - type: HumanoidEMPCompositeElement
     effect:
-      knockdownAmount: 0.5
+      knockdownAmount: 0.25
       slowdownAmount: 2.5
       walkSpeedModifier: 0.5
       sprintSpeedModifier: 0.5
@@ -154,7 +154,7 @@
     state: "l_foot"
   - type: HumanoidEMPCompositeElement
     effect:
-      knockdownAmount: 0.5
+      knockdownAmount: 0.25
       slowdownAmount: 2.5
       walkSpeedModifier: 0.5
       sprintSpeedModifier: 0.5
@@ -173,7 +173,7 @@
     state: "r_foot"
   - type: HumanoidEMPCompositeElement
     effect:
-      knockdownAmount: 0.5
+      knockdownAmount: 0.25
       slowdownAmount: 2.5
       walkSpeedModifier: 0.5
       sprintSpeedModifier: 0.5

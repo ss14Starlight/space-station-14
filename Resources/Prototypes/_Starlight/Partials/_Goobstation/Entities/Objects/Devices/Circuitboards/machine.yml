@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: StationRadioCircuitboard
+  components:
+    - type: Tag
+      tags:
+        - StationRadioCircuitboard

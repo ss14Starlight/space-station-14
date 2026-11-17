@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseItem, BaseSiliconBrainLanguages] #Starlight
+  parent: [BaseItem, BaseSiliconBrainLanguages] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: MMI
   name: man-machine interface
   description: A machine able to facilitate communication between a biological brain and electronics, enabling crew to continue to provide value after work-related incidents.
@@ -52,10 +52,6 @@
     whitelist:
       components:
       - SecretStash
-  # Starlight Start
-  - type: Blindable
-  - type: ParentCanBlockVision
-  # Starlight End
 
 - type: entity
   parent: MMI
@@ -69,13 +65,9 @@
       whitelist:
         components:
         - Brain
-  # Starlight Start
-  - type: BorgBrain
-    borgConsent: true # If you are spawning as a filled MMI, you chose to play borg.
-  # Starlight End
 
 - type: entity
-  parent: [BaseItem, BaseSiliconBrainLanguages] #Starlight Languages
+  parent: [BaseItem, BaseSiliconBrainLanguages] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: PositronicBrain
   name: positronic brain
   description: An artificial brain capable of spontaneous neural activity.
@@ -105,7 +97,6 @@
     - type: BlockMovement
     - type: Examiner
     - type: BorgBrain
-      borgConsent: true #Starlight - Posibrains choose to play borg.
     - type: IntrinsicRadioReceiver
     - type: IntrinsicRadioTransmitter
       channels:
@@ -148,7 +139,3 @@
         - SecretStash
     # Far Horizons
     - type: IPCBrain # I planned to reuse BorgBrain for this, but you can't listen to events on the same event on same complonent from multiple systems. Then I also considerend AI shunt and thought
-    # Starlight Start
-    - type: Blindable
-    - type: ParentCanBlockVision
-    # Starlight End

@@ -1,6 +1,6 @@
 - type: entity
   name: PS Z46
-  parent: [BaseSecurityContraband, BaseWeaponRifle]
+  parent: [ BaseContrabandTier3, BaseSecurityContraband, BaseWeaponRifle ]
   id: WeaponRifleZ46
   suffix: ETO
   categories: [ DoNotMap ]
@@ -62,7 +62,7 @@
 
 - type: entity
   name: PS Z77 T1
-  parent: [BaseWeaponRifle, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponRifle, BaseSecurityContraband ]
   id: WeaponRifleZ77T1
   description: A rifle designed by Private Servitude, cheaper than the commonly used Lecter. Takes .20 rifle rounds.
   suffix: ETO
@@ -122,7 +122,7 @@
 
 - type: entity
   name: PS DD-22 Dryson
-  parent: [BaseWeaponSubMachineGun, BaseSecuritySalvageContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponSubMachineGun, BaseSecurityContraband, BaseSalvageContraband ]
   id: WeaponSubMachineGunDD22
   description: An SMG designed by Private Servitude, partially inspired by the AKMS. Chambers in .35 Rounds and feeds from a unique bottom mounted magazine.
   suffix: ETO
@@ -180,7 +180,7 @@
 
 - type: entity
   name: PS Taiga-10
-  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponShotgunAny, BaseGunWieldable, BaseSecurityContraband ]
   id: WeaponShotgunTaiga
   description: A shotgun designed by Private Servitude, feeds from 12 Gauge drum magazines. Can switch between semi-auto and full auto.
   suffix: ETO
@@ -231,7 +231,7 @@
 
 - type: entity
   name: PS-75 Auto
-  parent: [BaseWeaponPistol, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponPistol, BaseSecurityContraband ]
   id: WeaponPistol75auto
   description: A fully automatic handgun with an ergonomic design, feeds from .35 pistol magazines.
   suffix: ETO

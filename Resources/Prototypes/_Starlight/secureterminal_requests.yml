@@ -12,7 +12,7 @@
   description: secure-terminal-warops-security-desc
   announcement: secure-terminal-warops-security-announcement
   announcementColor: "#ff4444"
-  activationDelaySecs: 1500 # Plus travel delay of 5 minutes
+  activationDelaySecs: 2700 # Plus travel delay of 5 minutes; total 50 minutes.
   requiresWarDeclared: true
   fee: 8000
   salaryModifiers:
@@ -39,9 +39,13 @@
       name: secure-terminal-security-leadership-name
       groups:
         - [Captain, HeadOfSecurity, Ntrep]
+        - [Captain, HeadOfSecurity, Ntrep]
+        - [Command, Ntrep]
     - id: Command
       name: secure-terminal-command-name
       groups:
+        - [Captain, HeadOfSecurity, Ntrep]
+        - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
   cooldownSecs: 3600
@@ -381,9 +385,9 @@
     - id: Command
       name: secure-terminal-command-name
       groups:
-        - [Command, Ntrep]
-        - [Command, Ntrep]
-        - [Command, Ntrep]
+        - [Command, Ntrep, StationAi]
+        - [Command, Ntrep, StationAi]
+        - [Command, Ntrep, StationAi]
   cooldownSecs: 600
 
 # ── End GAMMA ─────────────────────────────────────────────────────────────────
@@ -439,8 +443,8 @@
     - id: Command
       name: secure-terminal-command-name
       groups:
-        - [Command, Ntrep]
-        - [Command, Ntrep]
+        - [Command, Ntrep, StationAi]
+        - [Command, Ntrep, StationAi]
   cooldownSecs: 0
 
 # ── End PSI ───────────────────────────────────────────────────────────────────
@@ -635,8 +639,8 @@
     - id: Command
       name: secure-terminal-command-name
       groups:
-        - [Command, Ntrep]
-        - [Command, Ntrep]
+        - [Command, Ntrep, StationAi]
+        - [Command, Ntrep, StationAi]
   cooldownSecs: 600
 
 # ── End Station-Wide Emergency Access ─────────────────────────────────────────────────────
@@ -656,7 +660,7 @@
     - id: Command
       name: secure-terminal-command-name
       groups:
-        - [Command, Ntrep]
+        - [Command, Ntrep, StationAi]
   cooldownSecs: 0
 
 #region Misc
@@ -673,7 +677,9 @@
   salaryModifiers:
     - source: Interstellar Trade Guild
       change: 0.1
-    - source: Everyone
+    - source: Central Security Division
+      change: -0.05
+    - source: Central Administrative Division
       change: -0.05
   actionType: Announcement
   sortOrder: 200
@@ -731,17 +737,11 @@
   oneTimeUse: true
   requireReason: true
   authSchemes:
-    - id: SecurityLeadership
-      name: secure-terminal-security-leadership-name
-      groups:
-        - [Captain, HeadOfSecurity, Ntrep]
-        - [Captain, HeadOfSecurity, Ntrep]
     - id: Command
       name: secure-terminal-command-name
       groups:
-        - [Command, Ntrep]
-        - [Command, Ntrep]
-        - [Command, Ntrep]
+        - [Command, Ntrep, StationAi]
+        - [Command, Ntrep, StationAi]
 
 # ── Self Destruct Code ─────────────────────────────────────────────────────
 - type: secureTerminalRequest

@@ -4,6 +4,7 @@
 - type: guideEntry # Default for forks and stuff. Should not be listed anywhere if the server is using a custom ruleset.
   id: DefaultRuleset
   name: guide-entry-rules
+  color: "#D69949" # Starlight: Advanced cargolight
   ruleEntry: true
   priority: 2 # Starlight-edit
   text: "/ServerInfo/Guidebook/ServerRules/DefaultRules.xml"
@@ -11,6 +12,7 @@
 - type: guideEntry
   id: CoreRuleset
   name: guide-entry-rules-core-only
+  color: "#D69949" # Starlight: Advanced cargolight
   ruleEntry: true
   priority: 10
   text: "/ServerInfo/Guidebook/ServerRules/WizDenCoreOnlyRules.xml"
@@ -18,6 +20,7 @@
 - type: guideEntry
   id: StandardRuleset
   name: guide-entry-rules-lrp
+  color: "#D69949" # Starlight: Advanced cargolight
   ruleEntry: true
   priority: 10
   text: "/ServerInfo/Guidebook/ServerRules/WizDenLRPRules.xml"
@@ -25,6 +28,7 @@
 - type: guideEntry
   id: MRPRuleset
   name: guide-entry-rules-mrp
+  color: "#D69949" # Starlight: Advanced cargolight
   ruleEntry: true
   priority: 10
   text: "/ServerInfo/Guidebook/ServerRules/WizDenMRPRules.xml"

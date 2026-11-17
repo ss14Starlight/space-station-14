@@ -12,6 +12,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Input;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Input;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
 
 namespace Content.Client.Options.UI.Tabs
@@ -196,6 +197,7 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.MoveStoredItem);
             AddButton(ContentKeyFunctions.RotateStoredItem);
             AddButton(ContentKeyFunctions.SaveItemLocation);
+            AddButton(CMKeyFunctions.SLInteractWithOtherHand); // Starlight, imported from RMC, Prefixes changed from RMC to SL to allow rebinds without affecting RMC or vice versa
 
             AddHeader("ui-options-header-interaction-adv");
             AddButton(ContentKeyFunctions.SmartEquipBackpack);
@@ -256,6 +258,7 @@ namespace Content.Client.Options.UI.Tabs
             {
                 AddButton(boundKey);
             }
+            AddButton(ContentKeyFunctions.HotbarRemove); // Starlight
 
             AddHeader("ui-options-header-shuttle");
             AddButton(ContentKeyFunctions.ShuttleStrafeUp);

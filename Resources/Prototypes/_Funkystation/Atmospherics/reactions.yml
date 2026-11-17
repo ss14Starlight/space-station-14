@@ -95,7 +95,7 @@
 
 - type: gasReaction
   id: PluoxiumRadiationProduction
-  priority: 4
+  priority: 1 # Starlight - Lowered in tandem with Ulnitranium
   minimumTemperature: 50.0
   maximumTemperature: 273.15
   minimumRequirements:

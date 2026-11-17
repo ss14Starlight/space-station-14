@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Verbs;
+using Content.Server._Starlight.Computers.RemoteControl;
 using Content.Shared.Examine;
 using Content.Shared.Verbs;
 using JetBrains.Annotations;
@@ -13,6 +14,10 @@ namespace Content.Server.Examine
     {
         [Dependency] private VerbSystem _verbSystem = default!;
 
+        #region Starlight
+        // validates remote examine requests against the active control session.
+        [Dependency] private RemoteControlConsoleSystem _remoteControl = default!;
+        #endregion
         private readonly FormattedMessage _entityNotFoundMessage = new();
         private readonly FormattedMessage _entityOutOfRangeMessage = new();
 
@@ -58,7 +63,17 @@ namespace Content.Server.Examine
                 return;
             }
 
-            if (!CanExamine(playerEnt, entity))
+            // Starlight - use the controlled body as the source for visibility, range, verbs, and examine text.
+            var examiner = playerEnt;
+            if (request.Examiner is { } remoteExaminerNet
+                && TryGetEntity(remoteExaminerNet, out var remoteExaminer)
+                && _remoteControl.TryGetControlledEntity(playerEnt, out var controlledEntity)
+                && controlledEntity == remoteExaminer.Value)
+            {
+                examiner = remoteExaminer.Value;
+            }
+
+            if (!CanExamine(examiner, entity))
             {
                 RaiseNetworkEvent(new ExamineSystemMessages.ExamineInfoResponseMessage(
                     request.NetEntity, request.Id, _entityOutOfRangeMessage, knowTarget: false), channel);
@@ -67,9 +82,9 @@ namespace Content.Server.Examine
 
             SortedSet<Verb>? verbs = null;
             if (request.GetVerbs)
-                verbs = _verbSystem.GetLocalVerbs(entity, playerEnt, typeof(ExamineVerb));
+                verbs = _verbSystem.GetLocalVerbs(entity, examiner, typeof(ExamineVerb));
 
-            var text = GetExamineText(entity, player.AttachedEntity, out _); // Starlight-edit
+            var text = GetExamineText(entity, examiner, out _);
             RaiseNetworkEvent(new ExamineSystemMessages.ExamineInfoResponseMessage(
                 request.NetEntity, request.Id, text, verbs?.ToList()), channel);
         }

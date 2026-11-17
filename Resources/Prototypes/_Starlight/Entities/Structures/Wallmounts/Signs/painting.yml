@@ -9,7 +9,7 @@
     state: Red_Tide_Painting
 
 - type: entity
-  parent: PaintingBase
+  parent: [PaintingBase, BaseSovietContraband] # Blimpuf
   id: PaintingHammer
   name: Soviet Hammer Painting
   description: A bold painting of a hammer, symbolizing strength and unity.

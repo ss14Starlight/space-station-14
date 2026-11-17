@@ -421,6 +421,29 @@
             ]
         },
         {
+          "name": "comm-new",
+          "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/bd6873fd4dd6a61d7e46f1d75cd4d90f64c40894, updated for departmental edits by redmushie and then Vincolan for News Console (disord, github).",
+          "directions": 4,
+          "delays": [
+            [
+              0.2,
+              0.2
+            ],
+            [
+              0.2,
+              0.2
+            ],
+            [
+              0.2,
+              0.2
+            ],
+            [
+              0.2,
+              0.2
+            ]
+          ]
+        },
+        {
             "name": "gunnery_keyboard",
             "copyright": "Gunnery sprites by justanorang for Monolith.",
             "directions": 4
@@ -475,6 +498,11 @@
                     0.2
                 ]
             ]
+        },
+        {
+            "name": "turbine",
+            "copyright": "Taken from Aurora Station at commit https://github.com/Aurorastation/Aurora.3/commit/4c83a7bac48311e4e0fd9449a27980ca35eed7a7 (icons/obj/modular_computers/modular_terminal.dmi, turbinecomp)",
+            "directions": 4
         }
     ]
 }
