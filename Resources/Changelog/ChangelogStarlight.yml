@@ -1,13 +1,6 @@
 Entries:
 - author: redmushie
   changes:
-  - message: (Mapping) Added prefilled plasma and frezon subfloor- and tall gas tanks for mappers.
-    type: Add
-  id: 410135
-  time: '2026-11-05T16:51:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7055
-- author: redmushie
-  changes:
   - message: (Mapping) Added new smallest subfloor air tank with 750kPa of air in it.
     type: Add
   id: 410136
@@ -2799,4 +2792,11 @@ Entries:
   id: 410534
   time: '2026-11-17T02:14:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7290
+- author: Swonki
+  changes:
+  - message: ITG no longer cuts all crew pay, only security and command.
+    type: Tweak
+  id: 410535
+  time: '2026-11-17T02:46:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7256
 Order: -1
