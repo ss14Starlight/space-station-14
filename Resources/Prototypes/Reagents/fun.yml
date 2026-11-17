@@ -12,6 +12,21 @@
     maxOnTileWhitelist:
       tags: [ Carpet ]
   metabolisms:
+    # Starlight Start - Carpetium is fine dining for Moths
+    Digestion:
+      effects:
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Moth ]
+        reagent: Fiber
+        amount: 0.5
+      - !type:SatiateThirst
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Moth ]
+        factor: 4
+    # Starlight End
     Bloodstream:
       effects:
       - !type:PopupMessage

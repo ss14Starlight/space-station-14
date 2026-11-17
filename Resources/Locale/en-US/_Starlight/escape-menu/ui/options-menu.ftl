@@ -229,3 +229,6 @@ ui-options-bloom-threshold-desc = How much brighter than its light a pixel has t
 ui-options-bloom-radius = Bloom radius
 ui-options-bloom-radius-desc = How far the glow spreads.
 ui-options-film-grain-strength = Film grain strength
+
+## Controls sections
+ui-options-function-sl-interact-with-other-hand = Interact with other hand

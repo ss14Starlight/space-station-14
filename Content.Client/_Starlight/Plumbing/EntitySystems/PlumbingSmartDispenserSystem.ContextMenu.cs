@@ -17,61 +17,52 @@ public sealed partial class PlumbingSmartDispenserSystem
             || !_solutionSystem.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out _, out var solution))
             return;
 
-        // Reagents with different data (e.g. blood DNA) share one entry.
-        var reagentIds = new HashSet<string>();
-        foreach (var (reagent, quantity) in solution.Contents)
+        var entries = new List<(string Label, ReagentId ReagentId, ReagentPrototype Proto)>();
+        foreach (var (id, _) in solution.Contents)
         {
-            if (quantity > FixedPoint2.Zero)
-                reagentIds.Add(reagent.Prototype);
-        }
-
-        var entries = new List<(string Label, ReagentPrototype Proto)>();
-        foreach (var id in reagentIds)
-        {
-            if (!_prototypeManager.TryIndex<ReagentPrototype>(id, out var proto))
+            if (!_prototypeManager.TryIndex(id.Prototype, out var proto))
                 continue;
 
             if (!ent.Comp.ReagentLabels.TryGetValue(id, out var label) || string.IsNullOrWhiteSpace(label))
                 label = proto.LocalizedName;
 
-            entries.Add((label, proto));
+            entries.Add((label, id, proto));
         }
 
         // Same order as the dispenser window.
         entries.Sort((a, b) => string.Compare(a.Label, b.Label, StringComparison.OrdinalIgnoreCase));
 
-        foreach (var (label, proto) in entries)
+        foreach (var (label, id, proto) in entries)
         {
-            var reagentId = proto.ID;
             args.Entries.Add(new PlumbingSmartDispenserReagentMenuElement(
                 label,
                 proto.SubstanceColor,
-                () => GetFillFraction(ent, proto),
-                () => GetReagentTooltip(ent, proto))
+                () => GetFillFraction(ent, id),
+                () => GetReagentTooltip(ent, id, proto))
             {
-                OnUse = () => RequestContextDispense(ent.Owner, reagentId),
+                OnUse = () => RequestContextDispense(ent.Owner, id),
                 CloseMenu = false,
             });
         }
     }
 
-    private FixedPoint2 GetStored(Entity<PlumbingSmartDispenserComponent> ent, ReagentPrototype proto) =>
+    private FixedPoint2 GetStored(Entity<PlumbingSmartDispenserComponent> ent, ReagentId id) =>
         _solutionSystem.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out _, out var solution)
-            ? solution.GetTotalPrototypeQuantity(proto.ID)
+            ? solution.GetReagentQuantity(id)
             : FixedPoint2.Zero;
 
-    private float GetFillFraction(Entity<PlumbingSmartDispenserComponent> ent, ReagentPrototype proto) =>
+    private float GetFillFraction(Entity<PlumbingSmartDispenserComponent> ent, ReagentId id) =>
         ent.Comp.MaxPerReagent > FixedPoint2.Zero
-            ? GetStored(ent, proto).Float() / ent.Comp.MaxPerReagent.Float()
+            ? GetStored(ent, id).Float() / ent.Comp.MaxPerReagent.Float()
             : 1f;
 
-    private string GetReagentTooltip(Entity<PlumbingSmartDispenserComponent> ent, ReagentPrototype proto) =>
+    private string GetReagentTooltip(Entity<PlumbingSmartDispenserComponent> ent, ReagentId id, ReagentPrototype proto) =>
         Loc.GetString("plumbing-smart-dispenser-row-tooltip",
             ("reagent", proto.LocalizedName),
-            ("stored", GetStored(ent, proto)),
+            ("stored", GetStored(ent, id)),
             ("max", ent.Comp.MaxPerReagent));
 
-    private void RequestContextDispense(EntityUid dispenser, string reagentId)
+    private void RequestContextDispense(EntityUid dispenser, ReagentId reagentId)
     {
         var amount = EnsureComp<PlumbingSmartDispenserLocalStateComponent>(dispenser).SelectedDispenseAmount;
         RaisePredictiveEvent(new PlumbingSmartDispenserContextDispenseEvent(GetNetEntity(dispenser), reagentId, amount));

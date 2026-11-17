@@ -96,7 +96,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
             {
                 args.Handled = true;
 
-                TryDispenseReagent(ent, reagentId, args.Used, null, args.User, true);
+                TryDispenseReagentByProto(ent, reagentId, args.Used, null, args.User, true);
                 UpdateUi(ent);
                 return;
             }
@@ -353,7 +353,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
 
     private void SetReagentLabel(
         Entity<PlumbingSmartDispenserComponent> ent,
-        string reagentId,
+        ReagentId reagentId,
         string newLabel,
         EntityUid actor)
     {
@@ -369,7 +369,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
         bool hasReagent = false;
         foreach (var reagent in sourceSolution.Contents)
         {
-            if (reagent.Reagent.Prototype == reagentId)
+            if (reagent.Reagent == reagentId)
             {
                 hasReagent = true;
                 break;
@@ -383,9 +383,34 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
         }
     }
 
+    private bool TryDispenseReagentByProto(
+        Entity<PlumbingSmartDispenserComponent> ent,
+        string reagentProtoId,
+        EntityUid targetContainer,
+        FixedPoint2? requestedAmount,
+        EntityUid? user,
+        bool showPopup)
+    {
+        if (!_solutionSystem.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out var sourceEnt, out var sourceSolution))
+            return false;
+
+        ReagentId? sourceReagent = null;
+
+        foreach (var reagent in sourceSolution.Contents)
+        {
+            if (reagent.Reagent.Prototype.Id != reagentProtoId)
+                continue;
+
+            sourceReagent = reagent.Reagent;
+            break;
+        }
+
+        return TryDispenseReagent(ent, sourceReagent ?? new(reagentProtoId, null), targetContainer, requestedAmount, user, showPopup);
+    }
+
     private bool TryDispenseReagent(
         Entity<PlumbingSmartDispenserComponent> ent,
-        string reagentId,
+        ReagentId reagentId,
         EntityUid targetContainer,
         FixedPoint2? requestedAmount,
         EntityUid? user,
@@ -404,7 +429,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
 
         foreach (var reagent in sourceSolution.Contents)
         {
-            if (reagent.Reagent.Prototype != reagentId)
+            if (reagent.Reagent != reagentId)
                 continue;
 
             sourceReagent = reagent;
@@ -416,7 +441,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
         if (available <= FixedPoint2.Zero)
         {
             if (showPopup && user is { Valid: true } &&
-                _prototypeManager.TryIndex<ReagentPrototype>(reagentId, out var proto))
+                _prototypeManager.TryIndex(reagentId.Prototype, out var proto))
             {
                 _popup.PopupPredicted(
                     Loc.GetString("plumbing-smart-dispenser-not-in-stock",
@@ -432,7 +457,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
             return false;
 
         if (TryComp<RefillReagentFilterComponent>(targetContainer, out var filter)
-            && !filter.Reagents.Contains(reagentId))
+            && !filter.Reagents.Contains(reagentId.Prototype))
         {
             // Incorrect reagents being put into our lovely automenders (and anything with filters)!
             if (showPopup && user is { Valid: true })
@@ -469,7 +494,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
         _solutionSystem.TryAddReagent(targetEnt!.Value, sourceReagentValue.Reagent, removed, out var accepted);
 
         if (showPopup && accepted > FixedPoint2.Zero && user is { Valid: true } &&
-            _prototypeManager.TryIndex<ReagentPrototype>(reagentId, out var reagentProto))
+            _prototypeManager.TryIndex(reagentId.Prototype, out var reagentProto))
         {
             _popup.PopupPredicted(
                 Loc.GetString("plumbing-smart-dispenser-filled",
