@@ -1,3 +1,4 @@
+using Content.Server._Daiquiri.Xeno.Components;
 using Content.Server._Starlight.Administration.Systems;
 using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.Antag;
@@ -368,7 +369,7 @@ public sealed partial class AdminVerbSystem
             Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi"), "Slider"),
             Act = () =>
             {
-                _antag.ForceMakeAntag<AntagSpawnerComponent>(targetPlayer, "Infected");
+                _antag.ForceMakeAntag<AlienInfectedSpawnerComponent>(targetPlayer, "Infected");
                 _autolog.LogToDiscord(string.Join(": ", infectedName, Loc.GetString("admin-verb-make-infected")), player.Name);
             },
             Impact = LogImpact.High,

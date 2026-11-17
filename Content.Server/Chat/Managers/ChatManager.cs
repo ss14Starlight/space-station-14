@@ -307,7 +307,9 @@ internal sealed partial class ChatManager : IChatManager
         var playerName = FormattedMessage.EscapeText(player.Name); // Starlight
         var playerTitle = "";
 
-        if(_playerRoles.TryGetPlayerData(player.UserId, out var playerData))
+        if (_adminManager.GetAdminData(player)?.Title is { } adminTitle)
+            playerTitle = $"[{adminTitle}]";
+        else if (_playerRoles.TryGetPlayerData(player.UserId, out var playerData))
             playerTitle = playerData.Title ?? "";
 
         if (_adminManager.HasAdminFlag(player, AdminFlags.NameColor))

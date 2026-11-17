@@ -1,0 +1,12 @@
+shiver-cold-message-1 = Вы дрожите от холода.
+shiver-cold-message-2 = Вас пробирает ледяная дрожь.
+shiver-cold-message-3 = Зубы стучат от холода.
+shiver-cold-message-4 = Вы ёжитесь, пытаясь согреться.
+shiver-cold-message-5 = По телу пробегает холодная волна.
+shiver-cold-message-6 = Вы обхватываете себя руками, дрожа.
+shiver-cold-message-7 = Пальцы немеют от стужи.
+shiver-cold-message-8 = Дыхание вырывается облачком пара.
+shiver-cold-message-9 = Вы передёргиваете плечами от озноба.
+shiver-cold-message-10 = Холод пробирает до костей.
+shiver-cold-message-11 = Вас бьёт мелкая дрожь.
+shiver-cold-message-12 = Вы поёживаетесь от пронизывающего холода.

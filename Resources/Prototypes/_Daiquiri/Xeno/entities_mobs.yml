@@ -561,6 +561,7 @@
     randomizeName: true
   - type: Loadout
     prototypes: [InfectedGear]
+  - type: ThermalVision
   - type: GibAction
     popupText: С громким треском ваша грудь ломается.
     actionPrototype: SliderBreakAction

@@ -42,6 +42,7 @@
   - type: MindContainer
   - type: RequireProjectileTarget
     active: False
+  - type: AnimatedEmotes
   - type: StunVisuals
   - type: TextToSpeech
   - type: CustomLimbVisualizer

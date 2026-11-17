@@ -1,0 +1,12 @@
+shiver-cold-message-1 = You shiver from the cold.
+shiver-cold-message-2 = A chill runs down your spine.
+shiver-cold-message-3 = Your teeth chatter from the cold.
+shiver-cold-message-4 = You huddle up, trying to stay warm.
+shiver-cold-message-5 = A cold wave washes over your body.
+shiver-cold-message-6 = You wrap your arms around yourself, shivering.
+shiver-cold-message-7 = Your fingers go numb from the frost.
+shiver-cold-message-8 = Your breath comes out as a cloud of steam.
+shiver-cold-message-9 = You shrug your shoulders against the chill.
+shiver-cold-message-10 = The cold seeps into your bones.
+shiver-cold-message-11 = A fine tremble runs through you.
+shiver-cold-message-12 = You shudder from the biting cold.

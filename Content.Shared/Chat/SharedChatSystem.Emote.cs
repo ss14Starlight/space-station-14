@@ -266,7 +266,7 @@ public abstract partial class SharedChatSystem
         }
 
         var ev = new EmoteEvent(proto);
-        RaiseLocalEvent(uid, ref ev);
+        RaiseLocalEvent(uid, ref ev, true);
 
         return true;
     }
