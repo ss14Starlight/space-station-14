@@ -1,4 +1,4 @@
-using Content.Shared._Starlight.Healing.Components;
+using Content.Shared._Starlight.Healing;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
