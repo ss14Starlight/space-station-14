@@ -215,8 +215,8 @@
   components:
   - type: PointLight
     radius: 12
-    energy: 4 #SL 4.5 -> 4
-    softness: 0.8 #SL 0.5 -> 0.8
+    energy: 4.5
+    softness: 0.5
     color: "#B4FCF0"
 
 #Sodium lights
@@ -537,7 +537,7 @@
   parent: AlwaysPoweredWallLight
   components:
   - type: PointLight
-    color: "#47f8ff" #SL Edit
+    color: "#47f8ff"
 
 - type: entity
   id: PoweredlightBlue
