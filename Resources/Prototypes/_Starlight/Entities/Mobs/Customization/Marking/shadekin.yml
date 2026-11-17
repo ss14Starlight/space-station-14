@@ -476,6 +476,17 @@
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: aqua_incolor
 
+- type: marking
+  id: EarsShadekinDualColor
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Shadekin, NeoKin, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+      state: dual_color_primary
+    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+      state: dual_color_secondary
+
 # Tails
 
 - type: marking
@@ -535,15 +546,15 @@
       state: shadekin_medium
 
 - type: marking
-  id: TailShadekinMediumTwoColored
+  id: TailShadekinBigTwoColored
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
+  speciesRestriction: [Shadekin, NeoKin, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/tails32x32.rsi
-      state: shadekin_medium
-    - sprite: _Starlight/Mobs/Customization/shadekin/tails32x32.rsi
-      state: medium_twocolored
+    - sprite: _Starlight/Mobs/Customization/shadekin/tails64x32.rsi
+      state: shadekin_dual_color_primary
+    - sprite: _Starlight/Mobs/Customization/shadekin/tails64x32.rsi
+      state: shadekin_dual_color_secondary
 
 # Overlays
 
@@ -690,3 +701,40 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
       state: body_vacuum
+
+# Hair
+- type: marking
+  id: ShadekinHairShort
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Shadekin, NeoKin, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/shadekin/hairs.rsi
+      state: short
+
+- type: marking
+  id: ShadekinHairPoofy
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Shadekin, NeoKin, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/shadekin/hairs.rsi
+      state: poofy
+
+- type: marking
+  id: ShadekinHairLong
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Shadekin, NeoKin, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/shadekin/hairs.rsi
+      state: long
+
+- type: marking
+  id: ShadekinHairRivyr
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Shadekin, NeoKin, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/shadekin/hairs.rsi
+      state: rivyr
