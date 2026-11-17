@@ -74,6 +74,9 @@
   components:
   - type: PointLight
     color: "#5ae8ed"
+    radius: 8
+    energy: 3
+    softness: 0.5
 
 - type: !PartialOnly entity
   id: !type:CreateVariants #uses LightTubeCrystalBlue
@@ -83,6 +86,9 @@
   components:
   - type: PointLight
     color: "#4ca1eb"
+    radius: 8
+    energy: 3
+    softness: 0.5
 
 - type: !PartialOnly entity
   id: !type:CreateVariants #uses LightTubeCrystalYellow
@@ -92,6 +98,9 @@
   components:
   - type: PointLight
     color: "#edd25a"
+    radius: 8
+    energy: 3
+    softness: 0.5
 
 - type: !PartialOnly entity
   id: !type:CreateVariants #uses LightTubeCrystalPink
@@ -101,6 +110,9 @@
   components:
   - type: PointLight
     color: "#f075c7"
+    radius: 8
+    energy: 3
+    softness: 0.5
 
 - type: !PartialOnly entity
   id: !type:CreateVariants #uses LightTubeCrystalOrange
@@ -110,6 +122,9 @@
   components:
   - type: PointLight
     color: "#ea863e"
+    radius: 8
+    energy: 3
+    softness: 0.5
 
 - type: !PartialOnly entity
   id: !type:CreateVariants #uses LightTubeCrystalBlack
@@ -119,6 +134,9 @@
   components:
   - type: PointLight
     color: "#4d4d4d"
+    radius: 8
+    energy: 1
+    softness: 0.5
 
 - type: !PartialOnly entity
   id: !type:CreateVariants #uses LightTubeCrystalRed
@@ -128,6 +146,9 @@
   components:
   - type: PointLight
     color: "#ec5555"
+    radius: 8
+    energy: 3
+    softness: 0.5
 
 - type: !PartialOnly entity
   id: !type:CreateVariants #uses LightTubeCrystalRed
@@ -137,6 +158,9 @@
   components:
   - type: PointLight
     color: "#7eeb4c"
+    radius: 8
+    energy: 3
+    softness: 0.5
 
 # Battery for lights
 - type: !PartialOnly entity
