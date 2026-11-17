@@ -6,6 +6,7 @@ marking-HumanHairShortFluffy = Short Fluffy
 marking-HumanHairReiHair = Rei
 marking-HumanHairAfricanPigtails = African Pigtails
 marking-HumanHairAfropuffBun = Afropuff Bun
+marking-HumanHairAfropuffBun-afropuffbun = Afropuff Bun
 marking-HumanHairAfropuffdouble = Afropuff, Doubl
 marking-HumanHairAfropuffleft = Afropuff, Left
 marking-HumanHairAfropuffright = Afropuff, Right
