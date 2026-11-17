@@ -160,6 +160,12 @@ ui-options-hud-theme-mpurp = M-Purp
 # Graphics
 ui-options-show-stains = Show clothing stains
 
+ui-options-footprint-visibility = Footprints:
+ui-options-footprint-visibility-all = All
+ui-options-footprint-visibility-half = Half
+ui-options-footprint-visibility-none = None
+ui-options-footprint-visibility-tooltip = Controls how many footprints and drag marks are shown.
+
 # Technically this is a more general Sprite Effects option, but right now it's literally only used for weather, so I'm just going to label it that for now
 ui-options-sprite-quality = Weather Quality:
 ui-options-sprite-quality-low = Low
@@ -197,8 +203,16 @@ ui-options-admin-sounds-volume = Admin sounds:
 ui-options-show-tippy = Show Tippy
 
 ui-options-atmosphere-label = Lighting and atmosphere
+ui-options-screen-brightness = Screen brightness
+ui-options-screen-brightness-desc = Lifts dim areas of the view. Pitch black stays black.
+ui-options-light-boost = Light source brightness
+ui-options-light-boost-desc = Makes every lamp a little brighter and reach a little further.
 ui-options-light-tonemap = Soft light
 ui-options-light-tonemap-tooltip = Rolls off bright spots where lights overlap, so sprites don't wash out.
+ui-options-gi = Light bounce (experimental)
+ui-options-gi-tooltip = Lit walls throw some of their light back onto the floor around them, and light spills around corners and through doorways. Costs some GPU time.
+ui-options-gi-rays = Light bounce quality
+ui-options-gi-rays-desc = Rays per pixel. More is smoother and slower.
 ui-options-night-vision = Night vision
 ui-options-night-vision-tooltip = Poorly lit areas lose their colour and turn cold blue, the way the eye sees in the dark.
 ui-options-vignette = Vignette
@@ -207,3 +221,14 @@ ui-options-bloom = Bloom
 ui-options-bloom-tooltip = Screens, lamps and other glowing things bleed light around them, most of all in the dark. Costs some performance.
 ui-options-film-grain = Film grain
 ui-options-film-grain-tooltip = Draws a light film grain over the view.
+ui-options-night-vision-strength = Night vision strength
+ui-options-vignette-strength = Vignette strength
+ui-options-bloom-strength = Bloom strength
+ui-options-bloom-threshold = Bloom threshold
+ui-options-bloom-threshold-desc = How much brighter than its light a pixel has to be to glow. Lower makes more things glow.
+ui-options-bloom-radius = Bloom radius
+ui-options-bloom-radius-desc = How far the glow spreads.
+ui-options-film-grain-strength = Film grain strength
+
+## Controls sections
+ui-options-function-sl-interact-with-other-hand = Interact with other hand

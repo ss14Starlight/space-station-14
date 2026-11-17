@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: ClothingHandsGlovesColorYellow
+  components:
+  - type: Tag
+    tags:
+      - WhitelistChameleon

@@ -2,19 +2,23 @@
   id: BaseWeaponBattery
   components:
   - type: GunHeat
-    heatPerShot: 2000
+    heatPerShot: 5000
+    jamTemperature: 553.15 #lasers cant jam, but moving the jam temp makes the HUD element turn red closer at the end to warn the player of an impending overheat
+    maxJamChance: 0
 
 - type: !PartialOnly entity
   id: BaseLaserRifle
   components:
   - type: GunHeat
-    heatPerShot: 2500
+    heatPerShot: 4000 #enough for 35 shots at full auto before melt
 
 - type: !PartialOnly entity
   id: BaseWeaponPowerCell
   components:
   - type: GunHeat
     heatPerShot: 2000
+    jamTemperature: 553.15
+    maxJamChance: 0
 
 - type: !PartialOnly entity
   id: BaseWeaponBatterySmall
@@ -59,6 +63,36 @@
     angleDecayDivider: 0.6
 
 - type: !PartialOnly entity
+  id: WeaponLaserCannon
+  components:
+  - type: GunHeat
+    heatPerShot: 7500 #big laser cannon = more heat
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinLaser
+  - type: FiringPinHolder
+    supportedPins: [ Laser ]
+
+- type: !PartialOnly entity
+  id: WeaponXrayCannon
+  components:
+  - type: GunHeat
+    heatPerShot: 7500
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinLaser
+  - type: FiringPinHolder
+    supportedPins: [ Laser ]
+
+- type: !PartialOnly entity
   id: WeaponDisablerSMG
   components:
   # Starlight: energy handguns can be wielded like ballistic ones
@@ -78,3 +112,26 @@
     angleIncreaseDivider: 2
   - type: GunHeat
     heatPerShot: 1000
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinLaser
+  - type: FiringPinHolder
+    supportedPins: [ Laser ]
+
+- type: !PartialOnly entity
+  id: WeaponLaserSvalinn
+  components:
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinLaser
+  - type: FiringPinHolder
+    supportedPins: [ Laser ]

@@ -71878,10 +71878,6 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -97.5,-29.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: ComputerFrame
   entities:
   - uid: 11010

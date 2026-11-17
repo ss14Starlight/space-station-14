@@ -1,0 +1,15 @@
+snapshot-view-window-title = Photograph
+snapshot-capture-raise = You raise the camera's viewfinder to your eye.
+snapshot-capture-lower = You lower the camera.
+snapshot-capture-out-of-range = Target was out of Focus.
+snapshot-capture-zoom-category = Camera zoom
+snapshot-capture-zoom-option = {$width}x{$height}
+snapshot-capture-failed = The photograph failed to develop.
+snapshot-capture-rate-limited = The camera is still charging.
+snapshot-cartridge-installed = Photo cartridge installed. Hold the PDA to use the camera.
+snapshot-film-category = Film
+snapshot-film-load = Load blank photograph
+snapshot-film-needs-blank = The camera is out of film.
+snapshot-film-full = The camera already has {$max} blanks loaded.
+snapshot-film-loaded = Loaded a blank photograph ({$charges}/{$max}).
+snapshot-examine-flash = The inserted flash has {$charges} shots left.

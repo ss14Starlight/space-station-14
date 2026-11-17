@@ -6,6 +6,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Player;
 using Robust.Shared.Network;
+using Robust.Shared.Timing;
 using Content.Server.RoundEnd;
 using Content.Server.GameTicking;
 using Content.Shared._Starlight.CCVar;
@@ -18,6 +19,7 @@ public sealed partial class NewLifeSystem : EntitySystem
     [Dependency] private EuiManager _euiManager = default!;
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private IConfigurationManager _configuration = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private readonly Dictionary<ICommonSession, NewLifeEui> _openUis = [];
     private readonly Dictionary<NetUserId, HashSet<int>> _roundCharactersUsed = [];
@@ -127,6 +129,41 @@ public sealed partial class NewLifeSystem : EntitySystem
     internal bool SlotIsAvailable(NetUserId userId, int slot)
         => (!_roundCharactersUsed.TryGetValue(userId, out var characters))
         || !characters.Contains(slot);
+
+    /// <summary>
+    /// Server-side check that an in-game player may take a new life with the given character slot:
+    /// they must be a ghost, have lives left, be off cooldown and pick an unused slot.
+    /// </summary>
+    internal bool CanTakeNewLife(ICommonSession session, int slot, out string reason)
+    {
+        if (session.AttachedEntity is not { Valid: true } attached || !HasComp<GhostComponent>(attached))
+        {
+            reason = "not a ghost";
+            return false;
+        }
+
+        var remaining = _newLifesLeft.TryGetValue(session.UserId, out var left) ? left : _maxNewLifes;
+        if (remaining <= 0)
+        {
+            reason = "no new lives left";
+            return false;
+        }
+
+        if (_lastGhostTime.TryGetValue(session.UserId, out var last) && last + _cooldown > _timing.CurTime)
+        {
+            reason = "new life on cooldown";
+            return false;
+        }
+
+        if (!SlotIsAvailable(session.UserId, slot))
+        {
+            reason = "character slot already used this round";
+            return false;
+        }
+
+        reason = string.Empty;
+        return true;
+    }
 }
 
 [AnyCommand]

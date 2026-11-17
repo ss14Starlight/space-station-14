@@ -19,11 +19,6 @@
     jumpsuit: ClothingUniformJumpsuitHawaiYellow
 
 - type: loadout
-  id: RadioHostSunglasses
-  equipment:
-    eyes: ClothingEyesGlassesSunglasses
-
-- type: loadout
   id: OuterclothingFlannelJacketRed
   equipment:
     outerClothing: ClothingOuterFlannelRed

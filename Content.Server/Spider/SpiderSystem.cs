@@ -21,10 +21,6 @@ public sealed partial class SpiderSystem : SharedSpiderSystem
     //[Dependency] private TurfSystem _turf = default!; // Starlight-removed - we dropped the one use of this system
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private MobStateSystem _mobState = default!;
-    #region Starlight
-    [Dependency] private EntityLookupSystem _lookup = default!;
-    [Dependency] private SharedContainerSystem _container = default!;
-    #endregion
 
     /// <summary>
     ///     A recycled hashset used to check turfs for spiderwebs.
@@ -35,16 +31,7 @@ public sealed partial class SpiderSystem : SharedSpiderSystem
     {
         base.Initialize();
         SubscribeLocalEvent<SpiderComponent, SpiderWebActionEvent>(OnSpawnNet);
-        SubscribeLocalEvent<SpiderComponent, MeleeHitEvent>(OnMeleeHit); // Starlight-edit
     }
-
-    // Starlight-start
-    public void OnMeleeHit(EntityUid uid, SpiderComponent component, ref MeleeHitEvent args)
-    {
-        if (component.CantBreakWeb && args.HitEntities.Any(EntityManager.HasComponent<SpiderWebObjectComponent>))
-            args.BonusDamage = -args.BaseDamage;
-    }
-    // Starlight-end
 
     public override void Update(float frameTime)
     {
@@ -107,9 +94,7 @@ public sealed partial class SpiderSystem : SharedSpiderSystem
     private bool SpawnWeb(Entity<SpiderComponent> ent, EntityCoordinates coords)
     {
         var result = false;
-
-        // Starlight-edit
-        var shouldRunEvent = true;
+        var shouldRunEvent = true; // Starlight-edit
 
         // Spawn web in center
         if (!IsTileBlockedByWeb(coords, out var web))
@@ -118,71 +103,19 @@ public sealed partial class SpiderSystem : SharedSpiderSystem
             result = true;
         }
         // Starlight-start
-        else if (ent.Comp.ReplacementAllowed)
+        else if (ent.Comp.ReplacementAllowed && web.Value.Comp.Replaceable)
         {
-            QueueDel(web);
-            Spawn(ent.Comp.WebPrototype, coords);
+            QueueDel(web.Value);
+            SpawnAtPosition(ent.Comp.WebPrototype, coords);
             // Don't run spawn event because it's replacement. So we don't add it to progress in evolution system. If you reading this and anyway want to process replacement - create another event and raise it if it replaces web.
             shouldRunEvent = false;
             result = true;
         }
         // Starlight-end
 
-        // Starlight-start: we spawn only one web in center
-        if (!ent.Comp.OneWebSpawn)
-        {
-
-            // Spawn web in other directions
-            for (var i = 0; i < 4; i++)
-            {
-                var direction = (DirectionFlag)(1 << i);
-                var outerSpawnCoordinates = coords.Offset(direction.AsDir().ToVec());
-
-                if (IsTileBlockedByWeb(outerSpawnCoordinates, out var web1))
-                {
-                    if (ent.Comp.ReplacementAllowed)
-                    {
-                        QueueDel(web1);
-                        Spawn(ent.Comp.WebPrototype, outerSpawnCoordinates);
-                        shouldRunEvent = false;
-                        result = true;
-                    }
-                }
-                else
-                {
-                    Spawn(ent.Comp.WebPrototype, outerSpawnCoordinates);
-                    result = true;
-                }
-            }
-        }
-        // Starlight-end
-
-        // Starlight-start
-        if (result && shouldRunEvent)
-        {
-            var ev = new SpiderWebSpawnedEvent();
-            RaiseLocalEvent(ent.Owner, ev);
-        }
-        // Starlight-end
+        SLSpawnWeb(ent, coords, ref shouldRunEvent, ref result); // Starlight-edit
 
         return result;
     }
 
-    #region Starlight
-    private bool IsTileBlockedByWeb(EntityCoordinates coords, [NotNullWhen(true)] out EntityUid? web)
-    {
-        web = null;
-        _webs.Clear();
-        _webs.UnionWith(_lookup.GetEntitiesIntersecting(coords));
-        foreach (var entity in _webs)
-        {
-            if (HasComp<SpiderWebObjectComponent>(entity))
-            {
-                web = entity;
-                return true;
-            }
-        }
-        return false;
-    }
-    #endregion
 }

@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 295.0.0
+  engineVersion: 295.0.3
   forkId: ""
   forkVersion: ""
-  time: 11/09/2026 00:23:08
-  entityCount: 37611
+  time: 11/17/2026 09:19:11
+  entityCount: 37610
 maps:
 - 1
 grids:
@@ -8706,7 +8706,7 @@ entities:
   - uid: 32590
     components:
     - type: MetaData
-      name: Unkown
+      name: Unknown
     - type: Transform
       parent: 1
       pos: 42.39839,288.49872
@@ -12035,7 +12035,7 @@ entities:
       pos: -57.5,40.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -191032.2
+      secondsUntilStateChange: -191254.47
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -12525,7 +12525,7 @@ entities:
       invokeCounter: 1
     - type: Door
       state: Opening
-      secondsUntilStateChange: -327871.44
+      secondsUntilStateChange: -328093.72
     - type: DeviceLinkSource
       linkedPorts:
         279:
@@ -13584,7 +13584,7 @@ entities:
       pos: 44.5,6.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -53974.492
+      secondsUntilStateChange: -54196.75
     - type: AccessReader
       accessListsOriginal: []
       access:
@@ -14484,7 +14484,7 @@ entities:
       pos: 18.5,-1.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -216828.58
+      secondsUntilStateChange: -217050.84
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -14495,7 +14495,7 @@ entities:
       pos: 17.5,-1.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -216823.52
+      secondsUntilStateChange: -217045.78
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -100399,6 +100399,14 @@ entities:
     - type: Transform
       parent: 2
       pos: -34.5,-21.5
+- proto: ComputerCommsBreakingNews
+  entities:
+  - uid: 13164
+    components:
+    - type: Transform
+      parent: 2
+      rot: 1.5707963267948966 rad
+      pos: 49.5,-0.5
 - proto: ComputerCommsCargoFilled
   entities:
   - uid: 13118
@@ -100568,10 +100576,6 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -29.5,-4.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 13143
     components:
     - type: Transform
@@ -100618,10 +100622,6 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 20.5,20.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 13151
     components:
     - type: Transform
@@ -100706,14 +100706,6 @@ entities:
       pos: 71.5,-10.5
 - proto: ComputerMassMediaDesktop
   entities:
-  - uid: 13164
-    components:
-    - type: MetaData
-      name: state media control desktop
-    - type: Transform
-      parent: 2
-      rot: 1.5707963267948966 rad
-      pos: 49.5,-0.5
   - uid: 13165
     components:
     - type: MetaData
@@ -102013,7 +102005,7 @@ entities:
       pos: 44.5,9.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -51342.094
+      secondsUntilStateChange: -51564.35
   - uid: 13376
     components:
     - type: Transform
@@ -102021,7 +102013,7 @@ entities:
       pos: 44.5,8.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -51341.69
+      secondsUntilStateChange: -51563.95
 - proto: CurtainsGreenOpen
   entities:
   - uid: 13377
@@ -215805,11 +215797,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 0.5,-56.5
-  - uid: 27951
-    components:
-    - type: Transform
-      parent: 2
-      pos: 49.5,-0.5
   - uid: 27952
     components:
     - type: Transform
@@ -239762,10 +239749,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -6.3161383,3.3245654
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: WeaponEnergyTurretAI
   entities:
   - uid: 32119

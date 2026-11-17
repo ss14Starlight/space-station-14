@@ -84,14 +84,6 @@
         messages: [ "effect-sleepy" ]
         probability: 0.1
 
-      - !type:MovementSpeedModifier
-        minScale: 1
-        conditions:
-        - !type:BloodReagentCondition
-          reagent: NitrosylPlasmide
-          max: 0.1
-        walkSpeedModifier: 0.65
-        sprintSpeedModifier: 0.65
       - !type:AdjustReagent
         conditions:
         - !type:ReagentCondition

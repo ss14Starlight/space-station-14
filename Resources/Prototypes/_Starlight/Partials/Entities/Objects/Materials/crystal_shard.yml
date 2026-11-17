@@ -3,4 +3,4 @@
   id: ShardCrystalBase
   components:
     - type: BreadcrumbCharges
-      charges: 10
+      charges: 15
