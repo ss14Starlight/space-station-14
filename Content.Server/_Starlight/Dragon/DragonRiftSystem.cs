@@ -131,7 +131,6 @@ public sealed partial class DragonRiftSystem
 
                 if (isSharkminnow && comp.Dragon != null && TryComp<DragonComponent>(comp.Dragon.Value, out var dragonComp))
                     dragonComp.SharkMinnows.Add(ent);
-                
 
                 if (!isSharkminnow &&
                     comp.Dragon is { } dragonUid &&
