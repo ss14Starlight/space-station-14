@@ -25,10 +25,12 @@ public sealed partial class RattleOnTriggerComponent : BaseXOnTriggerComponent
 
     /// <summary>
     /// The message to be send depending on the target's current mob state.
+    /// Starlight: Added support for soft crit state
     /// </summary>
     [DataField]
     public Dictionary<MobState, LocId> Messages = new()
     {
+        {MobState.SoftCritical, "rattle-on-trigger-soft-critical-message"),
         {MobState.Critical, "rattle-on-trigger-critical-message"},
         {MobState.Dead, "rattle-on-trigger-dead-message"}
     };
