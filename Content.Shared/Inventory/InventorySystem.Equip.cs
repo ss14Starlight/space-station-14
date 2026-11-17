@@ -591,6 +591,14 @@ public abstract partial class InventorySystem
     // Extended alternative slot region.
     private bool AreSlotDependenciesMet(EntityUid target, EntityUid itemUid, SlotDefinition slotDefinition, InventoryComponent inventory)
     {
+        #region Starlight
+        if (inventory.IgnoreSuitStorageDependencies && 
+            slotDefinition.SlotFlags.HasFlag(SlotFlags.SUITSTORAGE))
+        {
+            return true;
+        }
+        #endregion
+
         if (slotDefinition.DependsOn != null &&
             !IsDependencySlotValid(target, itemUid, slotDefinition, slotDefinition.DependsOn, inventory))
             return false;

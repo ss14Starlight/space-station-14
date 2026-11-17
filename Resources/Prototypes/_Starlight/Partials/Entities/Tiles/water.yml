@@ -1,4 +1,5 @@
 - type: !PartialOnly entity
   id: FloorWaterEntity
   components:
+  - type: WaterTile
   - type: WaterClothingWash

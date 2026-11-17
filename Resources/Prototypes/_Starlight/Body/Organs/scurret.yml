@@ -1,0 +1,74 @@
+- type: entity
+  id: OrganScurretEyes
+  parent: OrganRodentiaEyes
+  name: scurret eyes
+  description: ''
+  suffix: Scurret
+  components:
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: MobScurretEyes
+
+- type: entity
+  id: OrganScurretHeart
+  parent: OrganRodentiaHeart
+  name: scurret heart
+  description: ''
+  suffix: Scurret
+
+- type: entity
+  id: OrganScurretLungs
+  parent: OrganHumanLungs
+  name: scurret lungs
+  description: ''
+  suffix: Scurret
+
+- type: entity
+  id: OrganScurretStomach
+  parent: OrganRodentiaStomach
+  name: scurret stomach
+  description: ''
+  suffix: Scurret
+
+- type: entity
+  id: OrganScurretLiver
+  parent: OrganAnimalLiver
+  name: scurret liver
+  description: ''
+  suffix: Scurret
+
+- type: entity
+  id: OrganScurretKidneys
+  parent: OrganAnimalKidneys
+  name: scurret kidneys
+  description: ''
+  suffix: Scurret
+
+- type: entity
+  id: OrganScurretTongue
+  parent: OrganHumanTongue
+  name: scurret tongue
+  description: ''
+  suffix: Scurret
+  components:
+  - type: OrganTongue
+    sounds:
+      Male: Scurret
+      Female: Scurret
+      Unsexed: Scurret
+
+- type: entity
+  id: OrganScurretStomachPouch
+  parent: BaseHumanOrgan
+  name: scurret stomach pouch
+  description: 'A muscular storage pouch used by scurrets to hide items.'
+  suffix: Scurret
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    state: stomach
+  - type: Item
+    size: Small
+    heldPrefix: stomach
+  - type: StomachPouch

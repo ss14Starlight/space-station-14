@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "MeWhenThe and ItsCharles",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "whiskers",
+            "directions": 4,
+            "copyright": "MeWhenThe and ItsCharles"
+        },
+        {
+            "name": "cheekfur",
+            "directions": 4,
+            "copyright": "MeWhenThe and ItsCharles"
+        },
+        {
+            "name": "chubbycheeks",
+            "directions": 4,
+            "copyright": "MeWhenThe and ItsCharles"
+        }
+    ]
+}

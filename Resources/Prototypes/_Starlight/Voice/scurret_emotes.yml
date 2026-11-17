@@ -1,0 +1,6 @@
+- type: emoteSounds
+  id: ScurretBodyEmotes
+  parent: ReptilianBodyEmotes
+  sounds:
+    LagomorphStomp:
+      collection: LagomorphStomp
