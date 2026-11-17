@@ -57,9 +57,6 @@ public sealed partial class AHelpUIController: UIController, IOnSystemChanged<Bw
     {
         base.Initialize();
 
-        SubscribeNetworkEvent<BwoinkDiscordRelayUpdated>(DiscordRelayUpdated);
-        SubscribeNetworkEvent<BwoinkPlayerTypingUpdated>(PeopleTypingUpdated);
-
         _adminManager.AdminStatusUpdated += OnAdminStatusUpdated;
         _config.OnValueChanged(CCVars.AHelpSound, v => _aHelpSound = v, true);
         _config.OnValueChanged(CCVars.BwoinkSoundEnabled, v => _bwoinkSoundEnabled = v, true);
@@ -102,6 +99,11 @@ public sealed partial class AHelpUIController: UIController, IOnSystemChanged<Bw
     {
         _bwoinkSystem = system;
         _bwoinkSystem.OnBwoinkTextMessageRecieved += ReceivedBwoink;
+
+        // Starlight begin
+        SubscribeNetworkEvent<BwoinkDiscordRelayUpdated>(DiscordRelayUpdated);
+        SubscribeNetworkEvent<BwoinkPlayerTypingUpdated>(PeopleTypingUpdated);
+        // Starlight end
 
         _input.SetInputCommand(ContentKeyFunctions.OpenAHelp,
             InputCmdHandler.FromDelegate(_ => _staffHelp.ToggleWindow()));
@@ -478,8 +480,10 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
     private void SelectChannel(NetUserId uid)
     {
         EnsurePanel(uid);
-        Control!.SelectChannel(uid);
-        SelectedPlayer = uid; // Starlight
+        // Starlight begin
+        if (Control!.SelectChannel(uid))
+            SelectedPlayer = uid;
+        // Starlight end
     }
 
     public void Dispose()

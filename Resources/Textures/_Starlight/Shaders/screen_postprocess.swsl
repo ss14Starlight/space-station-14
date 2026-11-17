@@ -13,6 +13,8 @@ uniform highp float nightVision;
 uniform highp float bloom;
 // How much the edges of the view are darkened.
 uniform highp float vignette;
+// Gamma of the whole view, 1 leaves it as is. Above 1 lifts dim areas, black and white stay put.
+uniform highp float brightness;
 // Strength of the film grain.
 uniform highp float grain;
 
@@ -50,6 +52,10 @@ void fragment()
         highp vec3 halo = texture2D(BLOOM_TEXTURE, Pos).rgb * bloom;
         color = 1.0 - (1.0 - color) * (1.0 - clamp(halo, 0.0, 1.0));
     }
+
+    // Before the vignette and grain, so they keep their look at any brightness.
+    if (brightness != 1.0)
+        color = pow(clamp(color, 0.0, 1.0), vec3(1.0 / brightness));
 
     if (vignette > 0.0)
     {

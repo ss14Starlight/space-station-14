@@ -22,3 +22,4 @@
     maxFillLevels: 3
     fillBaseName: hypo_fill
     solutionName: hypospray
+  - type: PiercesThickScales

@@ -49,22 +49,31 @@
     - MoffDemonInorganic
 
 - type: !PartialOnly entity
-  id: ClothingEyesHudSyndicateAgent
-  components:
-  - type: ShowHealthBars
-    damageContainers:
-    - Biological
-    - Hybrid
-    - MoffDemonBiological
-  - type: SolutionScanner
+  parent: !Clear [ ClothingEyesModularHudSyndicate, BaseSyndicateContraband ]
+  id: ClothingEyesHudSyndicate
+  description: The Syndicate's professional heads-up display, designed for better detection of humanoids and their subsequent elimination.
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowSyndicateIcons
   - type: Contraband
-    tier: Tier4
+    tier: Tier2
 
 - type: !PartialOnly entity
-  id: ClothingEyesHudSyndicate
-  components:
+  parent: !Clear [ ClothingEyesModularHudSyndicate, BaseSyndicateContraband ]
+  id: ClothingEyesHudSyndicateAgent
+  description: The Syndicate corpsman's professional heads-up display, designed for quick diagnosis of their team's status.
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowSyndicateIcons
+        - id: HudModuleShowMedicalIconsSyndicate
   - type: Contraband
-    tier: Tier4
+    tier: Tier2
 
 - type: !PartialOnly entity
   id: ClothingEyesEyepatchHudBeer
@@ -211,6 +220,8 @@
         children:
         - id: HudModuleShowThirstIcons
         - id: HudModuleSolutionScanner
+  - type: StealTarget
+    stealGroup: MiscGlassesCollection
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -226,6 +237,7 @@
       modular-hud-modules: !type:AllSelector
         children:
         - id: HudModuleShowJobIcons
+        - id: HudModuleShowIdAccess
         - id: HudModuleShowAccessReaderSettings
   - type: Tag
     tags:

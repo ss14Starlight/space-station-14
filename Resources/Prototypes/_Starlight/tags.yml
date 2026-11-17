@@ -640,6 +640,9 @@
   id: ModularHudSingleEye
 
 - type: Tag
+  id: ModularHudSyndicate
+
+- type: Tag
   id: ModuleBlacklistXenoborgEngiWeapon
 
 - type: Tag

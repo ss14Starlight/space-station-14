@@ -33,6 +33,11 @@
         - LowImpassable
   - type: Anchorable
     delay: 4
+  - type: InteractionPopup
+    interactSuccessString: comp-window-knock
+    messagePerceivedByOthers: comp-window-knock
+    interactSuccessSound:
+      path: /Audio/Effects/glass_knock.ogg
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Glass

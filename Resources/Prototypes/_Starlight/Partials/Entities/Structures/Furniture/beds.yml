@@ -13,3 +13,27 @@
   - type: Strap
     buckleOffset: "0,-0.15"
     needsHands: false
+
+- type: !PartialOnly entity
+  id: WebBed
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 60
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 60
+  - type: Tag
+    tags:
+    - ClothMade
+  - type: BadFood
+  - type: Edible
+    delay: 3
+    requiresSpecialDigestion: true
+    solution: food
+  - type: FlavorProfile
+    flavors:
+      - cobwebs
+    ignoreReagents:
+      - Fiber
