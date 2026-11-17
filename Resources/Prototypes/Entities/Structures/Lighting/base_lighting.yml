@@ -525,11 +525,6 @@
     hasLampOnSpawn: LightTubeCrystalCyan
   - type: PointLight
     color: "#47f8ff"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: AlwaysPoweredlightCyan
