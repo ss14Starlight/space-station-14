@@ -29,3 +29,11 @@
       - cobwebs
     ignoreReagents:
       - Fiber
+
+- type: !PartialOnly entity
+  id: RiotBulletShield
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Melee/ballisticshield.rsi
+    - type: Item
+      sprite: _Starlight/Objects/Weapons/Melee/ballisticshield.rsi
