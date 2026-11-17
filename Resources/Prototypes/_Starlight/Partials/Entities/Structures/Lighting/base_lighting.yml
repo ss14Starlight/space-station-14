@@ -48,6 +48,15 @@
     softness: 0.8
 
 - type: !PartialOnly entity
+  id: PoweredlightSodium #uses SodiumLightTube
+  components:
+  - type: PointLight
+    color: "#FFAF38"
+    radius: 10
+    energy: 4
+    softness: 0.5
+
+- type: !PartialOnly entity
   id: !type:CreateVariants
     values: [ PoweredlightEmpty, PoweredSmallLightEmpty ]
   components:
