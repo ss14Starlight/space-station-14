@@ -93,7 +93,11 @@ public sealed partial class TransitTubeSystem
                 args.PushMarkup(Loc.GetString("transit-tube-examine-signal", ("direction", WorldDir(signal.Direction))));
 
             if (TryComp<TransitTubeTurntableComponent>(ent, out var turntable))
-                args.PushMarkup(Loc.GetString("transit-tube-examine-turntable", ("degrees", Math.Abs(turntable.Turn)), ("clockwise", turntable.Turn < 0)));
+            {
+                args.PushMarkup(IsEnabled(ent.Owner)
+                    ? Loc.GetString("transit-tube-examine-turntable", ("degrees", Math.Abs(turntable.Turn)), ("clockwise", turntable.Turn < 0))
+                    : Loc.GetString("transit-tube-examine-turntable-off"));
+            }
 
             if (TryComp<DisposalTaggerComponent>(ent, out var tagger))
             {

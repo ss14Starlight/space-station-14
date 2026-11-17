@@ -205,13 +205,24 @@ public sealed partial class TransitTubeSystem
         _audio.PlayPvs(ent.Comp.CollapseSound, xform.Coordinates);
     }
 
-    private void UpdatePodLevel(Entity<TransitPodComponent> pod, Entity<TransitTubeComponent> tube)
+    private void UpdatePodLevel(Entity<TransitPodComponent> pod, Entity<TransitTubeComponent> tube, EntityUid? next = null)
     {
-        var hidden = tube.Comp.Level == TransitTubeLevel.Under
-            && TryComp<SubFloorHideComponent>(tube, out var hide)
-            && hide.IsUnderCover;
+        if (next is { } nextUid
+            && TryComp<TransitTubeComponent>(nextUid, out var nextTransit)
+            && nextTransit.Level == TransitTubeLevel.Under
+            && IsHiddenUnder((nextUid, nextTransit)))
+        {
+            _appearance.SetData(pod, TransitPodVisuals.Level, TransitTubeLevel.Under);
+            _appearance.SetData(pod, TransitPodVisuals.Hidden, true);
+            return;
+        }
 
         _appearance.SetData(pod, TransitPodVisuals.Level, tube.Comp.Level);
-        _appearance.SetData(pod, TransitPodVisuals.Hidden, hidden);
+        _appearance.SetData(pod, TransitPodVisuals.Hidden, IsHiddenUnder(tube));
     }
+
+    private bool IsHiddenUnder(Entity<TransitTubeComponent> tube)
+        => tube.Comp.Level == TransitTubeLevel.Under
+        && TryComp<SubFloorHideComponent>(tube, out var hide)
+        && hide.IsUnderCover;
 }

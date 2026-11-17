@@ -220,7 +220,15 @@
       "directions": 4
     },
     {
+      "name": "unloader_lamp",
+      "directions": 4
+    },
+    {
       "name": "loader",
+      "directions": 4
+    },
+    {
+      "name": "loader_lamp",
       "directions": 4
     },
     {

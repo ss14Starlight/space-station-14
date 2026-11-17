@@ -79,11 +79,25 @@ public sealed partial class TransitTubeSystem : SharedTransitTubeSystem
         if (_atmos.GetTileMixture((ent, xform)) is { } env && env.TotalMoles > 0)
             _atmos.Merge(air, env.RemoveVolume(air.Volume));
 
-        if (TryGetTube(xform, out var tube)
-            && TryComp<TransitTubeStationComponent>(tube, out var station)
-            && station.DockedPod == null)
+        if (!TryGetTube(xform, out var tube))
         {
-            Dock(ent, (ent, holder), (tube, station), instant: true);
+            SetState(ent, TransitPodState.Stalled);
+            return;
+        }
+
+        if (TryComp<TransitTubeStationComponent>(tube, out var station))
+        {
+            if (station.DockedPod == null)
+            {
+                Dock(ent, (ent, holder), (tube, station), instant: true);
+                return;
+            }
+        }
+        else if (TryComp<DisposalTubeComponent>(tube, out var tubeComp)
+            && _disposalTube.GetTubeConnectableDirections((tube, tubeComp)).Contains(ent.Comp.TravelDirection)
+            && _holder.Launch((ent, holder), (tube, tubeComp), ent.Comp.TravelDirection))
+        {
+            SetState(ent, TransitPodState.Moving);
             return;
         }
 

@@ -104,7 +104,7 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
             && !IsEmagged(ent))
             return travel.GetOpposite();
 
-        if (TryComp<TransitTubeTurntableComponent>(ent, out var turntable))
+        if (TryComp<TransitTubeTurntableComponent>(ent, out var turntable) && IsEnabled(ent.Owner))
             return Turn(ent, tube, turntable, travel);
 
         if (TryComp<DisposalRouterComponent>(ent, out var router))

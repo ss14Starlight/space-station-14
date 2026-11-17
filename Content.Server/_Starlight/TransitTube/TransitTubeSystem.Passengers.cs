@@ -16,6 +16,7 @@ using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Popups;
 using Content.Shared.Labels.Components;
 using Content.Shared.RCD.Components;
+using Content.Shared.Verbs;
 using Robust.Shared.Map;
 
 namespace Content.Server._Starlight.TransitTube;
@@ -216,6 +217,69 @@ public sealed partial class TransitTubeSystem
             return;
 
         Eject(ent, args.User, Transform(ent).Coordinates);
+        args.Handled = true;
+    }
+
+    [SubscribeLocalEvent]
+    private void OnPodVerbs(Entity<TransitPodComponent> ent, ref GetVerbsEvent<Verb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract || IsPassenger(ent, args.User) || !CanReachInside(ent))
+            return;
+
+        var user = args.User;
+        foreach (var passenger in GetPassengers(ent))
+        {
+            if (!HasComp<MobStateComponent>(passenger))
+                continue;
+
+            var target = passenger;
+            args.Verbs.Add(new Verb
+            {
+                Text = Loc.GetString("transit-pod-verb-pull-out", ("target", Identity.Entity(target, EntityManager))),
+                Act = () => StartPullOut(ent, target, user),
+            });
+        }
+    }
+
+    private bool CanReachInside(Entity<TransitPodComponent> pod)
+        => pod.Comp.State switch
+        {
+            TransitPodState.Open or TransitPodState.Stalled => true,
+            TransitPodState.Moving => TryComp<DisposalHolderComponent>(pod, out var holder) && holder.Halted,
+            _ => false,
+        };
+
+    private void StartPullOut(Entity<TransitPodComponent> pod, EntityUid passenger, EntityUid user)
+    {
+        var doAfter = new DoAfterArgs(EntityManager, user, pod.Comp.PullOutDelay, new TransitPodPullOutDoAfterEvent(GetNetEntity(passenger)), pod, target: pod)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            NeedHand = true,
+        };
+
+        if (!_doAfter.TryStartDoAfter(doAfter))
+            return;
+
+        _popup.PopupEntity(Loc.GetString("transit-pod-pulling-out", ("target", Identity.Entity(passenger, EntityManager))), pod, user);
+        _popup.PopupEntity(Loc.GetString("transit-pod-being-pulled-out", ("user", Identity.Entity(user, EntityManager))), passenger, passenger, PopupType.Large);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnPullOut(Entity<TransitPodComponent> ent, ref TransitPodPullOutDoAfterEvent args)
+    {
+        if (args.Handled || args.Cancelled)
+            return;
+
+        var passenger = GetEntity(args.Passenger);
+        if (!IsPassenger(ent, passenger) || !CanReachInside(ent))
+            return;
+
+        var destination = ent.Comp.Station is { } stationUid && TryComp<TransitTubeStationComponent>(stationUid, out var station)
+            ? GetPlatform((stationUid, station))
+            : Transform(args.User).Coordinates;
+
+        Eject(ent, passenger, destination);
         args.Handled = true;
     }
 

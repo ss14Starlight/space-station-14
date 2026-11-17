@@ -212,7 +212,7 @@
   parent: TransitTubeBase
   id: TransitTubeTurntable
   name: transit tube turntable
-  description: Turns pods around on the spot and sends them back the way they came.
+  description: Turns pods around on the spot and sends them back the way they came. Can be switched off with a signal to let pods through.
   components:
   - type: Sprite
     layers:
@@ -228,6 +228,18 @@
   - type: TransitTube
     maxTurn: 0
   - type: TransitTubeTurntable
+  # While switched off, pods ride straight through.
+  - type: TransitTubeToggle
+  - type: DeviceLinkSink
+    ports:
+    - On
+    - Off
+    - Toggle
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
 
 - type: entity
   parent: TransitTubeBase
@@ -409,7 +421,7 @@
   parent: TransitTubeTurntable
   id: TransitTubeTurntableHalf
   name: transit tube quarter turntable
-  description: Turns pods a quarter turn clockwise on the spot.
+  description: Turns pods a quarter turn clockwise on the spot. Can be switched off with a signal to let pods through.
   components:
   - type: Sprite
     layers:
@@ -587,12 +599,22 @@
     - state: straight
       map: [ "glass" ]
     - state: unloader
+    - state: unloader_lamp
+      map: [ "lamp" ]
+      shader: unshaded
   - type: DisposalTube
     exits:
     - South
     - North
   - type: TransitTubeUnloader
   - type: TransitTubeToggle
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.TransitTubeToggleVisuals.Enabled:
+        lamp:
+          True: { visible: true }
+          False: { visible: false }
   - type: ApcPowerReceiver
     powerLoad: 200
   - type: ExtensionCableReceiver
@@ -618,12 +640,23 @@
     - state: straight
       map: [ "glass" ]
     - state: loader
+    # The arrows light up while it is switched on.
+    - state: loader_lamp
+      map: [ "lamp" ]
+      shader: unshaded
   - type: DisposalTube
     exits:
     - South
     - North
   - type: TransitTubeLoader
   - type: TransitTubeToggle
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.TransitTubeToggleVisuals.Enabled:
+        lamp:
+          True: { visible: true }
+          False: { visible: false }
   - type: ApcPowerReceiver
     powerLoad: 200
   - type: ExtensionCableReceiver

@@ -7,6 +7,9 @@ transit-pod-none = There is no pod here.
 transit-pod-not-ready = The pod is not open yet.
 transit-pod-full = The pod is full.
 transit-pod-climbing-out = You start prying the pod open...
+transit-pod-verb-pull-out = Pull out {$target}
+transit-pod-pulling-out = You start pulling {$target} out of the pod...
+transit-pod-being-pulled-out = {CAPITALIZE($user)} is pulling you out of the pod!
 transit-pod-moving = You can't get out while the pod is moving.
 transit-pod-crash = The pod slams into something!
 transit-pod-stop-requested = You ask the pod to stop at the next station.
@@ -76,6 +79,7 @@ transit-tube-examine-turntable = Turns pods {$degrees} degrees{$clockwise ->
     [true] {" "}clockwise
    *[false] {""}
 }.
+transit-tube-examine-turntable-off = The turntable is [color=gray]off[/color]: pods ride straight through.
 transit-tube-examine-tagger = Destination tag: [color=yellow]{$tag}[/color].
 transit-tube-examine-router = Routes tags [color=yellow]{$tags}[/color] to the {$direction} branch.
 

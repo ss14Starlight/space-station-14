@@ -12,6 +12,8 @@ namespace Content.Server._Starlight.TransitTube;
 
 public sealed partial class TransitTubeSystem
 {
+    private readonly List<EntityUid> _strayChildren = [];
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -23,6 +25,7 @@ public sealed partial class TransitTubeSystem
         while (query.MoveNext(out var uid, out var pod, out var holder, out var xform))
         {
             var ent = new Entity<TransitPodComponent>(uid, pod);
+            DropStrayChildren(xform);
 
             if (pod.State == TransitPodState.Stalled || (pod.State == TransitPodState.Moving && holder.Halted))
                 CheckSupport(ent, (uid, holder), xform);
@@ -57,6 +60,22 @@ public sealed partial class TransitTubeSystem
                 ExchangeAir(holder, (uid, xform));
             else
                 ExchangeHeat(ent, holder, xform, (float)_atmosInterval.TotalSeconds);
+        }
+    }
+
+    private void DropStrayChildren(TransformComponent xform)
+    {
+        _strayChildren.Clear();
+        var children = xform.ChildEnumerator;
+        while (children.MoveNext(out var child))
+        {
+            if (!_container.IsEntityInContainer(child))
+                _strayChildren.Add(child);
+        }
+
+        foreach (var child in _strayChildren)
+        {
+            _xform.AttachToGridOrMap(child);
         }
     }
 

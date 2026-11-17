@@ -55,14 +55,14 @@ public sealed partial class TransitTubeSystem
         if (next == Direction.Invalid)
             return;
 
-        UpdatePodLevel(pod, tube);
-
-        if (pod.Comp.Cargo)
-            HandleCargo(tube, pod);
-
         EntityUid? nextTube = TryComp<DisposalTubeComponent>(tube, out var tubeComp)
             ? _disposalTube.GetTubeInDirection((tube, tubeComp), next)
             : null;
+
+        UpdatePodLevel(pod, tube, nextTube);
+
+        if (pod.Comp.Cargo)
+            HandleCargo(tube, pod);
 
         // Off the planned route (turned back, bounced, a switch thrown, a tube on the way rebuilt): plan again from here.
         if (nextTube is { } replanFrom

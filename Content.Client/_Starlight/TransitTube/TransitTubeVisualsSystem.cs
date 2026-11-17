@@ -161,19 +161,6 @@ public sealed partial class TransitTubeVisualsSystem : EntitySystem
             var tile = _map.TileIndicesFor(gridUid, grid, xform.Coordinates);
             var level = ent.Comp.Level;
 
-            // Diagonal joints running past this tile, between the tubes beside it: the corner piece goes
-            // under this tube, so it never covers it.
-            foreach (var dx in new[] { -1, 1 })
-            {
-                foreach (var dy in new[] { -1, 1 })
-                {
-                    if (JointBetween((gridUid, grid), tile + new Vector2i(dx, 0), new Vector2i(-dx, dy), level))
-                        SetCorner(sprite, corner++, Vector2.Zero, CornerState(ToLocal(new Vector2i(dx, dy), rotation)));
-                }
-            }
-
-            // Joints of this tube with one up north: it fills in the corners beside them itself,
-            // but only where no tube on the same level stands to draw them under itself.
             foreach (var exit in _tube.GetTubeConnectableDirections((ent, tube)))
             {
                 if (exit is not Direction.NorthEast and not Direction.NorthWest
@@ -208,29 +195,6 @@ public sealed partial class TransitTubeVisualsSystem : EntitySystem
             if (!found)
                 break;
         }
-    }
-
-    /// <summary>
-    /// Whether a tube on <paramref name="level"/> at <paramref name="from"/> joins one diagonally,
-    /// going <paramref name="direction"/>.
-    /// </summary>
-    private bool JointBetween(Entity<MapGridComponent> grid, Vector2i from, Vector2i direction, TransitTubeLevel level)
-    {
-        var exit = new Angle(new Vector2(direction.X, direction.Y)).GetDir();
-        var anchored = _map.GetAnchoredEntities(grid, grid.Comp, from);
-        while (anchored.MoveNext(out var uid))
-        {
-            if (!TryComp<TransitTubeComponent>(uid, out var transit)
-                || transit.Level != level
-                || !TryComp<DisposalTubeComponent>(uid, out var tube))
-                continue;
-
-            if (Array.IndexOf(_tube.GetTubeConnectableDirections((uid.Value, tube)), exit) >= 0
-                && _tube.GetTubeInDirection((uid.Value, tube), exit) != null)
-                return true;
-        }
-
-        return false;
     }
 
     private bool HasTubeOnLevel(Entity<MapGridComponent> grid, Vector2i tile, TransitTubeLevel level)

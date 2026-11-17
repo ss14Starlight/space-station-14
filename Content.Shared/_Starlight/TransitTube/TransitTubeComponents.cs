@@ -372,6 +372,12 @@ public sealed partial class TransitPodComponent : Component
     public TimeSpan ClimbOutDelay = TimeSpan.FromSeconds(5);
 
     /// <summary>
+    /// Do-after for someone outside to pull a passenger out, for example one who is down and cannot leave alone.
+    /// </summary>
+    [DataField]
+    public TimeSpan PullOutDelay = TimeSpan.FromSeconds(3);
+
+    /// <summary>
     /// How often each passenger can try to get out.
     /// </summary>
     [DataField]
@@ -646,3 +652,19 @@ public sealed partial class TransitPodClimbOutDoAfterEvent : SimpleDoAfterEvent;
 
 [Serializable, NetSerializable]
 public sealed partial class TransitPodBrakeDoAfterEvent : SimpleDoAfterEvent;
+
+/// <summary>
+/// Someone outside pulls a passenger out of a pod. Raised on the pod.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed partial class TransitPodPullOutDoAfterEvent : DoAfterEvent
+{
+    public NetEntity Passenger;
+
+    public TransitPodPullOutDoAfterEvent(NetEntity passenger)
+    {
+        Passenger = passenger;
+    }
+
+    public override DoAfterEvent Clone() => this;
+}
