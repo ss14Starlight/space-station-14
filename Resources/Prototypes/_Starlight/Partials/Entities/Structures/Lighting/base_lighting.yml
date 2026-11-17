@@ -21,7 +21,10 @@
     softness: 1.3
 
 - type: !PartialOnly entity
-  id: PoweredlightLED #uses LedLightTube
+  id: !type:CreateVariants #uses LedLightTube
+    values:
+    - PoweredlightLED
+    - AlwaysPoweredLightLED
   components:
   - type: PointLight
     color: "#F6EFE4"
@@ -39,7 +42,10 @@
     softness: 1.3
 
 - type: !PartialOnly entity
-  id: PoweredlightExterior #uses ExteriorLightTube
+  id: !type:CreateVariants #uses ExteriorLightTube
+    values:
+    - PoweredlightExterior
+    - AlwaysPoweredlightExterior
   components:
   - type: PointLight
     color: "#B4FCF0FF"
@@ -48,7 +54,10 @@
     softness: 0.8
 
 - type: !PartialOnly entity
-  id: PoweredlightSodium #uses SodiumLightTube
+  id: !type:CreateVariants #uses SodiumLightTube
+    values:
+    - PoweredlightSodium
+    - AlwaysPoweredlightSodium
   components:
   - type: PointLight
     color: "#FFAF38"
