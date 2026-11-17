@@ -677,7 +677,9 @@
   salaryModifiers:
     - source: Interstellar Trade Guild
       change: 0.1
-    - source: Everyone
+    - source: Central Security Division
+      change: -0.05
+    - source: Central Administrative Division
       change: -0.05
   actionType: Announcement
   sortOrder: 200

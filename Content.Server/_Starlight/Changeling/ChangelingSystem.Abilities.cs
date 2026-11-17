@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server._Starlight.Language;
 using Content.Server._Starlight.Objectives.Components;
 using Content.Server.Changeling.Systems;
@@ -6,6 +7,7 @@ using Content.Shared._Starlight.Actions.Components;
 using Content.Shared._Starlight.Changeling;
 using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Overlay.Components;
+using Content.Shared.Actions.Components;
 using Content.Shared.Actions.Events;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Body.Components;
@@ -295,13 +297,16 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         PlayMeatySound(uid, comp);
     }
-    private void OnToggleArmor(EntityUid uid, ChangelingComponent comp, ref ToggleChitinousArmorEvent args)
+    private void OnToggleArmor(EntityUid uid, ChangelingComponent comp, ref ToggleChitinousArmorEvent args) => ToggleArmor(uid, comp);
+    private void ToggleArmor(EntityUid uid, ChangelingComponent comp)
     {
         if (!TryToggleItem(uid, ArmorPrototype, comp, "outerClothing")
         || !TryToggleItem(uid, ArmorHelmetPrototype, comp, "head"))
         {
             _popup.PopupEntity(Loc.GetString("changeling-equip-armor-fail"), uid, uid);
-            comp.Chemicals += Comp<ChangelingActionComponent>(args.Action).ChemicalCost;
+            var action = _actions.GetActions(uid).FirstOrDefault(a => MetaData(a).EntityPrototype?.ID == "ActionToggleChitinousArmor");
+            _actions.SetToggled(action.Owner, false);
+            comp.Chemicals += Comp<ChangelingActionComponent>(action).ChemicalCost;
             return;
         }
 
@@ -344,6 +349,8 @@ public sealed partial class ChangelingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("changeling-muscles-end"), uid, uid);
             comp.StrainedMusclesActive = false;
         }
+        var action = _actions.GetActions(uid).FirstOrDefault(a => MetaData(a).EntityPrototype?.ID == "ActionToggleStrainedMuscles");
+        _actions.SetToggled(action.Owner, comp.StrainedMusclesActive);
 
         _speed.RefreshMovementSpeedModifiers(uid);
         PlayMeatySound(uid, comp);
@@ -542,6 +549,8 @@ public sealed partial class ChangelingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("changeling-chameleon-start"), uid, uid);
             comp.StealthEnabled = true;
         }
+        var action = _actions.GetActions(uid).FirstOrDefault(a => MetaData(a).EntityPrototype?.ID == "ActionChameleonSkin");
+        _actions.SetToggled(action.Owner, comp.StealthEnabled);
     }
 
     private void OnEphedrineOverdose(EntityUid uid, ChangelingComponent comp, ref ActionEphedrineOverdoseEvent args)
@@ -684,6 +693,12 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
         }
 
+        if (!TryComp<ActionComponent>(ent.Owner, out var action))
+        {
+            Log.Debug($"No action component found for {ent.Owner}");
+            ev.Cancelled = true;
+            return;
+        }
         var lingAction = ent.Comp;
 
         if (comp.Biomass < 1 && lingAction.RequireBiomass)
@@ -700,13 +715,6 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
         }
 
-        if (comp.Chemicals < lingAction.ChemicalCost)
-        {
-            _popup.PopupEntity(Loc.GetString("changeling-chemicals-deficit"), uid, uid);
-            ev.Cancelled = true;
-            return;
-        }
-
         if (lingAction.RequireAbsorbed > comp.TotalAbsorbedEntities)
         {
             var delta = lingAction.RequireAbsorbed - comp.TotalAbsorbedEntities;
@@ -714,6 +722,22 @@ public sealed partial class ChangelingSystem : EntitySystem
             ev.Cancelled = true;
             return;
         }
+
+        if (lingAction.Togglable && action.Toggled)
+        {
+            _actions.SetToggled(ent.Owner, false);
+            return;
+        }
+
+        if (comp.Chemicals < lingAction.ChemicalCost)
+        {
+            _popup.PopupEntity(Loc.GetString("changeling-chemicals-deficit"), uid, uid);
+            ev.Cancelled = true;
+            return;
+        }
+
+        if (lingAction.Togglable)
+            _actions.SetToggled(ent.Owner, true);
 
         UpdateChemicals(uid, comp, -lingAction.ChemicalCost);
         UpdateBiomass(uid, comp, -lingAction.BiomassCost);
