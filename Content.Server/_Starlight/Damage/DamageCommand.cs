@@ -67,7 +67,7 @@ public sealed partial class DamageCommand : ToolshedCommand
         bool ignoreResistances = false, bool ignoreGlobalModifiers = false, bool interruptDoAfters = true,
         EntityUid? source = null) =>
         uid.Select(x => DamageByType(ctx, x, type, quantity, canHeal, armorPenetration, ignoreResistances,
-            ignoreGlobalModifiers, interruptDoAfters));
+            ignoreGlobalModifiers, interruptDoAfters, source));
 
     [CommandImplementation("group")]
     public IEnumerable<EntityUid> DamageByGroup(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid,
@@ -75,7 +75,7 @@ public sealed partial class DamageCommand : ToolshedCommand
         bool ignoreResistances = false, bool ignoreGlobalModifiers = false, bool interruptDoAfters = true,
         EntityUid? source = null) =>
         uid.Select(x => DamageByGroup(ctx, x, group, quantity, canHeal, armorPenetration, ignoreResistances,
-            ignoreGlobalModifiers, interruptDoAfters));
+            ignoreGlobalModifiers, interruptDoAfters, source));
 
     [CommandImplementation("specifier")]
     public IEnumerable<EntityUid> DamageBySpecifier(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uids,

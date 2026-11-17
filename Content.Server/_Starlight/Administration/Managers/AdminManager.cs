@@ -8,6 +8,9 @@ namespace Content.Server.Administration.Managers;
 
 public sealed partial class AdminManager
 {
+    public event Action<int>? OnActiveAdminsCountChanged;
+    public event Action<int>? OnAdminsCountChanged;
+
     private (bool isAvail, AdminFlags[] flagsReq)? GetToolshedImplementationFlags(CommandSpec spec)
     {
         var methods = spec.Cmd.GetType()

@@ -31,7 +31,7 @@ public sealed partial class EmergencyShuttleCommand : ToolshedCommand
     /// </summary>
     [CommandImplementation("delayshuttledeparture")]
     public void DelayEmergencyShuttleDeparture(IInvocationContext ctx, float seconds, bool sendAnnouncement = false,
-        [CommandArgument(typeof(ResPathCompletionParser))] ResPath? additionalText = null)
+        string? additionalText = null)
     {
         _eShuttle ??= GetSys<EmergencyShuttleSystem>();
         if (!_eShuttle.EmergencyShuttleArrived || _eShuttle.ShuttlesLeft)
@@ -85,8 +85,8 @@ public sealed partial class EmergencyShuttleCommand : ToolshedCommand
     /// <summary>
     /// Instantly dock the emergency shuttle.
     /// </summary>
-    [AdminCommand(AdminFlags.Fun)]
     [CommandImplementation("dockshuttle")]
+    [AdminCommand( AdminFlags.Round | AdminFlags.Fun)]
     public void DockEmergencyShuttle(IInvocationContext ctx)
     {
         _eShuttle ??= GetSys<EmergencyShuttleSystem>();
@@ -148,11 +148,9 @@ public sealed partial class EmergencyShuttleCommand : ToolshedCommand
                 ? "Emergency shuttle calls have been enabled."
                 : "Emergency shuttle calls have been disabled.");
 
-            var senderText = sender != string.Empty
-                ? sender
-                : "Central Command";
+            var senderText = sender ?? "Central Command";
 
-            var announcementColor = color != string.Empty
+            var announcementColor = color is not null
                 ? Color.FromHex(color)
                 : Color.Gold;
 

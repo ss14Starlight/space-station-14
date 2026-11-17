@@ -38,10 +38,6 @@ namespace Content.Server.Administration.Managers
         private readonly HashSet<NetUserId> _promotedPlayers = new();
 
         public event Action<AdminPermsChangedEventArgs>? OnPermsChanged;
-        #region Starlight
-        public event Action<int>? OnActiveAdminsCountChanged;
-        public event Action<int>? OnAdminsCountChanged;
-        #endregion
 
         public IEnumerable<ICommonSession> ActiveAdmins => _admins
             .Where(p => p.Value.Data.Active)
@@ -568,14 +564,17 @@ namespace Content.Server.Administration.Managers
             return Equals(addr, System.Net.IPAddress.Loopback) || Equals(addr, System.Net.IPAddress.IPv6Loopback);
         }
 
-        // Starlight begin - This makes more sense to do like this than move to partial :p
+        #region Starlight
+
+        // This makes more sense to do like this than move to partial :p
         public bool TryGetCommandFlags(CommandSpec command, out AdminFlags[]? flags) =>
             TryGetToolshedFlags(command.FullName(), out flags)
             || TryGetToolshedFlags(command.Cmd.Name, out flags);
 
         private bool TryGetToolshedFlags(string cmdName, out AdminFlags[]? flags)
         {
-        // Starlight end
+
+        #endregion
             if (_toolshedCommandPermissions.AnyCommands.Contains(cmdName))
             {
                 // Anybody can use this command.
