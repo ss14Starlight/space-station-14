@@ -35,7 +35,7 @@ const lowp int MAX_STEPS = 32;
 const highp float TAU = 6.28318530718;
 const highp vec3 LUMA = vec3(0.2126, 0.7152, 0.0722);
 
-// Colour of a wall as a tint that keeps the brightness of the light it multiplies.
+// Colour of a wall as a tint. The caller rescales the tinted light so its brightness stays the same.
 highp vec3 surfaceColour(highp vec2 uv)
 {
     highp vec4 albedo = texture2D(ALBEDO_TEXTURE, uv);
@@ -100,7 +100,12 @@ void fragment()
                 {
                     highp vec3 bounced = texture2D(LIGHT_TEXTURE, wall / targetSize).rgb;
                     if (surfaceTint > 0.0)
+                    {
+                        highp float before = dot(bounced, LUMA);
                         bounced *= surfaceColour(wall / targetSize);
+                        highp float after = dot(bounced, LUMA);
+                        bounced *= after > 0.0001 ? before / after : 0.0;
+                    }
 
                     if (emissionGain > 0.0)
                         bounced += texture2D(EMISSION_TEXTURE, wall / targetSize).rgb * emissionGain;
@@ -120,12 +125,22 @@ void fragment()
                 highp float stepLength = min(max(d - 0.5, 1.0), maxDistance - travelled);
                 if (floorBounce > 0.0)
                 {
-                    // Colour of the lit floor along the ray, sampled halfway through the step. Only the part that
-                    // differs from grey is kept, so a red carpet adds red and takes away green and blue.
-                    highp vec2 middle = (p + dir * stepLength * 0.5) / targetSize;
+                    highp float exitX = dir.x > 0.0 ? (targetSize.x - p.x) / dir.x
+                        : dir.x < 0.0 ? -p.x / dir.x : maxDistance;
+                    highp float exitY = dir.y > 0.0 ? (targetSize.y - p.y) / dir.y
+                        : dir.y < 0.0 ? -p.y / dir.y : maxDistance;
+                    highp float inside = clamp(min(exitX, exitY), 0.0, stepLength);
+
+                    highp vec2 middle = (p + dir * inside * 0.5) / targetSize;
                     highp vec4 floorColour = texture2D(ALBEDO_TEXTURE, middle);
-                    highp vec3 hue = floorColour.rgb - vec3(dot(floorColour.rgb, LUMA));
-                    floorSum += texture2D(LIGHT_TEXTURE, middle).rgb * hue * floorColour.a * stepLength;
+                    highp vec3 light = texture2D(LIGHT_TEXTURE, middle).rgb;
+                    highp float lightLuma = dot(light, LUMA);
+                    if (lightLuma > 0.0001)
+                    {
+                        highp vec3 weighted = light * floorColour.rgb;
+                        highp vec3 shift = weighted - light * (dot(weighted, LUMA) / lightLuma);
+                        floorSum += shift * floorColour.a * inside;
+                    }
                 }
 
                 travelled += stepLength;

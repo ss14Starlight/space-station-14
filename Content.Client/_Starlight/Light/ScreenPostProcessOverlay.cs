@@ -2,6 +2,9 @@ using System.Numerics;
 using System.Diagnostics.CodeAnalysis;
 using Content.Client.Graphics;
 using Content.Client.Light.EntitySystems;
+using Content.Client.Parallax.Data;
+using Content.Shared._Starlight.Light;
+using Content.Shared.Parallax;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared.Maps;
 using Robust.Client.Graphics;
@@ -46,7 +49,7 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
     /// <summary>
     /// Color of the light open space throws through windows, before its strength.
     /// </summary>
-    private static readonly Color _starlightColor = Color.FromHex("#9db8ff");
+    private static readonly Color _defaultStarlightColor = Color.FromHex("#9db8ff");
 
     public const float MinBrightness = 0.8f;
     public const float MaxBrightness = 1.3f;
@@ -58,6 +61,7 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
     [Dependency] private ILightManager _lightManager = default!;
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private ILogManager _log = default!;
     [Dependency] private ITileDefinitionManager _tileDefs = default!;
     [Dependency] private IGameTiming _timing = default!;
 
@@ -317,6 +321,9 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
         var res = _resources.GetForViewport(viewport, static _ => new CachedResources());
         if (res.Emission?.Size != size)
         {
+            if (res.FailedEmissionSize == size)
+                return;
+
             res.Emission?.Dispose();
             res.Emission = null;
             try
@@ -326,9 +333,11 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
                     _smoothSampling,
                     name: "gi-emission");
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 // No float targets, the bounce light is off as well then.
+                res.FailedEmissionSize = size;
+                _log.GetSawmill("light").Warning($"Glow capture disabled, can't create a float render target: {e.Message}");
                 return;
             }
         }
@@ -347,7 +356,7 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
         _maskShaderInst.SetParameter("targetSize", (Vector2) size);
         _emissionShaderInst.SetParameter("threshold", _emissionThreshold);
         _emissionShaderInst.SetParameter("emissionStrength", _emissionOn ? _emissionStrength : 0f);
-        var starlightColor = Color.FromSrgb(_starlightColor);
+        var starlightColor = Color.FromSrgb(GetStarlightColor(args.MapUid));
         var starlight = new Vector3(starlightColor.R, starlightColor.G, starlightColor.B)
             * (_starlightOn ? _starlightStrength : 0f);
         _emissionShaderInst.SetParameter("starlight", starlight);
@@ -408,6 +417,9 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
     {
         if (res.Albedo?.Size != size)
         {
+            if (res.FailedAlbedoSize == size)
+                return false;
+
             res.Albedo?.Dispose();
             res.Albedo = null;
             try
@@ -417,8 +429,10 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
                     _smoothSampling,
                     name: "gi-albedo");
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                res.FailedAlbedoSize = size;
+                _log.GetSawmill("light").Warning($"Surface colour capture disabled, can't create a float render target: {e.Message}");
                 return false;
             }
         }
@@ -452,6 +466,19 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
             return false;
 
         return _tileDefs[tile.Tile.TypeId] is not ContentTileDefinition { ShowsSpace: true };
+    }
+
+    private Color GetStarlightColor(EntityUid map)
+    {
+        if (_entMan.TryGetComponent<StarlightColorComponent>(map, out var starlight))
+            return starlight.Color;
+
+        if (_entMan.TryGetComponent<ParallaxComponent>(map, out var parallax)
+            && _proto.TryIndex<ParallaxPrototype>(parallax.Parallax, out var proto)
+            && proto.StarlightColor is { } color)
+            return color;
+
+        return _defaultStarlightColor;
     }
 
     private void CutMovingSprites(DrawingHandleWorld handle)
@@ -518,6 +545,12 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
         public IRenderTexture? Emission;
         public IRenderTexture? Albedo;
         public bool HasAlbedo;
+
+        /// <summary>
+        /// Size at which making the float emission or albedo target last failed. That size is not tried again.
+        /// </summary>
+        public Vector2i? FailedEmissionSize;
+        public Vector2i? FailedAlbedoSize;
         public IRenderTexture? Heat;
         public IRenderTexture? Wet;
 
