@@ -4,6 +4,7 @@
   id: Wonderprod
   description: Universal tool of the abductor agent.
   components:
+  - type: PiercesThickScales
   - type: Item
     sprite: _Starlight/Objects/Weapons/Melee/wonderprod.rsi
     size: Huge

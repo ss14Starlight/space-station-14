@@ -191,6 +191,20 @@
                   <Button Name="AccountLimitToggleButton" Text="{ Loc 'cargo-console-menu-toggle-account-lock-button'}" MinHeight="45" MinWidth="120"/>
               </BoxContainer>
           </BoxContainer>
+          <!-- Starlight-start: Barcode tab -->
+          <BoxContainer Orientation="Vertical" Margin="15">
+              <RichTextLabel Text="{Loc 'cargo-console-menu-barcode-description'}" Margin="0 0 0 15"/>
+              <BoxContainer Orientation="Horizontal">
+                  <RichTextLabel Text="{Loc 'cargo-console-menu-barcode-account-label'}" Margin="0 0 10 0"/>
+                  <OptionButton Name="BarcodeAccountOptions"/>
+              </BoxContainer>
+              <Control MinHeight="15"/>
+              <BoxContainer HorizontalAlignment="Center">
+                  <Button Name="BarcodePrintButton" Text="{ Loc 'cargo-console-menu-barcode-print-button'}" MinHeight="45" MinWidth="120"/>
+              </BoxContainer>
+              <Control VerticalExpand="True"/>
+          </BoxContainer>
+          <!-- Starlight-end -->
         </TabContainer>
 
         <!-- Footer -->

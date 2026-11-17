@@ -62,3 +62,21 @@
         - id: ChemistryBottleBicaridine
         - id: ChemistryBottlePyrazine
         - id: ChemistryBottleDermaline
+
+- type: entity
+  id: SurgicalKitMedTakFilled
+  suffix: Filled
+  parent: SurgicalKitMedTak
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MedicatedSuture
+        - id: BoneGel
+        - id: BoneSetterAdvanced
+        - id: HemostatAdvanced
+        - id: RetractorAdvanced
+        - id: Drill
+        - id: ScalpelLaser
+        - id: SawAdvanced

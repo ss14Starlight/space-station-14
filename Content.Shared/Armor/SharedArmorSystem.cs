@@ -55,6 +55,11 @@ public abstract partial class SharedArmorSystem : EntitySystem
 
     private void OnDamageableCoefficientQuery(EntityUid uid, DamageableComponent component, ref CoefficientQueryEvent args)
     {
+        // Starlight start
+        if (!args.IncludeInnateModifiers)
+            return;
+        // Starlight end
+
         if (component.DamageModifierSetId == null ||
             !_prototypeManager.Resolve(component.DamageModifierSetId, out var modifierSet))
             return;

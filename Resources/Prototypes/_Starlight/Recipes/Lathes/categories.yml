@@ -55,3 +55,7 @@
 - type: latheCategory
   id: Silicon
   name: lathe-category-silicon
+
+- type: latheCategory
+  id: Eyewear
+  name: lathe-category-eyewear

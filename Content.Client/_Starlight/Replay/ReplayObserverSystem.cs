@@ -62,20 +62,12 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         // Replay playback only runs Update for systems that opt in to running outside prediction.
         UpdatesOutsidePrediction = true;
 
-        SubscribeLocalEvent<ReplaySpectatorComponent, LocalPlayerAttachedEvent>(OnAttached);
-        SubscribeLocalEvent<ReplaySpectatorComponent, ToggleGhostsActionEvent>(OnToggleGhosts);
-        SubscribeLocalEvent<ReplaySpectatorComponent, ToggleGhostHearingActionEvent>(OnToggleHearing);
-        SubscribeLocalEvent<ReplaySpectatorComponent, ReplayTogglePlayerOverlayActionEvent>(OnTogglePlayerOverlay);
-        SubscribeLocalEvent<ReplaySpectatorComponent, ReplayToggleStatusIconsActionEvent>(OnToggleStatusIcons);
-        SubscribeLocalEvent<ReplaySpectatorComponent, ReplayToggleWeatherActionEvent>(OnToggleWeather);
-
         _replayPlayback.ReplayPlaybackStarted += OnPlaybackStarted;
         _replayPlayback.ReplayPlaybackStopped += OnPlaybackStopped;
         _replayPlayback.BeforeApplyState += OnBeforeApplyStateFollow;
 
         InitializeRoundSummary();
         InitializeViewer();
-        InitializeLaws();
         InitializeAudio();
     }
 
@@ -118,6 +110,10 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         _statusIconsEnabled = true;
         _statusIconsShown = false;
         _statusIconsAction = null;
+        _factionIconsEnabled = false;
+        _factionIconsShown = false;
+        _factionIconsAction = null;
+        DetachRoundTimeControls();
         _viewing.Clear();
         _pendingViews.Clear();
         _refollowCore = null;
@@ -126,6 +122,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         CloseSolutionWindows();
     }
 
+    [SubscribeLocalEvent]
     private void OnAttached(EntityUid uid, ReplaySpectatorComponent component, LocalPlayerAttachedEvent args)
     {
         // Spectated recorded mobs also get ReplaySpectatorComponent.
@@ -154,6 +151,8 @@ public sealed partial class ReplayObserverSystem : EntitySystem
 
         UpdatePlayerOverlay(frameTime, IsHudHidden());
         UpdateStatusIcons();
+        UpdateFactionIcons();
+        UpdateRoundTimeWidget();
         EnsureStatusIconOverlay();
         UpdateActionsBarOffset();
         UpdateRadar(frameTime);
@@ -205,6 +204,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         _statusIconsShown = false; // A fresh observer has none of the HUD components yet.
 
         AddWeatherAction(uid);
+        AddFactionIconsAction(uid);
 
         ApplyViewSettings(uid);
         _ghost.ToggleGhostVisibility(_ghostsVisible);
@@ -240,6 +240,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         _halfBright = _ghost.HalfBright;
     }
 
+    [SubscribeLocalEvent]
     private void OnToggleGhosts(EntityUid uid, ReplaySpectatorComponent component, ToggleGhostsActionEvent args)
     {
         // GhostSystem does the toggle and ignores handled events, so leave this unhandled.

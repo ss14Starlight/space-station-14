@@ -35,6 +35,8 @@ public partial class RadiationSystem
         var stopwatch = new Stopwatch();
         stopwatch.Start();
 
+        UpdatePositions(); // Starlight-edit: Update positions if out of sync.
+
         var sourcesCount = _sourceDataMap.Count;
         if (_activeReceivers.Count == 0 || sourcesCount == 0)
         {

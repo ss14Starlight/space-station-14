@@ -1,6 +1,7 @@
 using Content.Client.Medical.Cryogenics;
 using Content.Client.Stylesheets.Colorspace;
 using Content.Client.Stylesheets.Palette;
+using Content.Shared.Chemistry.Reagent;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 
@@ -21,9 +22,9 @@ public sealed class ClickableBeakerBarChart : ContainerButton
     private readonly BoxContainer _chartContainer;
     private readonly Label _label;
 
-    public event Action<string>? OnChartPressed;
+    public event Action<ReagentId>? OnChartPressed;
 
-    public string ReagentId { get; set; } = string.Empty;
+    public ReagentId? ReagentId { get; set; } = null;
 
     public float Capacity
     {
@@ -96,10 +97,10 @@ public sealed class ClickableBeakerBarChart : ContainerButton
 
     private void HandlePressed()
     {
-        if (string.IsNullOrEmpty(ReagentId))
+        if (!ReagentId.HasValue)
             return;
 
-        OnChartPressed?.Invoke(ReagentId);
+        OnChartPressed?.Invoke(ReagentId.Value);
     }
 
     private void UpdateButtonStyle()
