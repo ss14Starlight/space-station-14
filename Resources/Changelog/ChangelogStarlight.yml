@@ -1,46 +1,4 @@
 Entries:
-- author: Ohelig
-  changes:
-  - message: (Cluster) Added the new radio machines to Radio Host.
-    type: Add
-  id: 410139
-  time: '2026-11-05T19:04:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7050
-- author: Ohelig
-  changes:
-  - message: (Cluster) Added a radio to each department.
-    type: Add
-  id: 410140
-  time: '2026-11-05T19:04:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7050
-- author: Ohelig
-  changes:
-  - message: (Cluster) Fixed the air alarm in Reactor.
-    type: Fix
-  id: 410141
-  time: '2026-11-05T19:04:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7050
-- author: Ohelig
-  changes:
-  - message: (Cluster) Fixed the secret room not being secret (why was the secret door welded shut, see-through, and walk-through?).
-    type: Fix
-  id: 410142
-  time: '2026-11-05T19:04:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7050
-- author: Ohelig
-  changes:
-  - message: (Cluster) Added an EOD locker to Security.
-    type: Add
-  id: 410143
-  time: '2026-11-05T19:04:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7050
-- author: Ohelig
-  changes:
-  - message: (Cluster) Fixed an unpowered maints door and airlock.
-    type: Fix
-  id: 410144
-  time: '2026-11-05T19:04:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7050
 - author: redmushie
   changes:
   - message: '(Escape pod: Small) Pipe docking! It can now use air from station.'
@@ -2799,4 +2757,46 @@ Entries:
   id: 410538
   time: '2026-11-17T02:46:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7292
+- author: Cvlancer
+  changes:
+  - message: (Kiloton, Lagan, Manor, Ming, Oasis, Orwell, Starboard, Sepultum.) Added breaking news console to newsroom.
+    type: Add
+  id: 410539
+  time: '2026-11-17T19:14:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7297
+- author: Cvlancer
+  changes:
+  - message: (Lagan) Added roboticist locker to roboticist.
+    type: Add
+  id: 410540
+  time: '2026-11-17T19:14:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7297
+- author: Cvlancer
+  changes:
+  - message: (Lagan) Added a new disposal route in disposals maints that leads to another maints.
+    type: Add
+  id: 410541
+  time: '2026-11-17T19:14:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7297
+- author: Cvlancer
+  changes:
+  - message: (Kilo) Changed roboticist lockers a little.
+    type: Tweak
+  id: 410542
+  time: '2026-11-17T19:14:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7297
+- author: Cvlancer
+  changes:
+  - message: (Ming) Fixed laundry room station beacon.
+    type: Fix
+  id: 410543
+  time: '2026-11-17T19:14:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7297
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Fixed vents not being linked to an air alarm.
+    type: Fix
+  id: 410544
+  time: '2026-11-17T19:14:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7297
 Order: -1
