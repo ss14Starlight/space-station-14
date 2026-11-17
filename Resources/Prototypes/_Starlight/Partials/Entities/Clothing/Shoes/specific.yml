@@ -46,3 +46,19 @@
   - type: FootstepTimbre
     pitch: 1.05
     volume: -9
+
+- type: !PartialOnly entity
+  id: ClothingShoesGaloshes
+  components:
+  - type: Tag
+    tags:
+      - Recyclable
+      - WhitelistChameleon
+
+- type: !PartialOnly entity
+  id: ClothingShoesSyndicateGaloshes
+  components:
+  - type: Tag
+    tags:
+      - Recyclable
+      - WhitelistChameleon

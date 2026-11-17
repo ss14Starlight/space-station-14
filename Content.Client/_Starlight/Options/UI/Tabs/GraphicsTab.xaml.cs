@@ -1,3 +1,4 @@
+using Content.Client._Starlight.Light;
 using Content.Shared._Starlight.CCVar;
 
 // ReSharper disable CheckNamespace
@@ -7,6 +8,17 @@ public sealed partial class GraphicsTab
 {
     private void AddLightingOptions()
     {
+        Control.AddOptionPercentSlider(StarlightCCVars.ScreenBrightness, ScreenBrightnessSlider,
+            ScreenPostProcessOverlay.MinBrightness, ScreenPostProcessOverlay.MaxBrightness);
+        Control.AddOptionPercentSlider(StarlightCCVars.LightBoost, LightBoostSlider,
+            LightTonemapOverlay.MinLightBoost, LightTonemapOverlay.MaxLightBoost);
+
+        var gi = Control.AddOptionCheckBox(StarlightCCVars.GlobalIllumination, GlobalIlluminationCheckBox);
+        GlobalIlluminationRaysSlider.Slider.Rounded = true;
+        Control.AddOption(new OptionSliderIntCVar(Control, _cfg, StarlightCCVars.GlobalIlluminationRays,
+            GlobalIlluminationRaysSlider, 4, 32, (_, value) => value.ToString()));
+        gi.ImmediateValueChanged += _ => UpdateLightingSettingsVisibility();
+
         var nightVision = Control.AddOptionCheckBox(StarlightCCVars.NightVision, NightVisionCheckBox);
         var vignette = Control.AddOptionCheckBox(StarlightCCVars.Vignette, VignetteCheckBox);
         var bloom = Control.AddOptionCheckBox(StarlightCCVars.Bloom, BloomCheckBox);
@@ -38,6 +50,7 @@ public sealed partial class GraphicsTab
 
     private void UpdateLightingSettingsVisibility()
     {
+        GlobalIlluminationRaysSlider.Visible = GlobalIlluminationCheckBox.Pressed;
         NightVisionStrengthSlider.Visible = NightVisionCheckBox.Pressed;
         VignetteStrengthSlider.Visible = VignetteCheckBox.Pressed;
         BloomSettings.Visible = BloomCheckBox.Pressed;

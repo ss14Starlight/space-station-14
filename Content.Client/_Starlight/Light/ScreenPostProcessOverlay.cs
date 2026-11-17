@@ -17,6 +17,9 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
 
     private const float BloomScale = 0.5f;
 
+    public const float MinBrightness = 0.8f;
+    public const float MaxBrightness = 1.3f;
+
     [Dependency] private IClyde _clyde = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IEntityManager _entMan = default!;
@@ -34,6 +37,16 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
     private readonly ShaderInstance _shaderInst;
     private readonly ShaderInstance _bloomShaderInst;
 
+    private readonly CVarSubscriptions _cvars;
+    private float _brightness;
+    private float _bloomThreshold;
+    private float _bloomRadius;
+
+    // Strengths passed to the shader. Each one is 0 while its effect is turned off.
+    private float _nightVision, _bloom, _vignette, _grain;
+    private bool _nightVisionOn, _bloomOn, _vignetteOn, _grainOn;
+    private float _nightVisionStrength, _bloomStrength, _vignetteStrength, _grainStrength;
+
     public ScreenPostProcessOverlay()
     {
         IoCManager.InjectDependencies(this);
@@ -41,6 +54,27 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
 
         _shaderInst = _proto.Index(_shader).InstanceUnique();
         _bloomShaderInst = _proto.Index(_bloomShader).InstanceUnique();
+
+        _cvars = new CVarSubscriptions(_cfg);
+        _cvars.Track(StarlightCCVars.ScreenBrightness, v => _brightness = Math.Clamp(v, MinBrightness, MaxBrightness));
+        _cvars.Track(StarlightCCVars.NightVision, v => { _nightVisionOn = v; UpdateStrengths(); });
+        _cvars.Track(StarlightCCVars.NightVisionStrength, v => { _nightVisionStrength = v; UpdateStrengths(); });
+        _cvars.Track(StarlightCCVars.Bloom, v => { _bloomOn = v; UpdateStrengths(); });
+        _cvars.Track(StarlightCCVars.BloomStrength, v => { _bloomStrength = v; UpdateStrengths(); });
+        _cvars.Track(StarlightCCVars.Vignette, v => { _vignetteOn = v; UpdateStrengths(); });
+        _cvars.Track(StarlightCCVars.VignetteStrength, v => { _vignetteStrength = v; UpdateStrengths(); });
+        _cvars.Track(StarlightCCVars.FilmGrain, v => { _grainOn = v; UpdateStrengths(); });
+        _cvars.Track(StarlightCCVars.FilmGrainStrength, v => { _grainStrength = v; UpdateStrengths(); });
+        _cvars.Track(StarlightCCVars.BloomThreshold, v => _bloomThreshold = Math.Clamp(v, 0f, 1f));
+        _cvars.Track(StarlightCCVars.BloomRadius, v => _bloomRadius = MathF.Max(0f, v));
+    }
+
+    private void UpdateStrengths()
+    {
+        _nightVision = _nightVisionOn ? Math.Clamp(_nightVisionStrength, 0f, 1f) : 0f;
+        _bloom = _bloomOn ? Math.Clamp(_bloomStrength, 0f, 3f) : 0f;
+        _vignette = _vignetteOn ? Math.Clamp(_vignetteStrength, 0f, 1f) : 0f;
+        _grain = _grainOn ? Math.Clamp(_grainStrength, 0f, 1f) : 0f;
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
@@ -48,10 +82,11 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
         if (_player.LocalEntity == null || args.Viewport.Eye == null || args.Viewport.Eye != _eye.CurrentEye)
             return false;
 
-        return _cfg.GetCVar(StarlightCCVars.NightVision)
-            || _cfg.GetCVar(StarlightCCVars.Bloom)
-            || _cfg.GetCVar(StarlightCCVars.Vignette)
-            || _cfg.GetCVar(StarlightCCVars.FilmGrain);
+        return MathF.Abs(_brightness - 1f) > 0.001f
+            || _nightVisionOn
+            || _bloomOn
+            || _vignetteOn
+            || _grainOn;
     }
 
     protected override void Draw(in OverlayDrawArgs args)
@@ -67,19 +102,18 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
                 && map.LightingEnabled;
 
         // Without the light map there is no telling what glows.
-        var bloom = lit && _cfg.GetCVar(StarlightCCVars.Bloom)
-            ? Math.Clamp(_cfg.GetCVar(StarlightCCVars.BloomStrength), 0f, 3f)
-            : 0f;
+        var bloom = lit ? _bloom : 0f;
         var bloomTexture = bloom > 0f ? DrawBloom(args) : null;
 
         _shaderInst.SetParameter("SCREEN_TEXTURE", ScreenTexture);
         _shaderInst.SetParameter("LIGHT_TEXTURE", args.Viewport.LightRenderTarget.Texture);
         _shaderInst.SetParameter("BLOOM_TEXTURE", bloomTexture ?? ScreenTexture);
         _shaderInst.SetParameter("lightAvailable", lit ? 1f : 0f);
-        _shaderInst.SetParameter("nightVision", Strength(StarlightCCVars.NightVision, StarlightCCVars.NightVisionStrength));
+        _shaderInst.SetParameter("nightVision", _nightVision);
         _shaderInst.SetParameter("bloom", bloomTexture != null ? bloom : 0f);
-        _shaderInst.SetParameter("vignette", Strength(StarlightCCVars.Vignette, StarlightCCVars.VignetteStrength));
-        _shaderInst.SetParameter("grain", Strength(StarlightCCVars.FilmGrain, StarlightCCVars.FilmGrainStrength));
+        _shaderInst.SetParameter("vignette", _vignette);
+        _shaderInst.SetParameter("brightness", _brightness);
+        _shaderInst.SetParameter("grain", _grain);
 
         var handle = args.WorldHandle;
         handle.SetTransform(Matrix3x2.Identity);
@@ -113,7 +147,7 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
         _bloomShaderInst.SetParameter("SCREEN_TEXTURE", ScreenTexture!);
         _bloomShaderInst.SetParameter("LIGHT_TEXTURE", viewport.LightRenderTarget.Texture);
         _bloomShaderInst.SetParameter("targetSize", (Vector2) size);
-        _bloomShaderInst.SetParameter("threshold", Math.Clamp(_cfg.GetCVar(StarlightCCVars.BloomThreshold), 0f, 1f));
+        _bloomShaderInst.SetParameter("threshold", _bloomThreshold);
 
         handle.RenderInRenderTarget(target,
             (Action)(() =>
@@ -123,19 +157,17 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
                 handle.DrawRect(bounds, Color.White);
             }), Color.Black);
 
-        _clyde.BlurRenderTarget(viewport, target, res.BlurBuffer!, viewport.Eye!, MathF.Max(0f, _cfg.GetCVar(StarlightCCVars.BloomRadius)));
+        _clyde.BlurRenderTarget(viewport, target, res.BlurBuffer!, viewport.Eye!, _bloomRadius);
         return target.Texture;
     }
 
     protected override void DisposeBehavior()
     {
+        _cvars.Dispose();
         _resources.Dispose();
 
         base.DisposeBehavior();
     }
-
-    private float Strength(CVarDef<bool> enabled, CVarDef<float> strength)
-        => _cfg.GetCVar(enabled) ? Math.Clamp(_cfg.GetCVar(strength), 0f, 1f) : 0f;
 
     private sealed class CachedResources : IDisposable
     {

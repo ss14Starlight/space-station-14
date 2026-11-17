@@ -12,6 +12,7 @@
       whitelist:
         tags:
         - ModularHudGoggles
+        - ModularHudSyndicate
 
 - type: !PartialOnly entity
   id: HudModuleFlashImmunity
@@ -91,3 +92,12 @@
       Specular:
         color: '#FF6633'
         priority: 120
+
+- type: !PartialOnly entity
+  id: HudModuleBlackAndWhiteOverlay
+  components:
+  - type: ModularHudModule
+    visuals:
+      lens:
+        priority: 10001
+        preventsOtherColors: true

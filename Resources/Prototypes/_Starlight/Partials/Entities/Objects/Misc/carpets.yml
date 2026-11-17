@@ -1,0 +1,19 @@
+- type: !PartialOnly entity
+  id: FloorCarpetItemRed
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 10
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 10
+  - type: Tag
+    tags:
+    - ClothMade
+  - type: Edible
+    requiresSpecialDigestion: true
+    solution: food
+  - type: FlavorProfile
+    flavors:
+    - fiber
