@@ -28,11 +28,26 @@ public sealed partial class SharedVentCrawlSystem
         }
 
         var dir = args.Dir;
-        if (dir != Direction.Invalid && TryComp<InputMoverComponent>(holder.ContainedEntity, out var mover))
+
+        if (dir != Direction.Invalid)
         {
-            var cameraAngle = mover.TargetRelativeRotation;
-            if (cameraAngle != Angle.Zero)
-                dir = (dir.ToAngle() + cameraAngle).GetCardinalDir();
+            // camera-relative input to world-space direction
+            if (TryComp<InputMoverComponent>(holder.ContainedEntity, out var mover))
+            {
+                dir = (dir.ToAngle() + mover.TargetRelativeRotation).GetCardinalDir();
+            }
+
+            // world-space direction to grid-local coordinates
+            var tubeXform = Transform(holder.CurrentTube!.Value);
+
+            if (tubeXform.GridUid != null)
+            {
+                var gridRotation = _xformSystem.GetWorldRotation(tubeXform.GridUid.Value);
+
+                var localVector = (-gridRotation).RotateVec(dir.ToVec());
+
+                dir = new Vector2i((int)MathF.Round(localVector.X), (int)MathF.Round(localVector.Y)).GetCardinalDir();
+            }
         }
 
         holder.IsMoving = args.HasDirectionalMovement;
@@ -167,7 +182,8 @@ public sealed partial class SharedVentCrawlSystem
         holder.ManifoldLayer ??= AtmosPipeLayer.Primary;
         DirtyField(uid, holder, nameof(VentCrawlHolderComponent.ManifoldLayer));
 
-        var rotation = _xformSystem.GetWorldRotation(manifoldUid);
+        // grid relative
+        var rotation = Transform(manifoldUid).LocalRotation;
 
         var right = rotation.RotateVec(Vector2.UnitX);
         var forward = rotation.RotateVec(Vector2.UnitY);
