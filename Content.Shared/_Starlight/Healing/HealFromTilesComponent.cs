@@ -1,7 +1,7 @@
 using Content.Shared.Maps;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.Healing.Components;
+namespace Content.Shared._Starlight.Healing;
 
 [RegisterComponent]
 public sealed partial class HealFromTilesComponent : Component
