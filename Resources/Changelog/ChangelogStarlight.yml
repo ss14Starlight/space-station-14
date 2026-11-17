@@ -1,18 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: (Mapping) Added new smallest subfloor air tank with 750kPa of air in it.
-    type: Add
-  id: 410136
-  time: '2026-11-05T16:51:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7055
-- author: redmushie
-  changes:
-  - message: (Mapping) Subfloor tanks and tall gas tanks should now be pickable by mappers (pressing P).
-    type: Fix
-  id: 410137
-  time: '2026-11-05T16:51:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7055
 - author: baltdev
   changes:
   - message: Added the poster "Never Too Dead!".
@@ -2799,4 +2785,18 @@ Entries:
   id: 410535
   time: '2026-11-17T02:46:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7256
+- author: STARLIGHT TEAM
+  changes:
+  - message: There is no longer a cost associated with retracting/disabling toggled ling abilities. Retract your arm blades freely.
+    type: Remove
+  id: 410536
+  time: '2026-11-17T02:46:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7291
+- author: STARLIGHT TEAM
+  changes:
+  - message: Toggled abilities like both arm blades, chameleon skin, and strained muscles had their chemical cost raised to accommodate.
+    type: Tweak
+  id: 410537
+  time: '2026-11-17T02:46:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7291
 Order: -1
