@@ -39,6 +39,11 @@
     - type: InteractionOutline
     - type: Damageable
       damageModifierSet: Metallic
+    - type: DamageOnInteract
+      damage:
+        types:
+          Heat: 2
+      popupText: powered-light-component-burn-hand
     - type: Destructible
       thresholds:
         - trigger: !type:DamageTrigger
@@ -110,11 +115,6 @@
         on: base
         broken: broken
         burned: burned
-    - type: DamageOnInteract
-      damage:
-        types:
-          Heat: 2
-      popupText: powered-light-component-burn-hand
 
 - type: entity
   id: PoweredFloorLight
@@ -145,6 +145,11 @@
       enabled: true
     - type: PoweredLight
       hasLampOnSpawn: LedLightBulb
+    - type: DamageOnInteract
+      damage:
+        types:
+          Heat: 1
+      popupText: powered-light-component-burn-hand
 
 - type: entity
   id: PoweredFloorLightWarm
@@ -173,6 +178,11 @@
       softness: 3
     - type: PoweredLight
       hasLampOnSpawn: DimLightBulb
+    - type: DamageOnInteract
+      damage:
+        types:
+          Heat: 1
+      popupText: powered-light-component-burn-hand
 
 # Colored Lights
 - type: entity
@@ -319,6 +329,11 @@
       enabled: true
     - type: PoweredLight
       hasLampOnSpawn: LightBulb
+    - type: DamageOnInteract
+      damage:
+        types:
+          Heat: 2
+      popupText: powered-light-component-burn-hand
     - type: WiresPanel
       open: false
 
@@ -443,11 +458,6 @@
     energy: 1
     softness: 0.5
     color: "#5ae8ed"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: LightFloorBlue
@@ -461,11 +471,6 @@
     energy: 1
     softness: 0.5
     color: "#4ca1eb"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: LightFloorYellow
@@ -479,11 +484,6 @@
     energy: 1
     softness: 0.5
     color: "#edd25a"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: LightFloorPink
@@ -497,11 +497,6 @@
     energy: 1
     softness: 0.5
     color: "#f075c7"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: LightFloorOrange
@@ -515,11 +510,6 @@
     energy: 1
     softness: 0.5
     color: "#ea863e"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: LightFloorBlack
@@ -533,11 +523,6 @@
     energy: 1
     softness: 0.5
     color: "#4d4d4d"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: LightFloorRed
@@ -551,11 +536,6 @@
     energy: 1
     softness: 0.5
     color: "#ec5555"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: LightFloorGreen
@@ -569,11 +549,6 @@
     energy: 1
     softness: 0.5
     color: "#7eeb4c"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: LightFloorRandomColor
