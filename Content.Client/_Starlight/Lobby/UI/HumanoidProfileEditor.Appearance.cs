@@ -285,11 +285,12 @@ public sealed partial class HumanoidProfileEditor
         if (loc.TryGetString($"species-summary-{species.ID.ToLowerInvariant()}", out var summary))
             lines.Add(summary);
 
+        var (height, weight) = SizeToMetrics(species, species.DefaultHeight, species.DefaultWidth);
         lines.Add(Loc.GetString("humanoid-profile-editor-species-summary-stats",
             ("minAge", species.MinAge),
             ("maxAge", species.MaxAge),
-            ("height", species.StandardSize),
-            ("weight", species.StandardWeight)));
+            ("height", (int) MathF.Round(height)),
+            ("weight", (int) MathF.Round(weight))));
         return string.Join(Environment.NewLine, lines);
     }
 

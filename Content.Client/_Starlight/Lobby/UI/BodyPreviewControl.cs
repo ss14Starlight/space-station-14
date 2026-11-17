@@ -89,7 +89,7 @@ public sealed class BodyPreviewControl : BoxContainer
         foreach (var layer in sprite.AllLayers)
         {
             var i = index++;
-            if (layer is not SpriteComponent.Layer { Visible: true, ActualRsi: { } rsi } spriteLayer
+            if (layer is not SpriteComponent.Layer { Visible: true, ActualRsi: { } rsi, CopyToShaderParameters: null } spriteLayer
                 || !rsi.TryGetState(spriteLayer.State, out var state))
                 continue;
 
