@@ -4,7 +4,7 @@
   - type: LightBulb
     color: "#FFE2C8"
     lightEnergy: 0.6
-    lightRadius: 8
+    lightRadius: 7
     lightSoftness: 1.5
 
 - type: !PartialOnly entity
@@ -12,16 +12,16 @@
   components:
   - type: LightBulb
     color: "#F6EFE4"
-    lightEnergy: 0.8
-    lightRadius: 10
+    lightEnergy: 0.65
+    lightRadius: 8.5
     lightSoftness: 1.3
 
 - type: !PartialOnly entity
   id: LightBulb
   components:
   - type: LightBulb
-    lightEnergy: 0.65
-    lightSoftness: 1.4
+    lightEnergy: 0.6
+    lightSoftness: 1.3
 
 - type: !PartialOnly entity
   id: LedLightBulb

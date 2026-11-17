@@ -6,7 +6,7 @@
   - type: PointLight
     color: "#FFE2C8"
     energy: 0.6
-    radius: 8
+    radius: 7
     softness: 1.5
     falloff: 8
     curveFactor: 1
