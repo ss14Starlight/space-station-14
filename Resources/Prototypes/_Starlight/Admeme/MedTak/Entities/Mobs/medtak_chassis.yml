@@ -1,7 +1,21 @@
 # MedTak
 - type: entity
+  abstract: true
+  parent: BaseBorgTransponder
+  id: BaseMedTakTransponder
+  components:
+  - type: DeviceNetwork
+    receiveFrequencyId: MedTakOperators
+    transmitFrequencyId: MedTak
+  - type: SurveillanceCamera
+    networkSet: true
+    nameSet: True
+    id: MedTakOperators
+    useEntityNameAsCameraId: true
+
+- type: entity
   id: BorgChassisMedTak
-  parent: BaseBorgChassisNotIonStormable
+  parent: [BaseBorgChassisNotIonStormable, BaseMedTakTransponder]
   name: MedTak silicon
   description: A multirole heavy silicon chassis designed to support MedTak units.
   abstract: true
@@ -94,10 +108,17 @@
       - CanPilot
       - SiliconEmotes
       - Unimplantable
-      - EmagImmune
     - type: PointLight
       color: "#d55858"
       radius: 5
       energy: 3
     - type: Damageable
       damageModifierSet: ArmoredSilicon
+    - type: BorgTransponder
+      name: MedTak sillicon
+      sprite:
+        sprite: _Starlight/Admeme/MedTak/Mobs/Silicon/Chassis/medtak.rsi
+        state: borg
+    - type: InteractionPopup
+      interactSuccessString: petting-success-medtak-cyborg
+      interactFailureString: petting-failure-medtak-cyborg
