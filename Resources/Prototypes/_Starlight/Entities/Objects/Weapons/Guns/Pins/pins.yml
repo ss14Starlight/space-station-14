@@ -140,9 +140,6 @@
       collection: GlassBreak
   - type: StealTarget
     stealGroup: FiringPinAdvancedLaser
-  - type: Explosive
-    explosionType: Default
-    totalIntensity: 100 # slightly more impressive than a welding tank explosion
   - type: Destructible
     thresholds:
     - trigger:
