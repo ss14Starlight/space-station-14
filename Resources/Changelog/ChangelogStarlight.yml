@@ -1,25 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: "BEHOLD: Added advanced airlock control system(airlock cycler/airlock controller), now you can equip airlock systems with it, so it'll pull/push gases into temp storage to safe gas! And it manages access to closed areas better! No more logic based airlock systems!"
-    type: Add
-  id: 410222
-  time: '2026-11-07T19:55:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7081
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Ported upstream lizard laugh sound.
-    type: Tweak
-  id: 410223
-  time: '2026-11-08T04:56:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7115
-- author: Caws
-  changes:
-  - message: (Ming) Added Gunnery Sergeant.
-    type: Add
-  id: 410224
-  time: '2026-11-08T06:12:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7108
 - author: Caws
   changes:
   - message: (Ming) Radio Studio has been upgraded, adding radio mixer, CD player, and radio broadcast recorder.
@@ -2799,4 +2778,25 @@ Entries:
   id: 410621
   time: '2026-11-18T19:42:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7106
+- author: Talirson
+  changes:
+  - message: Added a loot category based around chemistry setups to the ITG medical surplus crates.
+    type: Add
+  id: 410622
+  time: '2026-11-18T20:03:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7261
+- author: Talirson
+  changes:
+  - message: Added amoxla and sigynate to the chem loot pool in ITG medical surplus crates.
+    type: Tweak
+  id: 410623
+  time: '2026-11-18T20:03:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7261
+- author: Talirson
+  changes:
+  - message: Changed 10 loose omni cigarettes in the ITG medical surplus crate to a single pack of interdyne cigarettes.
+    type: Tweak
+  id: 410624
+  time: '2026-11-18T20:03:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7261
 Order: -1
