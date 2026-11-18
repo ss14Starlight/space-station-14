@@ -116,10 +116,10 @@ namespace Content.Client.Atmos.UI
 
         public void SetReleaseValve(bool valve)
         {
-            if (valve)
-                ReleaseValveOpenButton.Pressed = true;
-            else
-                ReleaseValveCloseButton.Pressed = true;
+            // Starlight - start
+            ReleaseValveOpenButton.Pressed = valve;
+            ReleaseValveCloseButton.Pressed = !valve;
+            // Starlight - end
         }
     }
 }

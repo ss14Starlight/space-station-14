@@ -2,6 +2,10 @@
   id: StationAi
   roleType: CorporateAligned
   roleSubtype: role-subtype-silicon
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Command
+    time: 10h # Requires command experience for comms, alerts, and terminal use.
 
 - type: !PartialOnly job
   id: Borg

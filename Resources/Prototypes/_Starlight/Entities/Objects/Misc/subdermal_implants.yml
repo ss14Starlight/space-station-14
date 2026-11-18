@@ -351,21 +351,14 @@
     mindShieldStatusIcon: ITGMindShieldIcon
 
 - type: entity
-  parent: BaseSubdermalImplant
+  parent: DeathRattleImplant
   id: PollenDistressImplant
-  name: floral distress pollen
+  name: distress pollen
   description: An organic communication implant that transmits distress signals through the Diona spore hivemind.
   categories: [HideSpawnMenu]
   components:
-    - type: SubdermalImplant
-    - type: TriggerOnMobstateChange
-      mobState:
-        - Critical
-        - Dead
     - type: RattleOnTrigger
-      targetUser: true
       radioChannel:
         - SporeRadio
       messages:
-        Critical: pollen-alert-pollen-critical
         Dead: pollen-alert-pollen-dead

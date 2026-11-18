@@ -68771,10 +68771,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -34.5,-11.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 10657
     components:
     - type: Transform
@@ -70223,10 +70219,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -26.5,-7.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: CrateServiceGuidebooks
   entities:
   - uid: 10883
@@ -71188,10 +71180,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -26.5,-2.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: DeskBell
   entities:
   - uid: 11025

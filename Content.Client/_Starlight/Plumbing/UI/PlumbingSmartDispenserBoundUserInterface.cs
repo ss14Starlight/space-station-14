@@ -1,45 +1,28 @@
 using Content.Shared._Starlight.Plumbing;
-using Content.Shared.Chemistry;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 
 namespace Content.Client._Starlight.Plumbing.UI;
 
 [UsedImplicitly]
-public sealed class PlumbingSmartDispenserBoundUserInterface : BoundUserInterface
+public sealed class PlumbingSmartDispenserBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     private PlumbingSmartDispenserWindow? _window;
-
-    public PlumbingSmartDispenserBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
-    }
 
     protected override void Open()
     {
         base.Open();
         _window = this.CreateWindow<PlumbingSmartDispenserWindow>();
+        _window.SetOwner(Owner);
 
-        _window.AmountGrid.OnButtonPressed += value => SendMessage(new PlumbingSmartDispenserSetDispenseAmountMessage(value));
-        _window.ClearButton.OnPressed += _ => SendMessage(new ReagentDispenserClearContainerSolutionMessage());
-        _window.OnDispenseReagentPressed += reagentId => SendMessage(new PlumbingSmartDispenserDispenseReagentMessage(reagentId));
-        SendMessage(new PlumbingSmartDispenserRequestActorStateMessage());
+        _window.AmountGrid.OnButtonPressed += value => SendPredictedMessage(new PlumbingSmartDispenserSetDispenseAmountMessage(value));
+        _window.OnClearPressed += (target) => SendPredictedMessage(new PlumbingSmartDispenserClearSolutionMessage(target));
+        _window.OnDispenseReagentPressed += (reagentId, amount, target) => SendPredictedMessage(new PlumbingSmartDispenserDispenseReagentMessage(reagentId, amount, target));
     }
 
-    protected override void UpdateState(BoundUserInterfaceState state)
+    public override void Update()
     {
-        base.UpdateState(state);
-
-        if (_window == null || state is not PlumbingSmartDispenserBuiState cast)
-            return;
-
-        _window.UpdateSharedState(cast);
-    }
-
-    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
-    {
-        base.ReceiveMessage(message);
-
-        if (message is PlumbingSmartDispenserActorStateMessage actorState)
-            _window?.UpdateActorState(actorState);
+        base.Update();
+        _window?.SetLocalDirty();
     }
 }

@@ -552,6 +552,56 @@
     SheetPrinter: 100
 
 - type: latheRecipe
+  id: PrintedDocumentIllegalImplantRemovalOrderRecipe
+  result: PrintedDocumentIllegalImplantRemovalOrder
+  categories:
+  - OrdersAndInstructions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentMindControlRemovalOrderRecipe
+  result: PrintedDocumentMindControlRemovalOrder
+  categories:
+  - OrdersAndInstructions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentExplorativeSurgeryOrderRecipe
+  result: PrintedDocumentExplorativeSurgeryOrder
+  categories:
+  - OrdersAndInstructions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentProbingMindshieldOrderRecipe
+  result: PrintedDocumentProbingMindshieldOrder
+  categories:
+  - OrdersAndInstructions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentCompulsoryTrackingOrderRecipe
+  result: PrintedDocumentCompulsoryTrackingOrder
+  categories:
+  - OrdersAndInstructions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
   id: PrintedDocumentMedicalInterventionOrderRecipe
   result: PrintedDocumentMedicalInterventionOrder
   categories:
@@ -619,6 +669,16 @@
   result: PrintedDocumentSyndicateDidYouKnow
   categories:
     - Complaints
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentP23IdPdaReplacementFormRecipe
+  result: PrintedDocumentP23IdPdaReplacementForm
+  categories:
+  - InquiriesAndAppeals
   completetime: 2
   applyMaterialDiscount: false
   materials:

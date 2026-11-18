@@ -1,0 +1,5 @@
+- type: loadout
+  id: ModularHudCheapSunglasses
+  groupBy: modular eyewear
+  equipment:
+    eyes: ClothingEyesModularHudCheapSunglasses

@@ -184,12 +184,6 @@
   equipment:
     outerClothing: ClothingOuterSecurityBomber
 
-#Eyewear
-- type: loadout
-  id: SecurityGlassesPrescription
-  equipment:
-    eyes: ClothingEyeGlassesSecurityPrescription
-
 # Gloves
 - type: loadout
   id: SecGloves
@@ -251,11 +245,16 @@
   equipment:
     outerClothing: ClothingOuterWindbreakerSecurity
 
-# Misc
+# Eyewear
 - type: loadout
   id: SecurityGlasses
   equipment:
     eyes: ClothingEyesGlassesSecurity
+
+- type: loadout
+  id: SecurityGlassesPrescription
+  equipment:
+    eyes: ClothingEyeGlassesSecurityPrescription
 
 - type: loadout
   id: SecurityHud

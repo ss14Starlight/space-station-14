@@ -1,3 +1,4 @@
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 
@@ -7,7 +8,7 @@ namespace Content.Shared._Starlight.Plumbing.Components;
 /// A plumbing-connected smart dispenser that stores reagents pulled from the network,
 /// supports held container dispensing and label matching dispensing.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true)]
 public sealed partial class PlumbingSmartDispenserComponent : Component
 {
     /// <summary>
@@ -21,4 +22,10 @@ public sealed partial class PlumbingSmartDispenserComponent : Component
     /// </summary>
     [DataField]
     public FixedPoint2 MaxPerReagent = FixedPoint2.New(200);
+
+    /// <summary>
+    /// Map from reagent prototype to custom label set with the labeller
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public Dictionary<ReagentId, string> ReagentLabels = [];
 }
