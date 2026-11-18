@@ -354,7 +354,6 @@
     - SubdermalImplant
     - HideContextMenu
 
-
 - type: entity
   parent: BaseSubdermalImplant
   id: DeathRattleImplant
