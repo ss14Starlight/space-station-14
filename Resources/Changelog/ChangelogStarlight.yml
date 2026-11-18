@@ -1,13 +1,6 @@
 Entries:
 - author: Rhapsody (Pepta, Soothe)
   changes:
-  - message: Predicted body decomposition so that hollowed bodies show the correct decomposition state at all times.
-    type: Tweak
-  id: 410215
-  time: '2026-11-07T18:46:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7095
-- author: Rhapsody (Pepta, Soothe)
-  changes:
   - message: The mechwright arm's welder now sparks when activated, like other welders.
     type: Fix
   id: 410216
@@ -2799,4 +2792,11 @@ Entries:
   id: 410614
   time: '2026-11-18T19:15:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7319
+- author: tonimark
+  changes:
+  - message: Added a new holy bible books to loadouts.
+    type: Add
+  id: 410615
+  time: '2026-11-18T19:42:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7125
 Order: -1
