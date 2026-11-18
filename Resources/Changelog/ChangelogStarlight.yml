@@ -1,11 +1,4 @@
 Entries:
-- author: Trosling
-  changes:
-  - message: Added Induced Mutiny special situation page to replace Confirmed Revolution.
-    type: Add
-  id: 410214
-  time: '2026-11-07T18:24:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7083
 - author: Rhapsody (Pepta, Soothe)
   changes:
   - message: Predicted body decomposition so that hollowed bodies show the correct decomposition state at all times.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410613
   time: '2026-11-18T18:50:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7300
+- author: Scarpenter1
+  changes:
+  - message: Languages no longer go missing from the language menu after spawning with a translator.
+    type: Fix
+  id: 410614
+  time: '2026-11-18T19:15:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7319
 Order: -1
