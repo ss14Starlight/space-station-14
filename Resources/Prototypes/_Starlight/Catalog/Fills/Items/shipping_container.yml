@@ -60,22 +60,6 @@
         - id: MagazineBoxAntiMateriel
         - id: MagazineBoxBattery
         - id: MagazineBoxBoltRifle
-        - id: BoxLethalshotToz
-        - id: BoxShotgunUranium
-        - id: BoxShotgunIncendiary
-        - id: BoxShotgunSlug
-        - id: BoxLethalshot
-        - id: BoxShotgunBirdshot
-        - id: BoxShellTranquilizer
-        - id: BoxBeanbag
-        - id: BoxShotgunFlare
-        - id: BoxShotgunPractice
-        - id: BlueprintBasicAmmo
-        - id: BoxPeacekeeperStinger
-        - id: BoxPeacekeeperGas
-        - id: BoxPeacekeeperBaton
-        - id: BoxPeacekeeperBola
-        - id: BoxPeacekeeperFlash
 
 - type: entity
   parent: ShippingContainerShamblers
@@ -119,7 +103,7 @@
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:GroupSelector
-        rolls: 8, 24
+        rolls: 8, 14
         children:
         - id: Gauze
         - id: DeforestBrutePack
@@ -132,10 +116,6 @@
         - id: AdvancedJetInjector
         - id: JetInjector
         - id: HandheldHealthAnalyzer
-        - id: MedkitCombatFilled
-        - id: MedkitAdvancedFilled
-        - id: MedkitRoboticFilled
-        - id: BottleCaseParamedicFilled
         - id: CombatMedipen
         - id: AirlossAutoInjector
         - id: BruteAutoInjector
@@ -150,7 +130,7 @@
         - id: StimpackMini
         - id: PenPackMedicalFilled
         - id: PillCanisterRandom
-          amount: 1, 8
+          amount: 1, 2
         - id: Tourniquet
         - id: Syringe
         - id: HudModuleSolutionScanner
@@ -193,7 +173,6 @@
         children:
         - id: Telecrystal1
           amount: 1, 4
-        - id: ClothingShoesBootsMagSyndie
         - id: ClothingHandsKnuckleDustersSyndicate
         - id: WeaponMeleeSwitchblade
         - id: EnergyDaggerBox
@@ -275,10 +254,9 @@
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:GroupSelector
-        rolls: 8, 16
+        rolls: 8, 15
         children:
         - id: OrganDollBrain
-          amount: 1, 8
         - id: OrganVulpkaninHeart
         - id: OrganHumanAppendix
         - id: MeatwheatBushel
@@ -287,15 +265,12 @@
         - id: FoodMeatHuman
         - id: AnomalyCoreFleshInert
         - id: MaterialBiomass1
-          amount: 1, 4
         - id: MaterialSheetMeat1
-          amount: 1, 4
         - id: FoodMeatWheat
         - id: FoodSnackBloodBrickOpen
         - id: JugBlood
         - id: FoodBloodTomato
         - id: FoodMeatHuman
-          amount: 1, 8
         - id: OrganDollStomach
         - id: OrganSlimeHeart
         - id: OrganDollLungs
@@ -314,13 +289,13 @@
         rolls: 4
         children:
         - id: SheetPlasteel
-          amount: 1, 5
+          amount: 1, 3
         - id: SheetPlasteel
-          amount: 1, 5
+          amount: 1, 3
         - id: SheetSteel
-          amount: 1, 5
+          amount: 1, 3
         - id: Coal
-          amount: 1, 5
+          amount: 1, 3
         - id: OreProcessorIndustrialMachineCircuitboard
         - id: OreProcessorMachineCircuitboard
         - id: PickaxeDiamond
@@ -359,10 +334,6 @@
         - id: AdvancedJetInjector
         - id: JetInjector
         - id: HandheldHealthAnalyzer
-        - id: MedkitCombatFilled
-        - id: MedkitAdvancedFilled
-        - id: MedkitRoboticFilled
-        - id: BottleCaseParamedicFilled
         - id: CombatMedipen
         - id: AirlossAutoInjector
         - id: BruteAutoInjector
@@ -377,7 +348,7 @@
         - id: StimpackMini
         - id: CyberEyeNightVision
         - id: PillCanisterRandom
-          amount: 1, 8
+          amount: 1, 2
         - id: HypopenBox
         - id: HypoDartBox
         - id: HudModuleSolutionScanner
@@ -385,7 +356,6 @@
         - id: HandImplantClaws
         - id: NoseImplantOlfactory
         - id: CyberEyeThermal
-        - id: ChemicalSynthesisKit
 
 - type: entity
   parent: ShippingContainerGorlex
@@ -395,7 +365,7 @@
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:GroupSelector
-        rolls: 3, 10
+        rolls: 3, 9
         children:
         - id: Telecrystal1
           amount: 1, 4
@@ -421,20 +391,13 @@
         - id: EnergyShield
         - id: HomerunBat
         - id: SyndieMiniBomb
-        - id: ThrowingKnivesKit
         - id: EnergySword
         - id: NukeDiskFake
         - id: AgentIDCard
-        - id: BriefcaseWeaponHushpupFilled
-        - id: HammerBreachingNT
         - id: BorgModuleMartyr
-        - id: BriefcaseWeaponC20Filled
         - id: AccessBreaker
         - id: Emag
         - id: SyndicateDisruptor
         - id: WeaponSubMachineGunUzi
-        - id: WeaponLauncherChinaLake
         - id: EmpImplanter
-        - id: WeaponRifleEstoc
-        - id: WeaponLightMachineGunL6
         - id: WeaponShotgunBulldog
