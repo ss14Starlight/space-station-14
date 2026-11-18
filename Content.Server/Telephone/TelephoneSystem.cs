@@ -4,7 +4,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Interaction;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Chat;
-using Content.Shared._Starlight.Chat; // Starlight: chat stacking
+using Content.Shared._Starlight.Chat;
 using Content.Shared.Database;
 using Content.Shared.Labels.Components;
 using Content.Shared.Mind.Components;

@@ -43,17 +43,23 @@ namespace Content.Shared.Chat
         public string? AudioPath;
         public float AudioVolume;
 
-        // Starlight Start
+        #region Starlight
+
         /// <summary>
         ///     If true, repeated messages must also come from the same <see cref="SenderEntity"/> to stack.
         /// </summary>
         public bool RepeatCheckSender;
-        // Starlight End
+
+        /// <summary>
+        ///     An identifier for channels that share the same <see cref="ChatChannel"/>.
+        /// </summary>
+        public string? RepeatChannel;
+        #endregion
 
         [NonSerialized]
         public bool Read;
 
-        public ChatMessage(ChatChannel channel, string message, string wrappedMessage, NetEntity source, int? senderKey, bool hideChat = false, Color? colorOverride = null, string? audioPath = null, float audioVolume = 0, bool repeatCheckSender = true) // Starlight Edit: Added repeatCheckSender
+        public ChatMessage(ChatChannel channel, string message, string wrappedMessage, NetEntity source, int? senderKey, bool hideChat = false, Color? colorOverride = null, string? audioPath = null, float audioVolume = 0, bool repeatCheckSender = true, string? repeatChannel = null) // Starlight Edit: Added repeatCheckSender and repeatChannel
         {
             Channel = channel;
             Message = message;
@@ -64,7 +70,10 @@ namespace Content.Shared.Chat
             MessageColorOverride = colorOverride;
             AudioPath = audioPath;
             AudioVolume = audioVolume;
-            RepeatCheckSender = repeatCheckSender; // Starlight: Chat stacking
+            // Starlight Start: Chat stacking
+            RepeatCheckSender = repeatCheckSender;
+            RepeatChannel = repeatChannel;
+            // Starlight End: Chat stacking
         }
     }
 

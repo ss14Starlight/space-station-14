@@ -1,6 +1,8 @@
+using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.UserInterface.Systems.Chat.Widgets;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared.Chat;
+using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Utility;
@@ -13,6 +15,7 @@ namespace Content.Client._Starlight.Chat;
 public sealed partial class ChatStackingSystem : EntitySystem
 {
     [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IUserInterfaceManager _ui = default!;
 
     private int _repeatHistory;
 
@@ -20,7 +23,26 @@ public sealed partial class ChatStackingSystem : EntitySystem
     {
         base.Initialize();
 
-        Subs.CVar(_config, StarlightCCVars.ChatRepeatHistory, v => _repeatHistory = v, true);
+        Subs.CVar(_config, StarlightCCVars.ChatRepeatHistory, OnRepeatHistoryChanged, true);
+    }
+
+    private void OnRepeatHistoryChanged(int repeatHistory)
+    {
+        _repeatHistory = repeatHistory;
+
+        foreach (var chat in _ui.GetUIController<ChatUIController>().Chats)
+        {
+            if (_repeatHistory <= 0)
+            {
+                chat.RepeatQueue.Clear();
+                continue;
+            }
+
+            while (chat.RepeatQueue.Count > _repeatHistory)
+            {
+                chat.RepeatQueue.Dequeue();
+            }
+        }
     }
 
     /// <summary>
@@ -31,9 +53,11 @@ public sealed partial class ChatStackingSystem : EntitySystem
         OutputPanel contents,
         FormattedMessage message,
         NetEntity sender,
+        int? senderKey,
         string unwrapped,
         ChatChannel channel,
-        bool repeatCheckSender)
+        bool repeatCheckSender,
+        string? repeatChannel)
     {
         // A non-positive history disables stacking instead of keeping an unbounded queue.
         if (_repeatHistory <= 0)
@@ -47,7 +71,8 @@ public sealed partial class ChatStackingSystem : EntitySystem
         {
             if (old.Message != unwrapped ||
                 old.Channel != channel ||
-                (repeatCheckSender && old.SenderEntity != sender))
+                old.RepeatChannel != repeatChannel ||
+                (repeatCheckSender && (old.SenderEntity != sender || old.SenderKey != senderKey)))
             {
                 continue;
             }
@@ -59,7 +84,7 @@ public sealed partial class ChatStackingSystem : EntitySystem
             return true;
         }
 
-        chat.RepeatQueue.Enqueue(new RepeatedMessage(contents.EntryCount, message, sender, unwrapped, channel));
+        chat.RepeatQueue.Enqueue(new RepeatedMessage(contents.EntryCount, message, sender, senderKey, unwrapped, channel, repeatChannel));
         while (chat.RepeatQueue.Count > _repeatHistory)
         {
             chat.RepeatQueue.Dequeue();

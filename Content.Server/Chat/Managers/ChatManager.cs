@@ -475,10 +475,10 @@ internal sealed partial class ChatManager : IChatManager
         }
     }
 
-    // Starlight Start
+    #region Starlight
     private bool ShouldRepeatCheckSender(EntityUid source)
         => !_entityManager.HasComponent<ChatRepeatIgnoreSenderComponent>(source);
-    // Starlight End
+    #endregion
 
     public bool MessageCharacterLimit(ICommonSession? player, string message)
     {

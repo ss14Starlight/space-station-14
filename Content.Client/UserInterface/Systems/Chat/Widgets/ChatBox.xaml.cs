@@ -33,7 +33,10 @@ public partial class ChatBox : UIWidget
 
     public ChatSelectChannel SelectedChannel => ChatInput.ChannelSelector.SelectedChannel;
     public RichTextLabel SelectedLanguage => LanguageNotifier; // Starlight
-    internal readonly Queue<RepeatedMessage> RepeatQueue = new();    // Starlight: Chat Stacking
+
+    #region Starlight
+    internal readonly Queue<RepeatedMessage> RepeatQueue = new();
+    #endregion
 
     public ChatBox()
     {
@@ -80,7 +83,7 @@ public partial class ChatBox : UIWidget
 
         var color = msg.MessageColorOverride ?? msg.Channel.TextColor();
 
-        AddLine(msg.WrappedMessage, color, msg.SenderEntity, msg.Message, msg.Channel, msg.RepeatCheckSender); // Starlight Edit: Chat stacking
+        AddLine(msg.WrappedMessage, color, msg.SenderEntity, msg.SenderKey, msg.Message, msg.Channel, msg.RepeatCheckSender, msg.RepeatChannel); // Starlight Edit: Chat stacking
     }
 
     private void OnHighlightsUpdated(string highlights)
@@ -151,7 +154,7 @@ public partial class ChatBox : UIWidget
         _controller.UpdateHighlights(highlighs);
     }
 
-    public void AddLine(string message, Color color, NetEntity sender, string unwrapped, ChatChannel channel, bool repeatCheckSender) // Starlight Edit: Chat stacking
+    public void AddLine(string message, Color color, NetEntity sender, int? senderKey, string unwrapped, ChatChannel channel, bool repeatCheckSender, string? repeatChannel) // Starlight Edit: Chat stacking
     {
         var formatted = new FormattedMessage(FormattedMessageDefaultCapacity);
         formatted.PushColor(color);
@@ -159,7 +162,7 @@ public partial class ChatBox : UIWidget
         formatted.Pop();
 
         // Starlight Start: chat stacking
-        if (_entManager.System<ChatStackingSystem>().TryRepetition(this, Contents, formatted, sender, unwrapped, channel, repeatCheckSender))
+        if (_entManager.System<ChatStackingSystem>().TryRepetition(this, Contents, formatted, sender, senderKey, unwrapped, channel, repeatCheckSender, repeatChannel))
             return;
         // Starlight End
 
