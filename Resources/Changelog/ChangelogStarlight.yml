@@ -1,13 +1,6 @@
 Entries:
 - author: redmushie
   changes:
-  - message: '(Escape pod: Cheap) Pipe docking! It can now use air from station.'
-    type: Add
-  id: 410199
-  time: '2026-11-07T09:03:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7059
-- author: redmushie
-  changes:
   - message: '(Escape pod: Library) Pipe docking! It can now use air from station.'
     type: Add
   id: 410200
@@ -2799,4 +2792,11 @@ Entries:
   id: 410598
   time: '2026-11-18T10:56:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7237
+- author: Drakobird
+  changes:
+  - message: Revenant's took gun lessons and now go invisible faster after shooting.
+    type: Tweak
+  id: 410599
+  time: '2026-11-18T10:56:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7293
 Order: -1
