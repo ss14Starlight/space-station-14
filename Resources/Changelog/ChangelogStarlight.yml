@@ -1,11 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: Air siphons and gas pressure pumps now have a Status signal output.
-    type: Add
-  id: 410208
-  time: '2026-11-07T16:57:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7096
 - author: Romero/Littlemen
   changes:
   - message: The Soulmancer! A new wizard archetype.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410607
   time: '2026-11-18T11:29:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7185
+- author: Caws
+  changes:
+  - message: Following a safety incident, laser crystals in NanoTrasen issued weapons now no longer explode when you've been set on fire. If you or a loved one were hurt in a laser crystal based accident, please file a claim with Central Command at your earliest convenience.
+    type: Tweak
+  id: 410608
+  time: '2026-11-18T11:49:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7316
 Order: -1
