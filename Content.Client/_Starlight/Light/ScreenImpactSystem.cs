@@ -128,7 +128,7 @@ public sealed partial class ScreenImpactSystem : EntitySystem
         if (distance >= reach)
             return;
 
-        var amount = Math.Clamp(radius / 8f, 0.25f, 1f) * (1f - distance / reach);
+        var amount = Math.Clamp(radius / 8f, 0.25f, 1f) * (1f - (distance / reach));
         var color = Color.White;
         if (_proto.TryIndex<ExplosionPrototype>(ent.Comp.ExplosionType, out var type))
             color = Color.FromSrgb(type.LightColor);

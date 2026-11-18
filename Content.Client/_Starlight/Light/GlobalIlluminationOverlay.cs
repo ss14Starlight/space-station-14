@@ -504,7 +504,6 @@ public sealed partial class GlobalIlluminationOverlay : Robust.Client.Graphics.O
         /// <see cref="Accumulated"/> moved into this frame's view, what the trace blends into.
         /// </summary>
         public IRenderTexture? History;
-        
         /// <summary>
         /// Glowing sprites of the last frame in this frame's pixels.
         /// </summary>

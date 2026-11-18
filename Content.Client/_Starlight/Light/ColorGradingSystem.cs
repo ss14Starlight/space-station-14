@@ -83,9 +83,9 @@ public sealed partial class ColorGradingSystem : EntitySystem
 
         public bool IsIdentity
             => Vector3.DistanceSquared(Tint, Vector3.One) < 1e-6f
-               && Shadows.LengthSquared() < 1e-6f
-               && MathF.Abs(Saturation - 1f) < 1e-3f
-               && MathF.Abs(Contrast - 1f) < 1e-3f;
+            && Shadows.LengthSquared() < 1e-6f
+            && MathF.Abs(Saturation - 1f) < 1e-3f
+            && MathF.Abs(Contrast - 1f) < 1e-3f;
 
         public static Grade From(ColorGradePrototype proto)
         {
