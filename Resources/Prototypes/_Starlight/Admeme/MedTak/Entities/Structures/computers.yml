@@ -20,7 +20,7 @@
       - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
         state: generic_panel_open
     - type: CommunicationsConsole
-      sound: /Audio/_Starlight/Announcements/medtakJump.ogg
+      sound: /Audio/_Starlight/Announcements/medtakjump.ogg
       title: comms-console-announcement-title-medtak
       color: "#FAFAFA"
       canShuttle: false
