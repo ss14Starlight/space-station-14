@@ -82,7 +82,7 @@
   parent: FiringPinLaser
   id: FiringPinAdvancedLaser
   name: prototype laser crystal
-  description: A specialized laser crystal used in advanced energy weapons.
+  description: A specialized laser crystal used in advanced energy weapons. May explode when damaged!
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Pins/firing_pins.rsi
@@ -95,6 +95,9 @@
       collection: GlassBreak
   - type: StealTarget
     stealGroup: FiringPinAdvancedLaser
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 100 # slightly more impressive than a welding tank explosion
 
 # cool functionality ish pins
 - type: entity
@@ -164,7 +167,7 @@
   parent: FiringPinAdvancedLaser
   id: FiringPinAdvancedLaserReplacement
   name: lab-grown prototype laser crystal
-  description: A lab-grown copy of a prototype laser crystal. Just as good as the original.
+  description: A lab-grown copy of a prototype laser crystal. Just as explosive as the original.
   components:
   - type: StealTarget
     stealGroup: FiringPin
