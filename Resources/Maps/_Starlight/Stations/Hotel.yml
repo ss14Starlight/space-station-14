@@ -4,8 +4,8 @@ meta:
   engineVersion: 295.0.3
   forkId: ""
   forkVersion: ""
-  time: 11/18/2026 04:56:22
-  entityCount: 22576
+  time: 11/18/2026 05:00:22
+  entityCount: 22582
 maps:
 - 1
 grids:
@@ -8210,7 +8210,7 @@ entities:
       pos: 8.5,6.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -278190.62
+      secondsUntilStateChange: -278427.88
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -9366,7 +9366,7 @@ entities:
       pos: -13.5,-1.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -3655.8054
+      secondsUntilStateChange: -3893.0767
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -9995,7 +9995,7 @@ entities:
       pos: 2.5,-7.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -240314.67
+      secondsUntilStateChange: -240551.95
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -10158,7 +10158,7 @@ entities:
       pos: -38.5,10.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -292366.1
+      secondsUntilStateChange: -292603.34
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -10174,7 +10174,7 @@ entities:
       pos: -36.5,-10.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -292265.16
+      secondsUntilStateChange: -292502.4
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -14509,6 +14509,10 @@ entities:
     - type: Transform
       parent: 2
       pos: 2.5,11.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
 - proto: BarSignTheDrunkCarp
   entities:
   - uid: 986
@@ -15968,6 +15972,11 @@ entities:
     - type: Transform
       parent: 2
       pos: 16.5,21.5
+    - type: DeviceLinkSource
+      linkedPorts:
+        18743:
+        - - BroadcastRecorderPort
+          - StationRadioRigPort
 - proto: BruteAutoInjector
   entities:
   - uid: 1206
@@ -54016,6 +54025,11 @@ entities:
     - type: Transform
       parent: 2
       pos: 16.5,22.5
+    - type: DeviceLinkSource
+      linkedPorts:
+        18743:
+        - - CDPlayerPort
+          - StationRadioRigPort
 - proto: CdRack
   entities:
   - uid: 9390
@@ -54959,6 +54973,18 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: 9.5,12.5
+  - uid: 22577
+    components:
+    - type: Transform
+      parent: 2
+      rot: 1.5707963267948966 rad
+      pos: 3.5,33.5
+  - uid: 22581
+    components:
+    - type: Transform
+      parent: 2
+      rot: 3.141592653589793 rad
+      pos: 4.5,33.5
 - proto: ChemDispenser
   entities:
   - uid: 8889
@@ -55064,6 +55090,10 @@ entities:
     - type: Transform
       parent: 2
       pos: -25.5,2.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
 - proto: ClockworkGrille
   entities:
   - uid: 8904
@@ -64932,6 +64962,13 @@ entities:
     - type: Transform
       parent: 2
       pos: -0.5357132,-61.444866
+- proto: DrinkOrangeJuice
+  entities:
+  - uid: 22582
+    components:
+    - type: Transform
+      parent: 2
+      pos: 4.4889402,34.550533
 - proto: DrinkShotGlass
   entities:
   - uid: 10504
@@ -109394,6 +109431,10 @@ entities:
     - type: Transform
       parent: 2
       pos: 18.5,19.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
 - proto: OperatingTable
   entities:
   - uid: 16587
@@ -111326,202 +111367,342 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: -25.5,-28.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16871
     components:
     - type: Transform
       parent: 2
       pos: -29.5,-17.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16872
     components:
     - type: Transform
       parent: 2
       pos: -18.5,-28.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16873
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -27.5,-24.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16874
     components:
     - type: Transform
       parent: 2
       pos: 20.5,20.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16875
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -12.5,-31.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16876
     components:
     - type: Transform
       parent: 2
       pos: -9.5,-30.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16877
     components:
     - type: Transform
       parent: 2
       pos: -5.5,-24.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16878
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 5.5,-20.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16879
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 5.5,-13.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16880
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 4.5,-6.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16881
     components:
     - type: Transform
       parent: 2
       pos: 4.5,-4.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16882
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -31.5,-18.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16883
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -36.5,-15.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16884
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -36.5,-11.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16885
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -37.5,-8.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16886
     components:
     - type: Transform
       parent: 2
       pos: -40.5,-3.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16887
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -43.5,-1.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16888
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -43.5,6.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16889
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -40.5,8.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16890
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -37.5,14.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16891
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -33.5,24.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16892
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -27.5,22.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16893
     components:
     - type: Transform
       parent: 2
       pos: -24.5,22.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16894
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -24.5,20.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16895
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -17.5,22.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16896
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -18.5,20.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16897
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -7.5,21.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16898
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -5.5,22.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16899
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -6.5,18.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16900
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -2.5,28.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16901
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 3.5,25.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16902
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 5.5,28.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16903
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 6.5,23.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16904
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 12.5,21.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
     - type: PoweredLight
       lastGhostBlink: 1115.8655508
     - type: BlinkingPoweredLight
@@ -111532,309 +111713,525 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 20.5,16.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16906
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 26.5,11.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16907
     components:
     - type: Transform
       parent: 2
       pos: 30.5,12.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16908
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 33.5,14.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16909
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 35.5,11.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16910
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 38.5,7.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16911
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 41.5,-2.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16912
     components:
     - type: Transform
       parent: 2
       pos: 43.5,-6.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16913
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 43.5,-10.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16914
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 46.5,-13.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16915
     components:
     - type: Transform
       parent: 2
       pos: 46.5,-22.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16916
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 50.5,-17.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16917
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 44.5,-24.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16918
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 39.5,-26.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16919
     components:
     - type: Transform
       parent: 2
       pos: 35.5,-28.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16920
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 27.5,-28.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16921
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 20.5,-27.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16922
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 31.5,-27.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16923
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 15.5,-30.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16924
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 13.5,-26.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16925
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 11.5,-20.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16926
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 28.5,17.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16927
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 29.5,14.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16928
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -12.5,-37.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16929
     components:
     - type: Transform
       parent: 2
       pos: -8.5,-37.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16930
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -8.5,-40.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16931
     components:
     - type: Transform
       parent: 2
       pos: -3.5,-46.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16932
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -9.5,-46.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16933
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -12.5,-41.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16934
     components:
     - type: Transform
       parent: 2
       pos: 52.5,-22.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16935
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 12.5,-31.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16936
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 3.5,-30.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16937
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 8.5,-31.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16938
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -23.5,17.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16939
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -22.5,13.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16940
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -21.5,9.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16941
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -21.5,5.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16942
     components:
     - type: Transform
       parent: 2
       pos: -18.5,5.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16943
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -5.5,24.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16944
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 53.5,-16.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16945
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 53.5,-37.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16946
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 24.5,13.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16947
     components:
     - type: Transform
       parent: 2
       pos: 23.5,15.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16948
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 27.5,5.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16949
     components:
     - type: Transform
       parent: 2
       pos: -21.5,-52.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16950
     components:
     - type: Transform
       parent: 2
       pos: -31.5,-57.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16951
     components:
     - type: Transform
       parent: 2
       pos: -29.5,-57.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16952
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 24.5,-23.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16953
     components:
     - type: Transform
       parent: 2
       pos: 24.5,-19.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16954
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -41.5,4.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16955
     components:
     - type: Transform
       parent: 2
       pos: 14.5,26.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16956
     components:
     - type: Transform
       parent: 2
       pos: 18.5,26.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 22572
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -0.5,-49.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 22575
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 1.5,-49.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
 - proto: PoweredFloorLightDim
   entities:
   - uid: 16957
@@ -111864,26 +112261,51 @@ entities:
     - type: Transform
       parent: 2
       pos: 26.5,64.5
+    - type: PointLight
+      softness: 1.3
+      radius: 6
+      energy: 0.6
+      color: '#FFD1A3FF'
   - uid: 16962
     components:
     - type: Transform
       parent: 2
       pos: 23.5,45.5
+    - type: PointLight
+      softness: 1.3
+      radius: 6
+      energy: 0.6
+      color: '#FFD1A3FF'
   - uid: 16963
     components:
     - type: Transform
       parent: 2
       pos: 29.5,45.5
+    - type: PointLight
+      softness: 1.3
+      radius: 6
+      energy: 0.6
+      color: '#FFD1A3FF'
   - uid: 16964
     components:
     - type: Transform
       parent: 2
       pos: 29.5,54.5
+    - type: PointLight
+      softness: 1.3
+      radius: 6
+      energy: 0.6
+      color: '#FFD1A3FF'
   - uid: 16965
     components:
     - type: Transform
       parent: 2
       pos: 23.5,54.5
+    - type: PointLight
+      softness: 1.3
+      radius: 6
+      energy: 0.6
+      color: '#FFD1A3FF'
 - proto: PoweredFloorLightWarm
   entities:
   - uid: 16966
@@ -111891,21 +112313,29 @@ entities:
     - type: Transform
       parent: 2
       pos: 18.5,-3.5
+    - type: PointLight
+      color: '#FF9833FF'
   - uid: 16967
     components:
     - type: Transform
       parent: 2
       pos: 18.5,-2.5
+    - type: PointLight
+      color: '#FF9833FF'
   - uid: 16968
     components:
     - type: Transform
       parent: 2
       pos: 35.5,8.5
+    - type: PointLight
+      color: '#FF9833FF'
   - uid: 16969
     components:
     - type: Transform
       parent: 2
       pos: 29.5,8.5
+    - type: PointLight
+      color: '#FF9833FF'
 - proto: PoweredLEDSmallLight
   entities:
   - uid: 16970
@@ -111913,11 +112343,29 @@ entities:
     - type: Transform
       parent: 2
       pos: 24.5,61.5
+    - type: PointLight
+      softness: 1.3
+      radius: 6.5
+      energy: 0.6
+      color: '#F6EFE4FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16971
     components:
     - type: Transform
       parent: 2
       pos: 28.5,61.5
+    - type: PointLight
+      softness: 1.3
+      radius: 6.5
+      energy: 0.6
+      color: '#F6EFE4FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
 - proto: Poweredlight
   entities:
   - uid: 16972
@@ -111925,215 +112373,363 @@ entities:
     - type: Transform
       parent: 2
       pos: 10.5,18.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16973
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 7.5,16.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16974
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 14.5,22.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16975
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 19.5,28.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16976
     components:
     - type: Transform
       parent: 2
       pos: -22.5,-57.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16977
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -26.5,-61.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16978
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 59.5,28.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16979
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 48.5,30.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16980
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 46.5,30.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16981
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 47.5,21.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16982
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -2.5,22.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16983
     components:
     - type: Transform
       parent: 2
       pos: 36.5,19.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16984
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 50.5,19.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16985
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 29.5,25.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16986
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 42.5,32.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16987
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 66.5,25.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16988
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 60.5,-1.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16989
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 36.5,29.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16990
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 68.5,22.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16991
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 59.5,22.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16992
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 32.5,-35.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16993
     components:
     - type: Transform
       parent: 2
       pos: -24.5,-49.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16994
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -20.5,-46.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16995
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -23.5,-41.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16996
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -19.5,-19.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16997
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -20.5,-15.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16998
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -26.5,-45.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 16999
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -22.5,-12.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17000
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 43.5,-3.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17001
     components:
     - type: Transform
       parent: 2
       pos: 14.5,-6.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17002
     components:
     - type: Transform
       parent: 2
       pos: 22.5,-2.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17003
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 25.5,-8.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17004
     components:
     - type: Transform
       parent: 2
       pos: 17.5,-42.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17005
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 27.5,23.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17006
     components:
     - type: Transform
       parent: 2
       pos: 25.5,20.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17007
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 17.5,-48.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17008
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 45.5,9.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
     - type: PoweredLight
       lastGhostBlink: 6129.9605367
     - type: BlinkingPoweredLight
@@ -112143,276 +112739,468 @@ entities:
     - type: Transform
       parent: 2
       pos: -2.5,-27.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17010
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 53.5,-69.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17011
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -33.5,33.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17012
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -36.5,28.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17013
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -24.5,33.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17014
     components:
     - type: Transform
       parent: 2
       pos: 55.5,7.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17015
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 40.5,-21.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17016
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 47.5,-29.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17017
     components:
     - type: Transform
       parent: 2
       pos: 50.5,-28.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17018
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 40.5,-30.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17019
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 42.5,-30.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17020
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 45.5,-30.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17021
     components:
     - type: Transform
       parent: 2
       pos: 61.5,-25.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17022
     components:
     - type: Transform
       parent: 2
       pos: 53.5,-25.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17023
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 47.5,-25.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17024
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 55.5,-22.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17025
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 59.5,-22.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17026
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 3.5,21.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17027
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -0.5,24.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17028
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 1.5,26.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17029
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -29.5,-35.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17030
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -40.5,-1.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17031
     components:
     - type: Transform
       parent: 2
       pos: 56.5,-18.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17032
     components:
     - type: Transform
       parent: 2
       pos: 58.5,-18.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17033
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 61.5,-34.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17034
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 61.5,-26.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17035
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 53.5,-35.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17036
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 55.5,-41.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17037
     components:
     - type: Transform
       parent: 2
       pos: 55.5,-37.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17038
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 57.5,-35.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17039
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 53.5,-41.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17040
     components:
     - type: Transform
       parent: 2
       pos: 51.5,-40.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17041
     components:
     - type: Transform
       parent: 2
       pos: 38.5,-40.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17042
     components:
     - type: Transform
       parent: 2
       pos: 44.5,-40.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17043
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 38.5,-42.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17044
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 33.5,-39.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17045
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 33.5,-45.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17046
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 35.5,-44.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17047
     components:
     - type: Transform
       parent: 2
       pos: 38.5,-54.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17048
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 33.5,-55.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17049
     components:
     - type: Transform
       parent: 2
       pos: 38.5,-32.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17050
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 43.5,-56.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17051
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 53.5,-55.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17052
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 39.5,-37.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17053
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 43.5,-37.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17054
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 47.5,-37.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17055
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 51.5,-37.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17056
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 23.5,-31.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
     - type: PoweredLight
       lastGhostBlink: 4033.1626335
     - type: BlinkingPoweredLight
@@ -112423,594 +113211,1002 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 28.5,-31.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17058
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 30.5,-32.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17059
     components:
     - type: Transform
       parent: 2
       pos: 16.5,-33.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17060
     components:
     - type: Transform
       parent: 2
       pos: 10.5,-33.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17061
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 4.5,-35.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17062
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 7.5,-35.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17063
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 3.5,-40.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17064
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 7.5,-40.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17065
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 7.5,-38.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17066
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 3.5,-38.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17067
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 1.5,-38.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17068
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -0.5,-38.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17069
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 1.5,-43.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17070
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -0.5,-45.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17071
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -2.5,-38.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17072
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -4.5,-44.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17073
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -3.5,-35.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17074
     components:
     - type: Transform
       parent: 2
       pos: -6.5,-33.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17075
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -10.5,-35.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17076
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -14.5,-32.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17077
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -14.5,-36.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17078
     components:
     - type: Transform
       parent: 2
       pos: 2.5,-51.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17079
     components:
     - type: Transform
       parent: 2
       pos: -1.5,-51.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17080
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 5.5,-52.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17081
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -4.5,-52.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17082
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 7.5,-49.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17083
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 11.5,-47.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17084
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 3.5,-47.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17085
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 7.5,-53.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17086
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 7.5,-55.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17087
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 10.5,-57.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17088
     components:
     - type: Transform
       parent: 2
       pos: 10.5,-51.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17089
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 14.5,-52.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17090
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 14.5,-56.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17091
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -3.5,-58.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17092
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 4.5,-58.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17093
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -30.5,-50.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17094
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -27.5,-36.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17095
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -27.5,-31.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17096
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -21.5,-31.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17097
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -21.5,-35.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17098
     components:
     - type: Transform
       parent: 2
       pos: -29.5,-37.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17099
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -14.5,-39.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17100
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -17.5,-41.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17101
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -19.5,-20.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17102
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -17.5,-10.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17103
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -15.5,-12.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17104
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -9.5,-12.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17105
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -12.5,-15.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17106
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -17.5,-5.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17107
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -9.5,-8.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17108
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -15.5,-8.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17109
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -17.5,-7.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17110
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -15.5,-2.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17111
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -3.5,-7.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17112
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -9.5,-2.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17113
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -7.5,-4.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17114
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -4.5,-10.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17115
     components:
     - type: Transform
       parent: 2
       pos: -6.5,-12.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17116
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -7.5,-16.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17117
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -6.5,-21.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17118
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -3.5,-18.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17119
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -3.5,-14.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17120
     components:
     - type: Transform
       parent: 2
       pos: -10.5,-17.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17121
     components:
     - type: Transform
       parent: 2
       pos: -14.5,-17.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17122
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -14.5,-27.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17123
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -13.5,-24.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17124
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -11.5,-24.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17125
     components:
     - type: Transform
       parent: 2
       pos: -11.5,-26.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17126
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -34.5,-7.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17127
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -30.5,-15.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17128
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -34.5,-10.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17129
     components:
     - type: Transform
       parent: 2
       pos: -30.5,-9.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17130
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -31.5,-7.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17131
     components:
     - type: Transform
       parent: 2
       pos: -39.5,6.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17132
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -46.5,-1.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17133
     components:
     - type: Transform
       parent: 2
       pos: -46.5,6.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17134
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -30.5,7.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17135
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -30.5,13.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17136
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -32.5,13.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17137
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -26.5,16.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17138
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -24.5,13.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17139
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -29.5,20.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17140
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -33.5,18.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17141
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -35.5,20.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17142
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -35.5,13.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17143
     components:
     - type: Transform
       parent: 2
       pos: -28.5,5.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17144
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -23.5,4.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17145
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -28.5,-5.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17146
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -21.5,-5.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17147
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -18.5,-0.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17148
     components:
     - type: Transform
       parent: 2
       pos: -4.5,1.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17149
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -7.5,-0.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17150
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 3.5,-2.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17151
     components:
     - type: Transform
       parent: 2
       pos: -2.5,3.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17152
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 1.5,8.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17153
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -0.5,11.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17154
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -2.5,12.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17155
     components:
     - type: Transform
       parent: 2
       pos: 4.5,14.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17156
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 7.5,7.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17157
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 12.5,6.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17158
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 8.5,9.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
     - type: PoweredLight
       lastGhostBlink: 3615.3963846
     - type: BlinkingPoweredLight
@@ -113021,18 +114217,30 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 12.5,11.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17160
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 14.5,12.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17161
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 18.5,22.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
     - type: PoweredLight
       lastGhostBlink: 930.0990699
     - type: BlinkingPoweredLight
@@ -113043,769 +114251,1297 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: 19.5,8.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17163
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 19.5,12.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17164
     components:
     - type: Transform
       parent: 2
       pos: 19.5,6.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17165
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 22.5,10.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17166
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 22.5,8.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17167
     components:
     - type: Transform
       parent: 2
       pos: 5.5,1.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17168
     components:
     - type: Transform
       parent: 2
       pos: 12.5,1.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17169
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 13.5,-3.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17170
     components:
     - type: Transform
       parent: 2
       pos: 16.5,-5.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17171
     components:
     - type: Transform
       parent: 2
       pos: 16.5,1.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17172
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 16.5,-0.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17173
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 20.5,-0.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17174
     components:
     - type: Transform
       parent: 2
       pos: 20.5,-5.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17175
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 22.5,-9.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17176
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 28.5,-3.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17177
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 20.5,-10.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17178
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 16.5,-10.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17179
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 16.5,-17.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17180
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 20.5,-17.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17181
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 18.5,-24.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17182
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 15.5,-24.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17183
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 22.5,-12.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17184
     components:
     - type: Transform
       parent: 2
       pos: 29.5,-11.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17185
     components:
     - type: Transform
       parent: 2
       pos: 25.5,-11.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17186
     components:
     - type: Transform
       parent: 2
       pos: 28.5,-15.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17187
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 24.5,-17.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17188
     components:
     - type: Transform
       parent: 2
       pos: 33.5,-19.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17189
     components:
     - type: Transform
       parent: 2
       pos: 37.5,-19.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17190
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 37.5,-26.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17191
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 33.5,-26.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17192
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 33.5,-12.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17193
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 31.5,-12.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17194
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 32.5,-10.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17195
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 37.5,-10.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17196
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 30.5,-4.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17197
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 38.5,-5.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17198
     components:
     - type: Transform
       parent: 2
       pos: 40.5,-14.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17199
     components:
     - type: Transform
       parent: 2
       pos: 48.5,-16.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17200
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 45.5,-20.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17201
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 45.5,-15.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17202
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 32.5,-17.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17203
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 30.5,-0.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17204
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 38.5,-0.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17205
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 29.5,4.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17206
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 35.5,4.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17207
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 40.5,9.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17208
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 40.5,3.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17209
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 44.5,3.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17210
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 46.5,6.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17211
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 50.5,6.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17212
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 48.5,3.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17213
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 52.5,6.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17214
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 58.5,1.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17215
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 52.5,-1.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17216
     components:
     - type: Transform
       parent: 2
       pos: 55.5,-4.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17217
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 55.5,-7.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17218
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 55.5,9.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17219
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 58.5,10.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17220
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 52.5,17.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17221
     components:
     - type: Transform
       parent: 2
       pos: 51.5,27.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17222
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 45.5,13.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17223
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 43.5,13.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17224
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 41.5,13.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17225
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 39.5,13.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17226
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 37.5,13.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17227
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 35.5,13.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17228
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 34.5,17.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17229
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 40.5,17.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17231
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 46.5,-0.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17232
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 50.5,-0.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17233
     components:
     - type: Transform
       parent: 2
       pos: -8.5,14.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17234
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -14.5,22.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17235
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -19.5,7.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17236
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -13.5,16.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17237
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -9.5,22.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17238
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -9.5,16.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17239
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -16.5,11.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17240
     components:
     - type: Transform
       parent: 2
       pos: -17.5,14.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17241
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -19.5,17.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17242
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -15.5,17.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17243
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -14.5,8.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17244
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -11.5,8.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17245
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -9.5,8.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17246
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -2.5,8.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17247
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -4.5,5.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17248
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 1.5,-29.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17249
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -5.5,-29.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17250
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 1.5,-21.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17251
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 1.5,-5.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17252
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 1.5,-14.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17253
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -0.5,-8.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17254
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -0.5,-24.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17255
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 3.5,-22.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17256
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 4.5,-28.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17257
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 6.5,-28.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17258
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 8.5,-26.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17259
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 8.5,-28.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17260
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 8.5,-24.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17261
     components:
     - type: Transform
       parent: 2
       pos: 11.5,-22.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17262
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -37.5,20.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17263
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -37.5,23.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17264
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -37.5,17.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17265
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 3.5,-43.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17266
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 11.5,-43.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17267
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 55.5,-14.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17268
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 59.5,-16.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17269
     components:
     - type: Transform
       parent: 2
       pos: 81.5,24.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17270
     components:
     - type: Transform
       parent: 2
       pos: 73.5,24.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17271
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 77.5,18.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17272
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 70.5,25.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17273
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 71.5,18.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17274
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 84.5,23.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17275
     components:
     - type: Transform
       parent: 2
       pos: -28.5,35.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17276
     components:
     - type: Transform
       parent: 2
       pos: -20.5,35.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17277
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 35.5,-52.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17278
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 50.5,-56.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17279
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 33.5,-62.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17280
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 44.5,-70.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17281
     components:
     - type: Transform
       parent: 2
       pos: 36.5,-68.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17282
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 32.5,-69.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17283
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 50.5,-51.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17284
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 50.5,-45.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17285
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 37.5,-52.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17286
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 37.5,-44.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17287
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 42.5,-45.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17288
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 42.5,-51.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17289
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 48.5,-48.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17290
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 62.5,3.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17291
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 62.5,7.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17292
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 60.5,10.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17293
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 64.5,10.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17294
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 47.5,8.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
     - type: PoweredLight
       lastGhostBlink: 6129.9605367
     - type: BlinkingPoweredLight
@@ -113816,48 +115552,80 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 47.5,12.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17296
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 13.5,-38.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17297
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 9.5,-38.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17298
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 25.5,23.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17299
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 24.5,57.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17300
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 28.5,57.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17301
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 26.5,60.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17302
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 23.5,41.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
     - type: PoweredLight
       lastGhostBlink: 5114.7282186
     - type: BlinkingPoweredLight
@@ -113868,168 +115636,284 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 29.5,41.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17304
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 6.5,-3.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17305
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 6.5,-8.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17306
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -29.5,-1.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17307
     components:
     - type: Transform
       parent: 2
       pos: -29.5,1.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17308
     components:
     - type: Transform
       parent: 2
       pos: -28.5,-43.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17309
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 47.5,-5.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17310
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 31.5,-38.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17311
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 27.5,-35.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17312
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -25.5,-55.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17313
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 66.5,18.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17314
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -34.5,-12.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17315
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 58.5,29.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17316
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 35.5,28.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17317
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 35.5,22.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17318
     components:
     - type: Transform
       parent: 2
       pos: 43.5,27.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17319
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 52.5,32.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17320
     components:
     - type: Transform
       parent: 2
       pos: 57.5,19.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17321
     components:
     - type: Transform
       parent: 2
       pos: 37.5,-15.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17322
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -10.5,-57.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17323
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -6.5,-55.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17324
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 46.5,17.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17325
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 53.5,21.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17326
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 23.5,3.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17327
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 16.5,16.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17328
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -14.5,4.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17329
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 26.5,-38.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17330
     components:
     - type: Transform
       parent: 2
       pos: 32.5,9.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 22562
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 50.5,-3.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
 - proto: PoweredlightBlue
   entities:
   - uid: 17331
@@ -114038,23 +115922,39 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: -25.5,-19.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17332
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 16.5,-19.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17333
     components:
     - type: Transform
       parent: 2
       pos: 4.5,34.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17334
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 29.5,-44.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
 - proto: PoweredlightCyan
   entities:
   - uid: 17335
@@ -114063,6 +115963,10 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: 9.5,-17.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
 - proto: PoweredlightExterior
   entities:
   - uid: 17336
@@ -114070,78 +115974,204 @@ entities:
     - type: Transform
       parent: 2
       pos: -5.5,-59.5
+    - type: PointLight
+      softness: 0.8
+      radius: 12
+      energy: 4
+      color: '#B4FCF0FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17337
     components:
     - type: Transform
       parent: 2
       pos: 6.5,-59.5
+    - type: PointLight
+      softness: 0.8
+      radius: 12
+      energy: 4
+      color: '#B4FCF0FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17338
     components:
     - type: Transform
       parent: 2
       pos: -46.5,-15.5
+    - type: PointLight
+      softness: 0.8
+      radius: 12
+      energy: 4
+      color: '#B4FCF0FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17339
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -50.5,-11.5
+    - type: PointLight
+      softness: 0.8
+      radius: 12
+      energy: 4
+      color: '#B4FCF0FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17340
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -50.5,-5.5
+    - type: PointLight
+      softness: 0.8
+      radius: 12
+      energy: 4
+      color: '#B4FCF0FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17341
     components:
     - type: Transform
       parent: 2
       pos: -40.5,-15.5
+    - type: PointLight
+      softness: 0.8
+      radius: 12
+      energy: 4
+      color: '#B4FCF0FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17342
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 72.5,28.5
+    - type: PointLight
+      softness: 0.8
+      radius: 12
+      energy: 4
+      color: '#B4FCF0FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17343
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 82.5,28.5
+    - type: PointLight
+      softness: 0.8
+      radius: 12
+      energy: 4
+      color: '#B4FCF0FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17344
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 84.5,38.5
+    - type: PointLight
+      softness: 0.8
+      radius: 12
+      energy: 4
+      color: '#B4FCF0FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17345
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 70.5,38.5
+    - type: PointLight
+      softness: 0.8
+      radius: 12
+      energy: 4
+      color: '#B4FCF0FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17346
     components:
     - type: Transform
       parent: 2
       pos: 77.5,40.5
+    - type: PointLight
+      softness: 0.8
+      radius: 12
+      energy: 4
+      color: '#B4FCF0FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17347
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 60.5,15.5
+    - type: PointLight
+      softness: 0.8
+      radius: 12
+      energy: 4
+      color: '#B4FCF0FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17348
     components:
     - type: Transform
       parent: 2
       pos: 30.5,36.5
+    - type: PointLight
+      softness: 0.8
+      radius: 12
+      energy: 4
+      color: '#B4FCF0FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17349
     components:
     - type: Transform
       parent: 2
       pos: 22.5,36.5
+    - type: PointLight
+      softness: 0.8
+      radius: 12
+      energy: 4
+      color: '#B4FCF0FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
     - type: PoweredLight
       lastGhostBlink: 5114.7282186
     - type: BlinkingPoweredLight
@@ -114154,47 +116184,119 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 3.5,3.5
+    - type: PointLight
+      softness: 1.3
+      radius: 8.5
+      energy: 0.65
+      color: '#F6EFE4FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17351
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -36.5,7.5
+    - type: PointLight
+      softness: 1.3
+      radius: 8.5
+      energy: 0.65
+      color: '#F6EFE4FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17352
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -32.5,3.5
+    - type: PointLight
+      softness: 1.3
+      radius: 8.5
+      energy: 0.65
+      color: '#F6EFE4FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17353
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -36.5,0.5
+    - type: PointLight
+      softness: 1.3
+      radius: 8.5
+      energy: 0.65
+      color: '#F6EFE4FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17354
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -2.5,-2.5
+    - type: PointLight
+      softness: 1.3
+      radius: 8.5
+      energy: 0.65
+      color: '#F6EFE4FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17355
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -24.5,8.5
+    - type: PointLight
+      softness: 1.3
+      radius: 8.5
+      energy: 0.65
+      color: '#F6EFE4FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17356
     components:
     - type: Transform
       parent: 2
       pos: -17.5,-21.5
+    - type: PointLight
+      softness: 1.3
+      radius: 8.5
+      energy: 0.65
+      color: '#F6EFE4FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17357
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -25.5,-22.5
+    - type: PointLight
+      softness: 1.3
+      radius: 8.5
+      energy: 0.65
+      color: '#F6EFE4FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
 - proto: PoweredlightOrange
   entities:
   - uid: 17358
@@ -114202,6 +116304,10 @@ entities:
     - type: Transform
       parent: 2
       pos: 58.5,-10.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
 - proto: PoweredLightPostSmall
   entities:
   - uid: 17359
@@ -114249,30 +116355,50 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -18.5,-49.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17366
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -18.5,-44.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17367
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 18.5,-22.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17368
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 52.5,-11.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17369
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -0.5,31.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
 - proto: PoweredlightSodium
   entities:
   - uid: 17370
@@ -114281,41 +116407,90 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 31.5,-21.5
+    - type: PointLight
+      softness: 0.5
+      energy: 4
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17371
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -6.5,-51.5
+    - type: PointLight
+      softness: 0.5
+      energy: 4
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17372
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -2.5,16.5
+    - type: PointLight
+      softness: 0.5
+      energy: 4
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17373
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 3.5,16.5
+    - type: PointLight
+      softness: 0.5
+      energy: 4
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17374
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -24.5,25.5
+    - type: PointLight
+      softness: 0.5
+      energy: 4
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17375
     components:
     - type: Transform
       parent: 2
       pos: -21.5,31.5
+    - type: PointLight
+      softness: 0.5
+      energy: 4
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17376
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 22.5,-21.5
+    - type: PointLight
+      softness: 0.5
+      energy: 4
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
 - proto: PoweredlightWarm
   entities:
   - uid: 17377
@@ -114323,17 +116498,29 @@ entities:
     - type: Transform
       parent: 2
       pos: 13.5,-13.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17378
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 13.5,-15.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17379
     components:
     - type: Transform
       parent: 2
       pos: 9.5,-11.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
 - proto: PoweredSmallLight
   entities:
   - uid: 17380
@@ -114342,84 +116529,204 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 35.5,-12.5
+    - type: PointLight
+      softness: 1.3
+      energy: 0.6
+      color: '#FFD1A3FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17381
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 40.5,-12.5
+    - type: PointLight
+      softness: 1.3
+      energy: 0.6
+      color: '#FFD1A3FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17382
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -46.5,8.5
+    - type: PointLight
+      softness: 1.3
+      energy: 0.6
+      color: '#FFD1A3FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17383
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -41.5,-9.5
+    - type: PointLight
+      softness: 1.3
+      energy: 0.6
+      color: '#FFD1A3FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17384
     components:
     - type: Transform
       parent: 2
       pos: -47.5,-6.5
+    - type: PointLight
+      softness: 1.3
+      energy: 0.6
+      color: '#FFD1A3FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17385
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -45.5,-8.5
+    - type: PointLight
+      softness: 1.3
+      energy: 0.6
+      color: '#FFD1A3FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17386
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -41.5,-13.5
+    - type: PointLight
+      softness: 1.3
+      energy: 0.6
+      color: '#FFD1A3FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17387
     components:
     - type: Transform
       parent: 2
       pos: -10.5,-48.5
+    - type: PointLight
+      softness: 1.3
+      energy: 0.6
+      color: '#FFD1A3FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17388
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 49.5,-11.5
+    - type: PointLight
+      softness: 1.3
+      energy: 0.6
+      color: '#FFD1A3FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17389
     components:
     - type: Transform
       parent: 2
       pos: 54.5,-48.5
+    - type: PointLight
+      softness: 1.3
+      energy: 0.6
+      color: '#FFD1A3FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17390
     components:
     - type: Transform
       parent: 2
       pos: 54.5,-50.5
+    - type: PointLight
+      softness: 1.3
+      energy: 0.6
+      color: '#FFD1A3FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17391
     components:
     - type: Transform
       parent: 2
       pos: 54.5,-52.5
+    - type: PointLight
+      softness: 1.3
+      energy: 0.6
+      color: '#FFD1A3FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17392
     components:
     - type: Transform
       parent: 2
       pos: 54.5,-44.5
+    - type: PointLight
+      softness: 1.3
+      energy: 0.6
+      color: '#FFD1A3FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17393
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 40.5,-49.5
+    - type: PointLight
+      softness: 1.3
+      energy: 0.6
+      color: '#FFD1A3FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17394
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 40.5,-47.5
+    - type: PointLight
+      softness: 1.3
+      energy: 0.6
+      color: '#FFD1A3FF'
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
 - proto: PoweredWarmSmallLight
   entities:
   - uid: 17395
@@ -114427,35 +116734,59 @@ entities:
     - type: Transform
       parent: 2
       pos: 7.5,14.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17396
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 14.5,9.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17397
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 41.5,-9.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17398
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 38.5,-13.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17399
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -30.5,-55.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
   - uid: 17400
     components:
     - type: Transform
       parent: 2
       pos: 26.5,58.5
+    - type: Battery
+      startingCharge: 0
+      pricePerJoule: 0.0001
+      maxCharge: 0
 - proto: PrinterDoc
   entities:
   - uid: 17401
@@ -122821,6 +125152,11 @@ entities:
     - type: Transform
       parent: 2
       pos: 14.5,22.5
+    - type: DeviceLinkSource
+      linkedPorts:
+        18743:
+        - - StationRadioMixerPort
+          - StationRadioRigPort
 - proto: StationRadioReceiver
   entities:
   - uid: 18740
@@ -126514,6 +128850,16 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 26.5,-37.5
+  - uid: 22578
+    components:
+    - type: Transform
+      parent: 2
+      pos: 4.5,34.5
+  - uid: 22580
+    components:
+    - type: Transform
+      parent: 2
+      pos: 3.5,34.5
 - proto: TapeDeck
   entities:
   - uid: 19351
@@ -128060,6 +130406,13 @@ entities:
     - type: Transform
       parent: 2
       pos: 47.5,8.5
+- proto: VinylPlayer
+  entities:
+  - uid: 22579
+    components:
+    - type: Transform
+      parent: 2
+      pos: 3.5,34.5
 - proto: VoiceTrigger
   entities:
   - uid: 4334
