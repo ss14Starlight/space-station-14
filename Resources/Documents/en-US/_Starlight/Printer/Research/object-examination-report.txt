@@ -1,0 +1,22 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+              [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀          [bold]UNKNOWN OBJECT Examination REPORT[/bold]
+────────────────────────────────────────
+Date and Time: [datetime]
+Document Compiler: [signature]
+
+A device or artifact of unfamiliar function or provenance has been collected and analyzed.
+
+Retrieved by: [form]
+
+Examined by: [signature]
+
+External description: [form]
+
+Identified properties: [form]
+
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+
