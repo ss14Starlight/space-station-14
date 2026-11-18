@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Ming) Radio Studio has been upgraded, adding radio mixer, CD player, and radio broadcast recorder.
-    type: Add
-  id: 410225
-  time: '2026-11-08T06:12:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7108
-- author: Caws
-  changes:
   - message: (Ming) The bedsheets in the Medbay are no longer CMO's bedsheets.
     type: Fix
   id: 410226
@@ -2799,4 +2792,11 @@ Entries:
   id: 410624
   time: '2026-11-18T20:03:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7261
+- author: Caws
+  changes:
+  - message: The 'automatically link air alarms' Admin Trick no longer links gas pipe sensors to air alarms.
+    type: Fix
+  id: 410625
+  time: '2026-11-18T21:15:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7324
 Order: -1
