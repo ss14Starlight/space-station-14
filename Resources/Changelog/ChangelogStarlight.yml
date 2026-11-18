@@ -1,20 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: "(Flotilla) Cargo: Add missing LV wires for Cargo Bay's Shuttle docking."
-    type: Fix
-  id: 410192
-  time: '2026-11-07T08:44:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7090
-- author: Hot Mic
-  changes:
-  - message: "(Flotilla) Service: Update the Radio Host's Setup to the new standard."
-    type: Fix
-  id: 410193
-  time: '2026-11-07T08:44:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7090
-- author: Hot Mic
-  changes:
   - message: "(Flotilla) Service: Replace Radio Host's working shuttle console with a generic console."
     type: Tweak
   id: 410194
@@ -2799,4 +2785,18 @@ Entries:
   id: 410591
   time: '2026-11-18T09:59:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7247
+- author: redmushie
+  changes:
+  - message: (Plasma) Change Distro/Waste layers to match docking port standard.
+    type: Tweak
+  id: 410592
+  time: '2026-11-18T09:59:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7299
+- author: redmushie
+  changes:
+  - message: (Plasma) Route distro, waste and HV to every docking port.
+    type: Add
+  id: 410593
+  time: '2026-11-18T09:59:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7299
 Order: -1
