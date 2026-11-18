@@ -85,11 +85,9 @@ public sealed partial class TranslatorSystem : EntitySystem
 
     private void OnTranslatorParentChanged(Entity<HandheldTranslatorComponent> ent, ref EntParentChangedMessage args)
     {
-        if (_timing.ApplyingState || !HasComp<HoldsTranslatorComponent>(args.OldParent))
-            return;
-
-        // The holder is being deleted (e.g. at round restart), so there is nothing left to update.
-        if (TerminatingOrDeleted(args.OldParent.Value))
+        if (_timing.ApplyingState 
+            || !HasComp<HoldsTranslatorComponent>(args.OldParent) 
+            || TerminatingOrDeleted(args.OldParent.Value))
             return;
 
         // Update the translator on the next tick - this is necessary because there's a good chance the removal from a container.
