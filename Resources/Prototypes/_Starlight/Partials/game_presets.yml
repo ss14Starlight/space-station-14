@@ -90,7 +90,6 @@
   - !Remove MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
   - RailroadingMinor
-  - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Secret
