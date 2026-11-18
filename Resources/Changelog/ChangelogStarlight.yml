@@ -1,13 +1,6 @@
 Entries:
 - author: Floximo
   changes:
-  - message: Kill AI was changed into "Teach AI a lesson".
-    type: Tweak
-  id: 410210
-  time: '2026-11-07T18:24:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6970
-- author: Floximo
-  changes:
   - message: The AI core is now armoured and requires explosives to shutdown and much bigger explosives to entirely remove it.
     type: Tweak
   id: 410211
@@ -2799,4 +2792,11 @@ Entries:
   id: 410609
   time: '2026-11-18T12:18:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7309
+- author: Citrea
+  changes:
+  - message: Dolls shells can now be attached to cyberparts properly.
+    type: Fix
+  id: 410610
+  time: '2026-11-18T14:37:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7317
 Order: -1
