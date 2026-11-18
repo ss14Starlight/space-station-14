@@ -70,9 +70,6 @@ public sealed partial class TranslatorSystem : EntitySystem
 
     private void OnTranslatorInserted(Entity<HandheldTranslatorComponent> ent, ref EntGotInsertedIntoContainerMessage args)
     {
-        // The server sends the holder's language lists. Recomputing them here while the client is applying server
-        // state can use data that hasn't arrived yet (such as the species' default languages) and overwrite the
-        // correct lists until the server sends them again.
         if (_timing.ApplyingState)
             return;
 
