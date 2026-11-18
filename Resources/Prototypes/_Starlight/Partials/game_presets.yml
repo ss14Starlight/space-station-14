@@ -5,6 +5,7 @@
   rules:
     - SpaceTrafficControlEventScheduler
     - SpaceTrafficControlFriendlyEventScheduler
+    - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: KesslerSyndrome
@@ -31,6 +32,7 @@
     - BloodBound
     - CosmicCult
     - Devil
+    - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: AllerAtOnce
@@ -59,6 +61,7 @@
     - BloodBound
     - CosmicCult
     - Devil
+    - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Extended
@@ -67,12 +70,14 @@
   voteCooldown: 0
   rules:
   - SpaceTrafficControlEventScheduler
+  - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Greenshift
   showInVote: true
   rules:
   - SpaceTrafficControlFriendlyEventScheduler
+  - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Dynamic
@@ -85,12 +90,14 @@
   - !Remove MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
   - RailroadingMinor
+  - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Secret
   minPlayers: 5
   rules:
     - RailroadingMinor
+    - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Traitor
@@ -101,6 +108,7 @@
   - SubGamemodesRuleNoChangelings
   - SpaceTrafficControlEventScheduler
   - RailroadingMinor
+  - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Nukeops
@@ -110,6 +118,7 @@
   - !Remove DummyNonAntagChance
   - SubGamemodesRuleNuclearOperativeScaling
   - SpaceTrafficControlEventScheduler
+  - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Revolutionary
@@ -119,6 +128,7 @@
   - !Remove DummyNonAntagChance
   - SubGamemodesRuleConversion # 3 max thieves on revs# so they can't be guaranteed an Emag.
   - SpaceTrafficControlEventScheduler
+  - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Wizard
@@ -127,6 +137,7 @@
   - !Remove DummyNonAntagChance
   - SubGamemodesRuleNoWizard #No Dual Wizards at the start# midround is fine
   - SpaceTrafficControlEventScheduler
+  - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Xenoborgs
@@ -136,6 +147,7 @@
   - !Remove DummyNonAntagChance
   - SubGamemodesRuleNoXenoborg # no two motherships. Allows wizards to spawn on Xenoborgs. Space is dangerous# yo.
   - SpaceTrafficControlEventScheduler
+  - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Zombie
@@ -144,6 +156,7 @@
   rules:
   - SubGamemodesRuleZombieCompliantAntags # I want to trial this# see how it plays out. If it goes poorly# we'll remove Xenoborgs from it.
   - SpaceTrafficControlEventScheduler
+  - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Zombieteors
@@ -152,4 +165,5 @@
   rules:
   - SubGamemodesRuleZombieCompliantAntags # I want to trial this# see how it plays out. If it goes poorly# we'll remove Xenoborgs from it.
   - SpaceTrafficControlEventScheduler
+  - WireCutScheduler
 
