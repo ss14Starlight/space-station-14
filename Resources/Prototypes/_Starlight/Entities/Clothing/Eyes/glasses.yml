@@ -43,28 +43,6 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingEyesGlassesCheapSunglasses
-  id: ClothingEyesGlassesMusicianSunglasses
-  name: musician shades
-  description: A stylish pair of purple shades. They function as sunglasses, too.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Eyes/Glasses/musicianglasses.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Eyes/Glasses/musicianglasses.rsi
-  - type: FlashImmunity
-  - type: EyeProtection
-    protectionTime: 5
-  - type: StealTarget
-    stealGroup: MiscGlassesCollection
-  - type: Tag
-    tags:
-    - Sunglasses
-    - PetWearable
-    - HamsterWearable
-    - WhitelistChameleon
-
-- type: entity
   parent: ClothingEyesModularHudSunglasses
   id: ClothingEyesSunGlassesHudSkill
   name: skills sunglasses
@@ -76,11 +54,62 @@
         children:
         - id: HudModuleShowJobIcons
         - id: HudModuleShowCriminalRecordIcons
-        - id: HudModuleShowAccessReaderSettings
+        - id: HudModuleShowIdAccess
   - type: StealTarget
     stealGroup: RareGlassesCollection
   - type: EyeProtection
     protectionTime: 5
+
+- type: entity
+  parent: ClothingEyesModularHudGlasses
+  id: ClothingEyesGlassesSkillsPrescription
+  name: prescription skills glasses
+  description: Prescription glasses with a built-in skills HUD, showing the employment history of nearby NT crew members.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowJobIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleShowIdAccess
+  - type: VisionCorrection
+  - type: StealTarget
+    stealGroup: RareGlassesCollection
+
+- type: entity
+  parent: [ClothingEyesModularHudGlasses, BaseCommandContraband]
+  id: ClothingEyesGlassesCommandPrescription
+  name: prescription administration glasses
+  description: Prescription glasses with an administration HUD that shows crew ID status and access permissions.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowJobIcons
+        - id: HudModuleShowIdAccess
+        - id: HudModuleShowAccessReaderSettings
+  - type: VisionCorrection
+  - type: StealTarget
+    stealGroup: RareGlassesCollection
+  - type: Contraband
+    tier: Tier2
+
+- type: entity
+  parent: [ClothingEyesModularHudGoggles, BaseEngineeringContraband, BaseRoboticistContraband]
+  id: ClothingEyesGlassesDiagnosticGoggles
+  name: diagnostic goggles
+  description: Goggles with a diagnostic HUD that monitors the integrity of nearby inorganic lifeforms.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowInorganicHealthBars
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [ResearchDirector, BlueShield]
 
 - type: entity
   parent: [ClothingEyesModularHudSunglasses, BaseBlueShieldContraband]

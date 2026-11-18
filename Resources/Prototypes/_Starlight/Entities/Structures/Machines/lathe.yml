@@ -110,6 +110,7 @@
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
     - PrescriptionHudModuleStatic
+    - SyndicateModularHudFramesStatic
   - type: MaterialStorage
     whitelist: &StandardMaterialWhitelist
       tags:
@@ -175,6 +176,7 @@
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
     - PrescriptionHudModuleStatic
+    - SyndicateModularHudFramesStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: StealTarget
@@ -231,6 +233,7 @@
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
     - PrescriptionHudModuleStatic
+    - SyndicateModularHudFramesStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
@@ -320,6 +323,7 @@
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
     - PrescriptionHudModuleStatic
+    - SyndicateModularHudFramesStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: StealTarget
@@ -374,6 +378,7 @@
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
     - PrescriptionHudModuleStatic
+    - SyndicateModularHudFramesStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: StealTarget
@@ -498,6 +503,7 @@
     - StarlightSecurityAmmoEmagStatic
     - StarlightSecurityGrenadesEmag
     - SyndicateAmmoStatic
+    - SyndicateModularHudFramesStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
@@ -590,6 +596,7 @@
     - StarlightSecurityAmmoEmagStatic
     - StarlightSecurityGrenadesEmag
     - SyndicateAmmoStatic
+    - SyndicateModularHudFramesStatic
     dynamicPacks:
     - StarlightAutolatheLootable
     - StarlightProtolatheLootable
@@ -696,6 +703,7 @@
         - StarlightSyndicateAmmoStatic
         - SyndicateAmmoStatic
         - PrescriptionHudModuleStatic
+        - SyndicateModularHudFramesStatic
     - type: BlueprintReceiver
       whitelist:
         tags:

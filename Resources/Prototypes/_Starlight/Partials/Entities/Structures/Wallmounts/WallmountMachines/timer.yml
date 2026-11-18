@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: SignalTimer
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems

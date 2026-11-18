@@ -10,21 +10,20 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._Starlight.Light;
 
 /// <summary>
-/// Prevents overlapping lights from washing sprites out to white.
+/// Stops overlapping lights from washing out sprite colours.
 /// </summary>
 /// <remarks>
-/// <para>
-/// Lights are added together in the light map, so overlapping lights can produce values above 1, washing out sprite colours.
-/// </para>
-/// <para>
-/// This overlay applies a smooth tonemap to the light map: values below the <i>knee</i>
-/// (<see cref="StarlightCCVars.LightTonemapKnee"/>) remain unchanged, while higher values gradually approach the
-/// <i>maximum</i> (<see cref="StarlightCCVars.LightTonemapMax"/>).
-/// </para>
-/// <para>
-/// It runs in <see cref="OverlaySpace.WorldSpaceBelowWorld"/>, after the light map is generated but before the world is drawn.
-/// Since a shader cannot read and write the same texture, the light map is copied to a float texture before processing.
-/// </para>
+/// Smoothly tonemaps the light map, preserving values below
+/// <see cref="StarlightCCVars.LightTonemapKnee"/> and gradually bringing higher values
+/// toward <see cref="StarlightCCVars.LightTonemapMax"/>.
+///
+/// Client <see cref="StarlightCCVars.LightBoost"/> multiplies the exposure and never turns the roll-off off.
+/// With the roll-off disabled, the overlay still runs while the boost is above 1 and applies only the boost.
+/// Server exposure is applied only when roll-off is enabled.
+///
+/// Runs in <see cref="OverlaySpace.WorldSpaceBelowWorld"/>, after the light map is generated
+/// and before the world is rendered. A float texture copy prevents reading from and
+/// writing to the same texture.
 /// </remarks>
 public sealed partial class LightTonemapOverlay : Robust.Client.Graphics.Overlay
 {
@@ -44,6 +43,14 @@ public sealed partial class LightTonemapOverlay : Robust.Client.Graphics.Overlay
 
     private const float MinRollOff = 0.01f;
 
+    public const float MinLightBoost = 1f;
+    public const float MaxLightBoost = 1.3f;
+
+    /// <summary>
+    /// <see cref="StarlightCCVars.LightTonemapKnee"/> used when roll-off is disabled and only the light boost is applied. Nothing becomes this bright.
+    /// </summary>
+    private const float NoRollOff = 1000f;
+
     private readonly OverlayResourceCache<CachedResources> _resources = new();
     private readonly ShaderInstance _copyShaderInst;
     private readonly ShaderInstance _tonemapShaderInst;
@@ -53,6 +60,13 @@ public sealed partial class LightTonemapOverlay : Robust.Client.Graphics.Overlay
     /// </summary>
     private bool _unsupported;
 
+    private readonly CVarSubscriptions _cvars;
+    private float _boost;
+    private bool _rollOff;
+    private float _exposure;
+    private float _knee;
+    private float _maxLight;
+
     public LightTonemapOverlay()
     {
         IoCManager.InjectDependencies(this);
@@ -60,6 +74,13 @@ public sealed partial class LightTonemapOverlay : Robust.Client.Graphics.Overlay
 
         _copyShaderInst = _proto.Index(_copyShader).InstanceUnique();
         _tonemapShaderInst = _proto.Index(_tonemapShader).InstanceUnique();
+
+        _cvars = new CVarSubscriptions(_cfg);
+        _cvars.Track(StarlightCCVars.LightBoost, v => _boost = Math.Clamp(v, MinLightBoost, MaxLightBoost));
+        _cvars.Track(StarlightCCVars.LightTonemap, v => _rollOff = v);
+        _cvars.Track(StarlightCCVars.LightTonemapExposure, v => _exposure = v);
+        _cvars.Track(StarlightCCVars.LightTonemapKnee, v => _knee = v);
+        _cvars.Track(StarlightCCVars.LightTonemapMax, v => _maxLight = v);
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
@@ -107,27 +128,39 @@ public sealed partial class LightTonemapOverlay : Robust.Client.Graphics.Overlay
 
         _copyShaderInst.SetParameter("targetSize", targetSize);
         _tonemapShaderInst.SetParameter("targetSize", targetSize);
-        _tonemapShaderInst.SetParameter("exposure", _cfg.GetCVar(StarlightCCVars.LightTonemapExposure));
-        var maxLight = MathF.Max(_cfg.GetCVar(StarlightCCVars.LightTonemapMax), MinRollOff);
-        var knee = Math.Clamp(_cfg.GetCVar(StarlightCCVars.LightTonemapKnee), 0f, maxLight - MinRollOff);
+        float exposure, maxLight, knee;
+        if (_rollOff)
+        {
+            exposure = _exposure * _boost;
+            maxLight = MathF.Max(_maxLight, MinRollOff);
+            knee = Math.Clamp(_knee, 0f, maxLight - MinRollOff);
+        }
+        else
+        {
+            exposure = _boost;
+            knee = NoRollOff;
+            maxLight = NoRollOff + 1f;
+        }
+
+        _tonemapShaderInst.SetParameter("exposure", exposure);
         _tonemapShaderInst.SetParameter("knee", knee);
         _tonemapShaderInst.SetParameter("maxLight", maxLight);
 
         handle.RenderInRenderTarget(copy,
-            (() =>
+            () =>
             {
                 handle.UseShader(_copyShaderInst);
                 handle.SetTransform(matrix);
                 handle.DrawTextureRect(target.Texture, bounds);
-            }), null);
+            }, null);
 
         handle.RenderInRenderTarget(target,
-            (() =>
+            () =>
             {
                 handle.UseShader(_tonemapShaderInst);
                 handle.SetTransform(matrix);
                 handle.DrawTextureRect(copy.Texture, bounds);
-            }), null);
+            }, null);
 
         handle.UseShader(null);
         handle.SetTransform(Matrix3x2.Identity);
@@ -135,6 +168,7 @@ public sealed partial class LightTonemapOverlay : Robust.Client.Graphics.Overlay
 
     protected override void DisposeBehavior()
     {
+        _cvars.Dispose();
         _resources.Dispose();
 
         base.DisposeBehavior();

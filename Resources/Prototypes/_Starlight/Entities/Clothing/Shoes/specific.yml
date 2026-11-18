@@ -11,6 +11,10 @@
     sprite: Clothing/Shoes/Specific/galoshes.rsi
   - type: StealTarget
     stealGroup: GaloshesCollection
+  - type: Tag
+    tags:
+      - Recyclable
+      - WhitelistChameleon
 
 - type: entity
   parent: ClothingShoesBase

@@ -1,5 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._Moffstation.Clothing.ModularHud.Components;
+using Content.Shared._Moffstation.Clothing.ModularHud.Systems;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Clothing.Components;
@@ -18,6 +20,7 @@ namespace Content.Shared._Starlight.Access;
 public sealed partial class ShowAccessSystem : EntitySystem
 {
     [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedModularHudSystem _modularHud = default!;
     [Dependency] private ExamineSystemShared _examine = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private IPrototypeManager _proto = default!;
@@ -121,6 +124,16 @@ public sealed partial class ShowAccessSystem : EntitySystem
                 if ((clothing.Slots & slotDef.SlotFlags) == 0x00) continue;
                 if (TryComp(slot.ContainedEntity, out showAccess))
                     break;
+
+                if (!TryComp<ModularHudComponent>(slot.ContainedEntity, out var hud) ||
+                    (hud.ActiveSlots & slotDef.SlotFlags) == 0x00)
+                    continue;
+
+                foreach (var module in _modularHud.GetModules((slot.ContainedEntity.Value, hud)))
+                {
+                    if (TryComp(module.Owner, out showAccess))
+                        return true;
+                }
             }
             if (showAccess is null) return false;
         }
