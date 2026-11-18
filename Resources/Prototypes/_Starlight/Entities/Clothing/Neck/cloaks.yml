@@ -655,9 +655,9 @@
   description: A rough mantle stained in the blood of prisoners.
   components:
   - type: Sprite
-    sprite: Clothing/Neck/mantles/wardenmantle.rsi
+    sprite: _Starlight/Clothing/Neck/Cloaks/wardenmantle.rsi
   - type: Clothing
-    sprite: Clothing/Neck/mantles/wardenmantle.rsi
+    sprite: _Starlight/Clothing/Neck/Cloaks/wardenmantle.rsi
 
 - type: entity
   parent: [ ClothingNeckBase ]
