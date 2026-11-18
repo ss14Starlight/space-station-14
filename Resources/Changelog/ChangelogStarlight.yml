@@ -1,13 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: '(Flotilla) Other: Add autolathe to Tools.'
-    type: Add
-  id: 410196
-  time: '2026-11-07T08:44:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7090
-- author: Hot Mic
-  changes:
   - message: '(Flotilla) Other: Add missing decals.'
     type: Add
   id: 410197
@@ -2799,4 +2792,11 @@ Entries:
   id: 410595
   time: '2026-11-18T10:25:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7023
+- author: Johnny
+  changes:
+  - message: Par Par Sah-Tials.
+    type: Tweak
+  id: 410596
+  time: '2026-11-18T10:25:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7312
 Order: -1
