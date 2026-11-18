@@ -1,13 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: '(Flotilla) Other: Add new station beacons.'
-    type: Add
-  id: 410195
-  time: '2026-11-07T08:44:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7090
-- author: Hot Mic
-  changes:
   - message: '(Flotilla) Other: Add autolathe to Tools.'
     type: Add
   id: 410196
@@ -2799,4 +2792,11 @@ Entries:
   id: 410594
   time: '2026-11-18T09:59:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7276
+- author: baltdev
+  changes:
+  - message: Eeeplet plushie.
+    type: Add
+  id: 410595
+  time: '2026-11-18T10:25:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7023
 Order: -1
