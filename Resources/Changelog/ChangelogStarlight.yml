@@ -1,18 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: '(Escape pod: Lifeboat) Subfloor distro and waste tanks.'
-    type: Add
-  id: 410148
-  time: '2026-11-05T19:27:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7053
-- author: redmushie
-  changes:
-  - message: '(Escape pod: Lifeboat) Replaced air tank with cyborg recharger.'
-    type: Tweak
-  id: 410149
-  time: '2026-11-05T19:27:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7053
 - author: Ohelig
   changes:
   - message: (Cork) Adds new radio machines to Radio Host.
@@ -2799,4 +2785,18 @@ Entries:
   id: 410547
   time: '2026-11-17T19:47:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7280
+- author: Caws
+  changes:
+  - message: (Silica) Added new radio equipment to Radio Host.
+    type: Add
+  id: 410548
+  time: '2026-11-18T06:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7307
+- author: Caws
+  changes:
+  - message: (Silica) Breaking news console added to Reporter.
+    type: Add
+  id: 410549
+  time: '2026-11-18T06:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7307
 Order: -1
