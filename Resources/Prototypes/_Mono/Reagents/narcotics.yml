@@ -16,7 +16,7 @@
     - !type:PlantDiethylamine {}
   # Starlight end
   metabolisms:
-    Bloodstream: # Starlight
+    Bloodstream: &PhenylpiperidineMetabolism # Starlight
       metabolismRate: 0.2
       effects:
       - !type:HealthChange
@@ -123,3 +123,4 @@
         reagent: Phenylpiperidine
         amount: 0.1
         # Starlight-End
+    Digestion: *PhenylpiperidineMetabolism # Starlight, so you can actually OD the right way

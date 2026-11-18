@@ -14,3 +14,5 @@ mind-control-invalid = The subject must be alive.
 roles-antag-mind-controlled-name = Mind Controlled
 roles-antag-mind-controlled-objective = Obey your handler's commands.
 fragile-implant-extraction = The fragile implant disintegrates upon extraction...
+
+injection-port-examine = {CAPITALIZE(SUBJECT($target))} {CONJUGATE-HAVE($target)} an [color=#9dc6cf]injection port[/color] installed that will make injecting faster.

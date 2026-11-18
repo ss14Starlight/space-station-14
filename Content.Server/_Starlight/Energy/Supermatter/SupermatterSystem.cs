@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Audio;
 using Content.Server.Explosion.EntitySystems;
@@ -12,6 +13,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Database;
 using Content.Shared.Ghost;
 using Content.Shared.Interaction;
 using Content.Shared.Projectiles;
@@ -34,6 +36,7 @@ namespace Content.Server._Starlight.Energy.Supermatter;
 public sealed partial class SupermatterSystem : AccUpdateEntitySystem
 {
     [Dependency] private AchievementSystem _achievements = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private AudioSystem _audio = default!;
@@ -86,10 +89,18 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
         _damageable.TryChangeDamage(ent.Owner, new(_burn, damage), true);
 
         QueueDel(args.User);
+        args.Handled = true;
+
+        _adminLogger.Add(LogType.EntityDelete,
+                        LogImpact.Medium,
+                        $"Entity {ToPrettyString(args.User):entity} interacted with {ToPrettyString(ent):supermatter} and was deleted");
     }
 
     private void OnCollide(Entity<SupermatterComponent> ent, ref EndCollideEvent args)
     {
+        if (TerminatingOrDeleted(args.OtherEntity) || EntityManager.IsQueuedForDeletion(args.OtherEntity))
+            return;
+
         ent.Comp.Activated = true;
 
         if (HasComp<ProjectileComponent>(args.OtherEntity)
@@ -110,6 +121,10 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
         _damageable.TryChangeDamage(ent.Owner, new(_burn, damage), true);
 
         QueueDel(args.OtherEntity);
+
+        _adminLogger.Add(LogType.EntityDelete,
+                        LogImpact.Medium,
+                        $"Entity {ToPrettyString(args.OtherEntity):entity} collided with {ToPrettyString(ent):supermatter} and was deleted");
     }
 
     // Check if entity is immune to supermatter (directly or via worn items)

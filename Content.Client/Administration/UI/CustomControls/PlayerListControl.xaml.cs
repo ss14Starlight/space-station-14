@@ -16,8 +16,6 @@ namespace Content.Client.Administration.UI.CustomControls;
 [GenerateTypedNameReferences]
 public sealed partial class PlayerListControl : BoxContainer
 {
-    private readonly AdminSystem _adminSystem;
-
     private readonly IEntityManager _entManager;
     private readonly IUserInterfaceManager _uiManager;
 
@@ -33,29 +31,21 @@ public sealed partial class PlayerListControl : BoxContainer
     {
         _entManager = IoCManager.Resolve<IEntityManager>();
         _uiManager = IoCManager.Resolve<IUserInterfaceManager>();
-        _adminSystem = _entManager.System<AdminSystem>();
+        _systemManager = IoCManager.Resolve<IEntitySystemManager>(); // Starlight
         RobustXamlLoader.Load(this);
         // Fill the Option data
         PlayerListContainer.ItemPressed += PlayerListItemPressed;
         PlayerListContainer.ItemKeyBindDown += PlayerListItemKeyBindDown;
         PlayerListContainer.GenerateItem += GenerateButton;
         PlayerListContainer.NoItemSelected += PlayerListNoItemSelected;
-        PopulateList(_adminSystem.PlayerList);
+        PopulateList(_currentPlayerList); // Starlight-edit
         FilterLineEdit.OnTextChanged += _ => FilterList();
-        _adminSystem.PlayerListChanged += PopulateList;
         BackgroundPanel.AddStyleClass(StarlightStyleClass.InsetPanel); // Starlight-edit: Unhardcode
     }
 
     public IReadOnlyList<PlayerInfo> PlayerInfo => _playerList;
 
     public event Action<PlayerInfo?>? OnSelectionChanged;
-
-    #region Starlight
-    /// <summary>
-    /// Raised after the list is refreshed with new player data. Starlight.
-    /// </summary>
-    public event Action? OnListPopulated;
-    #endregion
 
     private void PlayerListNoItemSelected()
     {
@@ -127,7 +117,7 @@ public sealed partial class PlayerListControl : BoxContainer
         // Maintain existing pin statuses
         var pinnedPlayers = _playerList.Where(p => p.IsPinned).ToDictionary(p => p.SessionId);
 
-        players ??= _adminSystem.PlayerList;
+        players ??= _currentPlayerList; // Starlight-edit
 
         _playerList = players.ToList();
 
