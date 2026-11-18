@@ -84,12 +84,8 @@ public sealed partial class ChangelingTransformBoundUserInterface(EntityUid owne
     }
 
     private void SendIdentitySelect(NetEntity identityId)
-    {
-        SendPredictedMessage(new ChangelingTransformIdentitySelectMessage(identityId));
-    }
+        => SendPredictedMessage(new ChangelingTransformIdentitySelectMessage(identityId)); // Starlight-edit: lambda
 
     private void SendIdentityDrop(NetEntity identityId)
-    {
-        SendPredictedMessage(new ChangelingTransformIdentityDropMessage(identityId));
-    }
+        => SendPredictedMessage(new ChangelingTransformIdentityDropMessage(identityId)); // Starlight-edit: lambda
 }

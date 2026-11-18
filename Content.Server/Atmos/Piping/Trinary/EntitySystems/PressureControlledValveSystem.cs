@@ -42,13 +42,9 @@ public sealed partial class PressureControlledValveSystem : EntitySystem
 
         // If output is higher than input, flip input/output to enable bidirectional flow.
         if (outletNode.Air.Pressure > inletNode.Air.Pressure)
-        {
-            PipeNode temp = outletNode;
-            outletNode = inletNode;
-            inletNode = temp;
-        }
+            (inletNode, outletNode) = (outletNode, inletNode); // Starlight-edit: Fix warning by using tuple for values swapping.
 
-        float control = (controlNode.Air.Pressure - outletNode.Air.Pressure) - comp.Threshold;
+        float control = controlNode.Air.Pressure - outletNode.Air.Pressure - comp.Threshold; // Starlight-edit: Fix warning by removing unnecessary parentheses
         float transferRate;
         if (control < 0)
         {
