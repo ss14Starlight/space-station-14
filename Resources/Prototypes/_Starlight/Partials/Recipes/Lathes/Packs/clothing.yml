@@ -7,3 +7,10 @@
     - ClothingNeckTieGrey
     - ClothingNeckLGBTie
     - ClothingNeckTieRetro
+
+- type: !PartialOnly latheRecipePack
+  id: Carpets
+  recipes:
+  - DoormatRoll
+  - DoormatRollWelcome
+  - DoormatRollBless

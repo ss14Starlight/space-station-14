@@ -106,7 +106,6 @@
   radioChannels:
   - Supply
   - Science
-  - Expedition #Starlight
 
   # Visual
   inventoryTemplateId: borgTall

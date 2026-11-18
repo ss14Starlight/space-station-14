@@ -118,6 +118,10 @@ ui-starlight = Starlight
 ui-options-auto-punctuate = Automatically punctuate in-character messages
 ui-options-general-ghost-themes = Ghost Themes
 ui-options-general-ghost-themes-force-tester = Force display the Tester tab in the Ghost Themes menu
+ui-options-chat-stacking = Stack repeated chat messages
+ui-options-chat-stacking-tooltip = Collapse identical recent chat messages into one line with a repeat counter.
+ui-options-chat-stacking-history = Chat stacking history
+ui-options-chat-stacking-disabled = Disabled
 
 ## Admin
 
@@ -229,3 +233,6 @@ ui-options-bloom-threshold-desc = How much brighter than its light a pixel has t
 ui-options-bloom-radius = Bloom radius
 ui-options-bloom-radius-desc = How far the glow spreads.
 ui-options-film-grain-strength = Film grain strength
+
+## Controls sections
+ui-options-function-sl-interact-with-other-hand = Interact with other hand

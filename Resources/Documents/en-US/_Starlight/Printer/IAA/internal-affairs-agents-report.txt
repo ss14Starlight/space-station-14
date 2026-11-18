@@ -1,0 +1,16 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+─────────────────────────────────────────
+⠀⠀               [bold]AUDIT REPORT[/bold]
+─────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+I, [signature], during the course of an internal audit requested by [form] for the reason of [form], found the following irregularities: [form]
+
+I also wish to report the following: [form]
+
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+
