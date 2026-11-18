@@ -1,11 +1,18 @@
 - type: !PartialOnly entity
   id: BaseMech
   components:
+  - type: !Remove AirFilter
+  - type: !Remove AirIntake
+  - type: !Remove AtmosDevice
   - type: Mech
     maxIntegrity: 170
     batteryWhitelist:
       tags:
       - MechReactor
+  - type: VehicleHandBlocker
+    exemptOperators:
+      components:
+      - BorgChassis
   - type: ArmorSparkEffect
     alwaysSparks: true
   - type: Repairable # Borg-like mech repair
@@ -64,8 +71,8 @@
   - type: MeleeThrowOnHit
     speed: 1
     distance: 2
-  - type: Mech
-    mechToPilotDamageMultiplier: 0.0 # Mechs are safe
+  - type: Vehicle
+    transferDamage: false # Mechs are safe
 
 - type: !PartialOnly entity
   id: MechHonkerBattery
@@ -79,8 +86,8 @@
 - type: !PartialOnly entity
   id: MechHamtr
   components:
-  - type: Mech
-    mechToPilotDamageMultiplier: 0.0 # Mechs are safe
+  - type: Vehicle
+    transferDamage: false # Mechs are safe
   - type: MovementSpeedModifier
     baseWalkSpeed: 2 # All mechs walk at the same speed
 
@@ -99,9 +106,13 @@
   components:
   - type: Mech
     maxEquipmentAmount: 1 # give Vim equipment
-    mechToPilotDamageMultiplier: 0.0 # Mechs are safe
+  - type: Vehicle
+    requiresHands: false
+    transferDamage: false # Mechs are safe
   - type: MovementSpeedModifier
     baseWalkSpeed: 2 # All mechs walk at the same speed
+  - type: VehicleHandBlocker
+    blockedHands: 0
 
 - type: !PartialOnly entity
   id: MechVimBattery

@@ -1,3 +1,4 @@
+using Content.Shared.Vehicle.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Mech.Equipment.Components;
 using Content.Shared.Mech.Components;
@@ -13,6 +14,7 @@ namespace Content.Shared._Starlight.Mech.Equipment.EntitySystems;
 public sealed partial class MechNightVisionSystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private VehicleSystem _vehicle = default!;
 
     public override void Initialize()
     {
@@ -34,14 +36,14 @@ public sealed partial class MechNightVisionSystem : EntitySystem
     {
         if (!TryComp<MechEquipmentComponent>(uid, out var equipmentComp)
             || equipmentComp.EquipmentOwner == null
-            || !TryComp<MechComponent>(equipmentComp.EquipmentOwner, out var mechComp)
-            || mechComp.PilotSlot.ContainedEntity == null)
+            || _vehicle.GetOperatorOrNull(equipmentComp.EquipmentOwner.Value) is not { } pilot)
             return;
 
-        if (HasComp<NightVisionComponent>(mechComp.PilotSlot.ContainedEntity.Value) && comp.EquipmentComponentAdded)
-            RemComp<NightVisionComponent>(mechComp.PilotSlot.ContainedEntity.Value);
+        if (HasComp<NightVisionComponent>(pilot) && comp.EquipmentComponentAdded)
+            RemComp<NightVisionComponent>(pilot);
         comp.EquipmentComponentAdded = false;
         comp.EquipmentToggled = false;
+        Dirty(uid, comp);
     }
 
     /// <summary>
@@ -54,11 +56,9 @@ public sealed partial class MechNightVisionSystem : EntitySystem
     {
         if (!TryComp<MechEquipmentComponent>(uid, out var equipmentComp)
             || equipmentComp.EquipmentOwner == null
-            || !TryComp<MechComponent>(equipmentComp.EquipmentOwner, out var mechComp)
-            || mechComp.PilotSlot.ContainedEntity == null)
+            || _vehicle.GetOperatorOrNull(equipmentComp.EquipmentOwner.Value) is not { } pilot)
             return;
 
-        var pilot = mechComp.PilotSlot.ContainedEntity.Value;
         if (!comp.EquipmentToggled && !HasComp<NightVisionComponent>(pilot))
         {
             AddComp<NightVisionComponent>(pilot);
@@ -74,6 +74,7 @@ public sealed partial class MechNightVisionSystem : EntitySystem
         comp.EquipmentToggled = !comp.EquipmentToggled;
 
         _actions.SetToggled((args.Action.Owner, args.Action.Comp), comp.EquipmentToggled);
+        Dirty(uid, comp);
     }
 
     private void OnPilotEject(EntityUid uid, MechNightVisionComponent component, ref BeforePilotEjectEvent args)
@@ -84,6 +85,7 @@ public sealed partial class MechNightVisionSystem : EntitySystem
 
         component.EquipmentComponentAdded = false;
         component.EquipmentToggled = false;
+        Dirty(uid, component);
 
         if (TryComp<MechEquipmentActionComponent>(uid, out var actionComp))
             _actions.SetToggled(actionComp.EquipmentActionEntity, false);

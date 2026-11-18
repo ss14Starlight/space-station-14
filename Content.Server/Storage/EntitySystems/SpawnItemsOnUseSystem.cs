@@ -70,25 +70,24 @@ namespace Content.Server.Storage.EntitySystems
 
         // 🌟Starlight🌟 start
         //Functionality was moved and slightly modified
-            var coords = Transform(args.User).Coordinates;
-            SpawnItems(uid, component, args.User, coords);
+            SpawnItems(uid, component, args.User);
             args.Handled = true;
         }
 
-        private void SpawnItems(EntityUid uid, SpawnItemsOnUseComponent component, EntityUid user, EntityCoordinates coordinates)
+        private void SpawnItems(EntityUid uid, SpawnItemsOnUseComponent component, EntityUid user)
         {
             // If starting with zero or less uses, this component is a no-op
             if (component.Uses <= 0)
                 return;
 
-            var xform = Transform(args.User);
+            var xform = Transform(uid); // Starlight: floor wrappers spawn at the wrapper.
             var spawnEntities = GetSpawns(component.Items, _random);
             EntityUid? entityToPlaceInHands = null;
 
             foreach (var proto in spawnEntities)
             {
-                entityToPlaceInHands = SpawnNextToOrDrop(proto, args.User, xform);
-                _adminLogger.Add(LogType.EntitySpawn, LogImpact.Low, $"{ToPrettyString(args.User)} used {ToPrettyString(uid)} which spawned {ToPrettyString(entityToPlaceInHands.Value)}");
+                entityToPlaceInHands = SpawnNextToOrDrop(proto, uid, xform);
+                _adminLogger.Add(LogType.EntitySpawn, LogImpact.Low, $"{ToPrettyString(user)} used {ToPrettyString(uid)} which spawned {ToPrettyString(entityToPlaceInHands.Value)}");
             }
 
             // The entity is often deleted, so play the sound at its position rather than parenting
@@ -107,7 +106,7 @@ namespace Content.Server.Storage.EntitySystems
             }
 
             if (entityToPlaceInHands != null)
-                _hands.TryPickupAnyHand(args.User, entityToPlaceInHands.Value);
+                _hands.TryPickupAnyHand(user, entityToPlaceInHands.Value);
 
         }
 
@@ -120,11 +119,10 @@ namespace Content.Server.Storage.EntitySystems
                 return;
 
             var user = args.User;
-            var coords = Transform(uid).Coordinates;
 
             args.Verbs.Add(new AlternativeVerb()
             {
-                Act = () => SpawnItems(uid, component, user, coords),
+                Act = () => SpawnItems(uid, component, user),
                 Text = Loc.GetString("delivery-open-verb"),
             });
         }

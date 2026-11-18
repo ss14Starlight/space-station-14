@@ -177,7 +177,7 @@ public sealed partial class GunSystem : SharedGunSystem
         void CreateAndFireProjectiles(EntityUid ammoEnt, AmmoComponent ammoComp)
         {
             // Startlight-edit: start
-            var isMechShooter = user != null && TryComp<MechPilotComponent>(user.Value, out _);
+            var isMechShooter = TryGetMechShooter(user, out _);
             const float MechMuzzleOffset = 0.8f;
 
             EntityCoordinates SpawnFrom(Angle angle)

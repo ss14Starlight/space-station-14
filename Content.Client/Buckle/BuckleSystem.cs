@@ -46,7 +46,7 @@ internal sealed partial class BuckleSystem : SharedBuckleSystem
 
         var angle = _xformSystem.GetWorldRotation(ent) + _eye.CurrentEye.Rotation; // Get true screen position, or close enough
 
-        var isLowered = (angle.GetCardinalDir().AsFlag() & component.LoweredDrawdepthDirections) != 0; //Starlight
+        var isLowered = (angle.GetCardinalDir().AsFlag() & ent.Comp.LoweredDrawdepthDirections) != 0; //Starlight
         foreach (var buckledEntity in ent.Comp.BuckledEntities)
         {
             if (!TryComp<BuckleComponent>(buckledEntity, out var buckle))
@@ -59,7 +59,7 @@ internal sealed partial class BuckleSystem : SharedBuckleSystem
             {
                 // This will only assign if empty, it won't get overwritten by new depth on multiple calls, which do happen easily
                 buckle.OriginalDrawDepth ??= buckledSprite.DrawDepth;
-                _sprite.SetDrawDepth((buckledEntity, buckledSprite), component.LoweredDrawdepth ?? (strapSprite.DrawDepth - 1)); // Starlight
+                _sprite.SetDrawDepth((buckledEntity, buckledSprite), ent.Comp.LoweredDrawdepth ?? (strapSprite.DrawDepth - 1)); // Starlight
             }
             else if (buckle.OriginalDrawDepth.HasValue)
             {
@@ -129,28 +129,7 @@ internal sealed partial class BuckleSystem : SharedBuckleSystem
     [SubscribeLocalEvent]
     private void OnAppearanceChange(Entity<BuckleComponent> ent, ref AppearanceChangeEvent args)
     {
-        // Starlight-start
-        var buckled = Appearance.TryGetData<bool>(uid, BuckleVisuals.Buckled, out var isBuckled, args.Component) && isBuckled;
-
-        if (args.Sprite != null)
-        {
-            var shouldHide = buckled
-                && component.BuckledTo is { } strapUid
-                && TryComp<StrapComponent>(strapUid, out var strap)
-                && strap.SetVisible;
-
-            if (shouldHide)
-            {
-                component.OriginalVisible ??= args.Sprite.Visible;
-                _sprite.SetVisible((uid, args.Sprite), false);
-            }
-            else if (component.OriginalVisible is { } originalVis)
-            {
-                _sprite.SetVisible((uid, args.Sprite), originalVis);
-                component.OriginalVisible = null;
-            }
-        }
-        // Starlight-end
+        UpdateVisibility(ent, ref args); // Starlight
 
         if (!TryComp<RotationVisualsComponent>(ent, out var rotVisuals))
             return;

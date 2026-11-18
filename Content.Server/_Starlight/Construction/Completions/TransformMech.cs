@@ -1,3 +1,5 @@
+using System.Linq;
+using Content.Shared.Vehicle.Systems;
 using Content.Server.Construction;
 using Content.Server.Mech.Systems;
 using Content.Shared.Construction;
@@ -47,6 +49,7 @@ public sealed partial class TransformMech : IGraphAction
 
         var containerSystem = entityManager.EntitySysManager.GetEntitySystem<ContainerSystem>();
         var mechSys = entityManager.System<MechSystem>();
+        var vehicle = entityManager.System<VehicleSystem>();
 
         if (!containerSystem.TryGetContainer(uid, BatteryContainer, out var batteryContainer, containerManager))
         {
@@ -71,6 +74,10 @@ public sealed partial class TransformMech : IGraphAction
             _log.Warning($"Mech construct entity {uid} did not have the specified '{PilotContainer}' container! Aborting build mech action.");
             return;
         }
+        var pilot = vehicle.GetOperatorOrNull(uid);
+        if (pilot != null)
+            mechSys.TryEject(uid);
+
         var transform = entityManager.GetComponent<TransformComponent>(uid);
         var mech = entityManager.SpawnEntity(MechPrototype, transform.Coordinates);
 
@@ -89,7 +96,6 @@ public sealed partial class TransformMech : IGraphAction
                 if (mechComp.BatterySlot.ContainedEntity == null)
                 {
                     mechSys.InsertBattery(mech, cell, mechComp, batteryComponent);
-                    containerSystem.Insert(cell, mechComp.BatterySlot);
                 }
             }
             if (mechComp.GasTankSlot.ContainedEntity == null && gasTankContainer.ContainedEntities.Count > 0)
@@ -97,17 +103,14 @@ public sealed partial class TransformMech : IGraphAction
                 var gasTank = gasTankContainer.ContainedEntities[0];
                 containerSystem.Insert(gasTank, mechComp.GasTankSlot);
             }
-            while (equipmentContainer.ContainedEntities.Count > 0)
+            var equipmentToMove = equipmentContainer.ContainedEntities.ToArray();
+            foreach (var equipment in equipmentToMove)
             {
-                var equipment = equipmentContainer.ContainedEntities[0];
-                containerSystem.Remove(equipment, equipmentContainer);
-                containerSystem.Insert(equipment, mechComp.EquipmentContainer);
+                mechSys.RemoveEquipment(uid, equipment, forced: true);
+                mechSys.InsertEquipment(mech, equipment, mechComp);
             }
-            if (mechComp.PilotSlot.ContainedEntity == null && pilotContainer.ContainedEntities.Count > 0)
-            {
-                mechSys.TryEject(uid);
-                mechSys.TryInsert(mech, pilotContainer.ContainedEntities[0]);
-            }
+            if (pilot is { } oldPilot && !vehicle.HasOperator(mech))
+                mechSys.TryInsert(mech, oldPilot, mechComp);
         }
         var entChangeEv = new ConstructionChangeEntityEvent(mech, uid);
         entityManager.EventBus.RaiseLocalEvent(uid, entChangeEv);

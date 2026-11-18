@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Access.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Damage;
@@ -156,18 +156,11 @@ public sealed partial class VehicleSystem : EntitySystem
 
         entity.Comp.Operator = operatorUid;
 
-        if (_operatorQuery.HasComp(operatorUid))
-        {
-            var vehicleOperator = Comp<VehicleOperatorComponent>(operatorUid);
-            vehicleOperator.Vehicle = entity.Owner;
-            Dirty(operatorUid, vehicleOperator);
-        }
-        else
-        {
-            var vehicleOperator = AddComp<VehicleOperatorComponent>(operatorUid);
-            vehicleOperator.Vehicle = entity.Owner;
-            Dirty(operatorUid, vehicleOperator);
-        }
+        // Starlight start
+        var vehicleOperator = EnsureComp<VehicleOperatorComponent>(operatorUid);
+        vehicleOperator.Vehicle = entity.Owner;
+        Dirty(operatorUid, vehicleOperator);
+        // Starlight end
 
         _mover.SetRelay(operatorUid, entity);
 
@@ -300,10 +293,7 @@ public sealed partial class VehicleSystem : EntitySystem
     /// Checks if the current vehicle has an operator.
     /// </summary>
     [PublicAPI]
-    public bool HasOperator(Entity<VehicleComponent?> entity)
-    {
-        return TryGetOperator(entity, out _);
-    }
+    public bool HasOperator(Entity<VehicleComponent?> entity) => TryGetOperator(entity, out _);
 
     /// <summary>
     /// Checks if a given entity is capable of operating a vehicle.
@@ -324,9 +314,10 @@ public sealed partial class VehicleSystem : EntitySystem
         if (entity.Comp.RequiresHands && (!_handsQuery.HasComp(uid) || !_actionBlocker.CanInteract(uid, entity)))
             return false;
 
-        if (_handBlockerQuery.TryComp(entity, out var handBlocker) &&
+        var blockedHands = GetBlockedHandCount(entity, uid); // Starlight, borg piloting
+        if (blockedHands > 0 &&
             (!_handsQuery.TryComp(uid, out var hands) ||
-             _hands.GetHandCount((uid, hands)) < handBlocker.BlockedHands))
+             _hands.GetHandCount((uid, hands)) < blockedHands))
             return false;
 
         return _actionBlocker.CanConsciouslyPerformAction(uid);
@@ -337,13 +328,14 @@ public sealed partial class VehicleSystem : EntitySystem
     /// </summary>
     private bool TryBlockHands(Entity<VehicleComponent> vehicle, EntityUid operatorUid)
     {
-        if (!_handBlockerQuery.TryComp(vehicle, out var handBlocker))
+        var blockedHands = GetBlockedHandCount(vehicle, operatorUid); // Starlight
+        if (blockedHands <= 0) // Starlight
             return true;
 
         if (_virtualItem.TrySpawnUnremoveableVirtualItemInHand(
                 vehicle.Owner,
                 operatorUid,
-                handBlocker.BlockedHands,
+                blockedHands, // Starlight
                 dropOthers: true)) return true;
 
         UnblockHands(vehicle.Owner, operatorUid);
@@ -353,10 +345,7 @@ public sealed partial class VehicleSystem : EntitySystem
     /// <summary>
     /// Removes hand blockers owned by the specified vehicle.
     /// </summary>
-    private void UnblockHands(EntityUid vehicleUid, EntityUid operatorUid)
-    {
-        _virtualItem.DeleteInHandsMatching(operatorUid, vehicleUid);
-    }
+    private void UnblockHands(EntityUid vehicleUid, EntityUid operatorUid) => ReleaseHandBlockers(vehicleUid, operatorUid); // Starlight
 
     /// <summary>
     /// Checks if the vehicle is capable of running (has keys, fuel, etc.) and caches the value.

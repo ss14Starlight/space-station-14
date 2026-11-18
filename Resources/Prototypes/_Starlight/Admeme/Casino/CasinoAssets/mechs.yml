@@ -20,11 +20,12 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 700
       maxEquipmentAmount: 5
-      pilotWhitelist:
+    - type: Vehicle
+      transferDamage: false # Mechs are safe
+      operatorWhitelist:
         components:
           - HumanoidAppearance
     - type: MeleeWeapon
@@ -95,11 +96,12 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 700
       maxEquipmentAmount: 5
-      pilotWhitelist:
+    - type: Vehicle
+      transferDamage: false # Mechs are safe
+      operatorWhitelist:
         components:
           - HumanoidAppearance
     - type: MeleeWeapon
