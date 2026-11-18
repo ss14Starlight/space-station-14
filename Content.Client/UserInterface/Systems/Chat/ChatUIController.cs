@@ -853,7 +853,7 @@ public sealed partial class ChatUIController : UIController
         {
             var locWarning = Loc.GetString("chat-manager-max-message-length",
                 ("maxMessageLength", MaxMessageLength));
-            box.AddLine(locWarning, Color.Orange);
+            box.AddLine(locWarning, Color.Orange, default, null, locWarning, ChatChannel.Server, true, null); // Starlight Edit: Chat stacking
             return;
         }
 

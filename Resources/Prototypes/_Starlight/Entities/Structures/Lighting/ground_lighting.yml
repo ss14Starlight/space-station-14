@@ -1,3 +1,5 @@
+# PointLight here only used for pre-mapinit
+# edit both the PointLight *and* the light bulb it uses via hasLampOnSpawn!
 - type: entity
   id: FloorLight
   name: floor light
@@ -28,13 +30,19 @@
           layer:
             - TabletopMachineLayer
     - type: PointLight
-      radius: 10
-      energy: 2.5
-      softness: 0.9
-      color: "#FFE4CE"
+      enabled: true
+      color: "#FFD1A3"
+      radius: 6
+      energy: 0.6
+      softness: 1.3
     - type: InteractionOutline
     - type: Damageable
       damageModifierSet: Metallic
+    - type: DamageOnInteract
+      damage:
+        types:
+          Heat: 2
+      popupText: powered-light-component-burn-hand
     - type: Destructible
       thresholds:
         - trigger: !type:DamageTrigger
@@ -65,6 +73,7 @@
   components:
     - type: Sprite
       state: empty
+      color: "#F6EFE4"
     - type: PointLight
       enabled: false
     - type: PoweredLight
@@ -105,11 +114,6 @@
         on: base
         broken: broken
         burned: burned
-    - type: DamageOnInteract
-      damage:
-        types:
-          Heat: 2
-      popupText: powered-light-component-burn-hand
 
 - type: entity
   id: PoweredFloorLight
@@ -138,10 +142,6 @@
   components:
     - type: PointLight
       enabled: true
-      radius: 8
-      energy: 1
-      softness: 1
-      color: "#EEEEFF"
     - type: PoweredLight
       hasLampOnSpawn: LedLightBulb
     - type: DamageOnInteract
@@ -157,11 +157,10 @@
   parent: PoweredFloorLight
   components:
     - type: PointLight
-      enabled: true
-      radius: 6
+      color: "#ff9833" # 2200k color temp
       energy: 1
+      radius: 6
       softness: 3
-      color: "#FF8A0C"
     - type: PoweredLight
       hasLampOnSpawn: WarmLightBulb
 
@@ -172,11 +171,10 @@
   parent: PoweredFloorLight
   components:
     - type: PointLight
-      enabled: true
-      radius: 5
-      energy: 0.5
-      softness: 3
       color: "#ba473f"
+      energy: 0.5
+      radius: 5
+      softness: 3
     - type: PoweredLight
       hasLampOnSpawn: DimLightBulb
     - type: DamageOnInteract
@@ -194,15 +192,7 @@
   - type: PoweredLight
     hasLampOnSpawn: LightBulbCrystalCyan
   - type: PointLight
-    radius: 8
-    energy: 2.5
-    softness: 0.8
     color: "#5ae8ed"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: PoweredFloorLightBlue
@@ -212,15 +202,7 @@
   - type: PoweredLight
     hasLampOnSpawn: LightBulbCrystalBlue
   - type: PointLight
-    radius: 8
-    energy: 2.5
-    softness: 0.8
     color: "#4ca1eb"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: PoweredFloorLightYellow
@@ -230,15 +212,7 @@
   - type: PoweredLight
     hasLampOnSpawn: LightBulbCrystalYellow
   - type: PointLight
-    radius: 8
-    energy: 2.5
-    softness: 0.8
     color: "#edd25a"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: PoweredFloorLightPink
@@ -248,15 +222,7 @@
   - type: PoweredLight
     hasLampOnSpawn: LightBulbCrystalPink
   - type: PointLight
-    radius: 8
-    energy: 2.5
-    softness: 0.8
     color: "#f075c7"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: PoweredFloorLightOrange
@@ -266,15 +232,7 @@
   - type: PoweredLight
     hasLampOnSpawn: LightBulbCrystalOrange
   - type: PointLight
-    radius: 8
-    energy: 2.5
-    softness: 0.8
     color: "#ea863e"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: PoweredFloorLightBlack
@@ -284,15 +242,7 @@
   - type: PoweredLight
     hasLampOnSpawn: LightBulbCrystalBlack
   - type: PointLight
-    radius: 8
-    energy: 1
-    softness: 0.8
     color: "#4d4d4d"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: PoweredFloorLightRed
@@ -302,15 +252,7 @@
   - type: PoweredLight
     hasLampOnSpawn: LightBulbCrystalRed
   - type: PointLight
-    radius: 8
-    energy: 2.5
-    softness: 0.8
     color: "#ec5555"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: PoweredFloorLightGreen
@@ -320,15 +262,7 @@
   - type: PoweredLight
     hasLampOnSpawn: LightBulbCrystalGreen
   - type: PointLight
-    radius: 8
-    energy: 2.5
-    softness: 0.8
     color: "#7eeb4c"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: LightFloorEmpty
@@ -394,6 +328,11 @@
       enabled: true
     - type: PoweredLight
       hasLampOnSpawn: LightBulb
+    - type: DamageOnInteract
+      damage:
+        types:
+          Heat: 2
+      popupText: powered-light-component-burn-hand
     - type: WiresPanel
       open: false
 
@@ -448,8 +387,11 @@
     - type: Appearance
     - type: LightFloor
     - type: PointLight
-      radius: 4
-      energy: 1.5
+      enabled: true
+      color: "#FFD1A3"
+      radius: 6
+      energy: 0.6
+      softness: 1.3
     - type: Physics
       canCollide: false
 
@@ -459,11 +401,10 @@
   parent: LightFloor
   components:
     - type: PointLight
-      enabled: true
-      radius: 8
-      energy: 1
-      softness: 1
-      color: "#EEEEFF"
+      color: "#F6EFE4"
+      radius: 6.5
+      energy: 0.6
+      softness: 1.3
     - type: PoweredLight
       hasLampOnSpawn: LedLightBulb
     - type: DamageOnInteract
@@ -478,11 +419,10 @@
   parent: LightFloor
   components:
     - type: PointLight
-      enabled: true
+      color: "#ff9833"
       radius: 6
       energy: 1
       softness: 3
-      color: "#FF8A0C"
     - type: PoweredLight
       hasLampOnSpawn: WarmLightBulb
 
@@ -492,7 +432,6 @@
   parent: LightFloor
   components:
     - type: PointLight
-      enabled: true
       radius: 5
       energy: 0.5
       softness: 3
@@ -514,15 +453,10 @@
   - type: PoweredLight
     hasLampOnSpawn: LightBulbCrystalCyan
   - type: PointLight
-    radius: 8
-    energy: 2.5
-    softness: 0.8
+    radius: 6
+    energy: 1
+    softness: 0.5
     color: "#5ae8ed"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: LightFloorBlue
@@ -532,15 +466,10 @@
   - type: PoweredLight
     hasLampOnSpawn: LightBulbCrystalBlue
   - type: PointLight
-    radius: 8
-    energy: 2.5
-    softness: 0.8
+    radius: 6
+    energy: 1
+    softness: 0.5
     color: "#4ca1eb"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: LightFloorYellow
@@ -550,15 +479,10 @@
   - type: PoweredLight
     hasLampOnSpawn: LightBulbCrystalYellow
   - type: PointLight
-    radius: 8
-    energy: 2.5
-    softness: 0.8
+    radius: 6
+    energy: 1
+    softness: 0.5
     color: "#edd25a"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: LightFloorPink
@@ -568,15 +492,10 @@
   - type: PoweredLight
     hasLampOnSpawn: LightBulbCrystalPink
   - type: PointLight
-    radius: 8
-    energy: 2.5
-    softness: 0.8
+    radius: 6
+    energy: 1
+    softness: 0.5
     color: "#f075c7"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: LightFloorOrange
@@ -586,15 +505,10 @@
   - type: PoweredLight
     hasLampOnSpawn: LightBulbCrystalOrange
   - type: PointLight
-    radius: 8
-    energy: 2.5
-    softness: 0.8
+    radius: 6
+    energy: 1
+    softness: 0.5
     color: "#ea863e"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: LightFloorBlack
@@ -606,13 +520,8 @@
   - type: PointLight
     radius: 8
     energy: 1
-    softness: 0.8
+    softness: 0.5
     color: "#4d4d4d"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: LightFloorRed
@@ -622,15 +531,10 @@
   - type: PoweredLight
     hasLampOnSpawn: LightBulbCrystalRed
   - type: PointLight
-    radius: 8
-    energy: 2.5
-    softness: 0.8
+    radius: 6
+    energy: 1
+    softness: 0.5
     color: "#ec5555"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: LightFloorGreen
@@ -640,15 +544,10 @@
   - type: PoweredLight
     hasLampOnSpawn: LightBulbCrystalGreen
   - type: PointLight
-    radius: 8
-    energy: 2.5
-    softness: 0.8
+    radius: 6
+    energy: 1
+    softness: 0.5
     color: "#7eeb4c"
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
 
 - type: entity
   id: LightFloorRandomColor

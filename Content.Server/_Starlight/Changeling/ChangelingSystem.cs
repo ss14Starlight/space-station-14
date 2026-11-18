@@ -50,6 +50,9 @@ using Content.Shared.Damage.Components;
 using Content.Server.Gravity;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Jittering;
+using Content.Shared.Implants;
+using Content.Shared.VoiceMask;
+using Content.Server.Speech.Components;
 using System.Linq;
 // Starlight edit start
 using Content.Server.GameTicking;
@@ -101,6 +104,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private SharedPuddleSystem _puddle = default!;
     [Dependency] private SharedLatchSystem _latch = default!;
     [Dependency] private SharedJitteringSystem _jitter = default!;
+    [Dependency] private SharedSubdermalImplantSystem _implant = default!;
     [Dependency] private NpcFactionSystem _factionSystem = default!;
     [Dependency] private MovementModStatusSystem _movementMod = default!;
     [Dependency] private GameTicker _gameTicker = default!; // Starlight
@@ -575,6 +579,12 @@ public sealed partial class ChangelingSystem : EntitySystem
         RemComp<HungerComponent>(uid);
         RemComp<ThirstComponent>(uid);
         //EnsureComp<ZombieImmuneComponent>(uid); Starlight, we're bringing Lings into Zombies!
+
+        var voiceMask = SpawnAtPosition("ChangelingVoiceMask", Transform(uid).Coordinates);
+        _implant.ForceImplant(uid, voiceMask);
+
+        var voiceMaskComp = Comp<VoiceMaskComponent>(voiceMask);
+        voiceMaskComp.Active = false;
 
         // add actions
         foreach (var actionId in comp.BaseChangelingActions)
