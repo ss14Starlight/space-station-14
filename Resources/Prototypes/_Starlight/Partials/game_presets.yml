@@ -5,6 +5,7 @@
   rules:
     - SpaceTrafficControlEventScheduler
     - SpaceTrafficControlFriendlyEventScheduler
+    - XenoDemocracy
 
 - type: !PartialOnly gamePreset
   id: KesslerSyndrome
@@ -12,6 +13,7 @@
   minPlayers: 15
   rules:
     - SpaceTrafficControlEventScheduler
+    - XenoDemocracy
 
 - type: !PartialOnly gamePreset
   id: AllAtOnce
@@ -31,6 +33,7 @@
     - BloodBound
     - CosmicCult
     - Devil
+    - XenoDemocracy
 
 - type: !PartialOnly gamePreset
   id: AllerAtOnce
@@ -59,6 +62,7 @@
     - BloodBound
     - CosmicCult
     - Devil
+    - XenoDemocracy
 
 - type: !PartialOnly gamePreset
   id: Extended
@@ -67,12 +71,14 @@
   voteCooldown: 0
   rules:
   - SpaceTrafficControlEventScheduler
+  - XenoDemocracy
 
 - type: !PartialOnly gamePreset
   id: Greenshift
   showInVote: true
   rules:
   - SpaceTrafficControlFriendlyEventScheduler
+  - XenoDemocracy
 
 - type: !PartialOnly gamePreset
   id: Dynamic
@@ -85,12 +91,20 @@
   - !Remove MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
   - RailroadingMinor
+  - XenoDemocracy
 
 - type: !PartialOnly gamePreset
   id: Secret
   minPlayers: 5
   rules:
     - RailroadingMinor
+    - XenoDemocracy
+
+- type: !PartialOnly gamePreset
+  id: Sandbox
+  minPlayers: 5
+  rules:
+    - XenoDemocracy # Let them vote in sandbox
 
 - type: !PartialOnly gamePreset
   id: Traitor
@@ -101,6 +115,7 @@
   - SubGamemodesRuleNoChangelings
   - SpaceTrafficControlEventScheduler
   - RailroadingMinor
+  - XenoDemocracy
 
 - type: !PartialOnly gamePreset
   id: Nukeops
@@ -110,6 +125,7 @@
   - !Remove DummyNonAntagChance
   - SubGamemodesRuleNuclearOperativeScaling
   - SpaceTrafficControlEventScheduler
+  - XenoDemocracy
 
 - type: !PartialOnly gamePreset
   id: Revolutionary
@@ -119,6 +135,7 @@
   - !Remove DummyNonAntagChance
   - SubGamemodesRuleConversion # 3 max thieves on revs# so they can't be guaranteed an Emag.
   - SpaceTrafficControlEventScheduler
+  - XenoDemocracy
 
 - type: !PartialOnly gamePreset
   id: Wizard
@@ -127,6 +144,7 @@
   - !Remove DummyNonAntagChance
   - SubGamemodesRuleNoWizard #No Dual Wizards at the start# midround is fine
   - SpaceTrafficControlEventScheduler
+  - XenoDemocracy
 
 - type: !PartialOnly gamePreset
   id: Xenoborgs
@@ -136,6 +154,7 @@
   - !Remove DummyNonAntagChance
   - SubGamemodesRuleNoXenoborg # no two motherships. Allows wizards to spawn on Xenoborgs. Space is dangerous# yo.
   - SpaceTrafficControlEventScheduler
+  - XenoDemocracy
 
 - type: !PartialOnly gamePreset
   id: Zombie
@@ -144,6 +163,7 @@
   rules:
   - SubGamemodesRuleZombieCompliantAntags # I want to trial this# see how it plays out. If it goes poorly# we'll remove Xenoborgs from it.
   - SpaceTrafficControlEventScheduler
+  - XenoDemocracy
 
 - type: !PartialOnly gamePreset
   id: Zombieteors
@@ -152,4 +172,5 @@
   rules:
   - SubGamemodesRuleZombieCompliantAntags # I want to trial this# see how it plays out. If it goes poorly# we'll remove Xenoborgs from it.
   - SpaceTrafficControlEventScheduler
+  - XenoDemocracy
 
