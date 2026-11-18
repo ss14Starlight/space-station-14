@@ -4,6 +4,7 @@
   # Tracker rattle
   - type: TriggerOnMobstateChange
     mobState:
+    - SoftCritical    
     - Critical
     - Dead
   - type: RattleOnTrigger
