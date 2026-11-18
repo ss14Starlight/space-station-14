@@ -1,20 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: Adds Flotilla Spaceport to the map rotation. Thank you all for the feedback during the playtest.
-    type: Add
-  id: 410185
-  time: '2026-11-07T08:44:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7090
-- author: Hot Mic
-  changes:
-  - message: '(Flotilla) Security: Expanded the Armory to fit in more hardsuits.'
-    type: Tweak
-  id: 410186
-  time: '2026-11-07T08:44:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7090
-- author: Hot Mic
-  changes:
   - message: "(Flotilla) Medical: Remove the poster that was covering the medical department's ATM."
     type: Remove
   id: 410187
@@ -2799,4 +2785,18 @@ Entries:
   id: 410584
   time: '2026-11-18T09:04:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7281
+- author: Howdyth
+  changes:
+  - message: Added new hairstyles for Humanoids, Thaven, and Felinoids!
+    type: Add
+  id: 410585
+  time: '2026-11-18T09:35:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7279
+- author: Howdyth
+  changes:
+  - message: Thaven hair naming errors in the search menu.
+    type: Fix
+  id: 410586
+  time: '2026-11-18T09:35:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7279
 Order: -1
