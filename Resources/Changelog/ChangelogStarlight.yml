@@ -1,11 +1,4 @@
 Entries:
-- author: Romero/Littlemen
-  changes:
-  - message: The Soulmancer! A new wizard archetype.
-    type: Add
-  id: 410209
-  time: '2026-11-07T18:02:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6974
 - author: Floximo
   changes:
   - message: Kill AI was changed into "Teach AI a lesson".
@@ -2799,4 +2792,11 @@ Entries:
   id: 410608
   time: '2026-11-18T11:49:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7316
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Fixed glitchy doafter bar that appears sometimes when buckling someone after pulling them.
+    type: Fix
+  id: 410609
+  time: '2026-11-18T12:18:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7309
 Order: -1
