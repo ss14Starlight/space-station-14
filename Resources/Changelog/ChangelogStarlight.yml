@@ -1,11 +1,4 @@
 Entries:
-- author: SirLutz
-  changes:
-  - message: Changed Spore hivemind prefix from +s to +spo.
-    type: Tweak
-  id: 410177
-  time: '2026-11-06T17:12:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7078
 - author: Rinary
   changes:
   - message: Changed grills/conveyors, now you can't place grills on top of conveyors(except spawn them via sandbox).
@@ -2799,4 +2792,11 @@ Entries:
   id: 410576
   time: '2026-11-18T08:36:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7294
+- author: W0lsZcZ4n
+  changes:
+  - message: Added ID/PDA replacement form to the document printer.
+    type: Add
+  id: 410577
+  time: '2026-11-18T08:36:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7210
 Order: -1
