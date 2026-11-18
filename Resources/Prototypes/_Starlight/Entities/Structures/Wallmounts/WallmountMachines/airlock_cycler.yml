@@ -86,7 +86,7 @@
     - AirlockCyclerButton
   - type: Appearance
   - type: Sprite
-    drawdepth: SmallObjects
+    drawdepth: WallMountedItems # Above button frames
     sprite: _Starlight/Structures/Wallmounts/airlock_cycler_button.rsi
     layers:
     - state: off
@@ -158,7 +158,7 @@
   description: An unfinished airlock cycle button. Pressing it does nothing yet.
   components:
   - type: Sprite
-    drawdepth: SmallObjects
+    drawdepth: WallMountedItems
     sprite: _Starlight/Structures/Wallmounts/airlock_cycler_button.rsi
     layers:
     - state: frame

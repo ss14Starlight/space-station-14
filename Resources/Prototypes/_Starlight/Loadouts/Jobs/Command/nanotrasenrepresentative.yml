@@ -35,6 +35,11 @@
     eyes: ClothingEyesSunGlassesHudSkill
 
 - type: loadout
+  id: NanoTrasenRepresentativeGlassesPrescription
+  equipment:
+    eyes: ClothingEyesGlassesSkillsPrescription
+
+- type: loadout
   id: NanoTrasenRepresentativeMonocle
   equipment:
     eyes: ClothingEyesNTRMonocle

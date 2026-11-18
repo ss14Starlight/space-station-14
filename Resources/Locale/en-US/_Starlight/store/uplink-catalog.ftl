@@ -52,6 +52,8 @@ uplink-forensics-implant-name = Forensics Implant
 uplink-forensics-implant-desc = A cybernetic implant for hands. Removes an agent's fingerprints so as to not leave evidence of a crime. Does not work through gloves. (Warning: You will need a surgical assistant for the procedure.)
 uplink-syndie-implant-name = Syndicate Agent Implant
 uplink-syndie-implant-desc = A cybernetic eye implant. Enables an agent to see information about the station crew, humanoids and syndicate without any glasses. (Warning: You will need a surgical assistant for the procedure.)
+uplink-injector-port-name = Injection Port Implant
+uplink-injector-port-desc = A cybernetic implant for hands. Allows Reptilians to be injected with hyposprays and autoinjectors, and speeds up injections for anyone it is installed on. (Warning: You will need a surgical assistant for the procedure.)
 uplink-nuke-op-robotkit-name = CyberSun Robotic Treatment Kit
 uplink-nuke-op-robotkit-desc = The best robotic medical kit money can buy. Features an advanced industrial welder, some HV cables, oil packs, and a microreactor cell.
 
@@ -169,6 +171,9 @@ uplink-plushie-linari-desc = An expertly crafted plush lizard in tactical office
 
 uplink-bombroach-microbomb-name = Bombroach Teleporter
 uplink-bombroach-microbomb-desc = Call in a handy bombroach equipped with a picobomb implant. Explodes on death or when triggered by the bombroach.
+
+uplink-clothing-eyes-hud-syndicate-modular-name = Empty Syndicate Visor
+uplink-clothing-eyes-hud-syndicate-modular-desc = The iconic model of eyewear that denotes Syndicate elites, unlike yourself. HUD modules not included.
 
 # These are from funky, but funky puts them in Wizden files, so in our files they go then
 uplink-hidden-radio-botany-name = Hidden Uplink

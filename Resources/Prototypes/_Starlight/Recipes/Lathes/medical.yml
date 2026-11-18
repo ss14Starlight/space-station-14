@@ -643,6 +643,17 @@
     Plasma: 300
     Glass: 150
 
+- type: latheRecipe
+  id: HandImplantInjectorPort
+  result: HandImplantInjectorPort
+  categories:
+  - Implants
+  completetime: 4
+  materials:
+    Steel: 200
+    Plasma: 300
+    Glass: 150
+
 # Brain
 
 - type: latheRecipe

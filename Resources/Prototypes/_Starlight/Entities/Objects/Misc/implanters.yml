@@ -47,6 +47,9 @@
     implantOnly: false
     deimplantWhitelist:
     - MindShieldImplant
+    - MedTakMindShieldImplant
+    - TSFMindShieldImplant
+    - ITGMindShieldImplant
     deimplantFailureDamage:
         types:
           Heat: 30

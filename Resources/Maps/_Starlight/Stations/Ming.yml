@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 295.0.0
+  engineVersion: 295.0.3
   forkId: ""
   forkVersion: ""
-  time: 11/11/2026 10:47:44
-  entityCount: 32132
+  time: 11/17/2026 09:08:23
+  entityCount: 32133
 maps:
 - 1
 grids:
@@ -11102,7 +11102,7 @@ entities:
       pos: -63.5,-31.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -268458.38
+      secondsUntilStateChange: -269046.38
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -11127,7 +11127,7 @@ entities:
       pos: -58.5,-45.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -266855.88
+      secondsUntilStateChange: -267443.88
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -11200,7 +11200,7 @@ entities:
       pos: 1.5,-1.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -82002.086
+      secondsUntilStateChange: -82590.08
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -11284,7 +11284,7 @@ entities:
       pos: -32.5,-52.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -274110.97
+      secondsUntilStateChange: -274698.97
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -11949,7 +11949,7 @@ entities:
       pos: -71.5,-38.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -268968.72
+      secondsUntilStateChange: -269556.72
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: DeviceLinkSource
@@ -12202,7 +12202,7 @@ entities:
       pos: -83.5,-42.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -93530.01
+      secondsUntilStateChange: -94118
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -12214,7 +12214,7 @@ entities:
       pos: -83.5,-46.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -93530.61
+      secondsUntilStateChange: -94118.6
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -12226,7 +12226,7 @@ entities:
       pos: -83.5,-50.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -93531.375
+      secondsUntilStateChange: -94119.37
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -12238,7 +12238,7 @@ entities:
       pos: -83.5,-32.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -93528.61
+      secondsUntilStateChange: -94116.6
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -12250,7 +12250,7 @@ entities:
       pos: -83.5,-28.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -93528.05
+      secondsUntilStateChange: -94116.04
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -12262,7 +12262,7 @@ entities:
       pos: -83.5,-24.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -93527.55
+      secondsUntilStateChange: -94115.54
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -12274,7 +12274,7 @@ entities:
       pos: 47.5,53.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -93552.84
+      secondsUntilStateChange: -94140.836
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -12286,7 +12286,7 @@ entities:
       pos: 47.5,57.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -93552.21
+      secondsUntilStateChange: -94140.2
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -12302,7 +12302,7 @@ entities:
       addComponents: []
     - type: Door
       state: Opening
-      secondsUntilStateChange: -149340.11
+      secondsUntilStateChange: -149928.1
 - proto: AirlockExternalGlassShuttleLocked
   entities:
   - uid: 258
@@ -13674,7 +13674,7 @@ entities:
       pos: 34.5,43.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -347316.56
+      secondsUntilStateChange: -347904.56
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -78344,6 +78344,14 @@ entities:
           - MedicalScannerReceiver
         - - CloningPodSender
           - MedicalScannerReceiver
+- proto: ComputerCommsBreakingNews
+  entities:
+  - uid: 32133
+    components:
+    - type: Transform
+      parent: 2
+      rot: 1.5707963267948966 rad
+      pos: 28.5,23.5
 - proto: ComputerCommsCargoFilled
   entities:
   - uid: 12775
@@ -81048,6 +81056,13 @@ entities:
     - type: Transform
       parent: 2
       pos: -26.5,5.5
+- proto: DefaultStationBeaconLaundromat
+  entities:
+  - uid: 13219
+    components:
+    - type: Transform
+      parent: 2
+      pos: 11.5,-11.5
 - proto: DefaultStationBeaconLawyer
   entities:
   - uid: 13214
@@ -81083,13 +81098,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 25.5,52.5
-- proto: DefaultStationBeaconNCT
-  entities:
-  - uid: 13219
-    components:
-    - type: Transform
-      parent: 2
-      pos: 11.5,-11.5
 - proto: DefaultStationBeaconNuclearReactor
   entities:
   - uid: 13220
