@@ -1,41 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: "(Flotilla) Medical: Remove the poster that was covering the medical department's ATM."
-    type: Remove
-  id: 410187
-  time: '2026-11-07T08:44:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7090
-- author: Hot Mic
-  changes:
-  - message: "(Flotilla) Cargo: Remove the poster that was covering Cargo's Intercom."
-    type: Remove
-  id: 410188
-  time: '2026-11-07T08:44:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7090
-- author: Hot Mic
-  changes:
-  - message: '(Flotilla) AI: Add AI restoration console to the AI core.'
-    type: Add
-  id: 410189
-  time: '2026-11-07T08:44:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7090
-- author: Hot Mic
-  changes:
-  - message: '(Flotilla) AI: Replace generators with 4 hyper-advanced SMES.'
-    type: Tweak
-  id: 410190
-  time: '2026-11-07T08:44:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7090
-- author: Hot Mic
-  changes:
-  - message: '(Flotilla) Engineer: Atmos moved the manifolds to under the plasma windows, thus cleaning up the main atmos room while retaining the same features.'
-    type: Tweak
-  id: 410191
-  time: '2026-11-07T08:44:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7090
-- author: Hot Mic
-  changes:
   - message: "(Flotilla) Cargo: Add missing LV wires for Cargo Bay's Shuttle docking."
     type: Fix
   id: 410192
@@ -2799,4 +2764,39 @@ Entries:
   id: 410586
   time: '2026-11-18T09:35:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7279
+- author: Turk1shcat (_plunger)
+  changes:
+  - message: Changelings now get a voice mask upon spawn which are identical to the syndicate one. Mimic your friends, or foes, freely. It is disabled by default.
+    type: Add
+  id: 410587
+  time: '2026-11-18T09:59:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7247
+- author: Turk1shcat (_plunger)
+  changes:
+  - message: Changelings no longer destroy jumpsuits upon devouring. No more losing your jumpsuit.
+    type: Remove
+  id: 410588
+  time: '2026-11-18T09:59:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7247
+- author: Turk1shcat (_plunger)
+  changes:
+  - message: Anatomic Panacea now gives 5u ultravasculine instead of 5u diph and 5u arith.
+    type: Tweak
+  id: 410589
+  time: '2026-11-18T09:59:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7247
+- author: Turk1shcat (_plunger)
+  changes:
+  - message: Using Enter Regenerative stasis now gives a warning before usage, like acidifiers. No more accidental deaths, Dane...
+    type: Add
+  id: 410590
+  time: '2026-11-18T09:59:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7247
+- author: Turk1shcat (_plunger)
+  changes:
+  - message: Changelings can now eat crit and cuffed people. You don't need them to be dead anymore.
+    type: Tweak
+  id: 410591
+  time: '2026-11-18T09:59:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7247
 Order: -1
