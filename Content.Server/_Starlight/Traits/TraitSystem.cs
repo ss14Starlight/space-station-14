@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._Starlight.Traits;
 using Content.Shared._Starlight.Traits.Effects;
 using Content.Shared.GameTicking;
@@ -93,7 +94,14 @@ public sealed partial class TraitSystem : EntitySystem
         var categoryTraitCounts = new Dictionary<ProtoId<TraitCategoryPrototype>, int>();
         var categoryPointTotals = new Dictionary<ProtoId<TraitCategoryPrototype>, int>();
 
-        foreach (var traitId in selectedTraits)
+        // Check the cheapest traits first so traits that grant points (negative cost, e.g. Foreigner) are counted
+        // before the traits they pay for. The selected set has no reliable order (it comes back from the database
+        // in whatever order), so checking it as-is randomly rejected traits the player could afford.
+        var orderedTraits = selectedTraits
+            .OrderBy(id => _prototype.TryIndex(id, out var proto) ? proto.Cost : 0)
+            .ThenBy(id => id.Id, StringComparer.Ordinal);
+
+        foreach (var traitId in orderedTraits)
         {
             if (!_prototype.TryIndex(traitId, out var trait))
             {
@@ -168,7 +176,8 @@ public sealed partial class TraitSystem : EntitySystem
             categoryPointTotals[trait.Category] = catPoints + trait.Cost;
         }
 
-        return validTraits;
+        // Keep the player's original order so the order traits are applied in doesn't change.
+        return new HashSet<ProtoId<TraitPrototype>>(selectedTraits.Where(validTraits.Contains));
     }
 
     /// <summary>
