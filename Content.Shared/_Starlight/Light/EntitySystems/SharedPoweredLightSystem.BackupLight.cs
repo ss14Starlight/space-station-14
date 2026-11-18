@@ -26,7 +26,7 @@ public abstract partial class SharedPoweredLightSystem
         if (powerReceiver.Powered
             || !light.On
             || !backup.Charged
-            || (TryComp<AlertLevelDimmedLightComponent>(uid, out var alertDim) && alertDim.LightEnergyMultiplier <= 0f))
+            || (bulb.Comp.Dimmable && TryComp<AlertLevelDimmedLightComponent>(uid, out var alertDim) && alertDim.LightEnergyMultiplier <= 0f))
         {
             _appearance.SetData(uid, BackupLightVisuals.Active, false, appearance);
             return false;

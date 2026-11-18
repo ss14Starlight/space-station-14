@@ -115,7 +115,8 @@ public sealed partial class BackupLightSystem : EntitySystem
         var charge = _battery.GetCharge((uid, battery));
 
         // A switched off fixture or one dimmed to 0 by alert level (e.g. Code Epsilon) doesn't run its cell down.
-        var dimmedToZero = TryComp<AlertLevelDimmedLightComponent>(uid, out var dim) && dim.LightEnergyMultiplier <= 0f;
+        var isDimmable = _poweredLight.GetBulb(uid, light) is { } b && TryComp<LightBulbComponent>(b, out var bComp) && bComp.Dimmable;
+        var dimmedToZero = isDimmable && TryComp<AlertLevelDimmedLightComponent>(uid, out var dim) && dim.LightEnergyMultiplier <= 0f;
         var draining = !powered && light.On && !dimmedToZero && charge > 0f && HasWorkingBulb(uid, light);
         var charging = powered && charge < battery.MaxCharge;
 
