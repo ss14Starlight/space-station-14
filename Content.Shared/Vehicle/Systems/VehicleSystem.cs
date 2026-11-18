@@ -165,7 +165,7 @@ public sealed partial class VehicleSystem : EntitySystem
 
         entity.Comp.Operator = operatorUid;
 
-        vehicleOperator ??= AddComp<VehicleOperatorComponent>(operatorUid);
+        vehicleOperator = EnsureComp<VehicleOperatorComponent>(operatorUid); // Starlight
         vehicleOperator.Vehicle = entity.Owner;
         Dirty(operatorUid, vehicleOperator);
 

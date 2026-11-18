@@ -35,9 +35,6 @@ public sealed partial class TransformMech : IGraphAction
     [DataField]
     public string EquipmentContainer = "mech-equipment-container";
 
-    [DataField]
-    public string PilotContainer = "mech-pilot-slot";
-
     // TODO use or generalize ConstructionSystem.ChangeEntity();
     public void PerformAction(EntityUid uid, EntityUid? userUid, IEntityManager entityManager)
     {
@@ -69,14 +66,9 @@ public sealed partial class TransformMech : IGraphAction
             return;
         }
 
-        if (!containerSystem.TryGetContainer(uid, PilotContainer, out var pilotContainer, containerManager))
-        {
-            _log.Warning($"Mech construct entity {uid} did not have the specified '{PilotContainer}' container! Aborting build mech action.");
-            return;
-        }
         var pilot = vehicle.GetOperatorOrNull(uid);
         if (pilot != null)
-            mechSys.TryEject(uid);
+            vehicle.TryExit(uid);
 
         var transform = entityManager.GetComponent<TransformComponent>(uid);
         var mech = entityManager.SpawnEntity(MechPrototype, transform.Coordinates);
@@ -110,7 +102,7 @@ public sealed partial class TransformMech : IGraphAction
                 mechSys.InsertEquipment(mech, equipment, mechComp);
             }
             if (pilot is { } oldPilot && !vehicle.HasOperator(mech))
-                mechSys.TryInsert(mech, oldPilot, mechComp);
+                vehicle.TryEnter(mech, oldPilot);
         }
         var entChangeEv = new ConstructionChangeEntityEvent(mech, uid);
         entityManager.EventBus.RaiseLocalEvent(uid, entChangeEv);

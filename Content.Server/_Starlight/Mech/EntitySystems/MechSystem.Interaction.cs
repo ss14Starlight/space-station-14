@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.Shared.Atmos.Components;
 using Content.Shared.DoAfter;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
@@ -14,11 +13,9 @@ using Content.Shared.Toggleable;
 using Content.Shared.Tools;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
-using Content.Shared.Vehicle.Components;
-using Content.Shared.Verbs;
+using Content.Shared.Vehicle;
 using Content.Shared.Whitelist;
 using Content.Shared.Wires;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Mech.Systems;
@@ -29,6 +26,7 @@ public sealed partial class MechSystem
     [Dependency] private SharedToolSystem _toolSystem = default!;
     [Dependency] private EntityWhitelistSystem _mechWhitelist = default!;
     [Dependency] private NpcFactionSystem _mechFactions = default!;
+    [Dependency] private SharedPopupSystem _mechPopup = default!;
     [Dependency] private SharedWiresSystem _mechWires = default!;
 
     private static readonly ProtoId<ToolQualityPrototype> PryingQuality = "Prying";
@@ -110,7 +108,7 @@ public sealed partial class MechSystem
         if (comp.MaintenanceMode != enabled)
         {
             var message = enabled ? "mech-maintenance-enabled" : "mech-maintenance-disabled";
-            _popup.PopupPredicted(Loc.GetString(message), uid, Vehicle.GetOperatorOrNull(uid));
+            _mechPopup.PopupPredicted(Loc.GetString(message), uid, Vehicle.GetOperatorOrNull(uid));
             PlayPowerSound(uid, enabled ? comp.MaintenanceOnSound : comp.MaintenanceOffSound);
         }
         comp.MaintenanceMode = enabled;
@@ -124,73 +122,12 @@ public sealed partial class MechSystem
     {
         if (!ent.Comp.MaintenanceMode)
         {
-            _popup.PopupEntity(Loc.GetString("mech-requires-maintenance-mode"), ent, PopupType.MediumCaution);
+            _mechPopup.PopupEntity(Loc.GetString("mech-requires-maintenance-mode"), ent, PopupType.MediumCaution);
             return;
         }
         var equipment = GetEntity(args.Equipment);
         if (Exists(equipment) && !Deleted(equipment) && ent.Comp.EquipmentContainer.ContainedEntities.Contains(equipment))
             RemoveEquipment(ent, equipment, ent.Comp);
-    }
-
-    [SubscribeLocalEvent]
-    private void OnAlternativeVerb(Entity<MechComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
-    {
-        if (!args.CanAccess || !args.CanInteract)
-            return;
-        var user = args.User;
-        var mech = ent.Owner;
-        var pilot = Vehicle.GetOperatorOrNull(mech);
-        if (pilot == null || pilot == user)
-        {
-            args.Verbs.Add(new AlternativeVerb
-            {
-                Text = Loc.GetString("mech-ui-open-verb"),
-                Act = () => ToggleMechUi(mech, ent.Comp, user),
-            });
-        }
-        if (ent.Comp.Broken)
-            return;
-        if (CanInsert(mech, user, ent.Comp))
-        {
-            args.Verbs.Add(new AlternativeVerb
-            {
-                Text = Loc.GetString("mech-verb-enter"),
-                Act = () => _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, ent.Comp.EntryDelay,
-                    new MechEntryEvent(), mech, target: mech) { BreakOnMove = true }),
-            });
-        }
-        else if (pilot != null)
-        {
-            args.Verbs.Add(new AlternativeVerb
-            {
-                Text = Loc.GetString("mech-verb-exit"),
-                Priority = 1,
-                Act = () =>
-                {
-                    if (user == mech || user == pilot)
-                    {
-                        TryEject(mech, ent.Comp);
-                        return;
-                    }
-                    _popup.PopupEntity(Loc.GetString("mech-eject-pilot-alert", ("item", mech),
-                        ("user", Identity.Entity(user, EntityManager))), mech, PopupType.Large);
-                    _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, ent.Comp.ExitDelay,
-                        new MechExitEvent(), mech, target: mech) { BreakOnMove = true });
-                },
-            });
-        }
-    }
-
-    private void ToggleMechUi(EntityUid uid, MechComponent? component = null, EntityUid? user = null)
-    {
-        if (!Resolve(uid, ref component))
-            return;
-        var pilot = Vehicle.GetOperatorOrNull(uid);
-        user ??= pilot;
-        if (user == null || pilot != null && user != pilot || !TryComp<ActorComponent>(user, out var actor))
-            return;
-        _ui.TryToggleUi(uid, MechUiKey.Key, actor.PlayerSession);
-        UpdateUserInterface(uid, component);
     }
 
     public override void UpdateUserInterface(EntityUid uid, MechComponent? component = null)

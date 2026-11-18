@@ -14,6 +14,7 @@ using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Popups;
 using Content.Shared.Repairable;
 using Content.Shared.Stunnable;
+using Content.Shared.Vehicle;
 using Content.Shared.Vehicle.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Wires;
@@ -46,7 +47,6 @@ public abstract partial class SharedMechSystem
 
     private void InitializeContainers(EntityUid uid, MechComponent comp)
     {
-        comp.PilotSlot.OccludesLight = false;
         comp.GasTankSlot = _container.EnsureContainer<ContainerSlot>(uid, MechComponent.GasTankSlotId);
     }
 

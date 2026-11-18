@@ -50,7 +50,7 @@ internal sealed partial class BuckleSystem : SharedBuckleSystem
         if (newDir == oldDir)
             return;
 
-        var isNorth = newDir == Direction.North;
+        var isLowered = (newDir.AsFlag() & ent.Comp.LoweredDrawdepthDirections) != 0; // Starlight
 
         foreach (var buckledEntity in ent.Comp.BuckledEntities)
         {

@@ -74,6 +74,7 @@ public sealed partial class MechSystem : SharedMechSystem
     {
         var integrity = component.MaxIntegrity - _damageable.GetTotalDamage((uid, args.Damageable));
         SetIntegrity(uid, integrity, component);
+        Vehicle.RefreshCanRun(uid); // Starlight
     }
 
     [SubscribeLocalEvent]

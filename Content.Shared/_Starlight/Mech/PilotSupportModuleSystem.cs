@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
-using Content.Shared.Mech.EntitySystems;
 using Content.Shared.Vehicle.Components;
 using Content.Shared.Vehicle.Systems;
 using Robust.Shared.Serialization.Manager;
@@ -10,7 +9,6 @@ namespace Content.Shared._Starlight.Mech;
 
 public sealed partial class PilotSupportModuleSystem : EntitySystem
 {
-    [Dependency] private SharedMechSystem _mech = default!;
     [Dependency] private VehicleSystem _vehicle = default!;
     [Dependency] private ISerializationManager _serialization = default!;
 
@@ -26,7 +24,7 @@ public sealed partial class PilotSupportModuleSystem : EntitySystem
 
     private void OnModuleRemoved(Entity<PilotSupportModuleComponent> ent, ref MechEquipmentRemovedEvent args)
     {
-        _mech.TryEject(args.Mech);
+        _vehicle.TryExit(args.Mech);
         RebuildWhitelist(args.Mech, ent);
     }
 

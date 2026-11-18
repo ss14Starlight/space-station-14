@@ -4,12 +4,17 @@
   - type: !Remove AirFilter
   - type: !Remove AirIntake
   - type: !Remove AtmosDevice
+  - type: ContainerContainer
+    containers:
+      mech-pilot-slot: !type:ContainerSlot
+        occludes: false
   - type: Mech
     maxIntegrity: 170
     batteryWhitelist:
       tags:
       - MechReactor
   - type: VehicleHandBlocker
+    blockedHands: 2
     exemptOperators:
       components:
       - BorgChassis
@@ -60,6 +65,10 @@
 - type: !PartialOnly entity
   id: MechHonker
   components:
+  - type: Mech
+    baseState: base
+    openState: base-open
+    brokenState: base-broken
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
