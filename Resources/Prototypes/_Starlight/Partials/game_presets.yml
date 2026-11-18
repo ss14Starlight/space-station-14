@@ -16,11 +16,11 @@
 - type: !PartialOnly gamePreset
   id: AllAtOnce
   bypassCooldowns: true
-  minPlayers: 60 
+  minPlayers: 60
   rules:
-    - WizardDuel 
+    - WizardDuel
     - !Remove Xenoborgs
-    - SLChangeling 
+    - SLChangeling
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation # ShitStation
     - ShitStationEventScheduler # ShitStation
@@ -39,10 +39,10 @@
   rules:
     - SubWizard # Well you did say *Aller* at once.
     - WizardDuel # Well you did say *Aller* at once.
-    - !Remove Xenoborgs 
+    - !Remove Xenoborgs
     - BasicStationEventScheduler # ShitStation
     - ShitStationEventScheduler # ShitStation
-    - SpaceTrafficControlEventScheduler 
+    - SpaceTrafficControlEventScheduler
     - SpaceTrafficControlFriendlyEventScheduler
     - BasicRoundstartVariation # ShitStation
     - BasicRoundstartVariation # ShitStation
@@ -124,7 +124,6 @@
   id: Wizard
   minPlayers: 20
   rules:
-  - Wizard
   - !Remove DummyNonAntagChance
   - SubGamemodesRuleNoWizard #No Dual Wizards at the start# midround is fine
   - SpaceTrafficControlEventScheduler
