@@ -1,46 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: The mechwright arm's welder now sparks when activated, like other welders.
-    type: Fix
-  id: 410216
-  time: '2026-11-07T19:10:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7089
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: The zeus arm's stun fist now sparks when activated, like other stun batons.
-    type: Fix
-  id: 410217
-  time: '2026-11-07T19:10:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7089
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: The mechwright arm's screwdriver is no longer incorrectly tinted a random color.
-    type: Fix
-  id: 410218
-  time: '2026-11-07T19:10:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7089
-- author: Floximo
-  changes:
-  - message: The AI PDA should no longer delete its programs randomly after a reconnect.
-    type: Fix
-  id: 410219
-  time: '2026-11-07T19:32:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7094
-- author: Floximo
-  changes:
-  - message: Multiple combination and issues with shunting and disconnects have been fixed.
-    type: Fix
-  id: 410220
-  time: '2026-11-07T19:32:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7094
-- author: Xale
-  changes:
-  - message: Power output of nuclear generator gas turbines is now displayed when examining up close.
-    type: Add
-  id: 410221
-  time: '2026-11-07T19:32:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7099
 - author: Rinary
   changes:
   - message: "BEHOLD: Added advanced airlock control system(airlock cycler/airlock controller), now you can equip airlock systems with it, so it'll pull/push gases into temp storage to safe gas! And it manages access to closed areas better! No more logic based airlock systems!"
@@ -2799,4 +2757,46 @@ Entries:
   id: 410615
   time: '2026-11-18T19:42:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7125
+- author: Swonki
+  changes:
+  - message: VM91 Ruin Sweeper, a PKA shotgun, findable on expedition.
+    type: Add
+  id: 410616
+  time: '2026-11-18T19:42:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7106
+- author: Swonki
+  changes:
+  - message: New experimental and advanced PKA modkits.
+    type: Add
+  id: 410617
+  time: '2026-11-18T19:42:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7106
+- author: Swonki
+  changes:
+  - message: new damage system for modkits.
+    type: Add
+  id: 410618
+  time: '2026-11-18T19:42:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7106
+- author: Swonki
+  changes:
+  - message: Experimental modkits can be found on any expeditions, each can only be found on one type.
+    type: Add
+  id: 410619
+  time: '2026-11-18T19:42:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7106
+- author: Swonki
+  changes:
+  - message: SPKA and Regulator base damage increased.
+    type: Tweak
+  id: 410620
+  time: '2026-11-18T19:42:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7106
+- author: Swonki
+  changes:
+  - message: Regulator Accuracy.
+    type: Tweak
+  id: 410621
+  time: '2026-11-18T19:42:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7106
 Order: -1
