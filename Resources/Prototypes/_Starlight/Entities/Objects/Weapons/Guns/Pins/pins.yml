@@ -148,7 +148,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-      - !type:ExplodeBehavior
     - trigger:
         !type:DamageTrigger
         damage: 5
@@ -176,7 +175,6 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-      - !type:ExplodeBehavior
 
 # cool functionality ish pins
 - type: entity
