@@ -9,7 +9,7 @@
       tags:
         - CartridgeMagnum
     proto: CartridgeMagnumSP
-    capacity: 12
+    capacity: 30
   - type: Item
     size: Small
   - type: ContainerContainer
