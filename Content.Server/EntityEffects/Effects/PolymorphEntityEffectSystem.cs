@@ -16,9 +16,9 @@ public sealed partial class PolymorphEntityEffectSystem : EntityEffectSystem<Pol
 
     protected override void Effect(Entity<PolymorphableComponent> entity, ref EntityEffectEvent<Shared.EntityEffects.Effects.Polymorph> args)
     {
-        _polymorph.PolymorphEntity(entity, args.Effect.Prototype);
+        var polyOut = _polymorph.PolymorphEntity(entity, args.Effect.Prototype);
         // Starlight-start
-        if (args.Effect.Prototype.Equals("ArtifactLizard"))
+        if (polyOut != null && MetaData(polyOut.Value).EntityPrototype!.ID.Equals("ArtifactLizard"))
             _achievement.QueueUnlockAchievement(entity, "weh");
         // Starlight-end
     }

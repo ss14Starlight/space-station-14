@@ -1,4 +1,5 @@
-﻿namespace Content.Shared.Fax.Components;
+﻿// ReSharper disable once CheckNamespace
+namespace Content.Shared.Fax.Components;
 
 public sealed partial class FaxableObjectComponent
 {

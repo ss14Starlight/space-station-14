@@ -6,6 +6,7 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Shared.GameTicking.Components;
 using Robust.Shared.Player;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.GameTicking.Rules;
 
 public sealed partial class ZombieRuleSystem

@@ -5,6 +5,7 @@ using Content.Shared.Speech.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Speech.EntitySystems;
 
 public sealed partial class VocalSystem
