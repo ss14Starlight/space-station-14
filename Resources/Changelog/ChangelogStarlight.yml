@@ -1,13 +1,6 @@
 Entries:
 - author: redmushie
   changes:
-  - message: Construction ghosts can now be placed without line-of-sight.
-    type: Add
-  id: 410173
-  time: '2026-11-06T16:40:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7075
-- author: redmushie
-  changes:
   - message: Construction ghosts are now colored based on whether they are placeable from your position.
     type: Add
   id: 410174
@@ -2799,4 +2792,11 @@ Entries:
   id: 410572
   time: '2026-11-18T07:43:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7235
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Dark Passage and Shadow Anchor (umbrae vampire), Blink (wizard) and fultons no longer teleport you to an unexpected location if you teleport with them while dragging something or someone.
+    type: Fix
+  id: 410573
+  time: '2026-11-18T08:09:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7233
 Order: -1
