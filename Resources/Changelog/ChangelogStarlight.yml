@@ -1,18 +1,4 @@
 Entries:
-- author: Floximo
-  changes:
-  - message: The AI core is now armoured and requires explosives to shutdown and much bigger explosives to entirely remove it.
-    type: Tweak
-  id: 410211
-  time: '2026-11-07T18:24:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6970
-- author: Floximo
-  changes:
-  - message: Syndi Minibomb does now less structural damage while retaining any other damage type.
-    type: Tweak
-  id: 410212
-  time: '2026-11-07T18:24:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6970
 - author: Trosling
   changes:
   - message: Removed Confirmed Revolution SOP from Red Alert page.
@@ -2799,4 +2785,18 @@ Entries:
   id: 410610
   time: '2026-11-18T14:37:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7317
+- author: wonderfulnewworld, Conflee
+  changes:
+  - message: You can now print doormats at the Uniform Printer.
+    type: Add
+  id: 410611
+  time: '2026-11-18T18:16:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7315
+- author: wonderfulnewworld, Conflee
+  changes:
+  - message: You can now cut up doormats for durathread.
+    type: Add
+  id: 410612
+  time: '2026-11-18T18:16:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7315
 Order: -1
