@@ -18,6 +18,9 @@
   name: astral mindsink
   description: A strange artifact. Though comprised of malign materials, it instills no feelings of discomfort.
   components:
+  - type: Contraband
+    tier: Tier2
+    contrabandType: Cosmic
   - type: Sprite
     sprite: _Starlight/CosmicCult/Objects/mindsink.rsi
     layers:
