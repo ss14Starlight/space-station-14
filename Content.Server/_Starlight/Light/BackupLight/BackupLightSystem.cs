@@ -1,4 +1,5 @@
 using Content.Server.Power.Components;
+using Content.Shared._Starlight.Light;
 using Content.Shared._Starlight.Light.BackupLight;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
@@ -113,8 +114,9 @@ public sealed partial class BackupLightSystem : EntitySystem
         var powered = _receiver.IsPowered(uid);
         var charge = _battery.GetCharge((uid, battery));
 
-        // A switched off fixture doesn't run its cell down.
-        var draining = !powered && light.On && charge > 0f && HasWorkingBulb(uid, light);
+        // A switched off fixture or one dimmed to 0 by alert level (e.g. Code Epsilon) doesn't run its cell down.
+        var dimmedToZero = TryComp<AlertLevelDimmedLightComponent>(uid, out var dim) && dim.LightEnergyMultiplier <= 0f;
+        var draining = !powered && light.On && !dimmedToZero && charge > 0f && HasWorkingBulb(uid, light);
         var charging = powered && charge < battery.MaxCharge;
 
         if (draining == backup.Draining && charging == backup.Charging)

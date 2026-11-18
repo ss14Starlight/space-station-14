@@ -57,7 +57,7 @@
           volume: -3
       disableSelection: true
       color: DarkRed
-      emergencyLightColor: '#ffba9c' #Starlight
+      emergencyLightColor: DarkRed #Starlight
       forceEnableEmergencyLights: true
       shuttleTime: 1200
       dimmedLightMultiplier: 0.2 # Starlight
@@ -70,7 +70,7 @@
           volume: -2
       disableSelection: true
       color: DarkViolet
-      emergencyLightColor: "#938aff" #Starlight
+      emergencyLightColor: DarkViolet #Starlight
       forceEnableEmergencyLights: true
       shuttleTime: 1200
       dimmedLightMultiplier: 0 # Starlight
