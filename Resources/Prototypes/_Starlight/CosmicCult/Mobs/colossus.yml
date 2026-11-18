@@ -23,7 +23,9 @@
   - type: NpcFactionMember
     factions:
     - CosmicCult
-  - type: CosmicMalignantHealing
+  - type: HealFromTiles
+    tiles:
+    - FloorCosmicCorruption
     healInterval: 10s
     healAmount: 1.5
   - type: StaminaResistance
