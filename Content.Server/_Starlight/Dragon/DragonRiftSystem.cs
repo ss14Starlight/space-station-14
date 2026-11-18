@@ -95,15 +95,13 @@ public sealed partial class DragonRiftSystem
                 comp.SpawnAccumulator -= comp.SpawnCooldown;
 
                 var spawnPrototype = comp.SpawnPrototype;
-                var rareSpawn = false;
                 var isSharkminnow = false;
 
-                // Only Dragon Rifts with an linked Dragon use the special SharkMinnow/HoloCarp spawn rolls.
+                // Only Dragon Rifts with a linked Dragon use the SharkMinnow spawn roll.
                 if (comp.Dragon != null)
                 {
-
                     var totalCrewCount = _crewCount.GetTotalCrewCount();
-                    comp.SharkMinnowLimit = totalCrewCount / 8;
+                    comp.SharkMinnowLimit = totalCrewCount / 12;
                     Dirty(uid, comp);
 
                     var canSpawnSharkminnow = true;
@@ -112,49 +110,38 @@ public sealed partial class DragonRiftSystem
                     {
                         CleanupSharkMinnows(dragon);
 
-                        var sharkMinnowCount = dragon.SharkMinnows.Count;
-
-                        if (sharkMinnowCount >= comp.SharkMinnowLimit)
+                        if (dragon.SharkMinnows.Count >= comp.SharkMinnowLimit)
                             canSpawnSharkminnow = false;
                     }
 
                     var finishedMultiplier = comp.State == DragonRiftState.Finished ? 1 : 0;
-                    var rareChance = 7 * (1 + finishedMultiplier); // 7 -> 14 -4 sharks so when rift is done 10%
-                    var sharkChance = 2 * (1 + finishedMultiplier);
+                    var sharkChance = 2 * (1 + finishedMultiplier); // 1/50 unfinished, 1/25 finished
 
                     var roll = _random.Next(1, 101);
 
-                    if (roll <= rareChance)
+                    if (roll <= sharkChance && canSpawnSharkminnow)
                     {
-                        rareSpawn = true;
-
-                        if (roll <= sharkChance && canSpawnSharkminnow)
-                        {
-                            spawnPrototype = _sharkMinnowPrototype;
-                            isSharkminnow = true;
-                        }
-                        else
-                        {
-                            spawnPrototype = new EntProtoId("MobCarpDragon");
-                        }
+                        spawnPrototype = _sharkMinnowPrototype;
+                        isSharkminnow = true;
                     }
                 }
 
-                // Non-Dragon Rifts simply spawn their configured prototype.
+                // Non-SharkMinnow spawns inherit the Dragon's appearance.
                 var ent = Spawn(spawnPrototype, xform.Coordinates);
 
                 if (isSharkminnow && comp.Dragon != null && TryComp<DragonComponent>(comp.Dragon.Value, out var dragonComp))
                     dragonComp.SharkMinnows.Add(ent);
 
-                // Update their look to match the leader.
-                if (!rareSpawn && TryComp<RandomSpriteComponent>(comp.Dragon, out var randomSprite))
+                if (!isSharkminnow &&
+                    comp.Dragon is { } dragonUid &&
+                    TryComp<RandomSpriteComponent>(dragonUid, out var randomSprite))
                 {
                     var spawnedSprite = EnsureComp<RandomSpriteComponent>(ent);
                     _serManager.CopyTo(randomSprite, ref spawnedSprite, notNullableOverride: true);
                     Dirty(ent, spawnedSprite);
                 }
 
-                // Sharkminnows do not follow the Dragon.
+                // SharkMinnows do not follow the Dragon.
                 if (!isSharkminnow && comp.Dragon != null)
                 {
                     _npc.SetBlackboard(ent, NPCBlackboard.FollowTarget,

@@ -1,16 +1,16 @@
 using Content.Shared.Maps;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.CosmicCult.Components;
+namespace Content.Shared._Starlight.Healing;
 
 [RegisterComponent]
-public sealed partial class CosmicMalignantHealingComponent : Component
+public sealed partial class HealFromTilesComponent : Component
 {
     /// <summary>
-    /// The tile on which the entity is healed.
+    /// The tiles on which the entity can be healed.
     /// </summary>
-    [DataField]
-    public ProtoId<ContentTileDefinition> HealingTile = "FloorCosmicCorruption";
+    [DataField("tiles")]
+    public List<ProtoId<ContentTileDefinition>> Tiles = new();
 
     /// <summary>
     /// The amount of each damage type healed per healing interval.
