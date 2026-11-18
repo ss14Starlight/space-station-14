@@ -355,7 +355,6 @@
     - HideContextMenu
 
 
-#Starlight: Added soft critical support
 - type: entity
   parent: BaseSubdermalImplant
   id: DeathRattleImplant
@@ -370,7 +369,6 @@
         - MobState # admeme implanting a chair with rattle implant needs to give the chair mobstate so it can die first
     - type: TriggerOnMobstateChange
       mobState:
-      - SoftCritical
       - Critical
       - Dead
     - type: RattleOnTrigger
