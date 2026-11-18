@@ -66,6 +66,7 @@ marking-LagomorphEarsAntlersTall-tall_ears_outer = Outer
 marking-LagomorphEarsAntlersTall-tall_ears_inner = Inner
 marking-LagomorphEarsAntlersTall-antlers-tall-ears = Antlers
 marking-LagomorphEarsDeer = Deer
+marking-LagomorphEarsDeer-deer = Ears
 marking-LagomorphEarsDeerAntlers = Deer Antlers
 marking-LagomorphEarsDeerAntlers-deer = Deer
 marking-LagomorphEarsDeerAntlers-antlers = Antlers
@@ -84,6 +85,8 @@ marking-LagomorphEarsDeerAntlersDriedbush-antlers-driedbush = Antlers
 marking-LagomorphEarsAirplane = Airplane
 marking-LagomorphEarsAirplane-airplane = Outer
 marking-LagomorphEarsAirplane-inner_airplane = Inner
+marking-LagomorphEarsFluffed = Fluffed
+marking-LagomorphEarsFluffed-fluffed = Ears
 
 # tails
 marking-LagomorphTailCotton = Cotton Tail
@@ -98,35 +101,101 @@ marking-LagomorphTailLong-long_tail_twotone = Bottom
 
 # head side
 marking-LagomorphDewlap = Dewlap
+marking-LagomorphDewlap-dewlap = Dewlap
 
 # head
 marking-LagomorphEyeScarRight = Right Eye Scar
+marking-LagomorphEyeScarRight-eye_scar_R = Right Eye Scar
 marking-LagomorphEyeScarLeft = Left Eye Scar
+marking-LagomorphEyeScarLeft-eye_scar_L = Left Eye Scar
+marking-LagomorphEyeScar2Right = Right Eye Scar 2
+marking-LagomorphEyeScar2Right-eye_scar2_R = Right Eye Scar 2
+marking-LagomorphEyeScar2Left = Left Eye Scar 2
+marking-LagomorphEyeScar2Left-eye_scar2_L = Left Eye Scar 2
+marking-LagomorphEyeSpotR = Right Eye Spot
+marking-LagomorphEyeSpotR-eye_spot_R = Right Eye Spot
+marking-LagomorphEyeSpotL = Left Eye Spot
+marking-LagomorphEyeSpotL-eye_spot_L = Left Eye Spot
+marking-LagomorphHeadBlaze= Blaze
+marking-LagomorphHeadBlaze-head_blaze= Blaze
+marking-LagomorphHeadDutch = Dutch
+marking-LagomorphHeadDutch-head_dutch = Dutch
+marking-LagomorphHeadLion = Lion
+marking-LagomorphHeadLion-head_lion = Lion
+marking-LagomorphHeadHarlequinnR = Harlequinn Right Side
+marking-LagomorphHeadHarlequinnR-head_harlequinn_R = Harlequinn Right Side
+marking-LagomorphHeadHarlequinnL = Harlequinn Left Side
+marking-LagomorphHeadHarlequinnL-head_harlequinn_L = Harlequinn Left Side
 
 # chest
 marking-LagomorphBellyColour = Belly
+marking-LagomorphBellyColour-belly_color = Belly
 marking-LagomorphTorsoSpots = Chest Spots
+marking-LagomorphTorsoSpots-torso_spots = Chest Spots
 marking-LagomorphChestScarRight = Right Chest Scar
+marking-LagomorphChestScarRight-chest_scar_R = Right Chest Scar
 marking-LagomorphChestScarLeft = Left Chest Scar
+marking-LagomorphChestScarLeft-chest_scar_L = Left Chest Scar
 marking-LagomorphBackScarRight = Right Back Scar
+marking-LagomorphBackScarRight-back_scar_R = Right Back Scar
 marking-LagomorphBackScarLeft = Left Back Scar
+marking-LagomorphBackScarLeft-back_scar_L = Left Back Scar
+marking-LagomorphChestScar = Chest Scar
+marking-LagomorphChestScar-chest_scar = Chest Scar
+marking-LagomorphBackScar = Back Scar
+marking-LagomorphBackScar-back_scar = Back Scar
+marking-LagomorphChestDutch = Dutch
+marking-LagomorphChestDutch-chest_dutch = Dutch
+marking-LagomorphChestHarlR = Harlequinn Right Side
+marking-LagomorphChestHarlR-chest_harl_R = Harlequinn Right Side
+marking-LagomorphChestHarlL = Harlequinn Left Side
+marking-LagomorphChestHarlL-chest_harl_L = Harlequinn Left Side
 
 # legs
 marking-LagomorphClaws = Claws
+marking-LagomorphClaws-claws = Claws
 marking-LagomorphLegSockL = Leggings
+marking-LagomorphLegSockL-leg_socks = Leggings
 marking-LagomorphFootSockR = Socks
+marking-LagomorphFootSockR-feet_socks = Socks
 marking-LagomorphLegSpotsR = Right Leg Spots
+marking-LagomorphLegSpotsR-right_leg_spots = Right Leg Spots
 marking-LagomorphLegSpotsL = Left Leg Spots
+marking-LagomorphLegSpotsL-left_leg_spots = Left Leg Spots
+marking-LagomorphLegSleeveL = Left Sleeve
+marking-LagomorphLegSleeveL-l_leg = Left Sleeve
+marking-LagomorphLegSleeveR = Right Sleeve
+marking-LagomorphLegSleeveR-r_leg = Right Sleeve
 
 # arms
 marking-LagomorphHandMittsR = Right Hand Mitten
+marking-LagomorphHandMittsR-r_hand_mitt = Right Hand Mitten
 marking-LagomorphHandMittsL = Left Hand Mitten
+marking-LagomorphHandMittsL-l_hand_mitt = Left Hand Mitten
 marking-LagomorphArmMittsR = Right Arm Mitten
+marking-LagomorphArmMittsR-r_arm_mitt = Right Arm Mitten
 marking-LagomorphArmMittsL = Left Arm Mitten
+marking-LagomorphArmMittsL-l_arm_mitt = Left Arm Mitten
 marking-LagomorphArmSpotsR = Right Arm Spots
+marking-LagomorphArmSpotsR-right_arm_spots = Right Arm Spots
 marking-LagomorphArmSpotsL = Left Arm Spots
+marking-LagomorphArmSpotsL-left_arm_spots = Left Arm Spots
 marking-LagomorphBraceletR = Right Bracelet
+marking-LagomorphBraceletR-bracelet_R = Right Bracelet
 marking-LagomorphBraceletL = Left Bracelet
+marking-LagomorphBraceletL-bracelet_L = Left Bracelet
+marking-LagomorphArmSleeveL = Left Sleeve
+marking-LagomorphArmSleeveL-l_arm = Left Sleeve
+marking-LagomorphArmSleeveR = Right Sleeve
+marking-LagomorphArmSleeveR-r_arm = Right Sleeve
+
+# overlay
+marking-LagomorphHeadGauze = Blindfold
+marking-LagomorphHeadGauze-head_gauze_blindfold = Blindfold
+marking-LagomorphLegGauzeR = Right Leg Gauze
+marking-LagomorphLegGauzeR-leg_gauze_R = Right Leg Gauze
+marking-LagomorphLegGauzeL = Left Leg Gauze
+marking-LagomorphLegGauzeL-leg_gauze_L = Left Leg Gauze
 
 # underwear
 marking-LagomorphBinderTop = Binder
