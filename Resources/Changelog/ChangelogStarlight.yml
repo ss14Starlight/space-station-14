@@ -1,13 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: '(Flotilla) Other: Add missing decals.'
-    type: Add
-  id: 410197
-  time: '2026-11-07T08:44:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7090
-- author: Hot Mic
-  changes:
   - message: '(Flotilla) Other: Various minor fixes.'
     type: Fix
   id: 410198
@@ -2799,4 +2792,11 @@ Entries:
   id: 410596
   time: '2026-11-18T10:25:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7312
+- author: wonderfulnewworld
+  changes:
+  - message: You can now OD on Phenyl pills again.
+    type: Fix
+  id: 410597
+  time: '2026-11-18T10:56:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7314
 Order: -1
