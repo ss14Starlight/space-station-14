@@ -1,39 +1,4 @@
 Entries:
-- author: Ohelig
-  changes:
-  - message: (Cork) Adds new radio machines to Radio Host.
-    type: Add
-  id: 410150
-  time: '2026-11-05T22:05:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7060
-- author: Ohelig
-  changes:
-  - message: (Cork) Renames Radio Host APC (no longer an NTR office).
-    type: Fix
-  id: 410151
-  time: '2026-11-05T22:05:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7060
-- author: SirLutz
-  changes:
-  - message: T3 Bark perk phytovitalin injection is now every 30 seconds not 60 seconds.
-    type: Tweak
-  id: 410152
-  time: '2026-11-06T10:13:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6977
-- author: SirLutz
-  changes:
-  - message: Mycophylin now decays properly in Cyclorite, so its not drugs forever, sorry guys.
-    type: Tweak
-  id: 410153
-  time: '2026-11-06T10:13:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6977
-- author: SirLutz
-  changes:
-  - message: Fixed a client-side NullReferenceException when opening the Diona pollen shop.
-    type: Fix
-  id: 410154
-  time: '2026-11-06T10:13:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6977
 - author: SirLutz
   changes:
   - message: small optimization for Pollen.
@@ -2799,4 +2764,39 @@ Entries:
   id: 410549
   time: '2026-11-18T06:48:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7307
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Breaking news console added to Reporter.
+    type: Add
+  id: 410550
+  time: '2026-11-18T06:48:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7306
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Added new radio equipment to Radio Host.
+    type: Add
+  id: 410551
+  time: '2026-11-18T06:48:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7306
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Moved the Funding Allocation Computer from QM to HOP.
+    type: Tweak
+  id: 410552
+  time: '2026-11-18T06:48:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7306
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Fixed a service intercom in HOP that was on the wrong side of the wall.
+    type: Fix
+  id: 410553
+  time: '2026-11-18T06:48:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7306
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Fixed an unpowered disposal unit just south of HOP / north of Theatre.
+    type: Fix
+  id: 410554
+  time: '2026-11-18T06:48:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7306
 Order: -1
