@@ -313,6 +313,15 @@
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: antlers-tall-ears
 
+- type: marking
+  id: LagomorphEarsFluffed
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: fluffed
+
 # Head Markings
 
 - type: marking
@@ -334,6 +343,24 @@
       state: eye_scar_R
 
 - type: marking
+  id: LagomorphEyeScar2Left
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: eye_scar2_L
+
+- type: marking
+  id: LagomorphEyeScar2Right
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: eye_scar2_R
+
+- type: marking
   id: LagomorphDewlap
   bodyPart: HeadSide
   markingCategory: HeadSide
@@ -341,6 +368,78 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: dewlap
+
+- type: marking
+  id: LagomorphEyeSpotR
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: eye_spot_R
+
+- type: marking
+  id: LagomorphEyeSpotL
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: eye_spot_L
+
+- type: marking
+  id: LagomorphHeadBlaze
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: head_blaze
+
+- type: marking
+  id: LagomorphHeadDutch
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: head_dutch
+
+- type: marking
+  id: LagomorphHeadLion
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: head_lion
+
+- type: marking
+  id: LagomorphHeadHarlequinnR
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: head_harlequinn_R
+
+- type: marking
+  id: LagomorphHeadHarlequinnL
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: head_harlequinn_L
+
+- type: marking
+  id: LagomorphHeadGauze
+  bodyPart: Eyes
+  markingCategory: Overlay
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: head_gauze_blindfold
 
 # they don't render right lol
 # - type: marking
@@ -435,6 +534,15 @@
       state: chest_scar_R
 
 - type: marking
+  id: LagomorphChestScar
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: chest_scar
+
+- type: marking
   id: LagomorphBackScarLeft
   bodyPart: Chest
   markingCategory: Chest
@@ -453,6 +561,15 @@
       state: back_scar_R
 
 - type: marking
+  id: LagomorphBackScar
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: back_scar
+
+- type: marking
   id: LagomorphBellyColour
   bodyPart: Chest
   markingCategory: Chest
@@ -469,6 +586,33 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: torso_spots
+
+- type: marking
+  id: LagomorphChestDutch
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: chest_dutch
+
+- type: marking
+  id: LagomorphChestHarlR
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: chest_harl_R
+
+- type: marking
+  id: LagomorphChestHarlL
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: chest_harl_L
 
 # Arm Markings
 
@@ -544,6 +688,24 @@
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: l_hand_mitt
 
+- type: marking
+  id: LagomorphArmSleeveR
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+      state: r_arm
+
+- type: marking
+  id: LagomorphArmSleeveL
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+      state: l_arm
+
 # Leg Markings
 
 - type: marking
@@ -557,7 +719,7 @@
 
 - type: marking
   id: LagomorphLegSpotsR
-  bodyPart: RLeg
+  bodyPart: LLeg
   markingCategory: Legs
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
@@ -583,6 +745,24 @@
       state: feet_socks
 
 - type: marking
+  id: LagomorphLegSleeveR
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+      state: r_leg
+
+- type: marking
+  id: LagomorphLegSleeveL
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+      state: l_leg
+
+- type: marking
   id: LagomorphClaws
   bodyPart: RFoot
   markingCategory: Legs
@@ -590,6 +770,24 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: claws
+
+- type: marking
+  id: LagomorphLegGauzeR
+  bodyPart: LLeg
+  markingCategory: Overlay
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: leg_gauze_R
+
+- type: marking
+  id: LagomorphLegGauzeL
+  bodyPart: LLeg
+  markingCategory: Overlay
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: leg_gauze_L
 
 # Special Markings
 

@@ -25,3 +25,25 @@
   - type: Contraband
     tier: Tier1
     contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: PosterBase
+  components:
+  - type: Tag
+    tags:
+    - Paper
+  - type: Edible
+    delay: 7
+    requiresSpecialDigestion: true
+    solution: food
+  - type: FlavorProfile
+    flavors:
+    - paper
+  - type: BadFood
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 5
