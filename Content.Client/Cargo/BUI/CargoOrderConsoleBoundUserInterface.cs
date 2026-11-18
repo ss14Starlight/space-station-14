@@ -1,5 +1,6 @@
 using Content.Shared.Cargo;
 using Content.Client.Cargo.UI;
+using Content.Shared._Starlight.Cargo.Components;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Events;
@@ -108,7 +109,7 @@ namespace Content.Client.Cargo.BUI
             {
                 SendMessage(new CargoConsoleToggleLimitMessage());
             };
-
+            _menu.OnPrintBarcode += account => SendMessage(new CargoConsolePrintBarcodeMessage(account)); // Starlight-edit
             _menu.OpenCentered();
         }
 
@@ -121,6 +122,7 @@ namespace Content.Client.Cargo.BUI
             _menu.PopulateCategories();
             _menu.PopulateOrders(orders);
             _menu.PopulateAccountActions();
+            _menu.PopulateBarcodeAccounts(); //Starlight
         }
 
         protected override void UpdateState(BoundUserInterfaceState state)

@@ -13,6 +13,7 @@
       - BorgModuleTool
       - BorgModuleMedTakMedical
       - BorgModuleMedTakRifle
+      - BorgModuleMedTakDocuments
       - BorgModuleFireExtinguisher
   - type: ItemSlots
     slots:

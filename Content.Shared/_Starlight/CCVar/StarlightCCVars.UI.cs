@@ -192,6 +192,13 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<bool> TippyClientEnabled =
         CVarDef.Create("ui.client_tippy_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// How many recent chat messages are checked when stacking repeated messages.
+    /// 0 disables chat stacking.
+    /// </summary>
+    public static readonly CVarDef<int> ChatRepeatHistory =
+        CVarDef.Create("starlight.chat_repeat_history", 4, CVar.CLIENTONLY | CVar.ARCHIVE);
 }
 
 public enum HeldItemShowMode

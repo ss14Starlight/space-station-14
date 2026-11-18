@@ -1,0 +1,51 @@
+﻿{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by IntegerTempest. Equipped-EYES-arachnid modified from equipped-EYES by HTMLSystem. equipped-EYES-dog modified from equipped-EYES by Sparlight (GitHub). Equipped-EYES-resomi modified from equipped-EYES by Huaqas (GitHub). Split into layers by Reestock.",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {"name":  "equipped-EYES-accent-arachnid", "directions": 4},
+        {"name":  "equipped-EYES-accent-dog", "directions": 4},
+        {"name":  "equipped-EYES-accent-resomi", "directions": 4},
+        {"name":  "equipped-EYES-accent", "directions": 4},
+        {"name":  "equipped-EYES-frame-arachnid", "directions": 4},
+        {"name":  "equipped-EYES-frame-dog", "directions": 4},
+        {"name":  "equipped-EYES-frame-resomi", "directions": 4},
+        {"name":  "equipped-EYES-frame", "directions": 4},
+        {"name":  "equipped-EYES-lens-accent-minor-arachnid", "directions": 4},
+        {"name":  "equipped-EYES-lens-accent-minor-dog", "directions": 4},
+        {"name":  "equipped-EYES-lens-accent-minor-resomi", "directions": 4},
+        {"name":  "equipped-EYES-lens-accent-minor", "directions": 4},
+        {"name":  "equipped-EYES-lens-accent-major-arachnid", "directions": 4},
+        {"name":  "equipped-EYES-lens-accent-major-dog", "directions": 4},
+        {"name":  "equipped-EYES-lens-accent-major-resomi", "directions": 4},
+        {"name":  "equipped-EYES-lens-accent-major", "directions": 4},
+        {"name":  "equipped-EYES-lens-arachnid", "directions": 4},
+        {"name":  "equipped-EYES-lens-dog", "directions": 4},
+        {"name":  "equipped-EYES-lens-resomi", "directions": 4},
+        {"name":  "equipped-EYES-lens", "directions": 4},
+        {"name":  "equipped-EYES-specular", "directions": 4},
+        {"name":  "equipped-EYES-specular-arachnid", "directions": 4},
+        {"name":  "equipped-EYES-specular-dog", "directions": 4},
+        {"name":  "equipped-EYES-specular-resomi", "directions": 4},
+        {"name":  "icon-accent"},
+        {"name":  "icon-frame"},
+        {"name":  "icon-lens-accent-minor"},
+        {"name":  "icon-lens-accent-major"},
+        {"name":  "icon-lens"},
+        {"name":  "icon-specular"},
+        {"name": "inhand-left-frame", "directions": 4},
+        {"name": "inhand-left-lens-accent-minor", "directions": 4},
+        {"name": "inhand-left-lens", "directions": 4},
+        {"name": "inhand-left-specular", "directions": 4},
+        {"name": "inhand-right-frame", "directions": 4},
+        {"name": "inhand-right-lens-accent-minor", "directions": 4},
+        {"name": "inhand-right-lens", "directions": 4},
+        {"name": "inhand-right-specular", "directions": 4}
+    ]
+}
+
+

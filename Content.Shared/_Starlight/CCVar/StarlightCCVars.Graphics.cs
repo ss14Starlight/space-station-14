@@ -19,6 +19,12 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("opt.show_stains", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
+    /// How many footprints and drag marks are drawn locally.
+    /// </summary>
+    public static readonly CVarDef<int> FootprintVisibility =
+        CVarDef.Create("opt.footprint_visibility", (int) FootprintVisibilityMode.All, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
     /// Controls which interaction particles are displayed.
     /// </summary>
     public static readonly CVarDef<int> InteractionParticlesMode =
@@ -45,6 +51,16 @@ public enum SpriteQualityLevel
     Low = 0,
     Medium = 1,
     High = 2,
+}
+
+/// <summary>
+/// Client-side footprint and drag-mark visibility.
+/// </summary>
+public enum FootprintVisibilityMode
+{
+    All = 0,
+    Half = 1,
+    None = 2,
 }
 
 /// <summary>

@@ -159,17 +159,6 @@
   - FancyPen
 
 - type: loadoutGroup
-  id: AssistantGlasses
-  name: loadout-group-assistant-glasses
-  minLimit: 0
-  loadouts:
-  - Glasses
-  - GlassesJamjar
-  - GlassesJensen
-  - CheapSunnies
-  - AssistantNoirGlasses
-
-- type: loadoutGroup
   id: AssistantHead
   name: loadout-group-assistant-head
   minLimit: 0
@@ -238,6 +227,7 @@
   loadouts:
   - RoboticistWeldingGoggles
   - RoboticistDiagnosticsHud
+  - RoboticistDiagnosticGoggles
 
 - type: loadoutGroup
   id: RoboticistBackpack
@@ -313,6 +303,7 @@
   name: loadout-group-nanotrasenrepresentative-eyewear
   loadouts:
   - NanoTrasenRepresentativeGlasses
+  - NanoTrasenRepresentativeGlassesPrescription
   - NanoTrasenRepresentativeHud
   - NanoTrasenRepresentativeMonocle
 
@@ -347,8 +338,10 @@
   id: MagistrateEyewear
   name: loadout-group-magistrate-eyewear
   loadouts:
-  - MagistrateSecGlasses
-  - MagistrateSkillGlasses
+  - SecurityGlasses
+  - SecurityGlassesPrescription
+  - NanoTrasenRepresentativeGlasses
+  - NanoTrasenRepresentativeGlassesPrescription
 
 - type: loadoutGroup
   id: MagistrateNeck
@@ -445,6 +438,7 @@
   name: loadout-group-blueshield-eyewear
   loadouts:
   - BlueShieldGlasses
+  - BlueShieldGlassesPrescription
   - BlueShieldHud
   - BlueShieldEyePatchHud
 
@@ -1207,6 +1201,7 @@
   name: loadout-group-NanotrasenCareerTrainer-eyewear
   loadouts:
   - NanoTrasenRepresentativeGlasses
+  - NanoTrasenRepresentativeGlassesPrescription
   - NanoTrasenRepresentativeHud
 
 - type: loadoutGroup
@@ -1254,6 +1249,7 @@
   name: loadout-group-captain-eyewear
   loadouts:
   - CaptainGlasses
+  - CaptainGlassesPrescription
   - CaptainHud
 
 - type: loadoutGroup
@@ -1261,9 +1257,9 @@
   name: loadout-group-security-eyewear
   loadouts:
   - SecurityGlasses
+  - SecurityGlassesPrescription
   - SecurityHud
   - DetectiveNoirGlasses
-  - SecurityGlassesPrescription
 
 - type: loadoutGroup
   id: DetectiveLethal
@@ -1333,10 +1329,8 @@
   loadouts:
   - BrigmedicGlasses
   - BrigmedicHud
+  - BrigmedicGlassesPrescription
   - BrigmedicEyePatchHud
-  - BrigmeicGlassesPrescription
-  - CorpsmanGlasses
-  - CorpsmanHud
 
 - type: loadoutGroup
   id: BrigmedicBelt
@@ -1355,3 +1349,11 @@
   - MagistrateWhiteGloves
   - MagistrateBlackGloves
   - HopGloves
+
+- type: loadoutGroup
+  id: BartenderEyewear
+  name: loadout-group-bartender-eyewear
+  minLimit: 0
+  loadouts:
+  - BartenderBeerSunglasses
+  - BartenderBeerEyepatch

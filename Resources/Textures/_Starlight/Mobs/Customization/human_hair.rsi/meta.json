@@ -391,6 +391,91 @@
       "name": "coolspikes",
       "copyright": "neomoth",
       "directions": 4
+    },
+    {
+      "name": "matted",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+    {
+      "name": "mattedshort",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+     {
+      "name": "bubbleponytail",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+    {
+      "name": "afropuffbun",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+    {
+      "name": "straightbangs",
+      "copyright": "Howdyth",
+      "directions": 4
+     },
+     {
+      "name": "frontbangs",
+      "copyright": "Howdyth",
+      "directions": 4
+     },
+     {
+      "name": "workoutheadband",
+      "copyright": "Howdyth",
+      "directions": 4
+      },
+      {
+      "name": "mullet",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+      {
+      "name": "longpigtails",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+      {
+      "name": "starpuffs",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+      {
+      "name": "starpuffsalt",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+      {
+      "name": "overtheshoulderbraid",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+      {
+      "name": "longponytailfront",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+      {
+      "name": "longponytailfrontalt",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+      {
+      "name": "overtheshoulderbraidalt",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+     {
+      "name": "bubbleponytailalt",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+      {
+      "name": "longpigtailsalt",
+      "copyright": "Howdyth",
+      "directions": 4
     }
   ]
 }

@@ -510,3 +510,11 @@ PhotographYellow: null
 PhotographGreen: null
 PhotographBlue: null
 PhotographRed: null
+
+#2026-11-14 - Modular HUD extra glasses cleanup
+ClothingEyesGlassesCorpsman: null
+ClothingEyesHudCorpsman: null
+ClothingEyesHudBrigmedic: ClothingEyesHudMedSec
+
+#2026-11-15 - Musician shades replaced with modular sunglasses
+ClothingEyesGlassesMusicianSunglasses: ClothingEyesModularHudSunglasses

@@ -673,3 +673,13 @@
   applyMaterialDiscount: false
   materials:
     SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentP23IdPdaReplacementFormRecipe
+  result: PrintedDocumentP23IdPdaReplacementForm
+  categories:
+  - InquiriesAndAppeals
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100

@@ -72,13 +72,29 @@ public abstract partial class SharedFlashSystem : EntitySystem
         _damagedByFlashingQuery = GetEntityQuery<DamagedByFlashingComponent>();
     }
 
+    // Moffstation - Start
+    /// <summary>
+    /// Returns true if the given entity CANNOT be affected by flashes. This is generally the result of the entity
+    /// having <see cref="FlashImmunityComponent">flash immune</see> equipment on.
+    /// </summary>
+    public bool IsFlashImmune(EntityUid uid)
+    {
+        var ev = new FlashAttemptEvent(uid, User: null, Used: null)
+        {
+            IsImmunityQuery = true // Starlight
+        };
+        RaiseLocalEvent(uid, ref ev);
+        return ev.Cancelled;
+    }
+    // Moffstation - End
+
     // Starlight begin
     /// <summary>
     /// Adds support for a flash that starts with 0 charges to properly show as burnt out.
     /// </summary>
     private void OnFlashMapInit(EntityUid uid, FlashComponent flash, ref MapInitEvent args)
     {
-        if (TryComp<LimitedChargesComponent>(uid, out var charges) && ((charges.MaxCharges == 0)))
+        if (TryComp<LimitedChargesComponent>(uid, out var charges) && (charges.MaxCharges == 0))
         {
             _appearance.SetData(uid, FlashVisuals.Burnt, true);
             _tag.AddTag(uid, TrashTag);

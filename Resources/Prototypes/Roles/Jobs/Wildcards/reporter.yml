@@ -29,14 +29,14 @@
   storage:
     back:
     - ClothingOuterPressArmor
-    - BlankPhotographBox
+    - PhotographFolder
     - Wrench
     - TapeRecorder
-    - PhotoCamera
     - NetworkConfigurator
     - CassetteTape
     - CassetteTape
     - RubberStampReporter
+    - PhotoCamera
   # Starlight End
 
 - type: chameleonOutfit

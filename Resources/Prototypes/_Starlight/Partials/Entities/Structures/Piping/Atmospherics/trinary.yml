@@ -23,22 +23,105 @@
   components:
     - type: SubFloorHide
       subfloorLayer: Pipes
+    - type: ActivatableUI
+      key: enum.GasFilterUiKey.Key
+    - type: ActivatableUIRequiresAnchor
+      popup: comp-gas-filter-ui-needs-anchor
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
+      degrees:
+        - 0
+        - -90
+        - 180
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+      prefix: device-address-prefix-gas-filter
+    - type: WirelessNetworkConnection
+      range: 200
+    - type: DeviceLinkSink
+      ports:
+        - On
+        - Off
+        - Toggle
+    - type: GasFilterSignal
 
 - type: !PartialOnly entity
   id: GasFilterFlipped
   components:
     - type: SubFloorHide
       subfloorLayer: Pipes
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
+      degrees:
+        - 0
+        - -90
+        - 180
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+      prefix: device-address-prefix-gas-filter
+    - type: WirelessNetworkConnection
+      range: 200
+    - type: DeviceLinkSink
+      ports:
+        - On
+        - Off
+        - Toggle
+    - type: GasFilterSignal
 
 - type: !PartialOnly entity
   id: GasMixer
   components:
     - type: SubFloorHide
       subfloorLayer: Pipes
+    - type: ActivatableUI
+      key: enum.GasMixerUiKey.Key
+    - type: ActivatableUIRequiresAnchor
+      popup: comp-gas-mixer-ui-needs-anchor
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
+      degrees:
+        - 0
+        - -90
+        - 180
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+      prefix: device-address-prefix-gas-mixer
+    - type: WirelessNetworkConnection
+      range: 200
+    - type: DeviceLinkSink
+      ports:
+        - On
+        - Off
+        - Toggle
+    - type: GasMixerSignal
+
+- type: !PartialOnly entity
+  id: GasMixerFlipped
+  components:
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
+      degrees:
+        - 0
+        - -90
+        - 180
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+      prefix: device-address-prefix-gas-mixer
+    - type: WirelessNetworkConnection
+      range: 200
+    - type: DeviceLinkSink
+      ports:
+        - On
+        - Off
+        - Toggle
+    - type: GasMixerSignal
 
 - type: !PartialOnly entity
   id: PressureControlledValve
   components:
     - type: SubFloorHide
       subfloorLayer: Pipes
-

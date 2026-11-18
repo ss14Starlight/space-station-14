@@ -14,10 +14,10 @@
     event: !type:MedTekActionEvent
 
 - type: entity
-  parent: BasePDACartridge
+  parent: [ BasePDACartridge, BaseCommandContraband ]
   id: PhotoCartridge
   name: photo cartridge
-  description: Lets you take pictures! Blank Photographs not included.
+  description: Lets you take pictures with your PDA! Blank Photographs not included.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Devices/cartridge.rsi
@@ -40,15 +40,7 @@
       - 5,3
       - 3,3
       - 1,1
-    - type: Flash
-      flashOnUse: false
-      flashOnRangedInteract: false
-      flashOnMelee: false
-      sound:
-        path: /Audio/Misc/camera_snap.ogg
     - type: LimitedCharges
       maxCharges: 4
-    - type: AutoRecharge
-      rechargeDuration: 60
     - type: UseDelay
       delay: 1
