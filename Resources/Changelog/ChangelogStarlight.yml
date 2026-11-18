@@ -1,53 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: Changed grills/conveyors, now you can't place grills on top of conveyors(except spawn them via sandbox).
-    type: Tweak
-  id: 410178
-  time: '2026-11-06T18:27:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6858
-- author: Rinary
-  changes:
-  - message: Changed airlocks/conveyors, now you can't place airlocks on top of conveyors(except spawn them via sandbox).
-    type: Tweak
-  id: 410179
-  time: '2026-11-06T18:27:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6858
-- author: Rinary
-  changes:
-  - message: Changed conveyors, now you can't anchor it on same tile as grill(any grill) or airlock.
-    type: Tweak
-  id: 410180
-  time: '2026-11-06T18:27:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6858
-- author: Sparlight
-  changes:
-  - message: Changed Mortizol to require acrileni instead of ultravasculine.
-    type: Tweak
-  id: 410181
-  time: '2026-11-06T18:47:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7077
-- author: Caws
-  changes:
-  - message: Moths extra fire damage decreased from 450% to 250%. For reference, Humans take 100% fire damage. Moths can still expect to take about 3x more heat damage from fire compared to a human.
-    type: Tweak
-  id: 410182
-  time: '2026-11-06T22:11:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7080
-- author: Caws
-  changes:
-  - message: Neo-moths extra fire damage decreased from 450% to 250%.
-    type: Tweak
-  id: 410183
-  time: '2026-11-06T22:11:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7080
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Made the Changelog button more apparent in the main menu, and removed the unusable Call Vote button to make room for it.
-    type: Tweak
-  id: 410184
-  time: '2026-11-07T08:00:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7091
 - author: Hot Mic
   changes:
   - message: Adds Flotilla Spaceport to the map rotation. Thank you all for the feedback during the playtest.
@@ -2799,4 +2750,53 @@ Entries:
   id: 410577
   time: '2026-11-18T08:36:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7210
+- author: SirLutz
+  changes:
+  - message: Antagscaling; Gunnery now counts as 1.5 Security officers, HoS as 1.5->2, Detective 0.75->1.
+    type: Tweak
+  id: 410578
+  time: '2026-11-18T09:04:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7281
+- author: SirLutz
+  changes:
+  - message: Carps attack now simplehostile, simplehostile like orecrabs attacked carps but they didnt fight back.
+    type: Add
+  id: 410579
+  time: '2026-11-18T09:04:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7281
+- author: SirLutz
+  changes:
+  - message: Increased threshhold for randomriftSharks, from one shark needing 8 crew to 12.
+    type: Tweak
+  id: 410580
+  time: '2026-11-18T09:04:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7281
+- author: SirLutz
+  changes:
+  - message: Cleanup of my own code, following points.
+    type: Fix
+  id: 410581
+  time: '2026-11-18T09:04:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7281
+- author: SirLutz
+  changes:
+  - message: Dragonrifts now dont spawn random colours anymore, and hopefully sharks also dont get odd colours.
+    type: Fix
+  id: 410582
+  time: '2026-11-18T09:04:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7281
+- author: SirLutz
+  changes:
+  - message: MaligantTileHealing is now called HealFromTiles.
+    type: Remove
+  id: 410583
+  time: '2026-11-18T09:04:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7281
+- author: SirLutz
+  changes:
+  - message: HealFromTiles component is now an more modular version so admins/devs can do funny stuff with it.
+    type: Add
+  id: 410584
+  time: '2026-11-18T09:04:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7281
 Order: -1
