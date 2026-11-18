@@ -9,6 +9,7 @@ using Content.Shared.Popups;
 using Content.Shared.PowerCell;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 using HandheldTranslatorComponent = Content.Shared._Starlight.Language.Components.HandheldTranslatorComponent;
 
 namespace Content.Shared._Starlight.Language.Systems;
@@ -21,6 +22,7 @@ public sealed partial class TranslatorSystem : EntitySystem
     [Dependency] private SharedLanguageSystem _language = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -68,6 +70,12 @@ public sealed partial class TranslatorSystem : EntitySystem
 
     private void OnTranslatorInserted(Entity<HandheldTranslatorComponent> ent, ref EntGotInsertedIntoContainerMessage args)
     {
+        // The server sends the holder's language lists. Recomputing them here while the client is applying server
+        // state can use data that hasn't arrived yet (such as the species' default languages) and overwrite the
+        // correct lists until the server sends them again.
+        if (_timing.ApplyingState)
+            return;
+
         if (args.Container.Owner is not { Valid: true } holder || !HasComp<LanguageSpeakerComponent>(holder))
             return;
 
@@ -80,7 +88,11 @@ public sealed partial class TranslatorSystem : EntitySystem
 
     private void OnTranslatorParentChanged(Entity<HandheldTranslatorComponent> ent, ref EntParentChangedMessage args)
     {
-        if (!HasComp<HoldsTranslatorComponent>(args.OldParent))
+        if (_timing.ApplyingState || !HasComp<HoldsTranslatorComponent>(args.OldParent))
+            return;
+
+        // The holder is being deleted (e.g. at round restart), so there is nothing left to update.
+        if (TerminatingOrDeleted(args.OldParent.Value))
             return;
 
         // Update the translator on the next tick - this is necessary because there's a good chance the removal from a container.
