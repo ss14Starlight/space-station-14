@@ -136,7 +136,7 @@ public sealed class BodyPreviewControl : BoxContainer
         var canvas = Vector2.Max(max - min, (max - min) * spriteScale);
         var anchor = new Vector2(canvas.X / 2, canvas.Y);
         foreach (var (control, position, _) in placed)
-            LayoutContainer.SetPosition(control, anchor + (position - feet) * spriteScale);
+            LayoutContainer.SetPosition(control, anchor + ((position - feet) * spriteScale));
 
         _canvas.SetSize = canvas;
     }
