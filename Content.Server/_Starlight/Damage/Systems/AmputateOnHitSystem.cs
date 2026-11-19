@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._Starlight.Achievement;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server._Starlight.Medical.Limbs;
 using Content.Shared._Starlight;
@@ -19,6 +20,7 @@ public sealed partial class MeleeThrowOnHitSystem : EntitySystem
     [Dependency] private LimbSystem _limbSystem = default!;
     [Dependency] private BodySystem _bodySystem = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private AchievementSystem _achievements = default!;
     public override void Initialize()
         => SubscribeLocalEvent<AmputateOnHitComponent, MeleeHitEvent>(OnMeleeHit);
 
@@ -45,6 +47,7 @@ public sealed partial class MeleeThrowOnHitSystem : EntitySystem
                             {
                                 Entity<TransformComponent, MetaDataComponent, BodyPartComponent> PartToDelete = (targetpart.Id, targetPartTransform, targetPartMetadata, targetPartBodyPart);
                                 _limbSystem.Amputatate(body, PartToDelete);
+                                _achievements.QueueUnlockAchievement(target, "gorilla_punch");
                             }
                         }
                         Del(basepart);

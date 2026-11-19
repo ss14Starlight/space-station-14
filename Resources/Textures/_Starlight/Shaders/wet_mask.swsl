@@ -1,0 +1,22 @@
+light_mode unshaded;
+
+// How far in from the edge a square spot starts to fade, as a share of its half size. Above 0.
+uniform highp float softness;
+// 1 to take the shape from the drawn texture's alpha instead, used for puddle sprites.
+uniform highp float fromTexture;
+
+// Writes how glossy the floor is into alpha. The draw colour's alpha scales it.
+void fragment()
+{
+    if (fromTexture > 0.5)
+    {
+        COLOR = vec4(1.0, 1.0, 1.0, zTexture(UV).a);
+    }
+    else
+    {
+        highp vec2 d = abs(UV * 2.0 - 1.0);
+        highp float r = pow(pow(d.x, 4.0) + pow(d.y, 4.0), 0.25);
+        highp float edge = 1.0 - smoothstep(1.0 - softness, 1.0, r);
+        COLOR = vec4(1.0, 1.0, 1.0, edge);
+    }
+}

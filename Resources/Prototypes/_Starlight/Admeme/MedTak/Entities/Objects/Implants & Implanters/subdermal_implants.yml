@@ -37,6 +37,7 @@
       icon: MedTakBronze
     - type: RattleOnTrigger
       messages:
+        SoftCritical: rattle-on-trigger-medtak-bronze-soft-critical
         Critical: rattle-on-trigger-medtak-bronze-critical
         Dead: rattle-on-trigger-medtak-bronze-dead
 
@@ -50,6 +51,7 @@
       icon: MedTakSilver
     - type: RattleOnTrigger
       messages:
+        SoftCritical: rattle-on-trigger-medtak-silver-soft-critical
         Critical: rattle-on-trigger-medtak-silver-critical
         Dead: rattle-on-trigger-medtak-silver-dead
 
@@ -63,6 +65,7 @@
       icon: MedTakGold
     - type: RattleOnTrigger
       messages:
+        SoftCritical: rattle-on-trigger-medtak-gold-soft-critical
         Critical: rattle-on-trigger-medtak-gold-critical
         Dead: rattle-on-trigger-medtak-gold-dead
 
@@ -76,6 +79,7 @@
       icon: MedTakPlatinum
     - type: RattleOnTrigger
       messages:
+        SoftCritical: rattle-on-trigger-medtak-platinum-soft-critical
         Critical: rattle-on-trigger-medtak-platinum-critical
         Dead: rattle-on-trigger-medtak-platinum-dead
 
@@ -87,6 +91,7 @@
   components:
     - type: RattleOnTrigger
       messages:
+        SoftCritical: rattle-on-trigger-medtak-team-soft-critical
         Critical: rattle-on-trigger-medtak-team-critical
         Dead: rattle-on-trigger-medtak-team-dead
 
