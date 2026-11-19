@@ -27,6 +27,8 @@ public sealed partial class StationAiVisionSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     #endregion
 
+    [Dependency] private EntityQuery<OccluderComponent> _occluderQuery = default!;
+
     private SeedJob _seedJob;
     private ViewJob _job;
 
@@ -36,8 +38,6 @@ public sealed partial class StationAiVisionSystem : EntitySystem
     // Starlight - start
     private readonly Dictionary<Vector2i, HashSet<string>> _viewportTileTags = new();
     // Starlight - end
-
-    private EntityQuery<OccluderComponent> _occluderQuery;
 
     // Dummy set
     private readonly HashSet<Vector2i> _singleTiles = new();
@@ -75,8 +75,6 @@ public sealed partial class StationAiVisionSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
-        _occluderQuery = GetEntityQuery<OccluderComponent>();
 
         _seedJob = new()
         {
