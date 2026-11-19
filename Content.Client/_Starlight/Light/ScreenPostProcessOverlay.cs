@@ -68,7 +68,7 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
     public override bool RequestScreenTexture => true;
 
-    public const int ContentZIndex = 100;
+    public const int ContentZIndex = -130;
 
     private readonly OverlayResourceCache<CachedResources> _resources = new();
     private readonly ShaderInstance _shaderInst;
