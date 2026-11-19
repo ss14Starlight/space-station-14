@@ -1,46 +1,4 @@
 Entries:
-- author: SirLutz
-  changes:
-  - message: Moved the Diona "Your Roots" objective from antagonist objectives to the end-of-round cards section.
-    type: Tweak
-  id: 410279
-  time: '2026-11-09T12:46:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7098
-- author: SirLutz
-  changes:
-  - message: Diona distress pollen now only says the name, not the location.
-    type: Tweak
-  id: 410280
-  time: '2026-11-09T12:46:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7098
-- author: SirLutz
-  changes:
-  - message: Diona now are not anonymous anymore.
-    type: Tweak
-  id: 410281
-  time: '2026-11-09T12:46:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7098
-- author: Destiny (Creativity)
-  changes:
-  - message: Added Medtak Portable ATM.
-    type: Add
-  id: 410282
-  time: '2026-11-09T13:15:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7142
-- author: Destiny (Creativity)
-  changes:
-  - message: Added ATM to Dispatcher and Medic kits.
-    type: Tweak
-  id: 410283
-  time: '2026-11-09T13:15:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7142
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: SKB implanters that dissolve on use (like the SKB deathrattle implant) now only dissolve if successfully used, so you don't waste your implanter by accident.
-    type: Fix
-  id: 410284
-  time: '2026-11-09T13:15:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7132
 - author: Johnny
   changes:
   - message: Changed the 20mm autocannon to not do absurd damage.
@@ -2799,4 +2757,46 @@ Entries:
   id: 410678
   time: '2026-11-19T19:45:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7333
+- author: Rinary
+  changes:
+  - message: Reworked characters editor window and all it's tabs(except Records one).
+    type: Tweak
+  id: 410679
+  time: '2026-11-19T19:45:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7212
+- author: Rinary
+  changes:
+  - message: Added full screen button for characters editor window.
+    type: Add
+  id: 410680
+  time: '2026-11-19T19:45:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7212
+- author: Rinary
+  changes:
+  - message: Reworked playtime stats window.
+    type: Tweak
+  id: 410681
+  time: '2026-11-19T19:45:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7212
+- author: Rinary
+  changes:
+  - message: Reworked voice selector window.
+    type: Tweak
+  id: 410682
+  time: '2026-11-19T19:45:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7212
+- author: Rinary
+  changes:
+  - message: Reworked loadout editor window.
+    type: Tweak
+  id: 410683
+  time: '2026-11-19T19:45:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7212
+- author: Rinary
+  changes:
+  - message: Reworked admin notes window.
+    type: Tweak
+  id: 410684
+  time: '2026-11-19T19:45:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7212
 Order: -1
