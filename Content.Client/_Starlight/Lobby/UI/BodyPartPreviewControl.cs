@@ -21,6 +21,11 @@ public sealed class BodyPartPreviewControl : Control
     private readonly RSI.StateId _state;
     private readonly RsiDirection _direction;
 
+    /// <summary>
+    /// The displacement shader of the layer, set up with its map, or null when the layer isn't displaced.
+    /// </summary>
+    private readonly ShaderInstance? _displacement;
+
     public BodyEditorPart? Part { get; }
 
     public bool Dimmed { get; set; }
@@ -28,8 +33,9 @@ public sealed class BodyPartPreviewControl : Control
     public event Action<BodyEditorPart>? Pressed;
 
     public BodyPartPreviewControl(BodyEditorPart? part, RSI rsi, RSI.StateId state, RsiDirection direction,
-        Texture texture, Color color, float scale, IClickMapManager clickMap)
+        Texture texture, Color color, float scale, IClickMapManager clickMap, ShaderInstance? displacement = null)
     {
+        _displacement = displacement;
         Part = part;
         _rsi = rsi;
         _state = state;
@@ -46,7 +52,11 @@ public sealed class BodyPartPreviewControl : Control
     protected override void Draw(DrawingHandleScreen handle)
     {
         var color = Dimmed ? _color * DimColor : _color;
+        if (_displacement != null)
+            handle.UseShader(_displacement);
         handle.DrawTextureRect(_texture, UIBox2.FromDimensions(Vector2.Zero, PixelSize), color);
+        if (_displacement != null)
+            handle.UseShader(null);
     }
 
     protected override bool HasPoint(Vector2 point)

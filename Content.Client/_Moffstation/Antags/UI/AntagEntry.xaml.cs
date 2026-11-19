@@ -76,6 +76,8 @@ public sealed partial class AntagEntry : PanelContainer
             tooltip.SetMessage(reason);
             AntagCheckbox.TooltipSupplier = _ => tooltip;
             LockIcon.TooltipSupplier = _ => tooltip;
+            MouseFilter = MouseFilterMode.Pass;
+            TooltipSupplier = _ => tooltip;
         }
         #endregion
 

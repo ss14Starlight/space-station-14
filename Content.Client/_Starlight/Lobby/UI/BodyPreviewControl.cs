@@ -5,6 +5,7 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Graphics.RSI;
+using Robust.Shared.Reflection;
 
 namespace Content.Client._Starlight.Lobby.UI;
 
@@ -21,6 +22,7 @@ public sealed class BodyPreviewControl : BoxContainer
     private readonly List<BodyPartPreviewControl> _layers = new();
     private readonly IClickMapManager _clickMap;
     private readonly IEntityManager _entity;
+    private readonly IReflectionManager _reflection;
 
     private int _direction;
 
@@ -36,6 +38,7 @@ public sealed class BodyPreviewControl : BoxContainer
     {
         _clickMap = IoCManager.Resolve<IClickMapManager>();
         _entity = IoCManager.Resolve<IEntityManager>();
+        _reflection = IoCManager.Resolve<IReflectionManager>();
         Orientation = LayoutOrientation.Vertical;
         SeparationOverride = 4;
 
@@ -84,18 +87,21 @@ public sealed class BodyPreviewControl : BoxContainer
                 parts.TryAdd(found, part);
         }
 
+        var displacements = GetDisplacements((entity, sprite), sprites);
+
         var size = Vector2.Zero;
         var index = 0;
         foreach (var layer in sprite.AllLayers)
         {
             var i = index++;
+            // Displacement maps live in their own layers and only feed a shader. The engine never draws them either.
             if (layer is not SpriteComponent.Layer { Visible: true, ActualRsi: { } rsi, CopyToShaderParameters: null } spriteLayer
                 || !rsi.TryGetState(spriteLayer.State, out var state))
                 continue;
 
             var direction = state.RsiDirections == RsiDirectionType.Dir1 ? RsiDirection.South : Direction;
             var control = new BodyPartPreviewControl(parts.GetValueOrDefault(i), rsi, spriteLayer.State, direction,
-                state.GetFrame(direction, 0), spriteLayer.Color, Scale, _clickMap);
+                state.GetFrame(direction, 0), spriteLayer.Color, Scale, _clickMap, displacements.GetValueOrDefault(i));
             control.Pressed += part => PartPressed?.Invoke(part);
             control.OnMouseEntered += _ => PartHovered?.Invoke(control.Part);
             control.OnMouseExited += _ => PartHovered?.Invoke(null);
@@ -107,6 +113,54 @@ public sealed class BodyPreviewControl : BoxContainer
         }
 
         _canvas.SetSize = size;
+    }
+
+    /// <summary>
+    /// Builds a displacement shader for every layer that the sprite displaces, keyed by layer index.
+    /// It mirrors how the engine feeds displacement map layers into the shader of the layer they bend.
+    /// </summary>
+    private Dictionary<int, ShaderInstance> GetDisplacements(Entity<SpriteComponent> entity, SpriteSystem sprites)
+    {
+        var result = new Dictionary<int, ShaderInstance>();
+        foreach (var layer in entity.Comp.AllLayers)
+        {
+            if (layer is not SpriteComponent.Layer { CopyToShaderParameters: { } parameters, ActualRsi: { } rsi } mapLayer
+                || !rsi.TryGetState(mapLayer.State, out var state)
+                || !TryGetLayerIndex(entity, sprites, parameters.LayerKey, out var target)
+                || entity.Comp[target] is not SpriteComponent.Layer { Shader: { } shader })
+                continue;
+
+            var direction = state.RsiDirections == RsiDirectionType.Dir1 ? RsiDirection.South : Direction;
+            var map = state.GetFrame(direction, 0);
+            var instance = shader.Duplicate();
+
+            var source = map is AtlasTexture atlas ? atlas.SourceTexture : map;
+            var region = map is AtlasTexture sub ? sub.SubRegion : UIBox2.FromDimensions(Vector2.Zero, map.Size);
+            if (parameters.ParameterTexture is { } textureName)
+                instance.SetParameter(textureName, source);
+            if (parameters.ParameterUV is { } uvName)
+            {
+                // Same flip as the engine: textures are stored bottom row first.
+                var (w, h) = (source.Width, (float) source.Height);
+                instance.SetParameter(uvName, new Vector4(region.Left / w, (h - region.Bottom) / h, region.Right / w, (h - region.Top) / h));
+            }
+
+            result[target] = instance;
+        }
+
+        return result;
+    }
+
+    private bool TryGetLayerIndex(Entity<SpriteComponent> entity, SpriteSystem sprites, object key, out int index)
+    {
+        index = -1;
+        return key switch
+        {
+            Enum layer => sprites.LayerMapTryGet(entity.AsNullable(), layer, out index, false),
+            string id when sprites.LayerMapTryGet(entity.AsNullable(), id, out index, false) => true,
+            string id when _reflection.TryParseEnumReference(id, out var layer) => sprites.LayerMapTryGet(entity.AsNullable(), layer, out index, false),
+            _ => false,
+        };
     }
 
     /// <summary>

@@ -11,6 +11,8 @@
                     <WrapContainer Name="Breadcrumb" SeparationOverride="2" CrossSeparationOverride="2" HorizontalAlignment="Center" />
                     <GridContainer Name="ChildParts" Columns="2" HSeparationOverride="4" VSeparationOverride="4" />
                     <PanelContainer StyleClasses="LowDivider" />
+                    <BoxContainer Name="SizeSlot" Access="Public" Orientation="Vertical" />
+                    <PanelContainer StyleClasses="LowDivider" />
                     <Label Text="{Loc 'body-editor-colors'}" StyleClasses="LabelKeyText" />
                     <BoxContainer Name="ColorList" Orientation="Vertical" SeparationOverride="2" />
                     <BoxContainer Name="ColorEditor" Orientation="Vertical" SeparationOverride="6" />

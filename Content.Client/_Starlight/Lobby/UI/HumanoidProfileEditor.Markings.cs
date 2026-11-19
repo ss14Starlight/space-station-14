@@ -37,9 +37,21 @@ public sealed partial class HumanoidProfileEditor
         {
             PreviewPanel.Visible = !BodyTabVisible;
             BodyTabVisibilityChanged?.Invoke(BodyTabVisible);
+            MoveSizeRows();
             // Clothes come off while editing the body.
             ReloadPreview();
         };
+    }
+
+    private void MoveSizeRows()
+    {
+        var slot = BodyTabVisible ? BodyTab.SizeSlot : SizeSlot;
+        if (SizeRows.Parent == slot)
+            return;
+
+        SizeRows.Orphan();
+        slot.AddChild(SizeRows);
+        HeightLabel.SetWidth = WeightLabel.SetWidth = BodyTabVisible ? 56 : 190;
     }
 
     /// <summary>

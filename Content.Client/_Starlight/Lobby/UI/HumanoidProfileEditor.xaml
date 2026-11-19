@@ -73,19 +73,23 @@
                         <Button Name="SpeciesLoadout" Text="{Loc 'humanoid-profile-editor-species-loadout-select'}" />
                     </BoxContainer>
                     <PanelContainer StyleClasses="LowDivider" Margin="0 4" />
+                    <BoxContainer Name="SizeSlot" Orientation="Vertical">
+                    <BoxContainer Name="SizeRows" Orientation="Vertical" SeparationOverride="4">
                     <BoxContainer Orientation="Horizontal" SeparationOverride="8">
-                        <Label Text="{Loc 'humanoid-profile-editor-height'}" SetWidth="190" VAlign="Center" ClipText="True" />
+                        <Label Name="HeightLabel" Text="{Loc 'humanoid-profile-editor-height'}" SetWidth="190" VAlign="Center" ClipText="True" />
                         <Slider Name="HeightSlider" HorizontalExpand="True" MaxValue="1.5" MinValue="0.5" Value="1" />
                         <LineEdit Name="HeightEdit" SetWidth="56" />
                         <Label Text="{Loc 'humanoid-profile-editor-height-unit'}" StyleClasses="LabelSubText" VAlign="Center" SetWidth="24" />
                         <Button Name="HeightResetButton" Text="{Loc 'humanoid-profile-editor-slider-reset'}" />
                     </BoxContainer>
                     <BoxContainer Orientation="Horizontal" SeparationOverride="8">
-                        <Label Text="{Loc 'humanoid-profile-editor-weight'}" SetWidth="190" VAlign="Center" ClipText="True" />
+                        <Label Name="WeightLabel" Text="{Loc 'humanoid-profile-editor-weight'}" SetWidth="190" VAlign="Center" ClipText="True" />
                         <Slider Name="WidthSlider" HorizontalExpand="True" MaxValue="1.5" MinValue="0.5" Value="1" />
                         <LineEdit Name="WeightEdit" SetWidth="56" />
                         <Label Text="{Loc 'humanoid-profile-editor-weight-unit'}" StyleClasses="LabelSubText" VAlign="Center" SetWidth="24" />
                         <Button Name="WidthResetButton" Text="{Loc 'humanoid-profile-editor-slider-reset'}" />
+                    </BoxContainer>
+                    </BoxContainer>
                     </BoxContainer>
                 </BoxContainer>
             </ScrollContainer>

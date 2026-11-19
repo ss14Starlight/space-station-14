@@ -167,14 +167,16 @@ public sealed partial class HumanoidProfileEditor
         var check = new CheckBox
         {
             Disabled = !allowed,
+            Visible = allowed,
             StyleClasses = { "TraitsEntryCheckbox" },
             VerticalAlignment = VAlignment.Center,
         };
+        Tooltip? requirements = null;
         if (!reason.IsEmpty)
         {
-            var tooltip = new Tooltip();
-            tooltip.SetMessage(reason);
-            check.TooltipSupplier = _ => tooltip;
+            requirements = new Tooltip();
+            requirements.SetMessage(reason);
+            check.TooltipSupplier = _ => requirements;
         }
 
         check.OnToggled += args =>
@@ -194,11 +196,9 @@ public sealed partial class HumanoidProfileEditor
             Children = { new Label { Text = job.LocalizedName, StyleClasses = { "TraitsEntryNameLabel" } } },
         };
 
-        // A locked job says why instead of what it is.
+        // The requirements of a locked job are in the tooltip of its row, the text keeps the description.
         var text = new RichTextLabel { StyleClasses = { "TraitsEntryDescriptionLabel" } };
-        if (!allowed)
-            text.SetMessage(reason);
-        else if (job.LocalizedDescription is { } description)
+        if (job.LocalizedDescription is { } description)
             text.SetMessage(FormattedMessage.FromUnformatted(description));
         info.AddChild(text);
 
@@ -214,6 +214,14 @@ public sealed partial class HumanoidProfileEditor
             Children =
             {
                 check,
+                new TextureRect
+                {
+                    TexturePath = "/Textures/Interface/VerbIcons/lock.svg.192dpi.png",
+                    SetSize = new Vector2(20, 20),
+                    Stretch = TextureRect.StretchMode.KeepAspectCentered,
+                    VerticalAlignment = VAlignment.Center,
+                    Visible = !allowed,
+                },
                 new TextureRect
                 {
                     Texture = _sprite.Frame0(_prototypeManager.Index(job.Icon).Icon),
@@ -237,12 +245,20 @@ public sealed partial class HumanoidProfileEditor
         }
 
         row.AddChild(BuildLoadoutButton(job));
-        return new PanelContainer
+        var panel = new PanelContainer
         {
             StyleClasses = { "TraitsEntryPanel" },
             Margin = new Thickness(0, 0, 0, 4),
             Children = { row },
         };
+
+        if (requirements != null)
+        {
+            panel.MouseFilter = MouseFilterMode.Pass;
+            panel.TooltipSupplier = _ => requirements;
+        }
+
+        return panel;
     }
 
     private Button BuildLoadoutButton(JobPrototype job)
