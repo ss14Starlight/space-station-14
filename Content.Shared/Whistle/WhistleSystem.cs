@@ -1,6 +1,8 @@
+using Content.Shared.Actions;
 using Content.Shared.Coordinates;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Inventory;
 using Content.Shared.Stealth.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Timing;
@@ -18,6 +20,27 @@ public sealed partial class WhistleSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<WhistleComponent, UseInHandEvent>(OnUseInHand);
+        SubscribeLocalEvent<WhistleComponent, GetItemActionsEvent>(OnGetActions);
+        SubscribeLocalEvent<WhistleComponent, WhistleActionEvent>(OnWhistleAction);
+    }
+
+    private void OnGetActions(EntityUid uid, WhistleComponent component, GetItemActionsEvent args)
+    {
+        if (args.SlotFlags is not { } slotFlags || !slotFlags.HasFlag(SlotFlags.NECK))
+            return;
+
+        args.AddAction(ref component.ActionEntity, component.Action);
+    }
+
+    private void OnWhistleAction(EntityUid uid, WhistleComponent component, WhistleActionEvent args)
+    {
+        if (args.Handled || !_timing.IsFirstTimePredicted)
+            return;
+
+        // Reuse the same path as activating the whistle in-hand, so the action works the same whether the whistle is held or just worn on the neck.
+        // the item's own UseDelay isn't checked outside of the hand-use flow, so cooldown is  handled by the action's own useDelay
+        args.Handled = true;
+        RaiseLocalEvent(uid, new UseInHandEvent(args.Performer) { ApplyDelay = false });
     }
 
     private void ExclamateTarget(EntityUid target, WhistleComponent component)
@@ -61,3 +84,5 @@ public sealed partial class WhistleSystem : EntitySystem
         }
     }
 }
+
+public sealed partial class WhistleActionEvent : InstantActionEvent;

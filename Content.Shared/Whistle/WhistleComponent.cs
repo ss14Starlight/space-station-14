@@ -21,4 +21,13 @@ public sealed partial class WhistleComponent : Component
     /// </summary>
     [DataField]
     public float Distance = 0;
+
+    /// <summary>
+    // Action granted while the whistle is held or worn so it can be blown via the action bar/ a number key
+    /// </summary>
+    [DataField]
+    public EntProtoId Action = "ActionBlowWhistle";
+
+    [DataField]
+    public EntityUid? ActionEntity;
 }

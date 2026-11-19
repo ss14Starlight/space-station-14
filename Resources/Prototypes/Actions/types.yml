@@ -89,6 +89,18 @@
 
 - type: entity
   parent: BaseAction
+  id: ActionBlowWhistle
+  name: Blow Whistle
+  description: Blow the whistle, drawing attention to nearby people.
+  components:
+  - type: Action
+    useDelay: 3
+    icon: { sprite: Objects/Fun/whistles.rsi, state: whistle }
+  - type: InstantAction
+    event: !type:WhistleActionEvent
+
+- type: entity
+  parent: BaseAction
   id: ActionOpenStorageImplant
   name: Toggle Storage Implant
   description: Opens or closes the storage implant embedded under your skin
