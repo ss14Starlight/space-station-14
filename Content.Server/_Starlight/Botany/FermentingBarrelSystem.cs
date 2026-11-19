@@ -8,6 +8,7 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
+using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.Storage;
 using Content.Shared.Verbs;
@@ -72,7 +73,7 @@ public sealed partial class FermentingBarrelSystem : EntitySystem
         if (args.Handled || !ent.Comp.Open)
             return;
 
-        if (HasComp<ProduceComponent>(args.Used))
+        if (IsCrop(args.Used))
         {
             args.Handled = true;
             if (TryAddCrop(ent, args.Used, args.User))
@@ -86,7 +87,7 @@ public sealed partial class FermentingBarrelSystem : EntitySystem
         var added = 0;
         foreach (var item in bag.Container.ContainedEntities.ToList())
         {
-            if (!HasComp<ProduceComponent>(item))
+            if (!IsCrop(item))
                 continue;
 
             if (!TryAddCrop(ent, item, args.User))
@@ -227,6 +228,14 @@ public sealed partial class FermentingBarrelSystem : EntitySystem
         }
 
         return _container.Insert(crop, Crops(ent));
+    }
+
+    /// <summary>
+    /// Only food crops go in; logs, cotton and nettles don't.
+    /// </summary>
+    private bool IsCrop(EntityUid uid)
+    {
+        return HasComp<ProduceComponent>(uid) && HasComp<EdibleComponent>(uid);
     }
 
     private FixedPoint2 CropVolume(EntityUid crop)
