@@ -1,0 +1,25 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀                              [bold]EXPERIMENT REPORT[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+External description of the object of the experiment: [form]
+
+Experimenter(s): [signature]
+
+Experiment № [form]
+Description of experiment: [form]
+
+Expected result: [form]
+
+Equipment used: [form]
+
+Actual result: [form]
+
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+

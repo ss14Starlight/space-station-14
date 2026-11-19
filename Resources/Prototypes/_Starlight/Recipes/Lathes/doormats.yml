@@ -1,0 +1,23 @@
+- type: latheRecipe
+  id: BaseDoormatRecipe
+  abstract: true
+  categories:
+  - Carpets
+  completetime: 1
+  materials:
+    Durathread: 200
+
+- type: latheRecipe
+  id: DoormatRoll
+  parent: BaseDoormatRecipe
+  result: DoormatRoll
+
+- type: latheRecipe
+  id: DoormatRollWelcome
+  parent: BaseDoormatRecipe
+  result: DoormatRollWelcome
+
+- type: latheRecipe
+  id: DoormatRollBless
+  parent: BaseDoormatRecipe
+  result: DoormatRollBless

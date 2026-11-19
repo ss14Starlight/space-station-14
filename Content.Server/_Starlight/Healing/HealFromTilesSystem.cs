@@ -1,18 +1,18 @@
-using Content.Shared._Starlight.CosmicCult.Components;
+using Content.Shared._Starlight.Healing;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Maps;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Robust.Server.GameObjects;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
+using Robust.Shared.Map;
 
-namespace Content.Server._Starlight.CosmicCult.Components;
+namespace Content.Server._Starlight.Healing;
 
-public sealed partial class CosmicMalignantHealingSystem : EntitySystem
+public sealed partial class HealFromTilesSystem : EntitySystem
 {
     [Dependency] private MapSystem _map = default!;
     [Dependency] private ITileDefinitionManager _tileDefinition = default!;
@@ -25,7 +25,7 @@ public sealed partial class CosmicMalignantHealingSystem : EntitySystem
         base.Update(frameTime);
 
         var query = EntityQueryEnumerator<
-            CosmicMalignantHealingComponent,
+            HealFromTilesComponent,
             MobStateComponent,
             DamageableComponent>();
 
@@ -36,6 +36,9 @@ public sealed partial class CosmicMalignantHealingSystem : EntitySystem
 
             healing.NextHeal = _timing.CurTime + healing.HealInterval;
 
+            if (healing.Tiles.Count == 0)
+                continue;
+
             var xform = Transform(uid);
 
             if (xform.GridUid is not { } gridUid ||
@@ -44,15 +47,26 @@ public sealed partial class CosmicMalignantHealingSystem : EntitySystem
 
             var tile = _map.GetTileRef((gridUid, mapGrid), xform.Coordinates);
 
-            var healingTile =
-                (ContentTileDefinition)_tileDefinition[healing.HealingTile];
+            var isHealingTile = false;
 
-            if (tile.Tile.TypeId != healingTile.TileId)
+            foreach (var tileId in healing.Tiles)
+            {
+                var healingTile = (ContentTileDefinition)_tileDefinition[tileId];
+
+                if (tile.Tile.TypeId != healingTile.TileId)
+                    continue;
+
+                isHealingTile = true;
+                break;
+            }
+
+            if (!isHealingTile)
                 continue;
 
             // Heal every damage type by up to HealAmount.
             var damage = new DamageSpecifier();
             var damageSpec = _damageable.GetAllDamage(uid);
+
             foreach (var (type, amount) in damageSpec.DamageDict)
             {
                 if (amount > 0)

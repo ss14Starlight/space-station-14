@@ -1,0 +1,21 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀                       [bold]ACCESS REVOCATION ORDER[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+I, [signature], hereby order that certain access rights be removed from the ID card of an employee, as specified below.
+
+Employee: [form]
+
+⠀Position: [form]
+
+Access rights to be removed: [form]
+
+Further remarks: [form]
+
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
