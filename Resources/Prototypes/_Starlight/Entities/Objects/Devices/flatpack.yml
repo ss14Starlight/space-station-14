@@ -223,3 +223,78 @@
     - state: large
   - type: Flatpack
     entity: ComputerCombustionTurbine
+
+- type: entity
+  parent: BaseFlatpack
+  id: ChemMaster1000Flatpack
+  name: ChemMaster 1000 flatpack
+  description: A flatpack used for constructing a ChemMaster 1000.
+  components:
+  - type: Flatpack
+    entity: ChemMaster1k
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay
+      color: "#52B4E9"
+    - state: icon-default
+
+- type: entity
+  parent: BaseFlatpack
+  id: ChemMaster4000Flatpack
+  name: ChemMaster 4000 flatpack
+  description: A flatpack used for constructing a ChemMaster 4000.
+  components:
+  - type: Flatpack
+    entity: ChemMaster
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay
+      color: "#52B4E9"
+    - state: icon-default
+
+- type: entity
+  parent: BaseFlatpack
+  id: ChemDispenserFlatpack
+  name: chemical dispenser flatpack
+  description: A flatpack used for constructing a Chemical Dispenser.
+  components:
+  - type: Flatpack
+    entity: ChemDispenserEmpty
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay
+      color: "#52B4E9"
+    - state: icon-default
+
+- type: entity
+  parent: BaseFlatpack
+  id: GasCondenserFlatpack
+  name: gas condenser flatpack
+  description: A flatpack used for constructing a Gas Condenser.
+  components:
+  - type: Flatpack
+    entity: BaseGasCondenser
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay
+      color: "#EFB341"
+    - state: icon-default
+
+- type: entity
+  parent: BaseFlatpack
+  id: KitchenReagentGrinderFlatpack
+  name: reagent grinder flatpack
+  description: A flatpack used for constructing a Reagent Grinder.
+  components:
+  - type: Flatpack
+    entity: KitchenReagentGrinder
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay
+      color: "#9FED58"
+    - state: icon-default
