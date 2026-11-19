@@ -1,0 +1,10 @@
+- type: entity
+  parent: VoiceMaskImplant
+  id: ChangelingVoiceMask
+  name: changeling voice mask
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: VoiceMask
+    overrideIdentity: true
+    changeIDName: true
+    active: false

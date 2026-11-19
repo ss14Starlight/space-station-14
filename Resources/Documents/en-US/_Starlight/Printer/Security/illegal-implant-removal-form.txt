@@ -1,0 +1,34 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀             [bold]ILLEGAL IMPLANT REMOVAL AUTHORIZATION[/bold]
+────────────────────────────────────────
+Date and Time: [datetime]
+Document Compiler: [signature]
+
+Name of Patient:  [form]
+
+This document authorizes the immediate removal of the implants listed in the patient.
+
+Improper or dishonest authorization of compulsory implantation is a Capital Crime under Corporate Law.
+
+Individual is implanted with the following unauthorized implants of Category 3 Restriction or above:
+⠀• [form]
+⠀• [form]
+⠀• [form]
+
+The presence of this implant has been ascertained via:
+⠀• [check] Visual Inspection
+⠀• [check] Exploratory Surgery (Separate Form Required)
+
+Medical Professional to perform the Removal (Name + Position): [signature]
+
+Authority ordering the Removal (Name + Position): [signature]
+
+⠀ [italic]Removal of implants can only be authorized by the Warden,[/italic]
+⠀ [italic]or Head of Security. All compulsory implantation procedures[/italic]
+⠀ [italic]must be performed by a trained medical professional.[/italic]
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+

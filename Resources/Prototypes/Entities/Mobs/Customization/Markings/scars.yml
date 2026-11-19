@@ -22,7 +22,7 @@
   id: ScarTopSurgeryShort
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Reptilian, NeoReptilian, SlimePerson, NeoSlimePerson, Moth, NeoMoth, Arachnid, NeoArachnid, Diona, NeoDiona, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Reptilian, NeoReptilian, SlimePerson, NeoSlimePerson, Moth, NeoMoth, Arachnid, NeoArachnid, Diona, NeoDiona, Elf, NeoElf, Neocyte, Lagomorph] # Starlight Edit: Add Elf and Neocytes
   sexRestriction: [Male]
   followSkinColor: true
   sprites:
@@ -33,7 +33,7 @@
   id: ScarTopSurgeryLong
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Reptilian, NeoReptilian, SlimePerson, NeoSlimePerson, Moth, NeoMoth, Arachnid, NeoArachnid, Diona, NeoDiona, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Reptilian, NeoReptilian, SlimePerson, NeoSlimePerson, Moth, NeoMoth, Arachnid, NeoArachnid, Diona, NeoDiona, Elf, NeoElf, Neocyte, Lagomorph] # Starlight Edit: Add Elf and Neocytes
   sexRestriction: [Male]
   followSkinColor: true
   sprites:
@@ -64,7 +64,7 @@
   id: ScarChestBullets
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Reptilian, NeoReptilian, SlimePerson, NeoSlimePerson, Moth, NeoMoth, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Reptilian, NeoReptilian, SlimePerson, NeoSlimePerson, Moth, NeoMoth, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte, Lagomorph] # Starlight Edit: Add Elf and Neocytes
   followSkinColor: true
   sprites:
   - sprite: Mobs/Customization/scars.rsi
