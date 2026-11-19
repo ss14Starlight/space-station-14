@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared._Starlight.Traits;
 using Robust.Shared.Prototypes;
 
@@ -14,13 +13,7 @@ public sealed partial class HumanoidProfileEditor
         foreach (var existingTrait in Profile.TraitPreferences)
             Profile = Profile.WithoutTraitPreference(existingTrait, _prototypeManager);
 
-        // Add the cheapest traits first. WithTraitPreference checks category points as each trait is added, so a
-        // language added before Foreigner would be rejected even though the full selection fits the budget.
-        var orderedTraits = traits
-            .OrderBy(id => _prototypeManager.TryIndex(id, out var proto) ? proto.Cost : 0)
-            .ThenBy(id => id.Id, StringComparer.Ordinal);
-
-        foreach (var trait in orderedTraits)
+        foreach (var trait in TraitOrdering.OrderForValidation(traits, _prototypeManager))
             Profile = Profile.WithTraitPreference(trait.Id, _prototypeManager);
 
         SetDirty();

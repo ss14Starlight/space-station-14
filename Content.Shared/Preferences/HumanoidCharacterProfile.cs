@@ -771,17 +771,14 @@ namespace Content.Shared.Preferences
         {
             // Track points count for each group.
             var groups = new Dictionary<string, int>();
-            var valid = new HashSet<ProtoId<TraitPrototype>>(); // Starlight
-            var traitList = traits.ToList(); // Starlight
+            // Starlight start
+            var traitList = traits.ToList();
+            var valid = new bool[traitList.Count];
 
-            // Starlight - check the cheapest traits first so traits that grant points (negative cost, e.g. Foreigner)
-            // are counted before the traits they pay for, instead of depending on the set's arbitrary order.
-            var orderedTraits = traitList
-                .OrderBy(id => protoManager.TryIndex(id, out var proto) ? proto.Cost : 0)
-                .ThenBy(id => id.Id, StringComparer.Ordinal);
-
-            foreach (var trait in orderedTraits) // Starlight
+            foreach (var index in TraitOrdering.OrderForValidation(Enumerable.Range(0, traitList.Count), i => traitList[i], protoManager))
             {
+                var trait = traitList[index];
+                // Starlight end
                 if (!protoManager.TryIndex(trait, out var traitProto))
                     continue;
 
@@ -804,11 +801,16 @@ namespace Content.Shared.Preferences
                     continue;
 
                 groups[category.ID] = existing;
-                valid.Add(trait); // Starlight
+                valid[index] = true; // Starlight
             }
 
-            // Starlight - return in the original order so the saved trait set keeps its order.
-            var result = traitList.Where(valid.Contains).ToList();
+            // Starlight
+            var result = new List<ProtoId<TraitPrototype>>();
+            for (var i = 0; i < traitList.Count; i++)
+            {
+                if (valid[i])
+                    result.Add(traitList[i]);
+            }
 
             return result;
         }
