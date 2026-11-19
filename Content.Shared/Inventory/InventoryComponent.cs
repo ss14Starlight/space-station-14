@@ -16,7 +16,7 @@ public sealed partial class InventoryComponent : Component
     [DataField, AutoNetworkedField]
     [ViewVariables] // use the API method
     public ProtoId<InventoryTemplatePrototype> TemplateId = "human";
-    
+
     /// <summary>
     /// Whether to ignore EVA dependancies or not
     /// </summary>
