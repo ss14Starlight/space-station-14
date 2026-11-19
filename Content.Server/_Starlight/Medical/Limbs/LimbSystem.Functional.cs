@@ -53,7 +53,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
                     {
                         if (TryComp(containedEnt, out OrganComponent? _))
                         {
-                            var addedEv = new SurgeryOrganImplantationCompleted(body, limb, containedEnt);
+                            var addedEv = new SurgeryOrganImplantationCompleted(body, limb, containedEnt, body);
                             RaiseLocalEvent(containedEnt, ref addedEv);
                         }
                     }
@@ -148,7 +148,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
                     {
                         if (TryComp(containedEnt, out OrganComponent? _))if (TryComp(containedEnt, out TransformComponent? transform) && TryComp(containedEnt, out MetaDataComponent? metaData))
                         {
-                            var ev = new SurgeryOrganExtracted(body, limb, containedEnt);
+                            var ev = new SurgeryOrganExtracted(body, limb, containedEnt, body);
                             RaiseLocalEvent(containedEnt, ref ev);
                         }
                     }
