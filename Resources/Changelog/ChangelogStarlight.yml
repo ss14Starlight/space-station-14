@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Ming) The bedsheets in the Medbay are no longer CMO's bedsheets.
-    type: Fix
-  id: 410226
-  time: '2026-11-08T06:12:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7108
-- author: Caws
-  changes:
   - message: (Manor) Added Gunnery Sergeant.
     type: Add
   id: 410227
@@ -2799,4 +2792,11 @@ Entries:
   id: 410625
   time: '2026-11-18T21:15:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7324
+- author: adroithill
+  changes:
+  - message: Added MedTak Comms Console.
+    type: Add
+  id: 410626
+  time: '2026-11-19T06:10:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7322
 Order: -1
