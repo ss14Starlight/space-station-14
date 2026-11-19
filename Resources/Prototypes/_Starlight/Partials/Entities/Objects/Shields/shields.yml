@@ -7,6 +7,9 @@
   - type: EmitSoundOnLand
     sound:
       path: /Audio/_Starlight/Items/Handling/plastic_shield_drop.ogg
+  - type: Clothing
+    equipSound:
+      path: /Audio/_Starlight/Items/Equip/backpack_equip.ogg
 
 - type: !PartialOnly entity
   id: WebShield
@@ -29,3 +32,35 @@
       - cobwebs
     ignoreReagents:
       - Fiber
+
+# Security shields
+
+- type: !PartialOnly entity
+  id: RiotShield
+  components:
+  - type: Clothing
+    quickEquip: false
+    slots:
+      - Back
+      - suitStorage
+    sprite: _Starlight/Objects/Weapons/Melee/riot_shield.rsi
+
+- type: !PartialOnly entity
+  id: RiotLaserShield
+  components:
+  - type: Clothing
+    quickEquip: false
+    slots:
+      - Back
+      - suitStorage
+    sprite: _Starlight/Objects/Weapons/Melee/laser_shield.rsi
+
+- type: !PartialOnly entity
+  id: RiotBulletShield
+  components:
+  - type: Clothing
+    quickEquip: false
+    slots:
+      - Back
+      - suitStorage
+    sprite: _Starlight/Objects/Weapons/Melee/ballistic_shield.rsi
