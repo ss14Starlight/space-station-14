@@ -301,3 +301,12 @@
     cooldown: 1
     presets:
     - CosmicCult
+
+# Xeno Democracy
+- type: entity
+  id: XenoDemocracy
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+    minPlayers: 0
+  - type: XenoDemocracyRule

@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._Starlight.Nutrition.Components;
 using Content.Shared.Alert;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -173,14 +174,25 @@ public sealed partial class HungerSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
-        if (component.CurrentThreshold <= HungerThreshold.Starving &&
-            component.StarvationDamage is { } damage &&
-            !_mobState.IsDead(uid))
+        //Starlight Start
+        if (component.CurrentThreshold <= HungerThreshold.Starving && !_mobState.IsDead(uid))
         {
-            _damageable.TryChangeDamage(uid, damage, true, false);
+            if( component.ApplyStarvationVignette && !HasComp<StarvationComponent>(uid) )
+            {
+                AddComp<StarvationComponent>(uid);
+            }
+
+            if( component.StarvationDamage is { } damage)
+            {
+                _damageable.TryChangeDamage(uid, damage, true, false);
+            }
+        }
+        else if( component.ApplyStarvationVignette )
+        {
+            RemComp<StarvationComponent>(uid);
         }
 
-        // Starlight begin - Better passive damage system than the one above, I just don't want to refactor everything rn.
+        // Better passive damage system than the one above, I just don't want to refactor everything rn.
         if (!TryComp<DamageableComponent>(uid, out var dmgComp))
             return;
 
@@ -188,7 +200,7 @@ public sealed partial class HungerSystem : EntitySystem
             _damageable.GetTotalDamage(uid) < component.PassiveDamageCap &&
             component.PassiveDamageSpecifier is { } passiveDamage && !_mobState.IsDead(uid))
             _damageable.TryChangeDamage(uid, passiveDamage, true, false);
-        // Starlight end
+        //Starlight End
     }
 
     /// <summary>

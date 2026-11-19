@@ -586,6 +586,8 @@
   blacklist:
     components:
     - BorgChassis
+    tags:
+    - XenoEmotes # Xenos don't have eyes...
   chatMessages: ["chat-emote-msg-blink"]
   chatTriggers:
   - blinks
@@ -600,3 +602,17 @@
   - blinked.
   - blinked!
   - blinked?
+
+- type: emote
+  id: Drool
+  name: chat-emote-name-drool
+  icon: Interface/Actions/scream.png
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-drool"]
+  chatTriggers:
+  - drool
+  - drools
+  - drooled
+  - drooling

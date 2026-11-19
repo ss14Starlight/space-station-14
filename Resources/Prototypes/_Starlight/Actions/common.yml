@@ -22,7 +22,7 @@
       icon:
         sprite: _Starlight/Interface/Actions/actions_cyber.rsi
         state: cyber-hand-left
-      itemIconStyle: BigItem
+      itemIconStyle: BigAction
     - type: InstantAction
       event: !type:ToggleLimbEvent
 
@@ -36,7 +36,7 @@
       icon:
         sprite: _Starlight/Interface/Actions/actions_cyber.rsi
         state: cyber-hand-right
-      itemIconStyle: BigItem
+      itemIconStyle: BigAction
     - type: InstantAction
       event: !type:ToggleLimbEvent
 
@@ -103,3 +103,17 @@
     icon: _Starlight/Interface/Actions/exit_vent.png
   - type: InstantAction
     event: !type:ExitVentActionEvent
+
+- type: entity
+  id: ActionToggleCyberTorso
+  name: Toggle Torso.
+  description: Toggle the torso
+  components:
+    - type: Action
+      useDelay: 1
+      icon:
+        sprite: _Starlight/Interface/Actions/actions_cyber.rsi
+        state: empty
+      itemIconStyle: BigAction
+    - type: InstantAction
+      event: !type:ToggleLimbEvent
