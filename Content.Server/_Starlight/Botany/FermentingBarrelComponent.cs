@@ -1,5 +1,4 @@
 using Content.Shared.Chemistry.Reagent;
-using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Botany;
@@ -23,13 +22,7 @@ public sealed partial class FermentingBarrelComponent : Component
     public string Solution = "barrel";
 
     /// <summary>
-    /// Whether the lid is off. Crops only go in while it's open and only ferment while it's shut.
-    /// </summary>
-    [DataField]
-    public bool Open;
-
-    /// <summary>
-    /// Components the barrel has while the lid is off.
+    /// Components the barrel has while the lid is off. The lid is the barrel's item toggle.
     /// </summary>
     [DataField]
     public ComponentRegistry OpenComponents = new();
@@ -62,10 +55,10 @@ public sealed partial class FermentingBarrelComponent : Component
     /// The reagents in a crop that turn into its drink. Everything else goes in as it is.
     /// </summary>
     [DataField]
-    public List<ProtoId<ReagentPrototype>> Fermentable = new() { "Nutriment", "Vitamin", "Flour", "Oats", "Rice", "Sugar", "Cornmeal" };
+    public List<ProtoId<ReagentPrototype>> Fermentable = new() { "Nutriment", "Vitamin" };
 
     /// <summary>
-    /// Crops whose drink comes from other reagents than <see cref="Fermentable"/>, because they hold no food.
+    /// Crops whose drink comes from other reagents than <see cref="Fermentable"/>, like grains that hold flour.
     /// </summary>
     [DataField]
     public Dictionary<EntProtoId, List<ProtoId<ReagentPrototype>>> FermentFrom = new();
@@ -93,16 +86,4 @@ public sealed partial class FermentingBarrelComponent : Component
     /// </summary>
     [DataField]
     public List<EntProtoId> Bags = new();
-
-    /// <summary>
-    /// Played when the lid comes off.
-    /// </summary>
-    [DataField]
-    public SoundSpecifier? OpenSound;
-
-    /// <summary>
-    /// Played when the lid goes on.
-    /// </summary>
-    [DataField]
-    public SoundSpecifier? CloseSound;
 }

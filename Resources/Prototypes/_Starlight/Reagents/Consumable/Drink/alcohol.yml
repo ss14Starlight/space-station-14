@@ -248,6 +248,10 @@
   physicalDesc: reagent-physical-desc-aromatic
   flavor: orange
   color: "#FFCC66"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.1
 
 - type: reagent
   id: CremeDeCacao

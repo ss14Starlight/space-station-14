@@ -1,0 +1,14 @@
+- type: soundCollection
+  id: FermentingBarrelLidOff
+  files:
+  - /Audio/_Starlight/Items/Handling/cardboard_pick_up.ogg
+
+- type: soundCollection
+  id: FermentingBarrelLidOn
+  files:
+  - /Audio/_Starlight/Effects/FermentingBarrel/woodclaw2.ogg
+
+- type: soundCollection
+  id: FermentingBarrelBubbling
+  files:
+  - /Audio/_Starlight/Effects/FermentingBarrel/bubbles2.ogg
