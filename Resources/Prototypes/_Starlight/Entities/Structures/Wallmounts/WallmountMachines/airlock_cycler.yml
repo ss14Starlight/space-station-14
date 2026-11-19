@@ -68,6 +68,14 @@
             volume: -4
 
 - type: entity
+  parent: AirlockCycler
+  id: AirlockCyclerBoltOpen
+  suffix: Bolts Open
+  components:
+  - type: AirlockCycler
+    boltOpen: true
+
+- type: entity
   parent: BaseWallmountMetallic
   id: AirlockCyclerButton
   name: airlock cycle button
