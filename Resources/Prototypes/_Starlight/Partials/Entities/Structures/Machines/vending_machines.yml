@@ -2,6 +2,8 @@
 - type: !PartialOnly entity
   id: VendingMachine
   components:
+  - type: Sprite # upstream base points at empty.rsi, which was deleted in #3553
+    sprite: Structures/Machines/VendingMachines/vendomat.rsi
   - type: FlippableStructure
     delay: 4
     unflipDelay: 6
