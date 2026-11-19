@@ -22,6 +22,18 @@
   placementMode: SnapgridCenter
   canBuildInImpassable: false
 
+- type: construction
+  id: FermentingBarrel
+  graph: FermentingBarrel
+  startNode: start
+  targetNode: barrel
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
 #region Chairs
 - type: construction
   id: ChairOfficeSleek

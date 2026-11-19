@@ -6,3 +6,6 @@ reagent-name-highlander = The Highlander
 reagent-desc-highlander = There can be only one. A dwarf who drinks this brew will remain steadfast until the moment before death.
 reagent-name-the-last-call = The Last Call
 reagent-desc-the-last-call = There are no good or bad choices. Only consequences.
+
+reagent-name-fruit-wine = fruit wine
+reagent-desc-fruit-wine = Wine made from whatever fruit was around. Sweet and a bit sharp.
