@@ -1,0 +1,24 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀                            [bold]SITUATION REPORT[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+Purpose: [form]
+
+Threat Level Code: [form]
+
+Reason for establishing the code: [form]
+
+Active threats: [form]
+
+Crew casualties: [form]
+
+Current situation: [form]
+
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+

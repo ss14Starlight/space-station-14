@@ -1,0 +1,22 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀                       [bold]ACCESS REQUEST[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+I, [signature], request the following access be added to my ID card:
+• [form]
+• [form]
+• [form]
+• [form]
+• [form]
+• [form]
+
+Reason for gaining elevated access: [form]
+
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+
