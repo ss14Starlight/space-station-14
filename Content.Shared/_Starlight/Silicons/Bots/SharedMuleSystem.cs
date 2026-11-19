@@ -56,7 +56,8 @@ public abstract partial class SharedMuleSystem : EntitySystem
             args.Handled = true;
     }
 
-    [SubscribeLocalEvent]
+    // After the buckle system, which sets CanDrop outright for its strap.
+    [SubscribeLocalEvent(after: [typeof(SharedBuckleSystem)])]
     private void OnCanDropTarget(Entity<MuleComponent> ent, ref CanDropTargetEvent args)
     {
         // Anything can be offered; it buzzes at what it won't take.
@@ -175,8 +176,7 @@ public abstract partial class SharedMuleSystem : EntitySystem
     }
 
     /// <summary>
-    /// Drops whatever it's carrying on the free tile ahead of it, or behind or beside it if that's blocked.
-    /// A rider just gets let off.
+    /// Drops whatever it's carrying on the tile ahead of it, or under itself if that's blocked. A rider just gets let off.
     /// </summary>
     public bool Unload(Entity<MuleComponent> ent)
     {
@@ -190,29 +190,53 @@ public abstract partial class SharedMuleSystem : EntitySystem
             return false;
 
         Container.Remove(load.Value, Container.GetContainer(ent, ent.Comp.ContainerId));
-        if (DropSpot(ent) is { } spot)
+        if (AheadSpot(ent) is { } spot)
+        {
             _transform.SetCoordinates(load.Value, spot);
+        }
+        else
+        {
+            // Left under it, so it can still back out of a tight spot; it ignores the load until it's clear of it.
+            var ignore = EnsureComp<PreventCollideComponent>(load.Value);
+            ignore.Uid = ent;
+            Dirty(load.Value, ignore);
+            ent.Comp.DroppedUnder = load;
+        }
 
         Audio.PlayPredicted(ent.Comp.LoadSound, ent, null);
         return true;
     }
 
-    private EntityCoordinates? DropSpot(EntityUid uid)
+    private EntityCoordinates? AheadSpot(EntityUid uid)
     {
         var xform = Transform(uid);
         if (xform.GridUid is not { } gridUid || !TryComp<MapGridComponent>(gridUid, out var grid))
             return null;
 
-        var tile = _map.CoordinatesToTile(gridUid, grid, xform.Coordinates);
-        var facing = xform.LocalRotation.GetCardinalDir();
-        foreach (var dir in new[] { facing, facing.GetOpposite(), facing.GetClockwise90Degrees(), facing.GetOpposite().GetClockwise90Degrees() })
-        {
-            var next = tile.Offset(dir);
-            if (_map.TryGetTileRef(gridUid, grid, next, out var tileRef) && !tileRef.Tile.IsEmpty && !_turf.IsTileBlocked(gridUid, next, CollisionGroup.MidImpassable, grid))
-                return _map.GridTileToLocal(gridUid, grid, next);
-        }
+        var ahead = _map.CoordinatesToTile(gridUid, grid, xform.Coordinates).Offset(xform.LocalRotation.GetCardinalDir());
+        if (!_map.TryGetTileRef(gridUid, grid, ahead, out var tileRef) || tileRef.Tile.IsEmpty
+            || _turf.IsTileBlocked(gridUid, ahead, CollisionGroup.MidImpassable, grid))
+            return null;
 
-        return null;
+        return _map.GridTileToLocal(gridUid, grid, ahead);
+    }
+
+    /// <summary>
+    /// Once it has moved off a load it dropped under itself, the two collide again.
+    /// </summary>
+    protected void CheckDroppedUnder(Entity<MuleComponent> ent)
+    {
+        if (ent.Comp.DroppedUnder is not { } load)
+            return;
+
+        if (!TerminatingOrDeleted(load) && Container.IsEntityInContainer(load) == false
+            && (_transform.GetWorldPosition(load) - _transform.GetWorldPosition(ent)).Length() < 1f)
+            return;
+
+        if (TryComp<PreventCollideComponent>(load, out var ignore) && ignore.Uid == ent.Owner)
+            RemComp(load, ignore);
+
+        ent.Comp.DroppedUnder = null;
     }
 
     /// <summary>

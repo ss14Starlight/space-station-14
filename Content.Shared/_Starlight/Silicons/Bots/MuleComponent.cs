@@ -176,6 +176,12 @@ public sealed partial class MuleComponent : Component
     public Dictionary<EntityUid, TimeSpan> RecentHits = new();
 
     /// <summary>
+    /// A load it left under itself, which it drives through until it's clear.
+    /// </summary>
+    [ViewVariables]
+    public EntityUid? DroppedUnder;
+
+    /// <summary>
     /// When it may next look for a route after failing to find one.
     /// </summary>
     [ViewVariables]

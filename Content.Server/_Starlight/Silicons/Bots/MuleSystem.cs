@@ -267,6 +267,8 @@ public sealed partial class MuleSystem : SharedMuleSystem
                 Appearance.SetData(uid, MuleVisuals.Emagged, false);
             }
 
+            CheckDroppedUnder((uid, comp));
+
             if (comp.CarefulUntil is { } careful && now >= careful)
             {
                 comp.CarefulUntil = null;
@@ -335,6 +337,14 @@ public sealed partial class MuleSystem : SharedMuleSystem
                 TurnOff(ent);
                 return;
             }
+        }
+
+        // Waiting for a route isn't being stuck.
+        if (comp.Waypoints.Count == 0)
+        {
+            comp.StuckPosition = position;
+            comp.LastMoved = now;
+            return;
         }
 
         if (now < comp.LastMoved + StuckDelay)
@@ -509,6 +519,16 @@ public sealed partial class MuleSystem : SharedMuleSystem
         {
             if (TryComp<DoorComponent>(uid, out var found))
             {
+                // Firelocks stand open unless something's wrong, and nobody gets through a shut one.
+                // An open one usually shares its tile with the real door, so it mustn't hide it.
+                if (HasComp<FirelockComponent>(uid))
+                {
+                    if (found.State == DoorState.Closed)
+                        return 0f;
+
+                    continue;
+                }
+
                 doorUid = uid;
                 door = found;
                 continue;
@@ -526,10 +546,6 @@ public sealed partial class MuleSystem : SharedMuleSystem
 
         if (doorUid is not { } doorEnt || door == null)
             return blocked ? 0f : 1f;
-
-        // Firelocks stand open unless something's wrong, and nobody gets through a shut one.
-        if (HasComp<FirelockComponent>(doorEnt))
-            return door.State == DoorState.Closed ? 0f : 1f;
 
         var access = DoorAccessFor(doorEnt, ownAccess, entranceAccess);
         doors[tile] = (doorEnt, access);
@@ -587,7 +603,8 @@ public sealed partial class MuleSystem : SharedMuleSystem
 
             Unload(ent);
         }
-        else if (comp.AutoPickup)
+        // Only out at the destination; at home it waits to be loaded.
+        else if (comp.AutoPickup && target != comp.Home)
         {
             foreach (var near in _lookup.GetEntitiesInRange(Transform(ent).Coordinates, 1f, LookupFlags.Dynamic))
             {

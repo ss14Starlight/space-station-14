@@ -12,6 +12,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Movement.Components;
+using Content.Shared.Physics;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Wires;
@@ -24,6 +25,7 @@ using NUnit.Framework;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Maths;
 
 namespace Content.IntegrationTests.Tests._Starlight.Silicons;
 
@@ -76,9 +78,62 @@ public sealed class MulebotTest : InteractionTest
 
         await Server.WaitAssertion(() =>
         {
+            // Facing along the corridor, it drops the load on the tile ahead.
+            Transform.SetLocalRotation(_mule, Direction.East.ToAngle());
             Assert.That(_muleSystem.Unload(mule));
             Assert.That(_muleSystem.TryGetLoad(mule, out _), Is.False);
-            Assert.That((GridPosition(crate) - GridPosition(_mule)).Length(), Is.EqualTo(1f).Within(0.1f), "Unloads onto the next tile");
+            Assert.That(GridPosition(crate).X - GridPosition(_mule).X, Is.EqualTo(1f).Within(0.1f), "Unloads onto the tile ahead");
+        });
+    }
+
+    [Test]
+    public async Task FacingAWallItUnloadsUnderItselfAndDrivesOff()
+    {
+        var beacons = await Build(12, new() { [0] = "CargoBay", [10] = "Bar" });
+        var mule = Mule();
+        var crate = await Load(mule);
+
+        await Server.WaitAssertion(() =>
+        {
+            Transform.SetLocalRotation(_mule, Direction.North.ToAngle());
+            Assert.That(_muleSystem.Unload(mule));
+            Assert.That((GridPosition(crate) - GridPosition(_mule)).Length(), Is.LessThan(0.1f), "Under itself, with a wall ahead");
+            Assert.That(SEntMan.GetComponent<PreventCollideComponent>(crate).Uid, Is.EqualTo(_mule));
+        });
+
+        // It still gets out over the crate, and stops ignoring it once clear.
+        await Server.WaitPost(() => mule.Comp.AutoReturn = false);
+        await Send(mule, beacons[0], beacons[10]);
+        await RunSeconds(10);
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(GridPosition(_mule).X, Is.GreaterThan(5f));
+            Assert.That(SEntMan.HasComponent<PreventCollideComponent>(crate), Is.False);
+        });
+    }
+
+    [Test]
+    public async Task NoPickupAtHome()
+    {
+        var beacons = await Build(12, new() { [0] = "CargoBay", [10] = "Bar" });
+        var mule = Mule();
+        EntityUid crate = default;
+        await Server.WaitPost(() => crate = SEntMan.SpawnAtPosition("CrateGenericSteel", At(1)));
+
+        // Sent home from the bar, it shouldn't grab the crate waiting in cargo.
+        await Server.WaitPost(() =>
+        {
+            _muleSystem.SetBeacon(mule, beacons[0], true);
+            _muleSystem.SetBeacon(mule, beacons[0], false);
+            _muleSystem.Command(mule, MuleCommand.Go);
+        });
+        await RunSeconds(5);
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(_muleSystem.TryGetLoad(mule, out _), Is.False);
+            Assert.That(GridPosition(crate).X, Is.EqualTo(1.5f).Within(0.1f));
         });
     }
 
@@ -219,6 +274,27 @@ public sealed class MulebotTest : InteractionTest
             Assert.That(mule.Comp.Waypoints, Is.Empty, "Plans no route through the desk");
             Assert.That(_muleSystem.TryGetLoad(mule, out _), "No way round the desk, so it never gets there");
             Assert.That(GridPosition(_mule).X, Is.LessThan(5f));
+        });
+    }
+
+    [Test]
+    public async Task FirelockDoesNotHideTheDoorOnItsTile()
+    {
+        // Department doors usually share their tile with an open firelock.
+        var beacons = await Build(12, new() { [0] = "CargoBay", [9] = "Security" }, new() { [5] = "AirlockSecurityLocked" });
+        await Server.WaitPost(() => SEntMan.SpawnAtPosition("FirelockGlass", At(5)));
+        await RunSeconds(2);
+        var mule = Mule();
+        var crate = await Load(mule);
+        await Server.WaitPost(() => mule.Comp.AutoReturn = false);
+
+        await Send(mule, beacons[0], beacons[9]);
+        await RunSeconds(15);
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(_muleSystem.TryGetLoad(mule, out _), Is.False, "Should still stop at the door and unload");
+            Assert.That(GridPosition(crate).X, Is.LessThan(5f));
         });
     }
 
