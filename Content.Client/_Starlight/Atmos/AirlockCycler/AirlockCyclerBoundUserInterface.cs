@@ -19,6 +19,7 @@ public sealed class AirlockCyclerBoundUserInterface(EntityUid owner, Enum uiKey)
         _window.OnCycle += side => SendMessage(new AirlockCyclerCycleMessage(side));
         _window.OnForce += () => SendMessage(new AirlockCyclerForceMessage());
         _window.OnLockdown += () => SendMessage(new AirlockCyclerLockdownMessage());
+        _window.OnBoltOpen += enabled => SendMessage(new AirlockCyclerBoltOpenMessage(enabled));
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

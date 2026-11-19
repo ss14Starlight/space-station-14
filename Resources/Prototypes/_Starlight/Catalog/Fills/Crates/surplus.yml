@@ -20,6 +20,8 @@
           tableId: MedicalSurplusGiftsEntityTable
         - !type:NestedSelector
           tableId: MedicalSurplusGiftsEntityTable
+        - !type:NestedSelector
+          tableId: MedicalSurplusProductionEntityTable
 
 - type: entityTable
   id: MedicalSurplusMedkitEntityTable
@@ -62,6 +64,10 @@
       weight: 1
     - id: JugWeldingFuel
       weight: 0.5
+    - id: JugAmoxla
+      weight: 0.5
+    - id: JugSigynate
+      weight: 0.25
     - id: ChemistryBottleOmnizine
       weight: 0.5
     - id: OpporozidoneBeakerLarge
@@ -73,8 +79,7 @@
   id: MedicalSurplusGiftsEntityTable
   table: !type:GroupSelector
     children:
-    - id: CigaretteOmnizine
-      amount: 10
+    - id: CigPackSyndicate
       weight: 1
     - id: JetInjector
       weight: 0.5
@@ -110,6 +115,27 @@
       weight: 1
     - id: AmbrosiaDeusSeeds
       weight: 1
+
+- type: entityTable
+  id: MedicalSurplusProductionEntityTable
+  table: !type:GroupSelector
+    children:
+    - id: ChemDispenserFlatpack
+      weight: 1
+    - id: ChemMaster1000Flatpack
+      weight: 0.7
+    - id: ChemMaster4000Flatpack
+      weight: 0.3
+    - id: RPLD
+      weight: 0.5
+    - id: GasCondenserFlatpack
+      weight: 0.15
+    - id: GoldenBeaker
+      weight: 0.2
+    - id: SilverBeaker
+      weight: 0.4
+    - id: KitchenReagentGrinderFlatpack
+      weight: 0.5
 
 - type: entity
   parent: CrateSalvageContrabandStorageSecure

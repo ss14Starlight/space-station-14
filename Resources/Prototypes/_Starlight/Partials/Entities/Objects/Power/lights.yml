@@ -3,35 +3,45 @@
   components:
   - type: LightBulb
     color: "#FFE2C8"
-    lightEnergy: 0.6
     lightRadius: 7
+    lightEnergy: 0.6
     lightSoftness: 1.5
+
+- type: !PartialOnly entity
+  id: LightBulb
+  components:
+  - type: LightBulb
+    color: "#FFD1A3"
+    lightRadius: 6
+    lightEnergy: 0.6
+    lightSoftness: 1.3
 
 - type: !PartialOnly entity
   id: LedLightTube
   components:
   - type: LightBulb
     color: "#F6EFE4"
-    lightEnergy: 0.65
     lightRadius: 8.5
-    lightSoftness: 1.3
-
-- type: !PartialOnly entity
-  id: LightBulb
-  components:
-  - type: LightBulb
     lightEnergy: 0.65
-    lightSoftness: 1.4
+    lightSoftness: 1.3
 
 - type: !PartialOnly entity
   id: LedLightBulb
   components:
   - type: LightBulb
     color: "#F6EFE4"
-    lightEnergy: 0.6
     lightRadius: 6.5
+    lightEnergy: 0.6
     lightSoftness: 1.3
     dimmable: false
+
+- type: !PartialOnly entity
+  id: ExteriorLightTube
+  components:
+  - type: LightBulb
+    lightRadius: 12
+    lightEnergy: 4
+    lightSoftness: 0.8
 
 - type: !PartialOnly entity
   id: !type:CreateVariants
@@ -41,13 +51,6 @@
   components:
   - type: LightBulb
     dimmable: false
-
-- type: !PartialOnly entity
-  id: ExteriorLightTube
-  components:
-  - type: LightBulb
-    lightEnergy: 4 # 4.5 -> 4
-    lightSoftness: 0.8 # 0.5 -> 0.8
 
 - type: !PartialOnly entity
   id: !type:CreateVariants
