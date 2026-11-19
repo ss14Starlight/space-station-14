@@ -1,13 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: revented mind cleanup from accessing an already removed MindComponent.
-    type: Fix
-  id: 410278
-  time: '2026-11-09T12:46:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7098
-- author: SirLutz
-  changes:
   - message: Moved the Diona "Your Roots" objective from antagonist objectives to the end-of-round cards section.
     type: Tweak
   id: 410279
@@ -2799,4 +2792,11 @@ Entries:
   id: 410677
   time: '2026-11-19T19:14:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7097
+- author: Caws
+  changes:
+  - message: Novo Lobster's 'space lighting' has been adjusted. It's still dark outside, but there is just a teeny tiny amount of background light, perfect for brooding outside with a lit cigarette, clutching the last twenty spesos you've left in your pocket. It's gonna be a long night.
+    type: Tweak
+  id: 410678
+  time: '2026-11-19T19:45:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7333
 Order: -1
