@@ -1,9 +1,10 @@
-using Content.Shared.Actions;
+using Content.Shared.Actions; // Starlight-edit
 using Content.Shared.Coordinates;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Inventory;
+using Content.Shared.Inventory; // Starlight-edit
 using Content.Shared.Stealth.Components;
+using Content.Shared.Timing; // Starlight-edit
 using JetBrains.Annotations;
 using Robust.Shared.Timing;
 
@@ -14,16 +15,18 @@ public sealed partial class WhistleSystem : EntitySystem
     [Dependency] private EntityLookupSystem _entityLookup = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private UseDelaySystem _useDelay = default!; // Starlight-edit
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<WhistleComponent, UseInHandEvent>(OnUseInHand);
-        SubscribeLocalEvent<WhistleComponent, GetItemActionsEvent>(OnGetActions);
-        SubscribeLocalEvent<WhistleComponent, WhistleActionEvent>(OnWhistleAction);
+        SubscribeLocalEvent<WhistleComponent, GetItemActionsEvent>(OnGetActions); // Starlight-edit
+        SubscribeLocalEvent<WhistleComponent, WhistleActionEvent>(OnWhistleAction); // Starlight-edit
     }
 
+    // Starlight start
     private void OnGetActions(EntityUid uid, WhistleComponent component, GetItemActionsEvent args)
     {
         if (args.SlotFlags is not { } slotFlags || !slotFlags.HasFlag(SlotFlags.NECK))
@@ -37,11 +40,26 @@ public sealed partial class WhistleSystem : EntitySystem
         if (args.Handled || !_timing.IsFirstTimePredicted)
             return;
 
-        // Reuse the same path as activating the whistle in-hand, so the action works the same whether the whistle is held or just worn on the neck.
-        // the item's own UseDelay isn't checked outside of the hand-use flow, so cooldown is  handled by the action's own useDelay
+        // ensures the whistle cooldown triggers from both in-hand and action key activation
+        if (TryComp<UseDelayComponent>(uid, out var delay))
+        {
+            if (_useDelay.IsDelayed((uid, delay)))
+                return;
+        }
+
+
+        var useEv = new UseInHandEvent(args.Performer);
+        RaiseLocalEvent(uid, useEv);
+        if (!useEv.Handled)
+            return;
+
+
+        if (delay != null)
+            _useDelay.TryResetDelay((uid, delay));
+
         args.Handled = true;
-        RaiseLocalEvent(uid, new UseInHandEvent(args.Performer) { ApplyDelay = false });
     }
+    // Starlight end
 
     private void ExclamateTarget(EntityUid target, WhistleComponent component)
     {
@@ -85,4 +103,5 @@ public sealed partial class WhistleSystem : EntitySystem
     }
 }
 
+// Starlight-edit
 public sealed partial class WhistleActionEvent : InstantActionEvent;
