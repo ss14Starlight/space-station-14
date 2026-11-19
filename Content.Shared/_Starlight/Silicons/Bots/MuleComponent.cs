@@ -34,6 +34,9 @@ public sealed partial class MuleComponent : Component
     [DataField, AutoNetworkedField]
     public bool On = true;
 
+    /// <summary>
+    /// What it's doing right now.
+    /// </summary>
     [DataField, AutoNetworkedField]
     public MuleMode Mode = MuleMode.Idle;
 
@@ -67,6 +70,9 @@ public sealed partial class MuleComponent : Component
     [DataField, AutoNetworkedField]
     public bool Report = true;
 
+    /// <summary>
+    /// The radio channel it reports on.
+    /// </summary>
     [DataField]
     public ProtoId<RadioChannelPrototype> Channel = "Supply";
 
@@ -106,6 +112,9 @@ public sealed partial class MuleComponent : Component
     [DataField, AutoNetworkedField]
     public TimeSpan? CarefulUntil;
 
+    /// <summary>
+    /// How long it keeps creeping after it last saw someone lying in its way.
+    /// </summary>
     [DataField]
     public TimeSpan CarefulTime = TimeSpan.FromSeconds(5);
 
@@ -127,9 +136,15 @@ public sealed partial class MuleComponent : Component
     [DataField]
     public float RunOverMin = 5f;
 
+    /// <summary>
+    /// The most blunt damage for running someone over, before <see cref="RunOverMultiplier"/>.
+    /// </summary>
     [DataField]
     public float RunOverMax = 15f;
 
+    /// <summary>
+    /// What the rolled run-over damage is multiplied by.
+    /// </summary>
     [DataField]
     public float RunOverMultiplier = 6f;
 
@@ -139,21 +154,39 @@ public sealed partial class MuleComponent : Component
     [DataField]
     public float RunOverBlood = 5f;
 
+    /// <summary>
+    /// Played when it runs someone over.
+    /// </summary>
     [DataField]
     public SoundSpecifier RunOverSound = new SoundPathSpecifier("/Audio/Effects/Fluids/splat.ogg");
 
+    /// <summary>
+    /// Played when it gets emagged.
+    /// </summary>
     [DataField]
     public SoundSpecifier EmagSound = new SoundCollectionSpecifier("sparks");
 
+    /// <summary>
+    /// Played when it's stuck, or offered something it won't carry.
+    /// </summary>
     [DataField]
     public SoundSpecifier SighSound = new SoundPathSpecifier("/Audio/Machines/buzz-sigh.ogg");
 
+    /// <summary>
+    /// Played when it gives up on a route and looks for another way.
+    /// </summary>
     [DataField]
     public SoundSpecifier AnnoyedSound = new SoundPathSpecifier("/Audio/Machines/buzz-two.ogg");
 
+    /// <summary>
+    /// Played when it arrives with a delivery, if it reports.
+    /// </summary>
     [DataField]
     public SoundSpecifier ArrivedSound = new SoundPathSpecifier("/Audio/Machines/chime.ogg");
 
+    /// <summary>
+    /// Played when something is loaded or unloaded.
+    /// </summary>
     [DataField]
     public SoundSpecifier LoadSound = new SoundCollectionSpecifier("MuleLoad");
 
@@ -169,6 +202,15 @@ public sealed partial class MuleComponent : Component
     [ViewVariables]
     public List<EntityCoordinates> Waypoints = new();
 
+    /// <summary>
+    /// Whether the current route stops at a door short of the beacon.
+    /// </summary>
+    [ViewVariables]
+    public bool StopsShort;
+
+    /// <summary>
+    /// When it next looks at doors, people in the way and its progress.
+    /// </summary>
     [ViewVariables]
     public TimeSpan NextCheck;
 
@@ -179,10 +221,10 @@ public sealed partial class MuleComponent : Component
     public Dictionary<EntityUid, TimeSpan> RecentHits = new();
 
     /// <summary>
-    /// A load it left under itself, which it drives through until it's clear.
+    /// Loads it left under itself, which it drives through until it's clear of each.
     /// </summary>
     [ViewVariables]
-    public EntityUid? DroppedUnder;
+    public List<EntityUid> DroppedUnder = new();
 
     /// <summary>
     /// The tile it last checked for people on; it only knocks over or runs over people on tiles it drives onto.
@@ -202,6 +244,9 @@ public sealed partial class MuleComponent : Component
     [ViewVariables]
     public TimeSpan? FlashUntil;
 
+    /// <summary>
+    /// Where it was at the last check, for working out the distance driven.
+    /// </summary>
     [ViewVariables]
     public Vector2 LastPosition;
 
@@ -212,11 +257,14 @@ public sealed partial class MuleComponent : Component
     public float Travelled;
 
     /// <summary>
-    /// Where it was at the last stuck check, and when.
+    /// Where it was at the last stuck check.
     /// </summary>
     [ViewVariables]
     public Vector2 StuckPosition;
 
+    /// <summary>
+    /// When the last stuck check was.
+    /// </summary>
     [ViewVariables]
     public TimeSpan LastMoved;
 

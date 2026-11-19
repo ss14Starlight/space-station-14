@@ -9,6 +9,9 @@ namespace Content.Server._Starlight.Silicons.Bots;
 /// </summary>
 public sealed partial class MuleWireAction : ComponentWireAction<MuleComponent>
 {
+    /// <summary>
+    /// Which of the MULE's wires this is.
+    /// </summary>
     [DataField(required: true)]
     public MuleWires Wire;
 
@@ -30,7 +33,9 @@ public sealed partial class MuleWireAction : ComponentWireAction<MuleComponent>
         _mule = EntityManager.System<MuleSystem>();
     }
 
-    // Several of these sit in one layout.
+    /// <summary>
+    /// Several of these sit in one layout, one per wire.
+    /// </summary>
     public override bool AddWire(Wire wire, int count) => true;
 
     public override StatusLightState? GetLightState(Wire wire, MuleComponent component)

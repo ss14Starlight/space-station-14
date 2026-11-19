@@ -70,19 +70,19 @@ public sealed class MulebotTest : InteractionTest
 
         await Server.WaitAssertion(() =>
         {
-            Assert.That(_muleSystem.TryLoad(mule, closet), Is.False, "Lockers aren't crates");
-            Assert.That(_muleSystem.TryLoad(mule, full), Is.False, "Won't drive off with someone shut in a crate");
-            Assert.That(_muleSystem.TryLoad(mule, crate), "Should take an empty crate");
-            Assert.That(_muleSystem.TryGetLoad(mule, out var load) && load == crate);
-            Assert.That(_muleSystem.TryLoad(mule, full), Is.False, "Only one load at a time");
+            Assert.That(_muleSystem.TryLoad(_mule, closet), Is.False, "Lockers aren't crates");
+            Assert.That(_muleSystem.TryLoad(_mule, full), Is.False, "Won't drive off with someone shut in a crate");
+            Assert.That(_muleSystem.TryLoad(_mule, crate), "Should take an empty crate");
+            Assert.That(_muleSystem.TryGetLoad(_mule, out var load) && load == crate);
+            Assert.That(_muleSystem.TryLoad(_mule, full), Is.False, "Only one load at a time");
         });
 
         await Server.WaitAssertion(() =>
         {
             // Facing along the corridor, it drops the load on the tile ahead.
             Transform.SetLocalRotation(_mule, Direction.East.ToAngle());
-            Assert.That(_muleSystem.Unload(mule));
-            Assert.That(_muleSystem.TryGetLoad(mule, out _), Is.False);
+            Assert.That(_muleSystem.Unload(_mule));
+            Assert.That(_muleSystem.TryGetLoad(_mule, out _), Is.False);
             Assert.That(GridPosition(crate).X - GridPosition(_mule).X, Is.EqualTo(1f).Within(0.1f), "Unloads onto the tile ahead");
         });
     }
@@ -97,7 +97,7 @@ public sealed class MulebotTest : InteractionTest
         await Server.WaitAssertion(() =>
         {
             Transform.SetLocalRotation(_mule, Direction.North.ToAngle());
-            Assert.That(_muleSystem.Unload(mule));
+            Assert.That(_muleSystem.Unload(_mule));
             Assert.That((GridPosition(crate) - GridPosition(_mule)).Length(), Is.LessThan(0.1f), "Under itself, with a wall ahead");
             Assert.That(SEntMan.GetComponent<PreventCollideComponent>(crate).Uid, Is.EqualTo(_mule));
         });
@@ -117,24 +117,69 @@ public sealed class MulebotTest : InteractionTest
     [Test]
     public async Task NoPickupAtHome()
     {
-        var beacons = await Build(12, new() { [0] = "CargoBay", [10] = "Bar" });
+        var beacons = await Build(12, new() { [1] = "CargoBay", [10] = "Bar" });
         var mule = Mule();
         EntityUid crate = default;
-        await Server.WaitPost(() => crate = SEntMan.SpawnAtPosition("CrateGenericSteel", At(1)));
 
         // Sent home from the bar, it shouldn't grab the crate waiting in cargo.
         await Server.WaitPost(() =>
         {
-            _muleSystem.SetBeacon(mule, beacons[0], true);
-            _muleSystem.SetBeacon(mule, beacons[0], false);
-            _muleSystem.Command(mule, MuleCommand.Go);
+            crate = SEntMan.SpawnAtPosition("CrateGenericSteel", At(0));
+            Transform.SetCoordinates(_mule, At(10));
+            _muleSystem.SetBeacon(_mule, beacons[1], true);
+            _muleSystem.SetBeacon(_mule, beacons[1], false);
+            _muleSystem.Command(_mule, MuleCommand.Go);
         });
-        await RunSeconds(5);
+        await RunSeconds(8);
 
         await Server.WaitAssertion(() =>
         {
-            Assert.That(_muleSystem.TryGetLoad(mule, out _), Is.False);
-            Assert.That(GridPosition(crate).X, Is.EqualTo(1.5f).Within(0.1f));
+            Assert.That(GridPosition(_mule).X, Is.LessThan(2.5f), "Should have driven home");
+            Assert.That(mule.Comp.Mode, Is.EqualTo(MuleMode.Idle));
+            Assert.That(_muleSystem.TryGetLoad(_mule, out _), Is.False);
+            Assert.That(GridPosition(crate).X, Is.EqualTo(0.5f).Within(0.1f));
+        });
+    }
+
+    [Test]
+    public async Task NewDestinationMidRunTurnsItRound()
+    {
+        var beacons = await Build(12, new() { [0] = "CargoBay", [6] = "Medbay", [10] = "Bar" });
+        var mule = Mule();
+        var crate = await Load(mule);
+        await Server.WaitPost(() => mule.Comp.AutoReturn = false);
+        await Send(mule, beacons[0], beacons[10]);
+        await RunSeconds(1);
+
+        await Server.WaitPost(() => _muleSystem.SetBeacon(_mule, beacons[6], false));
+        await RunSeconds(8);
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(_muleSystem.TryGetLoad(_mule, out _), Is.False, "Should have dropped it off");
+            Assert.That(GridPosition(_mule).X, Is.EqualTo(6.5f).Within(1f), "At the new beacon, not the old one");
+            Assert.That(GridPosition(crate).X, Is.LessThan(8.5f));
+        });
+    }
+
+    [Test]
+    public async Task CalledHomeMidRunItKeepsTheLoad()
+    {
+        var beacons = await Build(12, new() { [0] = "CargoBay", [10] = "Bar" });
+        var mule = Mule();
+        var crate = await Load(mule);
+        await Send(mule, beacons[0], beacons[10]);
+        await RunSeconds(2);
+
+        await Server.WaitPost(() => _muleSystem.Command(_mule, MuleCommand.Home));
+        await RunSeconds(1);
+        await Server.WaitAssertion(() => Assert.That(_muleSystem.TryGetLoad(_mule, out var load) && load == crate, "Not dropped where it was called back"));
+
+        await RunSeconds(6);
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(GridPosition(_mule).X, Is.LessThan(1.5f), "Back home");
+            Assert.That(mule.Comp.Mode, Is.EqualTo(MuleMode.Idle));
         });
     }
 
@@ -162,6 +207,10 @@ public sealed class MulebotTest : InteractionTest
             var drop = new Content.Shared.DragDrop.CanDropTargetEvent(SPlayer, crate);
             SEntMan.EventBus.RaiseLocalEvent(_mule, ref drop);
             Assert.That(drop.CanDrop, "The MULE takes the drop");
+
+            var dropped = new Content.Shared.DragDrop.DragDropTargetEvent(SPlayer, crate);
+            SEntMan.EventBus.RaiseLocalEvent(_mule, ref dropped);
+            Assert.That(_muleSystem.TryGetLoad(_mule, out var load) && load == crate, "Dropping it on loads it");
         });
     }
 
@@ -180,7 +229,7 @@ public sealed class MulebotTest : InteractionTest
 
         await Server.WaitAssertion(() =>
         {
-            Assert.That(_muleSystem.TryLoad(mule, crate));
+            Assert.That(_muleSystem.TryLoad(_mule, crate));
             Assert.That(SEntMan.GetComponent<EntityStorageComponent>(crate).Open, Is.False);
         });
     }
@@ -198,7 +247,7 @@ public sealed class MulebotTest : InteractionTest
 
         await Server.WaitAssertion(() =>
         {
-            Assert.That(_muleSystem.TryGetLoad(mule, out _), Is.False);
+            Assert.That(_muleSystem.TryGetLoad(_mule, out _), Is.False);
             Assert.That(GridPosition(crate).X, Is.EqualTo(10.5f).Within(1f), "Should drop the crate at the beacon");
             Assert.That(GridPosition(_mule).X, Is.EqualTo(0.5f).Within(1f), "Should drive back home");
             Assert.That(mule.Comp.Mode, Is.EqualTo(MuleMode.Idle));
@@ -233,7 +282,7 @@ public sealed class MulebotTest : InteractionTest
         await Server.WaitAssertion(() =>
         {
             Assert.That(GridPosition(crate).X, Is.EqualTo(0.5f).Within(1f), "Should bring the crate home and drop it there");
-            Assert.That(_muleSystem.TryGetLoad(mule, out _), Is.False);
+            Assert.That(_muleSystem.TryGetLoad(_mule, out _), Is.False);
         });
     }
 
@@ -251,7 +300,7 @@ public sealed class MulebotTest : InteractionTest
 
         await Server.WaitAssertion(() =>
         {
-            Assert.That(_muleSystem.TryGetLoad(mule, out _), Is.False);
+            Assert.That(_muleSystem.TryGetLoad(_mule, out _), Is.False);
             Assert.That(GridPosition(crate).X, Is.GreaterThan(6f).And.LessThan(11f), "Should drop it inside the first door and outside the second");
         });
     }
@@ -273,7 +322,7 @@ public sealed class MulebotTest : InteractionTest
         await Server.WaitAssertion(() =>
         {
             Assert.That(mule.Comp.Waypoints, Is.Empty, "Plans no route through the desk");
-            Assert.That(_muleSystem.TryGetLoad(mule, out _), "No way round the desk, so it never gets there");
+            Assert.That(_muleSystem.TryGetLoad(_mule, out _), "No way round the desk, so it never gets there");
             Assert.That(GridPosition(_mule).X, Is.LessThan(5f));
         });
     }
@@ -294,7 +343,7 @@ public sealed class MulebotTest : InteractionTest
 
         await Server.WaitAssertion(() =>
         {
-            Assert.That(_muleSystem.TryGetLoad(mule, out _), Is.False, "Should still stop at the door and unload");
+            Assert.That(_muleSystem.TryGetLoad(_mule, out _), Is.False, "Should still stop at the door and unload");
             Assert.That(GridPosition(crate).X, Is.LessThan(5f));
         });
     }
@@ -313,7 +362,7 @@ public sealed class MulebotTest : InteractionTest
 
         await Server.WaitAssertion(() =>
         {
-            Assert.That(_muleSystem.TryGetLoad(mule, out _), Is.False);
+            Assert.That(_muleSystem.TryGetLoad(_mule, out _), Is.False);
             Assert.That(GridPosition(crate).X, Is.GreaterThan(1f).And.LessThan(5f), "Should drop it outside the door");
         });
     }
@@ -340,7 +389,7 @@ public sealed class MulebotTest : InteractionTest
 
         await Send(mule, beacons[0], beacons[10]);
         await RunSeconds(1);
-        await Server.WaitPost(() => _muleSystem.Command(mule, MuleCommand.Stop));
+        await Server.WaitPost(() => _muleSystem.Command(_mule, MuleCommand.Stop));
 
         await Server.WaitAssertion(() =>
         {
@@ -357,7 +406,7 @@ public sealed class MulebotTest : InteractionTest
         var crate = await Load(mule);
         await Server.WaitPost(() =>
         {
-            _muleSystem.Command(mule, MuleCommand.Report);
+            _muleSystem.Command(_mule, MuleCommand.Report);
             mule.Comp.AutoReturn = false;
         });
 
@@ -414,17 +463,15 @@ public sealed class MulebotTest : InteractionTest
         await Build(4, new());
         var mule = Mule();
 
-        await Server.WaitPost(() =>
-        {
-            _muleSystem.SetWireCut(mule, MuleWires.Power2, true);
-            _muleSystem.Command(mule, MuleCommand.Power);
-        });
-
+        await Server.WaitPost(() => _muleSystem.SetWireCut(_mule, MuleWires.Power2, true));
         await Server.WaitAssertion(() =>
         {
-            Assert.That(mule.Comp.On, Is.False);
-            Assert.That(_muleSystem.HasPower(mule), Is.False);
+            Assert.That(mule.Comp.On, Is.False, "The cut switches it off");
+            Assert.That(_muleSystem.HasPower(_mule), Is.False);
         });
+
+        await Server.WaitPost(() => _muleSystem.Command(_mule, MuleCommand.Power));
+        await Server.WaitAssertion(() => Assert.That(mule.Comp.On, Is.False, "And it won't switch back on"));
     }
 
     [Test]
@@ -435,9 +482,9 @@ public sealed class MulebotTest : InteractionTest
 
         await Server.WaitPost(() =>
         {
-            _muleSystem.Command(mule, MuleCommand.Power);
+            _muleSystem.Command(_mule, MuleCommand.Power);
             SetPanel(true);
-            _muleSystem.Command(mule, MuleCommand.Power);
+            _muleSystem.Command(_mule, MuleCommand.Power);
         });
 
         await Server.WaitAssertion(() => Assert.That(mule.Comp.On, Is.False));
@@ -455,9 +502,9 @@ public sealed class MulebotTest : InteractionTest
         await Server.WaitPost(() =>
         {
             normal = Speed();
-            _muleSystem.SetWireCut(mule, MuleWires.Motor1, true);
+            _muleSystem.SetWireCut(_mule, MuleWires.Motor1, true);
             fast = Speed();
-            _muleSystem.SetWireCut(mule, MuleWires.Motor2, true);
+            _muleSystem.SetWireCut(_mule, MuleWires.Motor2, true);
             stopped = Speed();
         });
 
@@ -484,24 +531,24 @@ public sealed class MulebotTest : InteractionTest
 
         await Server.WaitAssertion(() =>
         {
-            Assert.That(_muleSystem.TryLoad(mule, toolbox), Is.False, "Only crates while the load check is intact");
+            Assert.That(_muleSystem.TryLoad(_mule, toolbox), Is.False, "Only crates while the load check is intact");
             Assert.That(SEntMan.System<SharedBuckleSystem>().TryBuckle(passenger, passenger, _mule), Is.False, "Nobody rides it yet");
 
-            _muleSystem.SetWireCut(mule, MuleWires.LoadCheck, true);
+            _muleSystem.SetWireCut(_mule, MuleWires.LoadCheck, true);
             Assert.That(SEntMan.System<SharedBuckleSystem>().TryBuckle(passenger, passenger, _mule), "Rides it once the load check is cut");
-            Assert.That(_muleSystem.TryGetLoad(mule, out var load) && load == passenger);
-            Assert.That(_muleSystem.TryLoad(mule, toolbox), Is.False, "A rider takes the place of a load");
+            Assert.That(_muleSystem.TryGetLoad(_mule, out var load) && load == passenger);
+            Assert.That(_muleSystem.TryLoad(_mule, toolbox), Is.False, "A rider takes the place of a load");
 
-            _muleSystem.SetWireCut(mule, MuleWires.LoadCheck, false);
-            Assert.That(_muleSystem.TryGetRider(mule, out _), "Mending the wire doesn't throw them off");
+            _muleSystem.SetWireCut(_mule, MuleWires.LoadCheck, false);
+            Assert.That(_muleSystem.TryGetRider(_mule, out _), "Mending the wire doesn't throw them off");
 
-            Assert.That(_muleSystem.Unload(mule));
-            Assert.That(_muleSystem.TryGetRider(mule, out _), Is.False);
+            Assert.That(_muleSystem.Unload(_mule));
+            Assert.That(_muleSystem.TryGetRider(_mule, out _), Is.False);
             Assert.That(GridPosition(passenger).X, Is.EqualTo(1.5f).Within(0.1f), "Let off on the tile ahead");
             Assert.That(SEntMan.System<SharedBuckleSystem>().TryBuckle(passenger, passenger, _mule), Is.False, "Nobody gets back on with the wire mended");
 
-            _muleSystem.SetWireCut(mule, MuleWires.LoadCheck, true);
-            Assert.That(_muleSystem.TryLoad(mule, toolbox), "Takes any loose object with the load check cut");
+            _muleSystem.SetWireCut(_mule, MuleWires.LoadCheck, true);
+            Assert.That(_muleSystem.TryLoad(_mule, toolbox), "Takes any loose object with the load check cut");
         });
     }
 
@@ -514,7 +561,7 @@ public sealed class MulebotTest : InteractionTest
         await Server.WaitPost(() =>
         {
             bystander = SEntMan.SpawnAtPosition("MobHuman", At(5));
-            _muleSystem.SetWireCut(mule, MuleWires.Avoidance, true);
+            _muleSystem.SetWireCut(_mule, MuleWires.Avoidance, true);
             mule.Comp.AutoReturn = false;
         });
 
@@ -580,21 +627,45 @@ public sealed class MulebotTest : InteractionTest
     {
         var beacons = await Build(12, new() { [0] = "CargoBay", [10] = "Bar" });
         var mule = Mule();
+        var victim = await LyingDown(3);
+        await Server.WaitPost(() => _muleSystem.SetWireCut(_mule, MuleWires.Avoidance, true));
+        await Send(mule, beacons[0], beacons[10]);
+
+        // Stop it the moment it reaches them.
+        var first = 0f;
+        for (var i = 0; i < 60 && first <= 0f; i++)
+        {
+            await RunTicks(3);
+            await Server.WaitPost(() => first = Blunt(victim));
+        }
+
+        await Server.WaitPost(() =>
+        {
+            _muleSystem.SetWireCut(_mule, MuleWires.Motor1, true);
+            _muleSystem.SetWireCut(_mule, MuleWires.Motor2, true);
+        });
+        await Server.WaitAssertion(() => Assert.That(first, Is.GreaterThan(0f), "Should have driven over them"));
+
+        await RunSeconds(5);
+        await Server.WaitAssertion(() => Assert.That(Blunt(victim), Is.LessThanOrEqualTo(first), "Once per tile it drives onto"));
+    }
+
+    [Test]
+    public async Task SwitchedOnOverSomeoneItLeavesThemAlone()
+    {
+        var beacons = await Build(12, new() { [0] = "CargoBay", [10] = "Bar" });
+        var mule = Mule();
         var victim = await LyingDown(0);
         await Server.WaitPost(() =>
         {
-            _muleSystem.SetWireCut(mule, MuleWires.Avoidance, true);
-            _muleSystem.SetWireCut(mule, MuleWires.Motor1, true);
-            _muleSystem.SetWireCut(mule, MuleWires.Motor2, true);
+            _muleSystem.SetWireCut(_mule, MuleWires.Avoidance, true);
+            _muleSystem.SetWireCut(_mule, MuleWires.Motor1, true);
+            _muleSystem.SetWireCut(_mule, MuleWires.Motor2, true);
         });
 
         await Send(mule, beacons[0], beacons[10]);
-        await RunSeconds(1);
-        var first = 0f;
-        await Server.WaitPost(() => first = Blunt(victim));
-        await RunSeconds(5);
-
-        await Server.WaitAssertion(() => Assert.That(Blunt(victim), Is.LessThanOrEqualTo(first), "Once per tile it drives onto"));
+        await RunSeconds(3);
+        await Server.WaitAssertion(() => Assert.That(Blunt(victim), Is.EqualTo(0f), "It never drove onto their tile"));
     }
 
     [Test]
@@ -640,7 +711,7 @@ public sealed class MulebotTest : InteractionTest
     {
         var beacons = await Build(12, new() { [0] = "CargoBay", [10] = "Bar" });
         var mule = Mule();
-        await Server.WaitPost(() => _muleSystem.SetWireCut(mule, MuleWires.Beacon, true));
+        await Server.WaitPost(() => _muleSystem.SetWireCut(_mule, MuleWires.Beacon, true));
 
         await Send(mule, beacons[0], beacons[10]);
         await RunSeconds(5);
@@ -680,12 +751,14 @@ public sealed class MulebotTest : InteractionTest
 
         await Server.WaitPost(() =>
         {
+            _muleSystem.Command(_mule, MuleCommand.Power);
             var slot = SEntMan.GetComponent<PowerCellSlotComponent>(_mule);
             SEntMan.System<SharedContainerSystem>().EmptyContainer(
                 SEntMan.System<SharedContainerSystem>().GetContainer(_mule, slot.CellSlotId));
-            _muleSystem.Command(mule, MuleCommand.Power);
         });
+        await Server.WaitAssertion(() => Assert.That(mule.Comp.On, Is.False, "Switched off first"));
 
+        await Server.WaitPost(() => _muleSystem.Command(_mule, MuleCommand.Power));
         await Server.WaitAssertion(() => Assert.That(mule.Comp.On, Is.False));
     }
 
@@ -740,7 +813,7 @@ public sealed class MulebotTest : InteractionTest
     {
         EntityUid crate = default;
         await Server.WaitPost(() => crate = SEntMan.SpawnAtPosition("CrateGenericSteel", At(1)));
-        await Server.WaitAssertion(() => Assert.That(_muleSystem.TryLoad(mule, crate)));
+        await Server.WaitAssertion(() => Assert.That(_muleSystem.TryLoad(_mule, crate)));
         return crate;
     }
 
@@ -748,9 +821,9 @@ public sealed class MulebotTest : InteractionTest
     {
         await Server.WaitPost(() =>
         {
-            _muleSystem.SetBeacon(mule, home, true);
-            _muleSystem.SetBeacon(mule, destination, false);
-            _muleSystem.Command(mule, MuleCommand.Go);
+            _muleSystem.SetBeacon(_mule, home, true);
+            _muleSystem.SetBeacon(_mule, destination, false);
+            _muleSystem.Command(_mule, MuleCommand.Go);
         });
 
         await Server.WaitAssertion(() =>

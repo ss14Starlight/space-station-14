@@ -31,8 +31,9 @@ public sealed partial class MuleDriveOperator : HTNOperator
         if (!_entManager.TryGetComponent<MuleComponent>(owner, out var mule) || !MuleSystem.IsRunning(mule))
             return HTNOperatorStatus.Failed;
 
+        // The route was dropped on the way (new orders, or stuck), so this drive didn't get there.
         if (mule.Waypoints.Count == 0)
-            return HTNOperatorStatus.Finished;
+            return HTNOperatorStatus.Failed;
 
         var target = mule.Waypoints[0];
         if (!_entManager.TryGetComponent<NPCSteeringComponent>(owner, out var steering) || steering.Coordinates != target)
