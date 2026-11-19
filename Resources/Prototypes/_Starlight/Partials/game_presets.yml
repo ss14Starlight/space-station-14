@@ -6,6 +6,7 @@
     - SpaceTrafficControlEventScheduler
     - SpaceTrafficControlFriendlyEventScheduler
     - XenoDemocracy
+    - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: KesslerSyndrome
@@ -34,6 +35,7 @@
     - CosmicCult
     - Devil
     - XenoDemocracy
+    - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: AllerAtOnce
@@ -63,6 +65,7 @@
     - CosmicCult
     - Devil
     - XenoDemocracy
+    - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Extended
@@ -72,6 +75,7 @@
   rules:
   - SpaceTrafficControlEventScheduler
   - XenoDemocracy
+  - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Greenshift
@@ -79,6 +83,7 @@
   rules:
   - SpaceTrafficControlFriendlyEventScheduler
   - XenoDemocracy
+  - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Dynamic
@@ -105,6 +110,7 @@
   minPlayers: 5
   rules:
     - XenoDemocracy # Let them vote in sandbox
+    - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Traitor
@@ -116,6 +122,7 @@
   - SpaceTrafficControlEventScheduler
   - RailroadingMinor
   - XenoDemocracy
+  - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Nukeops
@@ -126,6 +133,7 @@
   - SubGamemodesRuleNuclearOperativeScaling
   - SpaceTrafficControlEventScheduler
   - XenoDemocracy
+  - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Revolutionary
@@ -136,6 +144,7 @@
   - SubGamemodesRuleConversion # 3 max thieves on revs# so they can't be guaranteed an Emag.
   - SpaceTrafficControlEventScheduler
   - XenoDemocracy
+  - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Wizard
@@ -145,6 +154,7 @@
   - SubGamemodesRuleNoWizard #No Dual Wizards at the start# midround is fine
   - SpaceTrafficControlEventScheduler
   - XenoDemocracy
+  - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Xenoborgs
@@ -155,6 +165,7 @@
   - SubGamemodesRuleNoXenoborg # no two motherships. Allows wizards to spawn on Xenoborgs. Space is dangerous# yo.
   - SpaceTrafficControlEventScheduler
   - XenoDemocracy
+  - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Zombie
@@ -164,6 +175,7 @@
   - SubGamemodesRuleZombieCompliantAntags # I want to trial this# see how it plays out. If it goes poorly# we'll remove Xenoborgs from it.
   - SpaceTrafficControlEventScheduler
   - XenoDemocracy
+  - WireCutScheduler
 
 - type: !PartialOnly gamePreset
   id: Zombieteors
@@ -173,4 +185,5 @@
   - SubGamemodesRuleZombieCompliantAntags # I want to trial this# see how it plays out. If it goes poorly# we'll remove Xenoborgs from it.
   - SpaceTrafficControlEventScheduler
   - XenoDemocracy
+  - WireCutScheduler
 

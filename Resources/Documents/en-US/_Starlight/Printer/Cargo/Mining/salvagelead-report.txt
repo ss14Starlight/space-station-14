@@ -1,0 +1,30 @@
+                             [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀                   [bold]SALVAGE LEAD REPORT[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+Expeditionary Threat: [form]
+
+Observations: [form]
+
+The following contraband was collected during the course of the Expedition:
+
+    • [form]
+    • [form]
+    • [form]
+    • [form]
+    • [form]
+
+It is understood that all contraband must be turned over to the Security Department upon arrival at the station.
+
+Team status and overall readiness: [form]
+
+Further notes: [form]
+
+    ────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+

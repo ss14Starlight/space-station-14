@@ -3,6 +3,8 @@
   loots:
     - !type:RandomSpawnsLoot
       entries:
+        - proto: PositronicBrain
+          prob: 0.5
         - proto: AdvMopItem
         - proto: SMESAdvanced
         - proto: GeneratorRTG
@@ -12,6 +14,10 @@
         - proto: BorgModulePrying
         - proto: BorgModuleMining
         - proto: BorgModuleAdvancedMining
+        - proto: BorgModuleRescue
+        - proto: BorgModuleChemical
+        - proto: BorgModuleAdvancedCleaning
+        - proto: BorgModuleConstruction
         - proto: SalvageMiningBorg
           prob: 0.5
         - proto: WeaponSPKA
@@ -25,6 +31,8 @@
         - proto: PowerCellAntiqueProto
           cost: 5
           prob: 0.5
+        - proto: PKAUpgradeDamageStruct
+          cost: 3
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
@@ -39,6 +47,8 @@
   loots:
     - !type:RandomSpawnsLoot
       entries:
+        - proto: PositronicBrain
+          prob: 0.5
         - proto: AdvMopItem
         - proto: SMESAdvanced
         - proto: GeneratorRTG
@@ -52,9 +62,15 @@
           prob: 0.5
         - proto: BorgModuleAdvancedMining
           prob: 0.5
+        - proto: BorgModuleRescue
+          prob: 0.5
+        - proto: BorgModuleChemical
+          prob: 0.5
+        - proto: BorgModuleConstruction
+          prob: 0.5
         - proto: SalvageMiningBorg
           cost: 4
-          prob: 0.5
+          prob: 0.8
         - proto: WeaponSPKA
           cost: 3
         - proto: WeaponChainAccelerator
@@ -80,6 +96,8 @@
         - proto: PowerCellAntiqueProto
           cost: 5
           prob: 0.5
+        - proto: PKAUpgradeDamageStruct
+          cost: 3
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
@@ -94,6 +112,8 @@
   loots:
     - !type:RandomSpawnsLoot
       entries:
+        - proto: PositronicBrain
+          prob: 0.5
         - proto: AdvMopItem
         - proto: SMESAdvanced
         - proto: GeneratorRTG
@@ -107,9 +127,15 @@
           prob: 0.5
         - proto: BorgModuleAdvancedMining
           prob: 0.5
+        - proto: BorgModuleRescue
+          prob: 0.5
+        - proto: BorgModuleChemical
+          prob: 0.5
+        - proto: BorgModuleConstruction
+          prob: 0.5
         - proto: SalvageMiningBorg
           cost: 4
-          prob: 0.5
+          prob: 0.8
         - proto: WeaponSPKA
           cost: 3
         - proto: WeaponChainAccelerator
@@ -128,6 +154,7 @@
           cost: 2
         - proto: BorgModuleAdvancedLoading
         - proto: BorgModuleAdvancedPlumbing
+        - proto: BorgModuleRCD
         - proto: MobCleanBot
           cost: 4
         - proto: ClothingEyesGlassesMeson
@@ -157,6 +184,10 @@
         - proto: PowerCellAntiqueProto
           cost: 5
           prob: 0.5
+        - proto: Weaponpkashotgun
+          cost: 10
+        - proto: PKAUpgradeDamageStruct
+          cost: 3
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity

@@ -1,0 +1,41 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+─────────────────────────────────────────
+⠀⠀                     [bold]VOTE RECORD[/bold]
+─────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+The question put to the committee: [form]
+
+Additional context: [form]
+
+Number of votes [italic]in favor[/italic]: [form]
+Those voting [italic]in favor[/italic]:
+• [signature]
+• [signature]
+• [signature]
+• [signature]
+• [signature]
+• [signature]
+Number of votes [italic]against[/italic]: [form]
+Those voting [italic]against[/italic]:
+• [signature]
+• [signature]
+• [signature]
+• [signature]
+• [signature]
+• [signature]
+Number of [italic]abstentions[/italic] from voting: [form]
+Those voting to [italic]abstain[italic]:
+• [signature]
+• [signature]
+• [signature]
+• [signature]
+• [signature]
+• [signature]
+Resolution of the meeting: [form]
+
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]

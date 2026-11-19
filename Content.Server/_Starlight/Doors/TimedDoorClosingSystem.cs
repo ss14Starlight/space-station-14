@@ -6,7 +6,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
 
-namespace Content.Server._Starlight.Door;
+namespace Content.Server._Starlight.Doors;
 
 public sealed partial class TimedDoorClosingSystem : EntitySystem
 {
