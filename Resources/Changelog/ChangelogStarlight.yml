@@ -1,18 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: "'Cadet' access has been removed. Security Cadets once again have Security access."
-    type: Remove
-  id: 410297
-  time: '2026-11-10T16:58:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7112
-- author: Caws
-  changes:
-  - message: Removed the "freezes you in place if you wear something without having the correct access" system, which was largely unused.
-    type: Remove
-  id: 410298
-  time: '2026-11-10T16:58:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7112
 - author: STARLIGHT TEAM
   changes:
   - message: Lowered default bloom value slightly.
@@ -2799,4 +2785,18 @@ Entries:
   id: 410696
   time: '2026-11-19T21:50:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7323
+- author: neomoth
+  changes:
+  - message: Fix an error from VialCases trying to use a sprite that doesn't exist.
+    type: Fix
+  id: 410697
+  time: '2026-11-19T22:54:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7338
+- author: neomoth
+  changes:
+  - message: Fix an error from the impact bolt rifle from a missing sprite.
+    type: Fix
+  id: 410698
+  time: '2026-11-19T22:54:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7338
 Order: -1
