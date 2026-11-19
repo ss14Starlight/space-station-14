@@ -8,8 +8,6 @@ namespace Content.Client.Construction;
 
 public sealed partial class ConstructionSystem
 {
-    #region Starlight
-
     [Dependency] private IPlacementManager _quickConstructionPlacementManager = null!;
 
     public void StartQuickConstructionPlacement(ConstructionPrototype prototype)
@@ -17,6 +15,7 @@ public sealed partial class ConstructionSystem
         if (EntityManager.System<RemoteConstructionPlacementSystem>().TryBegin(prototype))
             return;
 
+        EntityManager.System<RemoteConstructionPlacementSystem>().Clear();
         _quickConstructionPlacementManager.BeginPlacing(
             new PlacementInformation { IsTile = false, PlacementOption = prototype.PlacementMode },
             new ConstructionPlacementHijack(this, prototype, isQuickConstruction: true));
@@ -50,6 +49,4 @@ public sealed partial class ConstructionSystem
 
         return true;
     }
-
-    #endregion
 }
