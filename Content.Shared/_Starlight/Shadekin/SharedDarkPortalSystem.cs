@@ -9,12 +9,10 @@ using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.Shadekin.Components;
 using Robust.Shared.Network;
 using Content.Shared.StatusEffectNew;
+using Content.Shared._Starlight.Bluespace;
 
 namespace Content.Shared._Starlight.Shadekin;
 
-// DID YOU KNOW THAT SOMEHOW... I NEED TO MAKE SharedDarkPortalSystem ON CLIENT&SERVER...
-// BECAUSE CLIENT DOES NOT PREDICT WITHOUT IT... AND SERVER... BECAUSE DARKHUBSYSTEM NEEDS IT EVEN THO ITS IN SHARED.
-// WHY; OH C# TELL ME WHY!
 public abstract partial class SharedDarkPortalSystem : EntitySystem
 {
     [Dependency] private LinkedEntitySystem _link = default!;
@@ -94,8 +92,18 @@ public abstract partial class SharedDarkPortalSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnAttemptPortal(Entity<DarkPortalComponent> ent, ref OnAttemptPortalEvent args)
     {
-        if (HasComp<ShadekinComponent>(args.Subject) || HasComp<TheDarkImmuneComponent>(args.Subject))
+        if (HasComp<TheDarkImmuneComponent>(args.Subject))
             return;
+
+        if (HasComp<ShadekinComponent>(args.Subject))
+        {
+            if (HasComp<BrighteyeComponent>(args.Subject))
+                return;
+
+            var ev = new NullSpaceShuntEvent();
+            RaiseLocalEvent(args.Subject, ref ev);
+            return;
+        }
 
         // Yeah we apply Effect on portal use.
         _status.TryAddStatusEffectDuration(args.Subject, "StatusEffectTheDark", TimeSpan.FromSeconds(70));
