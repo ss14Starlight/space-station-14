@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Manor) Budget increases have allowed for a second stasis bed in Medical.
-    type: Add
-  id: 410229
-  time: '2026-11-08T06:33:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7107
-- author: Caws
-  changes:
-  - message: (Manor) Fixed a disposal bin in Kitchen maintenance that wasn't connected to the disposal network.
-    type: Fix
-  id: 410230
-  time: '2026-11-08T06:33:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7107
-- author: Caws
-  changes:
   - message: (Manor) Fixed the freezer's air alarms being unconnected.
     type: Fix
   id: 410231
@@ -2799,4 +2785,18 @@ Entries:
   id: 410628
   time: '2026-11-19T07:48:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7245
+- author: RedSpeeds
+  changes:
+  - message: Added cheaper wiring as a cost saving measure from CED. Engineering can now experience random wirecut events.
+    type: Add
+  id: 410629
+  time: '2026-11-19T11:53:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7213
+- author: RedSpeeds
+  changes:
+  - message: The safeties from firelocks have been removed they will close now so dont just stand there.
+    type: Tweak
+  id: 410630
+  time: '2026-11-19T11:53:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7213
 Order: -1
