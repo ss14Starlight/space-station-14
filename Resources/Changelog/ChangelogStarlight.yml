@@ -1,25 +1,4 @@
 Entries:
-- author: redmushie, DocMoth
-  changes:
-  - message: Salvage Lead now get a glowstone bag in their locker.
-    type: Add
-  id: 410275
-  time: '2026-11-09T11:11:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7127
-- author: redmushie, DocMoth
-  changes:
-  - message: Miners and Salvage Technicians can buy glowstone bags for 30 tickets.
-    type: Add
-  id: 410276
-  time: '2026-11-09T11:11:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7127
-- author: SirLutz
-  changes:
-  - message: Fixed Diona pollen collection objective progression when replacing a Diona.
-    type: Fix
-  id: 410277
-  time: '2026-11-09T12:46:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7098
 - author: SirLutz
   changes:
   - message: revented mind cleanup from accessing an already removed MindComponent.
@@ -2799,4 +2778,25 @@ Entries:
   id: 410674
   time: '2026-11-19T18:29:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7296
+- author: Citrea, Conflee, ya314a, MeWhenThe
+  changes:
+  - message: First contact protocols have concluded, and Central Command now hires Xen'Kara.
+    type: Add
+  id: 410675
+  time: '2026-11-19T19:14:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7097
+- author: Citrea, Conflee, ya314a, MeWhenThe
+  changes:
+  - message: Xeno/Chitin material structures are now constructable.
+    type: Add
+  id: 410676
+  time: '2026-11-19T19:14:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7097
+- author: Citrea, Conflee, ya314a, MeWhenThe
+  changes:
+  - message: Xeno mobs can no longer be targeted with basic topicals. Your bandage melts away under their acid blood.
+    type: Tweak
+  id: 410677
+  time: '2026-11-19T19:14:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7097
 Order: -1
