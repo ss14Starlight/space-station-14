@@ -2,11 +2,13 @@ using Content.Client._Starlight.Computers.RemoteControl;
 using Robust.Client.Placement;
 using Robust.Shared.Enums;
 
+// ReSharper disable CheckNamespace
 namespace Content.Client.Construction;
 
 public sealed partial class ConstructionSystem
 {
     #region Starlight
+
     [Dependency] private IPlacementManager _quickConstructionPlacementManager = null!;
 
     private bool TryFlipQuickConstructionPlacement()
@@ -32,14 +34,11 @@ public sealed partial class ConstructionSystem
 
         var prototype = PrototypeManager.Index(mirror);
         _quickConstructionPlacementManager.BeginPlacing(
-            new PlacementInformation
-            {
-                IsTile = false,
-                PlacementOption = prototype.PlacementMode
-            },
+            new PlacementInformation { IsTile = false, PlacementOption = prototype.PlacementMode },
             new ConstructionPlacementHijack(this, prototype, isQuickConstruction: true));
 
         return true;
     }
+
     #endregion
 }

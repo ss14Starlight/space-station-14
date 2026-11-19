@@ -10,8 +10,12 @@ internal sealed partial class ConstructionMenuPresenter
         if (!CraftingAvailable || _constructionView is not ConstructionMenu menu)
             return;
 
-        _selected = null;
-        _constructionView.ClearRecipeInfo();
+        if (!_placementManager.IsActive || _placementManager.Eraser)
+        {
+            _selected = null;
+            _constructionView.ClearRecipeInfo();
+        }
+
         PopulateCategories(ForAllCategoryName);
         WindowOpen = true;
         _uiManager.GetActiveUIWidget<GameTopMenuBar>().CraftingButton.SetClickPressed(true);
