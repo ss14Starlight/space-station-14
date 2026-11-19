@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Manor) Fixed the freezer's air alarms being unconnected.
-    type: Fix
-  id: 410231
-  time: '2026-11-08T06:33:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7107
-- author: Caws
-  changes:
   - message: (Manor) Added missing 'freezer atmos' markers to the freezer, meaning the freezer will now be cold at roundstart.
     type: Fix
   id: 410232
@@ -2799,4 +2792,11 @@ Entries:
   id: 410630
   time: '2026-11-19T11:53:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7213
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added 25 new achievements.
+    type: Add
+  id: 410631
+  time: '2026-11-19T12:16:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7067
 Order: -1
