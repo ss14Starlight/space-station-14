@@ -597,8 +597,7 @@ public abstract partial class InventorySystem
     private bool AreSlotDependenciesMet(EntityUid target, EntityUid itemUid, SlotDefinition slotDefinition, InventoryComponent inventory)
     {
         #region Starlight
-        if (inventory.IgnoreSuitStorageDependencies && 
-            slotDefinition.SlotFlags.HasFlag(SlotFlags.SUITSTORAGE))
+        if (inventory.IgnoreSuitStorageDependencies && slotDefinition.SlotFlags.HasFlag(SlotFlags.SUITSTORAGE))
         {
             return true;
         }
