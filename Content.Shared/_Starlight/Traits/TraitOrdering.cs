@@ -12,16 +12,12 @@ public static class TraitOrdering
         IEnumerable<T> source,
         Func<T, ProtoId<TraitPrototype>> idSelector,
         IPrototypeManager protoManager)
-    {
-        return source
+        => source
             .OrderBy(x => protoManager.TryIndex(idSelector(x), out var proto) ? proto.Cost : 0)
             .ThenBy(x => idSelector(x).Id, StringComparer.Ordinal);
-    }
 
     public static IOrderedEnumerable<ProtoId<TraitPrototype>> OrderForValidation(
         IEnumerable<ProtoId<TraitPrototype>> traits,
         IPrototypeManager protoManager)
-    {
-        return OrderForValidation(traits, id => id, protoManager);
-    }
+        => OrderForValidation(traits, id => id, protoManager);
 }
