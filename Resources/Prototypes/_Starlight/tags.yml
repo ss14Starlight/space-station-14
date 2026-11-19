@@ -234,6 +234,9 @@
   id: CoupeGlass # BountyCoupeGlass
 
 - type: Tag
+  id: Crate
+
+- type: Tag
   id: CrispyRiceBar
 
 - type: Tag

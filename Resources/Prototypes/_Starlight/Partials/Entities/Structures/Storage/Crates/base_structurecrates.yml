@@ -3,3 +3,6 @@
   components:
   - type: ProjectileCover
     proneOnly: true
+  - type: Tag
+    tags:
+    - Crate

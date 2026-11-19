@@ -85,3 +85,14 @@
     max: 6
     wrapper: CDCase
     container: entity_storage
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateMulebot
+  name: MULEbot crate
+  description: A crate with a MULEbot inside, for when the cargo techs have better things to do.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: MobMulebot

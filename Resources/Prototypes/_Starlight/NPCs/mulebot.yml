@@ -1,0 +1,20 @@
+- type: htnCompound
+  id: MulebotCompound
+  branches:
+  - preconditions:
+    - !type:MuleRunningPrecondition
+    tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:MuleRouteOperator
+    - !type:HTNPrimitiveTask
+      operator: !type:MuleDriveOperator
+    - !type:HTNPrimitiveTask
+      operator: !type:MuleArriveOperator
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:SetFloatOperator
+        targetKey: WaitTime
+        amount: 1
+    - !type:HTNPrimitiveTask
+      operator: !type:WaitOperator
+        key: WaitTime

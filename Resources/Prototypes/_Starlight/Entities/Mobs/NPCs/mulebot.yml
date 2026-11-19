@@ -1,0 +1,119 @@
+- type: entity
+  parent: MobSiliconBase
+  id: MobMulebot
+  name: MULEbot
+  description: A Multiple Utility Load Effector bot. It carries crates to wherever it's told.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Silicon/Bots/mulebot.rsi
+    noRot: true
+    layers:
+    - state: off
+      map: [ "enum.MuleVisuals.On" ]
+    - state: hatch
+      map: [ "hatch" ]
+      visible: false
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.MuleVisuals.On:
+        enum.MuleVisuals.On:
+          True: { state: on }
+          False: { state: off }
+      enum.WiresVisuals.MaintenancePanelState:
+        hatch:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 100
+        # Not MidImpassable, so plastic flaps let it through.
+        mask:
+        - Impassable
+        - HighImpassable
+        - LowImpassable
+        layer:
+        - MobLayer
+  - type: Mule
+    whitelist:
+      tags:
+      - Crate
+    entranceAccess:
+    - Medical
+    - Chemistry
+    - Research
+    - Engineering
+    - Atmospherics
+    - Bar
+    - Kitchen
+    - Hydroponics
+    - Service
+    - Janitor
+    - Theatre
+    - Chapel
+    - Lawyer
+    - Salvage
+  - type: Access
+    tags:
+    - Cargo
+    - Maintenance
+  - type: AccessReader
+    access: [["Cargo"], ["Research"]]
+  - type: ActivatableUI
+    key: enum.MuleUiKey.Key
+    requireActiveHand: false
+  - type: ActivatableUIRequiresAccess
+  - type: UserInterface
+    interfaces:
+      enum.MuleUiKey.Key:
+        type: MuleBoundUserInterface
+  - type: WiresPanel
+  - type: ContainerContainer
+    containers:
+      mule_load: !type:ContainerSlot
+      cell_slot: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+  - type: HTN
+    rootTask:
+      task: MulebotCompound
+    blackboard:
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Dead: BorgDead
+    showOverlays: false
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Mulebot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:EmptyAllContainersBehaviour
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
