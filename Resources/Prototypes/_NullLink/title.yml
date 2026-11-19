@@ -102,10 +102,10 @@
       color: "#F1C40F"
       roles:
       - 1348030990811009044 # Prototyper
-    - text: "Mapper"
+    - text: "Staff Mapper"
       color: "#8ff10f"
       roles:
-      - 1297739822131056703 # Mapper
+      - 1297739822131056703 # Staff Mapper
     - text: "Spriter"
       color: "#8ff10f"
       roles:

@@ -1,3 +1,4 @@
+using Content.Shared.Flash.Components;
 using Content.Shared.Inventory;
 
 namespace Content.Shared.Flash;
@@ -9,6 +10,8 @@ namespace Content.Shared.Flash;
 [ByRefEvent]
 public record struct FlashAttemptEvent(EntityUid Target, EntityUid? User, EntityUid? Used, bool Cancelled = false) : IInventoryRelayEvent
 {
+    public bool IsImmunityQuery; // Starlight
+
     SlotFlags IInventoryRelayEvent.TargetSlots => SlotFlags.HEAD | SlotFlags.EYES | SlotFlags.MASK;
 }
 
@@ -25,3 +28,16 @@ public record struct AfterFlashedEvent(EntityUid Target, EntityUid? User, Entity
 /// </summary>
 [ByRefEvent]
 public record struct AfterFlashActivatedEvent(EntityUid? Target, EntityUid? User);
+
+// Moffstation - Start
+/// <summary>
+/// This event is raised on an entity when its flash immunity is changed (or at least our best effort at that, it might
+/// be raised when there's no change). This is usually the result of the entity un/equipping flash-immune gear, but this
+/// is also raised on the gear itself (or a mob if it has the <see cref="FlashImmunityComponent"/> itself).
+/// </summary>
+[ByRefEvent]
+public struct FlashImmunityChangedEvent(bool flashImmune)
+{
+    public readonly bool FlashImmune = flashImmune;
+}
+// Moffstation - End

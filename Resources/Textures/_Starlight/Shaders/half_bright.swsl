@@ -1,0 +1,21 @@
+light_mode unshaded;
+blend_mode none;
+
+uniform highp vec2 targetSize;
+
+// Light level pitch black is raised to.
+const highp float DARK_LEVEL = 0.08;
+
+void fragment()
+{
+    highp vec3 rgb = zTextureSpec(TEXTURE, FRAGCOORD.xy / targetSize).rgb;
+    highp float peak = max(rgb.r, max(rgb.g, rgb.b));
+
+    // Keeps the original value, including light above 1 that the 8-bit copy clipped.
+    if (peak >= 1.0)
+        discard;
+
+    // The boost fades out towards full light, so dimmer light is still visibly dimmer.
+    highp float dark = 1.0 - peak;
+    COLOR = vec4(rgb + DARK_LEVEL * dark * dark, 1.0);
+}

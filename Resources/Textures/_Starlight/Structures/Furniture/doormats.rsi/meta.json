@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "door_mat",
+      "copyright": "Conflee"
+    },
+    {
+      "name": "welcome_mat",
+      "copyright": "Conflee"
+    },
+    {
+      "name": "bless_this_spess",
+      "copyright": "Conflee"
+    }
+  ]
+}

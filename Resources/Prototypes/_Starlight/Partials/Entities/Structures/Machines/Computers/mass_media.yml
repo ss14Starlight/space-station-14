@@ -1,0 +1,22 @@
+- type: !PartialOnly entity
+  id: ComputerMassMedia
+  components:
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          ents: []
+        pai_slot: !type:ContainerSlot {}
+        photo: !type:ContainerSlot
+    - type: ItemSlots
+      slots:
+        pai_slot:
+          name: item-slot-component-slot-name-personal-ai
+          ejectOnInteract: true
+          whitelist:
+            components:
+              - PAI
+        photo:
+          swap: false
+          whitelist:
+            components:
+              - Photograph

@@ -76,18 +76,19 @@
       prefix: device-address-prefix-air-siphon
     - type: WirelessNetworkConnection
       range: 200
+    - type: ToggleableDevice
+    - type: ToggleableDeviceSignaling
     - type: DeviceLinkSink
       ports:
         - "On"
         - "Off"
         - "Toggle"
-        - "State"
+        - "ToggleableDeviceState"
+        - "ToggleableDeviceStateInverted"
     - type: DeviceLinkSource
       ports:
         - "Status"
-    - type: ToggleableDevice
-      enabled: false
-    - type: ToggleableDeviceSignaling
+        - "ToggleableDeviceStatusInverted"
     - type: AmbientSound
       enabled: true
       volume: -12

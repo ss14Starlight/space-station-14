@@ -6,7 +6,9 @@
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Machines/StationRadio/mixer.rsi
+    snapCardinals: true
     drawdepth: SmallObjects
+    offset: "0.0,0.2"
     layers:
     - state: icon
     - state: unlit
@@ -20,8 +22,7 @@
           True: { visible: true }
           False: { visible: false }
   - type: Transform
-    noRot: false
-  - type: Rotatable
+    noRot: true
   - type: Fixtures
     fixtures:
       fix1:

@@ -4,7 +4,7 @@ meta:
   engineVersion: 295.0.0
   forkId: ""
   forkVersion: ""
-  time: 11/09/2026 00:23:08
+  time: 11/11/2026 07:49:06
   entityCount: 37611
 maps:
 - 1
@@ -8706,7 +8706,7 @@ entities:
   - uid: 32590
     components:
     - type: MetaData
-      name: Unkown
+      name: Unknown
     - type: Transform
       parent: 1
       pos: 42.39839,288.49872
@@ -12035,7 +12035,7 @@ entities:
       pos: -57.5,40.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -191032.2
+      secondsUntilStateChange: -191206
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -12525,7 +12525,7 @@ entities:
       invokeCounter: 1
     - type: Door
       state: Opening
-      secondsUntilStateChange: -327871.44
+      secondsUntilStateChange: -328045.25
     - type: DeviceLinkSource
       linkedPorts:
         279:
@@ -13584,7 +13584,7 @@ entities:
       pos: 44.5,6.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -53974.492
+      secondsUntilStateChange: -54148.285
     - type: AccessReader
       accessListsOriginal: []
       access:
@@ -14484,7 +14484,7 @@ entities:
       pos: 18.5,-1.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -216828.58
+      secondsUntilStateChange: -217002.38
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -14495,7 +14495,7 @@ entities:
       pos: 17.5,-1.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -216823.52
+      secondsUntilStateChange: -216997.31
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -100568,10 +100568,6 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -29.5,-4.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 13143
     components:
     - type: Transform
@@ -100618,10 +100614,6 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 20.5,20.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 13151
     components:
     - type: Transform
@@ -102013,7 +102005,7 @@ entities:
       pos: 44.5,9.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -51342.094
+      secondsUntilStateChange: -51515.887
   - uid: 13376
     components:
     - type: Transform
@@ -102021,7 +102013,7 @@ entities:
       pos: 44.5,8.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -51341.69
+      secondsUntilStateChange: -51515.484
 - proto: CurtainsGreenOpen
   entities:
   - uid: 13377
@@ -239762,10 +239754,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -6.3161383,3.3245654
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: WeaponEnergyTurretAI
   entities:
   - uid: 32119

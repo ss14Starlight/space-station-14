@@ -550,7 +550,7 @@
           acts: ["Destruction"]
   - type: Gun
     fireRate: 12
-    projectileSpeed: 150
+    projectileSpeed: 60
     selectedMode: FullAuto
     minAngle: 0
     maxAngle: 5
@@ -567,8 +567,8 @@
     proto: 20mmBullet
     fireCost: 1
   - type: Battery
-    maxCharge: 50
-    startingCharge: 50
+    maxCharge: 100
+    startingCharge: 100
     netsync: false
   - type: ApcPowerReceiverBattery
     idleLoad: 100

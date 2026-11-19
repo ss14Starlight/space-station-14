@@ -8,3 +8,8 @@
   id: TapeRecorder
   recipes:
   - TapeRecorder
+
+- type: latheRecipePack
+  id: BlankPhotograph
+  recipes:
+  - BlankPhotograph
