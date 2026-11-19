@@ -11,6 +11,7 @@ using Content.Shared.Buckle;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Emag.Systems;
+using Content.Shared.Lock;
 using Content.Shared.Movement.Components;
 using Content.Shared.Physics;
 using Content.Shared.Standing;
@@ -435,7 +436,7 @@ public sealed class MulebotTest : InteractionTest
         await Server.WaitPost(() =>
         {
             _muleSystem.Command(mule, MuleCommand.Power);
-            SEntMan.System<SharedWiresSystem>().TogglePanel(_mule, SEntMan.GetComponent<WiresPanelComponent>(_mule), true);
+            SetPanel(true);
             _muleSystem.Command(mule, MuleCommand.Power);
         });
 
@@ -476,8 +477,9 @@ public sealed class MulebotTest : InteractionTest
         EntityUid toolbox = default, passenger = default;
         await Server.WaitPost(() =>
         {
-            toolbox = SEntMan.SpawnAtPosition("ToolboxMechanical", At(1));
+            toolbox = SEntMan.SpawnAtPosition("ToolboxMechanical", At(0));
             passenger = SEntMan.SpawnAtPosition("MobHuman", At(1));
+            Transform.SetLocalRotation(_mule, Direction.East.ToAngle());
         });
 
         await Server.WaitAssertion(() =>
@@ -490,8 +492,15 @@ public sealed class MulebotTest : InteractionTest
             Assert.That(_muleSystem.TryGetLoad(mule, out var load) && load == passenger);
             Assert.That(_muleSystem.TryLoad(mule, toolbox), Is.False, "A rider takes the place of a load");
 
+            _muleSystem.SetWireCut(mule, MuleWires.LoadCheck, false);
+            Assert.That(_muleSystem.TryGetRider(mule, out _), "Mending the wire doesn't throw them off");
+
             Assert.That(_muleSystem.Unload(mule));
             Assert.That(_muleSystem.TryGetRider(mule, out _), Is.False);
+            Assert.That(GridPosition(passenger).X, Is.EqualTo(1.5f).Within(0.1f), "Let off on the tile ahead");
+            Assert.That(SEntMan.System<SharedBuckleSystem>().TryBuckle(passenger, passenger, _mule), Is.False, "Nobody gets back on with the wire mended");
+
+            _muleSystem.SetWireCut(mule, MuleWires.LoadCheck, true);
             Assert.That(_muleSystem.TryLoad(mule, toolbox), "Takes any loose object with the load check cut");
         });
     }
@@ -548,10 +557,10 @@ public sealed class MulebotTest : InteractionTest
         await Server.WaitPost(() =>
         {
             mule.Comp.AutoReturn = false;
-            SEntMan.System<SharedWiresSystem>().TogglePanel(_mule, SEntMan.GetComponent<WiresPanelComponent>(_mule), true);
+            SetPanel(true);
             var emag = SEntMan.SpawnAtPosition("Emag", At(0));
             SEntMan.System<EmagSystem>().TryEmagEffect(emag, SPlayer, _mule);
-            SEntMan.System<SharedWiresSystem>().TogglePanel(_mule, SEntMan.GetComponent<WiresPanelComponent>(_mule), false);
+            SetPanel(false);
         });
 
         await Server.WaitAssertion(() => Assert.That(SEntMan.System<EmagSystem>().CheckFlag(_mule, EmagType.Interaction)));
@@ -561,8 +570,68 @@ public sealed class MulebotTest : InteractionTest
 
         await Server.WaitAssertion(() =>
         {
-            // 5-15 blunt, six times over, less whatever their armour takes.
-            Assert.That(Blunt(victim), Is.GreaterThan(0f).And.LessThanOrEqualTo(90f), "Should have driven over them");
+            // 5-15 blunt, six times over.
+            Assert.That(Blunt(victim), Is.InRange(30f, 90f), "Should have driven over them once");
+        });
+    }
+
+    [Test]
+    public async Task StandingStillItDoesNotKeepRunningSomeoneOver()
+    {
+        var beacons = await Build(12, new() { [0] = "CargoBay", [10] = "Bar" });
+        var mule = Mule();
+        var victim = await LyingDown(0);
+        await Server.WaitPost(() =>
+        {
+            _muleSystem.SetWireCut(mule, MuleWires.Avoidance, true);
+            _muleSystem.SetWireCut(mule, MuleWires.Motor1, true);
+            _muleSystem.SetWireCut(mule, MuleWires.Motor2, true);
+        });
+
+        await Send(mule, beacons[0], beacons[10]);
+        await RunSeconds(1);
+        var first = 0f;
+        await Server.WaitPost(() => first = Blunt(victim));
+        await RunSeconds(5);
+
+        await Server.WaitAssertion(() => Assert.That(Blunt(victim), Is.LessThanOrEqualTo(first), "Once per tile it drives onto"));
+    }
+
+    [Test]
+    public async Task PanelIsLockedUntilUnlocked()
+    {
+        await Build(4, new());
+        var panel = SEntMan.GetComponent<WiresPanelComponent>(_mule);
+        var wires = SEntMan.System<SharedWiresSystem>();
+
+        await Server.WaitAssertion(() => Assert.That(wires.CanTogglePanel((_mule, panel), SPlayer), Is.False, "Locked without an ID"));
+
+        await PlaceInHands("CargoIDCard");
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(SEntMan.System<LockSystem>().TryUnlock(_mule, SPlayer, skipDoAfter: true));
+            Assert.That(wires.CanTogglePanel((_mule, panel), SPlayer), "Opens once cargo unlocks it");
+        });
+    }
+
+    [Test]
+    public async Task EmagUnlocksThePanelThenHacksIt()
+    {
+        await Build(4, new());
+        var panel = SEntMan.GetComponent<WiresPanelComponent>(_mule);
+        var wires = SEntMan.System<SharedWiresSystem>();
+        var emags = SEntMan.System<EmagSystem>();
+
+        await Server.WaitAssertion(() =>
+        {
+            var emag = SEntMan.SpawnAtPosition("Emag", At(0));
+            Assert.That(emags.TryEmagEffect(emag, SPlayer, _mule));
+            Assert.That(emags.CheckFlag(_mule, EmagType.Interaction), Is.False, "The first swipe only breaks the panel lock");
+            Assert.That(wires.CanTogglePanel((_mule, panel), SPlayer));
+
+            wires.TogglePanel(_mule, panel, true);
+            Assert.That(emags.TryEmagEffect(emag, SPlayer, _mule));
+            Assert.That(emags.CheckFlag(_mule, EmagType.Interaction), "The second, with the panel open, emags it");
         });
     }
 
@@ -659,6 +728,9 @@ public sealed class MulebotTest : InteractionTest
             _mule = SEntMan.SpawnAtPosition("MobMulebot", At(0));
         });
 
+        // It doesn't run anyone over while floating.
+        await AddGravity();
+
         // Let the pathfinder catch up with the new walls and doors.
         await RunSeconds(2);
         return made;
@@ -686,6 +758,15 @@ public sealed class MulebotTest : InteractionTest
             Assert.That(mule.Comp.On);
             Assert.That(mule.Comp.Mode, Is.EqualTo(MuleMode.Delivering));
         });
+    }
+
+    /// <summary>
+    /// Unlocks the maintenance panel and opens or shuts it.
+    /// </summary>
+    private void SetPanel(bool open)
+    {
+        SEntMan.System<LockSystem>().Unlock(_mule, null);
+        SEntMan.System<SharedWiresSystem>().TogglePanel(_mule, SEntMan.GetComponent<WiresPanelComponent>(_mule), open);
     }
 
     private Entity<MuleComponent> Mule()

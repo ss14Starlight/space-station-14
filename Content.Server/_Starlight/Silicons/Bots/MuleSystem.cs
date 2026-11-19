@@ -19,10 +19,13 @@ using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Emp;
+using Content.Shared.Gravity;
 using Content.Shared.Humanoid;
+using Content.Shared.Lock;
 using Content.Shared.Mobs.Components;
 using Content.Shared.NPC;
 using Content.Shared.Maps;
+using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Pinpointer;
 using Content.Shared.Power.EntitySystems;
@@ -56,6 +59,9 @@ public sealed partial class MuleSystem : SharedMuleSystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private StandingStateSystem _standing = default!;
     [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private SharedGravitySystem _gravity = default!;
+    [Dependency] private PullingSystem _pulling = default!;
+    [Dependency] private LockSystem _lock = default!;
     [Dependency] private SharedBatterySystem _battery = default!;
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private SharedDoorSystem _door = default!;
@@ -145,17 +151,26 @@ public sealed partial class MuleSystem : SharedMuleSystem
     [SubscribeLocalEvent]
     private void OnEmagged(Entity<MuleComponent> ent, ref GotEmaggedEvent args)
     {
-        // The swipe that unlocks its panel is handled by its access reader. With the panel open, the next one gets to its brain.
         if (!_emag.CompareFlag(args.Type, EmagType.Interaction) || _emag.CheckFlag(ent, EmagType.Interaction))
             return;
 
+        // The first swipe breaks the lock on its maintenance panel. With the panel open, the next one gets to its brain.
         if (!Wires.IsPanelOpen(ent.Owner))
+        {
+            if (TryComp<LockComponent>(ent, out var lockComp) && lockComp.Locked)
+            {
+                _lock.Unlock(ent, args.UserUid, lockComp);
+                args.Handled = true;
+                args.Repeatable = true;
+            }
             return;
+        }
 
         args.Handled = true;
         Audio.PlayPvs(ent.Comp.EmagSound, ent);
         ent.Comp.FlashUntil = Timing.CurTime + FlashLength;
         Appearance.SetData(ent, MuleVisuals.Emagged, true);
+        GoIdle(ent);
     }
 
     [SubscribeLocalEvent]
@@ -549,11 +564,13 @@ public sealed partial class MuleSystem : SharedMuleSystem
 
         var access = DoorAccessFor(doorEnt, ownAccess, entranceAccess);
         doors[tile] = (doorEnt, access);
+        // Department doors cost a lot, so it goes in through as few as it can: the front door rather than a side
+        // door and then an inner one. Doors it can never open cost more still, so it never prefers stopping at one.
         return access switch
         {
             DoorAccess.Own => 1.2f,
-            DoorAccess.Entrance => 4f,
-            _ => 12f,
+            DoorAccess.Entrance => 30f,
+            _ => 60f,
         };
     }
 
@@ -730,15 +747,14 @@ public sealed partial class MuleSystem : SharedMuleSystem
                 break;
             case MuleWires.Avoidance:
                 UpdateLights(ent);
-                if (cut)
-                {
-                    _popup.PopupEntity(Loc.GetString("mule-avoidance-cut", ("mule", ent.Owner)), ent);
-                    if (user != null)
-                        _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(user.Value):user} cut the safety wire of {ToPrettyString(ent):mule}");
-                }
+                _popup.PopupEntity(Loc.GetString("mule-avoidance-cut", ("mule", ent.Owner)), ent);
+                if (user != null)
+                    _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(user.Value):user} {(cut ? "cut" : "mended")} the safety wire of {ToPrettyString(ent):mule}");
                 break;
             case MuleWires.LoadCheck:
-                Buckle.StrapSetEnabled(ent, cut);
+                // A rider stays on until they get off.
+                if (cut || !TryGetRider(ent, out _))
+                    Buckle.StrapSetEnabled(ent, cut);
                 break;
         }
     }
@@ -774,6 +790,18 @@ public sealed partial class MuleSystem : SharedMuleSystem
     private void CheckHazards(Entity<MuleComponent> ent, TransformComponent xform, TimeSpan now)
     {
         var comp = ent.Comp;
+
+        // Only people on a tile it has just driven onto, and not while it's being dragged about or floating.
+        var tile = xform.GridUid is { } gridUid && TryComp<MapGridComponent>(gridUid, out var grid)
+            ? _map.CoordinatesToTile(gridUid, grid, xform.Coordinates)
+            : (Vector2i?) null;
+        if (tile == comp.HazardTile)
+            return;
+
+        comp.HazardTile = tile;
+        if (_pulling.IsPulled(ent) || _gravity.IsWeightless(ent.Owner))
+            return;
+
         var avoidanceCut = HasWireCut(ent, MuleWires.Avoidance);
         var dangerous = avoidanceCut || _emag.CheckFlag(ent, EmagType.Interaction);
         TryGetRider(ent, out var rider);
@@ -801,7 +829,7 @@ public sealed partial class MuleSystem : SharedMuleSystem
             else if (avoidanceCut && !HasComp<BorgChassisComponent>(mob))
             {
                 comp.RecentHits[mob] = now + HitCooldown;
-                if (_stun.TryKnockdown(mob.Owner, comp.KnockdownTime))
+                if (_stun.TryKnockdown(mob.Owner, comp.KnockdownTime, drop: false))
                 {
                     _popup.PopupEntity(Loc.GetString("mule-knocks-over", ("mule", ent.Owner), ("target", mob.Owner)), ent, PopupType.MediumCaution);
                     _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent):mule} knocked over {ToPrettyString(mob):target}");

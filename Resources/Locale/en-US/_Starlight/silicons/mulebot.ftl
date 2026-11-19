@@ -8,8 +8,11 @@ mule-say-loading = Picked up {$load} at {$place}.
 
 mule-window-power = Power
 mule-window-unload = Unload
-mule-window-destination = Destination
-mule-window-home = Home
+mule-window-destination = Destination: {$beacon}
+mule-window-home = Home: {$beacon}
+mule-window-search = Search beacons
+mule-window-set-destination = Set destination
+mule-window-set-home = Set as home
 mule-window-go = Go
 mule-window-stop = Stop
 mule-window-return = Return home

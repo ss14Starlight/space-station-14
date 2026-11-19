@@ -86,6 +86,14 @@ public abstract partial class SharedMuleSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
+    private void OnUnstrapped(Entity<MuleComponent> ent, ref UnstrappedEvent args)
+    {
+        // Mending the load check doesn't throw a rider off; nobody else gets on once they're off.
+        if (!HasWireCut(ent, MuleWires.LoadCheck))
+            Buckle.StrapSetEnabled(ent, false);
+    }
+
+    [SubscribeLocalEvent]
     private void OnCellInsertAttempt(Entity<MuleComponent> ent, ref ItemSlotInsertAttemptEvent args)
     {
         // The cell sits behind the maintenance panel.
@@ -111,8 +119,9 @@ public abstract partial class SharedMuleSystem : EntitySystem
             _ => 1f,
         };
 
-        if (ent.Comp.CarefulUntil > Timing.CurTime)
-            motor *= ent.Comp.CarefulSlowdown;
+        // Careful driving adds a fixed delay per tile, so it slows a fast motor less than a slow one.
+        if (ent.Comp.CarefulUntil > Timing.CurTime && motor > 0f)
+            motor = 1f / (1f / motor + ent.Comp.CarefulDelay);
 
         args.ModifySpeed(motor);
     }
@@ -183,6 +192,8 @@ public abstract partial class SharedMuleSystem : EntitySystem
         if (TryGetRider(ent, out var rider))
         {
             Buckle.Unbuckle(rider.Value, null);
+            if (AheadSpot(ent) is { } riderSpot)
+                _transform.SetCoordinates(rider.Value, riderSpot);
             return true;
         }
 

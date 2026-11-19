@@ -109,8 +109,11 @@ public sealed partial class MuleComponent : Component
     [DataField]
     public TimeSpan CarefulTime = TimeSpan.FromSeconds(5);
 
+    /// <summary>
+    /// Extra time it takes per tile while driving carefully, as a share of its normal time per tile.
+    /// </summary>
     [DataField]
-    public float CarefulSlowdown = 0.6f;
+    public float CarefulDelay = 2f / 3f;
 
     /// <summary>
     /// How long someone it bumps into stays down, with the safety wire cut.
@@ -137,7 +140,7 @@ public sealed partial class MuleComponent : Component
     public float RunOverBlood = 5f;
 
     [DataField]
-    public SoundSpecifier RunOverSound = new SoundPathSpecifier("/Audio/Effects/gib1.ogg");
+    public SoundSpecifier RunOverSound = new SoundPathSpecifier("/Audio/Effects/Fluids/splat.ogg");
 
     [DataField]
     public SoundSpecifier EmagSound = new SoundCollectionSpecifier("sparks");
@@ -180,6 +183,12 @@ public sealed partial class MuleComponent : Component
     /// </summary>
     [ViewVariables]
     public EntityUid? DroppedUnder;
+
+    /// <summary>
+    /// The tile it last checked for people on; it only knocks over or runs over people on tiles it drives onto.
+    /// </summary>
+    [ViewVariables]
+    public Vector2i? HazardTile;
 
     /// <summary>
     /// When it may next look for a route after failing to find one.

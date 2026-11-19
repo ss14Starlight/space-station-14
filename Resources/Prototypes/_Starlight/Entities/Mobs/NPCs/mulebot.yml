@@ -90,6 +90,9 @@
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: WiresPanel
+  - type: LockedWiresPanel
+  - type: Lock
+    unlockOnClick: false
   - type: Wires
     boardName: wires-board-name-mulebot
     layoutId: Mulebot
