@@ -81,7 +81,7 @@
     Tail:
       points: 1
       required: true
-      defaultMarkings: [TailShadekin]
+      defaultMarkings: [TailShadekinMedium]
     HeadTop:
       points: 1
       required: true

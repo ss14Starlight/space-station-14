@@ -53,6 +53,16 @@ namespace Content.Shared.Humanoid
                 case SpeciesNaming.IdFirst:
                     return Loc.GetString("namepreset-idfirst",
                         ("id", GetRandomId(4)), ("first", GetFirstName(speciesProto, gender)));
+                case SpeciesNaming.Serial:
+                    return Loc.GetString("namepreset-serial",
+                        ("first1", GetFirstName(speciesProto, gender)),
+                        ("first2", GetFirstName(speciesProto, gender)),
+                        ("first3", GetFirstName(speciesProto, gender)),
+                        ("first4", GetFirstName(speciesProto, gender)),
+                        ("last1", GetLastName(speciesProto)),
+                        ("last2", GetLastName(speciesProto)),
+                        ("last3", GetLastName(speciesProto)),
+                        ("last4", GetLastName(speciesProto)));
                 // Starlight end
             }
         }

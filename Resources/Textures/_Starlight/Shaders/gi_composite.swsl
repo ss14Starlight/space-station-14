@@ -6,7 +6,41 @@ blend_mode add;
 uniform highp vec2 targetSize;
 uniform highp float strength;
 
+// The engine's field of view depth map. The light map is already darkened outside the view before this pass, so the
+// bounce light has to be masked the same way or it shows through walls.
+uniform sampler2D FOV_TEXTURE;
+// 1 when the eye uses field of view, 0 otherwise.
+uniform highp float fovEnabled;
+// World position of the bounce texture's corner at UV (0, 0) relative to the eye, and the world offsets of its UV axes.
+uniform highp vec2 fovOrigin;
+uniform highp vec2 fovAxisX;
+uniform highp vec2 fovAxisY;
+
+const highp float PI = 3.1415926535897932384626433;
+
+// How much of a point is visible from the eye, from 0 to 1. Same test as the engine's own field of view on lighting.
+highp float fovVisibility(highp vec2 diff)
+{
+    highp float angle = atan(diff.y, -diff.x) / PI;
+    highp vec2 moments = zClydeShadowDepthUnpack(texture2D(FOV_TEXTURE, vec2((angle + 1.0) / 2.0, 0.25)));
+    highp float dist = length(diff);
+    highp float lit = float(dist <= moments.x);
+    highp float variance = max(moments.y - moments.x * moments.x, 0.0);
+    highp float d = dist - moments.x;
+    return max(lit, variance / (variance + d * d));
+}
+
 void fragment()
 {
-    COLOR = vec4(zTextureSpec(TEXTURE, FRAGCOORD.xy / targetSize).rgb * strength, 1.0);
+    highp vec3 bounce = zTextureSpec(TEXTURE, FRAGCOORD.xy / targetSize).rgb * strength;
+
+    // A NaN or infinite value would spread over the whole light map through the engine's blur. Some drivers produce
+    // them where others do not, so such pixels add nothing. The cap keeps any single pixel from flooding the view.
+    if (any(notEqual(bounce, bounce)))
+        bounce = vec3(0.0);
+
+    if (fovEnabled > 0.5)
+        bounce *= fovVisibility(fovOrigin + fovAxisX * UV.x + fovAxisY * UV.y);
+
+    COLOR = vec4(clamp(bounce, vec3(-4.0), vec3(4.0)), 1.0);
 }

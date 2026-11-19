@@ -16,6 +16,11 @@ void fragment()
 {
     highp vec3 rgb = zTextureSpec(TEXTURE, FRAGCOORD.xy / targetSize).rgb * exposure;
 
+    // NaN or infinite light from any earlier pass would turn into NaN below and spread through the blur.
+    if (any(notEqual(rgb, rgb)))
+        rgb = vec3(0.0);
+    rgb = min(rgb, vec3(1000.0));
+
     highp float peak = max(rgb.r, max(rgb.g, rgb.b));
     if (peak > knee)
         rgb *= compress(peak) / peak;
