@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Sepultum) Radio Studio has been upgraded, adding radio mixer, CD player, and radio broadcast recorder.
-    type: Add
-  id: 410234
-  time: '2026-11-08T06:33:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7109
-- author: Caws
-  changes:
   - message: (Sepultum) Fixed the terrible air alarm setup in Science, where the entire department was wired to a single air alarm (why).
     type: Fix
   id: 410235
@@ -2799,4 +2792,11 @@ Entries:
   id: 410633
   time: '2026-11-19T17:11:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7330
+- author: Johnny, .apogee, Shiptest
+  changes:
+  - message: Added the Derecho Ship.
+    type: Add
+  id: 410634
+  time: '2026-11-19T17:44:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7329
 Order: -1
