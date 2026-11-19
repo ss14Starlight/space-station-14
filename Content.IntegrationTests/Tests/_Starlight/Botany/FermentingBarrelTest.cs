@@ -184,22 +184,24 @@ public sealed class FermentingBarrelTest : InteractionTest
         await Interact();
         await InteractUsing("FoodGrape");
 
-        FixedPoint2 food = 0, other = 0;
+        var expected = new Dictionary<string, FixedPoint2>();
         await Server.WaitAssertion(() =>
         {
             Assert.That(SEntMan.System<SharedSolutionContainerSystem>().TryGetSolution(Crops(barrel)[0], "food", out _, out var crop));
-            food = crop!.GetTotalPrototypeQuantity("Nutriment") + crop.GetTotalPrototypeQuantity("Vitamin");
-            other = crop.Volume - food;
+            expected = Quantities(crop!);
+
+            // The food turns into wine; everything else goes in as it is.
+            var food = expected.GetValueOrDefault("Nutriment") + expected.GetValueOrDefault("Vitamin");
+            Assert.That(food, Is.GreaterThan(FixedPoint2.Zero));
+            expected.Remove("Nutriment");
+            expected.Remove("Vitamin");
+            expected["Wine"] = expected.GetValueOrDefault("Wine") + food;
         });
 
         await Interact();
         await RunSeconds(5);
 
-        await Server.WaitAssertion(() =>
-        {
-            Assert.That(Contents(barrel).GetTotalPrototypeQuantity("Wine"), Is.EqualTo(food));
-            Assert.That(Contents(barrel).Volume - Contents(barrel).GetTotalPrototypeQuantity("Wine"), Is.EqualTo(other), "Everything else goes in as it is");
-        });
+        await Server.WaitAssertion(() => Assert.That(Quantities(Contents(barrel)), Is.EquivalentTo(expected)));
     }
 
     [Test]
@@ -209,10 +211,19 @@ public sealed class FermentingBarrelTest : InteractionTest
         var barrel = STarget!.Value;
         await Interact();
         await InteractUsing("FoodLaughinPeaPod");
+
+        FixedPoint2 sugar = 0;
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(SEntMan.System<SharedSolutionContainerSystem>().TryGetSolution(Crops(barrel)[0], "food", out _, out var crop));
+            sugar = crop!.GetTotalPrototypeQuantity("Sugar");
+            Assert.That(sugar, Is.GreaterThan(FixedPoint2.Zero));
+        });
+
         await Interact();
         await RunSeconds(5);
 
-        await Server.WaitAssertion(() => Assert.That(Contents(barrel).GetTotalPrototypeQuantity("Sugar").Float(), Is.GreaterThan(0), "Peas keep their sugar"));
+        await Server.WaitAssertion(() => Assert.That(Contents(barrel).GetTotalPrototypeQuantity("Sugar"), Is.EqualTo(sugar), "Peas keep all their sugar"));
     }
 
     [Test]
@@ -344,6 +355,17 @@ public sealed class FermentingBarrelTest : InteractionTest
     {
         Assert.That(SEntMan.System<SharedSolutionContainerSystem>().TryGetSolution(barrel, "barrel", out _, out var contents));
         return contents!;
+    }
+
+    private static Dictionary<string, FixedPoint2> Quantities(Solution solution)
+    {
+        var quantities = new Dictionary<string, FixedPoint2>();
+        foreach (var reagent in solution.Contents)
+        {
+            quantities[reagent.Reagent.Prototype] = quantities.GetValueOrDefault(reagent.Reagent.Prototype) + reagent.Quantity;
+        }
+
+        return quantities;
     }
 
     private IReadOnlyList<EntityUid> Crops(EntityUid barrel)
