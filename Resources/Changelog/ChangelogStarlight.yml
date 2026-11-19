@@ -1,20 +1,6 @@
 Entries:
 - author: Rinary
   changes:
-  - message: Makes it so station automatically swaps to night lights at evening(from 19:30 to 7:30), won't work on any alert level except green and blue(station automatically disables night lights).
-    type: Tweak
-  id: 410264
-  time: '2026-11-08T19:03:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7036
-- author: Rinary
-  changes:
-  - message: Changes night lights event to make it work on new night lights system.
-    type: Tweak
-  id: 410265
-  time: '2026-11-08T19:03:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7036
-- author: Rinary
-  changes:
   - message: Changes lights energy/range to make station less glowing.
     type: Tweak
   id: 410266
@@ -2799,4 +2785,18 @@ Entries:
   id: 410663
   time: '2026-11-19T17:44:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: en2que
+  changes:
+  - message: Tracking and deathrattle implants now call out sawians entering soft crit.
+    type: Add
+  id: 410664
+  time: '2026-11-19T18:07:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7320
+- author: en2que
+  changes:
+  - message: Health analyzers and implants now recognize the soft crit state.
+    type: Fix
+  id: 410665
+  time: '2026-11-19T18:07:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7320
 Order: -1
