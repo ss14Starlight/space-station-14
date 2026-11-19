@@ -1,207 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Sepultum) Fixed the terrible air alarm setup in Science, where the entire department was wired to a single air alarm (why).
-    type: Fix
-  id: 410235
-  time: '2026-11-08T06:33:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7109
-- author: Caws
-  changes:
-  - message: (Sepultum) Fixed some doors that would make Evac usually divert to the back-up dock, even if the main dock wasn't blocked.
-    type: Fix
-  id: 410236
-  time: '2026-11-08T06:33:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7109
-- author: Caws
-  changes:
-  - message: (Lagan) Added Gunnery Sergeant.
-    type: Add
-  id: 410237
-  time: '2026-11-08T07:04:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7105
-- author: Caws
-  changes:
-  - message: (Lagan) Radio Studio has been upgraded, adding radio mixer, CD player, and radio broadcast recorder.
-    type: Add
-  id: 410238
-  time: '2026-11-08T07:04:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7105
-- author: Caws
-  changes:
-  - message: (Serpentcrest) Added Gunnery Sergeant.
-    type: Add
-  id: 410239
-  time: '2026-11-08T07:27:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7110
-- author: Caws
-  changes:
-  - message: (Serpentcrest) Radio Studio has been upgraded, adding radio mixer, CD player, and radio broadcast recorder.
-    type: Add
-  id: 410240
-  time: '2026-11-08T07:27:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7110
-- author: Caws
-  changes:
-  - message: (Serpentcrest) Psychology has been restored, added one Psychologist job slot.
-    type: Add
-  id: 410241
-  time: '2026-11-08T07:27:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7110
-- author: Caws
-  changes:
-  - message: (Serpentcrest) Reduced the AI's vision outside of its AI Core.
-    type: Tweak
-  id: 410242
-  time: '2026-11-08T07:27:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7110
-- author: Caws
-  changes:
-  - message: (Serpentcrest) Added shutters that the AI can close so that they don't shoot passerbys with their turrets as much.
-    type: Tweak
-  id: 410243
-  time: '2026-11-08T07:27:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7110
-- author: Caws
-  changes:
-  - message: (Serpentcrest) Brigmedic gets a standard NanoMed Security now.
-    type: Fix
-  id: 410244
-  time: '2026-11-08T07:27:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7110
-- author: Caws
-  changes:
-  - message: (Starboard) Added Gunnery Sergeant.
-    type: Add
-  id: 410245
-  time: '2026-11-08T08:09:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7111
-- author: Caws
-  changes:
-  - message: (Starboard) Radio Studio has been upgraded, adding radio mixer, CD player, and radio broadcast recorder.
-    type: Add
-  id: 410246
-  time: '2026-11-08T08:09:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7111
-- author: Talirson
-  changes:
-  - message: Alt-click now takes out items inside portable chargers such as those ERT security get.
-    type: Tweak
-  id: 410247
-  time: '2026-11-08T08:40:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7102
-- author: Conflee
-  changes:
-  - message: Upkeep for Box, Cog, Fland, Kiloton, and Space Mall. Updated Radio Host setups, added Gunnery Sergeant, minor other touch-ups.
-    type: Tweak
-  id: 410248
-  time: '2026-11-08T09:01:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7117
-- author: Conflee
-  changes:
-  - message: Added Jerry Cans. Takes up 3x3 inventory spaces and is a large item. Holds 480u of a liquid, and has a cap to prevent accidental spills. Less space-efficient than using buckets in exchange. Empty cans can be made in the Engie Lathe, and filled ones can be bought by Cargo with Water or Fuel.
-    type: Add
-  id: 410249
-  time: '2026-11-08T09:01:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7103
-- author: SirLutz
-  changes:
-  - message: Gunnery Sergant now also counts into antagscaling.
-    type: Add
-  id: 410250
-  time: '2026-11-08T13:53:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7100
-- author: SirLutz
-  changes:
-  - message: Antagscaling now retries if server cant load.
-    type: Fix
-  id: 410251
-  time: '2026-11-08T13:53:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7100
-- author: SirLutz
-  changes:
-  - message: Prevented partial threshold modifications when scaling fails.
-    type: Fix
-  id: 410252
-  time: '2026-11-08T13:53:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7100
-- author: STARLIGHT TEAM
-  changes:
-  - message: Roundstart engineer cardboard boxes now have 10 plasteel instead of 30.
-    type: Tweak
-  id: 410253
-  time: '2026-11-08T14:18:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7029
-- author: STARLIGHT TEAM
-  changes:
-  - message: Roundstart engineer cardboard boxes now have 30 plastic.
-    type: Tweak
-  id: 410254
-  time: '2026-11-08T14:18:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7029
-- author: CrazyPhantom
-  changes:
-  - message: Players are no longer forced to attack after Round End if they have the ForceAttack component, (Spider and Slime Ghostroles).
-    type: Fix
-  id: 410255
-  time: '2026-11-08T18:09:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7129
-- author: Talirson
-  changes:
-  - message: You can no longer store items inside a 1x1 rubber duck.
-    type: Fix
-  id: 410256
-  time: '2026-11-08T18:40:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7123
-- author: Rinary
-  changes:
-  - message: "Added soft light option: it makes light more smoother so 10 light sources in one place won't create a big white dot."
-    type: Add
-  id: 410257
-  time: '2026-11-08T19:03:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7036
-- author: Rinary
-  changes:
-  - message: Adds emergency light into some lights on station, that use internal light battery to highlight area with small red light.
-    type: Add
-  id: 410258
-  time: '2026-11-08T19:03:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7036
-- author: Rinary
-  changes:
-  - message: Adds "Night vision" option, which makes game look more dark in rooms with low light level(yeah, it's intended) and adds gray vision effect in rooms with low light level.
-    type: Add
-  id: 410259
-  time: '2026-11-08T19:03:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7036
-- author: Rinary
-  changes:
-  - message: 'Adds vignette and grain option: just adds small grain(almost unnoticeable) and vignette to make game look better.'
-    type: Add
-  id: 410260
-  time: '2026-11-08T19:03:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7036
-- author: Rinary
-  changes:
-  - message: 'Adds bloom option: Makes some objects glow, like APCs screens, ghosts in dark rooms, lights.'
-    type: Add
-  id: 410261
-  time: '2026-11-08T19:03:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7036
-- author: Rinary
-  changes:
-  - message: Adds ability to change light mode in APC from Day light to Night light or Auto(depends on entire station light mode).
-    type: Add
-  id: 410262
-  time: '2026-11-08T19:03:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7036
-- author: Rinary
-  changes:
-  - message: Makes it so shift can begin at random time from 8:00 to 22:00.
-    type: Tweak
-  id: 410263
-  time: '2026-11-08T19:03:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7036
 - author: Rinary
   changes:
   - message: Makes it so station automatically swaps to night lights at evening(from 19:30 to 7:30), won't work on any alert level except green and blue(station automatically disables night lights).
@@ -2799,4 +2596,207 @@ Entries:
   id: 410634
   time: '2026-11-19T17:44:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7329
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add directional fans to Cargo's Shuttle Port.
+    type: Add
+  id: 410635
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add Cyborg recharging station to Genpop and Public Hallway of Security Department.
+    type: Add
+  id: 410636
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add a direct CO2 line to the Nuclear Reactor line.
+    type: Add
+  id: 410637
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add protection anchors to armory.
+    type: Add
+  id: 410638
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add directional fans to the Vox Box (Temp Fix).
+    type: Add
+  id: 410639
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add new curtains to Genpop.
+    type: Add
+  id: 410640
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add the name of the station to the grid (That's for admins).
+    type: Add
+  id: 410641
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add suffix to 'Engine & Atmos Room' to represent which Department/Shuttle they belong to.
+    type: Add
+  id: 410642
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add airlocks to almost every 'deadspace' to ensure that paramedics have the means to rescue the victims to Bluespace Anomaly.
+    type: Add
+  id: 410643
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add Breaking News console to Reporter's Room (Newsroom).
+    type: Add
+  id: 410644
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Finally added a round-start Security Shuttle "pursuit" to the Spaceport, located NE at Sec. Checkpoint.
+    type: Add
+  id: 410645
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add Security Dispenser to Security's locker room.
+    type: Add
+  id: 410646
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Remove one Double Security Officer Locker.
+    type: Remove
+  id: 410647
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Remove all logic gates from Cargo's Shuttle Port; now it should be easier for cargo.
+    type: Remove
+  id: 410648
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Remove one shipping container that was clipping through the wall in the Former Cargo Area.
+    type: Remove
+  id: 410649
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Increase the min player count from 135 to 155.
+    type: Tweak
+  id: 410650
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Replace QM's Funding Allocation Console with QM's Communication Console.
+    type: Tweak
+  id: 410651
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Increase the size of Atmos's Main room by 1 Tile North and 1 Tile South.
+    type: Tweak
+  id: 410652
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Minor update to Maints Hallways.
+    type: Tweak
+  id: 410653
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Replace Atmos Suit Storage in Genpop with Non-Atmos Access Suit.
+    type: Tweak
+  id: 410654
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Replaced 3 Hyper SMES with 2 Advanced SMES in AI Core.
+    type: Tweak
+  id: 410655
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Replaced the normal door with a Wood Door in Library.
+    type: Tweak
+  id: 410656
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Updated the maints based on Dusty's Suggestions.
+    type: Tweak
+  id: 410657
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Atmos's round-start shuttle "MiniGasum" is now docked to the Spaceport as a separate grid.
+    type: Tweak
+  id: 410658
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Expanded the Docking Port for "pursuit".
+    type: Tweak
+  id: 410659
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Swap Defib and TV Screen in Medbay's Cryo.
+    type: Fix
+  id: 410660
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Remove "External" Access to External Airlocks in the Science Department.
+    type: Fix
+  id: 410661
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add missing links from button to blast doors in Bumblebee.
+    type: Fix
+  id: 410662
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Fix existing airlocks by adding more airlock buttons.
+    type: Fix
+  id: 410663
+  time: '2026-11-19T17:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7332
 Order: -1
