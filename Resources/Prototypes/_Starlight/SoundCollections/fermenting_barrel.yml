@@ -1,7 +1,7 @@
 - type: soundCollection
   id: FermentingBarrelLidOff
   files:
-  - /Audio/_Starlight/Items/Handling/cardboard_pick_up.ogg
+  - /Audio/_Starlight/Effects/FermentingBarrel/cardboardbox_pickup.ogg
 
 - type: soundCollection
   id: FermentingBarrelLidOn

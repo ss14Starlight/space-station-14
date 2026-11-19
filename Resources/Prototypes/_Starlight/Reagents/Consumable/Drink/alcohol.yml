@@ -261,6 +261,10 @@
   physicalDesc: reagent-physical-desc-syrupy
   flavor: chocolate
   color: "#350900"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.06
 
 - type: reagent
   id: CremeDeMenthe
@@ -270,3 +274,7 @@
   physicalDesc: reagent-physical-desc-syrupy
   flavor: minty
   color: "#467446"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.06
