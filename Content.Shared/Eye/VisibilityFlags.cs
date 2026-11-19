@@ -13,6 +13,7 @@ namespace Content.Shared.Eye
         Admin = 1 << 3, // Reserved for admins in stealth mode and admin tools.
         NullSpace = 1 << 5, // 🌟Starlight🌟 - Nullspace Ents, Brighteyes, Revenants, Cosmic Cult.
         Scent = 1 << 6, // 🌟Starlight🌟 - Scent trails, scent system
+        MonumentCosmicCult = 1 << 7, // 🌟Starlight🌟 - Cosmic Cult Monument. (Yep only for that!)
         Net = 1 << 15, // 32768 🌟Starlight🌟
     }
 }

@@ -38,6 +38,7 @@ marking-EarsShadekinBull = Straight
 marking-EarsShadekinBullSmooth = Straight, Outlined
 marking-EarsShadekinAqua = Aqua
 marking-EarsShadekinAquaIncolor = Aqua, Colored
+marking-EarsShadekinDualColor = DualColor
 
 # Tails
 marking-TailShadekin = Default
@@ -47,6 +48,7 @@ marking-TailShadekinShorter = Short
 marking-TailShadekinShorterBrush = Short, Furry
 marking-TailShadekinMedium = Medium
 marking-TailShadekinMediumTwoColored = Medium, Two-Toned
+marking-TailShadekinBigTwoColored = Big, Two-Toned
 
 # Overlays
 marking-EarsShadekin = Default
@@ -66,3 +68,9 @@ marking-BodyShadekinLines = Lines Marking
 marking-BodyShadekinNeck = Neck Marking
 marking-BodyShadekinShield = Protective Marking
 marking-BodyShadekinVacuum = Open Marking
+
+# Hairs
+marking-ShadekinHairShort = Shadekin Short hair
+marking-ShadekinHairPoofy = Shadekin Poofy hair
+marking-ShadekinHairLong = Shadekin Long hair
+marking-ShadekinHairRivyr = Shadekin Rivyr hair

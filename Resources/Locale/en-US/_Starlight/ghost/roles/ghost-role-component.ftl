@@ -171,3 +171,6 @@ ghost-role-information-spawn-point-ghost-cluwne-beast-rules = You are an antagon
 ghost-role-information-bombroach-name = Bombroach
 ghost-role-information-bombroach-description = You're the faithful trained pest of syndicate operatives with a picobomb. Serve your master to the death!
 ghost-role-information-bombroach-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with the agent who summoned you.
+
+ghost-role-information-jil-name = Jil
+ghost-role-information-jil-description = A thieving and mischievous creature.

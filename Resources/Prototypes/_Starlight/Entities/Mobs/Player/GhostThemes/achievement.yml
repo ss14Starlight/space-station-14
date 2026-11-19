@@ -1,0 +1,15 @@
+- type: ghostTheme
+  id: Jil
+  name: ghost-theme-jil-name
+  description: ghost-theme-jil-desc
+  colorizeable: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
+      state: ghost-jil
+    color: "#ffffff"
+  requirements:
+  - !type:AchievementRequirement
+    achievements:
+    - dark_vacation
+  category: Achievement

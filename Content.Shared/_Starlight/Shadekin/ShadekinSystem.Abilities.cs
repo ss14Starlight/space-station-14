@@ -23,15 +23,10 @@ public sealed partial class ShadekinSystem
 
         if (TryComp<ShadekinComponent>(ent, out var shadekin))
         {
-            if (shadekin.CurrentState == ShadekinState.Extreme)
+            if (shadekin.CurrentState is ShadekinState.Extreme or ShadekinState.High)
                 return;
-
-            if (shadekin.CurrentState == ShadekinState.High)
-                cost = ent.Comp.MaxEnergy;
-            else if (shadekin.CurrentState == ShadekinState.Annoying)
-                cost *= 3;
-            else if (shadekin.CurrentState == ShadekinState.Low)
-                cost *= 2;
+            else if (shadekin.CurrentState is ShadekinState.Annoying or ShadekinState.Low)
+                cost *= ent.Comp.MaxEnergy;
         }
 
         if (!OnAttemptEnergyUse(ent, ent.Comp, cost))
@@ -186,15 +181,10 @@ public sealed partial class ShadekinSystem
 
         if (TryComp<ShadekinComponent>(ent, out var shadekin))
         {
-            if (shadekin.CurrentState == ShadekinState.Extreme)
+            if (shadekin.CurrentState is ShadekinState.Extreme or ShadekinState.High)
                 return;
-
-            if (shadekin.CurrentState == ShadekinState.High)
+            else if (shadekin.CurrentState is ShadekinState.Annoying or ShadekinState.Low)
                 cost = ent.Comp.MaxEnergy;
-            else if (shadekin.CurrentState == ShadekinState.Annoying)
-                cost *= 3;
-            else if (shadekin.CurrentState == ShadekinState.Low)
-                cost *= 2;
         }
 
         if (TryComp<PullerComponent>(ent, out var puller) && puller.Pulling is not null)

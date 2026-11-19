@@ -45,6 +45,9 @@ ghost-theme-ian-cute-name = IanCute
 ghost-theme-skeleton-name = Skeleton
 ghost-theme-sheet-name = Sheet
 ghost-theme-cat-name = Cat
+ghost-theme-jil-name = Jil
+
+# Desc
 ghost-theme-king-desc = The Majestic King.
 ghost-theme-carp-games-desc = The Carpman, master of all carp games.
 ghost-theme-first-writing-contest-desc = Do not cite the deep magics to me, witch. I was there when it was written.
@@ -90,3 +93,4 @@ ghost-theme-ian-cute-desc = A pure dog.
 ghost-theme-skeleton-desc = skeleton.
 ghost-theme-sheet-desc = Cute sheet.
 ghost-theme-cat-desc = A cute little cat.
+ghost-theme-jil-desc = A cute ghost of a thief from the dark.

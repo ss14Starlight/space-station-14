@@ -26,6 +26,11 @@
     {
       "name": "chest_heavy3",
       "directions": 4
+    },
+    {
+      "name": "chest_neckfur",
+      "directions": 4,
+      "copyright": "https://github.com/VOREStation/VOREStation/commit/5cf2ba8be1b538636b7813bcca22c8f080191df3"
     }
   ]
 }

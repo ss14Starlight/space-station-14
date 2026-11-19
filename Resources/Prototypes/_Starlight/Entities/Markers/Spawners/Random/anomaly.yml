@@ -14,3 +14,31 @@
       - AnomalyClown
       rareChance: 0.20 # 1 in 5 chance of spawning clown instead of flesh
       offset: 0.15
+
+- type: entity
+  id: DarkAnomalyLootSpawner
+  name: dark loot spawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+      - state: red
+      - sprite: Structures/Specific/Anomalies/shadow_anom.rsi
+        state: anom
+    - type: RandomSpawner
+      offset: 0.05
+      prototypes:
+        - MobJil
+        - MobJil
+        - ShadekinShadow
+        - ShadekinShadow
+        - ShadekinShadow
+        - ShadekinShadow
+      rareChance: 0.1
+      rarePrototypes:
+        - MobJilBig
+        - MobJilBig
+        - MobJilBig
+        - RawBluespaceCrystal1
+        - RawBluespaceCrystal1
+        - MobRiftWalker

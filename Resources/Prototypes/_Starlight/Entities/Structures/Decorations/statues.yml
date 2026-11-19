@@ -31,7 +31,9 @@
   name: phoronic cascade
   description: A huge structure made of pure plasma. Dark energy roils and bursts within it.
   components:
-    - type: StationAnchor
+    - type: ChildEntities
+      childPrototypes:
+      - prototype: OverlayBluespaceSparksEffect
     - type: Transform
       anchored: true
     - type: Sprite
@@ -39,10 +41,10 @@
       drawdepth: Mobs
       offset: "0.0,0.5"
       sprite: _Starlight/Structures/Decorations/Phoronic.rsi
-      state: phoronic
+      layers:
+      - state: phoronic
+        shader: unshaded
     - type: SpriteFade
-    - type: TheDarkImmune
-      ranged: true
     - type: Fixtures
       fixtures:
         fix1:

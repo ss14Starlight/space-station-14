@@ -162,6 +162,16 @@
         {
             "name": "short_ringed_all",
             "directions": 4
+        },
+        {
+            "name": "dual_color_primary",
+            "directions": 4,
+            "copyright": "https://github.com/VOREStation/VOREStation/commit/fa3458c11bfcb753ef5cbe276c6bd7730bff215b"
+        },
+        {
+            "name": "dual_color_secondary",
+            "directions": 4,
+            "copyright": "https://github.com/VOREStation/VOREStation/commit/fa3458c11bfcb753ef5cbe276c6bd7730bff215b"
         }
     ]
 }

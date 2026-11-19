@@ -96,6 +96,50 @@
     role: MindRoleBloodBound
     requiredDifficulty: 10
 
+# Dark / Brighteye
+- type: achievement
+  id: dark_vacation
+  name: achievement-dark-vacation-name
+  description: achievement-dark-vacation-description
+  category: milestones
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: mar
+  requirements: []
+
+- type: achievement
+  id: mindshield_failure
+  name: achievement-mindshield-failure-name
+  description: achievement-mindshield-failure-description
+  category: milestones
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: mar
+  requirements: []
+
+- type: achievement
+  id: jealousy
+  name: achievement-jealousy-name
+  description: achievement-jealousy-description
+  category: milestones
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: mar
+  requirements: []
+
+- type: achievement
+  id: lightwalker_enforcement
+  name: achievement-lightwalker-enforcement-name
+  description: achievement-lightwalker-enforcement-description
+  category: brighteye
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: mar
+  requirements: []
 
 # manual-only, granted by admins via achievement_unlock command
 # Even though this achievement can be granted automatically checking nullink roles

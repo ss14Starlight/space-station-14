@@ -13,19 +13,24 @@ using Content.Shared._Starlight.Station;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Spawners.Components;
 using Content.Shared.NPC.Prototypes;
-using Content.Shared.NPC.Systems;
 using Robust.Shared.Prototypes;
+using Content.Shared.Eye;
+using Content.Shared._Starlight.NullSpace.Components;
 
 namespace Content.Shared._Starlight.Shadekin;
 
 public sealed partial class ShadekinSystem
 {
-    [Dependency] private NpcFactionSystem _npcFaction = default!;
+    private static readonly ProtoId<NpcFactionPrototype> _shieldedFaction = "Shielded";
+    private static readonly ProtoId<NpcFactionPrototype> _TheDarkFaction = "TheDark";
 
-    private static readonly ProtoId<NpcFactionPrototype> ShieldedFaction = "Shielded";
     [SubscribeLocalEvent]
     private void OnZombify(Entity<BrighteyeComponent> ent, ref EntityZombifiedEvent args)
         => RemComp<BrighteyeComponent>(ent.Owner);
+
+    [SubscribeLocalEvent]
+    private void OnGetVisMask(Entity<BrighteyeComponent> uid, ref GetVisMaskEvent args) =>
+        args.VisibilityMask |= (int)VisibilityFlags.NullSpace;
 
     [SubscribeLocalEvent]
     private void OnInit(Entity<BrighteyeComponent> ent, ref ComponentStartup _)
@@ -37,7 +42,10 @@ public sealed partial class ShadekinSystem
         }
 
         RemCompDeferred<MindShieldComponent>(ent.Owner);
-        _npcFaction.RemoveFaction(ent.Owner, ShieldedFaction);
+        _npcFaction.RemoveFaction(ent.Owner, _shieldedFaction);
+
+        // DarkFaction so Rift Walkers dont attack Brighteyes.
+        _npcFaction.AddFaction(ent.Owner, _TheDarkFaction);
 
         _language.AddLanguage(ent.Owner, "Empathy");
 
@@ -64,8 +72,10 @@ public sealed partial class ShadekinSystem
                 if (core.Comp1.OrganOwner != ent.Owner)
                 {
                     ent.Comp.LesserKin = true;
-                    ent.Comp.MaxEnergy = 100;
-                    ent.Comp.PhaseCost = 100;
+                    ent.Comp.MaxEnergy = 50;
+                    ent.Comp.PhaseCost = 50;
+
+                    _achievements.QueueUnlockAchievement(ent.Owner, "jealousy");
 
                     _alerts.ClearAlert(ent.Owner, ent.Comp.PortalAlert);
                     _actionsSystem.RemoveAction(ent.Owner, ent.Comp.PortalAction);
@@ -98,18 +108,7 @@ public sealed partial class ShadekinSystem
         ent.Comp.PortalNeedStation = false;
 
         RemCompDeferred<MindShieldComponent>(ent.Owner);
-        _npcFaction.RemoveFaction(ent.Owner, ShieldedFaction);
-    }
-
-    // ! Gosh this is bad... But there no event to get implanted shit? or mindshield? il do this for now change if need later!
-    [SubscribeLocalEvent]
-    private void MindShieldImplanted(EntityUid uid, MindShieldComponent comp, ComponentStartup args)
-    {
-        if (HasComp<BrighteyeComponent>(uid))
-        {
-            RemCompDeferred<MindShieldComponent>(uid);
-            _npcFaction.RemoveFaction(uid, ShieldedFaction);
-        }
+        _npcFaction.RemoveFaction(ent.Owner, _shieldedFaction);
     }
 
     [SubscribeLocalEvent]
@@ -129,7 +128,10 @@ public sealed partial class ShadekinSystem
     [SubscribeLocalEvent]
     private void OnShutdown(Entity<BrighteyeComponent> ent, ref ComponentShutdown _)
     {
-        _language.RemoveLanguage(ent.Owner, "Empathy", removeUnderstood: false);
+        // Were no more Brighteye, no more Friendly to The Dark.
+        _npcFaction.RemoveFaction(ent.Owner, _TheDarkFaction);
+
+        _language.RemoveLanguage(ent.Owner, "Empathy");
 
         _alerts.ClearAlert(ent.Owner, ent.Comp.BrighteyeAlert);
         _alerts.ClearAlert(ent.Owner, ent.Comp.PortalAlert);
@@ -144,7 +146,7 @@ public sealed partial class ShadekinSystem
         if (ent.Comp.Portal is not null)
         {
             PredictedSpawnAtPosition(ent.Comp.ShadekinShadow, Transform(ent.Comp.Portal.Value).Coordinates);
-            PredictedQueueDel(ent.Comp.Portal.Value);
+            QueueDel(ent.Comp.Portal.Value);
         }
 
         if (TryComp<BodyComponent>(ent.Owner, out var body))
@@ -180,7 +182,7 @@ public sealed partial class ShadekinSystem
     [SubscribeLocalEvent]
     private void OnMobStateChanged(Entity<BrighteyeComponent> ent, ref MobStateChangedEvent args)
     {
-        if (args.NewMobState == MobState.Alive)
+        if (args.NewMobState is MobState.Alive or MobState.SoftCritical or MobState.Critical)
             return;
 
         // We hit Crit/Death we lose energy... EVERYTIME!
@@ -239,6 +241,10 @@ public sealed partial class ShadekinSystem
         ent.Comp.Energy = 0;
         ent.Comp.Rejuvenating = true;
         _alerts.ShowAlert(ent.Owner, ent.Comp.RejuvenationAlert);
+
+        // Now... We mimir for 30Secs...
+        _status.TrySetStatusEffectDuration(ent, "StatusEffectForcedSleeping", duration: TimeSpan.FromSeconds(30));
+
         Dirty(ent.Owner, ent.Comp);
     }
 
@@ -297,7 +303,10 @@ public sealed partial class ShadekinSystem
             _alerts.ClearAlert(uid, brighteye.RejuvenationAlert);
         }
 
-        if (component.CurrentState == ShadekinState.Low) // On Low State, we gain and lose nothing!
+        if (HasComp<NullSpaceComponent>(uid)) // We dont gain energy in nullspace.
+            return;
+
+        if (component.CurrentState is ShadekinState.Low) // On Low State, we gain and lose nothing!
             return;
 
         var newEnergy = 0;
@@ -313,7 +322,7 @@ public sealed partial class ShadekinSystem
         }
         else if (brighteye.Energy < brighteye.MaxEnergy && component.CurrentState == ShadekinState.Dark) // We now handle energy gain.
         {
-            // TODO: Add buffs here depanding on different situations?
+            // TODO: For newmed; Brighteye in full darkness should have no pain... The dark is the best painkller for them.
             newEnergy = 1;
         }
 

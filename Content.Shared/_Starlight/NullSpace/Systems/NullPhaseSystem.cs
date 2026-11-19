@@ -14,6 +14,9 @@ using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared.Ghost;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Network;
+using Content.Shared.Sprite;
+using System.Numerics;
 
 namespace Content.Shared._Starlight.NullSpace.Systems;
 
@@ -28,6 +31,8 @@ public sealed partial class NullSpacePhaseSystem : EntitySystem
     [Dependency] private TurfSystem _turf = default!;
     [Dependency] private InventorySystem _inventorySystem = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedScaleVisualsSystem _scaleVisuals = default!;
 
     private readonly EntProtoId _shadekinShadow = "ShadekinShadow";
     private readonly EntProtoId _shadekinPhaseInEffect = "ShadekinPhaseInEffect";
@@ -159,11 +164,10 @@ public sealed partial class NullSpacePhaseSystem : EntitySystem
                         _ghost.DoGhostBooEvent(light);
                 }
 
-                var effect = SpawnAtPosition(_shadekinPhaseInEffect, Transform(uid).Coordinates);
-                _transform.SetLocalRotation(effect, Transform(uid).LocalRotation);
+                SetPhaseEffect(uid, _shadekinPhaseInEffect);
             }
             else
-                SpawnAtPosition(_shadekinShadow, Transform(uid).Coordinates);
+                SetPhaseEffect(uid, _shadekinShadow);
 
             RemComp(uid, nullspace);
         }
@@ -181,11 +185,18 @@ public sealed partial class NullSpacePhaseSystem : EntitySystem
                         _ghost.DoGhostBooEvent(light);
                 }
 
-                var effect = SpawnAtPosition(_shadekinPhaseOutEffect, Transform(uid).Coordinates);
-                _transform.SetLocalRotation(effect, Transform(uid).LocalRotation);
+                SetPhaseEffect(uid, _shadekinPhaseOutEffect);
             }
             else
-                SpawnAtPosition(_shadekinShadow, Transform(uid).Coordinates);
+                SetPhaseEffect(uid, _shadekinShadow);
         }
+    }
+
+    private void SetPhaseEffect(EntityUid uid, EntProtoId effectproto)
+    {
+        var effect = PredictedSpawnAtPosition(effectproto, Transform(uid).Coordinates);
+
+        _scaleVisuals.SetSpriteScale(effect, _scaleVisuals.GetSpriteScale(uid));
+        _transform.SetLocalRotation(effect, Transform(uid).LocalRotation);
     }
 }

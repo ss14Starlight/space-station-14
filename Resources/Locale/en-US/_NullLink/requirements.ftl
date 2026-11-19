@@ -1,6 +1,8 @@
 roles-req-any-role-required-pass = You require any of the following roles on {$discord}: [color=limegreen]{$roles}[/color].
 roles-req-any-role-required-fail = You require any of the following roles on {$discord}: [color=yellow]{$roles}[/color].
 
+achievment-required = You require the following achivements: [color=yellow]{$achivements}[/color].
+
 requirements-playtime =
     { $tracker ->
         [overall] You still need {$time} of total gameplay time on the {$server} server.

@@ -37,6 +37,8 @@ using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Stunnable;
 using Robust.Shared.Network;
+using Content.Shared.NPC.Systems;
+using Content.Shared._Starlight.Achievement;
 
 namespace Content.Shared._Starlight.Shadekin;
 
@@ -66,6 +68,8 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private SharedLanguageSystem _language = default!;
     [Dependency] private INetManager _net = default!;
     [Dependency] private SharedIlluminationSystem _illumination = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
+    [Dependency] private SharedAchievementSystem _achievements = default!;
 
     [Dependency] private EntityQuery<DarkLightComponent> _darkLightQuery = default!;
     [Dependency] private EntityQuery<ShadegenAffectedComponent> _shadegenAffected = default!;
@@ -162,10 +166,15 @@ public sealed partial class ShadekinSystem : EntitySystem
     /// our thresholds are tuned for it. Lights come from <see cref="SharedIlluminationSystem"/>.
     /// </remarks>
     public float GetLightExposure(EntityUid uid, float cap = float.MaxValue)
+        => GetLightExposure(_transform.GetMapCoordinates(uid), cap, uid);
+
+    public float GetLightExposure(MapCoordinates targetCoords, float cap = float.MaxValue)
+        => GetLightExposure(targetCoords, cap, null);
+
+    private float GetLightExposure(MapCoordinates targetCoords, float cap, EntityUid? uid)
     {
         var illumination = 0f;
 
-        var targetCoords = _transform.GetMapCoordinates(uid);
         if (targetCoords.MapId == MapId.Nullspace)
             return illumination;
 
@@ -182,7 +191,10 @@ public sealed partial class ShadekinSystem : EntitySystem
         }
 
         _lightSources.Clear();
-        _illumination.GetLightSources(uid, _lightSources, _lightQuery);
+        if (uid is { } targetUid)
+            _illumination.GetLightSources(targetUid, _lightSources, _lightQuery);
+        else
+            _illumination.GetLightSources(targetCoords, _lightSources, _lightQuery);
 
         foreach (var source in _lightSources)
         {
@@ -219,6 +231,7 @@ public sealed partial class ShadekinSystem : EntitySystem
             case ShadekinState.Dark:
                 passive.AllowedStates.Clear();
                 passive.AllowedStates.Add(MobState.Alive);
+                passive.AllowedStates.Add(MobState.SoftCritical);
                 passive.AllowedStates.Add(MobState.Critical);
                 passive.AllowedStates.Add(MobState.Dead);
                 passive.Interval = 0.5f;
@@ -366,7 +379,7 @@ public sealed partial class ShadekinSystem : EntitySystem
                 _speed.RefreshMovementSpeedModifiers(uid);
 
             if (component.CurrentState == ShadekinState.Extreme)
-                ApplyLightDamage(uid, 1);
+                ApplyLightDamage(uid, 2);
 
             if (TryComp<BrighteyeComponent>(uid, out var brighteye))
                 UpdateEnergy(uid, component, brighteye);
@@ -403,13 +416,16 @@ public sealed partial class ShadekinSystem : EntitySystem
         while (mobQuery.MoveNext(out var uid, out _, out var xform))
         {
             var inTheDark = xform.MapUid is { } mapUid
-                && _theDarkMaps.Contains(mapUid)
-                && !IsImmuneToTheDark(uid, xform);
+                && _theDarkMaps.Contains(mapUid);
+
+            // achievement
+            if (inTheDark && !HasComp<BrighteyeComponent>(uid))
+                _achievements.QueueUnlockAchievement(uid, "dark_vacation"); // This should be in shared... _net exist dudes!
 
             var hasStatus = _status.HasStatusEffect(uid, _theDarkMapStatus);
-            if (inTheDark && !hasStatus)
+            if (inTheDark && !IsImmuneToTheDark(uid, xform) && !hasStatus)
                 _status.TrySetStatusEffectDuration(uid, _theDarkMapStatus);
-            else if (!inTheDark && hasStatus)
+            else if (!inTheDark && IsImmuneToTheDark(uid, xform) && hasStatus)
                 _status.TryRemoveStatusEffect(uid, _theDarkMapStatus);
         }
     }

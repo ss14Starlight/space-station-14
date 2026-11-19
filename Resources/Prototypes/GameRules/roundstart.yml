@@ -36,6 +36,8 @@
       prob: 0.05
     - id: Changeling
       prob: 0.25
+    - id: SubBrighteye
+      prob: 0.05
 
 - type: entity
   parent: BaseGameRule
@@ -49,6 +51,8 @@
       prob: 0.05
     - id: Changeling
       prob: 0.25
+    - id: SubBrighteye
+      prob: 0.05
 
 - type: entity
   parent: BaseGameRule
@@ -62,6 +66,8 @@
       prob: 0.05
     - id: Changeling
       prob: 0.25
+    - id: SubBrighteye # Starlight
+      prob: 0.05
 
 - type: entity
   parent: BaseGameRule
@@ -73,6 +79,8 @@
       prob: 0.5
     - id: Changeling
       prob: 0.25
+    - id: SubBrighteye
+      prob: 0.05
 
 - type: entity
   parent: BaseGameRule

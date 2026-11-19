@@ -140,6 +140,8 @@
       prob: 0.10
     - id: SiliconLiberation
       prob: 0.15
+    - id: SubBrighteye
+      prob: 0.05
 
 - type: entity
   parent: BaseGameRule
@@ -156,6 +158,8 @@
     - id: VampireLess
       prob: 0.175
     - id: SubWizard
+      prob: 0.05
+    - id: SubBrighteye
       prob: 0.05
     # No SELF Agents in rev games because of the FREEmag.
     # no devil because this is the secret set used for conversion antags i guess? either way dont want revs spamming devil
@@ -178,6 +182,8 @@
       prob: 0.10
     - id: SiliconLiberation
       prob: 0.20
+    - id: SubBrighteye
+      prob: 0.05
 
 - type: entity
   parent: BaseGameRule
@@ -195,6 +201,8 @@
       prob: 0.10
     - id: SiliconLiberation
       prob: 0.10
+    - id: SubBrighteye
+      prob: 0.05
 
 - type: entity
   parent: BaseGameRule
@@ -214,6 +222,8 @@
       prob: 0.20
     - id: SiliconLiberation # I mean technically there's nothing inherently wrong with them showing up.
       prob: 0.15
+    - id: SubBrighteye
+      prob: 0.05
 
 - type: entity
   parent: BaseGameRule

@@ -4,34 +4,39 @@
   priority: 0
 
 - type: ghostThemeCategory
+  id: Achievement
+  name: Achievement
+  priority: 1
+
+- type: ghostThemeCategory
   id: Patron
   name: Patron
-  priority: 1
+  priority: 2
 
 - type: ghostThemeCategory
   id: Mentor
   name: Mentor
-  priority: 2
+  priority: 3
 
 - type: ghostThemeCategory
   id: Staff
   name: Staff
-  priority: 3
+  priority: 4
 
 - type: ghostThemeCategory
   id: NullLink
   name: NullLink
-  priority: 4
+  priority: 5
 
 - type: ghostThemeCategory
   id: Event
   name: Event
-  priority: 5
+  priority: 6
 
 - type: ghostThemeCategory
   id: Tester
   name: Tester
-  priority: 6
+  priority: 7
   hideIfNoUnlocks: true
 
   # When filtering, hide all other categories, show this one.

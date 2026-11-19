@@ -22,6 +22,8 @@
     - Abductor
     - Pirate
     - CosmicCult
+    - TheDark
+    - TheDarkHostile
 
 - type: npcFaction
   id: DungeonSoviet
@@ -44,6 +46,7 @@
     - Abductor
     - Pirate
     - CosmicCult
+    - TheDarkHostile
 
 - type: npcFaction
   id: DungeonSyndicate
@@ -68,6 +71,7 @@
     - Abductor
     - Pirate
     - CosmicCult
+    - TheDarkHostile
 
 - type: npcFaction
   id: Gorilla
@@ -94,6 +98,7 @@
     - Abductor
     - Pirate
     - CosmicCult
+    - TheDarkHostile
 
 - type: npcFaction
   id: NanoTrasenSilicon # purely making this so zombies STOP ATTACKING FUCKING SILICONS
@@ -116,6 +121,7 @@
   - Abductor
   - Pirate
   - CosmicCult
+  - TheDarkHostile
 
 - type: npcFaction
   id: SyndicateSilicon # Again, zombies fuck you.
@@ -139,6 +145,7 @@
     - Abductor
     - Pirate
     - CosmicCult
+    - TheDarkHostile
 
 - type: npcFaction
   id: Abductor
@@ -168,6 +175,8 @@
   - SimpleHostile
   - Pirate
   - CosmicCult
+  - TheDark
+  - TheDarkHostile
 
 - type: npcFaction
   id: Pirate
@@ -193,6 +202,7 @@
   - Gorilla
   - Abductor
   - CosmicCult
+  - TheDarkHostile
 
 - type: npcFaction
   id: Floral # It's so plant anom creatures don't attack diona.
@@ -211,6 +221,7 @@
   - Gorilla
   - Pirate
   - CosmicCult
+  - TheDarkHostile
 
 - type: npcFaction
   id: Vampire
@@ -228,6 +239,7 @@
   - Gorilla
   - Pirate
   - CosmicCult
+  - TheDarkHostile
 
 - type: npcFaction
   id: HonkHostile
@@ -246,6 +258,8 @@
   - Gorilla
   - Pirate
   - CosmicCult
+  - TheDark
+  - TheDarkHostile
 
 - type: npcFaction
   id: HonkNeutral
@@ -259,6 +273,7 @@
     - Gorilla
     - Abductor
     - CosmicCult
+    - TheDarkHostile
 
 - type: npcFaction
   id: CosmicCult
@@ -286,6 +301,8 @@
     - HonkNeutral
     - Floral
     - Passive
+    - TheDark
+    - TheDarkHostile
 
 - type: npcFaction
   id: Shielded
@@ -315,3 +332,42 @@
   - Abductor
   - Pirate
   - CosmicCult
+
+- type: npcFaction
+  id: TheDark
+  friendly:
+  - TheDarkHostile
+  hostile:
+  - CosmicCult
+  - MoffNarsianDemon
+
+- type: npcFaction
+  id: TheDarkHostile
+  friendly:
+  - TheDark
+  hostile:
+  - NanoTrasen
+  - Dragon
+  - Mouse
+  - Passive
+  - PetsNT
+  - SimpleHostile
+  - SimpleNeutral
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - Wizard
+  - Xenoborg
+  - BloodBound
+  - NanoTrasenSilicon
+  - SyndicateSilicon
+  - HonkNeutral
+  - HonkHostile
+  - Vampire
+  - Changeling
+  - Gorilla
+  - Abductor
+  - Pirate
+  - CosmicCult
+  - MoffNarsianDemon
