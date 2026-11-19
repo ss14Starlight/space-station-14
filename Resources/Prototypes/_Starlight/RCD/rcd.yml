@@ -14,6 +14,30 @@
   rotation: User
   fx: EffectRCDConstruct3
 
+- type: rcd
+  id: AirlockCycler
+  category: Airlocks
+  sprite: { sprite: _Starlight/Structures/Wallmounts/airlock_cycler.rsi, state: off }
+  mode: ConstructObject
+  prototype: AirlockCycler
+  cost: 4
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: AirlockCyclerButton
+  category: Airlocks
+  sprite: { sprite: _Starlight/Structures/Wallmounts/airlock_cycler_button.rsi, state: off }
+  mode: ConstructObject
+  prototype: AirlockCyclerButton
+  cost: 2
+  delay: 1
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct1
+
 # Lighting
 - type: rcd
   id: LightPostSmall
@@ -25,5 +49,31 @@
   delay: 2
   collisionMask: MachineMask
   collisionBounds: "-0.17,-0.30,0.17,0.25"
+  rotation: Fixed
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: EmergencyLight
+  category: Lighting
+  sprite: { sprite: _Starlight/Structures/Wallmounts/Lighting/emergency_light.rsi, state: base }
+  mode: ConstructObject
+  prototype: EmergencyLight
+  cost: 2
+  delay: 1
+  collisionMask: TabletopMachineMask
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  rotation: User
+  fx: EffectRCDConstruct1
+  allowMultiDirection: true
+
+- type: rcd
+  id: FloorLight
+  category: Lighting
+  sprite: { sprite: _Paradise/Structures/Lighting/floorlights.rsi, state: base }
+  mode: ConstructObject
+  prototype: PoweredFloorLight
+  cost: 2
+  delay: 1
+  collisionMask: TabletopMachineMask
   rotation: Fixed
   fx: EffectRCDConstruct1

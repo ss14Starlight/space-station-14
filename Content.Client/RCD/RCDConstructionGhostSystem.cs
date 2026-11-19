@@ -34,6 +34,8 @@ public sealed partial class RCDConstructionGhostSystem : EntitySystem
     private EntityUid? _lastHeldRcd; // Starlight Edit: RPD/RPLD held-tool rotation sync
     // Starlight Start: RPD
     private bool _useMirrorPrototype = false;
+    private EntityUid? _mirrorStateRcd; // Starlight
+    private string? _lastPlacementPrototype; // Starlight
 
     public override void Initialize()
     {
@@ -65,7 +67,15 @@ public sealed partial class RCDConstructionGhostSystem : EntitySystem
                 string.IsNullOrEmpty(rcd.CachedPrototype.MirrorPrototype))
                 return false;
 
-            _useMirrorPrototype = !rcd.UseMirrorPrototype;
+            // Starlight - start
+            if (_mirrorStateRcd != placerEntity)
+            {
+                _mirrorStateRcd = placerEntity;
+                _useMirrorPrototype = rcd.UseMirrorPrototype;
+            }
+
+            _useMirrorPrototype = !_useMirrorPrototype;
+            // Starlight - end
 
             // tell the server
 
@@ -82,7 +92,6 @@ public sealed partial class RCDConstructionGhostSystem : EntitySystem
 
         // Get current placer data
         var placerEntity = _placementManager.CurrentPermission?.MobUid;
-        var placerProto = _placementManager.CurrentPermission?.EntityType;
         var placerIsRCD = HasComp<RCDComponent>(placerEntity);
 
         // Exit if erasing or the current placer is not an RCD (build mode is active)
@@ -114,6 +123,14 @@ public sealed partial class RCDConstructionGhostSystem : EntitySystem
         // Starlight edit Start: RPD - use the mirrored prototype if the flip state is toggled on
         // var prototype = _protoManager.Index(rcd.ProtoId);
 
+        // Starlight - start
+        if (_mirrorStateRcd != heldEntity)
+        {
+            _mirrorStateRcd = heldEntity;
+            _useMirrorPrototype = rcd.UseMirrorPrototype;
+        }
+        // Starlight - end
+
         // Determine if mirrored
         var cachedProto = rcd.CachedPrototype;
         var wantMirror = _useMirrorPrototype && !string.IsNullOrEmpty(cachedProto.MirrorPrototype);
@@ -143,11 +160,11 @@ public sealed partial class RCDConstructionGhostSystem : EntitySystem
         // Starlight End: held-tool rotation resync
 
         // If the placer has not changed, exit
-        // Starlight edit Start
+        // Starlight - start
         if (heldEntity == placerEntity &&
-            prototype == placerProto &&
+            _lastPlacementPrototype == prototype &&
             _placementManager.CurrentPermission?.PlacementOption == desiredMode)
-        // Starlight edit End
+        // Starlight - end
             return;
 
         // Create a new placer
@@ -163,5 +180,6 @@ public sealed partial class RCDConstructionGhostSystem : EntitySystem
 
         _placementManager.Clear();
         _placementManager.BeginPlacing(newObjInfo);
+        _lastPlacementPrototype = prototype; // Starlight
     }
 }
