@@ -1,14 +1,168 @@
+# it's important these values match the ones in lights.yml - these PointLight values are used in pre-mapinit lighting
+# if they don't match, the map's will not be lit as you'd expect it to be from mapping!
 - type: !PartialOnly entity
-  id: AlwaysPoweredWallLight
+  id: AlwaysPoweredWallLight #uses LightTube
   components:
   - type: PointLight
     color: "#FFE2C8"
-    energy: 0.6
     radius: 7
+    energy: 0.6
     softness: 1.5
     falloff: 8
     curveFactor: 1
 
+- type: !PartialOnly entity
+  id: PoweredSmallLightEmpty #uses LightBulb
+  components:
+  - type: PointLight
+    color: "#FFD1A3"
+    radius: 6
+    energy: 0.6
+    softness: 1.3
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants #uses LedLightTube
+    values:
+    - PoweredlightLED
+    - AlwaysPoweredLightLED
+  components:
+  - type: PointLight
+    color: "#F6EFE4"
+    radius: 8.5
+    energy: 0.65
+    softness: 1.3
+
+- type: !PartialOnly entity
+  id: PoweredLEDSmallLight #uses LedLightBulb
+  components:
+  - type: PointLight
+    color: "#F6EFE4"
+    radius: 6.5
+    energy: 0.6
+    softness: 1.3
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants #uses ExteriorLightTube
+    values:
+    - PoweredlightExterior
+    - AlwaysPoweredLightExterior
+  components:
+  - type: PointLight
+    color: "#B4FCF0FF"
+    radius: 12
+    energy: 4
+    softness: 0.8
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants #uses SodiumLightTube
+    values:
+    - PoweredlightSodium
+    - AlwaysPoweredlightSodium
+  components:
+  - type: PointLight
+    color: "#FFAF38"
+    radius: 10
+    energy: 4
+    softness: 0.5
+
+# Colored lights
+- type: !PartialOnly entity
+  id: !type:CreateVariants #uses LightTubeCrystalCyan
+    values:
+    - PoweredlightCyan
+    - AlwaysPoweredlightCyan
+  components:
+  - type: PointLight
+    color: "#5ae8ed"
+    radius: 8
+    energy: 3
+    softness: 0.5
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants #uses LightTubeCrystalBlue
+    values:
+    - PoweredlightBlue
+    - AlwaysPoweredlightBlue
+  components:
+  - type: PointLight
+    color: "#4ca1eb"
+    radius: 8
+    energy: 3
+    softness: 0.5
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants #uses LightTubeCrystalYellow
+    values:
+    - PoweredlightYellow
+    - AlwaysPoweredlightYellow
+  components:
+  - type: PointLight
+    color: "#edd25a"
+    radius: 8
+    energy: 3
+    softness: 0.5
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants #uses LightTubeCrystalPink
+    values:
+    - PoweredlightPink
+    - AlwaysPoweredlightPink
+  components:
+  - type: PointLight
+    color: "#f075c7"
+    radius: 8
+    energy: 3
+    softness: 0.5
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants #uses LightTubeCrystalOrange
+    values:
+    - PoweredlightOrange
+    - AlwaysPoweredlightOrange
+  components:
+  - type: PointLight
+    color: "#ea863e"
+    radius: 8
+    energy: 3
+    softness: 0.5
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants #uses LightTubeCrystalBlack
+    values:
+    - PoweredlightBlack
+    - AlwaysPoweredlightBlack
+  components:
+  - type: PointLight
+    color: "#4d4d4d"
+    radius: 8
+    energy: 1
+    softness: 0.5
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants #uses LightTubeCrystalRed
+    values:
+    - PoweredlightRed
+    - AlwaysPoweredlightRed
+  components:
+  - type: PointLight
+    color: "#ec5555"
+    radius: 8
+    energy: 3
+    softness: 0.5
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants #uses LightTubeCrystalRed
+    values:
+    - PoweredlightGreen
+    - AlwaysPoweredlightGreen
+  components:
+  - type: PointLight
+    color: "#7eeb4c"
+    radius: 8
+    energy: 3
+    softness: 0.5
+
+# Battery for lights
 - type: !PartialOnly entity
   id: !type:CreateVariants
     values: [ PoweredlightEmpty, PoweredSmallLightEmpty ]

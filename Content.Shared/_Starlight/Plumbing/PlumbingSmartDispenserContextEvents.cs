@@ -1,4 +1,5 @@
 using Content.Shared.Chemistry;
+using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Plumbing;
@@ -9,13 +10,13 @@ namespace Content.Shared._Starlight.Plumbing;
 [Serializable, NetSerializable]
 public sealed class PlumbingSmartDispenserContextDispenseEvent(
     NetEntity dispenser,
-    string reagentId,
+    ReagentId reagentId,
     ReagentDispenserDispenseAmount fallbackAmount)
     : EntityEventArgs
 {
     public readonly NetEntity Dispenser = dispenser;
 
-    public readonly string ReagentId = reagentId;
+    public readonly ReagentId ReagentId = reagentId;
 
     /// <summary>
     /// Amount selected in the dispenser window, for held containers that have no transfer amount of their own.

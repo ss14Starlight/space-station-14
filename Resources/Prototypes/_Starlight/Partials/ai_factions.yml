@@ -15,6 +15,7 @@
   - CosmicCult
   - MoffNarsianDemon
   - Floral
+  - SimpleHostile
   - TheDarkHostile
 
 - type: !PartialOnly npcFaction

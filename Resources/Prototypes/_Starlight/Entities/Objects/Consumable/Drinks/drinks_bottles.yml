@@ -17,6 +17,9 @@
   - type: Sealable
   - type: StaticPrice
     price: 300
+  - type: Tag
+    tags:
+      - Vodkizine #Bounty
 
 # Blimpuf - The non emptyish variant of the used bottle below.
 - type: entity

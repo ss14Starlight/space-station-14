@@ -1,0 +1,28 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀             [bold]EXECUTION AND DO-NOT-REVIVE ORDER[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+Name of Prisoner:  [form]
+Former position of Prisoner: [form]
+
+Crimes committed:
+⠀• [form]
+
+Reason for the execution and DNR:
+⠀• [form]
+
+Authority ordering the Execution (Name + Position): [signature]
+
+⠀ [italic]This order can only be issued by the (Acting) Captain of the[/italic]
+⠀ [italic]station. If a Magistrate is present, they can overrule the Captain[/italic]
+⠀ [italic]on the decision, and their stamp is required.[/italic]
+⠀ [italic]The prisoner is to remain securely restrained until the execution.[/italic]
+⠀ [italic]The execution method may be chosen by the prisoner, to the[/italic]
+⠀ [italic]extent permissible under law, and must be as humane as possible.[/italic]
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]

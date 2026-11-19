@@ -16,6 +16,8 @@
           cost: 2
         - proto: FoodMealCubancarp
         - proto: MedkitFilled
+        - proto: PKAUpgradeRangeExp
+          cost: 3
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
@@ -49,6 +51,8 @@
           cost: 2
         - proto: CentrifugeMachineCircuitboard
           cost: 2
+        - proto: PKAUpgradeRangeExp
+          cost: 3
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
@@ -95,6 +99,10 @@
           prob: 0.5
         - proto: FoodMeatDragon
           cost: 10
+        - proto: Weaponpkashotgun
+          cost: 10
+        - proto: PKAUpgradeRangeExp
+          cost: 3
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity

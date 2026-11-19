@@ -1,0 +1,25 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀                             [bold]CRIMINAL COMPLAINT[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+I, [signature], believe that the following person has violated Corporate Law.
+
+Name of violator: [form]
+
+Description of misconduct: [form]
+
+Criminal charges:
+
+⠀• [form]
+⠀• [form]
+⠀• [form]
+⠀• [form]
+
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+

@@ -22,6 +22,7 @@ using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input.Binding;
+using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
@@ -103,6 +104,11 @@ public abstract partial class SharedStunSystem
             // If it's null then we don't want to stand up
             if (!knockedDown.AutoStand || knockedDown.DoAfterId.HasValue || knockedDown.NextUpdate > GameTiming.CurTime)
                 continue;
+
+            // Starlight start
+            if (_netManager.IsClient)
+                continue;
+            // Starlight end
 
             TryStanding(uid);
         }

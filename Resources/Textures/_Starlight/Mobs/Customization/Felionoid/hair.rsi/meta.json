@@ -60,6 +60,78 @@
       "directions": 4,
       "copyright": "Darkrell",
       "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "frontbangs",
+      "directions": 4,
+      "copyright": "Howdyth",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "matted",
+      "directions": 4,
+      "copyright": "Howdyth",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "mattedshort",
+      "directions": 4,
+      "copyright": "Howdyth",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "covered",
+      "directions": 4,
+      "copyright": "Howdyth",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "bubbleponytail",
+      "directions": 4,
+      "copyright": "Howdyth",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "mullet",
+      "directions": 4,
+      "copyright": "Howdyth",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "pigtails",
+      "directions": 4,
+      "copyright": "Howdyth",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "straightbangs",
+      "directions": 4,
+      "copyright": "Howdyth",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "overtheshoulderbraid",
+      "directions": 4,
+      "copyright": "Howdyth",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "surferboy",
+      "directions": 4,
+      "copyright": "Howdyth",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "longpigtails",
+      "directions": 4,
+      "copyright": "Howdyth",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "longponytailfront",
+      "directions": 4,
+      "copyright": "Howdyth",
+      "license": "CC-BY-SA-3.0"
     }
   ]
 }

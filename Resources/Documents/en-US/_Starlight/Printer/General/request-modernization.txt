@@ -1,0 +1,18 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀                         [bold]MODERNIZATION REQUEST[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+I, [signature], request to upgrade the instrumentation in the following department: [form]
+
+Reason for request: [form]
+
+List of upgrades:
+• [form]
+• [form]
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
