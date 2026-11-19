@@ -1,0 +1,4 @@
+- files: ["heavy_drop1.ogg", "heavy_drop2.ogg"]
+  license: "CC0-1.0"
+  copyright: "Made from freesound recordings by Rottako, cleaned up and trimmed by ArcaneMusic, converted to mono. Taken from tgstation at 7784693238703411f51396693fe29fd2a146a7ec"
+  source: "https://github.com/tgstation/tgstation/blob/7784693238703411f51396693fe29fd2a146a7ec/sound/effects/license.txt"

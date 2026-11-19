@@ -6,6 +6,7 @@ using Content.IntegrationTests.Tests.Interaction;
 using Content.Server._Starlight.Silicons.Bots;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.Silicons.Bots;
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
@@ -165,6 +166,28 @@ public sealed class MulebotTest : InteractionTest
     }
 
     [Test]
+    public async Task DoesNotDriveThroughADesk()
+    {
+        // A desk with a cargo windoor on it, which it could open, but the table is still in the way.
+        var beacons = await Build(12, new() { [0] = "CargoBay", [9] = "Bar" }, new() { [5] = "WindoorSecureCargoLocked" });
+        await Server.WaitPost(() => SEntMan.SpawnAtPosition("Table", At(5)));
+        await RunSeconds(2);
+        var mule = Mule();
+        var crate = await Load(mule);
+        await Server.WaitPost(() => mule.Comp.AutoReturn = false);
+
+        await Send(mule, beacons[0], beacons[9]);
+        await RunSeconds(15);
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(mule.Comp.Waypoints, Is.Empty, "Plans no route through the desk");
+            Assert.That(_muleSystem.TryGetLoad(mule, out _), "No way round the desk, so it never gets there");
+            Assert.That(GridPosition(_mule).X, Is.LessThan(5f));
+        });
+    }
+
+    [Test]
     public async Task NeverOpensSecurity()
     {
         var beacons = await Build(12, new() { [0] = "CargoBay", [9] = "Security" },
@@ -195,6 +218,82 @@ public sealed class MulebotTest : InteractionTest
         await PlaceInHands("CargoIDCard");
         await Activate();
         await Server.WaitAssertion(() => Assert.That(SEntMan.System<SharedUserInterfaceSystem>().IsUiOpen(mule, MuleUiKey.Key, SPlayer), "Opens for cargo"));
+    }
+
+    [Test]
+    public async Task StopForgetsWhereItWasSent()
+    {
+        var beacons = await Build(12, new() { [0] = "CargoBay", [10] = "Bar" });
+        var mule = Mule();
+
+        await Send(mule, beacons[0], beacons[10]);
+        await RunSeconds(1);
+        await Server.WaitPost(() => _muleSystem.Command(mule, MuleCommand.Stop));
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(mule.Comp.Mode, Is.EqualTo(MuleMode.Idle));
+            Assert.That(mule.Comp.Destination, Is.Null);
+        });
+    }
+
+    [Test]
+    public async Task UnloadsEvenWithReportsOff()
+    {
+        var beacons = await Build(12, new() { [0] = "CargoBay", [10] = "Bar" });
+        var mule = Mule();
+        var crate = await Load(mule);
+        await Server.WaitPost(() =>
+        {
+            _muleSystem.Command(mule, MuleCommand.Report);
+            mule.Comp.AutoReturn = false;
+        });
+
+        await Send(mule, beacons[0], beacons[10]);
+        await RunSeconds(20);
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(mule.Comp.Report, Is.False);
+            Assert.That(GridPosition(crate).X, Is.EqualTo(10.5f).Within(1f));
+        });
+    }
+
+    [Test]
+    public async Task SwitchesOffWhenTheCellRunsFlat()
+    {
+        var beacons = await Build(12, new() { [0] = "CargoBay", [10] = "Bar" });
+        var mule = Mule();
+
+        // Enough for about four tiles.
+        await Server.WaitPost(() =>
+        {
+            SEntMan.System<PowerCellSystem>().TryGetBatteryFromSlot(_mule, out var battery);
+            SEntMan.System<SharedBatterySystem>().SetCharge(battery!.Value.AsNullable(), mule.Comp.ChargePerTile * 4.5f);
+        });
+
+        await Send(mule, beacons[0], beacons[10]);
+        await RunSeconds(15);
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(mule.Comp.On, Is.False);
+            Assert.That(mule.Comp.Mode, Is.EqualTo(MuleMode.Idle));
+            Assert.That(GridPosition(_mule).X, Is.LessThan(7f), "Should stop well short of the bar");
+        });
+    }
+
+    [Test]
+    public async Task CellIsBehindThePanel()
+    {
+        await Build(4, new());
+        await Server.WaitAssertion(() =>
+        {
+            var slots = SEntMan.System<ItemSlotsSystem>();
+            var slot = SEntMan.GetComponent<PowerCellSlotComponent>(_mule).CellSlotId;
+            Assert.That(slots.TryEject(_mule, slot, SPlayer, out _), Is.False, "Can't take the cell with the panel shut");
+            Assert.That(Mule().Comp.On, "Still running");
+        });
     }
 
     [Test]
@@ -270,7 +369,6 @@ public sealed class MulebotTest : InteractionTest
     {
         await Server.WaitPost(() =>
         {
-            _muleSystem.Command(mule, MuleCommand.Power);
             _muleSystem.SetBeacon(mule, home, true);
             _muleSystem.SetBeacon(mule, destination, false);
             _muleSystem.Command(mule, MuleCommand.Go);

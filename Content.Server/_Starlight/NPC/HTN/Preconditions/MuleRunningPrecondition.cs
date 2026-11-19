@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Silicons.Bots;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN.Preconditions;
 using Content.Shared._Starlight.Silicons.Bots;
@@ -14,8 +15,6 @@ public sealed partial class MuleRunningPrecondition : HTNPrecondition
     public override bool IsMet(NPCBlackboard blackboard)
     {
         var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
-        return _entManager.TryGetComponent<MuleComponent>(owner, out var mule)
-            && mule.On
-            && mule.Mode is MuleMode.Delivering or MuleMode.GoingHome or MuleMode.Blocked;
+        return _entManager.TryGetComponent<MuleComponent>(owner, out var mule) && MuleSystem.IsRunning(mule);
     }
 }

@@ -32,7 +32,7 @@ public sealed partial class MuleComponent : Component
     /// Whether it's switched on.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool On;
+    public bool On = true;
 
     [DataField, AutoNetworkedField]
     public MuleMode Mode = MuleMode.Idle;
@@ -80,7 +80,7 @@ public sealed partial class MuleComponent : Component
     /// Charge used for every tile driven.
     /// </summary>
     [DataField]
-    public float ChargePerTile = 0.2f;
+    public float ChargePerTile = 0.216f;
 
     [DataField]
     public SoundSpecifier SighSound = new SoundPathSpecifier("/Audio/Machines/buzz-sigh.ogg");
@@ -92,7 +92,7 @@ public sealed partial class MuleComponent : Component
     public SoundSpecifier ArrivedSound = new SoundPathSpecifier("/Audio/Machines/chime.ogg");
 
     [DataField]
-    public SoundSpecifier LoadSound = new SoundPathSpecifier("/Audio/Effects/thudswoosh.ogg");
+    public SoundSpecifier LoadSound = new SoundCollectionSpecifier("MuleLoad");
 
     /// <summary>
     /// Doors on the current route it may open with <see cref="EntranceAccess"/>.
@@ -110,16 +110,37 @@ public sealed partial class MuleComponent : Component
     public TimeSpan NextCheck;
 
     /// <summary>
-    /// Where it was when it last moved a whole tile, and when.
+    /// When it may next look for a route after failing to find one.
     /// </summary>
     [ViewVariables]
+    public TimeSpan NextRouteTry;
+
+    /// <summary>
+    /// When its light stops flashing.
+    /// </summary>
+    [ViewVariables]
+    public TimeSpan? FlashUntil;
+
+    [ViewVariables]
     public Vector2 LastPosition;
+
+    /// <summary>
+    /// Distance driven that hasn't been paid for in charge yet.
+    /// </summary>
+    [ViewVariables]
+    public float Travelled;
+
+    /// <summary>
+    /// Where it was at the last stuck check, and when.
+    /// </summary>
+    [ViewVariables]
+    public Vector2 StuckPosition;
 
     [ViewVariables]
     public TimeSpan LastMoved;
 
     /// <summary>
-    /// How many checks in a row it hasn't moved.
+    /// How many stuck checks this run it hasn't got anywhere.
     /// </summary>
     [ViewVariables]
     public int Stuck;
@@ -132,11 +153,10 @@ public enum MuleMode : byte
     Delivering,
     GoingHome,
     Blocked,
-    NoRoute,
 }
 
 [Serializable, NetSerializable]
 public enum MuleVisuals : byte
 {
-    On,
+    Flash,
 }

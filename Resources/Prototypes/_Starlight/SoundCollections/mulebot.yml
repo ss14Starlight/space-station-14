@@ -1,0 +1,5 @@
+- type: soundCollection
+  id: MuleLoad
+  files:
+  - /Audio/_Starlight/Effects/Mulebot/heavy_drop1.ogg
+  - /Audio/_Starlight/Effects/Mulebot/heavy_drop2.ogg

@@ -27,8 +27,8 @@ public sealed partial class MuleWindow : FancyWindow
         AutoReturnBox.OnPressed += _ => OnCommand?.Invoke(MuleCommand.AutoReturn);
         AutoPickupBox.OnPressed += _ => OnCommand?.Invoke(MuleCommand.AutoPickup);
         ReportBox.OnPressed += _ => OnCommand?.Invoke(MuleCommand.Report);
-        DestinationOption.OnItemSelected += args => OnBeaconPicked?.Invoke(_beacons[args.Id], false);
-        HomeOption.OnItemSelected += args => OnBeaconPicked?.Invoke(_beacons[args.Id], true);
+        DestinationOption.OnItemSelected += args => Pick(args.Id, false);
+        HomeOption.OnItemSelected += args => Pick(args.Id, true);
     }
 
     public void UpdateState(MuleBoundUserInterfaceState state)
@@ -38,7 +38,6 @@ public sealed partial class MuleWindow : FancyWindow
             MuleMode.Delivering => "mule-mode-delivering",
             MuleMode.GoingHome => "mule-mode-going-home",
             MuleMode.Blocked => "mule-mode-blocked",
-            MuleMode.NoRoute => "mule-mode-no-route",
             _ => "mule-mode-idle",
         };
         StatusLabel.Text = Loc.GetString("mule-window-status", ("status", Loc.GetString(status)));
@@ -57,6 +56,8 @@ public sealed partial class MuleWindow : FancyWindow
         _beacons.Clear();
         DestinationOption.Clear();
         HomeOption.Clear();
+        DestinationOption.AddItem(Loc.GetString("mule-window-none"), -1);
+        HomeOption.AddItem(Loc.GetString("mule-window-none"), -1);
         foreach (var (beacon, name) in state.Beacons.OrderBy(pair => pair.Value))
         {
             DestinationOption.AddItem(name, _beacons.Count);
@@ -68,10 +69,14 @@ public sealed partial class MuleWindow : FancyWindow
         Select(HomeOption, state.Home);
     }
 
+    private void Pick(int id, bool home)
+    {
+        if (id >= 0)
+            OnBeaconPicked?.Invoke(_beacons[id], home);
+    }
+
     private void Select(OptionButton option, NetEntity? beacon)
     {
-        var index = beacon is { } picked ? _beacons.IndexOf(picked) : -1;
-        if (index >= 0)
-            option.SelectId(index);
+        option.SelectId(beacon is { } picked ? _beacons.IndexOf(picked) : -1);
     }
 }

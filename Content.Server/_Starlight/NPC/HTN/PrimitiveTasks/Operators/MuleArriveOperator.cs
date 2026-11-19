@@ -23,7 +23,7 @@ public sealed partial class MuleArriveOperator : HTNOperator
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
     {
         var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
-        if (!_entManager.TryGetComponent<MuleComponent>(owner, out var mule))
+        if (!_entManager.TryGetComponent<MuleComponent>(owner, out var mule) || !MuleSystem.IsRunning(mule))
             return HTNOperatorStatus.Failed;
 
         _mule.Arrive((owner, mule));

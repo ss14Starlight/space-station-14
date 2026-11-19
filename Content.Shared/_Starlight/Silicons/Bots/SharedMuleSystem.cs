@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.DragDrop;
 using Content.Shared.Examine;
 using Content.Shared.Maps;
@@ -7,6 +8,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Storage.Components;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Whitelist;
+using Content.Shared.Wires;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -18,7 +20,10 @@ public abstract partial class SharedMuleSystem : EntitySystem
 {
     [Dependency] protected SharedAudioSystem Audio = default!;
     [Dependency] protected SharedContainerSystem Container = default!;
-    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] protected SharedAppearanceSystem Appearance = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private SharedPointLightSystem _light = default!;
+    [Dependency] private SharedWiresSystem _wires = default!;
     [Dependency] private SharedEntityStorageSystem _entityStorage = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
@@ -34,7 +39,8 @@ public abstract partial class SharedMuleSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnCanDropTarget(Entity<MuleComponent> ent, ref CanDropTargetEvent args)
     {
-        args.CanDrop |= CanLoad(ent, args.Dragged);
+        // Anything can be offered; it buzzes at what it won't take.
+        args.CanDrop |= args.Dragged != ent.Owner;
         args.Handled = true;
     }
 
@@ -47,6 +53,21 @@ public abstract partial class SharedMuleSystem : EntitySystem
         args.Handled = true;
         if (!TryLoad(ent, args.Dragged))
             Audio.PlayPredicted(ent.Comp.SighSound, ent, args.User);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnCellInsertAttempt(Entity<MuleComponent> ent, ref ItemSlotInsertAttemptEvent args)
+    {
+        // The cell sits behind the maintenance panel.
+        if (args.User != null && !_wires.IsPanelOpen(ent.Owner))
+            args.Cancelled = true;
+    }
+
+    [SubscribeLocalEvent]
+    private void OnCellEjectAttempt(Entity<MuleComponent> ent, ref ItemSlotEjectAttemptEvent args)
+    {
+        if (args.User != null && !_wires.IsPanelOpen(ent.Owner))
+            args.Cancelled = true;
     }
 
     [SubscribeLocalEvent]
@@ -148,10 +169,7 @@ public abstract partial class SharedMuleSystem : EntitySystem
     protected void SetOn(Entity<MuleComponent> ent, bool on)
     {
         ent.Comp.On = on;
-        if (!on)
-            ent.Comp.Mode = MuleMode.Idle;
-
-        _appearance.SetData(ent, MuleVisuals.On, on);
+        _light.SetEnabled(ent, on);
         Dirty(ent);
     }
 }

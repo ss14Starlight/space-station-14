@@ -27,7 +27,8 @@ public sealed partial class MuleDriveOperator : HTNOperator
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
     {
         var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
-        if (!_entManager.TryGetComponent<MuleComponent>(owner, out var mule))
+        // Switched off or stopped on the way.
+        if (!_entManager.TryGetComponent<MuleComponent>(owner, out var mule) || !MuleSystem.IsRunning(mule))
             return HTNOperatorStatus.Failed;
 
         if (mule.Waypoints.Count == 0)

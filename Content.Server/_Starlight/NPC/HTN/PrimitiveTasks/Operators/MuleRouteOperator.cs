@@ -28,11 +28,9 @@ public sealed partial class MuleRouteOperator : HTNOperator
         if (!_entManager.TryGetComponent<MuleComponent>(owner, out var mule))
             return Task.FromResult<(bool, Dictionary<string, object>?)>((false, null));
 
+        // No way there yet: it waits and tries again rather than giving up.
         if (!_mule.PlanRoute((owner, mule)))
-        {
-            _mule.NoRoute((owner, mule));
             return Task.FromResult<(bool, Dictionary<string, object>?)>((false, null));
-        }
 
         return Task.FromResult<(bool, Dictionary<string, object>?)>((true, null));
     }

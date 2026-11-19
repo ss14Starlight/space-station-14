@@ -2,22 +2,22 @@
   parent: MobSiliconBase
   id: MobMulebot
   name: MULEbot
-  description: A Multiple Utility Load Effector bot. It carries crates to wherever it's told.
+  description: A boxy cargo robot that hauls one crate at a time to wherever it's sent, then trundles home.
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Silicon/Bots/mulebot.rsi
     noRot: true
     layers:
     - state: off
-      map: [ "enum.MuleVisuals.On" ]
+      map: [ "enum.MuleVisuals.Flash" ]
     - state: hatch
       map: [ "hatch" ]
       visible: false
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.MuleVisuals.On:
-        enum.MuleVisuals.On:
+      enum.MuleVisuals.Flash:
+        enum.MuleVisuals.Flash:
           True: { state: on }
           False: { state: off }
       enum.WiresVisuals.MaintenancePanelState:
@@ -61,8 +61,17 @@
     tags:
     - Cargo
     - Maintenance
+    - Robotics
   - type: AccessReader
-    access: [["Cargo"], ["Research"]]
+    access: [["Cargo"], ["Robotics"]]
+  - type: PointLight
+    radius: 3
+    energy: 0.8
+    color: "#ffcc99"
+  - type: Repairable
+    damageValue: -10
+    doAfterDelay: 1
+    fuelCost: 0.5
   - type: ActivatableUI
     key: enum.MuleUiKey.Key
     requireActiveHand: false
@@ -92,8 +101,8 @@
       NavPry: !type:Bool
         true
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 2
+    baseWalkSpeed: 2.2
+    baseSprintSpeed: 2.2
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -111,7 +120,17 @@
         !type:DamageTrigger
         damage: 50
       behaviors:
-      - !type:EmptyAllContainersBehaviour
+      - !type:EmptyContainersBehaviour
+        containers:
+        - mule_load
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          EffectSparks:
+            min: 1
+            max: 1
+          LeftArmBorg:
+            min: 0
+            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
       - !type:PlaySoundBehavior

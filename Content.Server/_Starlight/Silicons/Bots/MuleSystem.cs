@@ -11,14 +11,19 @@ using Content.Shared.Access.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
+using Content.Shared.Emp;
+using Content.Shared.NPC;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Pinpointer;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.PowerCell;
+using Content.Shared.PowerCell.Components;
 using Content.Shared.StationRecords;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
+using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
@@ -49,6 +54,8 @@ public sealed partial class MuleSystem : SharedMuleSystem
 
     private static readonly TimeSpan CheckDelay = TimeSpan.FromSeconds(0.25);
     private static readonly TimeSpan StuckDelay = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan RouteRetryDelay = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan FlashLength = TimeSpan.FromSeconds(0.4);
     private const int MaxStuck = 10;
     private static readonly StationRecordKey[] NoKeys = [];
 
@@ -63,9 +70,21 @@ public sealed partial class MuleSystem : SharedMuleSystem
     private const int WaypointSpacing = 6;
 
     /// <summary>
-    /// How hard to look for a route, in tiles searched. Enough for most of a station.
+    /// Longest route it will take, in tiles.
     /// </summary>
-    private const int RouteLimit = 20000;
+    private const int MaxRouteLength = 150;
+
+    /// <summary>
+    /// How many tiles the route search may look at.
+    /// </summary>
+    private const int RouteSearchLimit = 4000;
+
+    [SubscribeLocalEvent]
+    private void OnMapInit(Entity<MuleComponent> ent, ref MapInitEvent args)
+    {
+        SetOn(ent, ent.Comp.On);
+        ent.Comp.Home ??= NearestBeacon(ent);
+    }
 
     [SubscribeLocalEvent]
     private void OnUiOpened(Entity<MuleComponent> ent, ref BoundUIOpenedEvent args)
@@ -85,6 +104,23 @@ public sealed partial class MuleSystem : SharedMuleSystem
         SetBeacon(ent, GetEntity(args.Beacon), args.Home);
     }
 
+    [SubscribeLocalEvent]
+    private void OnCellRemoved(Entity<MuleComponent> ent, ref EntRemovedFromContainerMessage args)
+    {
+        if (TryComp<PowerCellSlotComponent>(ent, out var slot) && args.Container.ID == slot.CellSlotId)
+            TurnOff(ent);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnEmp(Entity<MuleComponent> ent, ref EmpPulseEvent args)
+    {
+        if (!ent.Comp.On)
+            return;
+
+        args.Affected = true;
+        TurnOff(ent);
+    }
+
     /// <summary>
     /// Carries out an order from its control panel.
     /// </summary>
@@ -93,27 +129,30 @@ public sealed partial class MuleSystem : SharedMuleSystem
         var comp = ent.Comp;
         switch (command)
         {
+            case MuleCommand.Power when comp.On:
+                TurnOff(ent);
+                break;
             case MuleCommand.Power:
-                if (!comp.On && !_powerCell.HasCharge(ent.Owner, comp.ChargePerTile))
+                if (!_powerCell.HasCharge(ent.Owner, comp.ChargePerTile))
                 {
                     if (user != null)
                         _popup.PopupEntity(Loc.GetString("mule-no-power"), ent, user.Value);
                     break;
                 }
 
-                SetOn(ent, !comp.On);
+                SetOn(ent, true);
                 comp.Home ??= NearestBeacon(ent);
-                SetMode(ent, MuleMode.Idle);
                 break;
             case MuleCommand.Stop:
-                SetMode(ent, MuleMode.Idle);
+                if (comp.Mode != MuleMode.Idle)
+                    GoIdle(ent);
                 break;
             case MuleCommand.Go:
-                if (comp.On && comp.Mode is MuleMode.Idle or MuleMode.NoRoute && comp.Destination != null)
+                if (comp.On && comp.Mode == MuleMode.Idle && comp.Destination != null)
                     SetMode(ent, comp.Destination == comp.Home ? MuleMode.GoingHome : MuleMode.Delivering);
                 break;
             case MuleCommand.Home:
-                if (comp.On && comp.Mode is MuleMode.Idle or MuleMode.NoRoute or MuleMode.Delivering && comp.Home != null)
+                if (comp.On && comp.Mode is MuleMode.Idle or MuleMode.Delivering && comp.Home != null)
                 {
                     comp.Destination = comp.Home;
                     SetMode(ent, MuleMode.GoingHome);
@@ -162,18 +201,38 @@ public sealed partial class MuleSystem : SharedMuleSystem
         var query = EntityQueryEnumerator<MuleComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var comp, out var xform))
         {
-            if (!IsMoving(comp) || now < comp.NextCheck)
+            if (now < comp.NextCheck)
                 continue;
 
             comp.NextCheck = now + CheckDelay;
+            if (comp.FlashUntil is { } until && now >= until)
+            {
+                comp.FlashUntil = null;
+                Appearance.SetData(uid, MuleVisuals.Flash, false);
+            }
+
+            if (!IsRunning(comp))
+                continue;
+
             OpenDoors((uid, comp), xform);
             CheckProgress((uid, comp), xform, now);
         }
     }
 
-    private static bool IsMoving(MuleComponent comp)
+    /// <summary>
+    /// Whether it's switched on and out on a run.
+    /// </summary>
+    public static bool IsRunning(MuleComponent comp)
     {
         return comp.On && comp.Mode is MuleMode.Delivering or MuleMode.GoingHome or MuleMode.Blocked;
+    }
+
+    /// <summary>
+    /// Where the current run is headed.
+    /// </summary>
+    private static EntityUid? Target(MuleComponent comp)
+    {
+        return comp.Mode == MuleMode.GoingHome ? comp.Home : comp.Destination;
     }
 
     /// <summary>
@@ -200,59 +259,71 @@ public sealed partial class MuleSystem : SharedMuleSystem
     {
         var comp = ent.Comp;
         var position = _transform.GetWorldPosition(xform);
-        var moved = (position - comp.LastPosition).Length();
+        comp.Travelled += (position - comp.LastPosition).Length();
+        comp.LastPosition = position;
 
-        if (moved >= 1f)
+        if (comp.Travelled >= 1f)
         {
-            comp.LastPosition = position;
-            comp.LastMoved = now;
-            if (!_powerCell.TryUseCharge(ent.Owner, comp.ChargePerTile * MathF.Floor(moved)))
+            var tiles = MathF.Floor(comp.Travelled);
+            comp.Travelled -= tiles;
+            if (!_powerCell.TryUseCharge(ent.Owner, comp.ChargePerTile * tiles))
             {
-                SetOn(ent, false);
-                SetMode(ent, MuleMode.Idle);
+                TurnOff(ent);
                 return;
             }
-
-            if (comp.Mode == MuleMode.Blocked)
-                SetMode(ent, comp.Destination == comp.Home ? MuleMode.GoingHome : MuleMode.Delivering, replan: false);
-
-            comp.Stuck = 0;
-            return;
         }
 
         if (now < comp.LastMoved + StuckDelay)
             return;
 
+        // Every couple of seconds it checks whether it got anywhere.
+        var moved = (position - comp.StuckPosition).Length() >= 0.5f;
+        comp.StuckPosition = position;
         comp.LastMoved = now;
+
+        if (moved)
+        {
+            if (comp.Mode == MuleMode.Blocked)
+                SetMode(ent, comp.Destination == comp.Home ? MuleMode.GoingHome : MuleMode.Delivering, replan: false);
+            return;
+        }
+
         comp.Stuck++;
         comp.Mode = MuleMode.Blocked;
         Dirty(ent);
         UpdateUi(ent);
 
-        if (comp.Stuck >= MaxStuck)
-        {
-            comp.Stuck = 0;
-            Buzz(ent, comp.AnnoyedSound, "mule-buzz-annoyed");
-        }
-        else
+        if (comp.Stuck < MaxStuck)
         {
             Buzz(ent, comp.SighSound, "mule-buzz-sigh");
+            return;
         }
+
+        // Fed up: try another way round.
+        comp.Stuck = 0;
+        comp.Waypoints.Clear();
+        Buzz(ent, comp.AnnoyedSound, "mule-buzz-annoyed");
+        if (TryComp<HTNComponent>(ent, out var htn))
+            _htn.Replan(htn);
     }
 
     /// <summary>
-    /// Plans the drive to the destination: up to the beacon, or to the last tile before a door it can't get through.
-    /// Fills <see cref="MuleComponent.Waypoints"/> and returns false if there's no way there at all.
+    /// Plans the drive to where it's going: up to the beacon, or to the last tile before a door it can't get through.
+    /// Fills <see cref="MuleComponent.Waypoints"/> and returns false if there's no way there right now.
     /// </summary>
     public bool PlanRoute(Entity<MuleComponent> ent)
     {
         var comp = ent.Comp;
-        if (comp.Destination is not { } beacon || TerminatingOrDeleted(beacon))
+        if (Target(comp) is not { } beacon || TerminatingOrDeleted(beacon))
             return false;
 
         // Still on the way along a route planned for this run.
         if (comp.Waypoints.Count > 0)
             return true;
+
+        var now = _timing.CurTime;
+        if (now < comp.NextRouteTry)
+            return false;
 
         var xform = Transform(ent);
         if (xform.GridUid is not { } gridUid || Transform(beacon).GridUid != gridUid || !TryComp<MapGridComponent>(gridUid, out var grid))
@@ -260,7 +331,7 @@ public sealed partial class MuleSystem : SharedMuleSystem
 
         var ownAccess = _accessReader.FindAccessTags(ent);
         var entranceAccess = ownAccess.Concat(comp.EntranceAccess).ToHashSet();
-        var (_, mask) = _physics.GetHardCollision(ent);
+        var collision = _physics.GetHardCollision(ent);
         var costs = new Dictionary<Vector2i, float>();
         var doors = new Dictionary<Vector2i, (EntityUid Door, DoorAccess Access)>();
 
@@ -269,22 +340,46 @@ public sealed partial class MuleSystem : SharedMuleSystem
             if (costs.TryGetValue(tile, out var known))
                 return known;
 
-            var cost = TileCostUncached(gridUid, grid, tile, mask, ownAccess, entranceAccess, doors);
+            var cost = TileCostUncached(gridUid, grid, tile, collision, ownAccess, entranceAccess, doors);
             costs[tile] = cost;
             return cost;
         }
 
         var start = _map.CoordinatesToTile(gridUid, grid, xform.Coordinates);
         var end = _map.CoordinatesToTile(gridUid, grid, Transform(beacon).Coordinates);
+
+        // A beacon under a crate or in a wall would send the search round the whole station; aim beside it instead.
+        if (TileCost(end).Equals(0f))
+        {
+            var open = new[] { new Vector2i(0, 1), new Vector2i(0, -1), new Vector2i(1, 0), new Vector2i(-1, 0) }
+                .Select(offset => end + offset)
+                .Where(next => !TileCost(next).Equals(0f))
+                .Select(next => (Vector2i?) next)
+                .FirstOrDefault();
+
+            if (open is not { } beside)
+            {
+                comp.NextRouteTry = now + RouteRetryDelay;
+                return false;
+            }
+
+            end = beside;
+        }
+
         var path = _pathfinding.GetPath(new PathfindingSystem.SimplePathArgs
         {
             Start = start,
             End = end,
-            Limit = RouteLimit,
+            Limit = RouteSearchLimit,
             TileCost = TileCost,
         }).Path;
-        if (path == null || path.Count == 0)
+
+        if (path == null || path.Count == 0 || path.Count > MaxRouteLength)
+        {
+            // Try again in a bit; a door or firelock may open.
+            comp.NextRouteTry = now + RouteRetryDelay;
             return false;
+        }
 
         // Walk it, cutting it short at a door it may not open. Routes get replanned on the way, so an entrance
         // already picked this run stays the only one.
@@ -326,51 +421,56 @@ public sealed partial class MuleSystem : SharedMuleSystem
         EntityUid gridUid,
         MapGridComponent grid,
         Vector2i tile,
-        int mask,
+        (int Layer, int Mask) collision,
         ICollection<ProtoId<AccessLevelPrototype>> ownAccess,
         ICollection<ProtoId<AccessLevelPrototype>> entranceAccess,
         Dictionary<Vector2i, (EntityUid Door, DoorAccess Access)> doors)
     {
-        if (!_map.TryGetTileRef(gridUid, grid, tile, out var tileRef) || tileRef.Tile.IsEmpty)
+        // The pathfinder already knows what blocks each tile; walls and furniture end here without a lookup.
+        if (_pathfinding.GetPoly(_map.GridTileToLocal(gridUid, grid, tile)) is not { } poly || (poly.Data.Flags & PathfindingBreadcrumbFlag.Space) != 0)
             return 0f;
 
-        var cost = 1f;
+        var blocked = (poly.Data.CollisionLayer & collision.Mask) != 0 || (poly.Data.CollisionMask & collision.Layer) != 0;
+        if (blocked && (poly.Data.Flags & PathfindingBreadcrumbFlag.Door) == 0)
+            return 0f;
+
+        // Doors still need a look, open ones too, since access decides whether it may go through.
+        EntityUid? doorUid = null;
+        DoorComponent? door = null;
         foreach (var uid in _map.GetAnchoredEntities(gridUid, grid, tile))
         {
-            if (TryComp<DoorComponent>(uid, out var doorComp))
+            if (TryComp<DoorComponent>(uid, out var found))
             {
-                // Firelocks stand open unless something's wrong, and nobody gets through a shut one.
-                if (HasComp<FirelockComponent>(uid))
-                {
-                    if (doorComp.State == DoorState.Closed)
-                        return 0f;
-
-                    continue;
-                }
-
-                var access = DoorAccessFor(uid, ownAccess, entranceAccess);
-                doors[tile] = (uid, access);
-                cost = Math.Max(cost, access switch
-                {
-                    DoorAccess.Own => 1.5f,
-                    DoorAccess.Entrance => 8f,
-                    _ => 40f,
-                });
+                doorUid = uid;
+                door = found;
                 continue;
             }
 
-            if (!TryComp<PhysicsComponent>(uid, out var body) || !body.CanCollide || !body.Hard || (body.CollisionLayer & mask) == 0)
-                continue;
-
-            // Thin things on a tile edge, like directional windows, leave room to get past.
-            var bounds = _lookup.GetAABBNoContainer(uid, Vector2.Zero, Angle.Zero);
-            if (bounds.Width < 0.5f || bounds.Height < 0.5f)
-                continue;
-
-            return 0f;
+            // A windoor on a desk still leaves the desk in the way.
+            if (blocked && TryComp<PhysicsComponent>(uid, out var body) && body.CanCollide && body.Hard
+                && (body.CollisionLayer & collision.Mask) != 0)
+            {
+                var bounds = _lookup.GetAABBNoContainer(uid, Vector2.Zero, Angle.Zero);
+                if (bounds.Width >= 0.5f && bounds.Height >= 0.5f)
+                    return 0f;
+            }
         }
 
-        return cost;
+        if (doorUid is not { } doorEnt || door == null)
+            return blocked ? 0f : 1f;
+
+        // Firelocks stand open unless something's wrong, and nobody gets through a shut one.
+        if (HasComp<FirelockComponent>(doorEnt))
+            return door.State == DoorState.Closed ? 0f : 1f;
+
+        var access = DoorAccessFor(doorEnt, ownAccess, entranceAccess);
+        doors[tile] = (doorEnt, access);
+        return access switch
+        {
+            DoorAccess.Own => 1.2f,
+            DoorAccess.Entrance => 4f,
+            _ => 12f,
+        };
     }
 
     private DoorAccess DoorAccessFor(EntityUid door, ICollection<ProtoId<AccessLevelPrototype>> ownAccess, ICollection<ProtoId<AccessLevelPrototype>> entranceAccess)
@@ -406,13 +506,14 @@ public sealed partial class MuleSystem : SharedMuleSystem
     public void Arrive(Entity<MuleComponent> ent)
     {
         var comp = ent.Comp;
-        var place = comp.Destination is { } beacon ? BeaconName(beacon) : string.Empty;
+        var target = Target(comp);
+        var place = target is { } beacon ? BeaconName(beacon) : string.Empty;
 
         if (TryGetLoad(ent, out var load))
         {
             if (comp.Report)
             {
-                Audio.PlayPvs(comp.ArrivedSound, ent);
+                Buzz(ent, comp.ArrivedSound, "mule-chime");
                 Say(ent, Loc.GetString("mule-say-unloading", ("place", place), ("load", load)));
             }
 
@@ -431,39 +532,46 @@ public sealed partial class MuleSystem : SharedMuleSystem
             }
         }
 
-        if (comp.AutoReturn && comp.Home != null && comp.Destination != comp.Home)
-        {
-            comp.Destination = comp.Home;
+        if (comp.AutoReturn && comp.Home != null && target != comp.Home)
             SetMode(ent, MuleMode.GoingHome);
-        }
         else
-        {
-            SetMode(ent, MuleMode.Idle);
-        }
+            GoIdle(ent);
     }
 
     /// <summary>
-    /// Called when there's no way to the destination at all.
+    /// Switches it off, ending any run.
     /// </summary>
-    public void NoRoute(Entity<MuleComponent> ent)
+    private void TurnOff(Entity<MuleComponent> ent)
     {
-        Buzz(ent, ent.Comp.AnnoyedSound, "mule-buzz-annoyed");
-        SetMode(ent, MuleMode.NoRoute, replan: false);
+        SetOn(ent, false);
+        GoIdle(ent);
+    }
+
+    /// <summary>
+    /// Ends the current run and forgets where it was sent.
+    /// </summary>
+    private void GoIdle(Entity<MuleComponent> ent)
+    {
+        ent.Comp.Destination = null;
+        SetMode(ent, MuleMode.Idle);
     }
 
     private void SetMode(Entity<MuleComponent> ent, MuleMode mode, bool replan = true)
     {
+        var comp = ent.Comp;
+
         // A new run, or the end of one.
         if (replan)
         {
-            ent.Comp.EntranceDoors.Clear();
-            ent.Comp.Waypoints.Clear();
+            comp.EntranceDoors.Clear();
+            comp.Waypoints.Clear();
+            comp.NextRouteTry = TimeSpan.Zero;
+            comp.Stuck = 0;
         }
 
-        ent.Comp.Mode = mode;
-        ent.Comp.Stuck = 0;
-        ent.Comp.LastPosition = _transform.GetWorldPosition(ent);
-        ent.Comp.LastMoved = _timing.CurTime;
+        comp.Mode = mode;
+        comp.LastPosition = comp.StuckPosition = _transform.GetWorldPosition(ent);
+        comp.LastMoved = _timing.CurTime;
         Dirty(ent);
         UpdateUi(ent);
 
@@ -471,10 +579,12 @@ public sealed partial class MuleSystem : SharedMuleSystem
             _htn.Replan(htn);
     }
 
-    private void Buzz(EntityUid uid, Robust.Shared.Audio.SoundSpecifier sound, string message)
+    private void Buzz(Entity<MuleComponent> ent, SoundSpecifier sound, string message)
     {
-        Audio.PlayPvs(sound, uid);
-        _popup.PopupEntity(Loc.GetString(message, ("mule", uid)), uid);
+        Audio.PlayPvs(sound, ent);
+        _popup.PopupEntity(Loc.GetString(message, ("mule", ent.Owner)), ent);
+        ent.Comp.FlashUntil = _timing.CurTime + FlashLength;
+        Appearance.SetData(ent, MuleVisuals.Flash, true);
     }
 
     private void Say(Entity<MuleComponent> ent, string message)

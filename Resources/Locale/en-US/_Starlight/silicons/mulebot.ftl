@@ -1,9 +1,10 @@
 mule-examine-load = There's {INDEFINITE($load)} [color=yellow]{$load}[/color] on its load platform.
 mule-no-power = It has no power.
-mule-buzz-sigh = {CAPITALIZE(THE($mule))} makes a sighing buzz.
-mule-buzz-annoyed = {CAPITALIZE(THE($mule))} makes an annoyed buzzing sound.
-mule-say-unloading = Destination {$place} reached. Unloading {$load}.
-mule-say-loading = Now loading {$load} at {$place}.
+mule-buzz-sigh = {CAPITALIZE(THE($mule))} lets out a tired buzz.
+mule-buzz-annoyed = {CAPITALIZE(THE($mule))} gives an irritated double buzz.
+mule-chime = {CAPITALIZE(THE($mule))} chimes.
+mule-say-unloading = Dropping off {$load} at {$place}.
+mule-say-loading = Picked up {$load} at {$place}.
 
 mule-window-power = Power
 mule-window-unload = Unload
@@ -20,10 +21,10 @@ mule-window-no-load = Carrying nothing
 mule-window-charge = Charge: {$charge}%
 mule-window-no-cell = No power cell
 mule-window-status = Status: {$status}
+mule-window-none = None
 
 mule-mode-off = off
 mule-mode-idle = ready
 mule-mode-delivering = delivering
 mule-mode-going-home = going home
 mule-mode-blocked = blocked
-mule-mode-no-route = can't reach the destination

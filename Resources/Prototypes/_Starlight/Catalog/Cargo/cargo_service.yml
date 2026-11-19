@@ -74,6 +74,6 @@
     sprite: _Starlight/Mobs/Silicon/Bots/mulebot.rsi
     state: off
   product: CrateMulebot
-  cost: 1000
+  cost: 1150
   category: cargoproduct-category-name-service
   group: market
