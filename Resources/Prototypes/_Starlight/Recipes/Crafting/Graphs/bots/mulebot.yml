@@ -1,0 +1,30 @@
+- type: constructionGraph
+  id: Mulebot
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: bot
+      steps:
+      - tag: ProximitySensor
+        icon:
+          sprite: Objects/Misc/proximity_sensor.rsi
+          state: icon
+        name: construction-graph-tag-proximity-sensor
+      - tag: BorgHead
+        icon:
+          sprite: Objects/Specific/Robotics/cyborg_parts.rsi
+          state: borg_head
+        name: construction-graph-tag-borg-head
+        doAfter: 1
+      - tag: BorgArm
+        icon:
+          sprite: Mobs/Silicon/drone.rsi
+          state: l_hand
+        name: construction-graph-tag-borg-arm
+        doAfter: 1
+      - material: Steel
+        amount: 10
+        doAfter: 2
+  - node: bot
+    entity: MobMulebot

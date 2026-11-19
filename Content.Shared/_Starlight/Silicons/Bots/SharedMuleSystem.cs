@@ -1,13 +1,16 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared.Access.Components;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.DragDrop;
 using Content.Shared.Examine;
+using Content.Shared.Interaction;
 using Content.Shared.Maps;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Systems;
+using Content.Shared.PDA;
 using Content.Shared.Physics;
 using Content.Shared.Storage.Components;
 using Content.Shared.Storage.EntitySystems;
@@ -32,6 +35,7 @@ public abstract partial class SharedMuleSystem : EntitySystem
     [Dependency] protected IGameTiming Timing = default!;
     [Dependency] protected SharedWiresSystem Wires = default!;
     [Dependency] protected MovementSpeedModifierSystem Movement = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private SharedPointLightSystem _light = default!;
     [Dependency] private SharedEntityStorageSystem _entityStorage = default!;
     [Dependency] private SharedMapSystem _map = default!;
@@ -75,6 +79,16 @@ public abstract partial class SharedMuleSystem : EntitySystem
         args.Handled = true;
         if (!TryLoad(ent, args.Dragged))
             Audio.PlayPredicted(ent.Comp.SighSound, ent, args.User);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnInteractUsing(Entity<MuleComponent> ent, ref InteractUsingEvent args)
+    {
+        // Clicking it with an ID or PDA opens its panel, the same as an empty hand.
+        if (args.Handled || !HasComp<IdCardComponent>(args.Used) && !HasComp<PdaComponent>(args.Used))
+            return;
+
+        args.Handled = _interaction.InteractionActivate(args.User, ent);
     }
 
     [SubscribeLocalEvent]

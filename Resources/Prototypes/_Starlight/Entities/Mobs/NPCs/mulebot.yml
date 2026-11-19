@@ -89,6 +89,9 @@
         type: MuleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+  - type: Construction
+    graph: Mulebot
+    node: bot
   - type: WiresPanel
   - type: LockedWiresPanel
   - type: Lock
