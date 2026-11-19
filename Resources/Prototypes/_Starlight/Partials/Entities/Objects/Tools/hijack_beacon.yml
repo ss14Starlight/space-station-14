@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: HijackBeacon
+  components:
+  - type: Sprite
+    layers:
+    - state: extraction_point
+    - sprite: _Starlight/Objects/Tools/hijack_beacon.rsi
+      state: extraction_point_unshaded
+      shader: unshaded

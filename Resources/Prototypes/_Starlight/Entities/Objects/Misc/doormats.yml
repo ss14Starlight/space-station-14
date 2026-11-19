@@ -1,0 +1,45 @@
+- type: entity
+  id: BaseDoormatRoll
+  parent: BaseItem
+  abstract: true
+  name: doormat roll
+  description: A rolled-up doormat, ready to be placed on the floor.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/doormats.rsi
+    state: roll
+  - type: Item
+    sprite: _Starlight/Structures/Furniture/doormats.rsi
+    size: Normal
+  - type: SpawnAfterInteract
+    prototype: Doormat
+    doAfter: 0.5
+    removeOnInteract: true
+  - type: ToolRefinable
+    qualityNeeded: Slicing
+    refineFuel: 0
+    refineResult:
+    - id: MaterialDurathread1
+      amount: 2
+
+- type: entity
+  id: DoormatRoll
+  parent: BaseDoormatRoll
+
+- type: entity
+  id: DoormatRollWelcome
+  parent: BaseDoormatRoll
+  suffix: Welcome
+  description: A rolled-up doormat, ready to be placed on the floor. This one says "Welcome".
+  components:
+  - type: SpawnAfterInteract
+    prototype: DoormatWelcome
+
+- type: entity
+  id: DoormatRollBless
+  parent: BaseDoormatRoll
+  suffix: Bless This Spess
+  description: A rolled-up doormat, ready to be placed on the floor. This one says "Bless This Spess".
+  components:
+  - type: SpawnAfterInteract
+    prototype: DoormatBless
