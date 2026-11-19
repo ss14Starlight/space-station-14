@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Manor) Radio Studio has been upgraded, adding radio mixer, CD player, and radio broadcast recorder.
-    type: Add
-  id: 410228
-  time: '2026-11-08T06:33:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7107
-- author: Caws
-  changes:
   - message: (Manor) Budget increases have allowed for a second stasis bed in Medical.
     type: Add
   id: 410229
@@ -2799,4 +2792,11 @@ Entries:
   id: 410627
   time: '2026-11-19T07:27:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7328
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added a mantle for the warden.
+    type: Add
+  id: 410628
+  time: '2026-11-19T07:48:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7245
 Order: -1
