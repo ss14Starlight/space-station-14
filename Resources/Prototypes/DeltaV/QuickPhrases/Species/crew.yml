@@ -1,7 +1,7 @@
 - type: quickPhrase
   id: BaseCrewSpeciesPhrase
   parent: BaseSpeciesPhrase
-  group: Crew
+  group: aac-group-crew #Starlight: Make group names localization friendly
   abstract: true
 
 - type: quickPhrase

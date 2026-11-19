@@ -2,40 +2,40 @@
 aac-group-general = General
 
 # Departments
-Civilian = Civilian
-Command = Command
-Engineering = Engineering
-Epistemics = Science
-Justice = Justice
-Logistics = Cargo
-Medical = Medical
-Security = Security
-Service = Service
+aac-group-civilian = Civilian
+aac-group-command = Command
+aac-group-engineering = Engineering
+aac-group-epistemics = Science
+aac-group-justice = Justice
+aac-group-logistics = Cargo
+aac-group-medical = Medical
+aac-group-security = Security
+aac-group-service = Service
 
 # Organizations
-CentralCommand = Central Command
-Nanotrasen = Nanotrasen
-InterstellarTradeGuild = Interstellar Trade Guild
+aac-group-central-command = Central Command
+aac-group-nanotrasen = Nanotrasen
+aac-group-interstellar-trade-guild = Interstellar Trade Guild
 
 # Common
-Manners = Manners
-Numbers = Numbers
-Nouns = Nouns
+aac-group-manners = Manners
+aac-group-numbers = Numbers
+aac-group-nouns = Nouns
 quantity-or-quality = Quantity or Quality
-Question = Question
-SpeciesLanguage = Languages
+aac-group-question = Question
+aac-group-species-language = Languages
 
 # Species
-Wildlife = Wildlife
-Crew = Crew
-Generic = Generic
+aac-group-wildlife = Wildlife
+aac-group-crew = Crew
+aac-group-generic = Generic
 
 # Subjects
-Materials = Materials
-Medicine = Medicine
-MedicalEquipment = Medical Equipment
+aac-group-materials = Materials
+aac-group-medicine = Medicine
+aac-group-medical-equipment = Medical Equipment
 
 # Safety
 aac-group-status = Status
-Hazards = Hazards
-Hostiles = Hostiles
+aac-group-hazards = Hazards
+aac-group-hostiles = Hostiles
