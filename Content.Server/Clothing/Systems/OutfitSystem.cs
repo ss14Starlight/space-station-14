@@ -20,7 +20,7 @@ namespace Content.Server.Clothing.Systems;
 
 public sealed partial class OutfitSystem : EntitySystem
 {
-    //[Dependency] private readonly IServerPreferencesManager _preferenceManager = default!; // Starlight-removed - we removed the only upstream reference to this
+    //[Dependency] private IServerPreferencesManager _preferenceManager = default!; // Starlight-removed - we removed the only upstream reference to this
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private HandsSystem _handSystem = default!;
     [Dependency] private InventorySystem _invSystem = default!;

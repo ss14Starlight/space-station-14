@@ -200,7 +200,7 @@ public sealed partial class RevenantSystem : EntitySystem
         var effectiveEssence = Math.Clamp(ent.Comp.Essence.Int(), 0, ent.Comp.ChillUpperBound.Float());
         // Parabolic curve based on essence, more essence = more delta q, flattening as upper bound is reached
         var dQ =
-            200 / ent.Comp.ChillScaling.Float() * MathF.Pow(effectiveEssence - ent.Comp.ChillUpperBound.Float(), 2) -
+            (200 / ent.Comp.ChillScaling.Float() * MathF.Pow(effectiveEssence - ent.Comp.ChillUpperBound.Float(), 2)) -
             ent.Comp.ChillScaling.Float();
 
         if (_atmosphere.GetContainingMixture(ent.Owner, true, true) is { } air)

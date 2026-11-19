@@ -194,7 +194,7 @@ public abstract partial class SharedChangelingIdentitySystem : EntitySystem
         if (!HasComp<ChangelingStoredIdentityComponent>(identity))
             return; // Not a stored identity.
 
-        PredictedQueueDel(identity);
+        QueueDel(identity); // Starlight-edit: Fix warning by using non-predicted call
         if (ent.Comp.ConsumedIdentities.Remove(identity))
             Dirty(ent);
     }
