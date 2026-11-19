@@ -7,6 +7,8 @@
   - type: Sprite
     sprite: _Starlight/Mobs/Silicon/Bots/mulebot.rsi
     noRot: true
+    # Below mobs, so a rider sits on top of it.
+    drawdepth: BelowMobs
     layers:
     - state: off
       map: [ "enum.MuleVisuals.Flash" ]
@@ -104,6 +106,7 @@
   - type: Strap
     enabled: false
     buckleOffset: "0,0.35"
+    loweredDrawdepthDirections: 0
   - type: ContainerContainer
     containers:
       mule_load: !type:ContainerSlot

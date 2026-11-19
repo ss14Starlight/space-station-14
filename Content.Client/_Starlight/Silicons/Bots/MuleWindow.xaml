@@ -1,7 +1,7 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-                      MinSize="380 560"
-                      SetSize="380 560">
+                      MinSize="380 600"
+                      SetSize="380 600">
     <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="8">
         <PanelContainer StyleClasses="InsetPanel">
             <BoxContainer Orientation="Vertical" Margin="8 6">
@@ -19,7 +19,7 @@
         </BoxContainer>
 
         <LineEdit Name="SearchBar" PlaceHolder="{Loc 'mule-window-search'}" HorizontalExpand="True" />
-        <ItemList Name="BeaconList" SelectMode="Single" VerticalExpand="True" MinHeight="160" />
+        <ItemList Name="BeaconList" SelectMode="Single" VerticalExpand="True" MinHeight="120" />
         <BoxContainer Orientation="Horizontal" SeparationOverride="4">
             <Button Name="SetDestinationButton" Text="{Loc 'mule-window-set-destination'}" Disabled="True" HorizontalExpand="True" />
             <Button Name="SetHomeButton" Text="{Loc 'mule-window-set-home'}" Disabled="True" HorizontalExpand="True" />
