@@ -110,6 +110,7 @@ public sealed partial class BodyTab : Control, IMarkingCardDragHost
         var hash = new HashCode();
         hash.Add(_previewEntity);
         hash.Add(BodyPreview.Direction);
+        hash.Add(sprite.Scale);
         foreach (var layer in sprite.AllLayers)
         {
             if (layer is not SpriteComponent.Layer spriteLayer)

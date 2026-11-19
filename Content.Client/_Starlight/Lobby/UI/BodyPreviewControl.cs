@@ -89,7 +89,8 @@ public sealed class BodyPreviewControl : BoxContainer
 
         var displacements = GetDisplacements((entity, sprite), sprites);
 
-        var size = Vector2.Zero;
+        var spriteScale = Vector2.Abs(sprite.Scale);
+        var placed = new List<(BodyPartPreviewControl Control, Vector2 Position, Vector2 Size)>();
         var index = 0;
         foreach (var layer in sprite.AllLayers)
         {
@@ -101,18 +102,43 @@ public sealed class BodyPreviewControl : BoxContainer
 
             var direction = state.RsiDirections == RsiDirectionType.Dir1 ? RsiDirection.South : Direction;
             var control = new BodyPartPreviewControl(parts.GetValueOrDefault(i), rsi, spriteLayer.State, direction,
-                state.GetFrame(direction, 0), spriteLayer.Color, Scale, _clickMap, displacements.GetValueOrDefault(i));
+                state.GetFrame(direction, 0), spriteLayer.Color, spriteScale * Scale, _clickMap, displacements.GetValueOrDefault(i));
             control.Pressed += part => PartPressed?.Invoke(part);
             control.OnMouseEntered += _ => PartHovered?.Invoke(control.Part);
             control.OnMouseExited += _ => PartHovered?.Invoke(null);
 
-            LayoutContainer.SetPosition(control, spriteLayer.Offset * new Vector2(1, -1) * EyeManager.PixelsPerMeter * Scale);
-            size = Vector2.Max(size, control.SetSize);
+            var frameSize = control.SetSize / spriteScale;
+            placed.Add((control, spriteLayer.Offset * new Vector2(1, -1) * EyeManager.PixelsPerMeter * Scale, frameSize));
             _canvas.AddChild(control);
             _layers.Add(control);
         }
 
-        _canvas.SetSize = size;
+        Place(placed, spriteScale);
+    }
+
+    private void Place(List<(BodyPartPreviewControl Control, Vector2 Position, Vector2 Size)> placed, Vector2 spriteScale)
+    {
+        if (placed.Count == 0)
+        {
+            _canvas.SetSize = Vector2.Zero;
+            return;
+        }
+
+        var min = new Vector2(float.MaxValue);
+        var max = new Vector2(float.MinValue);
+        foreach (var (_, position, size) in placed)
+        {
+            min = Vector2.Min(min, position);
+            max = Vector2.Max(max, position + size);
+        }
+
+        var feet = new Vector2((min.X + max.X) / 2, max.Y);
+        var canvas = Vector2.Max(max - min, (max - min) * spriteScale);
+        var anchor = new Vector2(canvas.X / 2, canvas.Y);
+        foreach (var (control, position, _) in placed)
+            LayoutContainer.SetPosition(control, anchor + (position - feet) * spriteScale);
+
+        _canvas.SetSize = canvas;
     }
 
     /// <summary>

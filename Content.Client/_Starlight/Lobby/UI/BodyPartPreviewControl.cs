@@ -15,7 +15,7 @@ public sealed class BodyPartPreviewControl : Control
 
     private readonly Texture _texture;
     private readonly Color _color;
-    private readonly float _scale;
+    private readonly Vector2 _scale;
     private readonly IClickMapManager _clickMap;
     private readonly RSI _rsi;
     private readonly RSI.StateId _state;
@@ -33,7 +33,7 @@ public sealed class BodyPartPreviewControl : Control
     public event Action<BodyEditorPart>? Pressed;
 
     public BodyPartPreviewControl(BodyEditorPart? part, RSI rsi, RSI.StateId state, RsiDirection direction,
-        Texture texture, Color color, float scale, IClickMapManager clickMap, ShaderInstance? displacement = null)
+        Texture texture, Color color, Vector2 scale, IClickMapManager clickMap, ShaderInstance? displacement = null)
     {
         _displacement = displacement;
         Part = part;
