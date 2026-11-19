@@ -23,7 +23,7 @@
       params:
         volume: -12
     closeSound:
-      path: /Audio/_Starlight/Effects/woodclaw2.ogg
+      path: /Audio/_Starlight/Effects/FermentingBarrel/woodclaw2.ogg
       params:
         volume: -12
     openComponents:
@@ -34,6 +34,16 @@
     closedComponents:
     - type: DrainableSolution
       solution: barrel
+    fermentFrom:
+      FoodAloe: [ Aloe ]
+      LeavesTobacco: [ Nicotine ]
+    notCrops:
+    - CottonBol
+    - PyrottonBol
+    extraCrops:
+    - DeathNettle
+    bags:
+    - PlantBag
     unfermentable:
     - MeatwheatBushel
     - LeavesTea
@@ -74,7 +84,7 @@
     volume: -12
     range: 5
     sound:
-      path: /Audio/_Starlight/Effects/bubbles2.ogg
+      path: /Audio/_Starlight/Effects/FermentingBarrel/bubbles2.ogg
   - type: Anchorable
   - type: Pullable
   - type: Physics

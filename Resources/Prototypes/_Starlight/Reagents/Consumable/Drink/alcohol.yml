@@ -235,6 +235,10 @@
   physicalDesc: reagent-physical-desc-translucent
   flavor: cherry
   color: "#DDDDDD"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.4
 
 - type: reagent
   id: TripleSec
