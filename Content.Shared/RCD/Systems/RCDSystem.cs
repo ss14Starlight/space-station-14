@@ -74,8 +74,10 @@ public sealed partial class RCDSystem : EntitySystem
     private readonly ProtoId<RCDPrototype> _deconstructTileProto = "DeconstructTile";
     private readonly ProtoId<RCDPrototype> _deconstructLatticeProto = "DeconstructLattice";
     private static readonly ProtoId<TagPrototype> CatwalkTag = "Catwalk";
-    private static readonly ProtoId<TagPrototype> _unstackableTag = "Unstackable"; // Starlight edit
-    private static readonly ProtoId<TagPrototype> _wallTag = "Wall"; // Starlight
+    #region Starlight
+    private static readonly ProtoId<TagPrototype> _unstackableTag = "Unstackable";
+    private static readonly ProtoId<TagPrototype> _wallTag = "Wall";
+    #endregion
 
     private HashSet<EntityUid> _intersectingEntities = new();
 
