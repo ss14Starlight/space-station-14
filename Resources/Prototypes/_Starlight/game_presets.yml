@@ -13,6 +13,7 @@
     - SpaceTrafficControlEventScheduler
     - ThiefGamerule
     - BasicRoundstartVariation
+    - XenoDemocracy
 
 - type: gamePreset
   id: SubXenoborgs
@@ -33,6 +34,7 @@
   - WireCutScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
+  - XenoDemocracy
 
 - type: gamePreset
   id: ShitStation
@@ -57,6 +59,7 @@
     - BasicRoundstartVariation
     - BasicRoundstartVariation
     - BasicRoundstartVariation
+    - XenoDemocracy
 
 - type: gamePreset
   id: Vampire
@@ -76,6 +79,7 @@
   - MeteorSwarmScheduler
   - WireCutScheduler
   - BasicRoundstartVariation
+  - XenoDemocracy
 
 - type: gamePreset
   id: Changeling
@@ -94,6 +98,7 @@
     - BasicStationEventScheduler
     - WireCutScheduler
     - BasicRoundstartVariation
+    - XenoDemocracy
 
 - type: gamePreset
   id: Traitorling
@@ -111,6 +116,7 @@
     - BasicStationEventScheduler
     - WireCutScheduler
     - BasicRoundstartVariation
+    - XenoDemocracy
 
 - type: gamePreset
   id: Vamptraitorling
@@ -133,6 +139,7 @@
     - BasicStationEventScheduler
     - WireCutScheduler
     - BasicRoundstartVariation
+    - XenoDemocracy
 
 - type: gamePreset
   id: AlmostAllAtOnce
@@ -164,6 +171,7 @@
     - ThiefGamerule
     - BloodBound
     - CosmicCult
+    - XenoDemocracy
     - Devil
 
 - type: gamePreset
@@ -209,6 +217,7 @@
     - Devil
     - BloodBound
     - CosmicCult
+    - XenoDemocracy
 
 - type: gamePreset
   id: CosmicCult
@@ -248,6 +257,7 @@
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
   - RailroadingMinor # 🌟Starlight🌟
+  - XenoDemocracy
 
 - type: gamePreset
   id: DynamicLP
@@ -265,3 +275,4 @@
   - SpaceTrafficControlEventScheduler # No event/meteor schedulers, since we handle that in dynamic too.
   - BasicRoundstartVariation
   - RailroadingMinor
+  - XenoDemocracy

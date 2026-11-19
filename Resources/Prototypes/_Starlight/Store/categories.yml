@@ -194,6 +194,12 @@
   id: CantripsStandard
   name: store-category-cantrips-standard
 
+# Xeno Evolutions
+
+- type: storeCategory
+  id: EvolutionsStandard
+  name: store-category-evolutions-standard
+
 # Languages
 - type: storeCategory
   id: Languages

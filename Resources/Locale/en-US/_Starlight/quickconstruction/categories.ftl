@@ -22,3 +22,4 @@ quickconstruction-category-wood-fences = fences
 quickconstruction-category-wood-low-fences = low fences
 quickconstruction-category-wood-railings = railings
 quickconstruction-category-wood-yard-and-fire = yard & fire
+quickconstruction-category-furniture = pipes
