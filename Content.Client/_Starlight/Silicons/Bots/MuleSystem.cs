@@ -43,7 +43,10 @@ public sealed partial class MuleSystem : SharedMuleSystem
             _sprite.RemoveLayer((ent, sprite), LoadLayer + i);
         }
 
-        if (!TryGetLoad(ent, out var load) || !TryComp<SpriteComponent>(load, out var loadSprite))
+        // Riders draw themselves; only what's on the platform is copied.
+        if (!Container.TryGetContainer(ent, ent.Comp.ContainerId, out var container)
+            || container.ContainedEntities.Count == 0
+            || !TryComp<SpriteComponent>(container.ContainedEntities[0], out var loadSprite))
             return;
 
         var n = 0;

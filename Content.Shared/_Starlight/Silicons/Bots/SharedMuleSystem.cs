@@ -1,18 +1,25 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using Content.Shared.Buckle;
+using Content.Shared.Buckle.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.DragDrop;
 using Content.Shared.Examine;
 using Content.Shared.Maps;
-using Content.Shared.Physics;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Movement.Systems;
+using Content.Shared.Physics;
 using Content.Shared.Storage.Components;
 using Content.Shared.Storage.EntitySystems;
+using Content.Shared.Tag;
 using Content.Shared.Whitelist;
 using Content.Shared.Wires;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Silicons.Bots;
 
@@ -21,19 +28,32 @@ public abstract partial class SharedMuleSystem : EntitySystem
     [Dependency] protected SharedAudioSystem Audio = default!;
     [Dependency] protected SharedContainerSystem Container = default!;
     [Dependency] protected SharedAppearanceSystem Appearance = default!;
-    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] protected SharedBuckleSystem Buckle = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] protected SharedWiresSystem Wires = default!;
+    [Dependency] protected MovementSpeedModifierSystem Movement = default!;
     [Dependency] private SharedPointLightSystem _light = default!;
-    [Dependency] private SharedWiresSystem _wires = default!;
     [Dependency] private SharedEntityStorageSystem _entityStorage = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private TagSystem _tag = default!;
     [Dependency] private EntityWhitelistSystem _whitelist = default!;
+
+    private static readonly ProtoId<TagPrototype> CrateTag = "Crate";
 
     [SubscribeLocalEvent]
     private void OnInit(Entity<MuleComponent> ent, ref ComponentInit args)
     {
         Container.EnsureContainer<ContainerSlot>(ent, ent.Comp.ContainerId);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnCrateCanDrag(Entity<EntityStorageComponent> ent, ref CanDragEvent args)
+    {
+        // Crates can be dragged so they can be dropped onto a MULE.
+        if (_tag.HasTag(ent, CrateTag))
+            args.Handled = true;
     }
 
     [SubscribeLocalEvent]
@@ -47,7 +67,8 @@ public abstract partial class SharedMuleSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnDragDropTarget(Entity<MuleComponent> ent, ref DragDropTargetEvent args)
     {
-        if (args.Handled)
+        // People are strapped on by the buckle system, if the load check lets them.
+        if (args.Handled || HasComp<BuckleComponent>(args.Dragged) && HasWireCut(ent, MuleWires.LoadCheck))
             return;
 
         args.Handled = true;
@@ -56,18 +77,43 @@ public abstract partial class SharedMuleSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
+    private void OnStrapAttempt(Entity<MuleComponent> ent, ref StrapAttemptEvent args)
+    {
+        // Only with the load check cut, and a rider takes the place of a load.
+        if (!HasWireCut(ent, MuleWires.LoadCheck) || TryGetLoad(ent, out _))
+            args.Cancelled = true;
+    }
+
+    [SubscribeLocalEvent]
     private void OnCellInsertAttempt(Entity<MuleComponent> ent, ref ItemSlotInsertAttemptEvent args)
     {
         // The cell sits behind the maintenance panel.
-        if (args.User != null && !_wires.IsPanelOpen(ent.Owner))
+        if (args.User != null && !Wires.IsPanelOpen(ent.Owner))
             args.Cancelled = true;
     }
 
     [SubscribeLocalEvent]
     private void OnCellEjectAttempt(Entity<MuleComponent> ent, ref ItemSlotEjectAttemptEvent args)
     {
-        if (args.User != null && !_wires.IsPanelOpen(ent.Owner))
+        if (args.User != null && !Wires.IsPanelOpen(ent.Owner))
             args.Cancelled = true;
+    }
+
+    [SubscribeLocalEvent]
+    private void OnRefreshSpeed(Entity<MuleComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
+    {
+        var motor = (HasWireCut(ent, MuleWires.Motor1), HasWireCut(ent, MuleWires.Motor2)) switch
+        {
+            (true, true) => 0f,
+            (true, false) => ent.Comp.FastMotor,
+            (false, true) => ent.Comp.MediumMotor,
+            _ => 1f,
+        };
+
+        if (ent.Comp.CarefulUntil > Timing.CurTime)
+            motor *= ent.Comp.CarefulSlowdown;
+
+        args.ModifySpeed(motor);
     }
 
     [SubscribeLocalEvent]
@@ -75,6 +121,11 @@ public abstract partial class SharedMuleSystem : EntitySystem
     {
         if (TryGetLoad(ent, out var load))
             args.PushMarkup(Loc.GetString("mule-examine-load", ("load", load)));
+    }
+
+    public static bool HasWireCut(Entity<MuleComponent> ent, MuleWires wire)
+    {
+        return (ent.Comp.CutWires & wire) != 0;
     }
 
     /// <summary>
@@ -88,18 +139,19 @@ public abstract partial class SharedMuleSystem : EntitySystem
         if (Transform(item).Anchored || Container.IsEntityInContainer(item))
             return false;
 
-        if (!_whitelist.IsWhitelistPassOrNull(ent.Comp.Whitelist, item))
+        // With the load check cut it takes any loose object, not just crates. People ride, they aren't loaded.
+        if (HasComp<MobStateComponent>(item))
             return false;
 
-        // Nobody gets shut in a crate and driven off.
-        if (TryComp<EntityStorageComponent>(item, out var storage))
-        {
-            foreach (var contained in storage.Contents.ContainedEntities)
-            {
-                if (HasComp<MobStateComponent>(contained))
-                    return false;
-            }
-        }
+        if (!HasWireCut(ent, MuleWires.LoadCheck) && !_whitelist.IsWhitelistPassOrNull(ent.Comp.Whitelist, item))
+            return false;
+
+        // Nobody gets shut in something and driven off, or strapped to it.
+        if (TryComp<EntityStorageComponent>(item, out var storage) && storage.Contents.ContainedEntities.Any(HasComp<MobStateComponent>))
+            return false;
+
+        if (TryComp<StrapComponent>(item, out var strap) && strap.BuckledEntities.Count > 0)
+            return false;
 
         return true;
     }
@@ -124,9 +176,16 @@ public abstract partial class SharedMuleSystem : EntitySystem
 
     /// <summary>
     /// Drops whatever it's carrying on the free tile ahead of it, or behind or beside it if that's blocked.
+    /// A rider just gets let off.
     /// </summary>
     public bool Unload(Entity<MuleComponent> ent)
     {
+        if (TryGetRider(ent, out var rider))
+        {
+            Buckle.Unbuckle(rider.Value, null);
+            return true;
+        }
+
         if (!TryGetLoad(ent, out var load))
             return false;
 
@@ -156,13 +215,29 @@ public abstract partial class SharedMuleSystem : EntitySystem
         return null;
     }
 
+    /// <summary>
+    /// What it's carrying: the thing on its platform, or whoever is riding it.
+    /// </summary>
     public bool TryGetLoad(Entity<MuleComponent> ent, [NotNullWhen(true)] out EntityUid? load)
     {
         load = null;
+        if (TryGetRider(ent, out load))
+            return true;
+
         if (!Container.TryGetContainer(ent, ent.Comp.ContainerId, out var container) || container.ContainedEntities.Count == 0)
             return false;
 
         load = container.ContainedEntities[0];
+        return true;
+    }
+
+    public bool TryGetRider(Entity<MuleComponent> ent, [NotNullWhen(true)] out EntityUid? rider)
+    {
+        rider = null;
+        if (!TryComp<StrapComponent>(ent, out var strap) || strap.BuckledEntities.Count == 0)
+            return false;
+
+        rider = strap.BuckledEntities.First();
         return true;
     }
 

@@ -28,3 +28,27 @@ mule-mode-idle = ready
 mule-mode-delivering = delivering
 mule-mode-going-home = going home
 mule-mode-blocked = blocked
+
+mule-panel-open = Its maintenance panel is open.
+mule-avoidance-cut = Something inside {THE($mule)} gives an ominous click.
+mule-motor-stopped = {CAPITALIZE(THE($mule))}'s motors die down.
+mule-motor-fast = {CAPITALIZE(THE($mule))}'s motors rev up.
+mule-motor-medium = {CAPITALIZE(THE($mule))}'s motors hum.
+mule-motor-slow = {CAPITALIZE(THE($mule))}'s motors settle to a gentle whirr.
+mule-pulse-power = {CAPITALIZE(THE($mule))}'s charge light flickers.
+mule-pulse-avoidance = {CAPITALIZE(THE($mule))}'s warning lights blink.
+mule-pulse-load = {CAPITALIZE(THE($mule))}'s load platform thunks.
+mule-pulse-motor = {CAPITALIZE(THE($mule))}'s drive motor whines.
+mule-pulse-radio = {CAPITALIZE(THE($mule))} crackles with static.
+mule-knocks-over = {CAPITALIZE(THE($mule))} slams into {THE($target)} and knocks {OBJECT($target)} flat!
+mule-runs-over = {CAPITALIZE(THE($mule))} rolls right over {THE($target)}!
+mule-careful = {CAPITALIZE(THE($mule))} slows to a crawl to keep from crushing {THE($target)}.
+
+wires-board-name-mulebot = MULEbot
+wire-name-mule-power1 = PWR1
+wire-name-mule-power2 = PWR2
+wire-name-mule-avoidance = SAFE
+wire-name-mule-loadcheck = LOAD
+wire-name-mule-motor1 = MTR1
+wire-name-mule-motor2 = MTR2
+wire-name-mule-beacon = NAV

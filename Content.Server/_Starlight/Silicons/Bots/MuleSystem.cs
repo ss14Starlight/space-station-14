@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Pathfinding;
@@ -8,10 +9,18 @@ using Content.Shared._Starlight.Silicons.Bots;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
+using Content.Shared.Buckle;
 using Content.Shared.Chat;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Database;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
+using Content.Shared.Emag.Systems;
 using Content.Shared.Emp;
+using Content.Shared.Humanoid;
+using Content.Shared.Mobs.Components;
 using Content.Shared.NPC;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
@@ -20,7 +29,11 @@ using Content.Shared.Power.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
+using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Standing;
 using Content.Shared.StationRecords;
+using Content.Shared.Stunnable;
+using Content.Shared._Starlight.Medical.Body.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
@@ -29,18 +42,24 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
+using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Silicons.Bots;
 
 public sealed partial class MuleSystem : SharedMuleSystem
 {
     [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstream = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private EmagSystem _emag = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private StandingStateSystem _standing = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private SharedBatterySystem _battery = default!;
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private SharedDoorSystem _door = default!;
     [Dependency] private HTNSystem _htn = default!;
-    [Dependency] private IGameTiming _timing = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private PathfindingSystem _pathfinding = default!;
@@ -51,6 +70,7 @@ public sealed partial class MuleSystem : SharedMuleSystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TurfSystem _turf = default!;
     [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private static readonly TimeSpan CheckDelay = TimeSpan.FromSeconds(0.25);
     private static readonly TimeSpan StuckDelay = TimeSpan.FromSeconds(2);
@@ -58,6 +78,17 @@ public sealed partial class MuleSystem : SharedMuleSystem
     private static readonly TimeSpan FlashLength = TimeSpan.FromSeconds(0.4);
     private const int MaxStuck = 10;
     private static readonly StationRecordKey[] NoKeys = [];
+    private static readonly ProtoId<DamageTypePrototype> Blunt = "Blunt";
+
+    /// <summary>
+    /// How long before it can knock down or run over the same person again.
+    /// </summary>
+    private static readonly TimeSpan HitCooldown = TimeSpan.FromSeconds(1.5);
+
+    /// <summary>
+    /// How close someone has to be to be bumped into or driven over.
+    /// </summary>
+    private const float HitRange = 0.55f;
 
     /// <summary>
     /// Doors further apart than this along the route aren't the same entrance.
@@ -112,6 +143,22 @@ public sealed partial class MuleSystem : SharedMuleSystem
     }
 
     [SubscribeLocalEvent]
+    private void OnEmagged(Entity<MuleComponent> ent, ref GotEmaggedEvent args)
+    {
+        // The swipe that unlocks its panel is handled by its access reader. With the panel open, the next one gets to its brain.
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction) || _emag.CheckFlag(ent, EmagType.Interaction))
+            return;
+
+        if (!Wires.IsPanelOpen(ent.Owner))
+            return;
+
+        args.Handled = true;
+        Audio.PlayPvs(ent.Comp.EmagSound, ent);
+        ent.Comp.FlashUntil = Timing.CurTime + FlashLength;
+        Appearance.SetData(ent, MuleVisuals.Emagged, true);
+    }
+
+    [SubscribeLocalEvent]
     private void OnEmp(Entity<MuleComponent> ent, ref EmpPulseEvent args)
     {
         if (!ent.Comp.On)
@@ -133,7 +180,14 @@ public sealed partial class MuleSystem : SharedMuleSystem
                 TurnOff(ent);
                 break;
             case MuleCommand.Power:
-                if (!_powerCell.HasCharge(ent.Owner, comp.ChargePerTile))
+                if (Wires.IsPanelOpen(ent.Owner))
+                {
+                    if (user != null)
+                        _popup.PopupEntity(Loc.GetString("mule-panel-open"), ent, user.Value);
+                    break;
+                }
+
+                if (!HasPower(ent))
                 {
                     if (user != null)
                         _popup.PopupEntity(Loc.GetString("mule-no-power"), ent, user.Value);
@@ -141,6 +195,7 @@ public sealed partial class MuleSystem : SharedMuleSystem
                 }
 
                 SetOn(ent, true);
+                UpdateLights(ent);
                 comp.Home ??= NearestBeacon(ent);
                 break;
             case MuleCommand.Stop:
@@ -197,7 +252,7 @@ public sealed partial class MuleSystem : SharedMuleSystem
     {
         base.Update(frameTime);
 
-        var now = _timing.CurTime;
+        var now = Timing.CurTime;
         var query = EntityQueryEnumerator<MuleComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var comp, out var xform))
         {
@@ -208,13 +263,22 @@ public sealed partial class MuleSystem : SharedMuleSystem
             if (comp.FlashUntil is { } until && now >= until)
             {
                 comp.FlashUntil = null;
-                Appearance.SetData(uid, MuleVisuals.Flash, false);
+                UpdateLights((uid, comp));
+                Appearance.SetData(uid, MuleVisuals.Emagged, false);
+            }
+
+            if (comp.CarefulUntil is { } careful && now >= careful)
+            {
+                comp.CarefulUntil = null;
+                Dirty(uid, comp);
+                Movement.RefreshMovementSpeedModifiers(uid);
             }
 
             if (!IsRunning(comp))
                 continue;
 
             OpenDoors((uid, comp), xform);
+            CheckHazards((uid, comp), xform, now);
             CheckProgress((uid, comp), xform, now);
         }
     }
@@ -317,11 +381,15 @@ public sealed partial class MuleSystem : SharedMuleSystem
         if (Target(comp) is not { } beacon || TerminatingOrDeleted(beacon))
             return false;
 
+        // With its beacon receiver cut it can't find where anything is.
+        if (HasWireCut(ent, MuleWires.Beacon))
+            return false;
+
         // Still on the way along a route planned for this run.
         if (comp.Waypoints.Count > 0)
             return true;
 
-        var now = _timing.CurTime;
+        var now = Timing.CurTime;
         if (now < comp.NextRouteTry)
             return false;
 
@@ -544,6 +612,7 @@ public sealed partial class MuleSystem : SharedMuleSystem
     private void TurnOff(Entity<MuleComponent> ent)
     {
         SetOn(ent, false);
+        UpdateLights(ent);
         GoIdle(ent);
     }
 
@@ -571,7 +640,7 @@ public sealed partial class MuleSystem : SharedMuleSystem
 
         comp.Mode = mode;
         comp.LastPosition = comp.StuckPosition = _transform.GetWorldPosition(ent);
-        comp.LastMoved = _timing.CurTime;
+        comp.LastMoved = Timing.CurTime;
         Dirty(ent);
         UpdateUi(ent);
 
@@ -583,14 +652,168 @@ public sealed partial class MuleSystem : SharedMuleSystem
     {
         Audio.PlayPvs(sound, ent);
         _popup.PopupEntity(Loc.GetString(message, ("mule", ent.Owner)), ent);
-        ent.Comp.FlashUntil = _timing.CurTime + FlashLength;
+        ent.Comp.FlashUntil = Timing.CurTime + FlashLength;
         Appearance.SetData(ent, MuleVisuals.Flash, true);
+    }
+
+    /// <summary>
+    /// Its lights blink while it runs with the safety wire cut, and otherwise only flash when it buzzes.
+    /// </summary>
+    private void UpdateLights(Entity<MuleComponent> ent)
+    {
+        Appearance.SetData(ent, MuleVisuals.Flash, ent.Comp.On && HasWireCut(ent, MuleWires.Avoidance));
     }
 
     private void Say(Entity<MuleComponent> ent, string message)
     {
         _chat.TrySendInGameICMessage(ent, message, InGameICChatType.Speak, ChatTransmitRange.Normal, ignoreActionBlocker: true);
         _radio.SendRadioMessage(ent, message, ent.Comp.Channel, ent);
+    }
+
+    /// <summary>
+    /// Whether it has a charged cell and both power wires intact.
+    /// </summary>
+    public bool HasPower(Entity<MuleComponent> ent)
+    {
+        return !HasWireCut(ent, MuleWires.Power1) && !HasWireCut(ent, MuleWires.Power2)
+            && _powerCell.HasCharge(ent.Owner, ent.Comp.ChargePerTile);
+    }
+
+    /// <summary>
+    /// Cuts or mends one of its wires.
+    /// </summary>
+    public void SetWireCut(Entity<MuleComponent> ent, MuleWires wire, bool cut, EntityUid? user = null)
+    {
+        if (HasWireCut(ent, wire) == cut)
+            return;
+
+        if (cut)
+            ent.Comp.CutWires |= wire;
+        else
+            ent.Comp.CutWires &= ~wire;
+
+        Dirty(ent);
+
+        switch (wire)
+        {
+            case MuleWires.Power1 or MuleWires.Power2:
+                if (cut)
+                    TurnOff(ent);
+                break;
+            case MuleWires.Motor1 or MuleWires.Motor2:
+                Movement.RefreshMovementSpeedModifiers(ent);
+                var motor = (HasWireCut(ent, MuleWires.Motor1), HasWireCut(ent, MuleWires.Motor2)) switch
+                {
+                    (true, true) => "mule-motor-stopped",
+                    (true, false) => "mule-motor-fast",
+                    (false, true) => "mule-motor-medium",
+                    _ => "mule-motor-slow",
+                };
+                _popup.PopupEntity(Loc.GetString(motor, ("mule", ent.Owner)), ent);
+                break;
+            case MuleWires.Avoidance:
+                UpdateLights(ent);
+                if (cut)
+                {
+                    _popup.PopupEntity(Loc.GetString("mule-avoidance-cut", ("mule", ent.Owner)), ent);
+                    if (user != null)
+                        _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(user.Value):user} cut the safety wire of {ToPrettyString(ent):mule}");
+                }
+                break;
+            case MuleWires.LoadCheck:
+                Buckle.StrapSetEnabled(ent, cut);
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Shows what a pulsed wire does, if it has the power to show anything.
+    /// </summary>
+    public void PulseWire(Entity<MuleComponent> ent, MuleWires wire)
+    {
+        if (!HasPower(ent))
+            return;
+
+        var message = wire switch
+        {
+            MuleWires.Power1 or MuleWires.Power2 => "mule-pulse-power",
+            MuleWires.Avoidance => "mule-pulse-avoidance",
+            MuleWires.LoadCheck => "mule-pulse-load",
+            MuleWires.Motor1 or MuleWires.Motor2 => "mule-pulse-motor",
+            _ => "mule-pulse-radio",
+        };
+
+        _popup.PopupEntity(Loc.GetString(message, ("mule", ent.Owner)), ent);
+        if (wire == MuleWires.Avoidance)
+        {
+            ent.Comp.FlashUntil = Timing.CurTime + FlashLength;
+            Appearance.SetData(ent, MuleVisuals.Flash, true);
+        }
+    }
+
+    /// <summary>
+    /// Looks at who's in its way. Normally it slows right down for anyone lying there. Hacked or emagged, it doesn't.
+    /// </summary>
+    private void CheckHazards(Entity<MuleComponent> ent, TransformComponent xform, TimeSpan now)
+    {
+        var comp = ent.Comp;
+        var avoidanceCut = HasWireCut(ent, MuleWires.Avoidance);
+        var dangerous = avoidanceCut || _emag.CheckFlag(ent, EmagType.Interaction);
+        TryGetRider(ent, out var rider);
+
+        foreach (var expired in comp.RecentHits.Where(hit => hit.Value <= now).Select(hit => hit.Key).ToList())
+        {
+            comp.RecentHits.Remove(expired);
+        }
+
+        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(xform.Coordinates, HitRange))
+        {
+            if (mob.Owner == ent.Owner || mob.Owner == rider || comp.RecentHits.ContainsKey(mob))
+                continue;
+
+            if (_standing.IsDown(mob.Owner))
+            {
+                if (!HasComp<HumanoidAppearanceComponent>(mob))
+                    continue;
+
+                if (dangerous)
+                    RunOver(ent, mob, now);
+                else
+                    DriveCarefully(ent, mob, now);
+            }
+            else if (avoidanceCut && !HasComp<BorgChassisComponent>(mob))
+            {
+                comp.RecentHits[mob] = now + HitCooldown;
+                if (_stun.TryKnockdown(mob.Owner, comp.KnockdownTime))
+                {
+                    _popup.PopupEntity(Loc.GetString("mule-knocks-over", ("mule", ent.Owner), ("target", mob.Owner)), ent, PopupType.MediumCaution);
+                    _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent):mule} knocked over {ToPrettyString(mob):target}");
+                }
+            }
+        }
+    }
+
+    private void DriveCarefully(Entity<MuleComponent> ent, EntityUid target, TimeSpan now)
+    {
+        if (ent.Comp.CarefulUntil == null)
+            _popup.PopupEntity(Loc.GetString("mule-careful", ("mule", ent.Owner), ("target", target)), ent);
+
+        ent.Comp.CarefulUntil = now + ent.Comp.CarefulTime;
+        Dirty(ent);
+        Movement.RefreshMovementSpeedModifiers(ent);
+    }
+
+    private void RunOver(Entity<MuleComponent> ent, EntityUid target, TimeSpan now)
+    {
+        var comp = ent.Comp;
+        comp.RecentHits[target] = now + HitCooldown;
+
+        var amount = _random.NextFloat(comp.RunOverMin, comp.RunOverMax) * comp.RunOverMultiplier;
+        _damageable.TryChangeDamage(target, new DamageSpecifier(_prototype.Index(Blunt), amount), origin: ent);
+        _bloodstream.TryBleedOut(target, comp.RunOverBlood);
+        Audio.PlayPvs(comp.RunOverSound, target);
+        _popup.PopupEntity(Loc.GetString("mule-runs-over", ("mule", ent.Owner), ("target", target)), target, PopupType.LargeCaution);
+        _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(ent):mule} ran over {ToPrettyString(target):target} for {amount:F0} blunt");
     }
 
     /// <summary>

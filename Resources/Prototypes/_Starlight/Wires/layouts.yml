@@ -111,3 +111,23 @@
     - !type:AccessWireAction
     - !type:FirelockHeatAlertAction
     - !type:FirelockAirAlertAction
+
+- type: wireLayout
+  id: Mulebot
+  # Its remote receiver and transmitter do nothing without a bot remote to talk to.
+  dummyWires: 2
+  wires:
+  - !type:MuleWireAction
+    wire: Power1
+  - !type:MuleWireAction
+    wire: Power2
+  - !type:MuleWireAction
+    wire: Avoidance
+  - !type:MuleWireAction
+    wire: LoadCheck
+  - !type:MuleWireAction
+    wire: Motor1
+  - !type:MuleWireAction
+    wire: Motor2
+  - !type:MuleWireAction
+    wire: Beacon

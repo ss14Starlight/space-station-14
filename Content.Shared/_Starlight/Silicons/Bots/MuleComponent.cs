@@ -82,6 +82,66 @@ public sealed partial class MuleComponent : Component
     [DataField]
     public float ChargePerTile = 0.216f;
 
+    /// <summary>
+    /// Which of its wires are cut.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public MuleWires CutWires;
+
+    /// <summary>
+    /// Speed with only the first motor wire cut.
+    /// </summary>
+    [DataField]
+    public float FastMotor = 1.8f;
+
+    /// <summary>
+    /// Speed with only the second motor wire cut.
+    /// </summary>
+    [DataField]
+    public float MediumMotor = 1.3f;
+
+    /// <summary>
+    /// Until when it's creeping along because someone is lying in its way.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public TimeSpan? CarefulUntil;
+
+    [DataField]
+    public TimeSpan CarefulTime = TimeSpan.FromSeconds(5);
+
+    [DataField]
+    public float CarefulSlowdown = 0.6f;
+
+    /// <summary>
+    /// How long someone it bumps into stays down, with the safety wire cut.
+    /// </summary>
+    [DataField]
+    public TimeSpan KnockdownTime = TimeSpan.FromSeconds(8);
+
+    /// <summary>
+    /// Blunt damage for running someone over, before <see cref="RunOverMultiplier"/>.
+    /// </summary>
+    [DataField]
+    public float RunOverMin = 5f;
+
+    [DataField]
+    public float RunOverMax = 15f;
+
+    [DataField]
+    public float RunOverMultiplier = 6f;
+
+    /// <summary>
+    /// Blood spilled by whoever it runs over.
+    /// </summary>
+    [DataField]
+    public float RunOverBlood = 5f;
+
+    [DataField]
+    public SoundSpecifier RunOverSound = new SoundPathSpecifier("/Audio/Effects/gib1.ogg");
+
+    [DataField]
+    public SoundSpecifier EmagSound = new SoundCollectionSpecifier("sparks");
+
     [DataField]
     public SoundSpecifier SighSound = new SoundPathSpecifier("/Audio/Machines/buzz-sigh.ogg");
 
@@ -108,6 +168,12 @@ public sealed partial class MuleComponent : Component
 
     [ViewVariables]
     public TimeSpan NextCheck;
+
+    /// <summary>
+    /// Who it has knocked down or run over lately, so it hits each once per pass.
+    /// </summary>
+    [ViewVariables]
+    public Dictionary<EntityUid, TimeSpan> RecentHits = new();
 
     /// <summary>
     /// When it may next look for a route after failing to find one.
@@ -159,4 +225,18 @@ public enum MuleMode : byte
 public enum MuleVisuals : byte
 {
     Flash,
+    Emagged,
+}
+
+[Flags, Serializable, NetSerializable]
+public enum MuleWires : byte
+{
+    None = 0,
+    Power1 = 1 << 0,
+    Power2 = 1 << 1,
+    Avoidance = 1 << 2,
+    LoadCheck = 1 << 3,
+    Motor1 = 1 << 4,
+    Motor2 = 1 << 5,
+    Beacon = 1 << 6,
 }

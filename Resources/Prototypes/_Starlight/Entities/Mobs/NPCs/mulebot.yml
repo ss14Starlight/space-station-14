@@ -13,6 +13,9 @@
     - state: hatch
       map: [ "hatch" ]
       visible: false
+    - state: emagged
+      map: [ "enum.MuleVisuals.Emagged" ]
+      visible: false
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -20,6 +23,10 @@
         enum.MuleVisuals.Flash:
           True: { state: on }
           False: { state: off }
+      enum.MuleVisuals.Emagged:
+        enum.MuleVisuals.Emagged:
+          True: { visible: true }
+          False: { visible: false }
       enum.WiresVisuals.MaintenancePanelState:
         hatch:
           True: { visible: true }
@@ -80,7 +87,17 @@
     interfaces:
       enum.MuleUiKey.Key:
         type: MuleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: WiresPanel
+  - type: Wires
+    boardName: wires-board-name-mulebot
+    layoutId: Mulebot
+    alwaysRandomize: true
+  # Riders, once the load check wire is cut.
+  - type: Strap
+    enabled: false
+    buckleOffset: "0,0.35"
   - type: ContainerContainer
     containers:
       mule_load: !type:ContainerSlot

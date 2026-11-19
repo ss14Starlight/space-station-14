@@ -1,4 +1,5 @@
 #nullable enable
+using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Threading.Tasks;
@@ -6,7 +7,14 @@ using Content.IntegrationTests.Tests.Interaction;
 using Content.Server._Starlight.Silicons.Bots;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.Silicons.Bots;
+using Content.Shared.Buckle;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Emag.Systems;
+using Content.Shared.Movement.Components;
+using Content.Shared.Standing;
+using Content.Shared.Stunnable;
+using Content.Shared.Wires;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
@@ -71,6 +79,33 @@ public sealed class MulebotTest : InteractionTest
             Assert.That(_muleSystem.Unload(mule));
             Assert.That(_muleSystem.TryGetLoad(mule, out _), Is.False);
             Assert.That((GridPosition(crate) - GridPosition(_mule)).Length(), Is.EqualTo(1f).Within(0.1f), "Unloads onto the next tile");
+        });
+    }
+
+    [Test]
+    public async Task CratesCanBeDraggedOntoIt()
+    {
+        await Build(4, new());
+        EntityUid crate = default, closet = default;
+        await Server.WaitPost(() =>
+        {
+            crate = SEntMan.SpawnAtPosition("CrateGenericSteel", At(1));
+            closet = SEntMan.SpawnAtPosition("ClosetEmergency", At(2));
+        });
+
+        await Server.WaitAssertion(() =>
+        {
+            var crateDrag = new Content.Shared.DragDrop.CanDragEvent();
+            SEntMan.EventBus.RaiseLocalEvent(crate, ref crateDrag);
+            Assert.That(crateDrag.Handled, "Players have to be able to start dragging a crate");
+
+            var closetDrag = new Content.Shared.DragDrop.CanDragEvent();
+            SEntMan.EventBus.RaiseLocalEvent(closet, ref closetDrag);
+            Assert.That(closetDrag.Handled, Is.False, "Lockers stay put");
+
+            var drop = new Content.Shared.DragDrop.CanDropTargetEvent(SPlayer, crate);
+            SEntMan.EventBus.RaiseLocalEvent(_mule, ref drop);
+            Assert.That(drop.CanDrop, "The MULE takes the drop");
         });
     }
 
@@ -294,6 +329,202 @@ public sealed class MulebotTest : InteractionTest
             Assert.That(slots.TryEject(_mule, slot, SPlayer, out _), Is.False, "Can't take the cell with the panel shut");
             Assert.That(Mule().Comp.On, "Still running");
         });
+    }
+
+    [Test]
+    public async Task CuttingAPowerWireSwitchesItOff()
+    {
+        await Build(4, new());
+        var mule = Mule();
+
+        await Server.WaitPost(() =>
+        {
+            _muleSystem.SetWireCut(mule, MuleWires.Power2, true);
+            _muleSystem.Command(mule, MuleCommand.Power);
+        });
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(mule.Comp.On, Is.False);
+            Assert.That(_muleSystem.HasPower(mule), Is.False);
+        });
+    }
+
+    [Test]
+    public async Task WontSwitchOnWithThePanelOpen()
+    {
+        await Build(4, new());
+        var mule = Mule();
+
+        await Server.WaitPost(() =>
+        {
+            _muleSystem.Command(mule, MuleCommand.Power);
+            SEntMan.System<SharedWiresSystem>().TogglePanel(_mule, SEntMan.GetComponent<WiresPanelComponent>(_mule), true);
+            _muleSystem.Command(mule, MuleCommand.Power);
+        });
+
+        await Server.WaitAssertion(() => Assert.That(mule.Comp.On, Is.False));
+    }
+
+    [Test]
+    public async Task MotorWiresSetItsSpeed()
+    {
+        await Build(4, new());
+        var mule = Mule();
+
+        float Speed() => SEntMan.GetComponent<MovementSpeedModifierComponent>(_mule).CurrentWalkSpeed;
+
+        float normal = 0, fast = 0, stopped = 0;
+        await Server.WaitPost(() =>
+        {
+            normal = Speed();
+            _muleSystem.SetWireCut(mule, MuleWires.Motor1, true);
+            fast = Speed();
+            _muleSystem.SetWireCut(mule, MuleWires.Motor2, true);
+            stopped = Speed();
+        });
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(fast, Is.EqualTo(normal * mule.Comp.FastMotor).Within(0.01f));
+            Assert.That(stopped, Is.EqualTo(0f));
+        });
+    }
+
+    [Test]
+    public async Task CutLoadCheckTakesAnythingAndRiders()
+    {
+        await Build(4, new());
+        var mule = Mule();
+
+        EntityUid toolbox = default, passenger = default;
+        await Server.WaitPost(() =>
+        {
+            toolbox = SEntMan.SpawnAtPosition("ToolboxMechanical", At(1));
+            passenger = SEntMan.SpawnAtPosition("MobHuman", At(1));
+        });
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(_muleSystem.TryLoad(mule, toolbox), Is.False, "Only crates while the load check is intact");
+            Assert.That(SEntMan.System<SharedBuckleSystem>().TryBuckle(passenger, passenger, _mule), Is.False, "Nobody rides it yet");
+
+            _muleSystem.SetWireCut(mule, MuleWires.LoadCheck, true);
+            Assert.That(SEntMan.System<SharedBuckleSystem>().TryBuckle(passenger, passenger, _mule), "Rides it once the load check is cut");
+            Assert.That(_muleSystem.TryGetLoad(mule, out var load) && load == passenger);
+            Assert.That(_muleSystem.TryLoad(mule, toolbox), Is.False, "A rider takes the place of a load");
+
+            Assert.That(_muleSystem.Unload(mule));
+            Assert.That(_muleSystem.TryGetRider(mule, out _), Is.False);
+            Assert.That(_muleSystem.TryLoad(mule, toolbox), "Takes any loose object with the load check cut");
+        });
+    }
+
+    [Test]
+    public async Task CutSafetyWireKnocksPeopleOver()
+    {
+        var beacons = await Build(12, new() { [0] = "CargoBay", [10] = "Bar" });
+        var mule = Mule();
+        EntityUid bystander = default;
+        await Server.WaitPost(() =>
+        {
+            bystander = SEntMan.SpawnAtPosition("MobHuman", At(5));
+            _muleSystem.SetWireCut(mule, MuleWires.Avoidance, true);
+            mule.Comp.AutoReturn = false;
+        });
+
+        await Send(mule, beacons[0], beacons[10]);
+        await RunSeconds(4);
+
+        await Server.WaitAssertion(() => Assert.That(SEntMan.HasComponent<KnockedDownComponent>(bystander), "Should be knocked flat"));
+    }
+
+    [Test]
+    public async Task SafeModeSlowsDownForSomeoneLyingThere()
+    {
+        var beacons = await Build(12, new() { [0] = "CargoBay", [10] = "Bar" });
+        var mule = Mule();
+        var victim = await LyingDown(5);
+        await Server.WaitPost(() => mule.Comp.AutoReturn = false);
+
+        await Send(mule, beacons[0], beacons[10]);
+        var slowed = false;
+        for (var i = 0; i < 12 && !slowed; i++)
+        {
+            await RunSeconds(0.5f);
+            await Server.WaitPost(() => slowed = mule.Comp.CarefulUntil != null);
+        }
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(slowed, "Should slow right down");
+            Assert.That(Blunt(victim), Is.Zero, "And not hurt them");
+        });
+    }
+
+    [Test]
+    public async Task EmaggedRunsPeopleOver()
+    {
+        var beacons = await Build(12, new() { [0] = "CargoBay", [10] = "Bar" });
+        var mule = Mule();
+        var victim = await LyingDown(5);
+
+        await Server.WaitPost(() =>
+        {
+            mule.Comp.AutoReturn = false;
+            SEntMan.System<SharedWiresSystem>().TogglePanel(_mule, SEntMan.GetComponent<WiresPanelComponent>(_mule), true);
+            var emag = SEntMan.SpawnAtPosition("Emag", At(0));
+            SEntMan.System<EmagSystem>().TryEmagEffect(emag, SPlayer, _mule);
+            SEntMan.System<SharedWiresSystem>().TogglePanel(_mule, SEntMan.GetComponent<WiresPanelComponent>(_mule), false);
+        });
+
+        await Server.WaitAssertion(() => Assert.That(SEntMan.System<EmagSystem>().CheckFlag(_mule, EmagType.Interaction)));
+
+        await Send(mule, beacons[0], beacons[10]);
+        await RunSeconds(8);
+
+        await Server.WaitAssertion(() =>
+        {
+            // 5-15 blunt, six times over, less whatever their armour takes.
+            Assert.That(Blunt(victim), Is.GreaterThan(0f).And.LessThanOrEqualTo(90f), "Should have driven over them");
+        });
+    }
+
+    [Test]
+    public async Task CutBeaconWireMeansNoRoute()
+    {
+        var beacons = await Build(12, new() { [0] = "CargoBay", [10] = "Bar" });
+        var mule = Mule();
+        await Server.WaitPost(() => _muleSystem.SetWireCut(mule, MuleWires.Beacon, true));
+
+        await Send(mule, beacons[0], beacons[10]);
+        await RunSeconds(5);
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(mule.Comp.Waypoints, Is.Empty);
+            Assert.That(GridPosition(_mule).X, Is.LessThan(1.5f), "Shouldn't go anywhere");
+        });
+    }
+
+    private float Blunt(EntityUid uid)
+    {
+        return SEntMan.System<DamageableSystem>().GetAllDamage(uid).DamageDict.GetValueOrDefault("Blunt").Float();
+    }
+
+    private async Task<EntityUid> LyingDown(int x)
+    {
+        EntityUid victim = default;
+        await Server.WaitPost(() =>
+        {
+            victim = SEntMan.SpawnAtPosition("MobHuman", At(x));
+            // No air here; keep the vacuum from adding its own blunt damage.
+            SEntMan.EnsureComponent<Content.Server.Atmos.Components.PressureImmunityComponent>(victim);
+            SEntMan.System<SharedStunSystem>().TryKnockdown(victim, TimeSpan.FromMinutes(1));
+        });
+        await RunTicks(5);
+        await Server.WaitAssertion(() => Assert.That(SEntMan.System<StandingStateSystem>().IsDown(victim)));
+        return victim;
     }
 
     [Test]
