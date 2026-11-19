@@ -1,4 +1,5 @@
 using Content.Client._Starlight.Computers.RemoteControl;
+using Content.Shared.Construction.Prototypes;
 using Robust.Client.Placement;
 using Robust.Shared.Enums;
 
@@ -10,6 +11,16 @@ public sealed partial class ConstructionSystem
     #region Starlight
 
     [Dependency] private IPlacementManager _quickConstructionPlacementManager = null!;
+
+    public void StartQuickConstructionPlacement(ConstructionPrototype prototype)
+    {
+        if (EntityManager.System<RemoteConstructionPlacementSystem>().TryBegin(prototype))
+            return;
+
+        _quickConstructionPlacementManager.BeginPlacing(
+            new PlacementInformation { IsTile = false, PlacementOption = prototype.PlacementMode },
+            new ConstructionPlacementHijack(this, prototype, isQuickConstruction: true));
+    }
 
     private bool TryFlipQuickConstructionPlacement()
     {
