@@ -45,10 +45,11 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private TurfSystem _turf = default!;
 
-    private EntityQuery<StepTriggerComponent> _stepTriggerQuery;
-    private EntityQuery<ReactiveComponent> _reactiveQuery;
-    private EntityQuery<EvaporationComponent> _evaporationQuery;
     [Dependency] private EntityQuery<PuddleComponent> _puddleQuery;
+
+    [Dependency] private EntityQuery<StepTriggerComponent> _stepTriggerQuery = default!;
+    [Dependency] private EntityQuery<ReactiveComponent> _reactiveQuery = default!;
+    [Dependency] private EntityQuery<EvaporationComponent> _evaporationQuery = default!;
 
     private ProtoId<ReagentPrototype>[] _standoutReagents = [];
 
@@ -76,10 +77,6 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         SubscribeLocalEvent<EvaporationComponent, MapInitEvent>(OnEvaporationMapInit);
 
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
-
-        _stepTriggerQuery = GetEntityQuery<StepTriggerComponent>();
-        _reactiveQuery = GetEntityQuery<ReactiveComponent>();
-        _evaporationQuery = GetEntityQuery<EvaporationComponent>();
 
         CacheStandsout();
         InitializeSpillable();

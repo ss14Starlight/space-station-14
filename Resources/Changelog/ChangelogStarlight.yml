@@ -1,88 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Changed the 20mm autocannon to not do absurd damage.
-    type: Tweak
-  id: 410285
-  time: '2026-11-09T17:36:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7148
-- author: Johnny
-  changes:
-  - message: Changed the 20mm autocannon to not act as an anti-material rifle and go through multiple layers of solid plastitanium.
-    type: Tweak
-  id: 410286
-  time: '2026-11-09T17:36:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7148
-- author: Conflee
-  changes:
-  - message: Gave tabletop radio machinery an offset so they sit on top of tables and counters properly. Also did some minor shading touch-ups on all radio machinery, adjusting their outlines to be shaded and softer.
-    type: Tweak
-  id: 410287
-  time: '2026-11-09T19:38:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7116
-- author: redmushie
-  changes:
-  - message: More advanced signaling options for light fixtures.
-    type: Add
-  id: 410288
-  time: '2026-11-09T20:04:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7149
-- author: Rinary
-  changes:
-  - message: Added sliders to configure new light settings intensity in settings.
-    type: Add
-  id: 410289
-  time: '2026-11-09T21:23:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7153
-- author: Rinary
-  changes:
-  - message: Reverted newly added "Dark" or "Soulmancer" wizard cause it's too op.
-    type: Remove
-  id: 410290
-  time: '2026-11-09T21:23:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7152
-- author: Citrea
-  changes:
-  - message: Nexus Integrated trait no longer requires surgery.
-    type: Fix
-  id: 410291
-  time: '2026-11-09T21:53:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7130
-- author: Citrea
-  changes:
-  - message: Expies can no longer be Nexus Integrated, as it conflicts with their pre-existing brain implant.
-    type: Remove
-  id: 410292
-  time: '2026-11-09T21:53:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7130
-- author: Celestial3rror404
-  changes:
-  - message: IPC survival boxes now come with an emergency welder.
-    type: Tweak
-  id: 410293
-  time: '2026-11-10T00:01:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7156
-- author: Sparlight
-  changes:
-  - message: Added a half-bright lighting option for spectating, which illuminates dark areas dimly for easier viewing.
-    type: Add
-  id: 410294
-  time: '2026-11-10T07:38:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7157
-- author: Rinary
-  changes:
-  - message: Last lights change was reverted. Goodbye.
-    type: Remove
-  id: 410295
-  time: '2026-11-10T08:52:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7161
-- author: Rinary
-  changes:
-  - message: I see smth on the ground!!! what is this? Diamond! Lights 1.0 restored to previous state. Have a good day SL community. I'll take a brake for a while.
-    type: Add
-  id: 410296
-  time: '2026-11-10T10:15:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7164
 - author: Caws
   changes:
   - message: "'Cadet' access has been removed. Security Cadets once again have Security access."
@@ -2799,4 +2715,88 @@ Entries:
   id: 410684
   time: '2026-11-19T19:45:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7212
+- author: Wizden Team
+  changes:
+  - message: Added ability to drop stored disguises for Changelings.
+    type: Add
+  id: 410685
+  time: '2026-11-19T21:50:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7323
+- author: Wizden Team
+  changes:
+  - message: 'Added visual overlays to the janibelt for: Soap, Cleaner Grenade, Plungers, Light Replacer, Wire Brush, Wet Floor Signs, and Holosign Projector.'
+    type: Add
+  id: 410686
+  time: '2026-11-19T21:50:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7323
+- author: Wizden Team
+  changes:
+  - message: Added missing sprites for trash bags when equipped on the belt.
+    type: Add
+  id: 410687
+  time: '2026-11-19T21:50:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7323
+- author: Wizden Team
+  changes:
+  - message: The wire brush can now scrub away spiderwebs and posters.
+    type: Add
+  id: 410688
+  time: '2026-11-19T21:50:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7323
+- author: Wizden Team
+  changes:
+  - message: Revenants will passively chill their environments based on how much essence they have.
+    type: Add
+  id: 410689
+  time: '2026-11-19T21:50:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7323
+- author: Wizden Team
+  changes:
+  - message: NPCs no longer detect invisible targets.
+    type: Add
+  id: 410690
+  time: '2026-11-19T21:50:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7323
+- author: Wizden Team
+  changes:
+  - message: Wizards can hear the sound of their fireball spell again.
+    type: Fix
+  id: 410691
+  time: '2026-11-19T21:50:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7323
+- author: Wizden Team
+  changes:
+  - message: Fixed the Prediction Issue when trying to forcefeed someone with a pulled-down mask!
+    type: Fix
+  id: 410692
+  time: '2026-11-19T21:50:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7323
+- author: Wizden Team
+  changes:
+  - message: Fixed the pneumatic valve overshooting gas equalization between the two connected pipenets.
+    type: Fix
+  id: 410693
+  time: '2026-11-19T21:50:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7323
+- author: Wizden Team
+  changes:
+  - message: Fixed stacks of concrete and astro mowed/jungle grass splitting in to wrong items.
+    type: Fix
+  id: 410694
+  time: '2026-11-19T21:50:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7323
+- author: Wizden Team
+  changes:
+  - message: Fixed Cutter Machine rotation to be consistent with other lathes.
+    type: Fix
+  id: 410695
+  time: '2026-11-19T21:50:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7323
+- author: Wizden Team
+  changes:
+  - message: Paradox clones will no longer be slow when spawning.
+    type: Fix
+  id: 410696
+  time: '2026-11-19T21:50:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7323
 Order: -1

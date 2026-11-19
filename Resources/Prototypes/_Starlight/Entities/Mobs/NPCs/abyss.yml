@@ -112,7 +112,6 @@
       - ForcedSleep
       - TemporaryBlindness
       - Pacified
-      - RadiationProtection
       - Drowsiness
     - type: ToolRefinable
       refineResult:
@@ -190,7 +189,6 @@
       - ForcedSleep
       - TemporaryBlindness
       - Pacified
-      - RadiationProtection
       - Drowsiness
 
 - type: entity

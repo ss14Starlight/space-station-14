@@ -14,15 +14,12 @@ public sealed partial class PettableFriendSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private UseDelaySystem _useDelay = default!;
 
-    private EntityQuery<FactionExceptionComponent> _exceptionQuery;
-    private EntityQuery<UseDelayComponent> _useDelayQuery;
+    [Dependency] private EntityQuery<FactionExceptionComponent> _exceptionQuery = default!;
+    [Dependency] private EntityQuery<UseDelayComponent> _useDelayQuery = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-
-        _exceptionQuery = GetEntityQuery<FactionExceptionComponent>();
-        _useDelayQuery = GetEntityQuery<UseDelayComponent>();
 
         SubscribeLocalEvent<PettableFriendComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<PettableFriendComponent, GotRehydratedEvent>(OnRehydrated);
