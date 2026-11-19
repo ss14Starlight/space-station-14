@@ -518,3 +518,7 @@ ClothingEyesHudBrigmedic: ClothingEyesHudMedSec
 
 #2026-11-15 - Musician shades replaced with modular sunglasses
 ClothingEyesGlassesMusicianSunglasses: ClothingEyesModularHudSunglasses
+
+#2026-11-18
+PrintedDocumentEmploymentStatement: PrintedDocumentEmploymentContract
+PrintedDocumentSurgeryConsentPermit: PrintedDocumentSurgeryConsentForm

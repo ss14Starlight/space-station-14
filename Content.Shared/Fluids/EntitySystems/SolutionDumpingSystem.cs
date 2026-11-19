@@ -28,7 +28,7 @@ public sealed partial class SolutionDumpingSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedSolutionContainerSystem _solContainer = default!;
 
-    private EntityQuery<DumpableSolutionComponent> _dumpQuery;
+    [Dependency] private EntityQuery<DumpableSolutionComponent> _dumpQuery = default!;
 
     public override void Initialize()
     {
@@ -39,9 +39,6 @@ public sealed partial class SolutionDumpingSystem : EntitySystem
         SubscribeLocalEvent<DrainableSolutionComponent, DragDropDraggedEvent>(OnDrainableDragged);
 
         SubscribeLocalEvent<DumpableSolutionComponent, DrainedTargetEvent>(OnDrainedToDumpableDragged);
-
-        // We use queries for these since CanDropDraggedEvent gets called pretty rapidly
-        _dumpQuery = GetEntityQuery<DumpableSolutionComponent>();
     }
 
     private void OnDrainableCanDrag(Entity<DrainableSolutionComponent> ent, ref CanDragEvent args)

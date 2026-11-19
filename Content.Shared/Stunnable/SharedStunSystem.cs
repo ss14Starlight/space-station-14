@@ -17,6 +17,7 @@ using Content.Shared.StatusEffectNew;
 using Content.Shared.Throwing;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Network;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -28,6 +29,7 @@ public abstract partial class SharedStunSystem : EntitySystem
     public static readonly EntProtoId StunId = "StatusEffectStunned";
 
     [Dependency] protected IGameTiming GameTiming = default!;
+    [Dependency] private INetManager _netManager = default!; // Starlight
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] protected ActionBlockerSystem Blocker = default!;
     [Dependency] protected AlertsSystem Alerts = default!;

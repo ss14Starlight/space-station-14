@@ -88,6 +88,25 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("lighting.screen_brightness", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
+    /// Whether departments and alert levels tint the view.
+    /// </summary>
+    public static readonly CVarDef<bool> ColorGrading =
+        CVarDef.Create("lighting.color_grading", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// How much of the colour grade is applied, from 0 to 1.
+    /// </summary>
+    public static readonly CVarDef<float> ColorGradingStrength =
+        CVarDef.Create("lighting.color_grading_strength", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Shows this colourGrade prototype instead of the zone's and alert level's, for tuning grades in place.
+    /// Empty to turn it off.
+    /// </summary>
+    public static readonly CVarDef<string> ColorGradePreview =
+        CVarDef.Create("lighting.color_grade_preview", "", CVar.CLIENTONLY);
+
+    /// <summary>
     /// Whether poorly lit areas lose their colour and turn blue, the way the eye sees in the dark.
     /// </summary>
     public static readonly CVarDef<bool> NightVision =
@@ -146,4 +165,53 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<float> FilmGrainStrength =
         CVarDef.Create("lighting.film_grain_strength", 0.05f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Whether taking damage and nearby explosions briefly split the colours at the screen edges.
+    /// Explosions also give a short flash in their light colour.
+    /// </summary>
+    public static readonly CVarDef<bool> ImpactEffects =
+        CVarDef.Create("lighting.impact_effects", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Strength of the impact effects, from 0 to 1.
+    /// </summary>
+    public static readonly CVarDef<float> ImpactEffectsStrength =
+        CVarDef.Create("lighting.impact_effects_strength", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Whether small dust motes drift in the bright light close to lamps.
+    /// </summary>
+    public static readonly CVarDef<bool> DustMotes =
+        CVarDef.Create("lighting.dust_motes", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// How bright the dust motes are, from 0 to 1.
+    /// </summary>
+    public static readonly CVarDef<float> DustMotesStrength =
+        CVarDef.Create("lighting.dust_motes_strength", 0.6f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Whether the air shimmers over fires and burning things.
+    /// </summary>
+    public static readonly CVarDef<bool> HeatHaze =
+        CVarDef.Create("lighting.heat_haze", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// How strongly the hot air bends the view, from 0 to 1.
+    /// </summary>
+    public static readonly CVarDef<float> HeatHazeStrength =
+        CVarDef.Create("lighting.heat_haze_strength", 0.7f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Whether puddles and polished floors catch the light of nearby lamps.
+    /// </summary>
+    public static readonly CVarDef<bool> FloorGloss =
+        CVarDef.Create("lighting.floor_gloss", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// How bright the reflections on glossy floors are, from 0 to 1.
+    /// </summary>
+    public static readonly CVarDef<float> FloorGlossStrength =
+        CVarDef.Create("lighting.floor_gloss_strength", 0.6f, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

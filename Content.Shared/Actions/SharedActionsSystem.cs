@@ -21,6 +21,8 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.EntitySystems;
 
 namespace Content.Shared.Actions;
 
@@ -36,10 +38,11 @@ public abstract partial class SharedActionsSystem : EntitySystem
     [Dependency] private   SharedInteractionSystem _interaction = default!;
     [Dependency] private   SharedTransformSystem _transform = default!;
     [Dependency] private   SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private HungerSystem _hungerSystem = default!; //Starlight
 
-    private EntityQuery<ActionComponent> _actionQuery;
-    private EntityQuery<ActionsComponent> _actionsQuery;
-    private EntityQuery<MindComponent> _mindQuery;
+    [Dependency] private EntityQuery<ActionComponent> _actionQuery = default!;
+    [Dependency] private EntityQuery<ActionsComponent> _actionsQuery = default!;
+    [Dependency] private EntityQuery<MindComponent> _mindQuery = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -47,10 +50,6 @@ public abstract partial class SharedActionsSystem : EntitySystem
     {
         base.Initialize();
         InitializeActionDoAfter();
-
-        _actionQuery = GetEntityQuery<ActionComponent>();
-        _actionsQuery = GetEntityQuery<ActionsComponent>();
-        _mindQuery = GetEntityQuery<MindComponent>();
 
         SubscribeLocalEvent<ActionComponent, MapInitEvent>(OnActionMapInit);
 
@@ -616,6 +615,14 @@ public abstract partial class SharedActionsSystem : EntitySystem
         if (action.Comp.RaiseOnAction)
             target = action;
 
+        // Starlight Start
+        // If we have a metabolic cost and can't afford it, cancel the action
+        if(action.Comp.MetabolicCost != null
+        && TryComp(ev.Performer, out HungerComponent? hunger)
+        && _hungerSystem.IsHungerBelowState(ev.Performer, HungerThreshold.Peckish))
+            return;
+        //Starlight End
+
         RaiseLocalEvent(target, (object) ev, broadcast: true);
         handled = ev.Handled;
 
@@ -634,6 +641,9 @@ public abstract partial class SharedActionsSystem : EntitySystem
             SetCooldown((action, action), cooldown);
         else if (!IsCooldownActive(action.Comp))
             StartUseDelay((action, action));
+
+        if(action.Comp.MetabolicCost != null)
+            _hungerSystem.ModifyHunger(ev.Performer, -action.Comp.MetabolicCost.Value);
 
         // Starlight-end
 

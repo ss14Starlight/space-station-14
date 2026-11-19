@@ -46,6 +46,7 @@
 
 
 - type: entity
+  parent: BaseSuicideAction
   id: ActionEnterStasis
   name: Enter regenerative stasis
   description: Fake your death and start regenerating. Drains all your chemicals. Consumes biomass.
@@ -57,8 +58,8 @@
     icon:
       sprite: _Starlight/Interface/Actions/actions_changeling.rsi
       state: stasis_enter
-    checkCanInteract: false
-    checkConsciousness: false
+#    checkCanInteract: false
+#    checkConsciousness: false
   - type: InstantAction
     event: !type:EnterStasisEvent {}
   - type: ChangelingAction

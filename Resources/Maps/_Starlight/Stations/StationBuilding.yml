@@ -9977,7 +9977,6 @@ entities:
   - uid: 1616
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: -24.5,2.5
       parent: 2
     - type: TechnologyDatabase

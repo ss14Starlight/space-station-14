@@ -22,6 +22,7 @@ public sealed partial class TurfSystem : EntitySystem
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private ITileDefinitionManager _tileDefinitions = default!;
 
+    [Dependency] private EntityQuery<FixturesComponent> _fixtureQuery = default!;
 
     private bool[] _tileHasMapAtmosphere = [];
 
@@ -129,8 +130,7 @@ public sealed partial class TurfSystem : EntitySystem
         if (!Resolve(gridUid, ref grid, ref gridXform))
             return false;
 
-        var xformQuery = GetEntityQuery<TransformComponent>();
-        var (gridPos, gridRot, matrix) = _transform.GetWorldPositionRotationMatrix(gridXform, xformQuery);
+        var (gridPos, gridRot, matrix) = _transform.GetWorldPositionRotationMatrix(gridXform);
 
         var size = grid.TileSize;
         var localPos = new Vector2(indices.X * size + (size / 2f), indices.Y * size + (size / 2f));
@@ -142,17 +142,16 @@ public sealed partial class TurfSystem : EntitySystem
         tileAabb = tileAabb.Translated(localPos);
 
         var intersectionArea = 0f;
-        var fixtureQuery = GetEntityQuery<FixturesComponent>();
         foreach (var ent in _entityLookup.GetEntitiesIntersecting(gridUid, worldBox, LookupFlags.Dynamic | LookupFlags.Static))
         {
-            if (!fixtureQuery.TryGetComponent(ent, out var fixtures))
+            if (!_fixtureQuery.TryGetComponent(ent, out var fixtures))
                 continue;
 
             if (ignored != null && ignored(ent)) // Starlight
                 continue;
 
             // get grid local coordinates
-            var (pos, rot) = _transform.GetWorldPositionRotation(xformQuery.GetComponent(ent), xformQuery);
+            var (pos, rot) = _transform.GetWorldPositionRotation(ent);
             rot -= gridRot;
             pos = (-gridRot).RotateVec(pos - gridPos);
 
