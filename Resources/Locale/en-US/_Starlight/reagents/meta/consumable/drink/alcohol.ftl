@@ -9,3 +9,5 @@ reagent-desc-the-last-call = There are no good or bad choices. Only consequences
 
 reagent-name-fruit-wine = fruit wine
 reagent-desc-fruit-wine = Wine made from whatever fruit was around. Sweet and a bit sharp.
+reagent-name-cider = hard cider
+reagent-desc-cider = Fermented apple juice, a little tart and a lot stronger.
