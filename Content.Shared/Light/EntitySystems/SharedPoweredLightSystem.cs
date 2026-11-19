@@ -319,15 +319,16 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
                         _audio.PlayPredicted(light.TurnOnSound, uid, user: user, light.TurnOnSound.Params.AddVolume(-10f));
                     }
                 }
-                else if (lightEnergy > 0 && TrySetBackupLight(uid, light, (bulbUid.Value, lightBulb), powerReceiver, appearance)) // Starlight
-                {
-                    // Lit from backup cell
-                }
                 else
                 {
+                    // Starlight-start: Run from backup battery if available, otherwise turn off
+                    if (lightEnergy > 0 && TrySetBackupLight(uid, light, (bulbUid.Value, lightBulb), powerReceiver, appearance))
+                        break;
+
+                    ClearBackupLight(uid, appearance);
+                    // Starlight-end
                     SetLight(uid, false, light: light);
                     _appearance.SetData(uid, PoweredLightVisuals.BulbState, PoweredLightState.Off, appearance);
-                    ClearBackupLight(uid, appearance); // Starlight
                 }
                 break;
             case LightBulbState.Broken:

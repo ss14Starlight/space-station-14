@@ -135,11 +135,10 @@ public sealed partial class EmergencyLightSystem : SharedEmergencyLightSystem
     {
         if (entity.Comp.State == EmergencyLightState.On)
         {
-            // Starlight: Do not drain battery if station power is active
+            // Starlight-start: Do not drain battery if station power is active
             if (TryComp<ApcPowerReceiverComponent>(entity.Owner, out var receiver) && receiver.Powered)
-            {
                 return;
-            }
+            // Starlight-end
 
             if (!_battery.TryUseCharge((entity.Owner, battery), entity.Comp.Wattage * frameTime))
             {
