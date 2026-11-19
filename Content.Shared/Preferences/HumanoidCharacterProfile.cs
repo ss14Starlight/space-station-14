@@ -804,12 +804,13 @@ namespace Content.Shared.Preferences
                 valid[index] = true; // Starlight
             }
 
-            // Starlight
+            // Starlight-start
             var result = new List<ProtoId<TraitPrototype>>();
             for (var i = 0; i < traitList.Count; i++)
             {
                 if (valid[i])
                     result.Add(traitList[i]);
+            // Starlight-end
             }
 
             return result;
