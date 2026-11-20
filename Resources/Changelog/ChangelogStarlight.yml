@@ -1,11 +1,4 @@
 Entries:
-- author: STARLIGHT TEAM
-  changes:
-  - message: Lowered default bloom value slightly.
-    type: Tweak
-  id: 410299
-  time: '2026-11-10T17:20:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7168
 - author: Trosling
   changes:
   - message: Overhauled Implantation Law to better work with new Induced Mutiny SOP.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410698
   time: '2026-11-19T22:54:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7338
+- author: Scarpenter1
+  changes:
+  - message: Language traits are no longer dropped when taken with Foreigner or Foreigner Light.
+    type: Fix
+  id: 410699
+  time: '2026-11-20T01:41:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7318
 Order: -1
