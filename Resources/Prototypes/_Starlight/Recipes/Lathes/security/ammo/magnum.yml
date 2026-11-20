@@ -100,57 +100,57 @@
   - Ammo
   completetime: 5
   materials:
-    Steel: 875
-    Plastic: 750
+    Steel: 585
+    Plastic: 500
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxMagnumSP
   result: MagazineBoxMagnumSP
   materials:
-    Steel: 600
+    Steel: 400
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxMagnumHP
   result: MagazineBoxMagnumHP
   materials:
-    Steel: 600
+    Steel: 400
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxMagnumFMJ
   result: MagazineBoxMagnumFMJ
   materials:
-    Steel: 600
+    Steel: 400
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxMagnumPractice
   result: MagazineBoxMagnumPractice
   materials:
-    Steel: 150
+    Steel: 100
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxMagnumIncendiary
   result: MagazineBoxMagnumIncendiary
   materials:
-    Plastic: 600
+    Plastic: 400
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxMagnumUranium
   result: MagazineBoxMagnumUranium
   materials:
-    Plastic: 600
-    Uranium: 450
+    Plastic: 400
+    Uranium: 300
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxMagnumAP
   result: MagazineBoxMagnumAP
   materials:
-    Plastic: 600
-    Steel: 450
-    Uranium: 450
+    Plastic: 400
+    Steel: 300
+    Uranium: 300
