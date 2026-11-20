@@ -1,13 +1,6 @@
 Entries:
 - author: WNP78 & Sparlight
   changes:
-  - message: Added access reader (defaults Medical access), maintenance panel and hacking wires to plumbing smart dispenser.
-    type: Add
-  id: 410306
-  time: '2026-11-10T19:07:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7026
-- author: WNP78 & Sparlight
-  changes:
   - message: Fixed the plumbing smart dispenser sprite not showing the power state properly.
     type: Fix
   id: 410307
@@ -2799,4 +2792,11 @@ Entries:
   id: 410705
   time: '2026-11-20T17:18:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7358
+- author: Johnny
+  changes:
+  - message: Added lockable buttons for some factions that mappers can use.
+    type: Add
+  id: 410706
+  time: '2026-11-20T17:48:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7356
 Order: -1
