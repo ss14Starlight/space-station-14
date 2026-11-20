@@ -1,137 +1,4 @@
 Entries:
-- author: WNP78 & Sparlight
-  changes:
-  - message: Added the ability to label chemicals that are in a plumbing smart dispenser, using the hand labeler.
-    type: Add
-  id: 410305
-  time: '2026-11-10T19:07:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7026
-- author: WNP78 & Sparlight
-  changes:
-  - message: Added access reader (defaults Medical access), maintenance panel and hacking wires to plumbing smart dispenser.
-    type: Add
-  id: 410306
-  time: '2026-11-10T19:07:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7026
-- author: WNP78 & Sparlight
-  changes:
-  - message: Fixed the plumbing smart dispenser sprite not showing the power state properly.
-    type: Fix
-  id: 410307
-  time: '2026-11-10T19:07:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7026
-- author: WNP78 & Sparlight
-  changes:
-  - message: Fixed the plumbing smart dispenser not requiring power for anything despite saying it does in the description (you can still manually dispense, just the smart-dispense functionality is gone).
-    type: Fix
-  id: 410308
-  time: '2026-11-10T19:07:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7026
-- author: WNP78 & Sparlight
-  changes:
-  - message: Plumbing smart dispenser now defaults to 5u dispense amount.
-    type: Tweak
-  id: 410309
-  time: '2026-11-10T19:07:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7026
-- author: WNP78 & Sparlight
-  changes:
-  - message: (Sparlight) Added context menu verbs for dispensing reagents and returning them to the dispenser.
-    type: Add
-  id: 410310
-  time: '2026-11-10T19:07:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7026
-- author: redmushie
-  changes:
-  - message: Exterminator target pinpointer.
-    type: Fix
-  id: 410311
-  time: '2026-11-10T19:47:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7169
-- author: Caws
-  changes:
-  - message: Deli stands are  now anchored at roundstart.
-    type: Fix
-  id: 410312
-  time: '2026-11-11T02:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7171
-- author: Conflee
-  changes:
-  - message: Changed the Juggernaut Hardsuit's Heat Resistance (lasers) from 80% to 65%. This is still higher than every suit except the Elite suit, but is the Jugg's lowest resistance, making lasers the slightly more effective option for fighting one.
-    type: Tweak
-  id: 410313
-  time: '2026-11-11T05:04:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7176
-- author: GGdoggodude
-  changes:
-  - message: Aieliths now spawn with the proper survival box!
-    type: Fix
-  id: 410314
-  time: '2026-11-11T05:33:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7177
-- author: redmushie
-  changes:
-  - message: Increased prefilled glowstone bag from 25 charges to 50 charges.
-    type: Tweak
-  id: 410315
-  time: '2026-11-11T10:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7180
-- author: redmushie
-  changes:
-  - message: Increased glowstone bag refill value of crystal shards from 10 to 15.
-    type: Tweak
-  id: 410316
-  time: '2026-11-11T10:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7180
-- author: redmushie
-  changes:
-  - message: Salvage Medics get a filled glowstone bag in their locker.
-    type: Add
-  id: 410317
-  time: '2026-11-11T10:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7180
-- author: redmushie
-  changes:
-  - message: Mining Specialists get a filled glowstone bag in their locker.
-    type: Add
-  id: 410318
-  time: '2026-11-11T10:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7180
-- author: redmushie
-  changes:
-  - message: Salvage Specialists get an empty glowstone bag in their locker.
-    type: Add
-  id: 410319
-  time: '2026-11-11T10:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7180
-- author: FishtopherDoe, The ETO Team
-  changes:
-  - message: Rebalanced the ETO Combat kit, replacing one of the diluted combat medipens with a syringe of saline, and changing some of the tric to be nutriment instead. TSF players rejoice!
-    type: Tweak
-  id: 410320
-  time: '2026-11-11T10:47:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7172
-- author: Tjmaxmillion
-  changes:
-  - message: Station AI now needs 10 hours of command.
-    type: Tweak
-  id: 410321
-  time: '2026-11-11T15:16:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7182
-- author: Maxim
-  changes:
-  - message: Lasers are immune to jamming at the cost of being able to melt their crystal when under sustained fire. Watch your HUD heat gauge carefully.
-    type: Tweak
-  id: 410322
-  time: '2026-11-11T15:54:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7173
-- author: Destiny (Creativity)
-  changes:
-  - message: Deimplanter for MedTak implants, found in MedTak techfab.
-    type: Add
-  id: 410323
-  time: '2026-11-11T16:20:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7160
 - author: Destiny (Creativity)
   changes:
   - message: Platinum MedTak Tracker.
@@ -2799,4 +2666,137 @@ Entries:
   id: 410704
   time: '2026-11-20T04:09:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7344
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Modular HUDs now hide what modules are inside them similarly to headsets.
+    type: Tweak
+  id: 410705
+  time: '2026-11-20T17:18:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7358
+- author: Johnny
+  changes:
+  - message: Added lockable buttons for some factions that mappers can use.
+    type: Add
+  id: 410706
+  time: '2026-11-20T17:48:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7356
+- author: Ohelig
+  changes:
+  - message: Fixed the Interim Command Appointment form.
+    type: Fix
+  id: 410707
+  time: '2026-11-20T18:13:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7351
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) 2 rooms of Service Dorms.
+    type: Remove
+  id: 410708
+  time: '2026-11-20T18:13:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7354
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) New Clothing Room in Service Dorms.
+    type: Add
+  id: 410709
+  time: '2026-11-20T18:13:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7354
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) New Tools Room in Service Dorms.
+    type: Add
+  id: 410710
+  time: '2026-11-20T18:13:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7354
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Camera and Lights in Main Atmos Room.
+    type: Fix
+  id: 410711
+  time: '2026-11-20T18:13:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7354
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) More Maints Loot Lockers.
+    type: Add
+  id: 410712
+  time: '2026-11-20T18:13:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7354
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Minor fixes with Cameras.
+    type: Fix
+  id: 410713
+  time: '2026-11-20T18:13:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7354
+- author: Citrea
+  changes:
+  - message: Xen'Kara are allowed to breathe in emergencies.
+    type: Fix
+  id: 410714
+  time: '2026-11-20T18:53:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7352
+- author: Citrea
+  changes:
+  - message: The elected Voice of the Queen can now actually hear the others.
+    type: Fix
+  id: 410715
+  time: '2026-11-20T18:53:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7352
+- author: Citrea
+  changes:
+  - message: You no longer crash on joining the server when compatability mode is on.
+    type: Fix
+  id: 410716
+  time: '2026-11-20T18:53:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7352
+- author: Citrea
+  changes:
+  - message: You can independently dye Xen'Kara teeth, as intended.
+    type: Fix
+  id: 410717
+  time: '2026-11-20T18:53:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7352
+- author: SirLutz
+  changes:
+  - message: Passive gates now have a red dot on the output side, bringing them in line with other pipe parts that have a defined flow direction.
+    type: Add
+  id: 410718
+  time: '2026-11-20T18:53:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7357
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Fixed welding masks and goggles sometimes acting like they didn't provide welding protection for a moment before correcting themselves.
+    type: Fix
+  id: 410719
+  time: '2026-11-20T19:42:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7360
+- author: Swonki
+  changes:
+  - message: Changed VM97 spread from 5 to 3 rounds.
+    type: Tweak
+  id: 410720
+  time: '2026-11-20T19:42:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7361
+- author: Swonki
+  changes:
+  - message: Changed VM97 Recharge time from 3 to 3.75.
+    type: Tweak
+  id: 410721
+  time: '2026-11-20T19:42:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7361
+- author: Swonki
+  changes:
+  - message: Changed VM97, now it requires wielding.
+    type: Tweak
+  id: 410722
+  time: '2026-11-20T19:42:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7361
+- author: Swonki
+  changes:
+  - message: Fixed EXTREMELY low accuracy for VM97.
+    type: Fix
+  id: 410723
+  time: '2026-11-20T19:42:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7361
 Order: -1
