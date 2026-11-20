@@ -121,7 +121,7 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
         if (component.PrivilegedIdSlot.Item is { Valid: true } item)
         {
             privilegedIdName = Comp<MetaDataComponent>(item).EntityName;
-        // Starlight-edit: Start
+            // Starlight-edit: Start
             var privilegedTags = _accessReader.FindAccessTags(item).ToHashSet();
             possibleAccess = privilegedTags.ToList();
         }
@@ -210,7 +210,7 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 availableGroups,
                 null,
                 allIconsUnlocked);
-                // Starlight-edit: End
+            // Starlight-edit: End
         }
         else
         {
@@ -241,7 +241,7 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 availableGroups,
                 targetIdComponent.JobIcon,
                 allIconsUnlocked);
-                // Starlight-edit: End
+            // Starlight-edit: End
         }
 
         _userInterface.SetUiState(uid, IdCardConsoleUiKey.Key, newState);
@@ -290,7 +290,7 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
         JobIconPrototype? jobIcon = null;
         if (_prototype.Resolve(newJobIcon, out var explicitJobIcon) && IconAllowed(explicitJobIcon))
             jobIcon = explicitJobIcon;
-         else if (_prototype.Resolve(job?.Icon, out var defaultJobIcon) && (IconAllowed(defaultJobIcon) || (defaultJobIcon.ID == "JobIconUnknown" && !component.RequiredTags.Contains("JobIconSalvage")))) // Starlight edit - account for salvage id console during unknown icon fallback
+        else if (_prototype.Resolve(job?.Icon, out var defaultJobIcon) && (IconAllowed(defaultJobIcon) || (defaultJobIcon.ID == "JobIconUnknown" && !component.RequiredTags.Contains("JobIconSalvage")))) // Starlight edit - account for salvage id console during unknown icon fallback
             jobIcon = defaultJobIcon;
 
         if (jobIcon != null)
