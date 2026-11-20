@@ -193,6 +193,7 @@
   rules:
   - Wizard
   - DummyNonAntagChance
+  - SubGamemodesRuleNoWizard #No Dual Wizards at the start, midround is fine
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - BasicRoundstartVariation
