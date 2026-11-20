@@ -13,7 +13,7 @@ public sealed partial class HumanoidProfileEditor
         foreach (var existingTrait in Profile.TraitPreferences)
             Profile = Profile.WithoutTraitPreference(existingTrait, _prototypeManager);
 
-        foreach (var trait in traits)
+        foreach (var trait in TraitOrdering.OrderForValidation(traits, _prototypeManager))
             Profile = Profile.WithTraitPreference(trait.Id, _prototypeManager);
 
         SetDirty();
