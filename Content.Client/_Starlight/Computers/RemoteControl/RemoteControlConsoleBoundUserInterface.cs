@@ -300,8 +300,6 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
         if (disposing)
             _window?.CancelRemoteAttackHolds();
 
-        base.Dispose(disposing);
-
         if (disposing)
         {
             var window = _window;
@@ -337,5 +335,7 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
                 window.DisposePopOut();
             }
         }
+
+        base.Dispose(disposing);
     }
 }
