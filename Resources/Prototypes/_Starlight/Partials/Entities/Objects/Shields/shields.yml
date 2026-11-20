@@ -8,6 +8,8 @@
     sound:
       path: /Audio/_Starlight/Items/Handling/plastic_shield_drop.ogg
   - type: Clothing
+    quickEquip: false
+    slots: NONE
     equipSound:
       path: /Audio/_Starlight/Items/Equip/backpack_equip.ogg
 
@@ -39,7 +41,6 @@
   id: RiotShield
   components:
   - type: Clothing
-    quickEquip: false
     slots:
       - Back
       - suitStorage
@@ -49,7 +50,6 @@
   id: RiotLaserShield
   components:
   - type: Clothing
-    quickEquip: false
     slots:
       - Back
       - suitStorage
@@ -59,7 +59,6 @@
   id: RiotBulletShield
   components:
   - type: Clothing
-    quickEquip: false
     slots:
       - Back
       - suitStorage
