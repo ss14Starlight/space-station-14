@@ -288,6 +288,9 @@ public sealed partial class CloningSystem : SharedCloningSystem
     /// </summary>
     public void CopyStatusEffects(Entity<StatusEffectContainerComponent?> original, Entity<StatusEffectContainerComponent?> target)
     {
+        if (!Resolve(original, ref original.Comp, false)) // Starlight, things without status effect containers have nothing to copy
+            return; // Starlight
+
         foreach (var effect in _statusEffects.EnumerateStatusEffects(original, _cloneableEffectQuery))
         {
             //We are not interested in temporary effects, only permanent ones.
