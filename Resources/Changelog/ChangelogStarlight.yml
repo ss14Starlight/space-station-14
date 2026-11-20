@@ -1,13 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: (Flotilla) Add new APCs to Artifact room.
-    type: Add
-  id: 410332
-  time: '2026-11-12T01:33:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7187
-- author: Hot Mic
-  changes:
   - message: (Flotilla) Add new Radiation Lockers, EOD Locker, and EVA Storage Units to Artifact room.
     type: Add
   id: 410333
@@ -2799,4 +2792,11 @@ Entries:
   id: 410731
   time: '2026-11-20T21:22:44.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7016
+- author: neomoth, conflee
+  changes:
+  - message: Added new sprites for the back equipped state of the Impact Bolt Rifle.
+    type: Add
+  id: 410732
+  time: '2026-11-20T21:22:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7340
 Order: -1
