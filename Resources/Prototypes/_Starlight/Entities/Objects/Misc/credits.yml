@@ -3,7 +3,7 @@
   displayName: materials-unit-credits
   cash:
     1: NTCredit
-  canWithdraw: true
+  canWithdraw: false
 
 - type: entity
   parent: BaseItem
