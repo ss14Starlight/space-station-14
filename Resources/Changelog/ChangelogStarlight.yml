@@ -1,32 +1,4 @@
 Entries:
-- author: FishtopherDoe, The ETO Team
-  changes:
-  - message: Rebalanced the ETO Combat kit, replacing one of the diluted combat medipens with a syringe of saline, and changing some of the tric to be nutriment instead. TSF players rejoice!
-    type: Tweak
-  id: 410320
-  time: '2026-11-11T10:47:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7172
-- author: Tjmaxmillion
-  changes:
-  - message: Station AI now needs 10 hours of command.
-    type: Tweak
-  id: 410321
-  time: '2026-11-11T15:16:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7182
-- author: Maxim
-  changes:
-  - message: Lasers are immune to jamming at the cost of being able to melt their crystal when under sustained fire. Watch your HUD heat gauge carefully.
-    type: Tweak
-  id: 410322
-  time: '2026-11-11T15:54:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7173
-- author: Destiny (Creativity)
-  changes:
-  - message: Deimplanter for MedTak implants, found in MedTak techfab.
-    type: Add
-  id: 410323
-  time: '2026-11-11T16:20:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7160
 - author: Destiny (Creativity)
   changes:
   - message: Platinum MedTak Tracker.
@@ -2799,4 +2771,32 @@ Entries:
   id: 410719
   time: '2026-11-20T19:42:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7360
+- author: Swonki
+  changes:
+  - message: Changed VM97 spread from 5 to 3 rounds.
+    type: Tweak
+  id: 410720
+  time: '2026-11-20T19:42:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7361
+- author: Swonki
+  changes:
+  - message: Changed VM97 Recharge time from 3 to 3.75.
+    type: Tweak
+  id: 410721
+  time: '2026-11-20T19:42:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7361
+- author: Swonki
+  changes:
+  - message: Changed VM97, now it requires wielding.
+    type: Tweak
+  id: 410722
+  time: '2026-11-20T19:42:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7361
+- author: Swonki
+  changes:
+  - message: Fixed EXTREMELY low accuracy for VM97.
+    type: Fix
+  id: 410723
+  time: '2026-11-20T19:42:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7361
 Order: -1
