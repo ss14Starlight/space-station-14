@@ -4,3 +4,17 @@
   - type: Tag
     tags:
       - Keg
+  - type: ContainerContainer
+    containers:
+      paper_label: !type:ContainerSlot
+  - type: PaperLabel
+    labelSlot:
+      priority: 100
+      insertVerbText: comp-paper-label-insert
+      ejectVerbText: comp-paper-label-eject
+      whitelist:
+        components:
+          - Paper
+      blacklist:
+        tags:
+          - Book
