@@ -16,6 +16,27 @@
       weight: 0.75
     - id: CDAdvertBecomeSilicon # Overlord advert should be rarer.
       weight: 0.5
+    - id: CDAdvertDonkPockets
+    - id: CDAdvertGreybull
+    - id: CDAdvertJoinCargonia
+    - id: CDAdvertJoinEngineering
+    - id: CDAdvertJoinMedical
+    - id: CDAdvertJoinSecurity
+    - id: CDAdvertJoinTheJanitors
+    - id: CDAdvertJoinScienceTeam
+    - id: CDAdvertMagmale
+    - id: CDAdvertUncleGits
+    - id: CDAdvertDiscountDans
+    - id: CDAdvertSpeakerSecurityPSA
+    - id: CDAdvertInspector
+    - id: CDAdvertJoinBotany
+    - id: CDAdvertKammerer
+    - id: CDAdvertMimeFromBehind
+    - id: CDAdvertMosinNagant
+    - id: CDAdvertNomads
+    - id: CDAdvertNTClownCollege
+    - id: CDAdvertSinguloTek
+    - id: CDAdvertTOOB
     - id: CDMiscDuck # Stupid duck noises.
       weight: 0.3
     - id: CDJNEShow # JNE Show should be super rare.
