@@ -212,7 +212,7 @@
     Barozine: 2
 
 - type: reaction
-  id: PolyElecttrolyze
+  id: PolyElectrolyze
   requiredMixerCategories:
   - Electrolysis
   reactants:
