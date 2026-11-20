@@ -148,3 +148,13 @@
     - Carp-Easy
     - Carp-Medium
     - Carp-Hard
+
+- type: salvageDungeonMod
+  id: Hive
+  desc: salvage-dungeon-mod-hive
+  proto: Hive
+  biomes:
+    - Caves
+    - Abyss
+  difficulties:
+    - Xeno-Hard
