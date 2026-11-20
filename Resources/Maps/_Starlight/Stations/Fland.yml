@@ -4,7 +4,7 @@ meta:
   engineVersion: 295.0.3
   forkId: ""
   forkVersion: ""
-  time: 11/20/2026 12:42:16
+  time: 11/20/2026 12:45:11
   entityCount: 39164
 maps:
 - 1
@@ -21379,7 +21379,7 @@ entities:
       pos: -15.5,-4.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -149255.55
+      secondsUntilStateChange: -149420.11
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -124713,6 +124713,14 @@ entities:
       pos: 19.5,-61.5
     - type: AtmosPipeColor
       color: '#0055CCFF'
+  - uid: 24144
+    components:
+    - type: Transform
+      parent: 2
+      rot: 1.5707963267948966 rad
+      pos: 137.5,45.5
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
 - proto: GasPassiveGateAlt4
   entities:
   - uid: 19527
@@ -124932,6 +124940,14 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: 19.5,-61.5
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 23733
+    components:
+    - type: Transform
+      parent: 2
+      rot: -1.5707963267948966 rad
+      pos: 137.5,45.5
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasPassiveVent
@@ -164355,14 +164371,6 @@ entities:
       pos: 136.5,45.5
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 23733
-    components:
-    - type: Transform
-      parent: 2
-      rot: 1.5707963267948966 rad
-      pos: 137.5,45.5
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 23734
     components:
     - type: Transform
@@ -167542,14 +167550,6 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 125.5,46.5
-    - type: AtmosPipeColor
-      color: '#990000FF'
-  - uid: 24144
-    components:
-    - type: Transform
-      parent: 2
-      rot: 1.5707963267948966 rad
-      pos: 137.5,45.5
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 24145
@@ -188501,7 +188501,7 @@ entities:
       pos: 16.5,54.5
     - type: Door
       state: Closing
-      secondsUntilStateChange: -75800.234
+      secondsUntilStateChange: -75964.805
   - uid: 27094
     components:
     - type: Transform
