@@ -1,46 +1,4 @@
 Entries:
-- author: STARLIGHT TEAM
-  changes:
-  - message: Lowered default bloom value slightly.
-    type: Tweak
-  id: 410299
-  time: '2026-11-10T17:20:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7168
-- author: Trosling
-  changes:
-  - message: Overhauled Implantation Law to better work with new Induced Mutiny SOP.
-    type: Tweak
-  id: 410300
-  time: '2026-11-10T17:44:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7086
-- author: Trosling
-  changes:
-  - message: Added cool interactions between medical jobs and security for certain implantation.
-    type: Add
-  id: 410301
-  time: '2026-11-10T17:44:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7086
-- author: Trosling
-  changes:
-  - message: Added intuitive forms to make approving such implantation more transparent.
-    type: Add
-  id: 410302
-  time: '2026-11-10T17:44:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7086
-- author: Talirson
-  changes:
-  - message: Added a craftable Atmosian Helmet.
-    type: Add
-  id: 410303
-  time: '2026-11-10T18:10:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7167
-- author: WNP78 & Sparlight
-  changes:
-  - message: Refactored UI for plumbing smart dispensers. Client-side predicted (so more responsive), plus the labels are more readable.
-    type: Tweak
-  id: 410304
-  time: '2026-11-10T19:07:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7026
 - author: WNP78 & Sparlight
   changes:
   - message: Added the ability to label chemicals that are in a plumbing smart dispenser, using the hand labeler.
@@ -2799,4 +2757,46 @@ Entries:
   id: 410698
   time: '2026-11-19T22:54:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7338
+- author: Scarpenter1
+  changes:
+  - message: Language traits are no longer dropped when taken with Foreigner or Foreigner Light.
+    type: Fix
+  id: 410699
+  time: '2026-11-20T01:41:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7318
+- author: neomoth
+  changes:
+  - message: Fix the pin button for the paper UI to not be behind the close button.
+    type: Fix
+  id: 410700
+  time: '2026-11-20T03:17:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7345
+- author: WNP78
+  changes:
+  - message: Admin notes/bans can now be edited to expire in the past.
+    type: Tweak
+  id: 410701
+  time: '2026-11-20T03:17:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7337
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added Speaker adverts to Radio CDs.
+    type: Add
+  id: 410702
+  time: '2026-11-20T03:45:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7336
+- author: Ohelig, mrjajkes
+  changes:
+  - message: Added a new vinyl "Law 2 Open Armory" by mrjajkes.
+    type: Add
+  id: 410703
+  time: '2026-11-20T04:09:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7344
+- author: Ohelig, mrjajkes
+  changes:
+  - message: Added a random vinyl spawner for mappers.
+    type: Add
+  id: 410704
+  time: '2026-11-20T04:09:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7344
 Order: -1
