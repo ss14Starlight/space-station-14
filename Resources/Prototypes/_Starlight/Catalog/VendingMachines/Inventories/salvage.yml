@@ -202,6 +202,30 @@
     - !type:BuyerAccessCondition
 
 - type: listing
+  id: VendorSalvageSalvageTracker
+  productEntity: ITGTrackerImplanter
+  cost:
+    SalvageTicket: 25
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSalvageMindShield
+  productEntity: ITGMindShieldImplanter
+  cost:
+    SalvageTicket: 25
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
+    - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorSalvageSalvageBorgi
   productEntity: ITGBorgiChassis
   cost:

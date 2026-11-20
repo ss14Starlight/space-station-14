@@ -750,6 +750,9 @@
   id: SalvageTicket
 
 - type: Tag
+  id: JobIconSalvage
+
+- type: Tag
   id: Sausage # MetamorphRecipe: FoodSausageBun
 
 - type: Tag
