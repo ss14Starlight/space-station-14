@@ -3,6 +3,7 @@ using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
 
+// ReSharper disable CheckNamespace
 namespace Content.Shared.Silicons.Borgs;
 
 public abstract partial class SharedBorgSystem
