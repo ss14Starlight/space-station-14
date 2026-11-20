@@ -1,13 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: (Flotilla) Add new Radiation Lockers, EOD Locker, and EVA Storage Units to Artifact room.
-    type: Add
-  id: 410333
-  time: '2026-11-12T01:33:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7187
-- author: Hot Mic
-  changes:
   - message: (Flotilla) Add new directional fans to Mining Arm and Cargo Shuttle Docking.
     type: Add
   id: 410334
@@ -2799,4 +2792,11 @@ Entries:
   id: 410732
   time: '2026-11-20T21:22:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7340
+- author: Swonki
+  changes:
+  - message: PKA modkit whitelist logic.
+    type: Fix
+  id: 410733
+  time: '2026-11-20T21:22:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7363
 Order: -1
