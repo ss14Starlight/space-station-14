@@ -8,6 +8,7 @@
     sound:
       path: /Audio/_Starlight/Items/Handling/plastic_shield_drop.ogg
   - type: Clothing
+    quickEquip: false
     equipSound:
       path: /Audio/_Starlight/Items/Equip/backpack_equip.ogg
 
