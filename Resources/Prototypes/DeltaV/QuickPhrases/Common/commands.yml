@@ -1,7 +1,7 @@
 - type: quickPhrase
   id: BaseImperativePhrase
   parent: BaseCommonPhrase
-  group: Command
+  group: aac-group-command #Starlight: Make group names localization friendly
   abstract: true
 
 - type: quickPhrase
