@@ -144,8 +144,8 @@
   name: Interim Command Appointment
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-statement-appointment-interim-chapter
+    - type: TextFilePaperContent
+      fileName: interim-appointment.txt
 
 - type: entity
   parent: PrintedDocument
@@ -320,8 +320,6 @@
   components:
     - type: TextFilePaperContent
       fileName: product-order.txt
-    - type: Paper
-      content: doc-text-printer-product-order
 
 - type: entity
   parent: PrintedDocument
