@@ -6,6 +6,7 @@ using Content.Shared._Starlight.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.Tag;
 using NUnit.Framework;
 using Robust.Shared.GameObjects;
@@ -80,6 +81,32 @@ public sealed class MedipenRefillerTest : InteractionTest
         });
     }
 
+
+    [TestCase("EmergencyMedipen")]
+    [TestCase("BruteAutoInjector")]
+    public async Task RefillsAPenUsedOnSomeone(string penProto)
+    {
+        await SpawnTarget("MobHuman");
+        var pen = ToServer(await PlaceInHands(penProto));
+        await Interact();
+        await RunSeconds(3);
+
+        var refillerUid = await SpawnEntity("MedipenRefiller", SEntMan.GetCoordinates(TargetCoords));
+        await Server.WaitPost(() => SEntMan.System<SharedPowerReceiverSystem>().SetNeedsPower(refillerUid, false));
+        await RunTicks(5);
+        await Server.WaitAssertion(() =>
+        {
+            var refiller = (refillerUid, SEntMan.GetComponent<MedipenRefillerComponent>(refillerUid));
+            Assert.That(Pen(pen).Volume, Is.EqualTo(FixedPoint2.Zero), "the injection empties the pen");
+            foreach (var reagent in new[] { "Epinephrine", "TranexamicAcid", "Bicaridine" })
+            {
+                Fill(refillerUid, reagent, 30);
+            }
+
+            var canRefill = SEntMan.System<MedipenRefillerSystem>().CanRefill(refiller, pen, out _, out var reason);
+            Assert.That(canRefill, $"{SEntMan.ToPrettyString(pen)} refused: {reason}");
+        });
+    }
     [Test]
     public async Task RefusesFullUnlistedAndShortCases()
     {
