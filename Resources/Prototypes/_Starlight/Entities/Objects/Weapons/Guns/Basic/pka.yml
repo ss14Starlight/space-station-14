@@ -228,7 +228,7 @@
         Structural: 15
     animation: WeaponArcThrust
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 3
+    rechargeCooldown: 3.5
     rechargeSound:
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
       params:
