@@ -53,3 +53,50 @@
   - type: Contraband
     allowedDepartments: [ Security ]
     tier: Tier1
+
+
+- type: entity
+  name: xen'kara tail
+  parent: [BaseItem, SolutionDart]
+  id: XenoTailSpear
+  description: Your trusty tail. Sharp, and good for stabbing things with!
+  components:
+  - type: Tool
+    qualities:
+    - Slicing
+  - type: Tag
+    tags:
+    - Spear
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/xeno_tail.rsi
+    layers:
+    - state: tail
+    - state: tail1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    range: 2.0
+    damage:
+      types:
+        Piercing: 12
+    angle: 0
+    animation: WeaponArcThrust
+    soundSwing:
+      collection: XenoTailSwipe
+    soundHit:
+      path: /Audio/_RMC/Voice/Xeno/alien_tail_attack.ogg
+  - type: Item
+    size: Ginormous
+  - type: MeleeChemicalInjector
+    solution: melee
+  - type: RefillableSolution
+    solution: melee
+  - type: InjectableSolution
+    solution: melee
+  - type: SolutionTransfer
+    maxTransferAmount: 2
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    fillBaseName: tail

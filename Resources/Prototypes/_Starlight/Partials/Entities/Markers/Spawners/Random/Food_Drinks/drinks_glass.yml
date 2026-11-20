@@ -1,9 +1,13 @@
 - type: !PartialOnly entity
   id: RandomDrinkGlass
   components:
-  - type: RandomSpawner
-    prototypes:
-      - !Remove DrinkIrishSlammer
-      - DrinkIrishCarBomb
-    rarePrototypes:
-      - DrinkTheLastCall
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - !CombineIndex:0
+        children:
+        - !CombineIndex:50
+          id: DrinkIrishCarBomb # replaces DrinkIrishSlammer
+      - !CombineIndex:1
+        children:
+        - id: DrinkTheLastCall

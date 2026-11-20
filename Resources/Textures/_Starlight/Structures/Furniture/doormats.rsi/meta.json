@@ -18,6 +18,20 @@
     {
       "name": "bless_this_spess",
       "copyright": "Conflee"
+    },
+    {
+      "name": "roll",
+	  "copyright": "Conflee"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+	  "copyright": "Conflee"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+	  "copyright": "Conflee"
     }
   ]
 }

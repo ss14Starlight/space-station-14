@@ -17,6 +17,7 @@ using Content.Shared.Magic.Components;
 using Content.Shared.Magic.Events;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
+using Content.Shared._Starlight.Teleportation.Systems;
 using Content.Shared.Objectives.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
@@ -75,6 +76,7 @@ public abstract partial class SharedMagicSystem : EntitySystem
     #region Starlight
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private SharedStationSystem _station = default!;
+    [Dependency] private SharedTeleportSystem _teleports = default!;
 
     private static readonly EntProtoId TowerOfBabel = "TowerOfBabel";
     #endregion
@@ -284,10 +286,13 @@ public abstract partial class SharedMagicSystem : EntitySystem
     #region Projectile Spells
     private void OnProjectileSpell(ProjectileSpellEvent ev)
     {
-        if (ev.Handled || !PassesSpellPrerequisites(ev.Action, ev.Performer) || !_net.IsServer)
+        if (ev.Handled || !PassesSpellPrerequisites(ev.Action, ev.Performer))
             return;
 
         ev.Handled = true;
+
+        if (!_net.IsServer)
+            return; // client returns handled for predicted audio
 
         var xform = Transform(ev.Performer);
         var fromCoords = xform.Coordinates;
@@ -376,8 +381,7 @@ public abstract partial class SharedMagicSystem : EntitySystem
         if (transform.MapID != _transform.GetMapId(args.Target) || (!args.IgnoreWalls && !_interaction.InRangeUnobstructed(args.Performer, args.Target, range: 1000F, collisionMask: CollisionGroup.Opaque, popup: true)))
             return;
 
-        _transform.SetCoordinates(args.Performer, args.Target);
-        _transform.AttachToGridOrMap(args.Performer, transform);
+        _teleports.Teleport((args.Performer, transform), args.Target, new TeleportOptions()); // Starlight: teleport helper
         args.Handled = true;
     }
 

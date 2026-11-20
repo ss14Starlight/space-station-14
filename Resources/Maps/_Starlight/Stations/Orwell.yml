@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 295.0.0
+  engineVersion: 295.0.3
   forkId: ""
   forkVersion: ""
-  time: 11/11/2026 07:49:06
-  entityCount: 37611
+  time: 11/17/2026 09:19:11
+  entityCount: 37610
 maps:
 - 1
 grids:
@@ -12035,7 +12035,7 @@ entities:
       pos: -57.5,40.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -191206
+      secondsUntilStateChange: -191254.47
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -12525,7 +12525,7 @@ entities:
       invokeCounter: 1
     - type: Door
       state: Opening
-      secondsUntilStateChange: -328045.25
+      secondsUntilStateChange: -328093.72
     - type: DeviceLinkSource
       linkedPorts:
         279:
@@ -13584,7 +13584,7 @@ entities:
       pos: 44.5,6.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -54148.285
+      secondsUntilStateChange: -54196.75
     - type: AccessReader
       accessListsOriginal: []
       access:
@@ -14484,7 +14484,7 @@ entities:
       pos: 18.5,-1.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -217002.38
+      secondsUntilStateChange: -217050.84
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -14495,7 +14495,7 @@ entities:
       pos: 17.5,-1.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -216997.31
+      secondsUntilStateChange: -217045.78
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -100399,6 +100399,14 @@ entities:
     - type: Transform
       parent: 2
       pos: -34.5,-21.5
+- proto: ComputerCommsBreakingNews
+  entities:
+  - uid: 13164
+    components:
+    - type: Transform
+      parent: 2
+      rot: 1.5707963267948966 rad
+      pos: 49.5,-0.5
 - proto: ComputerCommsCargoFilled
   entities:
   - uid: 13118
@@ -100698,14 +100706,6 @@ entities:
       pos: 71.5,-10.5
 - proto: ComputerMassMediaDesktop
   entities:
-  - uid: 13164
-    components:
-    - type: MetaData
-      name: state media control desktop
-    - type: Transform
-      parent: 2
-      rot: 1.5707963267948966 rad
-      pos: 49.5,-0.5
   - uid: 13165
     components:
     - type: MetaData
@@ -102005,7 +102005,7 @@ entities:
       pos: 44.5,9.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -51515.887
+      secondsUntilStateChange: -51564.35
   - uid: 13376
     components:
     - type: Transform
@@ -102013,7 +102013,7 @@ entities:
       pos: 44.5,8.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -51515.484
+      secondsUntilStateChange: -51563.95
 - proto: CurtainsGreenOpen
   entities:
   - uid: 13377
@@ -102075,13 +102075,11 @@ entities:
     components:
     - type: Transform
       parent: 2
-      rot: -1.5707963267948966 rad
       pos: 29.5,15.5
   - uid: 13389
     components:
     - type: Transform
       parent: 2
-      rot: -1.5707963267948966 rad
       pos: -61.5,77.5
     - type: TechnologyDatabase
       supportedDisciplines:
@@ -215797,11 +215795,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 0.5,-56.5
-  - uid: 27951
-    components:
-    - type: Transform
-      parent: 2
-      pos: 49.5,-0.5
   - uid: 27952
     components:
     - type: Transform
