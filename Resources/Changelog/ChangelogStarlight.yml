@@ -1,102 +1,4 @@
 Entries:
-- author: Trosling
-  changes:
-  - message: Overhauled Implantation Law to better work with new Induced Mutiny SOP.
-    type: Tweak
-  id: 410300
-  time: '2026-11-10T17:44:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7086
-- author: Trosling
-  changes:
-  - message: Added cool interactions between medical jobs and security for certain implantation.
-    type: Add
-  id: 410301
-  time: '2026-11-10T17:44:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7086
-- author: Trosling
-  changes:
-  - message: Added intuitive forms to make approving such implantation more transparent.
-    type: Add
-  id: 410302
-  time: '2026-11-10T17:44:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7086
-- author: Talirson
-  changes:
-  - message: Added a craftable Atmosian Helmet.
-    type: Add
-  id: 410303
-  time: '2026-11-10T18:10:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7167
-- author: WNP78 & Sparlight
-  changes:
-  - message: Refactored UI for plumbing smart dispensers. Client-side predicted (so more responsive), plus the labels are more readable.
-    type: Tweak
-  id: 410304
-  time: '2026-11-10T19:07:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7026
-- author: WNP78 & Sparlight
-  changes:
-  - message: Added the ability to label chemicals that are in a plumbing smart dispenser, using the hand labeler.
-    type: Add
-  id: 410305
-  time: '2026-11-10T19:07:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7026
-- author: WNP78 & Sparlight
-  changes:
-  - message: Added access reader (defaults Medical access), maintenance panel and hacking wires to plumbing smart dispenser.
-    type: Add
-  id: 410306
-  time: '2026-11-10T19:07:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7026
-- author: WNP78 & Sparlight
-  changes:
-  - message: Fixed the plumbing smart dispenser sprite not showing the power state properly.
-    type: Fix
-  id: 410307
-  time: '2026-11-10T19:07:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7026
-- author: WNP78 & Sparlight
-  changes:
-  - message: Fixed the plumbing smart dispenser not requiring power for anything despite saying it does in the description (you can still manually dispense, just the smart-dispense functionality is gone).
-    type: Fix
-  id: 410308
-  time: '2026-11-10T19:07:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7026
-- author: WNP78 & Sparlight
-  changes:
-  - message: Plumbing smart dispenser now defaults to 5u dispense amount.
-    type: Tweak
-  id: 410309
-  time: '2026-11-10T19:07:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7026
-- author: WNP78 & Sparlight
-  changes:
-  - message: (Sparlight) Added context menu verbs for dispensing reagents and returning them to the dispenser.
-    type: Add
-  id: 410310
-  time: '2026-11-10T19:07:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7026
-- author: redmushie
-  changes:
-  - message: Exterminator target pinpointer.
-    type: Fix
-  id: 410311
-  time: '2026-11-10T19:47:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7169
-- author: Caws
-  changes:
-  - message: Deli stands are  now anchored at roundstart.
-    type: Fix
-  id: 410312
-  time: '2026-11-11T02:54:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7171
-- author: Conflee
-  changes:
-  - message: Changed the Juggernaut Hardsuit's Heat Resistance (lasers) from 80% to 65%. This is still higher than every suit except the Elite suit, but is the Jugg's lowest resistance, making lasers the slightly more effective option for fighting one.
-    type: Tweak
-  id: 410313
-  time: '2026-11-11T05:04:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7176
 - author: GGdoggodude
   changes:
   - message: Aieliths now spawn with the proper survival box!
@@ -2799,4 +2701,102 @@ Entries:
   id: 410699
   time: '2026-11-20T01:41:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7318
+- author: neomoth
+  changes:
+  - message: Fix the pin button for the paper UI to not be behind the close button.
+    type: Fix
+  id: 410700
+  time: '2026-11-20T03:17:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7345
+- author: WNP78
+  changes:
+  - message: Admin notes/bans can now be edited to expire in the past.
+    type: Tweak
+  id: 410701
+  time: '2026-11-20T03:17:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7337
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added Speaker adverts to Radio CDs.
+    type: Add
+  id: 410702
+  time: '2026-11-20T03:45:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7336
+- author: Ohelig, mrjajkes
+  changes:
+  - message: Added a new vinyl "Law 2 Open Armory" by mrjajkes.
+    type: Add
+  id: 410703
+  time: '2026-11-20T04:09:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7344
+- author: Ohelig, mrjajkes
+  changes:
+  - message: Added a random vinyl spawner for mappers.
+    type: Add
+  id: 410704
+  time: '2026-11-20T04:09:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7344
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Modular HUDs now hide what modules are inside them similarly to headsets.
+    type: Tweak
+  id: 410705
+  time: '2026-11-20T17:18:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7358
+- author: Johnny
+  changes:
+  - message: Added lockable buttons for some factions that mappers can use.
+    type: Add
+  id: 410706
+  time: '2026-11-20T17:48:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7356
+- author: Ohelig
+  changes:
+  - message: Fixed the Interim Command Appointment form.
+    type: Fix
+  id: 410707
+  time: '2026-11-20T18:13:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7351
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) 2 rooms of Service Dorms.
+    type: Remove
+  id: 410708
+  time: '2026-11-20T18:13:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7354
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) New Clothing Room in Service Dorms.
+    type: Add
+  id: 410709
+  time: '2026-11-20T18:13:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7354
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) New Tools Room in Service Dorms.
+    type: Add
+  id: 410710
+  time: '2026-11-20T18:13:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7354
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Camera and Lights in Main Atmos Room.
+    type: Fix
+  id: 410711
+  time: '2026-11-20T18:13:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7354
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) More Maints Loot Lockers.
+    type: Add
+  id: 410712
+  time: '2026-11-20T18:13:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7354
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Minor fixes with Cameras.
+    type: Fix
+  id: 410713
+  time: '2026-11-20T18:13:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7354
 Order: -1
