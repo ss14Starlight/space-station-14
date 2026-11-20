@@ -72,9 +72,12 @@ public sealed class LoadoutTab : BoxContainer
         ContainerButton Card,
         Label Arrow,
         Label Name,
-        string BaseName,
+        EntityPrototypeView View,
         Control Drawer,
-        List<(LoadoutPrototype Proto, ContainerButton Card, string Name)> Items);
+        List<(LoadoutPrototype Proto, ContainerButton Card, string Name)> Items)
+    {
+        public int Shown { get; set; }
+    }
 
     private sealed class FullRowPanel : PanelContainer
     {
@@ -447,8 +450,18 @@ public sealed class LoadoutTab : BoxContainer
 
         foreach (var folder in _folders)
         {
-            var count = folder.Items.Count(i => selected?.Any(l => l.Prototype == i.Proto.ID) == true);
-            folder.Name.Text = count > 0 ? $"{folder.BaseName} ({count})" : folder.BaseName;
+            var picked = folder.Items.FindAll(i => selected?.Any(l => l.Prototype == i.Proto.ID) == true);
+            var count = picked.Count;
+            var shown = count > 0 ? folder.Items.IndexOf(picked[0]) : 0;
+            if (shown != folder.Shown)
+            {
+                folder.Shown = shown;
+                var proto = folder.Items[shown].Proto;
+                folder.View.SetPrototype(proto.DummyEntity ?? _entities.System<LoadoutSystem>().GetFirstOrNull(proto));
+            }
+
+            var shownName = folder.Items[shown].Name;
+            folder.Name.Text = count > 0 ? $"{shownName} ({count})" : shownName;
             if (count > 0)
                 folder.Card.AddStyleClass(MarkingCard.StyleClassPicked);
             else
@@ -531,7 +544,7 @@ public sealed class LoadoutTab : BoxContainer
     private ContainerButton BuildCard(ProtoId<LoadoutGroupPrototype> groupId, LoadoutPrototype proto, LoadoutSystem loadoutSystem)
     {
         var name = loadoutSystem.GetName(proto);
-        var content = CardContent(proto, name, loadoutSystem, out _);
+        var content = CardContent(proto, name, loadoutSystem, out _, out _);
         var lockIcon = new TextureRect
         {
             TexturePath = "/Textures/Interface/VerbIcons/lock.svg.192dpi.png",
@@ -561,9 +574,9 @@ public sealed class LoadoutTab : BoxContainer
         return card;
     }
 
-    private Control CardContent(LoadoutPrototype proto, string name, LoadoutSystem loadoutSystem, out Label label)
+    private Control CardContent(LoadoutPrototype proto, string name, LoadoutSystem loadoutSystem, out Label label, out EntityPrototypeView view)
     {
-        var view = new EntityPrototypeView
+        view = new EntityPrototypeView
         {
             Scale = new Vector2(2, 2),
             SetSize = new Vector2(64, 64),
@@ -584,7 +597,7 @@ public sealed class LoadoutTab : BoxContainer
     private void BuildFolder(ProtoId<LoadoutGroupPrototype> groupId, string key, List<LoadoutPrototype> members, LoadoutSystem loadoutSystem)
     {
         var baseName = loadoutSystem.GetName(members[0]);
-        var content = CardContent(members[0], baseName, loadoutSystem, out var nameLabel);
+        var content = CardContent(members[0], baseName, loadoutSystem, out var nameLabel, out var view);
         var open = _openFolders.Contains(key);
         var arrow = new Label
         {
@@ -632,7 +645,7 @@ public sealed class LoadoutTab : BoxContainer
             FilterItems();
         };
 
-        _folders.Add(new Folder(key, card, arrow, nameLabel, baseName, drawer, items));
+        _folders.Add(new Folder(key, card, arrow, nameLabel, view, drawer, items));
         _items.AddChild(card);
         _items.AddChild(drawer);
     }
