@@ -265,7 +265,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: Briomadine
-          min: 15
+          min: 20
       - !type:Drunk
       - !type:AdjustReagent
         conditions:
