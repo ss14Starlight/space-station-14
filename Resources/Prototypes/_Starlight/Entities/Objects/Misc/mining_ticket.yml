@@ -33,7 +33,7 @@
   - type: StackLayerThreshold
     thresholds: [1]
   - type: Sprite
-    sprite: _Starlight/Objects/Economy/Mining_ticket.rsi
+    sprite: _Starlight/Objects/Economy/mining_ticket.rsi
     state: icon
     layers:
     - state: icon
@@ -63,13 +63,13 @@
   name: materials-Mining-ticket
   unit: materials-unit-credit
   stackEntity: MiningTicket
-  icon: { sprite: /Textures/_Starlight/Objects/Economy/Mining_ticket.rsi, state: icon }
+  icon: { sprite: /Textures/_Starlight/Objects/Economy/mining_ticket.rsi, state: icon }
   price: 1
 
 - type: stack
   id: MiningTicket
   name: stack-ticket
-  icon: { sprite: /Textures/_Starlight/Objects/Economy/Mining_ticket.rsi, state: icon }
+  icon: { sprite: /Textures/_Starlight/Objects/Economy/mining_ticket.rsi, state: icon }
   spawn: MiningTicket
 
 - type: entity

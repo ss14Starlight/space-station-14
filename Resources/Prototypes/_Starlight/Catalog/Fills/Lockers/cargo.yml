@@ -21,7 +21,7 @@
   id: LockerFillSalvageLead
   table: !type:AllSelector
     children:
-    - id: BoxFolderClipboardSalvageLeadJobBoard
+    - id: BoxFolderClipboardSalvageLead
     - id: RubberStampSalvageLead
     - id: ClothingNeckMantleDecoratedSalvager
     - id: ITGTrackerImplanter
