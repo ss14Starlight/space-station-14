@@ -122,8 +122,6 @@ public sealed partial class ThrowingSystem : EntitySystem
         if (!physicsQuery.TryGetComponent(uid, out var physics))
             return false; // Starlight
 
-        var projectileQuery = GetEntityQuery<ProjectileComponent>();
-
         return TryThrow(
             uid,
             direction,
@@ -177,7 +175,7 @@ public sealed partial class ThrowingSystem : EntitySystem
             return false; // Starlight
 
         // Allow throwing if this projectile only acts as a projectile when shot, otherwise disallow
-        if (projectileQuery.TryGetComponent(uid, out var proj) && !proj.OnlyCollideWhenShot)
+        if (_projectileQuery.TryComp(uid, out var proj) && !proj.OnlyCollideWhenShot) // Starlight
             return false; // Starlight
 
         var comp = new ThrownItemComponent
