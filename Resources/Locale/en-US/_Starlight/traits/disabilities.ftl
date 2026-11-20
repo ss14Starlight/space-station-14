@@ -12,3 +12,6 @@ trait-nightblind-desc = Unlike the rest of your species, you cannot see in the d
 
 trait-pollen-allergic-name = Pollen Allergy
 trait-pollen-allergic-desc = You're allergic to pollen.
+
+trait-xeno-vision-name = Hive Vision
+trait-xeno-vision-desc = Your eyes are specialised to identify members of a xeno hive at a glance. Greens pop out, but all other colours are muted to you.

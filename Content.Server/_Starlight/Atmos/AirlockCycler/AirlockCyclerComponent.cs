@@ -141,6 +141,13 @@ public sealed partial class AirlockCyclerComponent : Component
     public bool Lockdown;
 
     /// <summary>
+    /// Bolt the target side's doors open once a cycle completes, instead of letting them close by themselves. The
+    /// bolts are dropped when another cycle, or a lockdown, starts.
+    /// </summary>
+    [DataField]
+    public bool BoltOpen;
+
+    /// <summary>
     /// Requests that came in while a cycle was running, oldest first. Like a lift: the running cycle finishes, the
     /// doors stay open for <see cref="QueueDelay"/>, then the next request starts.
     /// </summary>

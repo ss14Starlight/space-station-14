@@ -1,0 +1,180 @@
+- type: species
+  id: Xeno
+  name: species-name-xeno
+  roundStart: true
+  prototype: MobXenoSpecies
+  sprites: MobXenoSprites
+  markingLimits: MobXenoMarkingLimits
+  dollPrototype: AppearanceXeno
+  skinColoration: Hues
+  defaultSkinTone: "#FFFFFF"
+  maleFirstNames: NamesFirstXenoMale
+  femaleFirstNames: NamesFirstXenoFemale
+  lastNames: NamesLastXeno
+  naming: Serial
+  customName: true
+  roundstartCyberwareCapacity: 0
+  minAge: 20
+  youngAge: 100
+  oldAge: 150
+  maxAge: 200
+  standardSize: 170
+  standardWeight: 80
+  standardDensity: 110
+
+- type: speciesBaseSprites
+  id: MobXenoSprites
+  sprites:
+    Head: MobXenoHead
+    HeadTop: MobHumanoidAnyMarking
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    Chest: MobXenoTorso
+    Eyes: MobXenoEyes
+    LArm: MobXenoLArm
+    RArm: MobXenoRArm
+    LHand: MobXenoLHand
+    RHand: MobXenoRHand
+    LLeg: MobXenoLLeg
+    RLeg: MobXenoRLeg
+    LFoot: MobXenoLFoot
+    RFoot: MobXenoRFoot
+
+- type: markingPoints
+  id: MobXenoMarkingLimits
+  onlyWhitelisted: true
+  points:
+    Head:
+      points: 1
+      required: false
+    Chest:
+      points: 1
+      required: false
+    Legs:
+      points: 0
+      required: false
+    Arms:
+      points: 0
+      required: false
+    Special:
+      points: 1
+      required: false
+    Hair:
+      points: 0
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Snout:
+      points: 0
+      required: false
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ TailXenoLong ]
+    HeadTop:
+      points: 1
+      required: false
+    HeadSide:
+      points: 0
+      required: false
+    UndergarmentTop:
+      points: 0
+      required: false
+    UndergarmentBottom:
+      points: 0
+      required: false
+
+- type: humanoidBaseSprite
+  id: MobXenoHead
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobXenoHeadMale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobXenoHeadFemale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobXenoTorso
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobXenoTorsoMale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobXenoTorsoFemale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobXenoLLeg
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobXenoLArm
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobXenoLHand
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobXenoLFoot
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobXenoRLeg
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobXenoRArm
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobXenoRHand
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobXenoRFoot
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: r_foot
+
+# Organs
+- type: humanoidBaseSprite
+  id: MobXenoEyes
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: eyes

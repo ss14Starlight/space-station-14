@@ -37,15 +37,13 @@ public sealed partial class AnchorableSystem : EntitySystem
     [Dependency] private TagSystem _tagSystem = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
 
-    private EntityQuery<PhysicsComponent> _physicsQuery;
+    [Dependency] private EntityQuery<PhysicsComponent> _physicsQuery = default!;
 
     public readonly ProtoId<TagPrototype> Unstackable = "Unstackable";
 
     public override void Initialize()
     {
         base.Initialize();
-
-        _physicsQuery = GetEntityQuery<PhysicsComponent>();
 
         SubscribeLocalEvent<AnchorableComponent, InteractUsingEvent>(OnInteractUsing,
             before: new[] { typeof(ItemSlotsSystem) }, after: new[] { typeof(SharedConstructionSystem) });

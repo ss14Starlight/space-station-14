@@ -2,7 +2,7 @@
   id: StarlightFlotilla
   mapName: 'Flotilla Spaceport'
   mapPath: /Maps/_Starlight/Stations/Flotilla.yml
-  minPlayers: 135
+  minPlayers: 155
   maxPlayers: 350
   stations:
     StarlightFlotilla:

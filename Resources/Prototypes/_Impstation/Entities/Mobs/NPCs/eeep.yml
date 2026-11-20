@@ -39,7 +39,6 @@
     - SlowedDown
     - ForcedSleep
     - TemporaryBlindness
-    - RadiationProtection
     - Pacified
   - type: InteractionPopup
     successChance: 0.3

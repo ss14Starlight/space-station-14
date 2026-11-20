@@ -879,9 +879,6 @@
   id: TiderAnvilParts
 
 - type: Tag
-  id: TrashBagBlue
-
-- type: Tag
   id: UnDissolvable
 
 - type: Tag
@@ -913,6 +910,12 @@
 
 - type: Tag
   id: RawXenoMeat #BountySalvageRawXenoMeat
+
+- type: Tag
+  id: Xeno
+
+- type: Tag
+  id: XenoEmotes
 
 - type: Tag
   id: XenomoproachWearable # Allows xenomoproach to wear it, really only used for headsets. No system in place to use differing displacements for something with a given prefix/suffix, so this is needed for now.

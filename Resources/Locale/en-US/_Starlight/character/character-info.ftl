@@ -15,6 +15,7 @@ character-info-background-none = No background.
 
 character-info-no-background = No background.
 character-info-ic-header = In-Character Info:
+character-info-ic-hint = What others can learn about your character in the round.
 character-info-description = Description:
 character-info-hidden = Hidden Info
 character-info-exploitable = Exploitable Info:
