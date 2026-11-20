@@ -1,0 +1,25 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀                           [bold]DEPARTMENTAL REVIEW[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+Number of employees in the department: [form]
+
+Number of trainees: [form]
+
+Inactive employees in the department:
+⠀• (Name, position, reason)
+⠀• [form]
+    • [form]
+
+Degree of target readiness: [form]
+
+General condition of the department: [form]
+
+─────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+

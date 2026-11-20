@@ -38,6 +38,7 @@
     - StarlightSecurityAmmoEmagStatic
     - !Remove SecurityAmmoStatic # SL disable in favor of prior three lines
     - PrescriptionHudModuleStatic
+    - SyndicateModularHudFramesStatic
 
 - type: !PartialOnly entity
   id: Protolathe
@@ -84,6 +85,7 @@
     - !Remove SecurityEquipment
     - !Remove SecurityWeapons
     - PrescriptionHudModuleStatic
+    - SyndicateModularHudFramesStatic
 
 - type: !PartialOnly entity
   id: CircuitImprinter
@@ -181,6 +183,7 @@
     - StarlightSecurityAmmoEmagStatic
     - StarlightSecurityGrenadesEmag
     - PrescriptionHudModuleStatic
+    - SyndicateModularHudFramesStatic
   - type: StealTarget
     stealGroup: SecureTechFabCircuitboard
 
@@ -222,6 +225,7 @@
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
     - PrescriptionHudModuleStatic
+    - SyndicateModularHudFramesStatic
     emagDynamicPacks:
     - SecurityCyberLimbs
     - SecurityImplants
@@ -239,6 +243,7 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - PrescriptionHudModuleStatic
+    - SyndicateModularHudFramesStatic
 
 - type: !PartialOnly entity
   id: Biogenerator

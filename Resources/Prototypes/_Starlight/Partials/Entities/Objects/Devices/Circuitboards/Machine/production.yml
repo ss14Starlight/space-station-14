@@ -21,3 +21,25 @@
       componentRequirements:
         PowerCell:
           defaultPrototype: PowerCellSmallPrinted
+
+- type: !PartialOnly entity
+  id: ProtolatheMachineCircuitboard
+  components:
+    - type: Tag
+      tags:
+      - Protolathe # Bounty
+
+- type: !PartialOnly entity
+  id: ProtolatheHyperConvectionMachineCircuitboard
+  components:
+    - type: Tag
+      tags:
+      - Protolathe # Bounty
+
+- type: !PartialOnly entity
+  id: CloningPodMachineCircuitboard
+  components:
+  - type: Tag
+    tags:
+      - Cloning
+

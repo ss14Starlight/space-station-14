@@ -4,6 +4,10 @@ blend_mode none;
 uniform sampler2D SCREEN_TEXTURE;
 uniform sampler2D LIGHT_TEXTURE;
 uniform sampler2D BLOOM_TEXTURE;
+// Soft mask of hot air around fires, see ScreenPostProcessOverlay.Heat.
+uniform sampler2D HEAT_TEXTURE;
+// Soft mask of glossy floor in its alpha, see ScreenPostProcessOverlay.Wet.
+uniform sampler2D WET_TEXTURE;
 
 // 1 when LIGHT_TEXTURE holds this viewport's light map, 0 when the view is drawn unlit.
 uniform highp float lightAvailable;
@@ -13,10 +17,32 @@ uniform highp float nightVision;
 uniform highp float bloom;
 // How much the edges of the view are darkened.
 uniform highp float vignette;
+// Colour grade of the zone and alert level, see ColorGradingSystem. Identity: tint 1, shadows 0, saturation 1, contrast 1.
+uniform highp vec3 gradeTint;
+uniform highp vec3 gradeShadows;
+uniform highp float gradeSaturation;
+uniform highp float gradeContrast;
 // Gamma of the whole view, 1 leaves it as is. Above 1 lifts dim areas, black and white stay put.
 uniform highp float brightness;
 // Strength of the film grain.
 uniform highp float grain;
+// How far red and blue split apart towards the screen edges, from 0 to 1. Set briefly by hits and blasts.
+uniform highp float aberration;
+// Strength and colour of a brief flash added over the view, used for nearby blasts.
+uniform highp float flash;
+uniform highp vec3 flashColor;
+// Strength of the dust motes drifting in bright lamp light, 0 turns them off.
+uniform highp float dust;
+// How strongly hot air bends the view, 0 turns the heat haze off.
+uniform highp float haze;
+// How bright reflections on glossy floors are, 0 turns them off.
+uniform highp float gloss;
+// 1 when BLOOM_TEXTURE holds this frame's glow, so lamps can be mirrored in glossy floors.
+uniform highp float glossGlow;
+// World position of the bottom left corner of the view, and the world offsets of the view's width and height.
+uniform highp vec2 worldOrigin;
+uniform highp vec2 worldAxisX;
+uniform highp vec2 worldAxisY;
 
 const highp vec3 LUMA = vec3(0.2126, 0.7152, 0.0722);
 const highp vec3 SCOTOPIC = vec3(0.05, 0.55, 0.40);
@@ -32,10 +58,64 @@ highp float hash(highp vec2 p)
     return fract((p3.x + p3.y) * p3.z);
 }
 
+// Size of one sprite pixel in tiles. Motes are one sprite pixel big so they match the art.
+const highp float SPRITE_PIXELS = 32.0;
+// Share of dust cells that hold a mote.
+const highp float DUST_DENSITY = 0.3;
+
+// One layer of drifting motes. Every cell holds at most one mote that wobbles around its spot while the whole layer
+// slowly drifts. Returns the mote's twinkle brightness when this pixel shows a mote, and 0 otherwise.
+highp float dustLayer(highp vec2 world, highp float time, highp float cellSize, highp float seed, highp vec2 drift)
+{
+    highp vec2 shift = drift * time;
+    highp vec2 cell = floor(world / cellSize + shift);
+    highp float id = hash(cell + seed);
+    if (id > DUST_DENSITY)
+        return 0.0;
+
+    highp vec2 spot = 0.2 + 0.6 * vec2(hash(cell + seed + 7.1), hash(cell + seed + 13.7));
+    highp vec2 wobble = 0.12 * vec2(sin(time * 0.9 + id * 40.0), cos(time * 0.7 + id * 25.0));
+    highp vec2 mote = (cell + spot + wobble - shift) * cellSize;
+
+    highp vec2 offset = floor(world * SPRITE_PIXELS) - floor(mote * SPRITE_PIXELS);
+    if (offset.x != 0.0 || offset.y != 0.0)
+        return 0.0;
+
+    return 0.5 + 0.5 * sin(time * 1.7 + id * 60.0);
+}
+
 void fragment()
 {
-    highp vec4 screen = zTextureSpec(SCREEN_TEXTURE, Pos);
+    highp vec2 world = worldOrigin + worldAxisX * Pos.x + worldAxisY * Pos.y;
+    // Wraps once an hour, a single jump is not noticeable.
+    highp float time = mod(TIME, 3600.0);
+
+    // Hot air bends the picture in ripples tied to the world, so they stay put when the camera moves.
+    highp vec2 samplePos = Pos;
+    if (haze > 0.0)
+    {
+        highp float heat = texture2D(HEAT_TEXTURE, Pos).r * haze;
+        if (heat > 0.001)
+        {
+            highp vec2 wave = vec2(
+                sin(world.y * 9.0 + time * 5.0) + 0.5 * sin(world.x * 13.0 - time * 3.7),
+                cos(world.x * 8.0 + time * 4.3) + 0.5 * cos(world.y * 11.0 + time * 6.1));
+            // Up to about one and a half sprite pixels of shift, turned into a share of the view.
+            highp vec2 tiles = wave * heat / SPRITE_PIXELS;
+            samplePos += tiles / vec2(length(worldAxisX), length(worldAxisY));
+        }
+    }
+
+    highp vec4 screen = zTextureSpec(SCREEN_TEXTURE, samplePos);
     highp vec3 color = screen.rgb;
+
+    if (aberration > 0.0)
+    {
+        // Grows from nothing in the middle to about 1% of the view at the corners.
+        highp vec2 shift = (Pos - 0.5) * aberration * 0.02;
+        color.r = zTextureSpec(SCREEN_TEXTURE, samplePos + shift).r;
+        color.b = zTextureSpec(SCREEN_TEXTURE, samplePos - shift).b;
+    }
 
     if (nightVision > 0.0 && lightAvailable > 0.5)
     {
@@ -47,15 +127,74 @@ void fragment()
         color = mix(color, vec3(dot(color, SCOTOPIC)) * NIGHT_TINT, night);
     }
 
+    if (dust > 0.0 && lightAvailable > 0.5)
+    {
+        highp vec3 lightRgb = texture2D(LIGHT_TEXTURE, Pos).rgb;
+        highp float peak = max(lightRgb.r, max(lightRgb.g, lightRgb.b));
+        // Only bright light near lamps shows dust, the rest of the room stays clean.
+        highp float lit = smoothstep(0.5, 1.2, peak);
+        if (lit > 0.0)
+        {
+            highp float mote = dustLayer(world, time, 0.55, 0.0, vec2(0.03, -0.045))
+                + 0.7 * dustLayer(world, time, 0.37, 91.0, vec2(-0.05, -0.02));
+            color += lightRgb / peak * mote * lit * dust * 0.35;
+        }
+    }
+
+    if (gloss > 0.0 && lightAvailable > 0.5)
+    {
+        highp float wet = texture2D(WET_TEXTURE, Pos).a * gloss;
+        if (wet > 0.003)
+        {
+            // A wet floor gives back a little of the light falling on it.
+            highp vec3 reflected = texture2D(LIGHT_TEXTURE, Pos).rgb * 0.12;
+
+            // Glowing things above on screen, mostly lamps, show up stretched downwards like lamps on a wet street.
+            // The probes reach about one and a half tiles up and sway slightly sideways.
+            if (glossGlow > 0.5)
+            {
+                highp float stepUp = 0.12 / length(worldAxisY);
+                highp float sway = sin(world.y * 14.0 + time * 2.3) * 0.05 / length(worldAxisX);
+                highp vec3 mirrored = vec3(0.0);
+                for (int i = 1; i <= 12; i++)
+                {
+                    highp float fi = float(i);
+                    highp vec2 probe = Pos + vec2(sway * fi / 12.0, stepUp * fi);
+                    mirrored += texture2D(BLOOM_TEXTURE, probe).rgb * (1.0 - fi / 13.0);
+                }
+
+                // The weights add up to 6.
+                reflected += mirrored * (2.5 / 6.0);
+            }
+
+            // Slow ripples so the sheen does not look painted on.
+            highp float ripple = 0.8 + 0.2 * sin(world.x * 5.0 + world.y * 2.0 + time * 0.8) * sin(world.y * 4.0 - time * 0.6);
+            color += reflected * ripple * wet;
+        }
+    }
+
     if (bloom > 0.0)
     {
         highp vec3 halo = texture2D(BLOOM_TEXTURE, Pos).rgb * bloom;
         color = 1.0 - (1.0 - color) * (1.0 - clamp(halo, 0.0, 1.0));
     }
 
+    // Grade before brightness, so the player's brightness setting works on the graded picture.
+    {
+        highp float luma = dot(color, LUMA);
+        color = mix(vec3(luma), color, gradeSaturation);
+        // Around middle grey as the eye sees it: 0.5 in sRGB is about 0.214 in linear light.
+        color = (color - 0.214) * gradeContrast + 0.214;
+        color = max(color, 0.0) * gradeTint;
+        color += gradeShadows * (1.0 - clamp(color, 0.0, 1.0));
+    }
+
     // Before the vignette and grain, so they keep their look at any brightness.
     if (brightness != 1.0)
         color = pow(clamp(color, 0.0, 1.0), vec3(1.0 / brightness));
+
+    if (flash > 0.0)
+        color += flashColor * flash;
 
     if (vignette > 0.0)
     {

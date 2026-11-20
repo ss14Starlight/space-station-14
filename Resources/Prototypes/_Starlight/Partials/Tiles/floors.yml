@@ -5,36 +5,43 @@
 
 - type: !PartialOnly tile
   id: FloorGlass
+  showsSpace: true
   footstepSounds:
     collection: FootstepGlass
 
 - type: !PartialOnly tile
   id: FloorRGlass
+  showsSpace: true
   footstepSounds:
     collection: FootstepGlass
 
 - type: !PartialOnly tile
   id: FloorGlassBronze
+  showsSpace: true
   footstepSounds:
     collection: FootstepGlass
 
 - type: !PartialOnly tile
   id: FloorGlassPlasma
+  showsSpace: true
   footstepSounds:
     collection: FootstepGlass
 
 - type: !PartialOnly tile
   id: FloorGlassPlasmaReinforced
+  showsSpace: true
   footstepSounds:
     collection: FootstepGlass
 
 - type: !PartialOnly tile
   id: FloorGlassUranium
+  showsSpace: true
   footstepSounds:
     collection: FootstepGlass
 
 - type: !PartialOnly tile
   id: FloorGlassUraniumReinforced
+  showsSpace: true
   footstepSounds:
     collection: FootstepGlass
 
@@ -115,20 +122,88 @@
 
 - type: !PartialOnly tile
   id: FloorWhiteMarble
+  shine: 0.8
   footstepSounds:
     collection: FootstepConcrete
 
 - type: !PartialOnly tile
   id: FloorDarkMarble
+  shine: 0.8
   footstepSounds:
     collection: FootstepConcrete
 
 - type: !PartialOnly tile
   id: FloorPlasmaMarble
+  shine: 0.8
   footstepSounds:
     collection: FootstepConcrete
 
 - type: !PartialOnly tile
   id: FloorUraniumMarble
+  shine: 0.8
   footstepSounds:
     collection: FootstepConcrete
+
+- type: !PartialOnly tile
+  id: FloorGold
+  shine: 0.7
+
+- type: !PartialOnly tile
+  id: FloorSilver
+  shine: 0.7
+
+- type: !PartialOnly tile
+  id: FloorShowroom
+  shine: 0.5
+
+- type: !PartialOnly tile
+  id: FloorShuttleWhite
+  shine: 0.4
+
+- type: !PartialOnly tile
+  id: FloorShuttleGrey
+  shine: 0.4
+
+- type: !PartialOnly tile
+  id: FloorShuttleBlack
+  shine: 0.4
+
+- type: !PartialOnly tile
+  id: FloorShuttleBlue
+  shine: 0.4
+
+- type: !PartialOnly tile
+  id: FloorShuttleOrange
+  shine: 0.4
+
+- type: !PartialOnly tile
+  id: FloorShuttlePurple
+  shine: 0.4
+
+- type: !PartialOnly tile
+  id: FloorShuttleRed
+  shine: 0.4
+
+- type: !PartialOnly tile
+  id: FloorFreezer
+  shine: 0.35
+
+- type: !PartialOnly tile
+  id: FloorKitchen
+  shine: 0.3
+
+- type: !PartialOnly tile
+  id: FloorBar
+  shine: 0.3
+
+- type: !PartialOnly tile
+  id: FloorWhiteMono
+  shine: 0.3
+
+- type: !PartialOnly tile
+  id: FloorDarkMono
+  shine: 0.3
+
+- type: !PartialOnly tile
+  id: FloorSteelMono
+  shine: 0.3

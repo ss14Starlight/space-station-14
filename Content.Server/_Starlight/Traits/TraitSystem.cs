@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._Starlight.Traits;
 using Content.Shared._Starlight.Traits.Effects;
 using Content.Shared.GameTicking;
@@ -93,7 +94,7 @@ public sealed partial class TraitSystem : EntitySystem
         var categoryTraitCounts = new Dictionary<ProtoId<TraitCategoryPrototype>, int>();
         var categoryPointTotals = new Dictionary<ProtoId<TraitCategoryPrototype>, int>();
 
-        foreach (var traitId in selectedTraits)
+        foreach (var traitId in TraitOrdering.OrderForValidation(selectedTraits, _prototype))
         {
             if (!_prototype.TryIndex(traitId, out var trait))
             {
@@ -168,7 +169,7 @@ public sealed partial class TraitSystem : EntitySystem
             categoryPointTotals[trait.Category] = catPoints + trait.Cost;
         }
 
-        return validTraits;
+        return new HashSet<ProtoId<TraitPrototype>>(selectedTraits.Where(validTraits.Contains));
     }
 
     /// <summary>

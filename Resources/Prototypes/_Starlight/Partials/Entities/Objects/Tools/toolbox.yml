@@ -5,3 +5,12 @@
     sound:
       path: /Audio/_Starlight/Items/Handling/toolbox_pickup.ogg
 
+- type: !PartialOnly entity
+  id: Foolbox
+  components:
+  - type: Storage
+    grid: !Clear
+    - 0,0,7,4
+  - type: Item
+    shape:
+    - 0,0,7,4

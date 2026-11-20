@@ -11,14 +11,7 @@ public abstract partial class SharedPowerStateSystem : EntitySystem
 {
     [Dependency] private SharedPowerReceiverSystem _powerReceiverSystem = default!;
 
-    private EntityQuery<PowerStateComponent> _powerStateQuery;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        _powerStateQuery = GetEntityQuery<PowerStateComponent>();
-    }
+    [Dependency] private EntityQuery<PowerStateComponent> _powerStateQuery = default!;
 
     /// <summary>
     /// Sets the working state of the entity, adjusting its power draw accordingly.

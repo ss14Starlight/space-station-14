@@ -15,6 +15,7 @@
   - CosmicCult
   - MoffNarsianDemon
   - Floral
+  - SimpleHostile
 
 - type: !PartialOnly npcFaction
   id: NanoTrasen

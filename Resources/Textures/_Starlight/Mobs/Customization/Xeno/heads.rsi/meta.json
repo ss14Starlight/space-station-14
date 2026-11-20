@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Conflee",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+	{
+	  "name": "deacon",
+	  "directions": 4
+	},
+	{
+	  "name": "saggy",
+	  "directions": 4
+	},
+	{
+	  "name": "skull",
+	  "directions": 4
+	},
+	{
+	  "name": "listener",
+	  "directions": 4
+	}
+  ]
+
+}

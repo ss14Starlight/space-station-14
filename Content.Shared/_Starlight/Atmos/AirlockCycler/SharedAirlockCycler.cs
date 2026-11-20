@@ -150,6 +150,11 @@ public sealed class AirlockCyclerBoundUserInterfaceState : BoundUserInterfaceSta
     public bool Lockdown;
 
     /// <summary>
+    /// Doors are bolted open once a cycle completes, instead of closing by themselves.
+    /// </summary>
+    public bool BoltOpen;
+
+    /// <summary>
     /// Side the controller is cycling towards, or the side that was opened last when idle.
     /// </summary>
     public int? TargetSide;
@@ -202,3 +207,12 @@ public sealed class AirlockCyclerForceMessage : BoundUserInterfaceMessage;
 /// </summary>
 [Serializable, NetSerializable]
 public sealed class AirlockCyclerLockdownMessage : BoundUserInterfaceMessage;
+
+/// <summary>
+/// Choose whether the doors of a completed cycle are bolted open.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class AirlockCyclerBoltOpenMessage(bool enabled) : BoundUserInterfaceMessage
+{
+    public readonly bool Enabled = enabled;
+}

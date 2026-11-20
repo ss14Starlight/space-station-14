@@ -23,7 +23,6 @@ namespace Content.Server.Revenant.EntitySystems;
 // RevenantSystem files only carry a single call into InitializeStarlightAbilities().
 public sealed partial class RevenantSystem
 {
-    [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private SharedGunSystem _gun = default!;
     [Dependency] private SharedWieldableSystem _wieldable = default!;
     [Dependency] private IGameTiming _timing = default!;

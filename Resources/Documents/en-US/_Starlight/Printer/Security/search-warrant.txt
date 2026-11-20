@@ -1,0 +1,31 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀                             [bold]SEARCH WARRANT[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+I, [signature], authorize the search of the following person and/or location
+
+The affidavit below, sworn and subscribed before me, [signature], has established probable cause for this search warrant, which the Security Department is ordered to execute as follows:
+
+Name of searched person: [form]
+
+Position of searched person: [form]
+
+Reason for search: [form]
+
+Scope of property to be confiscated:
+
+⠀[check] Contraband
+⠀[check] Items believed to have been involved in a crime
+⠀[check] Misappropriated equipment
+⠀[check] Other, specify: [form]
+
+Disposition of property: All property seized pursuant to this search warrant shall be remanded into the custody of the Warden's office, pending further orders by Command.
+
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+
