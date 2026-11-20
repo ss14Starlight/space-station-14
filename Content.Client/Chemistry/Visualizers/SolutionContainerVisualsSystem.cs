@@ -115,8 +115,13 @@ public sealed partial class SolutionContainerVisualsSystem : VisualizerSystem<So
 
         if (closestFillSprite > 0)
         {
+            // Starlight start: a refilled medipen goes back to its full sprite
             if (fillBaseName == null)
+            {
+                RestoreFullSprite((uid, args.Sprite), component, fillLayer);
                 return;
+            }
+            // Starlight end
 
             var stateName = fillBaseName + closestFillSprite;
             if (fillSprite != null)
@@ -134,6 +139,7 @@ public sealed partial class SolutionContainerVisualsSystem : VisualizerSystem<So
                 SpriteSystem.LayerSetVisible((uid, args.Sprite), fillLayer, false);
             else
             {
+                RememberFullSprite((uid, args.Sprite), component, fillLayer); // Starlight
                 SpriteSystem.LayerSetRsiState((uid, args.Sprite), fillLayer, component.EmptySpriteName);
                 if (changeColor)
                     SpriteSystem.LayerSetColor((uid, args.Sprite), fillLayer, component.EmptySpriteColor);

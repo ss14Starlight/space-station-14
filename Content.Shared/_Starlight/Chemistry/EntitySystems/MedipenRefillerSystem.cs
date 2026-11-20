@@ -4,7 +4,9 @@ using Content.Shared._Starlight.Chemistry.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.DoAfter;
+using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
@@ -15,13 +17,14 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Starlight.Chemistry.EntitySystems;
 
 /// <summary>
-/// Refills empty medipens with their original dose, taken from the refiller's tank.
+/// Refills empty medipens with their original dose, taken from the containers loaded into the refiller.
 /// </summary>
 public sealed partial class MedipenRefillerSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
     [Dependency] private SharedPowerReceiverSystem _power = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedSolutionContainerSystem _solutions = default!;
@@ -71,13 +74,18 @@ public sealed partial class MedipenRefillerSystem : EntitySystem
             return false;
         }
 
-        _solutions.TryGetSolution(refiller.Owner, refiller.Comp.Solution, out _, out var tank);
+        var sources = GetSources(refiller);
         foreach (var (reagent, needed) in original.Contents)
         {
             if (refiller.Comp.FreeReagents.Contains(reagent.Prototype))
                 continue;
 
-            var held = tank?.GetTotalPrototypeQuantity(reagent.Prototype) ?? FixedPoint2.Zero;
+            var held = FixedPoint2.Zero;
+            foreach (var source in sources)
+            {
+                held += source.Comp.Solution.GetTotalPrototypeQuantity(reagent.Prototype);
+            }
+
             if (held >= needed)
                 continue;
 
@@ -94,37 +102,100 @@ public sealed partial class MedipenRefillerSystem : EntitySystem
     }
 
     /// <summary>
-    /// Takes the pen's dose out of the tank and puts it into the pen. Changes nothing if the pen can't be refilled.
+    /// Takes the pen's dose out of the loaded containers and puts it into the pen. Changes nothing if the pen can't
+    /// be refilled.
     /// </summary>
     public bool TryRefill(Entity<MedipenRefillerComponent> refiller, EntityUid pen, out string? reason)
     {
         if (!CanRefill(refiller, pen, out var fill, out reason)
-            || !_solutions.TryGetSolution(refiller.Owner, refiller.Comp.Solution, out var tankSoln, out var tank)
             || !_solutions.TryGetSolution(pen, refiller.Comp.PenSolution, out var penSoln, out _))
         {
             return false;
         }
 
+        var sources = GetSources(refiller);
         foreach (var (reagent, quantity) in fill.Contents)
         {
             if (refiller.Comp.FreeReagents.Contains(reagent.Prototype))
                 continue;
 
-            // Any stack of the reagent pays, whatever data it carries. Going stack by stack keeps the amount exact.
+            // Each container pays on its own, so nothing from one ends up in another.
             var owed = quantity;
-            foreach (var stack in tank.Contents.ToArray())
+            foreach (var source in sources)
             {
-                if (owed <= 0)
-                    break;
+                var solution = source.Comp.Solution;
+                foreach (var stack in solution.Contents.ToArray())
+                {
+                    if (owed <= 0)
+                        break;
 
-                if (stack.Reagent.Prototype == reagent.Prototype)
-                    owed -= tank.RemoveReagent(stack.Reagent, FixedPoint2.Min(owed, stack.Quantity));
+                    if (stack.Reagent.Prototype == reagent.Prototype)
+                        owed -= solution.RemoveReagent(stack.Reagent, FixedPoint2.Min(owed, stack.Quantity));
+                }
             }
         }
 
-        _solutions.UpdateChemicals(tankSoln.Value, needsReactionsProcessing: false);
+        foreach (var source in sources)
+        {
+            _solutions.UpdateChemicals(source, needsReactionsProcessing: false);
+        }
+
         _solutions.TryAddSolution(penSoln.Value, fill);
         return true;
+    }
+
+    private List<Entity<SolutionComponent>> GetSources(Entity<MedipenRefillerComponent> refiller)
+    {
+        var sources = new List<Entity<SolutionComponent>>();
+        foreach (var slot in refiller.Comp.Slots)
+        {
+            if (_itemSlots.GetItemOrNull(refiller, slot) is { } container
+                && _solutions.TryGetFitsInDispenser(container, out var soln, out _))
+            {
+                sources.Add(soln.Value);
+            }
+        }
+
+        return sources;
+    }
+
+    [SubscribeLocalEvent]
+    private void OnExamined(Entity<MedipenRefillerComponent> ent, ref ExaminedEvent args)
+    {
+        if (!args.IsInDetailsRange)
+            return;
+
+        using (args.PushGroup(nameof(MedipenRefillerComponent)))
+        {
+            var any = false;
+            foreach (var slot in ent.Comp.Slots)
+            {
+                if (_itemSlots.GetItemOrNull(ent, slot) is not { } container)
+                    continue;
+
+                any = true;
+                var contents = new List<string>();
+                if (_solutions.TryGetFitsInDispenser(container, out _, out var solution))
+                {
+                    foreach (var (reagent, quantity) in solution.Contents)
+                    {
+                        string name = _proto.TryIndex<ReagentPrototype>(reagent.Prototype, out var reagentProto)
+                            ? reagentProto.LocalizedName
+                            : reagent.Prototype;
+                        contents.Add(Loc.GetString("medipen-refiller-examine-reagent", ("reagent", name), ("amount", quantity)));
+                    }
+                }
+
+                args.PushMarkup(Loc.GetString("medipen-refiller-examine-container",
+                    ("container", container),
+                    ("contents", contents.Count > 0
+                        ? string.Join(", ", contents)
+                        : Loc.GetString("medipen-refiller-examine-container-empty"))));
+            }
+
+            if (!any)
+                args.PushMarkup(Loc.GetString("medipen-refiller-examine-no-containers"));
+        }
     }
 
     [SubscribeLocalEvent]

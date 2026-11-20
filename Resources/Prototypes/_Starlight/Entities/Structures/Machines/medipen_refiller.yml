@@ -2,7 +2,7 @@
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   id: MedipenRefiller
   name: medipen refiller
-  description: Refills used medical medipens from its tank. It needs everything the pen came with, and only takes empty pens.
+  description: Refills used medical medipens from the containers loaded into it. It needs everything the pen came with, and only takes empty pens.
   placement:
     mode: SnapgridCenter
   components:
@@ -28,6 +28,11 @@
   - type: ApcPowerReceiver
     powerLoad: 100
   - type: MedipenRefiller
+    slots:
+    - container1
+    - container2
+    - container3
+    - container4
     pens:
     - EmergencyMedipen
     - AntiPoisonMedipen
@@ -41,45 +46,29 @@
     - AdvancedMedipen
     freeReagents:
     - Nothing # the puncture auto-injector carries some only for its sprite
-  - type: SolutionManager
-    solutions:
-    - SolutionMedipenRefillerTank
-  - type: RefillableSolution
-    solution: tank
-  - type: ExaminableSolution
-    solution: tank
-  - type: Plungeable
-  - type: PlumbingConnectorAppearance
-    offset: 0.09375
-  - type: AtmosPipeColor
-  - type: PlumbingDevice
-    updateInterval: 1
-  - type: PlumbingInlet
-    solutionName: tank
-    inletNames:
-    - inletNorth
-    - inletEast
-    - inletSouth
-    - inletWest
-    transferAmount: 10
-  - type: NodeContainer
-    nodes:
-      inletNorth:
-        !type:PlumbingNode
-        nodeGroupID: Plumbing
-        pipeDirection: North
-      inletEast:
-        !type:PlumbingNode
-        nodeGroupID: Plumbing
-        pipeDirection: East
-      inletSouth:
-        !type:PlumbingNode
-        nodeGroupID: Plumbing
-        pipeDirection: South
-      inletWest:
-        !type:PlumbingNode
-        nodeGroupID: Plumbing
-        pipeDirection: West
+  # Each listed pen needs at most two reagents, so four slots hold what two different pens need at once.
+  - type: ItemSlots
+    slots:
+      container1:
+        ejectOnBreak: true
+        whitelist:
+          components:
+          - FitsInDispenser
+      container2:
+        ejectOnBreak: true
+        whitelist:
+          components:
+          - FitsInDispenser
+      container3:
+        ejectOnBreak: true
+        whitelist:
+          components:
+          - FitsInDispenser
+      container4:
+        ejectOnBreak: true
+        whitelist:
+          components:
+          - FitsInDispenser
   - type: Machine
     board: MedipenRefillerMachineCircuitboard
   - type: Destructible
@@ -88,8 +77,6 @@
         !type:DamageTrigger
         damage: 100
       behaviors:
-      - !type:SpillBehavior
-        solution: tank
       - !type:PlaySoundBehavior
         sound:
           collection: MetalGlassBreak
@@ -101,13 +88,3 @@
     guides:
     - Chemicals
     - Chemist
-
-- type: entity
-  parent: Solution
-  id: SolutionMedipenRefillerTank
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: tank
-    solution:
-      maxVol: 200

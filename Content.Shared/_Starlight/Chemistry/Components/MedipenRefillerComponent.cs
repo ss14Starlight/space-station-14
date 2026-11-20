@@ -7,17 +7,17 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Starlight.Chemistry.Components;
 
 /// <summary>
-/// A machine that puts an empty medipen's original dose back into it, paid for out of its tank.
+/// A machine that puts an empty medipen's original dose back into it, paid for out of the containers loaded into it.
 /// </summary>
 [RegisterComponent]
 [Access(typeof(MedipenRefillerSystem))]
 public sealed partial class MedipenRefillerComponent : Component
 {
     /// <summary>
-    /// The machine's tank.
+    /// The item slots holding the containers a refill is paid from, in the order they're drawn on.
     /// </summary>
     [DataField]
-    public string Solution = "tank";
+    public List<string> Slots = new();
 
     /// <summary>
     /// The solution on a pen that holds its dose.
