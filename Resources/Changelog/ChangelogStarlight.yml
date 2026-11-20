@@ -1,13 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: (Flotilla) Add a missing seed extractor to "Maid"'s service department (How was this not reported to me after all this time?).
-    type: Add
-  id: 410331
-  time: '2026-11-12T01:33:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7187
-- author: Hot Mic
-  changes:
   - message: (Flotilla) Add new APCs to Artifact room.
     type: Add
   id: 410332
@@ -2799,4 +2792,11 @@ Entries:
   id: 410730
   time: '2026-11-20T20:48:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7326
+- author: VictoriaActual
+  changes:
+  - message: Added a search bar to the AAC tablet and made the window resizable.
+    type: Add
+  id: 410731
+  time: '2026-11-20T21:22:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7016
 Order: -1
