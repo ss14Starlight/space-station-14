@@ -105,7 +105,7 @@
   # Riders, once the load check wire is cut.
   - type: Strap
     enabled: false
-    buckleOffset: "0,0.35"
+    buckleOffset: "0,0.375"
     loweredDrawdepthDirections: 0
   - type: ContainerContainer
     containers:
