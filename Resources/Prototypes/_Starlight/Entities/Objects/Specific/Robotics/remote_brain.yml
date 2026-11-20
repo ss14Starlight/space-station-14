@@ -7,15 +7,9 @@
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Robotics/remotecontrolbrain.rsi
     layers:
-    - state: remotebrain
+    - state: remotebrain-occupied
       map: ["base"]
   - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.RemoteControlBrainVisuals.Connected:
-        base:
-          True: { state: remotebrain-occupied }
-          False: { state: remotebrain }
   - type: Eye
   - type: ContentEye
   - type: RemoteControlBrain
