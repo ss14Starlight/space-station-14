@@ -245,12 +245,12 @@
       effects:
       - !type:EvenHealthChange
         damage:
-          Brute: -3.0
+          Brute: -4.5
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
           reagent: Briomadine
-          min: 20
+          min: 15
         damage:
           types:
             Asphyxiation: 1.5
@@ -259,13 +259,13 @@
         conditions:
         - !type:ReagentCondition
           reagent: Briomadine
-          min: 40
+          min: 30
         probability: 0.02
       - !type:Jitter
         conditions:
         - !type:ReagentCondition
           reagent: Briomadine
-          min: 20
+          min: 15
       - !type:Drunk
       - !type:AdjustReagent
         conditions:
