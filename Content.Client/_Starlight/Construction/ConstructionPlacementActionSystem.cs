@@ -7,16 +7,11 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._Starlight.Construction;
 
 [UsedImplicitly]
-public sealed class ConstructionPlacementActionSystem : EntitySystem
+public sealed partial class ConstructionPlacementActionSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = null!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<ConstructionPlacementActionComponent, UseInHandEvent>(OnUseInHand);
-    }
-
+    [SubscribeLocalEvent]
     private void OnUseInHand(Entity<ConstructionPlacementActionComponent> ent, ref UseInHandEvent args)
     {
         if (args.Handled)
