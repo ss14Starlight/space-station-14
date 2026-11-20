@@ -54,6 +54,7 @@ public sealed partial class ThrowingSystem : EntitySystem
     /// </summary>
     private const float DropHeldItemsSpread = 45;
     // Starlight end
+    [Dependency] private EntityQuery<ProjectileComponent> _projectileQuery = default!;
 
     public override void Initialize()
     {
@@ -128,7 +129,6 @@ public sealed partial class ThrowingSystem : EntitySystem
             direction,
             physics,
             Transform(uid),
-            projectileQuery,
             baseThrowSpeed,
             user,
             pushbackRatio,
@@ -151,7 +151,6 @@ public sealed partial class ThrowingSystem : EntitySystem
         Vector2 direction,
         PhysicsComponent physics,
         TransformComponent transform,
-        EntityQuery<ProjectileComponent> projectileQuery,
         float baseThrowSpeed = 10.0f,
         EntityUid? user = null,
         float pushbackRatio = PushbackDefault,
