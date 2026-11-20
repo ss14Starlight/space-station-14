@@ -250,3 +250,6 @@
   - type: Prying
     useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg
     playSoundOnDoafter: true
+  - type: GunRequiresWield
+  - type: UseDelay
+    delay: 1
