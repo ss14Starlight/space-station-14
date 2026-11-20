@@ -81,7 +81,7 @@ public sealed partial class GunUpgradeSystem : EntitySystem
         if (_entityWhitelist.IsWhitelistFail(ent.Comp.Whitelist, args.Used))
             return;
 
-        if (GetCurrentUpgradeTags(ent).ToHashSet().IsSupersetOf(upgradeComponent.Tags))
+        if (GetCurrentUpgradeTags(ent).ToHashSet().Overlaps(upgradeComponent.Tags)) // Starlight-edit
         {
             _popup.PopupPredicted(Loc.GetString("upgradeable-gun-popup-already-present"), ent, args.User);
             return;
