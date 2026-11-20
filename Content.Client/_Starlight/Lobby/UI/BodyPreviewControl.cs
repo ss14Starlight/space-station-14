@@ -2,7 +2,6 @@ using System.Numerics;
 using Content.Client.Clickable;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Graphics.RSI;
 using Robust.Shared.Reflection;
@@ -15,11 +14,11 @@ namespace Content.Client._Starlight.Lobby.UI;
 /// </summary>
 public sealed class BodyPreviewControl : BoxContainer
 {
-    private static readonly RsiDirection[] Directions =
+    private static readonly RsiDirection[] _directions =
         [RsiDirection.South, RsiDirection.East, RsiDirection.North, RsiDirection.West];
 
     private readonly LayoutContainer _canvas = new() { HorizontalAlignment = HAlignment.Center };
-    private readonly List<BodyPartPreviewControl> _layers = new();
+    private readonly List<BodyPartPreviewControl> _layers = [];
     private readonly IClickMapManager _clickMap;
     private readonly IEntityManager _entity;
     private readonly IReflectionManager _reflection;
@@ -33,7 +32,7 @@ public sealed class BodyPreviewControl : BoxContainer
     /// </summary>
     public Vector2 MaxPreviewSize { get; set; } = new(296, 320);
 
-    public RsiDirection Direction => Directions[_direction];
+    public RsiDirection Direction => _directions[_direction];
 
     public event Action<BodyEditorPart>? PartPressed;
     public event Action<BodyEditorPart?>? PartHovered;
@@ -63,7 +62,7 @@ public sealed class BodyPreviewControl : BoxContainer
 
     private void Rotate(int step)
     {
-        _direction = (_direction + step + Directions.Length) % Directions.Length;
+        _direction = (_direction + step + _directions.Length) % _directions.Length;
         Rotated?.Invoke();
     }
 
@@ -112,7 +111,7 @@ public sealed class BodyPreviewControl : BoxContainer
             control.OnMouseEntered += _ => PartHovered?.Invoke(control.Part);
             control.OnMouseExited += _ => PartHovered?.Invoke(null);
 
-            var position = spriteLayer.Offset * new Vector2(1, -1) * EyeManager.PixelsPerMeter - control.FrameSize / 2;
+            var position = (spriteLayer.Offset * new Vector2(1, -1) * EyeManager.PixelsPerMeter) - (control.FrameSize / 2);
             placed.Add((control, position));
             _canvas.AddChild(control);
             _layers.Add(control);

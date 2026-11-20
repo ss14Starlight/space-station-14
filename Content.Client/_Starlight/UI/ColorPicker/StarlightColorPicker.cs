@@ -44,7 +44,7 @@ public sealed class StarlightColorPicker : BoxContainer
         SeparationOverride = 4,
         HorizontalExpand = true,
     };
-    private readonly List<ChannelRow> _rows = new();
+    private readonly List<ChannelRow> _rows = [];
     private ColorPickerMode _mode;
     private bool _syncingRows;
 
@@ -273,7 +273,7 @@ public sealed class StarlightColorPicker : BoxContainer
     }
 
     private static float Luma(Color color)
-        => 0.299f * color.R + 0.587f * color.G + 0.114f * color.B;
+        => (0.299f * color.R) + (0.587f * color.G) + (0.114f * color.B);
 
     private void SetColor(Color color)
     {

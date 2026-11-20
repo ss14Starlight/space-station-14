@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client.Stylesheets;
+using Content.Client._Starlight.Stylesheets;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.Preferences;
@@ -60,7 +61,29 @@ public sealed class LoadoutTab : BoxContainer
     private readonly Dictionary<string, (Button Button, BoxContainer Groups, Section Section, string Name)> _roles = [];
     private readonly List<(LoadoutPrototype Proto, ContainerButton Card, Control Content, Control Lock, string Name)> _cards = [];
 
+    private readonly List<Folder> _folders = [];
+
+    private readonly HashSet<string> _openFolders = [];
+
     private static readonly Color LockedModulate = new(1f, 1f, 1f, 0.35f);
+
+    private sealed record Folder(
+        string Key,
+        ContainerButton Card,
+        Label Arrow,
+        Label Name,
+        string BaseName,
+        Control Drawer,
+        List<(LoadoutPrototype Proto, ContainerButton Card, string Name)> Items);
+
+    private sealed class FullRowPanel : PanelContainer
+    {
+        protected override Vector2 MeasureOverride(Vector2 availableSize)
+        {
+            var size = base.MeasureOverride(availableSize);
+            return new Vector2(MathF.Max(size.X, availableSize.X), size.Y);
+        }
+    }
 
     private string? _roleKey;
     private RoleLoadoutPrototype? _roleProto;
@@ -421,6 +444,16 @@ public sealed class LoadoutTab : BoxContainer
                 return t;
             };
         }
+
+        foreach (var folder in _folders)
+        {
+            var count = folder.Items.Count(i => selected?.Any(l => l.Prototype == i.Proto.ID) == true);
+            folder.Name.Text = count > 0 ? $"{folder.BaseName} ({count})" : folder.BaseName;
+            if (count > 0)
+                folder.Card.AddStyleClass(MarkingCard.StyleClassPicked);
+            else
+                folder.Card.RemoveStyleClass(MarkingCard.StyleClassPicked);
+        }
     }
 
     /// <summary>
@@ -468,65 +501,140 @@ public sealed class LoadoutTab : BoxContainer
     {
         _items.RemoveAllChildren();
         _cards.Clear();
+        _folders.Clear();
         if (_group is not { } groupId || !_prototypes.TryIndex(groupId, out var groupProto))
             return;
 
         var loadoutSystem = _entities.System<LoadoutSystem>();
+        var protos = new List<LoadoutPrototype>();
         foreach (var protoId in groupProto.Loadouts)
         {
-            if (!_prototypes.TryIndex(protoId, out var proto))
+            if (_prototypes.TryIndex(protoId, out var proto))
+                protos.Add(proto);
+        }
+
+        foreach (var bunch in protos.GroupBy(p => string.IsNullOrEmpty(p.GroupBy) ? p.ID : p.GroupBy))
+        {
+            var members = bunch.ToList();
+            if (members.Count == 1)
+            {
+                _items.AddChild(BuildCard(groupId, members[0], loadoutSystem));
                 continue;
+            }
 
-            var name = loadoutSystem.GetName(proto);
-            var view = new EntityPrototypeView
-            {
-                Scale = new Vector2(2, 2),
-                SetSize = new Vector2(64, 64),
-                HorizontalAlignment = HAlignment.Center,
-            };
-            view.SetPrototype(proto.DummyEntity ?? loadoutSystem.GetFirstOrNull(proto));
-
-            var content = new BoxContainer
-            {
-                Orientation = LayoutOrientation.Vertical,
-                Margin = new Thickness(4),
-                SeparationOverride = 2,
-                Children =
-                {
-                    view,
-                    new Label { Text = name, ClipText = true, HorizontalAlignment = HAlignment.Center },
-                },
-            };
-            var lockIcon = new TextureRect
-            {
-                TexturePath = "/Textures/Interface/VerbIcons/lock.svg.192dpi.png",
-                SetSize = new Vector2(18, 18),
-                Stretch = TextureRect.StretchMode.KeepAspectCentered,
-                HorizontalAlignment = HAlignment.Right,
-                VerticalAlignment = VAlignment.Top,
-                Margin = new Thickness(0, 4, 4, 0),
-                Visible = false,
-            };
-            var card = new ContainerButton
-            {
-                SetSize = new Vector2(CardWidth, CardHeight),
-                StyleClasses = { MarkingCard.StyleClassCard },
-                Children = { content, lockIcon },
-            };
-            var id = proto.ID;
-            card.OnPressed += _ =>
-            {
-                if (card.HasStyleClass(MarkingCard.StyleClassPicked))
-                    OnLoadoutUnpressed?.Invoke(groupId, id);
-                else
-                    OnLoadoutPressed?.Invoke(groupId, id);
-            };
-
-            _cards.Add((proto, card, content, lockIcon, name));
-            _items.AddChild(card);
+            BuildFolder(groupId, bunch.Key, members, loadoutSystem);
         }
 
         FilterItems();
+    }
+
+    private ContainerButton BuildCard(ProtoId<LoadoutGroupPrototype> groupId, LoadoutPrototype proto, LoadoutSystem loadoutSystem)
+    {
+        var name = loadoutSystem.GetName(proto);
+        var content = CardContent(proto, name, loadoutSystem, out _);
+        var lockIcon = new TextureRect
+        {
+            TexturePath = "/Textures/Interface/VerbIcons/lock.svg.192dpi.png",
+            SetSize = new Vector2(18, 18),
+            Stretch = TextureRect.StretchMode.KeepAspectCentered,
+            HorizontalAlignment = HAlignment.Right,
+            VerticalAlignment = VAlignment.Top,
+            Margin = new Thickness(0, 4, 4, 0),
+            Visible = false,
+        };
+        var card = new ContainerButton
+        {
+            SetSize = new Vector2(CardWidth, CardHeight),
+            StyleClasses = { MarkingCard.StyleClassCard },
+            Children = { content, lockIcon },
+        };
+        var id = proto.ID;
+        card.OnPressed += _ =>
+        {
+            if (card.HasStyleClass(MarkingCard.StyleClassPicked))
+                OnLoadoutUnpressed?.Invoke(groupId, id);
+            else
+                OnLoadoutPressed?.Invoke(groupId, id);
+        };
+
+        _cards.Add((proto, card, content, lockIcon, name));
+        return card;
+    }
+
+    private Control CardContent(LoadoutPrototype proto, string name, LoadoutSystem loadoutSystem, out Label label)
+    {
+        var view = new EntityPrototypeView
+        {
+            Scale = new Vector2(2, 2),
+            SetSize = new Vector2(64, 64),
+            HorizontalAlignment = HAlignment.Center,
+        };
+        view.SetPrototype(proto.DummyEntity ?? loadoutSystem.GetFirstOrNull(proto));
+
+        label = new Label { Text = name, ClipText = true, HorizontalAlignment = HAlignment.Center };
+        return new BoxContainer
+        {
+            Orientation = LayoutOrientation.Vertical,
+            Margin = new Thickness(4),
+            SeparationOverride = 2,
+            Children = { view, label },
+        };
+    }
+
+    private void BuildFolder(ProtoId<LoadoutGroupPrototype> groupId, string key, List<LoadoutPrototype> members, LoadoutSystem loadoutSystem)
+    {
+        var baseName = loadoutSystem.GetName(members[0]);
+        var content = CardContent(members[0], baseName, loadoutSystem, out var nameLabel);
+        var open = _openFolders.Contains(key);
+        var arrow = new Label
+        {
+            Text = open ? "▼" : "▶",
+            HorizontalAlignment = HAlignment.Left,
+            VerticalAlignment = VAlignment.Top,
+            Margin = new Thickness(6, 2, 0, 0),
+        };
+        var countLabel = new Label
+        {
+            Text = members.Count.ToString(),
+            StyleClasses = { StyleClass.LabelSubText },
+            HorizontalAlignment = HAlignment.Right,
+            VerticalAlignment = VAlignment.Top,
+            Margin = new Thickness(0, 2, 6, 0),
+        };
+        var card = new ContainerButton
+        {
+            SetSize = new Vector2(CardWidth, CardHeight),
+            StyleClasses = { MarkingCard.StyleClassCard },
+            ToolTip = Loc.GetString("loadout-tab-folder-tooltip", ("item", baseName), ("count", members.Count)),
+            Children = { content, arrow, countLabel },
+        };
+
+        var inner = new WrapContainer { SeparationOverride = 6, CrossSeparationOverride = 6, Margin = new Thickness(6) };
+        var drawer = new FullRowPanel
+        {
+            StyleClasses = { StarlightStyleClass.InsetPanel },
+            Visible = open,
+            Children = { inner },
+        };
+
+        var items = new List<(LoadoutPrototype Proto, ContainerButton Card, string Name)>();
+        foreach (var member in members)
+        {
+            var memberCard = BuildCard(groupId, member, loadoutSystem);
+            inner.AddChild(memberCard);
+            items.Add((member, memberCard, _cards[^1].Name));
+        }
+
+        card.OnPressed += _ =>
+        {
+            if (!_openFolders.Remove(key))
+                _openFolders.Add(key);
+            FilterItems();
+        };
+
+        _folders.Add(new Folder(key, card, arrow, nameLabel, baseName, drawer, items));
+        _items.AddChild(card);
+        _items.AddChild(drawer);
     }
 
     private void FilterItems()
@@ -534,6 +642,15 @@ public sealed class LoadoutTab : BoxContainer
         var search = _search.Text.Trim();
         foreach (var (_, card, _, _, name) in _cards)
             card.Visible = search.Length == 0 || name.Contains(search, StringComparison.CurrentCultureIgnoreCase);
+
+        foreach (var folder in _folders)
+        {
+            var open = _openFolders.Contains(folder.Key);
+            var matches = search.Length == 0 || folder.Items.Any(i => i.Card.Visible);
+            folder.Card.Visible = matches;
+            folder.Drawer.Visible = matches && (open || search.Length > 0);
+            folder.Arrow.Text = folder.Drawer.Visible ? "▼" : "▶";
+        }
     }
 
     #endregion
