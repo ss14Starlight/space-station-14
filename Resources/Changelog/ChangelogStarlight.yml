@@ -1,90 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: (Flotilla) Add new Airlock Cycle to a few external airlocks.
-    type: Add
-  id: 410339
-  time: '2026-11-12T01:33:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7187
-- author: Hot Mic
-  changes:
-  - message: (Flotilla) Replace SYN Nuclear Bomb with NT-approved Nuclear Bomb (Let's hope that there's no Nukie round before this update).
-    type: Tweak
-  id: 410340
-  time: '2026-11-12T01:33:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7187
-- author: Hot Mic
-  changes:
-  - message: (Flotilla) Rename the Transit Disposal Units with easier-to-remember tag names.
-    type: Tweak
-  id: 410341
-  time: '2026-11-12T01:33:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7187
-- author: Hot Mic
-  changes:
-  - message: (Flotilla) Tweak the logic for Command's main doors to be less annoying while preventing tailgating.
-    type: Tweak
-  id: 410342
-  time: '2026-11-12T01:33:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7187
-- author: Hot Mic
-  changes:
-  - message: (Flotilla) Redo the pipes at docks.
-    type: Tweak
-  id: 410343
-  time: '2026-11-12T01:33:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7187
-- author: Hot Mic
-  changes:
-  - message: (Flotilla) Removed extra stack of plastic from Engi's Supply Box for TechFab.
-    type: Tweak
-  id: 410344
-  time: '2026-11-12T01:33:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7187
-- author: Hot Mic
-  changes:
-  - message: (Flotilla) Renamed some APCs.
-    type: Tweak
-  id: 410345
-  time: '2026-11-12T01:33:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7187
-- author: Hot Mic
-  changes:
-  - message: (Flotilla) Moved Service request console from Service break room to HoP line.
-    type: Tweak
-  id: 410346
-  time: '2026-11-12T01:33:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7187
-- author: Hot Mic
-  changes:
-  - message: (Flotilla) Changed the layout for AI core; now AI should not kill itself if someone is standing right next to AI.
-    type: Tweak
-  id: 410347
-  time: '2026-11-12T01:33:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7187
-- author: Hot Mic
-  changes:
-  - message: (Flotilla) Removed one Atmos Tech Locker (now 5 lockers in total) and replaced it with AtmosDrobe.
-    type: Tweak
-  id: 410348
-  time: '2026-11-12T01:33:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7187
-- author: Hot Mic
-  changes:
-  - message: (Flotilla) Fixed disposal for NTR and Library's Game Room.
-    type: Fix
-  id: 410349
-  time: '2026-11-12T01:33:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7187
-- author: Hot Mic
-  changes:
-  - message: (Flotilla) Fixed access to Command's Breakroom at EVAC; from AA to Command.
-    type: Fix
-  id: 410350
-  time: '2026-11-12T01:33:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7187
-- author: Hot Mic
-  changes:
   - message: (Flotilla) Minor fixes.
     type: Fix
   id: 410351
@@ -2799,4 +2715,88 @@ Entries:
   id: 410738
   time: '2026-11-20T22:27:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7347
+- author: Floximo
+  changes:
+  - message: Light Sleep for Felinoids, making them able to "hear" their environment.
+    type: Add
+  id: 410739
+  time: '2026-11-20T23:02:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7199
+- author: Floximo
+  changes:
+  - message: Felinoids require 2 minutes of rest per half hour to stay at full feline speed.
+    type: Add
+  id: 410740
+  time: '2026-11-20T23:02:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7199
+- author: Floximo
+  changes:
+  - message: Felinoids purr if light sleeping and injured, slowly regenerating heat, cold,  blunt, slash, punct and blood loss, removing bleed.
+    type: Add
+  id: 410741
+  time: '2026-11-20T23:02:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7199
+- author: Floximo
+  changes:
+  - message: Felinoids share their purring heal automatically while being carried, in awake or light sleeping state.
+    type: Add
+  id: 410742
+  time: '2026-11-20T23:02:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7199
+- author: Floximo
+  changes:
+  - message: Pounce for Felinoids, adds the charged ability to jump into the hands of another person.
+    type: Add
+  id: 410743
+  time: '2026-11-20T23:02:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7199
+- author: Floximo
+  changes:
+  - message: Felinoids can be pet while carried.
+    type: Add
+  id: 410744
+  time: '2026-11-20T23:02:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7199
+- author: Floximo
+  changes:
+  - message: Felinoids runspeed is no longer affected by shoes.
+    type: Tweak
+  id: 410745
+  time: '2026-11-20T23:02:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7199
+- author: Floximo
+  changes:
+  - message: Paw boots are now normal shoes.
+    type: Tweak
+  id: 410746
+  time: '2026-11-20T23:02:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7199
+- author: Floximo
+  changes:
+  - message: While asleep, all characters consume 1/3 of breathing gasses required.
+    type: Tweak
+  id: 410747
+  time: '2026-11-20T23:02:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7199
+- author: Floximo
+  changes:
+  - message: While asleep, all characters consume 1/3 of food/drink requirement.
+    type: Tweak
+  id: 410748
+  time: '2026-11-20T23:02:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7199
+- author: Floximo
+  changes:
+  - message: All Character can now store themself in bags, if those bags have enough space (requires time).
+    type: Tweak
+  id: 410749
+  time: '2026-11-20T23:02:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7199
+- author: Floximo
+  changes:
+  - message: Neo-Felinoid crit-range HP changed from 150 to 170.
+    type: Fix
+  id: 410750
+  time: '2026-11-20T23:02:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7199
 Order: -1
