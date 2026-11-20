@@ -45,7 +45,7 @@ namespace Content.Shared.Doors.Components
 
         /// <summary>
         /// The cooldown duration before a firelock can automatically close due to a hazardous environment after it has
-        /// been pried open or opened by a user with access. Measured in seconds.
+        /// been pried open. Measured in seconds.
         /// </summary>
         [DataField]
         public TimeSpan EmergencyCloseCooldownDuration = TimeSpan.FromSeconds(2);

@@ -22,7 +22,6 @@ public abstract partial class SharedFirelockSystem : EntitySystem
 
         // Access/Prying
         SubscribeLocalEvent<FirelockComponent, BeforeDoorOpenedEvent>(OnBeforeDoorOpened);
-        SubscribeLocalEvent<FirelockComponent, DoorStateChangedEvent>(OnDoorStateChanged); //Starlight
         SubscribeLocalEvent<FirelockComponent, BeforePryEvent>(OnBeforePry);
         SubscribeLocalEvent<FirelockComponent, GetPryTimeModifierEvent>(OnDoorGetPryTimeModifier);
         SubscribeLocalEvent<FirelockComponent, PriedEvent>(OnAfterPried);
@@ -70,16 +69,6 @@ public abstract partial class SharedFirelockSystem : EntitySystem
 
         args.Cancelled = true;
     }
-
-    // Starlight-begin
-    private void OnDoorStateChanged(EntityUid uid, FirelockComponent component, DoorStateChangedEvent args)
-    {
-        if (args.State != DoorState.Opening)
-            return;
-
-        component.EmergencyCloseCooldown = _gameTiming.CurTime + component.EmergencyCloseCooldownDuration;
-    }
-    // Starlight-end
 
     private void OnDoorGetPryTimeModifier(EntityUid uid, FirelockComponent component, ref GetPryTimeModifierEvent args)
     {
