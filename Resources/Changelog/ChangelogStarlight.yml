@@ -1,11 +1,4 @@
 Entries:
-- author: Destiny (Creativity)
-  changes:
-  - message: Platinum MedTak Tracker.
-    type: Add
-  id: 410324
-  time: '2026-11-11T16:20:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7160
 - author: Rhapsody (Pepta, Soothe)
   changes:
   - message: The remaining pressure when inspecting a wearable air tank or jetpack is now predicted, and will now show the correct value instead of showing 1000 kPa before correcting itself shortly after.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410723
   time: '2026-11-20T19:42:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7361
+- author: Swonki
+  changes:
+  - message: HoP no longer has salv lead access.
+    type: Fix
+  id: 410724
+  time: '2026-11-20T20:16:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7364
 Order: -1
