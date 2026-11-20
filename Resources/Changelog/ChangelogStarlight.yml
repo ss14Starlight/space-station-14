@@ -1,11 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: Salvage Specialists get an empty glowstone bag in their locker.
-    type: Add
-  id: 410319
-  time: '2026-11-11T10:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7180
 - author: FishtopherDoe, The ETO Team
   changes:
   - message: Rebalanced the ETO Combat kit, replacing one of the diluted combat medipens with a syringe of saline, and changing some of the tric to be nutriment instead. TSF players rejoice!
@@ -2799,4 +2792,11 @@ Entries:
   id: 410718
   time: '2026-11-20T18:53:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7357
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Fixed welding masks and goggles sometimes acting like they didn't provide welding protection for a moment before correcting themselves.
+    type: Fix
+  id: 410719
+  time: '2026-11-20T19:42:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7360
 Order: -1
