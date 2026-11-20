@@ -1,13 +1,6 @@
 Entries:
 - author: WNP78 & Sparlight
   changes:
-  - message: Fixed the plumbing smart dispenser sprite not showing the power state properly.
-    type: Fix
-  id: 410307
-  time: '2026-11-10T19:07:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7026
-- author: WNP78 & Sparlight
-  changes:
   - message: Fixed the plumbing smart dispenser not requiring power for anything despite saying it does in the description (you can still manually dispense, just the smart-dispense functionality is gone).
     type: Fix
   id: 410308
@@ -2799,4 +2792,11 @@ Entries:
   id: 410706
   time: '2026-11-20T17:48:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7356
+- author: Ohelig
+  changes:
+  - message: Fixed the Interim Command Appointment form.
+    type: Fix
+  id: 410707
+  time: '2026-11-20T18:13:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7351
 Order: -1
