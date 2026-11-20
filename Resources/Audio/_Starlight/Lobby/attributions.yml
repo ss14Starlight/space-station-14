@@ -77,3 +77,8 @@
   license: "CC-BY-NC-SA-3.0"
   copyright: "Null Scar Gaze by Beptol Corporation Acoustics"
   source: "https://soundcloud.com/beptolacoustics"
+
+- files: ["HOME_Dusk_at_Novo_Lobster.ogg"]
+  license: "CC0-1.0"
+  copyright: "Created by Randy Goffe (HOME) for Starlight SS14"
+  source: "https://github.com/ss14Starlight/space-station-14/tree/Starlight/Resources/Audio/_Starlight/Lobby/HOME_Dusk_at_Novo_Lobster.ogg"

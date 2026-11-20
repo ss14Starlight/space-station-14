@@ -227,6 +227,7 @@
   loadouts:
   - RoboticistWeldingGoggles
   - RoboticistDiagnosticsHud
+  - RoboticistDiagnosticGoggles
 
 - type: loadoutGroup
   id: RoboticistBackpack
@@ -302,6 +303,7 @@
   name: loadout-group-nanotrasenrepresentative-eyewear
   loadouts:
   - NanoTrasenRepresentativeGlasses
+  - NanoTrasenRepresentativeGlassesPrescription
   - NanoTrasenRepresentativeHud
   - NanoTrasenRepresentativeMonocle
 
@@ -336,8 +338,10 @@
   id: MagistrateEyewear
   name: loadout-group-magistrate-eyewear
   loadouts:
-  - MagistrateSecGlasses
-  - MagistrateSkillGlasses
+  - SecurityGlasses
+  - SecurityGlassesPrescription
+  - NanoTrasenRepresentativeGlasses
+  - NanoTrasenRepresentativeGlassesPrescription
 
 - type: loadoutGroup
   id: MagistrateNeck
@@ -1197,6 +1201,7 @@
   name: loadout-group-NanotrasenCareerTrainer-eyewear
   loadouts:
   - NanoTrasenRepresentativeGlasses
+  - NanoTrasenRepresentativeGlassesPrescription
   - NanoTrasenRepresentativeHud
 
 - type: loadoutGroup
@@ -1211,7 +1216,8 @@
   name: loadout-group-warden-neck
   minLimit: 0
   loadouts:
-  - ClothingNeckWarden
+  - ClothingNeckWardenCloak
+  - ClothingNeckWardenMantle
 
 - type: loadoutGroup
   id: SecurityGloves
@@ -1244,6 +1250,7 @@
   name: loadout-group-captain-eyewear
   loadouts:
   - CaptainGlasses
+  - CaptainGlassesPrescription
   - CaptainHud
 
 - type: loadoutGroup

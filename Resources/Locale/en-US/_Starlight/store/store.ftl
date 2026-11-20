@@ -4,6 +4,7 @@ store-preset-name-soviet-uplink = Soviet Uplink
 store-preset-name-revenant = Revenant Exchange
 store-preset-name-pai = Personal AI Download
 store-preset-name-cantrips = Survival Cantrips for Travelers
+store-preset-name-xeno = Ancestral Strains
 
 store-listing-late = LATE
 

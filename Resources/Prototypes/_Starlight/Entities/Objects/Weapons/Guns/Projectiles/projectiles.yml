@@ -481,7 +481,7 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 10
+        Blunt: 13
         Structural: 15
   # Short lifespan
   - type: TimedDespawn
@@ -500,9 +500,21 @@
     damage:
       types:
         Blunt: 10
-        Structural: 10
+        Structural: 9
   - type: TimedDespawn
     lifetime: .5
+
+- type: entity
+  id: BulletKineticSpread
+  name: small kinetic bolt
+  parent: BulletKinetic
+  categories: [ HideSpawnMenu ]
+  description: Not too bad, but you still don't want to get hit by it.
+  components:
+  - type: ProjectileSpread
+    proto: BulletKineticSub
+    count: 5
+    spread: 18
 
 - type: entity
   id: BulletGrenadeBola

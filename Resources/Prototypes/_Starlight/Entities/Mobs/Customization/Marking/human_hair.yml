@@ -597,3 +597,147 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_hair.rsi
       state: coolspikes
+
+- type: marking
+  id: HumanHairLowpigtails
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: lowpigtails
+
+- type: marking
+  id: HumanHairMatted
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: matted
+
+- type: marking
+  id: HumanHairMattedShort
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: mattedshort
+
+- type: marking
+  id: HumanHairBubblePonytail
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bubbleponytail
+
+- type: marking
+  id: HumanHairMullet
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: mullet
+
+- type: marking
+  id: HumanHairStraightBangs
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: straightbangs
+
+- type: marking
+  id: HumanHairFrontBangs
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: frontbangs
+
+- type: marking
+  id: HumanHairWorkoutHeadband
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: workoutheadband
+
+- type: marking
+  id: HumanHairAfropuffBun
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: afropuffbun
+
+- type: marking
+  id: HumanHairLongPigtails
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longpigtails
+
+- type: marking
+  id: HumanHairStarpuffs
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: starpuffs
+
+- type: marking
+  id: HumanHairStarpuffsAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: starpuffsalt
+
+- type: marking
+  id: HumanHairOverTheShoulderBraid
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: overtheshoulderbraid
+
+- type: marking
+  id: HumanHairLongPonytailFront
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longponytailfront
+
+- type: marking
+  id: HumanHairLongPonytailFrontAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longponytailfrontalt
+
+- type: marking
+  id: HumanHairOverTheShoulderBraidAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: overtheshoulderbraidalt
+
+- type: marking
+  id: HumanHairBubblePonytailAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bubbleponytailalt
+
+- type: marking
+  id: HumanHairLongPigtailsAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longpigtailsalt

@@ -4,8 +4,8 @@ meta:
   engineVersion: 295.0.3
   forkId: ""
   forkVersion: ""
-  time: 11/14/2026 07:13:44
-  entityCount: 37061
+  time: 11/17/2026 09:15:26
+  entityCount: 37062
 maps:
 - 1
 grids:
@@ -16611,7 +16611,7 @@ entities:
       pos: 33.5,-28.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -249864.11
+      secondsUntilStateChange: -250112.6
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -16653,7 +16653,7 @@ entities:
       pos: 37.5,18.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -305542.7
+      secondsUntilStateChange: -305791.2
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -16700,7 +16700,7 @@ entities:
       pos: -18.5,-39.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -301694.66
+      secondsUntilStateChange: -301943.16
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -16826,7 +16826,7 @@ entities:
       accessListsOriginal: []
     - type: Door
       state: Opening
-      secondsUntilStateChange: -305490.12
+      secondsUntilStateChange: -305738.62
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -18493,7 +18493,7 @@ entities:
       pos: 52.5,-0.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -302921.56
+      secondsUntilStateChange: -303170.06
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -18818,7 +18818,7 @@ entities:
       pos: 40.5,2.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -300388.22
+      secondsUntilStateChange: -300636.72
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -18876,7 +18876,7 @@ entities:
       pos: -22.5,26.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -616153.9
+      secondsUntilStateChange: -616402.4
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -19563,7 +19563,7 @@ entities:
       pos: -13.5,-45.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -301693.25
+      secondsUntilStateChange: -301941.75
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -19790,7 +19790,7 @@ entities:
       pos: 29.5,-42.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -316655.75
+      secondsUntilStateChange: -316904.25
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -19925,7 +19925,7 @@ entities:
         DoorStatus: True
     - type: Door
       state: Opening
-      secondsUntilStateChange: -714982.7
+      secondsUntilStateChange: -715231.2
   - uid: 653
     components:
     - type: Transform
@@ -19937,7 +19937,7 @@ entities:
         DoorStatus: True
     - type: Door
       state: Opening
-      secondsUntilStateChange: -714985.3
+      secondsUntilStateChange: -715233.8
   - uid: 654
     components:
     - type: Transform
@@ -19949,7 +19949,7 @@ entities:
         DoorStatus: True
     - type: Door
       state: Opening
-      secondsUntilStateChange: -714984.2
+      secondsUntilStateChange: -715232.7
   - uid: 655
     components:
     - type: Transform
@@ -19960,7 +19960,7 @@ entities:
         DoorStatus: True
     - type: Door
       state: Opening
-      secondsUntilStateChange: -714983.4
+      secondsUntilStateChange: -715231.9
   - uid: 656
     components:
     - type: Transform
@@ -99488,6 +99488,14 @@ entities:
       accessListsOriginal:
       - - Service
       - - Theatre
+- proto: ComputerCommsBreakingNews
+  entities:
+  - uid: 11158
+    components:
+    - type: Transform
+      parent: 2
+      rot: 3.141592653589793 rad
+      pos: -45.5,-27.5
 - proto: ComputerCommsCargoFilled
   entities:
   - uid: 11090
@@ -100047,12 +100055,12 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 42.5,-16.5
-  - uid: 11158
+  - uid: 24500
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
-      pos: -45.5,-27.5
+      pos: -44.5,-27.5
 - proto: ComputerTelevision
   entities:
   - uid: 11159
@@ -179302,7 +179310,7 @@ entities:
         DoorStatus: True
     - type: Door
       state: Opening
-      secondsUntilStateChange: -279387.5
+      secondsUntilStateChange: -279636
     - type: Airlock
       autoClose: False
     - type: AccessReader
@@ -208386,17 +208394,12 @@ entities:
       id: Field Repor
       setupAvailableNetworks:
       - SurveillanceCameraEntertainment
-  - uid: 24500
+  - uid: 37062
     components:
     - type: Transform
       parent: 2
-      rot: -1.5707963267948966 rad
-      pos: -44.5,-27.5
-    - type: SurveillanceCamera
-      nameSet: True
-      id: News at 11
-      setupAvailableNetworks:
-      - SurveillanceCameraEntertainment
+      rot: 1.5707963267948966 rad
+      pos: -47.5,-25.5
 - proto: SwordFlaming
   entities:
   - uid: 35694

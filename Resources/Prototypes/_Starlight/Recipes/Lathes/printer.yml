@@ -21,8 +21,8 @@
     SheetPrinter: 100
 
 - type: latheRecipe
-  id: PrintedDocumentReportStationRecipe
-  result: PrintedDocumentReportStation
+  id: PrintedDocumentReportSituationRecipe
+  result: PrintedDocumentReportSituation
   categories:
   - Reports
   completetime: 2
@@ -61,8 +61,8 @@
     SheetPrinter: 100
 
 - type: latheRecipe
-  id: PrintedDocumentReportOnTheChaptersMeetingRecipe
-  result: PrintedDocumentReportOnTheChaptersMeeting
+  id: PrintedDocumentVoteRecordRecipe
+  result: PrintedDocumentVoteRecord
   categories:
   - Reports
   completetime: 2
@@ -91,8 +91,8 @@
     SheetPrinter: 100
 
 - type: latheRecipe
-  id: PrintedDocumentObjectInvestigationReportRecipe
-  result: PrintedDocumentObjectInvestigationReport
+  id: PrintedDocumentObjectExaminationReportRecipe
+  result: PrintedDocumentObjectExaminationReport
   categories:
   - Reports
   completetime: 2
@@ -153,8 +153,8 @@
 # Statements
 
 - type: latheRecipe
-  id: PrintedDocumentStatementAppointmentInterimChapterRecipe
-  result: PrintedDocumentStatementAppointmentInterimChapter
+  id: PrintedDocumentStatementInterimAppointmentRecipe
+  result: PrintedDocumentStatementInterimAppointment
   categories:
   - Statements
   completetime: 2
@@ -163,10 +163,10 @@
     SheetPrinter: 100
 
 - type: latheRecipe
-  id: PrintedDocumentEmploymentStatementRecipe
-  result: PrintedDocumentEmploymentStatement
+  id: PrintedDocumentEmploymentContractRecipe
+  result: PrintedDocumentEmploymentContract
   categories:
-  - Statements
+  - InquiriesAndAppeals
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -183,20 +183,20 @@
     SheetPrinter: 100
 
 - type: latheRecipe
-  id: PrintedDocumentAccessRequestStatementRecipe
-  result: PrintedDocumentAccessRequestStatement
+  id: PrintedDocumentAccessRequestRecipe
+  result: PrintedDocumentAccessRequest
   categories:
-  - Statements
+  - InquiriesAndAppeals
   completetime: 2
   applyMaterialDiscount: false
   materials:
     SheetPrinter: 100
 
 - type: latheRecipe
-  id: PrintedDocumentEquipmentRequestStatementRecipe
-  result: PrintedDocumentEquipmentRequestStatement
+  id: PrintedDocumentEquipmentRequestRecipe
+  result: PrintedDocumentEquipmentRequest
   categories:
-  - Statements
+  - InquiriesAndAppeals
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -255,8 +255,8 @@
     SheetPrinter: 100
 
 - type: latheRecipe
-  id: PrintedDocumentRequestChangeSalaryRecipe
-  result: PrintedDocumentRequestChangeSalary
+  id: PrintedDocumentRequestSalaryModificationRecipe
+  result: PrintedDocumentRequestSalaryModification
   categories:
   - InquiriesAndAppeals
   completetime: 2
@@ -357,8 +357,8 @@
     SheetPrinter: 100
 
 - type: latheRecipe
-  id: PrintedDocumentComplaintOffenseRecipe
-  result: PrintedDocumentComplaintOffense
+  id: PrintedDocumentCriminalComplaintRecipe
+  result: PrintedDocumentCriminalComplaint
   categories:
   - Complaints
   completetime: 2
@@ -409,8 +409,8 @@
     SheetPrinter: 100
 
 - type: latheRecipe
-  id: PrintedDocumentSearchPermissionRecipe
-  result: PrintedDocumentSearchPermission
+  id: PrintedDocumentSearchWarrantRecipe
+  result: PrintedDocumentSearchWarrant
   categories:
   - Permissions
   completetime: 2
@@ -420,8 +420,8 @@
 
 
 - type: latheRecipe
-  id: PrintedDocumentPermissionDisposeBodyRecipe
-  result: PrintedDocumentPermissionDisposeBody
+  id: PrintedDocumentBodyDisposalPermitRecipe
+  result: PrintedDocumentBodyDisposalPermit
   categories:
   - Permissions
   completetime: 2
@@ -440,8 +440,8 @@
     SheetPrinter: 100
 
 - type: latheRecipe
-  id: PrintedDocumentSurgeryConsentPermitRecipe
-  result: PrintedDocumentSurgeryConsentPermit
+  id: PrintedDocumentSurgeryConsentFormRecipe
+  result: PrintedDocumentSurgeryConsentForm
   categories:
   - Permissions
   completetime: 2
@@ -669,6 +669,16 @@
   result: PrintedDocumentSyndicateDidYouKnow
   categories:
     - Complaints
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentP23IdPdaReplacementFormRecipe
+  result: PrintedDocumentP23IdPdaReplacementForm
+  categories:
+  - InquiriesAndAppeals
   completetime: 2
   applyMaterialDiscount: false
   materials:

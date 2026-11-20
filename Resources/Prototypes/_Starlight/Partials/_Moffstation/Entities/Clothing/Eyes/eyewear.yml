@@ -1,10 +1,4 @@
 - type: !PartialOnly entity
-  id: ClothingEyesModularHudSunglasses
-  components:
-  - type: StealTarget
-    stealGroup: MiscGlassesCollection
-
-- type: !PartialOnly entity
   id: !type:CreateVariants
     values:
     - ClothingEyesModularHudGlasses

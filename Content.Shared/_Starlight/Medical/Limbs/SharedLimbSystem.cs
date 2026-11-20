@@ -1,4 +1,6 @@
-﻿using Content.Shared.Body.Systems;
+﻿using Content.Shared.Body.Part;
+using Content.Shared.Body.Systems;
+using Content.Shared.Humanoid;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 
@@ -26,5 +28,16 @@ public abstract partial class SharedLimbSystem : EntitySystem
             _containers.EnsureContainer<ContainerSlot>(ent, slotId);
             _ = SpawnInContainerOrDrop(prototype.ID, ent, slotId);
         }
+    }
+
+    public void RaiseLimbAttachedEvent(Entity<HumanoidAppearanceComponent> body, Entity<BodyPartComponent> limb)
+    {
+        var @event = new LimbAttachedEvent
+        {
+            Limb = limb,
+            Body = body
+        };
+        RaiseLocalEvent(body, ref @event);
+        RaiseLocalEvent(limb, ref @event);
     }
 }

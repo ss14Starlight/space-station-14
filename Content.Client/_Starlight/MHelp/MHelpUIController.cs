@@ -39,8 +39,6 @@ public sealed partial class MHelpUIController : UIController, IOnSystemChanged<M
     {
         base.Initialize();
 
-        SubscribeNetworkEvent<MHelpTypingUpdated>(OnTypingUpdated);
-
         _playerRoles.PlayerRolesChanged += OnPlayerStatusUpdated;
         _config.OnValueChanged(StarlightCCVars.MHelpSound, v => _mHelpSound = v, true);
     }
@@ -56,6 +54,8 @@ public sealed partial class MHelpUIController : UIController, IOnSystemChanged<M
     {
         _mentorSystem = system;
         _mentorSystem.OnMentoringTextMessageReceived += ReceivedMentoring;
+
+        SubscribeNetworkEvent<MHelpTypingUpdated>(OnTypingUpdated);
     }
 
     public void OnSystemUnloaded(MentorSystem system)

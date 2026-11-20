@@ -2,6 +2,11 @@
   id: MaterialCloth
   components:
   - type: Healing
+    # Starlight Start
+    blacklist:
+      tags:
+      - Xeno
+    # Starlight End
     damageContainers:
       - Hybrid
   - type: Tag

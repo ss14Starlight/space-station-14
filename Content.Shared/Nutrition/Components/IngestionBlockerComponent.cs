@@ -10,12 +10,12 @@ namespace Content.Shared.Nutrition.Components;
 ///     In the event that more head-wear & mask functionality is added (like identity systems, or raising/lowering of
 ///     masks), then this component might become redundant.
 /// </remarks>
-[RegisterComponent, Access(typeof(IngestionSystem)), NetworkedComponent, AutoGenerateComponentState] // Starlight edit
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(IngestionSystem))]
 public sealed partial class IngestionBlockerComponent : Component
 {
     /// <summary>
-    ///     Is this component currently blocking consumption.
+    ///     Whether this item currently blocks consuming something.
     /// </summary>
-    [DataField, AutoNetworkedField] // Starlight edit
-    public bool Enabled { get; set; } = true;
+    [DataField, AutoNetworkedField]
+    public bool Enabled = true;
 }

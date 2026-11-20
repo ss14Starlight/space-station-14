@@ -1,0 +1,11 @@
+﻿- type: !PartialOnly entity
+  id: MobArgocyteLeviathing
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 1200
+      behaviors:
+      - !type:GibBehavior { }# Starlight-end

@@ -1,0 +1,13 @@
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobMedTakCleanBot
+  name: MedTak cleanbot spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Starlight/Admeme/MedTak/Mobs/Silicon/Bots/assault_cleanbot.rsi
+      state: assault_cleanbot
+  - type: ConditionalSpawner
+    prototypes:
+    - MobMedTakCleanBot

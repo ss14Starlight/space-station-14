@@ -31,7 +31,10 @@ public sealed partial class GhostThemeSystem : EntitySystem
             || !_prototypeManager.TryIndex<GhostThemePrototype>(theme, out var ghostThemePrototype))
             return;
 
-        var themeLayer = _sprite.LayerMapReserve(spriteType, GhostThemeVisualLayers.Base);
+        var themeLayer = EnsureThemeLayer(ent.Owner);
+        if (themeLayer < 0)
+            return;
+
         var defaultLayer = _sprite.LayerMapReserve(spriteType, DefaultGhostLayer);
         var useDefaultSprite = theme == DefaultGhostTheme;
         var activeLayer = useDefaultSprite ? defaultLayer : themeLayer;
@@ -76,5 +79,22 @@ public sealed partial class GhostThemeSystem : EntitySystem
         {
             RemComp<TrailComponent>(ent.Owner);
         }
+    }
+
+    /// <summary>
+    /// Better method of ensuring theme layer that doesn't mess up layer order on reconnect or what have you.
+    /// </summary>
+    private int EnsureThemeLayer(EntityUid uid)
+    {
+        if (!TryComp<SpriteComponent>(uid, out var sprite))
+            return -1;
+
+        if (_sprite.LayerMapTryGet((uid, sprite), GhostThemeVisualLayers.Base, out var themeLayer, false))
+            return themeLayer;
+
+        themeLayer = _sprite.LayerMapReserve((uid, sprite), DefaultGhostLayer) + 1;
+        _sprite.AddBlankLayer((uid, sprite), themeLayer);
+        _sprite.LayerMapSet((uid, sprite), GhostThemeVisualLayers.Base, themeLayer);
+        return themeLayer;
     }
 }
