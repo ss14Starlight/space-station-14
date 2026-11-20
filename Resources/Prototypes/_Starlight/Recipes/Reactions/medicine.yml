@@ -224,16 +224,6 @@
     Sodium: 1
 
 - type: reaction
-  id: PolyBrio
-  reactants:
-    Briomadine:
-      amount: 1
-    PolypyryliumOligomers:
-      amount: 1
-  products:
-    Ipecac: 1
-
-- type: reaction
   id: ChronexalineUlt
   reactants:
     Ultravasculine:
