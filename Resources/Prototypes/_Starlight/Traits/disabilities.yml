@@ -223,3 +223,18 @@
       species:
         - Diona
       inverted: true
+
+- type: trait
+  id: XenoVision
+  name: trait-xeno-vision-name
+  description: trait-xeno-vision-desc
+  category: Disabilities
+  cost: 0
+  effects:
+    - !type:AddCompsEffect
+      components:
+        - type: XenoVision
+  requirements:
+    - !type:SpeciesRequirement
+      species:
+        - Xeno

@@ -33,6 +33,7 @@
       - Squeakish
       - ClassicalSign
       - CygniStandard
+      - Xeno
 
 - type: entity
   id: BaseBorgiLanguages
@@ -73,6 +74,9 @@
       - Squeakish
       - ClassicalSign
       - CygniStandard
+      - Xeno
+      - Xenoqueen
+      - Xenocongress
 
 - type: entity
   id: BaseSiliconBrainLanguages
@@ -121,6 +125,8 @@
       - Lagomorphian
       - Squeakish
       - Xeno
+      - Xenoqueen
+      - Xenocongress
       - Xenomind
       - ClassicalSign
       - CygniStandard
@@ -163,5 +169,7 @@
       - Lagomorphian
       - Squeakish
       - Xeno
+      - Xenoqueen
+      - Xenocongress
       - ClassicalSign
       - CygniStandard
