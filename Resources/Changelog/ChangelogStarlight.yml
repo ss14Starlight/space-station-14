@@ -1,13 +1,6 @@
 Entries:
 - author: Conflee
   changes:
-  - message: Moved Incendiary Munitions from Tier 1 to Tier 2 and lowered it's cost from 10000 to 8000.
-    type: Tweak
-  id: 410326
-  time: '2026-11-11T21:36:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7183
-- author: Conflee
-  changes:
   - message: Moved Uranium Munitions from Tier 1 to Tier 2.
     type: Tweak
   id: 410327
@@ -2799,4 +2792,11 @@ Entries:
   id: 410725
   time: '2026-11-20T20:16:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7349
+- author: Johnny
+  changes:
+  - message: Added a new combat kit within the uplink that has patches and pills instead of autoinjectors and syringes.
+    type: Add
+  id: 410726
+  time: '2026-11-20T20:16:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7359
 Order: -1
