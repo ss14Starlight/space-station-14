@@ -1,0 +1,21 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+─────────────────────────────────────────
+⠀⠀                                [bold]DISPOSAL REPORT[/bold]
+─────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+The objects at [form] have been disposed of. During the disposal process, the following valuable items and/or materials were sent to the departments indicated below.
+
+List of items/materials found:
+
+• [form] - Given to [form] Department
+• [form] - Given to [form] Department
+• [form] - Given to [form] Department
+• [form] - Given to [form] Department
+• [form] - Given to [form] Department
+─────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+

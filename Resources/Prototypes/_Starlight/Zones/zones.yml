@@ -11,6 +11,7 @@
 
 - type: zone
   id: Maintenance
+  colorGrade: GradeMaintenance
   name: zone-maintenance
   color: "#5B4A2E"
   priority: 10
@@ -27,6 +28,7 @@
 
 - type: zone
   id: Command
+  colorGrade: GradeCommand
   name: zone-command
   color: "#3F51B5"
   priority: 20
@@ -51,6 +53,7 @@
 
 - type: zone
   id: Security
+  colorGrade: GradeSecurity
   name: zone-security
   color: "#A33030"
   priority: 20
@@ -70,6 +73,7 @@
 
 - type: zone
   id: Medical
+  colorGrade: GradeMedical
   name: zone-medical
   color: "#4DB6AC"
   priority: 20
@@ -89,6 +93,7 @@
 
 - type: zone
   id: Engineering
+  colorGrade: GradeEngineering
   name: zone-engineering
   color: "#C9A227"
   priority: 20
@@ -102,6 +107,7 @@
 
 - type: zone
   id: Science
+  colorGrade: GradeScience
   name: zone-science
   color: "#8E44AD"
   priority: 20
@@ -117,6 +123,7 @@
 
 - type: zone
   id: Cargo
+  colorGrade: GradeCargo
   name: zone-cargo
   color: "#B07219"
   priority: 20
@@ -136,6 +143,7 @@
 
 - type: zone
   id: Service
+  colorGrade: GradeWarm
   name: zone-service
   color: "#5C9E31"
   priority: 20
@@ -159,6 +167,7 @@
 
 - type: zone
   id: Atmospherics
+  colorGrade: GradeEngineering
   name: zone-atmospherics
   color: "#B85C38"
   priority: 30
@@ -169,6 +178,7 @@
 
 - type: zone
   id: Bar
+  colorGrade: GradeBar
   name: zone-bar
   color: "#7D4B2A"
   priority: 30
@@ -178,6 +188,7 @@
 
 - type: zone
   id: Kitchen
+  colorGrade: GradeWarm
   name: zone-kitchen
   color: "#C4713A"
   priority: 30
@@ -187,6 +198,7 @@
 
 - type: zone
   id: Chapel
+  colorGrade: GradeChapel
   name: zone-chapel
   color: "#9E9E9E"
   priority: 30
@@ -196,18 +208,21 @@
 
 - type: zone
   id: Dormitory
+  colorGrade: GradeDormitory
   name: zone-dormitory
   color: "#6D8B74"
   priority: 30
 
 - type: zone
   id: Solars
+  colorGrade: GradeSolars
   name: zone-solars
   color: "#2E4A62"
   priority: 30
 
 - type: zone
   id: Detective
+  colorGrade: GradeDetective
   name: zone-detective
   color: "#6B5B45"
   priority: 30
@@ -217,6 +232,7 @@
 
 - type: zone
   id: Virology
+  colorGrade: GradeVirology
   name: zone-virology
   color: "#7CB342"
   priority: 30

@@ -81,7 +81,7 @@ public sealed partial class ShellSystem : EntitySystem
 
             if (part != null) //If it was attached to the body, which it always should, but just in case, we raise the surgery event on it
             {
-                var sev = new SurgeryOrganExtracted(uid, part.Value, entityToDestroy.Id);
+                var sev = new SurgeryOrganExtracted(uid, part.Value, entityToDestroy.Id, uid);
                 _entityManager.EventBus.RaiseLocalEvent(entityToDestroy.Id, ref sev);
             }
             _audioSystem.PlayPredicted(comp.ShellBreakSound, uid, uid);

@@ -1,7 +1,10 @@
 - type: !PartialOnly entity
   id: RandomFoodBakedSingle
   components:
-  - type: RandomSpawner
-    prototypes: # moff cake
-      - !Remove FoodCakeCottonSlice
-      - FoodCottonCakeSlice
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - !CombineIndex:0
+        children:
+        - !CombineIndex:30
+          id: FoodCottonCakeSlice # moff cake, replaces FoodCakeCottonSlice

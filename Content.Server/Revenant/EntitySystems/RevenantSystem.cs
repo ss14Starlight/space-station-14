@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Server.Actions;
+using Content.Server.Atmos.EntitySystems;
 using Content.Server.GameTicking;
 using Content.Server.Store.Systems;
 using Content.Shared.Alert;
@@ -43,6 +44,7 @@ public sealed partial class RevenantSystem : EntitySystem
     [Dependency] private TagSystem _tag = default!;
     [Dependency] private VisibilitySystem _visibility = default!;
     [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -188,6 +190,23 @@ public sealed partial class RevenantSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Cools the area around the revenant.
+    /// The more essence they have, the colder it gets, up to a certain point.
+    /// </summary>
+    /// <param name="ent">The revenant entity.</param>
+    private void ChillArea(Entity<RevenantComponent> ent)
+    {
+        var effectiveEssence = Math.Clamp(ent.Comp.Essence.Int(), 0, ent.Comp.ChillUpperBound.Float());
+        // Parabolic curve based on essence, more essence = more delta q, flattening as upper bound is reached
+        var dQ =
+            (200 / ent.Comp.ChillScaling.Float() * MathF.Pow(effectiveEssence - ent.Comp.ChillUpperBound.Float(), 2)) -
+            ent.Comp.ChillScaling.Float();
+
+        if (_atmosphere.GetContainingMixture(ent.Owner, true, true) is { } air)
+            _atmosphere.AddHeat(air, dQ);
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -205,6 +224,8 @@ public sealed partial class RevenantSystem : EntitySystem
             {
                 ChangeEssenceAmount(uid, rev.EssencePerSecond, rev, regenCap: true);
             }
+
+            ChillArea((uid, rev));
         }
     }
 }

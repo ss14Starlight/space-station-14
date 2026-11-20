@@ -18,6 +18,8 @@ public abstract partial class SharedDeviceLinkSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
 
+    [Dependency] private EntityQuery<DeviceLinkSinkComponent> _deviceLinkSinkQuery = default!;
+
     public const string InvokedPort = "link_port";
 
     /// <inheritdoc/>
@@ -82,10 +84,9 @@ public abstract partial class SharedDeviceLinkSystem : EntitySystem
     /// </summary>
     private void OnSourceRemoved(Entity<DeviceLinkSourceComponent> source, ref ComponentRemove args)
     {
-        var query = GetEntityQuery<DeviceLinkSinkComponent>();
         foreach (var sinkUid in source.Comp.LinkedPorts.Keys)
         {
-            if (query.TryGetComponent(sinkUid, out var sink))
+            if (_deviceLinkSinkQuery.TryGetComponent(sinkUid, out var sink))
                 RemoveSinkFromSourceInternal(source, sinkUid, source, sink);
             else
                 Log.Error($"Device source {ToPrettyString(source)} links to invalid entity: {ToPrettyString(sinkUid)}");

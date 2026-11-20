@@ -6,11 +6,14 @@ namespace Content.Client._Starlight.Lobby.UI;
 
 public sealed partial class HumanoidProfileEditor
 {
+    private const int CharacterVoice = 0;
+    private const int SiliconVoice = 1;
+
     private List<VoicePrototype> _voices = [];
-    private VoiceSelectorWindow _voiceSelectorWindow = default!;
+    private VoicePicker _voicePicker = default!;
 
     private List<VoicePrototype> _siliconVoices = [];
-    private VoiceSelectorWindow _voiceSiliconSelectorWindow = default!;
+    private VoicePicker _siliconVoicePicker = default!;
 
     private void InitializeVoiceSelectors()
     {
@@ -18,29 +21,54 @@ public sealed partial class HumanoidProfileEditor
             .EnumeratePrototypes<VoicePrototype>()
             .Where(voice => !voice.Silicon)];
 
-        _voiceSelectorWindow = new VoiceSelectorWindow(_voices);
-        _voiceSelectorWindow.OnVoiceSelected += voice =>
+        _voicePicker = new VoicePicker(_voices, _prototypeManager);
+        _voicePicker.OnVoiceSelected += voice =>
         {
             Profile = Profile?.WithVoice(voice.ID);
             IsDirty = true;
+            UpdateCurrentVoiceLabel();
         };
-        _voiceSelectorWindow.OnPreviewRequested += () =>
-            _entManager.System<TextToSpeechSystem>().RequestPreviewTts(Profile?.Voice ?? "");
-        VoiceButton.OnPressed += _ => _voiceSelectorWindow.OpenCentered();
+        _voicePicker.OnPreviewRequested += PreviewVoice;
 
         _siliconVoices = [.. _prototypeManager
             .EnumeratePrototypes<VoicePrototype>()
             .Where(voice => voice.Silicon)];
 
-        _voiceSiliconSelectorWindow = new VoiceSelectorWindow(_siliconVoices);
-        _voiceSiliconSelectorWindow.OnVoiceSelected += voice =>
+        _siliconVoicePicker = new VoicePicker(_siliconVoices, _prototypeManager) { Visible = false };
+        _siliconVoicePicker.OnVoiceSelected += voice =>
         {
             Profile = Profile?.WithSiliconVoice(voice.ID);
             IsDirty = true;
+            UpdateCurrentVoiceLabel();
         };
-        _voiceSiliconSelectorWindow.OnPreviewRequested += () =>
-            _entManager.System<TextToSpeechSystem>().RequestPreviewTts(Profile?.SiliconVoice ?? "");
-        SiliconVoiceButton.OnPressed += _ => _voiceSiliconSelectorWindow.OpenCentered();
+        _siliconVoicePicker.OnPreviewRequested += PreviewVoice;
+
+        VoicePickerSlot.AddChild(_voicePicker);
+        VoicePickerSlot.AddChild(_siliconVoicePicker);
+
+        VoiceKindButton.AddItem(Loc.GetString("voice-selector-kind-character"), CharacterVoice);
+        VoiceKindButton.AddItem(Loc.GetString("voice-selector-kind-silicon"), SiliconVoice);
+        VoiceKindButton.SelectId(CharacterVoice);
+        VoiceKindButton.Visible = _siliconVoices.Count > 0;
+        VoiceKindButton.OnItemSelected += args =>
+        {
+            _voicePicker.Visible = args.Id == CharacterVoice;
+            _siliconVoicePicker.Visible = args.Id == SiliconVoice;
+            UpdateCurrentVoiceLabel();
+        };
+    }
+
+    private void PreviewVoice(VoicePrototype voice)
+        => _entManager.System<TextToSpeechSystem>().RequestPreviewTts(voice.ID);
+
+    private void UpdateCurrentVoiceLabel()
+    {
+        var silicon = VoiceKindButton.SelectedId == SiliconVoice;
+        var id = silicon ? Profile?.SiliconVoice : Profile?.Voice;
+        var voice = (silicon ? _siliconVoices : _voices).FirstOrDefault(v => v.ID == id);
+        CurrentVoiceLabel.Text = voice == null
+            ? string.Empty
+            : Loc.GetString("voice-selector-current-voice", ("voice", Loc.GetString(voice.Name)));
     }
 
     private void UpdateVoicesControls()
@@ -48,14 +76,11 @@ public sealed partial class HumanoidProfileEditor
         if (Profile is null)
             return;
 
-        _voiceSelectorWindow.UpdateVoices(_voices, updateVoice: false);
-
         if (string.IsNullOrEmpty(Profile.Voice) && _voices.Count > 0)
             Profile.Voice = _voices[Random.Shared.Next(_voices.Count)].ID;
 
-        var voiceChoice = _voices.FirstOrDefault(voice => voice.ID == Profile.Voice);
-        if (voiceChoice != default)
-            _voiceSelectorWindow.SelectVoice(voiceChoice);
+        _voicePicker.Select(Profile.Voice);
+        UpdateCurrentVoiceLabel();
     }
 
     private void UpdateSiliconVoicesControls()
@@ -63,13 +88,10 @@ public sealed partial class HumanoidProfileEditor
         if (Profile is null)
             return;
 
-        _voiceSiliconSelectorWindow.UpdateVoices(_siliconVoices, updateVoice: false);
-
         if (string.IsNullOrEmpty(Profile.SiliconVoice) && _siliconVoices.Count > 0)
             Profile.SiliconVoice = _siliconVoices[Random.Shared.Next(_siliconVoices.Count)].ID;
 
-        var voiceChoice = _siliconVoices.FirstOrDefault(voice => voice.ID == Profile.SiliconVoice);
-        if (voiceChoice != default)
-            _voiceSiliconSelectorWindow.SelectVoice(voiceChoice);
+        _siliconVoicePicker.Select(Profile.SiliconVoice);
+        UpdateCurrentVoiceLabel();
     }
 }

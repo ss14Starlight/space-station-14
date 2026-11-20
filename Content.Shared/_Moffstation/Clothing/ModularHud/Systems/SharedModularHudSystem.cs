@@ -323,6 +323,10 @@ public abstract partial class SharedModularHudSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnExamined(Entity<ModularHudComponent> entity, ref ExaminedEvent args)
     {
+        // Starlight start
+        if (!args.IsInDetailsRange)
+            return;
+        // Starlight end
         using (args.PushGroup(nameof(ModularHudComponent)))
         {
             using var modules = GetModules(entity.AsNullable()).GetEnumerator(); // Starlight

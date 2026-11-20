@@ -15,6 +15,7 @@ public sealed partial class AntagCategory : BoxContainer
 {
     public event Action<ProtoId<AntagPrototype>, bool>? OnAntagToggled;
     public event Action<ProtoId<AntagPrototype>>? OnLoadoutPressed;
+    public event Action<ProtoId<AntagPrototype>>? OnPreviewPressed; // Starlight
 
     private readonly List<AntagPrototype> _antags;
     private readonly Dictionary<ProtoId<AntagPrototype>, AntagEntry> _antagEntries = new();
@@ -59,9 +60,17 @@ public sealed partial class AntagCategory : BoxContainer
             var entry = new AntagEntry(antag, isSelected, profile); // Starlight
             entry.OnToggled += selected => OnTraitEntryToggled(antag.ID, selected);
             entry.OnLoadoutPressed += () => OnLoadoutPressed?.Invoke(antag.ID);
+            entry.OnPreviewPressed += () => OnPreviewPressed?.Invoke(antag.ID); // Starlight
             _antagEntries[antag.ID] = entry;
             AntagsContainer.AddChild(entry);
         }
+    }
+
+    // Starlight
+    public void SetPreviewed(ProtoId<AntagPrototype>? previewed)
+    {
+        foreach (var (id, entry) in _antagEntries)
+            entry.SetPreviewed(id == previewed);
     }
 
     private void OnTraitEntryToggled(ProtoId<AntagPrototype> traitId, bool selected)

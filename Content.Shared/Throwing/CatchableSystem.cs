@@ -23,17 +23,14 @@ public sealed partial class CatchableSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private EntityWhitelistSystem _whitelist = default!;
 
-    private EntityQuery<HandsComponent> _handsQuery;
-    private EntityQuery<CombatModeComponent> _combatModeQuery;
+    [Dependency] private EntityQuery<HandsComponent> _handsQuery = default!;
+    [Dependency] private EntityQuery<CombatModeComponent> _combatModeQuery = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<CatchableComponent, ThrowDoHitEvent>(OnDoHit);
-
-        _handsQuery = GetEntityQuery<HandsComponent>();
-        _combatModeQuery = GetEntityQuery<CombatModeComponent>();
     }
 
     private void OnDoHit(Entity<CatchableComponent> ent, ref ThrowDoHitEvent args)

@@ -152,3 +152,8 @@ stack-sandbag = {$amount ->
     [1] sandbag
     *[other] sandbags
 }
+
+stack-chitin = {$amount ->
+    [1] glob of chitinous wax
+    *[other] globs of chitinous wax
+}

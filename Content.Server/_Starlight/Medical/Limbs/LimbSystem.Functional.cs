@@ -14,6 +14,9 @@ public sealed partial class LimbSystem : SharedLimbSystem
 {
     private void AddLimb(Entity<HumanoidAppearanceComponent> body, string slot, Entity<BodyPartComponent> limb)
     {
+        if (!limb.Comp.Organs.ContainsKey("shell"))
+            _body.TryCreateOrganSlot(limb, "shell", out _);
+
         switch (limb.Comp.PartType)
         {
             case BodyPartType.Arm:
@@ -37,7 +40,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
                 }
                 break;
             case BodyPartType.Hand:
-                if (limb.Comp.Organs.Keys.Count == 0)
+                if (limb.Comp.Organs.Keys.Count == 1)
                     _body.TryCreateOrganSlot(limb, "hand_implant", out _);
 
                 foreach (var slotId in limb.Comp.Organs.Keys)
@@ -50,7 +53,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
                     {
                         if (TryComp(containedEnt, out OrganComponent? _))
                         {
-                            var addedEv = new SurgeryOrganImplantationCompleted(body, limb, containedEnt);
+                            var addedEv = new SurgeryOrganImplantationCompleted(body, limb, containedEnt, body);
                             RaiseLocalEvent(containedEnt, ref addedEv);
                         }
                     }
@@ -76,6 +79,8 @@ public sealed partial class LimbSystem : SharedLimbSystem
                 }
                 break;
             case BodyPartType.Foot:
+                break;
+            default:
                 break;
         }
         RaiseLimbAttachedEvent(body, limb);
@@ -103,17 +108,6 @@ public sealed partial class LimbSystem : SharedLimbSystem
                     out _);
                 break;
         }
-    }
-
-    private void RaiseLimbAttachedEvent(Entity<HumanoidAppearanceComponent> body, Entity<BodyPartComponent> limb)
-    {
-        var @event = new LimbAttachedEvent
-        {
-            Limb = limb,
-            Body = body
-        };
-        RaiseLocalEvent(body, ref @event);
-        RaiseLocalEvent(limb, ref @event);
     }
 
     private void RemoveLimb(Entity<TransformComponent, HumanoidAppearanceComponent, BodyComponent> body, Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb)
@@ -145,7 +139,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
                     {
                         if (TryComp(containedEnt, out OrganComponent? _))if (TryComp(containedEnt, out TransformComponent? transform) && TryComp(containedEnt, out MetaDataComponent? metaData))
                         {
-                            var ev = new SurgeryOrganExtracted(body, limb, containedEnt);
+                            var ev = new SurgeryOrganExtracted(body, limb, containedEnt, body);
                             RaiseLocalEvent(containedEnt, ref ev);
                         }
                     }

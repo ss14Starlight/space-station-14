@@ -105,3 +105,9 @@
   storage:
     back:
     - BibleRigVeda
+
+- type: loadout
+  id: BibleBookOfLife
+  storage:
+    back:
+    - BibleBookOfLife
