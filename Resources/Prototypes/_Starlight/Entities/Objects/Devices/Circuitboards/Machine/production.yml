@@ -1568,3 +1568,17 @@
       Igniter:
         amount: 1
         defaultPrototype: Igniter
+
+- type: entity
+  id: MedipenRefillerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: medipen refiller machine board
+  description: A machine printed circuit board for a medipen refiller.
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: MedipenRefiller
+      stackRequirements:
+        Manipulator: 1
+        Glass: 1

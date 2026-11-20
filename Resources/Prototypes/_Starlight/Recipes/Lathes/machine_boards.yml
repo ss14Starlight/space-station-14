@@ -67,3 +67,8 @@
   parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
   id: IgniterMachineCircuitboard
   result: IgniterMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseMedicalMachineRecipeCategory ]
+  id: MedipenRefillerMachineCircuitboard
+  result: MedipenRefillerMachineCircuitboard

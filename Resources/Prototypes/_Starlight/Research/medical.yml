@@ -33,6 +33,7 @@
   recipeUnlocks:
   - GoldenJug
   - SilverJug
+  - MedipenRefillerMachineCircuitboard
   radioChannels:
   - Medical
 
