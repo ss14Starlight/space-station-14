@@ -323,14 +323,14 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
             : Array.Empty<EntityUid>();
         var dragDrop = _entityManager.System<DragDropSystem>();
         if (!dragDrop.TryFinishRemoteDrag(
-                remoteEntity,
-                args.ScreenCoordinates.Position,
-                mapPosition,
-                targets,
-                out var dragged,
-                out var dropTarget,
-                out var wasDragging,
-                out var replayClick))
+            remoteEntity,
+            args.ScreenCoordinates.Position,
+            mapPosition,
+            targets,
+            out var dragged,
+            out var dropTarget,
+            out var wasDragging,
+            out var replayClick))
         {
             StopRemoteAttackHold(false);
             return false;
@@ -354,11 +354,11 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
     private bool IsRemoteUseReplayTargetEligible(SavedRemoteUse savedUse)
         => RemoteView.Visible
-           && _remoteControl.ControlledEntity == savedUse.RemoteEntity
-           && _entityManager.EntityExists(savedUse.Target)
-           && IsInRemoteView(savedUse.Args.ScreenCoordinates)
-           && _stateManager.CurrentState is GameplayStateBase screen
-           && screen.GetClickableEntities(savedUse.MapPosition, _remoteEye).Contains(savedUse.Target);
+            && _remoteControl.ControlledEntity == savedUse.RemoteEntity
+            && _entityManager.EntityExists(savedUse.Target)
+            && IsInRemoteView(savedUse.Args.ScreenCoordinates)
+            && _stateManager.CurrentState is GameplayStateBase screen
+            && screen.GetClickableEntities(savedUse.MapPosition, _remoteEye).Contains(savedUse.Target);
 
     private bool HandleRemoteActivateInWorld(in PointerInputCmdHandler.PointerInputCmdArgs args)
         => HandleRemoteInteraction(args, false, activateInWorld: true);
@@ -428,7 +428,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
             }
 
             if (_entityManager.System<MeleeWeaponSystem>().TryHandleRemoteHeavyAttack(
-                    remoteEntity, RemoteView.PixelToMap(args.ScreenCoordinates.Position)))
+                remoteEntity, RemoteView.PixelToMap(args.ScreenCoordinates.Position)))
             {
                 StartRemoteAttackHold(true, RemoteAttackType.MeleeHeavy, remoteEntity);
                 return true;
@@ -505,8 +505,8 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         target = GetRemoteTarget(mapPosition);
         coordinates = _mapManager.MapExists(mapPosition.MapId)
             && _mapManager.TryFindGridAt(mapPosition, out var grid, out _)
-            ? _mapManager.MapToGrid(grid, mapPosition)
-            : new EntityCoordinates((EntityUid)mapEntity, mapPosition.Position);
+                ? _mapManager.MapToGrid(grid, mapPosition)
+                : new EntityCoordinates((EntityUid)mapEntity, mapPosition.Position);
         return true;
     }
 
@@ -586,8 +586,8 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
             return true;
 
         return type != RemoteAttackType.Shoot
-                    && _entityManager.System<MeleeWeaponSystem>().TryGetWeapon(remoteEntity, out _, out var weapon)
-                    && weapon.AutoAttack;
+            && _entityManager.System<MeleeWeaponSystem>().TryGetWeapon(remoteEntity, out _, out var weapon)
+            && weapon.AutoAttack;
     }
 
     private float GetRemoteAttackInterval(EntityUid remoteEntity, RemoteAttackType type)
@@ -810,7 +810,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
             UpdateRemoteMousePosition();
 
         if (!_entityManager.System<DragDropSystem>().UpdateRemoteDrag(
-                remoteEntity, _remoteMouseScreenPosition, mapPosition, frameTime))
+            remoteEntity, _remoteMouseScreenPosition, mapPosition, frameTime))
             CancelRemoteDragDrop();
     }
 
@@ -1003,7 +1003,8 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         _remoteRadialMenu?.Close();
         _remoteRadialMenu = menu;
         menu.OnClose += OnRemoteRadialMenuClosed;
-        var remoteViewCenter = (RootContainer.GetLocalPosition(RemoteView.ScreenCoordinates) / RootContainer.UIScale) + (RemoteView.Size / 2);
+        var remoteViewCenter = (RootContainer.GetLocalPosition(RemoteView.ScreenCoordinates) / RootContainer.UIScale) +
+            (RemoteView.Size / 2);
         menu.OpenEmbedded(RootContainer, remoteViewCenter);
         return true;
     }
@@ -1364,8 +1365,8 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         _activeHandHasItem = activeHand?.HeldItem != null;
         var activeEntity = activeHand?.HeldItem is { } activeItem
             && _entityManager.TryGetEntity(activeItem, out var resolvedEntity)
-            ? resolvedEntity
-            : (EntityUid?)null;
+                ? resolvedEntity
+                : (EntityUid?)null;
         _activeDeviceStatusPanel.Update(activeEntity, hand: null);
 
         foreach (var hand in hands)
@@ -1569,18 +1570,18 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
                 IsModifierPressed(binding.Mod2, args.Key) &&
                 IsModifierPressed(binding.Mod3, args.Key);
             var canHandle = functionAvailable &&
-                            modifiersMatch &&
-                            controlledEntity is not null &&
-                            focusedControl is null &&
-                            !args.Handled;
+                modifiersMatch &&
+                controlledEntity is not null &&
+                focusedControl is null &&
+                !args.Handled;
 
             var moreSpecificHandActionMatches = dropBindings
                 .Where(action => dropFunctionAvailable
-                                 && MatchesHandActionBinding(action, args.Key)
-                                 && IsStrictSubCombo(binding, action))
+                    && MatchesHandActionBinding(action, args.Key)
+                    && IsStrictSubCombo(binding, action))
                 .Concat(throwBindings.Where(action => throwFunctionAvailable
-                                                      && MatchesHandActionBinding(action, args.Key)
-                                                      && IsStrictSubCombo(binding, action)))
+                    && MatchesHandActionBinding(action, args.Key)
+                    && IsStrictSubCombo(binding, action)))
                 .OrderByDescending(CountModifiers)
                 .FirstOrDefault();
             var moreSpecificHandActionAllowsSubCombinations =
@@ -1619,9 +1620,9 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
     private bool MatchesHandActionBinding(IKeyBinding binding, Keyboard.Key eventKey)
         => binding.BaseKey == eventKey &&
-           IsModifierPressed(binding.Mod1, eventKey) &&
-           IsModifierPressed(binding.Mod2, eventKey) &&
-           IsModifierPressed(binding.Mod3, eventKey);
+            IsModifierPressed(binding.Mod1, eventKey) &&
+            IsModifierPressed(binding.Mod2, eventKey) &&
+            IsModifierPressed(binding.Mod3, eventKey);
 
     private static int CountModifiers(IKeyBinding binding)
     {
