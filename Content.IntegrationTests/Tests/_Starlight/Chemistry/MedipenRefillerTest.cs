@@ -195,21 +195,35 @@ public sealed class MedipenRefillerTest : InteractionTest
     }
 
     [Test]
-    public async Task RefusesUnlistedAndShortCases()
+    public async Task RefusesAnUnlistedPen()
+    {
+        await PoweredRefiller();
+        var mute = await StoreJug("MuteToxin", 50);
+        await StoreJug("Pax", 50);
+        var unlisted = await SpawnEntity("EmergencyMedipenMute", SEntMan.GetCoordinates(TargetCoords));
+
+        await Server.WaitAssertion(() =>
+        {
+            // Its whole dose is loaded, so only the pen list can refuse it.
+            EmptyPen(unlisted);
+            Assert.That(Refillers.TryRefill(Refiller, unlisted, out _), Is.False, "a pen off the list is refused");
+            Assert.That(Pen(unlisted).Volume, Is.EqualTo(FixedPoint2.Zero));
+            Assert.That(Contents(mute).Volume, Is.EqualTo(FixedPoint2.New(50)));
+        });
+    }
+
+    [Test]
+    public async Task RefusesWhenShort()
     {
         await PoweredRefiller();
         var epinephrine = await StoreJug("Epinephrine", 100);
         await StoreJug("TranexamicAcid", 4);
-        await StoreJug("MuteToxin", 50);
-        var unlisted = await SpawnEntity("EmergencyMedipenMute", SEntMan.GetCoordinates(TargetCoords));
         var empty = await SpawnEntity("EmergencyMedipen", SEntMan.GetCoordinates(TargetCoords));
 
         await Server.WaitAssertion(() =>
         {
-            EmptyPen(unlisted);
             EmptyPen(empty);
 
-            Assert.That(Refillers.TryRefill(Refiller, unlisted, out _), Is.False, "a pen off the list is refused");
             Assert.That(Refillers.TryRefill(Refiller, empty, out var reason), Is.False, "4u of tranexamic acid is short of 5u");
             Assert.That(reason, Does.Contain("4"), "the popup says how much is there");
             Assert.That(Pen(empty).Volume, Is.EqualTo(FixedPoint2.Zero));
