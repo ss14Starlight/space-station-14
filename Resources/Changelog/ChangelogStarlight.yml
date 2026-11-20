@@ -1,32 +1,4 @@
 Entries:
-- author: GGdoggodude
-  changes:
-  - message: Aieliths now spawn with the proper survival box!
-    type: Fix
-  id: 410314
-  time: '2026-11-11T05:33:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7177
-- author: redmushie
-  changes:
-  - message: Increased prefilled glowstone bag from 25 charges to 50 charges.
-    type: Tweak
-  id: 410315
-  time: '2026-11-11T10:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7180
-- author: redmushie
-  changes:
-  - message: Increased glowstone bag refill value of crystal shards from 10 to 15.
-    type: Tweak
-  id: 410316
-  time: '2026-11-11T10:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7180
-- author: redmushie
-  changes:
-  - message: Salvage Medics get a filled glowstone bag in their locker.
-    type: Add
-  id: 410317
-  time: '2026-11-11T10:23:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7180
 - author: redmushie
   changes:
   - message: Mining Specialists get a filled glowstone bag in their locker.
@@ -2799,4 +2771,32 @@ Entries:
   id: 410713
   time: '2026-11-20T18:13:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7354
+- author: Citrea
+  changes:
+  - message: Xen'Kara are allowed to breathe in emergencies.
+    type: Fix
+  id: 410714
+  time: '2026-11-20T18:53:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7352
+- author: Citrea
+  changes:
+  - message: The elected Voice of the Queen can now actually hear the others.
+    type: Fix
+  id: 410715
+  time: '2026-11-20T18:53:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7352
+- author: Citrea
+  changes:
+  - message: You no longer crash on joining the server when compatability mode is on.
+    type: Fix
+  id: 410716
+  time: '2026-11-20T18:53:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7352
+- author: Citrea
+  changes:
+  - message: You can independently dye Xen'Kara teeth, as intended.
+    type: Fix
+  id: 410717
+  time: '2026-11-20T18:53:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7352
 Order: -1
