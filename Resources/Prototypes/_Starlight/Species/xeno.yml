@@ -76,7 +76,7 @@
       required: true
       defaultMarkings: [ TailXenoLong ]
     HeadTop:
-      points: 3
+      points: 2
       required: false
     HeadSide:
       points: 0
