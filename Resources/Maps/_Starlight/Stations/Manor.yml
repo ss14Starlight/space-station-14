@@ -94416,7 +94416,6 @@ entities:
     components:
     - type: Transform
       parent: 2
-      rot: -1.5707963267948966 rad
       pos: -28.5,31.5
     - type: TechnologyDatabase
       supportedDisciplines:
@@ -94429,7 +94428,6 @@ entities:
     components:
     - type: Transform
       parent: 2
-      rot: 1.5707963267948966 rad
       pos: -106.5,30.5
     - type: TechnologyDatabase
       supportedDisciplines:
@@ -94442,7 +94440,6 @@ entities:
     components:
     - type: Transform
       parent: 2
-      rot: -1.5707963267948966 rad
       pos: 8.5,-6.5
     - type: TechnologyDatabase
       supportedDisciplines:

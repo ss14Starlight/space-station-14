@@ -56,6 +56,7 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
     private EntityQuery<BloodstreamComponent> _bloodstreamQuery;
     private EntityQuery<ItemSlotsComponent> _itemSlotsQuery;
     private EntityQuery<FitsInDispenserComponent> _dispenserQuery;
+    //[Dependency] private EntityQuery<SolutionContainerManagerComponent> _solutionContainerQuery = default!; // Starlight - solution access goes through SharedSolutionContainerSystem.
 
     public override void Initialize()
     {

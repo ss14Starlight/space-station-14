@@ -3,11 +3,19 @@
                 VerticalExpand="True" HorizontalExpand="True"
                 Title="{Loc admin-remarks-title}"
                 SetSize="600 400">
-    <PanelContainer StyleClasses="BackgroundDark">
-        <BoxContainer Orientation="Vertical" Margin="4">
-            <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
-                <BoxContainer Orientation="Vertical" Name="NotesContainer" Access="Public" VerticalExpand="True" />
-            </ScrollContainer>
-        </BoxContainer>
-    </PanelContainer>
+    <!-- Starlight-start: a header, each remark on a card, and words when there are none -->
+    <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="8">
+        <PanelContainer StyleClasses="TraitsHeaderPanel">
+            <BoxContainer Orientation="Horizontal" Margin="12 10">
+                <Label Text="{Loc admin-remarks-hint}" StyleClasses="TraitsSubtitleLabel" HorizontalExpand="True" />
+                <Label Name="CountLabel" StyleClasses="TraitsStatLabel" />
+            </BoxContainer>
+        </PanelContainer>
+        <Label Name="EmptyLabel" Text="{Loc admin-remarks-empty}" StyleClasses="LabelSubText"
+               HorizontalAlignment="Center" VerticalAlignment="Center" VerticalExpand="True" />
+        <ScrollContainer Name="NotesScroll" VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False" Visible="False">
+            <BoxContainer Orientation="Vertical" Name="NotesContainer" Access="Public" SeparationOverride="6" Margin="0 0 4 0" />
+        </ScrollContainer>
+    </BoxContainer>
+	<!-- Starlight-end -->
 </ui:FancyWindow>

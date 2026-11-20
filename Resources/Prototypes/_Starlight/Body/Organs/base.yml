@@ -94,6 +94,21 @@
 
 - type: entity
   parent: Solution
+  id: SolutionOrganFoodMeatXeno
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 15
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5
+      - ReagentId: FluorosulfuricAcid
+        Quantity: 10
+
+- type: entity
+  parent: Solution
   id: SolutionOrganFoodCellulose
   categories: [ HideSpawnMenu ]
   components:

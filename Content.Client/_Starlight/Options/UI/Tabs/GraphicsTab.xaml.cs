@@ -13,16 +13,30 @@ public sealed partial class GraphicsTab
         Control.AddOptionPercentSlider(StarlightCCVars.LightBoost, LightBoostSlider,
             LightTonemapOverlay.MinLightBoost, LightTonemapOverlay.MaxLightBoost);
 
+        var grading = Control.AddOptionCheckBox(StarlightCCVars.ColorGrading, ColorGradingCheckBox);
+        Control.AddOptionPercentSlider(StarlightCCVars.ColorGradingStrength, ColorGradingStrengthSlider);
+        grading.ImmediateValueChanged += _ => UpdateLightingSettingsVisibility();
+
         var gi = Control.AddOptionCheckBox(StarlightCCVars.GlobalIllumination, GlobalIlluminationCheckBox);
         GlobalIlluminationRaysSlider.Slider.Rounded = true;
         Control.AddOption(new OptionSliderIntCVar(Control, _cfg, StarlightCCVars.GlobalIlluminationRays,
             GlobalIlluminationRaysSlider, 4, 32, (_, value) => value.ToString()));
+        Control.AddOptionCheckBox(StarlightCCVars.GlobalIlluminationStarlight, GlobalIlluminationStarlightCheckBox);
+        Control.AddOptionCheckBox(StarlightCCVars.GlobalIlluminationSurfaceColor, GlobalIlluminationSurfaceColorCheckBox);
         gi.ImmediateValueChanged += _ => UpdateLightingSettingsVisibility();
 
         var nightVision = Control.AddOptionCheckBox(StarlightCCVars.NightVision, NightVisionCheckBox);
         var vignette = Control.AddOptionCheckBox(StarlightCCVars.Vignette, VignetteCheckBox);
         var bloom = Control.AddOptionCheckBox(StarlightCCVars.Bloom, BloomCheckBox);
         var grain = Control.AddOptionCheckBox(StarlightCCVars.FilmGrain, FilmGrainCheckBox);
+        var impact = Control.AddOptionCheckBox(StarlightCCVars.ImpactEffects, ImpactEffectsCheckBox);
+        Control.AddOptionPercentSlider(StarlightCCVars.ImpactEffectsStrength, ImpactEffectsStrengthSlider);
+        var dust = Control.AddOptionCheckBox(StarlightCCVars.DustMotes, DustMotesCheckBox);
+        Control.AddOptionPercentSlider(StarlightCCVars.DustMotesStrength, DustMotesStrengthSlider);
+        var haze = Control.AddOptionCheckBox(StarlightCCVars.HeatHaze, HeatHazeCheckBox);
+        Control.AddOptionPercentSlider(StarlightCCVars.HeatHazeStrength, HeatHazeStrengthSlider);
+        var gloss = Control.AddOptionCheckBox(StarlightCCVars.FloorGloss, FloorGlossCheckBox);
+        Control.AddOptionPercentSlider(StarlightCCVars.FloorGlossStrength, FloorGlossStrengthSlider);
 
         Control.AddOptionPercentSlider(StarlightCCVars.NightVisionStrength, NightVisionStrengthSlider);
         Control.AddOptionPercentSlider(StarlightCCVars.VignetteStrength, VignetteStrengthSlider);
@@ -46,14 +60,25 @@ public sealed partial class GraphicsTab
         vignette.ImmediateValueChanged += _ => UpdateLightingSettingsVisibility();
         bloom.ImmediateValueChanged += _ => UpdateLightingSettingsVisibility();
         grain.ImmediateValueChanged += _ => UpdateLightingSettingsVisibility();
+        impact.ImmediateValueChanged += _ => UpdateLightingSettingsVisibility();
+        dust.ImmediateValueChanged += _ => UpdateLightingSettingsVisibility();
+        haze.ImmediateValueChanged += _ => UpdateLightingSettingsVisibility();
+        gloss.ImmediateValueChanged += _ => UpdateLightingSettingsVisibility();
     }
 
     private void UpdateLightingSettingsVisibility()
     {
+        ColorGradingStrengthSlider.Visible = ColorGradingCheckBox.Pressed;
         GlobalIlluminationRaysSlider.Visible = GlobalIlluminationCheckBox.Pressed;
+        GlobalIlluminationStarlightCheckBox.Visible = GlobalIlluminationCheckBox.Pressed;
+        GlobalIlluminationSurfaceColorCheckBox.Visible = GlobalIlluminationCheckBox.Pressed;
         NightVisionStrengthSlider.Visible = NightVisionCheckBox.Pressed;
         VignetteStrengthSlider.Visible = VignetteCheckBox.Pressed;
         BloomSettings.Visible = BloomCheckBox.Pressed;
         FilmGrainStrengthSlider.Visible = FilmGrainCheckBox.Pressed;
+        ImpactEffectsStrengthSlider.Visible = ImpactEffectsCheckBox.Pressed;
+        DustMotesStrengthSlider.Visible = DustMotesCheckBox.Pressed;
+        HeatHazeStrengthSlider.Visible = HeatHazeCheckBox.Pressed;
+        FloorGlossStrengthSlider.Visible = FloorGlossCheckBox.Pressed;
     }
 }

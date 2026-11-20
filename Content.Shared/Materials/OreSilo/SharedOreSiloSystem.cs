@@ -10,7 +10,7 @@ public abstract partial class SharedOreSiloSystem : EntitySystem
     [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
 
-    private EntityQuery<OreSiloClientComponent> _clientQuery;
+    [Dependency] private EntityQuery<OreSiloClientComponent> _clientQuery = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -27,8 +27,6 @@ public abstract partial class SharedOreSiloSystem : EntitySystem
         SubscribeLocalEvent<OreSiloClientComponent, GetStoredMaterialsEvent>(OnGetStoredMaterials);
         SubscribeLocalEvent<OreSiloClientComponent, ConsumeStoredMaterialsEvent>(OnConsumeStoredMaterials);
         SubscribeLocalEvent<OreSiloClientComponent, ComponentShutdown>(OnClientShutdown);
-
-        _clientQuery = GetEntityQuery<OreSiloClientComponent>();
     }
 
     private void OnToggleOreSiloClient(Entity<OreSiloComponent> ent, ref ToggleOreSiloClientMessage args)
