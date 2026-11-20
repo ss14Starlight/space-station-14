@@ -156,16 +156,16 @@
   impact: Medium
   minTemp: 370
   reactants:
-    Diphenhydramine:
-      amount: 1
     Doxarubixadone:
       amount: 1
-    Acrileni:
+    Diphenhydramine:
       amount: 1
     Mannitol:
       amount: 1
     CellCultureMedium:
       amount: 1
+    Acrileni:
+      amount: 0.5
   products:
     Mortizol: 1
 
