@@ -235,6 +235,27 @@ public sealed class MulebotTest : InteractionTest
     }
 
     [Test]
+    public async Task WontShutSomeoneInACrateItLoads()
+    {
+        await Build(4, new());
+        EntityUid crate = default, mouse = default;
+        await Server.WaitPost(() =>
+        {
+            crate = SEntMan.SpawnAtPosition("CrateGenericSteel", At(1));
+            SEntMan.System<SharedEntityStorageSystem>().OpenStorage(crate);
+            mouse = SEntMan.SpawnAtPosition("MobMouse", At(1));
+        });
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(_muleSystem.TryLoad(_mule, crate), Is.False);
+            Assert.That(SEntMan.GetComponent<EntityStorageComponent>(crate).Open, "Opened again");
+            Assert.That(SEntMan.System<SharedContainerSystem>().IsEntityInContainer(mouse), Is.False);
+            Assert.That(_muleSystem.TryGetLoad(_mule, out _), Is.False);
+        });
+    }
+
+    [Test]
     public async Task DeliversAndComesHome()
     {
         // An open firelock on the way is just floor to it.

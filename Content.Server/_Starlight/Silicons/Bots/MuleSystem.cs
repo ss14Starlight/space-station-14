@@ -500,7 +500,7 @@ public sealed partial class MuleSystem : SharedMuleSystem
                 TileCost = TileCost,
             }).Path;
 
-            if (path is { Count: > 0 })
+            if (path is { Count: > 0 } && path.Count <= MaxRouteLength)
                 break;
         }
 
