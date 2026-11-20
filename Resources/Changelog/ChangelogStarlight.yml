@@ -1,13 +1,6 @@
 Entries:
 - author: Trosling
   changes:
-  - message: Added cool interactions between medical jobs and security for certain implantation.
-    type: Add
-  id: 410301
-  time: '2026-11-10T17:44:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7086
-- author: Trosling
-  changes:
   - message: Added intuitive forms to make approving such implantation more transparent.
     type: Add
   id: 410302
@@ -2799,4 +2792,11 @@ Entries:
   id: 410700
   time: '2026-11-20T03:17:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7345
+- author: WNP78
+  changes:
+  - message: Admin notes/bans can now be edited to expire in the past.
+    type: Tweak
+  id: 410701
+  time: '2026-11-20T03:17:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7337
 Order: -1
