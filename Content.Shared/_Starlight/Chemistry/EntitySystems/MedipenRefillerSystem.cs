@@ -41,9 +41,10 @@ public sealed partial class MedipenRefillerSystem : EntitySystem
     /// <summary>
     /// The dose a fresh pen of this kind comes with, or null if the refiller doesn't take it.
     /// </summary>
-    public Solution? GetOriginalFill(Entity<MedipenRefillerComponent> refiller, EntityUid pen)
+    public Solution? GetOriginalFill(Entity<MedipenRefillerComponent?> refiller, EntityUid pen)
     {
-        if (MetaData(pen).EntityPrototype is not { } penProto
+        if (!Resolve(refiller, ref refiller.Comp)
+            || MetaData(pen).EntityPrototype is not { } penProto
             || !refiller.Comp.Pens.Contains(penProto.ID)
             || !penProto.TryComp<SolutionComponent>(out var solution, EntityManager.ComponentFactory)
             || solution.Solution.Volume <= 0)
@@ -57,16 +58,17 @@ public sealed partial class MedipenRefillerSystem : EntitySystem
     /// <summary>
     /// Checks whether a pen can be refilled now. On failure, <paramref name="reason"/> is the popup to show.
     /// </summary>
-    public bool CanRefill(Entity<MedipenRefillerComponent> refiller, EntityUid pen,
+    public bool CanRefill(Entity<MedipenRefillerComponent?> refiller, EntityUid pen,
         [NotNullWhen(true)] out Solution? fill, [NotNullWhen(false)] out string? reason)
     {
         fill = null;
+        reason = Loc.GetString("medipen-refiller-unknown-pen");
+        if (!Resolve(refiller, ref refiller.Comp))
+            return false;
+
         var original = GetOriginalFill(refiller, pen);
         if (original == null || !_solutions.TryGetSolution(pen, refiller.Comp.PenSolution, out _, out var penSolution))
-        {
-            reason = Loc.GetString("medipen-refiller-unknown-pen");
             return false;
-        }
 
         if (penSolution.Volume > 0)
         {
@@ -80,7 +82,7 @@ public sealed partial class MedipenRefillerSystem : EntitySystem
             return false;
         }
 
-        var sources = GetSources(refiller);
+        var sources = GetSources((refiller, refiller.Comp));
         foreach (var (reagent, needed) in original.Contents)
         {
             if (refiller.Comp.FreeReagents.Contains(reagent.Prototype))
@@ -111,15 +113,17 @@ public sealed partial class MedipenRefillerSystem : EntitySystem
     /// Takes the pen's dose out of the stored jugs and puts it into the pen. Changes nothing if the pen can't be
     /// refilled.
     /// </summary>
-    public bool TryRefill(Entity<MedipenRefillerComponent> refiller, EntityUid pen, out string? reason)
+    public bool TryRefill(Entity<MedipenRefillerComponent?> refiller, EntityUid pen, out string? reason)
     {
-        if (!CanRefill(refiller, pen, out var fill, out reason)
+        reason = null;
+        if (!Resolve(refiller, ref refiller.Comp)
+            || !CanRefill(refiller, pen, out var fill, out reason)
             || !_solutions.TryGetSolution(pen, refiller.Comp.PenSolution, out var penSoln, out _))
         {
             return false;
         }
 
-        var sources = GetSources(refiller);
+        var sources = GetSources((refiller, refiller.Comp));
         foreach (var (reagent, quantity) in fill.Contents)
         {
             if (refiller.Comp.FreeReagents.Contains(reagent.Prototype))
@@ -153,13 +157,13 @@ public sealed partial class MedipenRefillerSystem : EntitySystem
     /// <summary>
     /// The jugs stored in the refiller and their solutions.
     /// </summary>
-    public List<(EntityUid Jug, ItemStorageLocation Location, Entity<SolutionComponent> Solution)> GetJugs(EntityUid refiller)
+    public List<(EntityUid Jug, ItemStorageLocation Location, Entity<SolutionComponent> Solution)> GetJugs(Entity<StorageComponent?> refiller)
     {
         var jugs = new List<(EntityUid, ItemStorageLocation, Entity<SolutionComponent>)>();
-        if (!TryComp<StorageComponent>(refiller, out var storage))
+        if (!Resolve(refiller, ref refiller.Comp, logMissing: false))
             return jugs;
 
-        foreach (var (jug, location) in storage.StoredItems)
+        foreach (var (jug, location) in refiller.Comp.StoredItems)
         {
             if (_solutions.TryGetDrainableSolution(jug, out var soln, out _))
                 jugs.Add((jug, location, soln.Value));
@@ -169,7 +173,7 @@ public sealed partial class MedipenRefillerSystem : EntitySystem
     }
 
     private List<Entity<SolutionComponent>> GetSources(Entity<MedipenRefillerComponent> refiller)
-        => GetJugs(refiller).Select(jug => jug.Solution).ToList();
+        => GetJugs(refiller.Owner).Select(jug => jug.Solution).ToList();
 
     [SubscribeLocalEvent]
     private void OnExamined(Entity<MedipenRefillerComponent> ent, ref ExaminedEvent args)
@@ -179,7 +183,7 @@ public sealed partial class MedipenRefillerSystem : EntitySystem
 
         using (args.PushGroup(nameof(MedipenRefillerComponent)))
         {
-            var jugs = GetJugs(ent);
+            var jugs = GetJugs(ent.Owner);
             foreach (var (jug, _, solution) in jugs)
             {
                 var contents = new List<string>();
@@ -206,7 +210,7 @@ public sealed partial class MedipenRefillerSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnEjectJug(Entity<MedipenRefillerComponent> ent, ref ReagentDispenserEjectContainerMessage args)
     {
-        foreach (var (jug, location, _) in GetJugs(ent))
+        foreach (var (jug, location, _) in GetJugs(ent.Owner))
         {
             if (location == args.StorageLocation)
             {
@@ -235,7 +239,7 @@ public sealed partial class MedipenRefillerSystem : EntitySystem
             return;
 
         args.Handled = true;
-        if (!CanRefill(ent, args.Used, out _, out var reason))
+        if (!CanRefill(ent.AsNullable(), args.Used, out _, out var reason))
         {
             _popup.PopupClient(reason, ent, args.User);
             return;
@@ -261,7 +265,7 @@ public sealed partial class MedipenRefillerSystem : EntitySystem
             return;
 
         args.Handled = true;
-        if (!TryRefill(ent, pen, out var reason))
+        if (!TryRefill(ent.AsNullable(), pen, out var reason))
         {
             if (reason != null)
                 _popup.PopupClient(reason, ent, args.User);

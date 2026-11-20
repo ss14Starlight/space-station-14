@@ -53,7 +53,7 @@ public sealed class MedipenRefillerTest : InteractionTest
         Solutions.RemoveAllSolution(soln!.Value);
     }
 
-    private Entity<MedipenRefillerComponent> Refiller => (STarget!.Value, SEntMan.GetComponent<MedipenRefillerComponent>(STarget.Value));
+    private EntityUid Refiller => STarget!.Value;
 
     private async Task PoweredRefiller()
     {
@@ -165,7 +165,6 @@ public sealed class MedipenRefillerTest : InteractionTest
         await Server.WaitAssertion(() =>
         {
             Assert.That(Pen(pen).Volume, Is.EqualTo(FixedPoint2.Zero), "the injection empties the pen");
-            var refiller = (refillerUid, SEntMan.GetComponent<MedipenRefillerComponent>(refillerUid));
             foreach (var reagent in new[] { "Epinephrine", "TranexamicAcid", "Bicaridine" })
             {
                 var jug = SEntMan.SpawnAtPosition("Jug", SEntMan.GetCoordinates(TargetCoords));
@@ -173,19 +172,35 @@ public sealed class MedipenRefillerTest : InteractionTest
                 Assert.That(SEntMan.System<SharedStorageSystem>().Insert(refillerUid, jug, out _, playSound: false));
             }
 
-            var canRefill = Refillers.CanRefill(refiller, pen, out _, out var reason);
+            var canRefill = Refillers.CanRefill(refillerUid, pen, out _, out var reason);
             Assert.That(canRefill, $"{SEntMan.ToPrettyString(pen)} refused: {reason}");
         });
     }
 
     [Test]
-    public async Task RefusesFullUnlistedAndShortCases()
+    public async Task RefusesAFullPen()
+    {
+        await PoweredRefiller();
+        var epinephrine = await StoreJug("Epinephrine", 100);
+        var tranexamic = await StoreJug("TranexamicAcid", 10);
+        var full = await SpawnEntity("EmergencyMedipen", SEntMan.GetCoordinates(TargetCoords));
+
+        await Server.WaitAssertion(() =>
+        {
+            // Everything the pen needs is loaded, so only the pen being full can stop it.
+            Assert.That(Refillers.TryRefill(Refiller, full, out _), Is.False, "a full pen is refused");
+            Assert.That(Contents(epinephrine).Volume, Is.EqualTo(FixedPoint2.New(100)), "a refused refill takes nothing");
+            Assert.That(Contents(tranexamic).Volume, Is.EqualTo(FixedPoint2.New(10)));
+        });
+    }
+
+    [Test]
+    public async Task RefusesUnlistedAndShortCases()
     {
         await PoweredRefiller();
         var epinephrine = await StoreJug("Epinephrine", 100);
         await StoreJug("TranexamicAcid", 4);
         await StoreJug("MuteToxin", 50);
-        var full = await SpawnEntity("EmergencyMedipen", SEntMan.GetCoordinates(TargetCoords));
         var unlisted = await SpawnEntity("EmergencyMedipenMute", SEntMan.GetCoordinates(TargetCoords));
         var empty = await SpawnEntity("EmergencyMedipen", SEntMan.GetCoordinates(TargetCoords));
 
@@ -194,7 +209,6 @@ public sealed class MedipenRefillerTest : InteractionTest
             EmptyPen(unlisted);
             EmptyPen(empty);
 
-            Assert.That(Refillers.TryRefill(Refiller, full, out _), Is.False, "a full pen is refused");
             Assert.That(Refillers.TryRefill(Refiller, unlisted, out _), Is.False, "a pen off the list is refused");
             Assert.That(Refillers.TryRefill(Refiller, empty, out var reason), Is.False, "4u of tranexamic acid is short of 5u");
             Assert.That(reason, Does.Contain("4"), "the popup says how much is there");
