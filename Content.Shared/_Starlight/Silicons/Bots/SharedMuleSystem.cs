@@ -337,6 +337,7 @@ public abstract partial class SharedMuleSystem : EntitySystem
     {
         ent.Comp.On = on;
         _light.SetEnabled(ent, on);
+        Appearance.SetData(ent, MuleVisuals.Powered, on);
         Dirty(ent);
     }
 }

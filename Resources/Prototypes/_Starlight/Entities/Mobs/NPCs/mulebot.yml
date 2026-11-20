@@ -10,8 +10,16 @@
     # Below mobs, so a rider sits on top of it.
     drawdepth: BelowMobs
     layers:
+    - state: hover_shadow
+      map: [ "mule-shadow" ]
+      visible: false
     - state: off
       map: [ "enum.MuleVisuals.Flash" ]
+    # Unshaded so the thrusters glow in the dark.
+    - state: thrusters
+      map: [ "mule-thrusters" ]
+      shader: unshaded
+      visible: false
     - state: hatch
       map: [ "hatch" ]
       visible: false
@@ -25,6 +33,13 @@
         enum.MuleVisuals.Flash:
           True: { state: on }
           False: { state: off }
+      enum.MuleVisuals.Powered:
+        mule-shadow:
+          True: { visible: true }
+          False: { visible: false }
+        mule-thrusters:
+          True: { visible: true }
+          False: { visible: false }
       enum.MuleVisuals.Emagged:
         enum.MuleVisuals.Emagged:
           True: { visible: true }
@@ -105,7 +120,7 @@
   # Riders, once the load check wire is cut.
   - type: Strap
     enabled: false
-    buckleOffset: "0,0.375"
+    buckleOffset: "0,0.34375"
     loweredDrawdepthDirections: 0
   - type: ContainerContainer
     containers:

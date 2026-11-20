@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/7784693238703411f51396693fe29fd2a146a7ec/icons/mob/silicon/aibots.dmi",
+    "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/7784693238703411f51396693fe29fd2a146a7ec/icons/mob/silicon/aibots.dmi, modified to hover (treads replaced with thrusters and a shadow)",
     "size": {
         "x": 32,
         "y": 32
@@ -9,6 +9,18 @@
     "states": [
         {
             "name": "off"
+        },
+        {
+            "name": "hover_shadow"
+        },
+        {
+            "name": "thrusters",
+            "delays": [
+                [
+                    0.2,
+                    0.2
+                ]
+            ]
         },
         {
             "name": "on",

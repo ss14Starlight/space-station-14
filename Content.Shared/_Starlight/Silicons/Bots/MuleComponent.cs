@@ -13,7 +13,7 @@ namespace Content.Shared._Starlight.Silicons.Bots;
 /// <summary>
 /// A cargo robot that carries one crate at a time to a station beacon and drives back home.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class MuleComponent : Component
 {
     /// <summary>
@@ -203,6 +203,12 @@ public sealed partial class MuleComponent : Component
     public List<EntityCoordinates> Waypoints = new();
 
     /// <summary>
+    /// Whether the client is showing it hovering, so it only lifts off or lands when that changes.
+    /// </summary>
+    [ViewVariables]
+    public bool? ShownHovering;
+
+    /// <summary>
     /// Whether the current route stops at a door short of the beacon.
     /// </summary>
     [ViewVariables]
@@ -289,6 +295,7 @@ public enum MuleVisuals : byte
 {
     Flash,
     Emagged,
+    Powered,
 }
 
 [Flags, Serializable, NetSerializable]
