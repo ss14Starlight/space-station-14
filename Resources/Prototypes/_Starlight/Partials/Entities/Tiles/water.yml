@@ -1,9 +1,6 @@
 - type: !PartialOnly entity
   id: FloorWaterEntity
   components:
-<<<<<<< HEAD
   - type: WaterTile
   - type: WaterClothingWash
-=======
   - type: PassiveWash
->>>>>>> 20418c5d9a44d2880560d2448294cfee57cfd806
