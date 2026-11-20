@@ -165,7 +165,7 @@ public abstract partial class SharedMuleSystem : EntitySystem
     /// <summary>
     /// Whether this wire is cut.
     /// </summary>
-    public static bool HasWireCut(Entity<MuleComponent> ent, MuleWires wire)
+    protected static bool HasWireCut(Entity<MuleComponent> ent, MuleWires wire)
     {
         return (ent.Comp.CutWires & wire) != 0;
     }
@@ -234,7 +234,7 @@ public abstract partial class SharedMuleSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return false;
 
-        if (TryGetRider(ent, out var rider))
+        if (TryGetRider(ent.Owner, out var rider))
         {
             Buckle.Unbuckle(rider.Value, null);
             if (AheadSpot(ent) is { } riderSpot)
@@ -310,7 +310,7 @@ public abstract partial class SharedMuleSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return false;
 
-        if (TryGetRider(ent, out load))
+        if (TryGetRider(ent.Owner, out load))
             return true;
 
         if (!Container.TryGetContainer(ent, ent.Comp.ContainerId, out var container) || container.ContainedEntities.Count == 0)
@@ -323,13 +323,13 @@ public abstract partial class SharedMuleSystem : EntitySystem
     /// <summary>
     /// Whoever is riding it, with its load check cut.
     /// </summary>
-    public bool TryGetRider(EntityUid uid, [NotNullWhen(true)] out EntityUid? rider)
+    public bool TryGetRider(Entity<StrapComponent?> ent, [NotNullWhen(true)] out EntityUid? rider)
     {
         rider = null;
-        if (!TryComp<StrapComponent>(uid, out var strap) || strap.BuckledEntities.Count == 0)
+        if (!Resolve(ent, ref ent.Comp, false) || ent.Comp.BuckledEntities.Count == 0)
             return false;
 
-        rider = strap.BuckledEntities.First();
+        rider = ent.Comp.BuckledEntities.First();
         return true;
     }
 

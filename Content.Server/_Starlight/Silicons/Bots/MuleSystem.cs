@@ -809,7 +809,7 @@ public sealed partial class MuleSystem : SharedMuleSystem
                 break;
             case MuleWires.LoadCheck:
                 // A rider stays on until they get off.
-                if (cut || !TryGetRider(ent, out _))
+                if (cut || !TryGetRider(ent.Owner, out _))
                     Buckle.StrapSetEnabled(ent, cut);
                 break;
         }
@@ -858,7 +858,7 @@ public sealed partial class MuleSystem : SharedMuleSystem
 
         var avoidanceCut = HasWireCut(ent, MuleWires.Avoidance);
         var dangerous = avoidanceCut || _emag.CheckFlag(ent, EmagType.Interaction);
-        TryGetRider(ent, out var rider);
+        TryGetRider(ent.Owner, out var rider);
 
         foreach (var expired in comp.RecentHits.Where(hit => hit.Value <= now).Select(hit => hit.Key).ToList())
         {
