@@ -1,32 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Moved Uranium Munitions from Tier 1 to Tier 2.
-    type: Tweak
-  id: 410327
-  time: '2026-11-11T21:36:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7183
-- author: Conflee
-  changes:
-  - message: Moved Explosive Mech Ammunition from Tier 3 to Tier 4 and lowered it's cost from 15400 to 15000.
-    type: Tweak
-  id: 410328
-  time: '2026-11-11T21:36:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7183
-- author: Conflee
-  changes:
-  - message: Moved Scan Gate Technology from Tier 4 to Tier 3 and increased it's cost from 5000 to 8000.
-    type: Tweak
-  id: 410329
-  time: '2026-11-11T21:36:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7183
-- author: Hot Mic
-  changes:
-  - message: (Flotilla) Add new Paramedic Slot, now initialized with 3 slots at round start.
-    type: Add
-  id: 410330
-  time: '2026-11-12T01:33:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7187
 - author: Hot Mic
   changes:
   - message: (Flotilla) Add a missing seed extractor to "Maid"'s service department (How was this not reported to me after all this time?).
@@ -2799,4 +2771,32 @@ Entries:
   id: 410726
   time: '2026-11-20T20:16:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7359
+- author: Tjmaxmillion
+  changes:
+  - message: Emergency lights no longer drain their internal battery while station grid power is active.
+    type: Fix
+  id: 410727
+  time: '2026-11-20T20:48:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7326
+- author: Tjmaxmillion
+  changes:
+  - message: Fixed emergency light state transitions, APC loads, and color synchronization during alert level changes.
+    type: Fix
+  id: 410728
+  time: '2026-11-20T20:48:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7326
+- author: Tjmaxmillion
+  changes:
+  - message: Light fixtures with backup batteries no longer drain their cells when dimmed to zero during blackout alert levels.
+    type: Fix
+  id: 410729
+  time: '2026-11-20T20:48:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7326
+- author: Tjmaxmillion
+  changes:
+  - message: Code Epsilon is no longer a rave.
+    type: Fix
+  id: 410730
+  time: '2026-11-20T20:48:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7326
 Order: -1
