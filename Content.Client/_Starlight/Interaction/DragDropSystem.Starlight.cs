@@ -194,14 +194,14 @@ public sealed partial class DragDropSystem
             return;
         }
 
-        _remoteDragShadow = EntityManager.SpawnEntity("dragshadow", mapPosition);
+        _remoteDragShadow = Spawn("dragshadow", mapPosition);
         var dragSprite = Comp<SpriteComponent>(_remoteDragShadow.Value);
         _sprite.CopySprite((dragged, draggedSprite), (_remoteDragShadow.Value, dragSprite));
         dragSprite.RenderOrder = EntityManager.CurrentTick.Value;
         _sprite.SetColor((_remoteDragShadow.Value, dragSprite), dragSprite.Color.WithAlpha(0.7f));
         _sprite.SetDrawDepth((_remoteDragShadow.Value, dragSprite), (int)DrawDepth.Overlays);
         if (!dragSprite.NoRotation)
-            _transformSystem.SetWorldRotationNoLerp(_remoteDragShadow.Value, Transform(dragged).WorldRotation);
+            _transformSystem.SetWorldRotationNoLerp(_remoteDragShadow.Value, _transformSystem.GetWorldRotation(dragged));
     }
 
     private void HighlightRemoteTargets(EntityUid user, EntityUid dragged, MapCoordinates mapPosition)

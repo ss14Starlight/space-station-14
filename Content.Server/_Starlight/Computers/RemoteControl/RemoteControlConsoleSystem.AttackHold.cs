@@ -54,16 +54,16 @@ public sealed partial class RemoteControlConsoleSystem
             return;
         }
 
-        if (args.Type != RemoteControlAttackHoldType.Shoot
-            && args.Type != RemoteControlAttackHoldType.MeleeLight
-            && args.Type != RemoteControlAttackHoldType.MeleeHeavy)
+        if (args.Type is not (RemoteControlAttackHoldType.Shoot
+            or RemoteControlAttackHoldType.MeleeLight
+            or RemoteControlAttackHoldType.MeleeHeavy))
         {
             RemoveRemoteAttackHold(key, args.Actor);
             return;
         }
 
         var target = args.Target is { } targetNet ? GetEntity(targetNet) : (EntityUid?)null;
-        if (target is { } targetEntity && !EntityManager.EntityExists(targetEntity))
+        if (target is { } targetEntity && !Exists(targetEntity))
             target = null;
 
         EntityCoordinates? coordinates = args.HasCoordinates ? GetCoordinates(args.Coordinates) : null;
@@ -130,7 +130,7 @@ public sealed partial class RemoteControlConsoleSystem
                     }
                 case RemoteControlAttackHoldType.MeleeLight:
                     {
-                        if (hold.Target is not { } lightTarget || !EntityManager.EntityExists(lightTarget))
+                        if (hold.Target is not { } lightTarget || !Exists(lightTarget))
                         {
                             hold.Target = null;
                             continue;

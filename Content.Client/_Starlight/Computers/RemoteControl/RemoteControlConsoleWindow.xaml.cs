@@ -79,7 +79,6 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
     private readonly RemoteControlInterface _remoteControl;
     private readonly SharedMapSystem _mapManager;
     private readonly ExamineSystem _examineSystem;
-    private readonly PopupContainer _remoteExaminePopupContainer;
     private readonly ActionsSystem _actionsSystem;
     private readonly VerbSystem _verbSystem;
     private readonly ActionBlockerSystem _actionBlocker;
@@ -148,7 +147,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
     public IEye RemoteEye => _remoteEye;
     public IViewportControl RemoteViewport => RemoteView;
-    internal PopupContainer RemoteExaminePopupContainer => _remoteExaminePopupContainer;
+    internal PopupContainer RemoteExaminePopupContainer { get; }
 
     public override void Close()
     {
@@ -162,15 +161,15 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-        _remoteExaminePopupContainer = new PopupContainer
+        RemoteExaminePopupContainer = new PopupContainer
         {
             MouseFilter = Robust.Client.UserInterface.Control.MouseFilterMode.Ignore,
         };
-        RootContainer.AddChild(_remoteExaminePopupContainer);
-        LayoutContainer.SetAnchorLeft(_remoteExaminePopupContainer, 0);
-        LayoutContainer.SetAnchorTop(_remoteExaminePopupContainer, 0);
-        LayoutContainer.SetAnchorRight(_remoteExaminePopupContainer, 1);
-        LayoutContainer.SetAnchorBottom(_remoteExaminePopupContainer, 1);
+        RootContainer.AddChild(RemoteExaminePopupContainer);
+        LayoutContainer.SetAnchorLeft(RemoteExaminePopupContainer, 0);
+        LayoutContainer.SetAnchorTop(RemoteExaminePopupContainer, 0);
+        LayoutContainer.SetAnchorRight(RemoteExaminePopupContainer, 1);
+        LayoutContainer.SetAnchorBottom(RemoteExaminePopupContainer, 1);
         _activeDeviceStatusPanel = FindControl<ItemStatusPanel>("ActiveDeviceStatusPanel");
         _activeDeviceStatusPanel.SetSide(HandLocation.Right);
         _inventoryToggleButton = FindControl<TextureButton>("InventoryToggleButton");
@@ -230,7 +229,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         _examineSystem.DoExamine(
             targetEntity,
             userOverride: remoteEntity,
-            popupContainer: _remoteExaminePopupContainer);
+            popupContainer: RemoteExaminePopupContainer);
         return true;
     }
 
@@ -1356,7 +1355,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
                 _examineSystem.DoExamine(
                     heldUid,
                     userOverride: remoteEntity,
-                    popupContainer: _remoteExaminePopupContainer);
+                    popupContainer: RemoteExaminePopupContainer);
             }
 
             args.Handle();
