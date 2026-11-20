@@ -217,7 +217,7 @@
   - Electrolysis
   reactants:
     PolypyryliumOligomers:
-      amount: 1
+      amount: 3
   products:
     Lithium: 1
     Nitrogen: 1
