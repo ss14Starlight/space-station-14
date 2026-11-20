@@ -376,10 +376,13 @@
 
 - type: reagent
   id: Mortizol # name is a combination of Rigor Mortis and Cortizol ^w^
+  contrabandTier: Tier2
   name: reagent-name-mortizol
   group: Medicine
   desc: reagent-desc-mortizol
   physicalDesc: reagent-physical-desc-thick
+  allowedDepartments:
+  - Medical
   flavor: death
   color: "#1b0330"
   worksOnTheDead: true
