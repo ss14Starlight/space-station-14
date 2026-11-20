@@ -1,11 +1,4 @@
 Entries:
-- author: Trosling
-  changes:
-  - message: Added intuitive forms to make approving such implantation more transparent.
-    type: Add
-  id: 410302
-  time: '2026-11-10T17:44:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7086
 - author: Talirson
   changes:
   - message: Added a craftable Atmosian Helmet.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410701
   time: '2026-11-20T03:17:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7337
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added Speaker adverts to Radio CDs.
+    type: Add
+  id: 410702
+  time: '2026-11-20T03:45:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7336
 Order: -1
