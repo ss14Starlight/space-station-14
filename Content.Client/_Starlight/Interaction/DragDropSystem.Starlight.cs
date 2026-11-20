@@ -27,7 +27,7 @@ public sealed partial class DragDropSystem
     private readonly HashSet<SpriteComponent> _remoteHighlightedSprites = new();
     private readonly HashSet<SpriteComponent> _nextRemoteHighlightedSprites = new();
 
-    public bool TryStartRemoteDrag(EntityUid user, EntityUid? draggedEntity, Vector2 screenPosition)
+    internal bool TryStartRemoteDrag(EntityUid user, EntityUid? draggedEntity, Vector2 screenPosition)
     {
         CancelRemoteDrag();
 
@@ -51,12 +51,13 @@ public sealed partial class DragDropSystem
         return true;
     }
 
-    public bool UpdateRemoteDrag(EntityUid user, Vector2 screenPosition, MapCoordinates mapPosition, float frameTime)
+    internal bool UpdateRemoteDrag(EntityUid user, Vector2 screenPosition, MapCoordinates mapPosition, float frameTime)
     {
         if (_remoteDragUser != user
             || _remoteDraggedEntity is not { } dragged
             || !Exists(user)
-            || !Exists(dragged))
+            || !Exists(dragged)
+            || (TryComp<CombatModeComponent>(user, out var combatMode) && combatMode.IsInCombatMode))
         {
             CancelRemoteDrag();
             return false;
@@ -88,7 +89,7 @@ public sealed partial class DragDropSystem
         return true;
     }
 
-    public bool TryFinishRemoteDrag(
+    internal bool TryFinishRemoteDrag(
         EntityUid user,
         Vector2 screenPosition,
         MapCoordinates mapPosition,
@@ -108,7 +109,10 @@ public sealed partial class DragDropSystem
 
         dragged = draggedEntity;
 
-        if (_remoteDragUser != user || !Exists(user) || !Exists(draggedEntity))
+        if (_remoteDragUser != user
+            || !Exists(user)
+            || !Exists(draggedEntity)
+            || (TryComp<CombatModeComponent>(user, out var combatMode) && combatMode.IsInCombatMode))
         {
             CancelRemoteDrag();
             return true;
@@ -155,7 +159,15 @@ public sealed partial class DragDropSystem
         return true;
     }
 
-    public void CancelRemoteDrag()
+    internal void CancelRemoteDrag(EntityUid user, EntityUid dragged)
+    {
+        if (_remoteDragUser != user || _remoteDraggedEntity != dragged)
+            return;
+
+        CancelRemoteDrag();
+    }
+
+    internal void CancelRemoteDrag()
     {
         var hadRemoteDrag = _remoteDraggedEntity is not null;
 

@@ -125,7 +125,10 @@ public sealed partial class RemoteControlConsoleSystem
                             || gun.Comp.NextFire > currentTime)
                             continue;
 
-                        gunSystem.AttemptShoot(remoteEntity, gun, shootCoordinates, hold.Target);
+                        if (gun.Comp.BurstActivated)
+                            gunSystem.ContinueBurst(remoteEntity, gun);
+                        else
+                            gunSystem.AttemptShoot(remoteEntity, gun, shootCoordinates, hold.Target);
                         break;
                     }
                 case RemoteControlAttackHoldType.MeleeLight:
@@ -138,10 +141,12 @@ public sealed partial class RemoteControlConsoleSystem
 
                         var meleeSystem = EntityManager.System<SharedMeleeWeaponSystem>();
                         if (!meleeSystem.TryGetWeapon(remoteEntity, out var weaponUid, out var weapon)
-                            || weapon.NextAttack > currentTime)
+                            || weapon.NextAttack > currentTime
+                            || (TryGetRemotePickupCandidate(remoteEntity, lightTarget, out var hands, out var item)
+                                && _hands.CanPickupAnyHand(remoteEntity, lightTarget, handsComp: hands, item: item)))
                             continue;
 
-                        meleeSystem.TryAttemptRemoteLightAttack(remoteEntity, weaponUid, weapon, lightTarget);
+                        meleeSystem.TryAttemptRemoteLightAttack(remoteEntity, (weaponUid, weapon), lightTarget);
                         break;
                     }
                 case RemoteControlAttackHoldType.MeleeHeavy:

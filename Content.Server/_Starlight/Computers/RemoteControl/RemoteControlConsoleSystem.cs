@@ -1077,12 +1077,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         }
 
         if (target is { } item
-            && TryComp<ItemComponent>(item, out var itemComp)
-            && itemComp.AllowDirectHandPickup
-            && !HasComp<ActivatableUIComponent>(item)
-            && TryComp<HandsComponent>(remoteEntity, out var hands)
-            && !_hands.TryGetActiveItem((remoteEntity, hands), out _)
-            && _interaction.InRangeAndAccessible(remoteEntity, item)
+            && TryGetRemotePickupCandidate(remoteEntity, item, out var hands, out var itemComp)
             && _hands.TryPickupAnyHand(remoteEntity, item, handsComp: hands, item: itemComp))
         {
             RefreshRemoteState(uid, component, remoteEntity);
@@ -1099,7 +1094,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 .TryGetWeapon(remoteEntity, out var weaponUid, out var weapon))
         {
             EntityManager.System<SharedMeleeWeaponSystem>()
-                .TryAttemptRemoteLightAttack(remoteEntity, weaponUid, weapon, attackTarget);
+                .TryAttemptRemoteLightAttack(remoteEntity, (weaponUid, weapon), attackTarget);
             RefreshRemoteState(uid, component, remoteEntity);
             return;
         }
@@ -2613,5 +2608,28 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         var extendedRange = isWhisper ? range.WhisperMuffledRange : range.VoiceRange;
         return distance < Math.Max(baseRange, extendedRange);
     }
+
+    private bool TryGetRemotePickupCandidate(
+        EntityUid remoteEntity,
+        EntityUid item,
+        out HandsComponent? hands,
+        out ItemComponent? itemComp)
+    {
+        hands = null;
+        itemComp = null;
+
+        if (!TryComp<ItemComponent>(item, out var itemComponent)
+            || !itemComponent.AllowDirectHandPickup
+            || HasComp<ActivatableUIComponent>(item)
+            || !TryComp<HandsComponent>(remoteEntity, out var handsComponent)
+            || _hands.TryGetActiveItem((remoteEntity, handsComponent), out _)
+            || !_interaction.InRangeAndAccessible(remoteEntity, item))
+            return false;
+
+        hands = handsComponent;
+        itemComp = itemComponent;
+        return true;
+    }
+
     #endregion
 }

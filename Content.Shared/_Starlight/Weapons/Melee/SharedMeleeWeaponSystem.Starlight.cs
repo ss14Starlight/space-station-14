@@ -3,23 +3,36 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using System.Linq;
 using Robust.Shared.Map;
-using Robust.Shared.Maths;
 using Robust.Shared.Player;
 
+// ReSharper disable CheckNamespace
 namespace Content.Shared.Weapons.Melee;
 
 public abstract partial class SharedMeleeWeaponSystem
 {
-    #region Starlight
-
-    public bool TryAttemptRemoteLightAttack(EntityUid user, EntityUid weaponUid, MeleeWeaponComponent weapon,
-        EntityUid target)
+    /// <summary>
+    /// Attempts a remote light attack against the specified target.
+    /// </summary>
+    /// <param name="user">The entity performing the attack.</param>
+    /// <param name="weapon">The weapon entity and its melee component.</param>
+    /// <param name="target">The entity being attacked.</param>
+    /// <returns>
+    /// <see langword="true"/> if the attack was accepted; otherwise, <see langword="false"/>.
+    /// </returns>
+    /// <remarks>
+    /// A successful remote attack clears <see cref="MeleeWeaponComponent.Attacking"/> without resetting
+    /// <see cref="MeleeWeaponComponent.NextAttack"/>.
+    /// </remarks>
+    public bool TryAttemptRemoteLightAttack(EntityUid user, Entity<MeleeWeaponComponent?> weapon, EntityUid target)
     {
-        if (!AttemptLightAttack(user, weaponUid, weapon, target))
+        var weaponUid = weapon.Owner;
+        if (!Resolve(weaponUid, ref weapon.Comp)
+            || weapon.Comp is not { } weaponComponent
+            || !AttemptLightAttack(user, weaponUid, weaponComponent, target))
             return false;
 
-        weapon.Attacking = false;
-        DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.Attacking));
+        weaponComponent.Attacking = false;
+        DirtyField(weaponUid, weaponComponent, nameof(MeleeWeaponComponent.Attacking));
         return true;
     }
 
@@ -37,6 +50,7 @@ public abstract partial class SharedMeleeWeaponSystem
     {
         if (!TryGetWeapon(user, out var weaponUid, out var weapon)
             || weaponUid != GetEntity(attack.Weapon)
+            || !CanUseRemoteHeavyAttackWeapon(user, weaponUid, weapon)
             || !AttemptAttack(user, weaponUid, weapon, attack, session))
             return false;
 
@@ -109,6 +123,4 @@ public abstract partial class SharedMeleeWeaponSystem
             ? TryComp<AltFireMeleeComponent>(weaponUid, out var altFire)
                 && altFire.AttackType == AltFireAttackType.Heavy
             : !weapon.AltDisarm || weaponUid != user;
-
-    #endregion
 }

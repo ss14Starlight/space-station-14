@@ -16,7 +16,7 @@ public sealed partial class MeleeWeaponSystem
     /// a remote heavy attack.
     /// </returns>
     public bool TryHandleRemoteHeavyAttack(EntityUid user, MapCoordinates mousePosition)
-        => TryHandleRemoteHeavyAttack(user, mousePosition, ignoreClientAttackState: false, out _);
+        => TryHandleRemoteHeavyAttack(user, mousePosition, ignoreClientAttackState: false);
 
     /// <summary>
     /// Handles remote heavy-attack input, optionally ignoring client-side attack state for hold repeats.
@@ -26,7 +26,6 @@ public sealed partial class MeleeWeaponSystem
     /// <param name="ignoreClientAttackState">
     /// Whether to ignore the locally replicated cooldown and active-attack state. The server still validates both.
     /// </param>
-    /// <param name="attackSent">Whether the heavy-attack event was sent.</param>
     /// <returns>
     /// <see langword="true"/> if the input is consumed; otherwise, <see langword="false"/> if the input does not qualify as
     /// a remote heavy attack.
@@ -34,11 +33,8 @@ public sealed partial class MeleeWeaponSystem
     public bool TryHandleRemoteHeavyAttack(
         EntityUid user,
         MapCoordinates mousePosition,
-        bool ignoreClientAttackState,
-        out bool attackSent)
+        bool ignoreClientAttackState)
     {
-        attackSent = false;
-
         if (!CombatMode.IsInCombatMode(user)
             || !TryGetWeapon(user, out var weaponUid, out var weapon))
             return false;
@@ -56,9 +52,7 @@ public sealed partial class MeleeWeaponSystem
         var coordinates = MapManager.TryFindGridAt(mousePosition, out var gridUid, out _)
             ? TransformSystem.ToCoordinates(gridUid, mousePosition)
             : TransformSystem.ToCoordinates(_map.GetMap(mousePosition.MapId), mousePosition);
-
         ClientHeavyAttack(user, coordinates, weaponUid, weapon);
-        attackSent = true;
         return true;
     }
 }

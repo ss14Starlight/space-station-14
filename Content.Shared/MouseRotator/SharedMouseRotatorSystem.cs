@@ -78,6 +78,11 @@ public abstract partial class SharedMouseRotatorSystem : EntitySystem
 
         if (!TryComp<MouseRotatorComponent>(ent, out var rotator))
         {
+            // Starlight - start
+            if (TryComp<RelayInputMoverComponent>(ent, out _))
+                return;
+            // Starlight - end
+
             Log.Error($"User {args.SenderSession.Name} ({args.SenderSession.UserId}) tried setting local rotation directly without a valid mouse rotator component attached!");
             return;
         }
