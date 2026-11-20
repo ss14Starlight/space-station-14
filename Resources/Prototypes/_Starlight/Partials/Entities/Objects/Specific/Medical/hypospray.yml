@@ -21,3 +21,40 @@
   id: SyndiHypo
   components:
   - type: PiercesThickScales
+
+# The medipen refiller can refill these.
+- type: !PartialOnly entity
+  id: EmergencyMedipen
+  description: A single-dose medipen containing epinephrine and tranexamic acid, used to temporarily stabilize patients in critical condition and buy time for them to recieve proper medical treatment. Beware of overdose.
+
+- type: !PartialOnly entity
+  id: AntiPoisonMedipen
+  description: A single-dose medipen containing ultravasculine and epinephrine, used to quickly and easily treat toxin poisoning.
+
+- type: !PartialOnly entity
+  id: BruteAutoInjector
+  description: A single-dose medipen containing bicaridine and tranexamic acid, used to quickly and easily treat simple physical injuries. Commonly used as a combat medicine.
+
+- type: !PartialOnly entity
+  id: BurnAutoInjector
+  description: A single-dose medipen containing dermaline and leporazine, used to quickly and easily treat non-chemical burns. Commonly used as a combat medicine.
+
+- type: !PartialOnly entity
+  id: RadAutoInjector
+  description: A single-dose medipen containing arithrazine and bicaridine, used to quickly and easily treat radiation poisoning.
+
+- type: !PartialOnly entity
+  id: PunctAutoInjector
+  description: A single-dose medipen containing puncturase and tranexamic acid, used to quickly and easily treat puncture wounds. Commonly used as a combat medicine.
+
+- type: !PartialOnly entity
+  id: PyraAutoInjector
+  description: A single-dose medipen containing pyrazine and dermaline, used to quickly and easily treat thermal burns. Commonly used as a combat medicine.
+
+- type: !PartialOnly entity
+  id: AirlossAutoInjector
+  description: A single-dose medipen containing respirazone, used to quickly and easily treat blood loss and asphyxiation.
+
+- type: !PartialOnly entity
+  id: SpaceMedipen
+  description: A single-dose medipen containing barozine and leporazine, used to protect exposed flesh from the deadly effects of space.
