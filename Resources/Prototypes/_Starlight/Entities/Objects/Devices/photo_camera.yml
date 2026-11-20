@@ -2,7 +2,7 @@
   parent: BaseItem
   id: PhotoCamera
   name: photo camera
-  description: Capture a precious moment, ruining it right after with the integrated flash.
+  description: Capture a precious moment. Insert a flash to light the shot.
   components:
   - type: SnapshotCapture
     snapshot: SnapshotPhotograph
@@ -89,7 +89,7 @@
   parent: BasePaper
   id: BlankPhotograph
   name: blank photograph
-  description: A sealed blank photo film sheet. Feed it into a photo camera to take a picture.
+  description: A sealed blank photo film sheet. Feed it into a camera to take a picture.
   components:
   - type: Sprite
     sprite: Objects/Misc/photograph.rsi

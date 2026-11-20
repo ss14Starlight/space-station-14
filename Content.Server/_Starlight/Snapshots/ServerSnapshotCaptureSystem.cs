@@ -6,6 +6,7 @@ using Content.Server.Power.Nodes;
 using Content.Shared._Starlight.Light;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.Snapshots;
+using Content.Shared._Funkystation.Footprints;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Camera;
 using Content.Shared.Examine;
@@ -196,15 +197,12 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     }
 
     /// <summary>
-    /// Spawns a white point light at the camera while a flash fires, so the photograph records the flash.
+    /// When a flash is inserted, spawns a white point light at the camera while an inserted flash fires.
     /// </summary>
     private void SpawnFlashLight(EntityUid capturer, SnapshotCaptureComponent capture)
     {
-        var insertedActive = ItemSlotsTryGetFlash(capturer, out var flashUid)
-            && HasComp<ActiveFlashComponent>(flashUid);
-        var builtInActive = HasComp<ActiveFlashComponent>(capturer)
-            && TryComp<FlashComponent>(capturer, out _);
-        if (!insertedActive && !builtInActive)
+        if (!ItemSlotsTryGetFlash(capturer, out var flashUid)
+            || !HasComp<ActiveFlashComponent>(flashUid))
             return;
 
         SpawnAttachedTo(capture.FlashEffect, Transform(capturer).Coordinates);
@@ -423,6 +421,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
                 MapText = GetMapText(uid),
                 Humanoid = GetHumanoid(uid, visMask),
                 RandomSprite = GetRandomSprite(uid),
+                Footprint = GetFootprint(uid),
             });
         }
 
@@ -626,15 +625,21 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     }
 
     private bool ShouldInclude(EntityUid uid, int visMask, EntityUid? grid)
-    {
-        if (uid == grid || _mapQuery.HasComp(uid) || _gridQuery.HasComp(uid))
-            return false;
+        => uid != grid
+            && !_mapQuery.HasComp(uid)
+            && !_gridQuery.HasComp(uid)
+            && IsVisibleTo(uid, visMask)
+            && !_container.IsEntityOrParentInContainer(uid);
 
-        if (!IsVisibleTo(uid, visMask))
-            return false;
-
-        return !_container.IsEntityOrParentInContainer(uid);
-    }
+    /// <summary>
+    /// Support-only lights may be inside non-occluding containers, such as a PDA flashlight held in hand.
+    /// The illumination index already drops lights hidden in occluding containers, so only the visibility
+    /// mask matters here.
+    /// </summary>
+    private bool ShouldIncludeSupportLight(EntityUid uid, int visMask)
+        => !_mapQuery.HasComp(uid)
+            && !_gridQuery.HasComp(uid)
+            && IsVisibleTo(uid, visMask);
 
     /// <summary>
     /// PVS layer rules to not accidentally capture ghosts and such.
@@ -755,6 +760,18 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         return new Dictionary<Enum, object>(state.Data);
     }
 
+    /// <summary>
+    /// Copies the footprint layers and tint.
+    /// </summary>
+    private FootprintComponent.FootprintComponent_AutoState? GetFootprint(EntityUid uid)
+    {
+        if (!TryComp<FootprintComponent>(uid, out var footprint))
+            return null;
+
+        return EntityManager.GetComponentState(EntityManager.EventBus, footprint, null, GameTick.Zero)
+            as FootprintComponent.FootprintComponent_AutoState;
+    }
+
     private MapTextComponentState? GetMapText(EntityUid uid)
     {
         if (!_mapTextQuery.TryComp(uid, out var mapText))
@@ -780,7 +797,8 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     }
 
     /// <summary>
-    /// Captures off-frame lights that still illuminate the frame as support-only entities.
+    /// Captures off-frame lights that still illuminate the frame as support-only entities, including lights
+    /// held in non-occluding containers such as a PDA flashlight.
     /// Reuses <see cref="_nearbyLights"/> instead of allocating a fresh lookup list per shot.
     /// </summary>
     private void CaptureNearbyLights(
@@ -834,7 +852,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
                 continue;
             }
 
-            if (!ShouldInclude(uid, visMask, null)
+            if (!ShouldIncludeSupportLight(uid, visMask)
                 || MetaData(uid).EntityPrototype is not { } proto)
             {
                 continue;

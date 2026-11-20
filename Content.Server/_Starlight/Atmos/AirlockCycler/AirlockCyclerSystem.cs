@@ -224,6 +224,32 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
+    private void OnBoltOpenMessage(Entity<AirlockCyclerComponent> ent, ref AirlockCyclerBoltOpenMessage args)
+    {
+        if (ent.Comp.State == AirlockCyclerState.Off || ent.Comp.BoltOpen == args.Enabled)
+            return;
+
+        if (!HasAnySideAccess(ent, args.Actor))
+        {
+            _popup.PopupEntity(Loc.GetString("airlock-cycler-access-denied"), ent, args.Actor);
+            return;
+        }
+
+        ent.Comp.BoltOpen = args.Enabled;
+
+        // Doors already held open are let go, and shut again by the idle update.
+        if (!args.Enabled && ent.Comp.State == AirlockCyclerState.Idle
+            && ent.Comp.TargetSide is { } side && side < ent.Comp.Sides.Count
+            && TryComp<DeviceLinkSourceComponent>(ent, out var source))
+        {
+            foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.Sides[side]))
+                Bolt(linked, false);
+        }
+
+        ent.Comp.NextUpdate = _timing.CurTime;
+    }
+
+    [SubscribeLocalEvent]
     private void OnButtonActivate(Entity<AirlockCyclerButtonComponent> ent, ref ActivateInWorldEvent args)
     {
         if (args.Handled || !args.Complex)
@@ -253,6 +279,7 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
             Problem = ent.Comp.Problem,
             NoVent = false,
             Lockdown = ent.Comp.Lockdown,
+            BoltOpen = ent.Comp.BoltOpen,
             TargetSide = ent.Comp.TargetSide,
             Queued = ent.Comp.Queue.ConvertAll(r => r.Side),
             ChamberPressure = layout.ChamberPressure,

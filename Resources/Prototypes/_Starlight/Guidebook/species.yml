@@ -43,7 +43,6 @@
   name: species-name-rodentia
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/Rodentia.xml"
 
-
 - type: guideEntry
   id: Doll
   name: species-name-doll
@@ -86,4 +85,7 @@
   name: species-name-experiment
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/Experiment.xml"
 
-
+- type: guideEntry
+  id: Xeno
+  name: species-name-xeno
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Xeno.xml"

@@ -31,6 +31,7 @@
   id: CommandModularHudModules
   recipes:
   - HudModuleShowJobIcons
+  - HudModuleShowIdAccess
 
 - type: latheRecipePack
   id: PrescriptionHudModuleStatic

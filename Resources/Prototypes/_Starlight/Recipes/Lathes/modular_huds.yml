@@ -1,0 +1,4 @@
+- type: latheRecipe
+  parent: BaseModularHudFrameRecipe
+  id: ClothingEyesModularHudSyndicate
+  result: ClothingEyesModularHudSyndicate

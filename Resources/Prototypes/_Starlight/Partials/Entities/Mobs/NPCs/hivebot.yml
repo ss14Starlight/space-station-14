@@ -1,0 +1,34 @@
+- type: !PartialOnly entity
+  id: MobHivebot
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35 #Starlight
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: ToolRefinable
+    refineResult:
+    - id: ScrapSteel
+      amount: 1
+    qualityNeeded: Screwing
+
+- type: !PartialOnly entity
+  id: MobHivebotRanged
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: BulletHivebot
+    capacity: 5
+    count: 5
+  - type: Gun
+    fireRate: .8
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/smg.ogg

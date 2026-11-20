@@ -55,7 +55,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem
             return;
 
         TryComp<InjectorComponent>(held, out var injector);
-        if (injector?.ReagentWhitelist is { } whitelist && !whitelist.Contains(msg.ReagentId))
+        if (injector?.ReagentWhitelist is { } whitelist && !whitelist.Contains(msg.ReagentId.Prototype))
         {
             var target = Identity.Entity(ent.Owner, EntityManager);
             _popup.PopupClient(Loc.GetString("injector-component-cannot-draw-message", ("target", target)), ent.Owner, user);
@@ -81,7 +81,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem
         if (TryComp<LabelComponent>(held, out var label)
             && !string.IsNullOrWhiteSpace(label.CurrentLabel)
             && TryMatchLabelToReagent(label.CurrentLabel, out var labelledReagent)
-            && labelledReagent == msg.ReagentId)
+            && labelledReagent == msg.ReagentId.Prototype.Id)
         {
             if (_powerReceiver.IsPowered(ent.Owner))
                 return null;

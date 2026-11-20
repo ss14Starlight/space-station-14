@@ -10,3 +10,8 @@
   - MagazineShotgunTozExtended
   - MagazineShotgunTozEmpty
   - MagazineShotgunTozExtendedEmpty
+
+- type: latheRecipePack
+  id: SyndicateModularHudFramesStatic
+  recipes:
+  - ClothingEyesModularHudSyndicate

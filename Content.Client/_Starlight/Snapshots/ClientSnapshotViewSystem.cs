@@ -6,6 +6,7 @@ using Content.Client._Starlight.Humanoid;
 using Content.Client.IconSmoothing;
 using Content.Client.MapText;
 using Content.Shared._Starlight.Snapshots;
+using Content.Shared._Funkystation.Footprints;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Gravity;
 using Content.Shared.Hands.Components;
@@ -545,6 +546,7 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         }
 
         ApplyAppearance(spawned, entity.Appearance);
+        ApplyFootprint(spawned, entity.Footprint);
 
         // Down (lying) clones animate via RotationVisuals, but the snapshot map is paused so the animation never
         // ticks and they'd stay upright. Snap the sprite to the lying pose immediately.
@@ -816,6 +818,18 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         // Character height lives in ScaleVisuals, which only applies with its component present.
         if (appearance.TryGetValue(ScaleVisuals.Scale, out var scale) && scale is Vector2 scaleVector)
             _scaleVisuals.SetSpriteScale(uid, scaleVector);
+    }
+
+    /// <summary>
+    /// Applies captured footprint layers and tint.
+    /// </summary>
+    private void ApplyFootprint(EntityUid uid, FootprintComponent.FootprintComponent_AutoState? state)
+    {
+        if (state == null || !TryComp<FootprintComponent>(uid, out var footprint))
+            return;
+
+        var handleState = new ComponentHandleState(state, null);
+        EntityManager.EventBus.RaiseComponentEvent(uid, footprint, ref handleState);
     }
 
     /// <summary>
