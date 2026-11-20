@@ -18,7 +18,7 @@
   components:
     - type: Action
       icon: { sprite: _Starlight/Clothing/Eyes/Hud/centcomm.rsi, state: icon }
+      clientExclusive: true # Flickers due to prediction without this
       priority: 8
-      ClientExclusive: true # Flickers due to prediction without this
     - type: InstantAction
       event: !type:ToggleAGhostAdminOverlayEvent
