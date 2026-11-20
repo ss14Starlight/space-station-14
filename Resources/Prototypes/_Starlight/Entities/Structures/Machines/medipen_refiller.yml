@@ -2,7 +2,7 @@
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   id: MedipenRefiller
   name: medipen refiller
-  description: Refills used medical medipens from the containers loaded into it. It needs everything the pen came with, and only takes empty pens.
+  description: Refills used medical medipens from the jugs stored in it. It needs everything the pen came with, and only takes empty pens.
   placement:
     mode: SnapgridCenter
   components:
@@ -28,11 +28,6 @@
   - type: ApcPowerReceiver
     powerLoad: 100
   - type: MedipenRefiller
-    slots:
-    - container1
-    - container2
-    - container3
-    - container4
     pens:
     - EmergencyMedipen
     - AntiPoisonMedipen
@@ -46,29 +41,27 @@
     - AdvancedMedipen
     freeReagents:
     - Nothing # the puncture auto-injector carries some only for its sprite
-  # Each listed pen needs at most two reagents, so four slots hold what two different pens need at once.
-  - type: ItemSlots
-    slots:
-      container1:
-        ejectOnBreak: true
-        whitelist:
-          components:
-          - FitsInDispenser
-      container2:
-        ejectOnBreak: true
-        whitelist:
-          components:
-          - FitsInDispenser
-      container3:
-        ejectOnBreak: true
-        whitelist:
-          components:
-          - FitsInDispenser
-      container4:
-        ejectOnBreak: true
-        whitelist:
-          components:
-          - FitsInDispenser
+  # Each listed pen needs at most two reagents, so room for four jugs holds what two different pens need.
+  - type: Storage
+    openOnActivate: false
+    maxItemSize: Large
+    grid:
+    - 0,0,7,1 # four jugs in a row
+    whitelist:
+      tags:
+      - ChemDispensable
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - storagebase
+  - type: ActivatableUI
+    key: enum.MedipenRefillerUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.MedipenRefillerUiKey.Key:
+        type: MedipenRefillerBoundUserInterface
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
   - type: Machine
     board: MedipenRefillerMachineCircuitboard
   - type: Destructible

@@ -1,30 +1,36 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared._Starlight.Chemistry.Components;
+using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
+using Content.Shared.Storage;
+using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Tag;
+using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Chemistry.EntitySystems;
 
 /// <summary>
-/// Refills empty medipens with their original dose, taken from the containers loaded into the refiller.
+/// Refills empty medipens with their original dose, taken from the jugs stored in the refiller.
 /// </summary>
 public sealed partial class MedipenRefillerSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private SharedPowerReceiverSystem _power = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedSolutionContainerSystem _solutions = default!;
@@ -102,8 +108,8 @@ public sealed partial class MedipenRefillerSystem : EntitySystem
     }
 
     /// <summary>
-    /// Takes the pen's dose out of the loaded containers and puts it into the pen. Changes nothing if the pen can't
-    /// be refilled.
+    /// Takes the pen's dose out of the stored jugs and puts it into the pen. Changes nothing if the pen can't be
+    /// refilled.
     /// </summary>
     public bool TryRefill(Entity<MedipenRefillerComponent> refiller, EntityUid pen, out string? reason)
     {
@@ -119,7 +125,7 @@ public sealed partial class MedipenRefillerSystem : EntitySystem
             if (refiller.Comp.FreeReagents.Contains(reagent.Prototype))
                 continue;
 
-            // Each container pays on its own, so nothing from one ends up in another.
+            // Each jug pays on its own, so nothing from one ends up in another.
             var owed = quantity;
             foreach (var source in sources)
             {
@@ -144,20 +150,26 @@ public sealed partial class MedipenRefillerSystem : EntitySystem
         return true;
     }
 
-    private List<Entity<SolutionComponent>> GetSources(Entity<MedipenRefillerComponent> refiller)
+    /// <summary>
+    /// The jugs stored in the refiller and their solutions.
+    /// </summary>
+    public List<(EntityUid Jug, ItemStorageLocation Location, Entity<SolutionComponent> Solution)> GetJugs(EntityUid refiller)
     {
-        var sources = new List<Entity<SolutionComponent>>();
-        foreach (var slot in refiller.Comp.Slots)
+        var jugs = new List<(EntityUid, ItemStorageLocation, Entity<SolutionComponent>)>();
+        if (!TryComp<StorageComponent>(refiller, out var storage))
+            return jugs;
+
+        foreach (var (jug, location) in storage.StoredItems)
         {
-            if (_itemSlots.GetItemOrNull(refiller, slot) is { } container
-                && _solutions.TryGetFitsInDispenser(container, out var soln, out _))
-            {
-                sources.Add(soln.Value);
-            }
+            if (_solutions.TryGetDrainableSolution(jug, out var soln, out _))
+                jugs.Add((jug, location, soln.Value));
         }
 
-        return sources;
+        return jugs;
     }
+
+    private List<Entity<SolutionComponent>> GetSources(Entity<MedipenRefillerComponent> refiller)
+        => GetJugs(refiller).Select(jug => jug.Solution).ToList();
 
     [SubscribeLocalEvent]
     private void OnExamined(Entity<MedipenRefillerComponent> ent, ref ExaminedEvent args)
@@ -167,38 +179,52 @@ public sealed partial class MedipenRefillerSystem : EntitySystem
 
         using (args.PushGroup(nameof(MedipenRefillerComponent)))
         {
-            var any = false;
-            foreach (var slot in ent.Comp.Slots)
+            var jugs = GetJugs(ent);
+            foreach (var (jug, _, solution) in jugs)
             {
-                if (_itemSlots.GetItemOrNull(ent, slot) is not { } container)
-                    continue;
-
-                any = true;
                 var contents = new List<string>();
-                if (_solutions.TryGetFitsInDispenser(container, out _, out var solution))
+                foreach (var (reagent, quantity) in solution.Comp.Solution.Contents)
                 {
-                    foreach (var (reagent, quantity) in solution.Contents)
-                    {
-                        string name = _proto.TryIndex<ReagentPrototype>(reagent.Prototype, out var reagentProto)
-                            ? reagentProto.LocalizedName
-                            : reagent.Prototype;
-                        contents.Add(Loc.GetString("medipen-refiller-examine-reagent", ("reagent", name), ("amount", quantity)));
-                    }
+                    string name = _proto.TryIndex<ReagentPrototype>(reagent.Prototype, out var reagentProto)
+                        ? reagentProto.LocalizedName
+                        : reagent.Prototype;
+                    contents.Add(Loc.GetString("medipen-refiller-examine-reagent", ("reagent", name), ("amount", quantity)));
                 }
 
-                args.PushMarkup(Loc.GetString("medipen-refiller-examine-container",
-                    ("container", container),
+                args.PushMarkup(Loc.GetString("medipen-refiller-examine-jug",
+                    ("jug", jug),
                     ("contents", contents.Count > 0
                         ? string.Join(", ", contents)
-                        : Loc.GetString("medipen-refiller-examine-container-empty"))));
+                        : Loc.GetString("medipen-refiller-examine-jug-empty"))));
             }
 
-            if (!any)
-                args.PushMarkup(Loc.GetString("medipen-refiller-examine-no-containers"));
+            if (jugs.Count == 0)
+                args.PushMarkup(Loc.GetString("medipen-refiller-examine-no-jugs"));
         }
     }
 
     [SubscribeLocalEvent]
+    private void OnEjectJug(Entity<MedipenRefillerComponent> ent, ref ReagentDispenserEjectContainerMessage args)
+    {
+        foreach (var (jug, location, _) in GetJugs(ent))
+        {
+            if (location == args.StorageLocation)
+            {
+                _hands.TryPickupAnyHand(args.Actor, jug);
+                return;
+            }
+        }
+    }
+
+    [SubscribeLocalEvent]
+    private void OnDestruction(Entity<MedipenRefillerComponent> ent, ref DestructionEventArgs args)
+    {
+        if (TryComp<StorageComponent>(ent, out var storage))
+            _container.EmptyContainer(storage.Container, destination: Transform(ent).Coordinates);
+    }
+
+    // Before storage, so a pen isn't offered to the jug storage first.
+    [SubscribeLocalEvent(before: [typeof(SharedStorageSystem)])]
     private void OnInteractUsing(Entity<MedipenRefillerComponent> ent, ref InteractUsingEvent args)
     {
         if (args.Handled)

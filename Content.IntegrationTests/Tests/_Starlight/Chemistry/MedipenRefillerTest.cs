@@ -7,7 +7,8 @@ using Content.Shared._Starlight.Chemistry.EntitySystems;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Storage;
+using Content.Shared.Storage.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Tag;
@@ -26,17 +27,19 @@ public sealed class MedipenRefillerTest : InteractionTest
     private SharedSolutionContainerSystem Solutions => SEntMan.System<SharedSolutionContainerSystem>();
     private MedipenRefillerSystem Refillers => SEntMan.System<MedipenRefillerSystem>();
 
-    private Solution Contents(EntityUid container)
+    private Solution Contents(EntityUid jug)
     {
-        Assert.That(Solutions.TryGetFitsInDispenser(container, out _, out var solution));
+        Assert.That(Solutions.TryGetDrainableSolution(jug, out _, out var solution));
         return solution!;
     }
 
-    private void Fill(EntityUid container, string reagent, FixedPoint2 amount)
+    private void Fill(EntityUid jug, string reagent, FixedPoint2 amount)
     {
-        Assert.That(Solutions.TryGetFitsInDispenser(container, out var soln, out _));
+        Assert.That(Solutions.TryGetDrainableSolution(jug, out var soln, out _));
         Assert.That(Solutions.TryAddReagent(soln!.Value, reagent, amount), $"{amount}u of {reagent} fits");
     }
+
+    private bool Stored(EntityUid jug) => Refillers.GetJugs(STarget!.Value).Any(stored => stored.Jug == jug);
 
     private Solution Pen(EntityUid pen)
     {
@@ -60,41 +63,37 @@ public sealed class MedipenRefillerTest : InteractionTest
     }
 
     /// <summary>
-    /// Puts a beaker of one reagent into the refiller the way a player does: click it on the machine.
+    /// Puts a jug of one reagent into the refiller the way a player does: click it on the machine.
     /// </summary>
-    private async Task<EntityUid> LoadBeaker(string reagent, FixedPoint2 amount)
+    private async Task<EntityUid> LoadJug(string reagent, FixedPoint2 amount)
     {
-        var beaker = ToServer(await PlaceInHands("LargeBeaker"));
-        await Server.WaitPost(() => Fill(beaker, reagent, amount));
+        var jug = ToServer(await PlaceInHands("Jug"));
+        await Server.WaitPost(() => Fill(jug, reagent, amount));
         await Interact();
-        await Server.WaitAssertion(() =>
-            Assert.That(Refiller.Comp.Slots.Any(slot => SEntMan.System<ItemSlotsSystem>().GetItemOrNull(STarget!.Value, slot) == beaker),
-                $"the {reagent} beaker went into a slot"));
-        return beaker;
+        await Server.WaitAssertion(() => Assert.That(Stored(jug), $"the {reagent} jug went in"));
+        return jug;
     }
 
     /// <summary>
-    /// Puts a beaker into the refiller directly, for tests that aren't about loading.
+    /// Puts a jug into the refiller directly, for tests that aren't about loading.
     /// </summary>
-    private async Task<EntityUid> SlotBeaker(string reagent, FixedPoint2 amount)
+    private async Task<EntityUid> StoreJug(string reagent, FixedPoint2 amount)
     {
-        var beaker = await SpawnEntity("LargeBeaker", SEntMan.GetCoordinates(TargetCoords));
+        var jug = await SpawnEntity("Jug", SEntMan.GetCoordinates(TargetCoords));
         await Server.WaitAssertion(() =>
         {
-            Fill(beaker, reagent, amount);
-            var slots = SEntMan.System<ItemSlotsSystem>();
-            var free = Refiller.Comp.Slots.First(slot => slots.GetItemOrNull(STarget!.Value, slot) == null);
-            Assert.That(slots.TryInsert(STarget!.Value, free, beaker, null));
+            Fill(jug, reagent, amount);
+            Assert.That(SEntMan.System<SharedStorageSystem>().Insert(STarget!.Value, jug, out _, playSound: false));
         });
-        return beaker;
+        return jug;
     }
 
     [Test]
-    public async Task RefillsAnEmptyPenFromSeparateBeakers()
+    public async Task RefillsAnEmptyPenFromSeparateJugs()
     {
         await PoweredRefiller();
-        var epinephrine = await LoadBeaker("Epinephrine", 20);
-        var tranexamic = await LoadBeaker("TranexamicAcid", 10);
+        var epinephrine = await LoadJug("Epinephrine", 20);
+        var tranexamic = await LoadJug("TranexamicAcid", 10);
         var pen = ToServer(await PlaceInHands("EmergencyMedipen"));
 
         await Server.WaitAssertion(() =>
@@ -111,7 +110,7 @@ public sealed class MedipenRefillerTest : InteractionTest
             Assert.That(solution.GetTotalPrototypeQuantity("TranexamicAcid"), Is.EqualTo(FixedPoint2.New(5)));
             Assert.That(SEntMan.System<TagSystem>().HasTag(pen, TrashTag), Is.False, "a refilled pen isn't trash");
 
-            // Each beaker paid its own reagent and nothing else went into it.
+            // Each jug paid its own reagent and nothing else went into it.
             Assert.That(Contents(epinephrine).Volume, Is.EqualTo(FixedPoint2.New(5)));
             Assert.That(Contents(epinephrine).GetTotalPrototypeQuantity("TranexamicAcid"), Is.EqualTo(FixedPoint2.Zero));
             Assert.That(Contents(tranexamic).Volume, Is.EqualTo(FixedPoint2.New(5)));
@@ -134,12 +133,12 @@ public sealed class MedipenRefillerTest : InteractionTest
     }
 
     [Test]
-    public async Task OneReagentCanComeFromSeveralBeakers()
+    public async Task OneReagentCanComeFromSeveralJugs()
     {
         await PoweredRefiller();
-        var first = await SlotBeaker("Epinephrine", 10);
-        var second = await SlotBeaker("Epinephrine", 10);
-        await SlotBeaker("TranexamicAcid", 5);
+        var first = await StoreJug("Epinephrine", 10);
+        var second = await StoreJug("Epinephrine", 10);
+        await StoreJug("TranexamicAcid", 5);
         var pen = await SpawnEntity("EmergencyMedipen", SEntMan.GetCoordinates(TargetCoords));
 
         await Server.WaitAssertion(() =>
@@ -167,13 +166,11 @@ public sealed class MedipenRefillerTest : InteractionTest
         {
             Assert.That(Pen(pen).Volume, Is.EqualTo(FixedPoint2.Zero), "the injection empties the pen");
             var refiller = (refillerUid, SEntMan.GetComponent<MedipenRefillerComponent>(refillerUid));
-            var slots = SEntMan.System<ItemSlotsSystem>();
-            var reagents = new[] { "Epinephrine", "TranexamicAcid", "Bicaridine" };
-            for (var i = 0; i < reagents.Length; i++)
+            foreach (var reagent in new[] { "Epinephrine", "TranexamicAcid", "Bicaridine" })
             {
-                var beaker = SEntMan.SpawnAtPosition("LargeBeaker", SEntMan.GetCoordinates(TargetCoords));
-                Fill(beaker, reagents[i], 30);
-                Assert.That(slots.TryInsert(refillerUid, refiller.Item2.Slots[i], beaker, null));
+                var jug = SEntMan.SpawnAtPosition("Jug", SEntMan.GetCoordinates(TargetCoords));
+                Fill(jug, reagent, 30);
+                Assert.That(SEntMan.System<SharedStorageSystem>().Insert(refillerUid, jug, out _, playSound: false));
             }
 
             var canRefill = Refillers.CanRefill(refiller, pen, out _, out var reason);
@@ -185,9 +182,9 @@ public sealed class MedipenRefillerTest : InteractionTest
     public async Task RefusesFullUnlistedAndShortCases()
     {
         await PoweredRefiller();
-        var epinephrine = await SlotBeaker("Epinephrine", 100);
-        await SlotBeaker("TranexamicAcid", 4);
-        await SlotBeaker("MuteToxin", 50);
+        var epinephrine = await StoreJug("Epinephrine", 100);
+        await StoreJug("TranexamicAcid", 4);
+        await StoreJug("MuteToxin", 50);
         var full = await SpawnEntity("EmergencyMedipen", SEntMan.GetCoordinates(TargetCoords));
         var unlisted = await SpawnEntity("EmergencyMedipenMute", SEntMan.GetCoordinates(TargetCoords));
         var empty = await SpawnEntity("EmergencyMedipen", SEntMan.GetCoordinates(TargetCoords));
@@ -205,7 +202,7 @@ public sealed class MedipenRefillerTest : InteractionTest
             Assert.That(Contents(epinephrine).Volume, Is.EqualTo(FixedPoint2.New(100)), "a refused refill takes nothing");
         });
 
-        await SlotBeaker("TranexamicAcid", 1);
+        await StoreJug("TranexamicAcid", 1);
         await Server.WaitAssertion(() =>
             Assert.That(Refillers.TryRefill(Refiller, empty, out _), "with the whole dose loaded it refills"));
     }
@@ -214,8 +211,8 @@ public sealed class MedipenRefillerTest : InteractionTest
     public async Task RefusesWithoutPower()
     {
         await SpawnTarget("MedipenRefiller");
-        await SlotBeaker("Epinephrine", 20);
-        await SlotBeaker("TranexamicAcid", 10);
+        await StoreJug("Epinephrine", 20);
+        await StoreJug("TranexamicAcid", 10);
         var pen = await SpawnEntity("EmergencyMedipen", SEntMan.GetCoordinates(TargetCoords));
 
         await Server.WaitAssertion(() =>
@@ -230,8 +227,8 @@ public sealed class MedipenRefillerTest : InteractionTest
     public async Task PutsBackSpriteFillerForFree()
     {
         await PoweredRefiller();
-        var puncturase = await SlotBeaker("Puncturase", 12);
-        var tranexamic = await SlotBeaker("TranexamicAcid", 5);
+        var puncturase = await StoreJug("Puncturase", 12);
+        var tranexamic = await StoreJug("TranexamicAcid", 5);
         var pen = await SpawnEntity("PunctAutoInjector", SEntMan.GetCoordinates(TargetCoords));
 
         await Server.WaitAssertion(() =>
@@ -244,17 +241,43 @@ public sealed class MedipenRefillerTest : InteractionTest
     }
 
     [Test]
-    public async Task AltClickEjectsABeaker()
+    public async Task WindowEjectsAJugIntoTheHand()
     {
         await PoweredRefiller();
-        var beaker = await LoadBeaker("Epinephrine", 20);
+        var jug = await LoadJug("Epinephrine", 20);
+        await LoadJug("TranexamicAcid", 10);
 
-        await Interact(altInteract: true);
+        await Activate();
+        Assert.That(IsUiOpen(MedipenRefillerUiKey.Key), "using the refiller opens its window");
+
+        ItemStorageLocation location = default;
+        await Server.WaitPost(() => location = Refillers.GetJugs(STarget!.Value).First(stored => stored.Jug == jug).Location);
+        await SendBui(MedipenRefillerUiKey.Key, new ReagentDispenserEjectContainerMessage(location));
         await Server.WaitAssertion(() =>
         {
-            var slots = SEntMan.System<ItemSlotsSystem>();
-            Assert.That(Refiller.Comp.Slots.All(slot => slots.GetItemOrNull(STarget!.Value, slot) == null), "the beaker came out");
-            Assert.That(Contents(beaker).GetTotalPrototypeQuantity("Epinephrine"), Is.EqualTo(FixedPoint2.New(20)));
+            Assert.That(Stored(jug), Is.False, "the jug came out");
+            Assert.That(HandSys.IsHolding(SPlayer, jug), "into the player's hand");
+            Assert.That(Refillers.GetJugs(STarget!.Value), Has.Count.EqualTo(1), "the other jug stays");
+            Assert.That(Contents(jug).GetTotalPrototypeQuantity("Epinephrine"), Is.EqualTo(FixedPoint2.New(20)));
         });
+    }
+
+    [Test]
+    public async Task RefusesBeakersAndHoldsFourJugs()
+    {
+        await PoweredRefiller();
+        var beaker = ToServer(await PlaceInHands("LargeBeaker"));
+        await Interact();
+        await Server.WaitAssertion(() => Assert.That(Stored(beaker), Is.False, "only jugs go in, like the chem dispenser"));
+        await Server.WaitPost(() => SEntMan.DeleteEntity(beaker));
+
+        for (var i = 0; i < 4; i++)
+        {
+            await StoreJug("Water", 10);
+        }
+
+        var fifth = await SpawnEntity("Jug", SEntMan.GetCoordinates(TargetCoords));
+        await Server.WaitAssertion(() =>
+            Assert.That(SEntMan.System<SharedStorageSystem>().CanInsert(STarget!.Value, fifth, out _), Is.False, "a fifth jug doesn't fit"));
     }
 }
