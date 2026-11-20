@@ -259,7 +259,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: Briomadine
-          min: 30
+          min: 40
         probability: 0.02
       - !type:Jitter
         conditions:
