@@ -58,7 +58,9 @@ public sealed class LoadoutTab : BoxContainer
 
     private readonly List<Section> _sections = [];
     private readonly Dictionary<string, (Button Button, BoxContainer Groups, Section Section, string Name)> _roles = [];
-    private readonly List<(LoadoutPrototype Proto, ContainerButton Card, string Name)> _cards = [];
+    private readonly List<(LoadoutPrototype Proto, ContainerButton Card, Control Content, Control Lock, string Name)> _cards = [];
+
+    private static readonly Color LockedModulate = new(1f, 1f, 1f, 0.35f);
 
     private string? _roleKey;
     private RoleLoadoutPrototype? _roleProto;
@@ -389,10 +391,12 @@ public sealed class LoadoutTab : BoxContainer
 
         var selected = loadout.SelectedLoadouts.TryGetValue(groupId, out var list) ? list : null;
         var collection = IoCManager.Instance!;
-        foreach (var (proto, card, name) in _cards)
+        foreach (var (proto, card, content, lockIcon, name) in _cards)
         {
             var valid = loadout.IsValid(profile, session, proto.ID, collection, out var reason);
             card.Disabled = !valid;
+            content.Modulate = valid ? Color.White : LockedModulate;
+            lockIcon.Visible = !valid;
             if (selected?.Any(l => l.Prototype == proto.ID) == true)
                 card.AddStyleClass(MarkingCard.StyleClassPicked);
             else
@@ -482,24 +486,32 @@ public sealed class LoadoutTab : BoxContainer
             };
             view.SetPrototype(proto.DummyEntity ?? loadoutSystem.GetFirstOrNull(proto));
 
+            var content = new BoxContainer
+            {
+                Orientation = LayoutOrientation.Vertical,
+                Margin = new Thickness(4),
+                SeparationOverride = 2,
+                Children =
+                {
+                    view,
+                    new Label { Text = name, ClipText = true, HorizontalAlignment = HAlignment.Center },
+                },
+            };
+            var lockIcon = new TextureRect
+            {
+                TexturePath = "/Textures/Interface/VerbIcons/lock.svg.192dpi.png",
+                SetSize = new Vector2(18, 18),
+                Stretch = TextureRect.StretchMode.KeepAspectCentered,
+                HorizontalAlignment = HAlignment.Right,
+                VerticalAlignment = VAlignment.Top,
+                Margin = new Thickness(0, 4, 4, 0),
+                Visible = false,
+            };
             var card = new ContainerButton
             {
                 SetSize = new Vector2(CardWidth, CardHeight),
                 StyleClasses = { MarkingCard.StyleClassCard },
-                Children =
-                {
-                    new BoxContainer
-                    {
-                        Orientation = LayoutOrientation.Vertical,
-                        Margin = new Thickness(4),
-                        SeparationOverride = 2,
-                        Children =
-                        {
-                            view,
-                            new Label { Text = name, ClipText = true, HorizontalAlignment = HAlignment.Center },
-                        },
-                    },
-                },
+                Children = { content, lockIcon },
             };
             var id = proto.ID;
             card.OnPressed += _ =>
@@ -510,7 +522,7 @@ public sealed class LoadoutTab : BoxContainer
                     OnLoadoutPressed?.Invoke(groupId, id);
             };
 
-            _cards.Add((proto, card, name));
+            _cards.Add((proto, card, content, lockIcon, name));
             _items.AddChild(card);
         }
 
@@ -520,7 +532,7 @@ public sealed class LoadoutTab : BoxContainer
     private void FilterItems()
     {
         var search = _search.Text.Trim();
-        foreach (var (_, card, name) in _cards)
+        foreach (var (_, card, _, _, name) in _cards)
             card.Visible = search.Length == 0 || name.Contains(search, StringComparison.CurrentCultureIgnoreCase);
     }
 

@@ -1,12 +1,27 @@
 // SPDX-FileCopyrightText: 2026 Starlight Network
 // SPDX-License-Identifier: MIT
 
+using System.Globalization;
 using System.Numerics;
+using Content.Client._Starlight.UserInterface.Controls;
+using Content.Shared._Starlight.CCVar;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Configuration;
 
 // ReSharper disable CheckNamespace
 namespace Content.Client._Starlight.UI;
+
+/// <summary>
+/// The color models the picker can show numbers for. The square and hue bar stay the same in every mode.
+/// </summary>
+public enum ColorPickerMode
+{
+    Rgb,
+    Hsv,
+    Hsl,
+    Grayscale,
+}
 
 public sealed class StarlightColorPicker : BoxContainer
 {
@@ -20,9 +35,20 @@ public sealed class StarlightColorPicker : BoxContainer
     private readonly HueBar _hueBar;
     private readonly PanelContainer _swatch;
     private readonly RecentPalette _recentPalette;
-    private readonly MiniBar _saturationBar;
-    private readonly MiniBar _valueBar;
     private readonly LineEdit _hexEdit;
+    private readonly IConfigurationManager _cfg;
+    private readonly SegmentedButtons _modeButtons = new();
+    private readonly BoxContainer _channels = new()
+    {
+        Orientation = LayoutOrientation.Vertical,
+        SeparationOverride = 4,
+        HorizontalExpand = true,
+    };
+    private readonly List<ChannelRow> _rows = new();
+    private ColorPickerMode _mode;
+    private bool _syncingRows;
+
+    private sealed record ChannelRow(Slider Slider, LineEdit Edit, Func<float> Get, Action<float> Set);
 
     private float _hue;
     private float _saturation;
@@ -41,8 +67,6 @@ public sealed class StarlightColorPicker : BoxContainer
             AllowedPredicate = value is null ? null : IsColorAllowed;
             _svBox.Invalidate();
             _hueBar.RefreshTexture();
-            _saturationBar.Invalidate();
-            _valueBar.Invalidate();
             _recentPalette.Refresh();
             SyncFromState(raise: false);
         }
@@ -71,6 +95,7 @@ public sealed class StarlightColorPicker : BoxContainer
     public StarlightColorPicker()
     {
         Recents = IoCManager.Resolve<IEntityManager>().System<RecentColorsSystem>();
+        _cfg = IoCManager.Resolve<IConfigurationManager>();
 
         // Stacked, so it fits a side panel.
         Orientation = LayoutOrientation.Vertical;
@@ -104,8 +129,19 @@ public sealed class StarlightColorPicker : BoxContainer
             PanelOverride = ColorPickerStyles.Filled(Color.White),
         };
 
-        _saturationBar = new MiniBar(this, isValue: false) { HorizontalExpand = true };
-        _valueBar = new MiniBar(this, isValue: true) { HorizontalExpand = true };
+        var savedMode = (ColorPickerMode) _cfg.GetCVar(StarlightCCVars.ColorPickerMode);
+        _mode = Enum.IsDefined(savedMode) ? savedMode : ColorPickerMode.Hsv;
+        _modeButtons.AddItem(Loc.GetString("starlight-color-picker-mode-rgb"), (int) ColorPickerMode.Rgb);
+        _modeButtons.AddItem(Loc.GetString("starlight-color-picker-mode-hsv"), (int) ColorPickerMode.Hsv);
+        _modeButtons.AddItem(Loc.GetString("starlight-color-picker-mode-hsl"), (int) ColorPickerMode.Hsl);
+        _modeButtons.AddItem(Loc.GetString("starlight-color-picker-mode-grayscale"), (int) ColorPickerMode.Grayscale);
+        _modeButtons.SelectId((int) _mode);
+        _modeButtons.OnItemSelected += args =>
+        {
+            _mode = (ColorPickerMode) args.Id;
+            _cfg.SetCVar(StarlightCCVars.ColorPickerMode, args.Id);
+            BuildChannels();
+        };
 
         _hexEdit = new LineEdit
         {
@@ -126,8 +162,8 @@ public sealed class StarlightColorPicker : BoxContainer
             Children =
             {
                 _swatch,
-                MakeLabeled("S", _saturationBar),
-                MakeLabeled("V", _valueBar),
+                _modeButtons,
+                _channels,
                 _hexEdit,
                 _recentPalette,
             },
@@ -135,7 +171,114 @@ public sealed class StarlightColorPicker : BoxContainer
         AddChild(right);
 
         ClaimInitialSlot();
+        BuildChannels();
         SyncFromState(raise: false);
+    }
+
+    private void BuildChannels()
+    {
+        _channels.RemoveAllChildren();
+        _rows.Clear();
+        switch (_mode)
+        {
+            case ColorPickerMode.Rgb:
+                AddChannel("R", 255, () => Color.R * 255, v => SetColor(Color with { R = v / 255 }));
+                AddChannel("G", 255, () => Color.G * 255, v => SetColor(Color with { G = v / 255 }));
+                AddChannel("B", 255, () => Color.B * 255, v => SetColor(Color with { B = v / 255 }));
+                break;
+            case ColorPickerMode.Hsv:
+                AddChannel("H", 360, () => _hue * 360, v => OnHueChanged(v / 360));
+                AddChannel("S", 100, () => _saturation * 100, v => OnSaturationChanged(v / 100));
+                AddChannel("V", 100, () => _value * 100, v => OnValueChanged(v / 100));
+                break;
+            case ColorPickerMode.Hsl:
+                // Hue comes from the picker's own state, so it survives grays where HSL has no hue.
+                AddChannel("H", 360, () => _hue * 360, v => OnHueChanged(v / 360));
+                AddChannel("S", 100, () => Color.ToHsl(Color).Y * 100, v => SetHsl(1, v / 100));
+                AddChannel("L", 100, () => Color.ToHsl(Color).Z * 100, v => SetHsl(2, v / 100));
+                break;
+            case ColorPickerMode.Grayscale:
+                AddChannel("L", 255, () => Luma(Color) * 255, v => SetColor(new Color(v / 255, v / 255, v / 255, _alpha)));
+                break;
+        }
+
+        UpdateChannels();
+    }
+
+    private void AddChannel(string label, float max, Func<float> get, Action<float> set)
+    {
+        var slider = new Slider { MinValue = 0, MaxValue = max, HorizontalExpand = true, VerticalAlignment = VAlignment.Center };
+        var edit = new LineEdit { SetWidth = 44 };
+        var row = new ChannelRow(slider, edit, get, set);
+
+        slider.OnValueChanged += _ =>
+        {
+            if (!_syncingRows)
+                set(slider.Value);
+        };
+        slider.OnReleased += _ => PersistCurrent();
+        edit.OnTextEntered += _ => CommitChannel(row, max);
+        edit.OnFocusExit += _ => CommitChannel(row, max);
+
+        _rows.Add(row);
+        _channels.AddChild(new BoxContainer
+        {
+            Orientation = LayoutOrientation.Horizontal,
+            SeparationOverride = 4,
+            Children =
+            {
+                new Label { Text = label, MinSize = new Vector2(12, 0), VerticalAlignment = VAlignment.Center },
+                slider,
+                edit,
+            },
+        });
+    }
+
+    private void CommitChannel(ChannelRow row, float max)
+    {
+        if (_syncingRows)
+            return;
+
+        if (float.TryParse(row.Edit.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out var value))
+        {
+            row.Set(Math.Clamp(value, 0, max));
+            PersistCurrent();
+        }
+
+        UpdateChannels();
+    }
+
+    private void UpdateChannels()
+    {
+        _syncingRows = true;
+        foreach (var row in _rows)
+        {
+            var value = row.Get();
+            row.Slider.Value = value;
+            if (!row.Edit.HasKeyboardFocus())
+                row.Edit.Text = MathF.Round(value).ToString(CultureInfo.InvariantCulture);
+        }
+        _syncingRows = false;
+    }
+
+    private void SetHsl(int channel, float value)
+    {
+        var hsl = Color.ToHsl(Color);
+        hsl.X = _hue;
+        if (channel == 1)
+            hsl.Y = Math.Clamp(value, 0f, 1f);
+        else
+            hsl.Z = Math.Clamp(value, 0f, 1f);
+        SetColor(Color.FromHsl(hsl));
+    }
+
+    private static float Luma(Color color)
+        => 0.299f * color.R + 0.587f * color.G + 0.114f * color.B;
+
+    private void SetColor(Color color)
+    {
+        Color = color;
+        OnColorChanged?.Invoke(Color);
     }
 
     private void ClaimInitialSlot()
@@ -175,13 +318,13 @@ public sealed class StarlightColorPicker : BoxContainer
         SyncFromState(raise: true);
     }
 
-    internal void OnSaturationChanged(float saturation)
+    private void OnSaturationChanged(float saturation)
     {
         _saturation = Math.Clamp(saturation, 0f, 1f);
         SyncFromState(raise: true);
     }
 
-    internal void OnValueChanged(float value)
+    private void OnValueChanged(float value)
     {
         _value = Math.Clamp(value, 0f, 1f);
         SyncFromState(raise: true);
@@ -269,8 +412,7 @@ public sealed class StarlightColorPicker : BoxContainer
         _swatch.PanelOverride = ColorPickerStyles.Filled(picked);
         _svBox.UpdateFor(_hue, _saturation, _value);
         _hueBar.UpdateFor(_hue);
-        _saturationBar.UpdateFor(_hue, _saturation, _value);
-        _valueBar.UpdateFor(_hue, _saturation, _value);
+        UpdateChannels();
         UpdateHexText();
 
         if (raise)
@@ -288,7 +430,6 @@ public sealed class StarlightColorPicker : BoxContainer
     {
         _svBox.UpdateFor(_hue, _saturation, _value);
         _hueBar.UpdateFor(_hue);
-        _saturationBar.UpdateFor(_hue, _saturation, _value);
-        _valueBar.UpdateFor(_hue, _saturation, _value);
+        UpdateChannels();
     }
 }
