@@ -184,3 +184,63 @@
       amount: 1
   products:
     CellCultureMedium: 6
+
+- type: reaction
+  id: Respirazone
+  reactants:
+    Ulnitranium:
+      amount: 5
+    Pluoxium:
+      amount: 5
+    Iron:
+      amount: 3
+    Copper:
+      amount: 2
+  products:
+    Respirazone: 5
+
+- type: reaction
+  id: Barozine
+  reactants:
+    Nitrium:
+      amount: 20
+    Aluminium:
+      amount: 1
+    Silicon:
+      amount: 1
+  products:
+    Barozine: 2
+
+- type: reaction
+  id: PolyElecttrolyze
+  requiredMixerCategories:
+  - Electrolysis
+  reactants:
+    PolypyryliumOligomers:
+      amount: 1
+  products:
+    Lithium: 1
+    Nitrogen: 1
+    Sodium: 1
+
+- type: reaction
+  id: PolyBrio
+  reactants:
+    Briomadine:
+      amount: 1
+    PolypyryliumOligomers:
+      amount: 1
+  products:
+    Ipecac: 1
+
+- type: reaction
+  id: ChronexalineUlt
+  reactants:
+    Ultravasculine:
+      amount: 2
+    Cryoxadone:
+      amount: 2
+    Necrosol:
+      amount: 1
+  products:
+    Chronexaline: 3
