@@ -556,7 +556,11 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
             || !_entityManager.System<SharedInteractionSystem>().InRangeAndAccessible(remoteEntity, target))
             return false;
 
-        return true;
+        return _entityManager.System<SharedHandsSystem>().CanPickupAnyHand(
+            remoteEntity,
+            target,
+            handsComp: hands,
+            item: item);
     }
 
     private void StartRemoteAttackHold(bool altInteract, RemoteAttackType type, EntityUid remoteEntity)
