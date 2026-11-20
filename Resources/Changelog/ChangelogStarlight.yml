@@ -1,13 +1,6 @@
 Entries:
 - author: WNP78 & Sparlight
   changes:
-  - message: Added the ability to label chemicals that are in a plumbing smart dispenser, using the hand labeler.
-    type: Add
-  id: 410305
-  time: '2026-11-10T19:07:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7026
-- author: WNP78 & Sparlight
-  changes:
   - message: Added access reader (defaults Medical access), maintenance panel and hacking wires to plumbing smart dispenser.
     type: Add
   id: 410306
@@ -2799,4 +2792,11 @@ Entries:
   id: 410704
   time: '2026-11-20T04:09:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7344
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Modular HUDs now hide what modules are inside them similarly to headsets.
+    type: Tweak
+  id: 410705
+  time: '2026-11-20T17:18:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7358
 Order: -1
