@@ -48,7 +48,7 @@ namespace Content.Shared.Doors.Components
         /// been pried open. Measured in seconds.
         /// </summary>
         [DataField]
-        public TimeSpan EmergencyCloseCooldownDuration = TimeSpan.FromSeconds(2);
+        public TimeSpan EmergencyCloseCooldownDuration = TimeSpan.FromSeconds(4);
 
         #endregion
 
