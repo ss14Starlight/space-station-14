@@ -10,12 +10,11 @@
     sprite: _Starlight/Structures/Machines/medipen_refiller.rsi
     layers:
     - state: icon
-    - state: active
-      map: [ "enum.MedipenRefillerVisuals.Refilling" ]
-      visible: false
-      shader: unshaded
     - state: panel
       map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      visible: false
+    - state: active
+      map: [ "enum.MedipenRefillerVisuals.Refilling" ]
       visible: false
   - type: Appearance
   - type: GenericVisualizer
