@@ -107,7 +107,7 @@
 
 - type: !PartialOnly gamePreset
   id: Sandbox
-  minPlayers: 5
+  minPlayers: 0
   rules:
     - XenoDemocracy # Let them vote in sandbox
     - WireCutScheduler
