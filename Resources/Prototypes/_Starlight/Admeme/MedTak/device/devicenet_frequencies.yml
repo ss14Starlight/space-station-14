@@ -1,0 +1,9 @@
+- type: deviceFrequency
+  id: MedTak
+  name: device-frequency-prototype-name-medtak
+  frequency: 2105
+
+- type: deviceFrequency
+  id: MedTakOperators
+  name: device-frequency-prototype-name-medtak-operators
+  frequency: 2106

@@ -91,6 +91,12 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("ui.lobby_ready_on_top", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
+    /// Whether the character editor window filled the screen when last used, to open it that way again.
+    /// </summary>
+    public static readonly CVarDef<bool> CharacterSetupMaximized =
+        CVarDef.Create("ui.character_setup_maximized", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
     /// Where each button of the top menu bar goes: <c>Name=Pinned|Auto|Menu|Hidden;...</c>, see BarLayout.
     /// Buttons left out are Auto: on the bar while it fits, in the "more" menu otherwise.
     /// </summary>
@@ -192,6 +198,13 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<bool> TippyClientEnabled =
         CVarDef.Create("ui.client_tippy_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// How many recent chat messages are checked when stacking repeated messages.
+    /// 0 disables chat stacking.
+    /// </summary>
+    public static readonly CVarDef<int> ChatRepeatHistory =
+        CVarDef.Create("starlight.chat_repeat_history", 4, CVar.CLIENTONLY | CVar.ARCHIVE);
 }
 
 public enum HeldItemShowMode

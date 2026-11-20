@@ -15,3 +15,26 @@
   - type: EmitSoundOnLand
     sound:
       path: /Audio/_Starlight/Items/Handling/handcuffs_drop.ogg
+
+- type: !PartialOnly entity
+  id: WebHandcuffs
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 80
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 80
+  - type: Tag
+    tags:
+    - ClothMade
+  - type: Edible
+    delay: 10
+    requiresSpecialDigestion: true
+    solution: food
+  - type: FlavorProfile
+    flavors:
+      - cobwebs
+    ignoreReagents:
+      - Fiber

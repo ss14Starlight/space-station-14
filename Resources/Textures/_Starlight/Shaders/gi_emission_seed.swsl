@@ -1,0 +1,16 @@
+light_mode unshaded;
+blend_mode none;
+
+// Marks glowing pixels as jump flood seeds next to the walls, so rays stop on screens and lamps and take their colour.
+// Other pixels are discarded and keep the wall seeds under them. The seed target is RG32F, which some GPUs cannot blend.
+
+uniform highp vec2 targetSize;
+
+void fragment()
+{
+    highp vec3 glow = zTextureSpec(TEXTURE, FRAGCOORD.xy / targetSize).rgb;
+    if (max(glow.r, max(glow.g, glow.b)) < 0.001)
+        discard;
+
+    COLOR = vec4(FRAGCOORD.xy, 0.0, 1.0);
+}

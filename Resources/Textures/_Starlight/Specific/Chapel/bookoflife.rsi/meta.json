@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created for Heaven, Author:https://github.com/tonimark,",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    }
+  ]
+}

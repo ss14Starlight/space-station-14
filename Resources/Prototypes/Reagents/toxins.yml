@@ -122,11 +122,22 @@
     Bloodstream:
       effects:
         - !type:HealthChange
+          #Starlight Start
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Xeno ]
+            inverted: true
+          #Starlight End
           damage:
             types:
               Poison: 2
         - !type:Vomit
           conditions:
+          #Starlight Start
+          - !type:MetabolizerTypeCondition
+            type: [ Xeno ]
+            inverted: true
+          #Starlight End
           - !type:ReagentCondition
             reagent: GastroToxin
             min: 2
@@ -156,6 +167,12 @@
     Bloodstream:
       effects:
       - !type:HealthChange
+        #Starlight Start
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+        #Starlight End
         damage:
           types:
             Poison: 1
@@ -194,6 +211,12 @@
       methods: [ Touch ]
       effects:
       - !type:HealthChange
+        #Starlight Start
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+        #Starlight End
         ignoreResistances: false
         damage:
           types:
@@ -201,11 +224,23 @@
       - !type:Emote
         emote: Scream
         probability: 0.3
+        #Starlight Start
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+        #Starlight End
   metabolisms:
     Bloodstream:
       metabolismRate : 3.00 # High damage, high metabolism rate. You need a lot of units to crit. Simulates acid burning through you fast.
       effects:
       - !type:HealthChange
+        #Starlight Start
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+        #Starlight End
         damage:
           types:
             Caustic: 11.0
@@ -214,9 +249,21 @@
         visualType: Large
         messages: [ "generic-reagent-effect-burning-insides" ]
         probability: 0.33
+        #Starlight Start
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+        #Starlight End
       - !type:Emote
         emote: Scream
         probability: 0.3
+        #Starlight Start
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+        #Starlight End
       # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:
@@ -242,8 +289,20 @@
     Bloodstream:
       effects:
       - !type:SatiateThirst
+        #Starlight Start
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+        #Starlight End
         factor: -1.5
       - !type:HealthChange
+        #Starlight Start
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+        #Starlight End
         ignoreResistances: true
         damage:
           types:
@@ -277,11 +336,23 @@
       methods: [ Touch ]
       effects:
       - !type:HealthChange
+      #Starlight Start
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+      #Starlight End
         ignoreResistances: false
         damage:
           types:
             Caustic: 0.3
       - !type:Emote
+      #Starlight Start
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+      #Starlight End
         emote: Scream
         probability: 0.2
   metabolisms:
@@ -289,15 +360,42 @@
       metabolismRate: 3.00 # High damage, high metabolism rate. You need a lot of units to crit. Simulates acid burning through you fast.
       effects:
       - !type:HealthChange
+      #Starlight Start
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+      #Starlight End
         damage:
           types:
             Caustic: 8
+      #Starlight Start
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+        damage:
+          types:
+            Bloodloss: -1
+      #Starlight End
       - !type:PopupMessage
+      #Starlight Start
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+      #Starlight End
         type: Local
         visualType: Large
         messages: [ "generic-reagent-effect-burning-insides" ]
         probability: 0.33
       - !type:Emote
+      #Starlight Start
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+      #Starlight End
         emote: Scream
         probability: 0.25
       # Starlight-Start: Cyclorite Metabolism
@@ -337,11 +435,23 @@
       methods: [ Touch ]
       effects:
       - !type:HealthChange
+      #Starlight Start
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+      #Starlight End
         ignoreResistances: false
         damage:
           types:
             Caustic: 0.1
       - !type:Emote
+      #Starlight Start
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+      #Starlight End
         emote: Scream
         probability: 0.1
   metabolisms:
@@ -349,15 +459,42 @@
       metabolismRate: 3.00 # Okay damage, high metabolism rate. You need a lot of units to crit. Simulates acid burning through you fast.
       effects:
       - !type:HealthChange
+      #Starlight Start
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+      #Starlight End
         damage:
           types:
             Caustic: 5
+      #Starlight Start
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+        damage:
+          types:
+            Bloodloss: -0.5
+      #Starlight End
       - !type:PopupMessage
+      #Starlight Start
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+      #Starlight End
         type: Local
         visualType: Large
         messages: [ "generic-reagent-effect-burning-insides" ]
         probability: 0.33
       - !type:Emote
+      #Starlight Start
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+      #Starlight End
         emote: Scream
         probability: 0.2
       # Starlight-Start: Cyclorite Metabolism
@@ -708,7 +845,7 @@
       - !type:PopupMessage
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Arachnid, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight/FH/Moff
+          type: [ Animal, Vox, Arachnid, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment, Xeno ] # Starlight/FH/Moff
           inverted: true
         type: Local
         visualType: MediumCaution
@@ -718,12 +855,12 @@
         probability: 0.1
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Arachnid, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight/FH/Moff
+          type: [ Animal, Vox, Plant, Arachnid, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment, Xeno ] # Starlight/FH/Moff
           inverted: true
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Arachnid, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight/FH/Moff
+          type: [ Animal, Vox, Plant, Arachnid, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment, Xeno ] # Starlight/FH/Moff
           inverted: true
         damage:
           types:

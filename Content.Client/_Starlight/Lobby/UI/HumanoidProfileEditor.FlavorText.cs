@@ -18,12 +18,14 @@ public sealed partial class HumanoidProfileEditor
     {
         TabContainer.SetTabTitle(0, Loc.GetString("humanoid-profile-editor-appearance-tab"));
         TabContainer.SetTabTitle(1, Loc.GetString("humanoid-profile-editor-jobs-tab"));
-        TabContainer.SetTabTitle(2, Loc.GetString("humanoid-profile-editor-antags-tab"));
-        TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-traits-tab"));
-        TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-markings-tab"));
-        TabContainer.SetTabTitle(5, Loc.GetString("humanoid-profile-editor-cybernetics-tab"));
-        TabContainer.SetTabTitle(6, Loc.GetString("humanoid-profile-editor-ic-info-tab"));
-        TabContainer.SetTabTitle(7, Loc.GetString("humanoid-profile-editor-ooc-info-tab"));
+        // Starlight: the rest by control, so adding a tab doesn't shift the titles
+        TabContainer.SetTabTitle(LoadoutTab, Loc.GetString("loadout-tab-title"));
+        TabContainer.SetTabTitle(Antags, Loc.GetString("humanoid-profile-editor-antags-tab"));
+        TabContainer.SetTabTitle(Traits, Loc.GetString("humanoid-profile-editor-traits-tab"));
+        TabContainer.SetTabTitle(BodyTab, Loc.GetString("humanoid-profile-editor-body-tab"));
+        TabContainer.SetTabTitle(VoiceTab, Loc.GetString("humanoid-profile-editor-voice-tab"));
+        TabContainer.SetTabTitle(ICInfoTab, Loc.GetString("humanoid-profile-editor-ic-info-tab"));
+        TabContainer.SetTabTitle(OOCInfoTab, Loc.GetString("humanoid-profile-editor-ooc-info-tab"));
     }
 
     private RecordEditorGui CreateRecordEditorTab()
@@ -55,19 +57,13 @@ public sealed partial class HumanoidProfileEditor
 
     public void RefreshCharacterInfo()
     {
-        if (ICInfoEditor.VisibleInTree)
-        {
-            ICInfoEditor.Physical.Visible = _allowFlavorText;
-            ICInfoEditor.Personality.Visible = _allowFlavorText;
-            ICInfoEditor.Secrets.Visible = _allowCharacterSecrets;
-            ICInfoEditor.Exploitable.Visible = _allowExploitables;
-        }
+        ICInfoEditor.Physical.Visible = _allowFlavorText;
+        ICInfoEditor.Personality.Visible = _allowFlavorText;
+        ICInfoEditor.Secrets.Visible = _allowCharacterSecrets;
+        ICInfoEditor.Exploitable.Visible = _allowExploitables;
 
-        if (OOCInfoEditor.VisibleInTree)
-        {
-            OOCInfoEditor.OOCNotes.Visible = _allowRPNotes;
-            OOCInfoEditor.PersonalNotes.Visible = _allowRPNotes;
-        }
+        OOCInfoEditor.OOCNotes.Visible = _allowRPNotes;
+        OOCInfoEditor.PersonalNotes.Visible = _allowRPNotes;
     }
 
     private void UpdateCharacterInfoEditorText()
@@ -79,6 +75,9 @@ public sealed partial class HumanoidProfileEditor
 
         OOCInfoEditor.PersonalNotesInput.TextRope = new Rope.Leaf(Profile?.PersonalNotes ?? "");
         OOCInfoEditor.OOCNotesInput.TextRope = new Rope.Leaf(Profile?.OOCNotes ?? "");
+
+        ICInfoEditor.UpdateCounts();
+        OOCInfoEditor.UpdateCounts();
     }
 
     private void OnPhysicalDescChanged(TextEdit.TextEditEventArgs args)

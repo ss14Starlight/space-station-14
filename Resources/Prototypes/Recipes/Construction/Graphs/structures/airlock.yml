@@ -77,6 +77,15 @@
       - material: ReinforcedGlass
         amount: 1
         doAfter: 2
+    # Starlight Start
+    - to: chitinElectronics
+      conditions:
+      - !type:EntityAnchored {}
+      steps:
+      - material: Chitin
+        amount: 2
+        doAfter: 2
+    # Starlight End
     - to: wired
       conditions:
       - !type:EntityAnchored {}
@@ -113,6 +122,31 @@
       steps:
       - tool: Prying
         doAfter: 5
+  # Starlight Start
+  - node: chitinElectronics
+    entity: AirlockAssembly
+    edges:
+    - to: chitinAirlock
+      conditions:
+      - !type:EntityAnchored {}
+      steps:
+      - material: Chitin
+        amount: 2
+        doAfter: 2
+    - to: wired
+      conditions:
+      - !type:EntityAnchored {}
+      completed:
+      - !type:EmptyAllContainers
+        pickup: true
+        emptyAtUser: true
+      - !type:SpawnPrototype
+        prototype: SheetChitin1
+        amount: 2
+      steps:
+      - tool: Prying
+        doAfter: 5
+  # Starlight End
 
 ## Glass airlock
   - node: glassAirlock
@@ -421,3 +455,43 @@
       - tool: Welding
         doAfter: 15
 
+# Starlight Start
+## Xeno airlock
+  - node: chitinAirlock
+    entity: AirlockXeno
+    doNotReplaceInheritingEntities: true
+    actions:
+    - !type:SetWiresPanelSecurity
+      wiresAccessible: true
+    edges:
+    - to: chitinElectronics
+      conditions:
+      - !type:EntityAnchored {}
+      - !type:DoorWelded {}
+      - !type:DoorBolted
+        value: false
+      - !type:WirePanel {}
+      - !type:AllWiresCut
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetChitin1
+        amount: 2
+      steps:
+      - tool: Prying
+        doAfter: 2
+
+    - to: medSecurityUnfinished
+      conditions:
+      - !type:WirePanel {}
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 2
+
+    - to: highSecurityUnfinished
+      conditions:
+      - !type:WirePanel {}
+      steps:
+      - material: Plasteel
+        amount: 2
+        doAfter: 2

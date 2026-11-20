@@ -4,8 +4,8 @@ meta:
   engineVersion: 295.0.3
   forkId: ""
   forkVersion: ""
-  time: 11/14/2026 09:01:29
-  entityCount: 35413
+  time: 11/17/2026 08:55:30
+  entityCount: 35414
 maps:
 - 1
 grids:
@@ -13017,7 +13017,7 @@ entities:
       pos: 1.5,-2.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -206131.23
+      secondsUntilStateChange: -206499.89
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13150,7 +13150,7 @@ entities:
       pos: -52.5,58.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -232903.2
+      secondsUntilStateChange: -233271.86
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -15344,7 +15344,7 @@ entities:
       pos: 18.5,53.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -406792.25
+      secondsUntilStateChange: -407160.9
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -15881,7 +15881,7 @@ entities:
       pos: -61.5,49.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -262663.06
+      secondsUntilStateChange: -263031.72
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -88236,12 +88236,6 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: 7.5,-17.5
-  - uid: 14523
-    components:
-    - type: Transform
-      parent: 2
-      rot: 3.141592653589793 rad
-      pos: 5.5,15.5
   - uid: 14524
     components:
     - type: Transform
@@ -88327,6 +88321,12 @@ entities:
     - type: Transform
       parent: 2
       pos: -35.5,34.5
+  - uid: 15257
+    components:
+    - type: Transform
+      parent: 2
+      rot: 3.141592653589793 rad
+      pos: 4.6016827,15.658082
 - proto: ChairOfficeSleek
   entities:
   - uid: 14539
@@ -92342,6 +92342,14 @@ entities:
     - type: AccessReader
       accessListsOriginal:
       - - Service
+- proto: ComputerCommsBreakingNews
+  entities:
+  - uid: 14523
+    components:
+    - type: Transform
+      parent: 2
+      rot: -1.5707963267948966 rad
+      pos: 5.5,14.5
 - proto: ComputerCommsCargoFilled
   entities:
   - uid: 15217
@@ -92616,12 +92624,12 @@ entities:
     - type: AccessReader
       accessListsOriginal:
       - - Service
-  - uid: 15257
+  - uid: 29257
     components:
     - type: Transform
       parent: 2
-      rot: 1.5707963267948966 rad
-      pos: 4.5,15.5
+      rot: -1.5707963267948966 rad
+      pos: 5.5,15.5
 - proto: ComputerMedicalRecords
   entities:
   - uid: 15258
@@ -92993,12 +93001,12 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: -27.5,40.5
-  - uid: 15314
+  - uid: 29700
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
-      pos: 5.5,13.5
+      pos: 4.5,13.5
 - proto: ComputerTelevision
   entities:
   - uid: 15315
@@ -94408,7 +94416,6 @@ entities:
     components:
     - type: Transform
       parent: 2
-      rot: -1.5707963267948966 rad
       pos: -28.5,31.5
     - type: TechnologyDatabase
       supportedDisciplines:
@@ -94421,7 +94428,6 @@ entities:
     components:
     - type: Transform
       parent: 2
-      rot: 1.5707963267948966 rad
       pos: -106.5,30.5
     - type: TechnologyDatabase
       supportedDisciplines:
@@ -94434,7 +94440,6 @@ entities:
     components:
     - type: Transform
       parent: 2
-      rot: -1.5707963267948966 rad
       pos: 8.5,-6.5
     - type: TechnologyDatabase
       supportedDisciplines:
@@ -105007,7 +105012,7 @@ entities:
       pos: -71.5,55.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -97378.46
+      secondsUntilStateChange: -97747.11
   - uid: 17282
     components:
     - type: Transform
@@ -107204,7 +107209,7 @@ entities:
       pos: 66.5,41.5
     - type: Door
       state: Closing
-      secondsUntilStateChange: -159554.64
+      secondsUntilStateChange: -159923.3
     - type: Firelock
       emergencyCloseCooldown: 11124.3888776
   - uid: 17480
@@ -108686,7 +108691,7 @@ entities:
       pos: -27.5,81.5
     - type: Door
       state: Closing
-      secondsUntilStateChange: -147664.64
+      secondsUntilStateChange: -148033.3
   - uid: 17692
     components:
     - type: Transform
@@ -188616,16 +188621,16 @@ entities:
       pos: -4.5,17.5
 - proto: SpawnPointReporter
   entities:
-  - uid: 29257
-    components:
-    - type: Transform
-      parent: 2
-      pos: 5.5,15.5
   - uid: 29258
     components:
     - type: Transform
       parent: 2
       pos: 4.5,19.5
+  - uid: 35414
+    components:
+    - type: Transform
+      parent: 2
+      pos: 4.5,15.5
 - proto: SpawnPointResearchAssistant
   entities:
   - uid: 29259
@@ -191692,11 +191697,11 @@ entities:
       - SurveillanceCameraSupply
 - proto: SurveillanceCameraWirelessRouterEntertainment
   entities:
-  - uid: 29700
+  - uid: 15314
     components:
     - type: Transform
       parent: 2
-      pos: 4.5,13.5
+      pos: 5.5,13.5
 - proto: SurveillanceWirelessCameraAnchoredEntertainment
   entities:
   - uid: 29701

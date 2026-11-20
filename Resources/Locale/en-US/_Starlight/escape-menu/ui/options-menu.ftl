@@ -118,6 +118,10 @@ ui-starlight = Starlight
 ui-options-auto-punctuate = Automatically punctuate in-character messages
 ui-options-general-ghost-themes = Ghost Themes
 ui-options-general-ghost-themes-force-tester = Force display the Tester tab in the Ghost Themes menu
+ui-options-chat-stacking = Stack repeated chat messages
+ui-options-chat-stacking-tooltip = Collapse identical recent chat messages into one line with a repeat counter.
+ui-options-chat-stacking-history = Chat stacking history
+ui-options-chat-stacking-disabled = Disabled
 
 ## Admin
 
@@ -207,12 +211,19 @@ ui-options-screen-brightness = Screen brightness
 ui-options-screen-brightness-desc = Lifts dim areas of the view. Pitch black stays black.
 ui-options-light-boost = Light source brightness
 ui-options-light-boost-desc = Makes every lamp a little brighter and reach a little further.
+ui-options-color-grading = Area colours
+ui-options-color-grading-tooltip = Departments tint the view a little and alert levels darken it towards their colour.
+ui-options-color-grading-strength = Area colour strength
 ui-options-light-tonemap = Soft light
 ui-options-light-tonemap-tooltip = Rolls off bright spots where lights overlap, so sprites don't wash out.
 ui-options-gi = Light bounce (experimental)
 ui-options-gi-tooltip = Lit walls throw some of their light back onto the floor around them, and light spills around corners and through doorways. Costs some GPU time.
 ui-options-gi-rays = Light bounce quality
 ui-options-gi-rays-desc = Rays per pixel. More is smoother and slower.
+ui-options-gi-starlight = Starlight
+ui-options-gi-starlight-tooltip = Open space lights the floor with a faint cold glow.
+ui-options-gi-surface-color = Coloured bounce light
+ui-options-gi-surface-color-tooltip = Bounce light takes the colour of the walls and floors it comes off, so a red carpet gives the area around it a faint red glow.
 ui-options-night-vision = Night vision
 ui-options-night-vision-tooltip = Poorly lit areas lose their colour and turn cold blue, the way the eye sees in the dark.
 ui-options-vignette = Vignette
@@ -229,6 +240,18 @@ ui-options-bloom-threshold-desc = How much brighter than its light a pixel has t
 ui-options-bloom-radius = Bloom radius
 ui-options-bloom-radius-desc = How far the glow spreads.
 ui-options-film-grain-strength = Film grain strength
+ui-options-impact-effects = Impact effects
+ui-options-impact-effects-tooltip = Taking damage and nearby explosions briefly split the colours at the screen edges. Explosions also flash the screen.
+ui-options-impact-effects-strength = Impact effects strength
+ui-options-dust-motes = Dust motes
+ui-options-dust-motes-tooltip = Small specks of dust drift in the bright light close to lamps.
+ui-options-floor-gloss = Floor gloss
+ui-options-floor-gloss-tooltip = Puddles and polished floors catch the light of nearby lamps.
+ui-options-floor-gloss-strength = Floor gloss strength
+ui-options-heat-haze = Heat haze
+ui-options-heat-haze-tooltip = The air shimmers over fires and burning things.
+ui-options-heat-haze-strength = Heat haze strength
+ui-options-dust-motes-strength = Dust motes strength
 
 ## Controls sections
 ui-options-function-sl-interact-with-other-hand = Interact with other hand

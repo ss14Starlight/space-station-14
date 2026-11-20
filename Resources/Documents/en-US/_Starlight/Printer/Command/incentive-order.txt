@@ -1,0 +1,26 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀                       [bold]RECOGNITION OF MERIT[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+
+Dear [form],
+
+In the course of your duties to the station, you have proven yourself to be an exemplar to the crew through your record of distinguished conduct. It is therefore my pleasure to grant you the following special commendation.
+
+Services Performed: [form]
+
+Medal or Citation: [form]
+
+May your devotion to the station continue to light the way for your fellow crewmembers.
+
+Sincerely,
+
+⠀[signature]
+
+
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+
