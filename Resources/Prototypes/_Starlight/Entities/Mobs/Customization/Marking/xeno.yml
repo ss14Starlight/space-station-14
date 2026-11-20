@@ -93,7 +93,7 @@
 - type: marking
   id: HeadTopXenoTeeth
   bodyPart: HeadTop
-  markingCategory: Special
+  markingCategory: HeadTop
   speciesRestriction: [ Xeno ]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Xeno/overlay.rsi
