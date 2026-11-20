@@ -1,13 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: (Flotilla) Add more TVs, at least one per department.
-    type: Add
-  id: 410338
-  time: '2026-11-12T01:33:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7187
-- author: Hot Mic
-  changes:
   - message: (Flotilla) Add new Airlock Cycle to a few external airlocks.
     type: Add
   id: 410339
@@ -2799,4 +2792,11 @@ Entries:
   id: 410737
   time: '2026-11-20T21:56:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7321
+- author: FoxStellar
+  changes:
+  - message: Mortizol now has a proper Contraband Level, Tier 2 Medical Access.
+    type: Add
+  id: 410738
+  time: '2026-11-20T22:27:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7347
 Order: -1
