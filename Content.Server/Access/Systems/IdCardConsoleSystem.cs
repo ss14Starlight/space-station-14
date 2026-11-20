@@ -290,7 +290,7 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
         JobIconPrototype? jobIcon = null;
         if (_prototype.Resolve(newJobIcon, out var explicitJobIcon) && IconAllowed(explicitJobIcon))
             jobIcon = explicitJobIcon;
-        else if (_prototype.Resolve(job?.Icon, out var defaultJobIcon))
+        else if (_prototype.Resolve(job?.Icon, out var defaultJobIcon) && IconAllowed(defaultJobIcon)) // Starlight - prevents salvage id console setting captain ID icon as fallback
             jobIcon = defaultJobIcon;
 
         if (jobIcon != null)
