@@ -44,6 +44,8 @@
         - proto: LeftArmCyber
         - proto: LeftHandCyber
         - proto: LeftFootCyber
+        - proto: PKAUpgradeDamageCaus
+          cost: 3
         - proto: ClothingHeadHelmetSwat
           cost: 5
           prob: 0.5
@@ -178,6 +180,8 @@
         - proto: EyeImplantChemistry
         - proto: HandImplantInsulated
         - proto: Drill
+        - proto: PKAUpgradeDamageCaus
+          cost: 3
         - proto: CrateITGMedicalSurplus
           cost: 15
           prob: 0.25
@@ -278,6 +282,10 @@
           cost: 15
         - proto: PaddyUpgradeKit
           cost: 15
+        - proto: Weaponpkashotgun
+          cost: 10
+        - proto: PKAUpgradeDamageCaus
+          cost: 3
         - proto: WeaponShotgunEnforcer
           cost: 5
         - proto: ClothingHeadHelmetSwat

@@ -1,0 +1,5 @@
+﻿- type: !PartialOnly entity
+  id: LockerBase
+  components:
+    - type: Electrified
+      enabled: false
