@@ -1,0 +1,214 @@
+- type: entity
+  id: BaseXenoOrgan
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Xeno/organs.rsi
+  - type: Organ
+  - type: Edible
+  - type: Extractable
+    grindableSolutionName: organ
+  - type: SolutionManager
+    solutions:
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeatXeno
+  - type: FlavorProfile
+    flavors:
+      - people
+  - type: Tag
+    tags:
+      - Meat
+
+
+- type: entity
+  id: OrganXenoBrain
+  parent: [BaseOrganBrain, BaseXenoOrgan]
+  name: brain
+  description: "The source of incredible, unending hunger. Chomp."
+  components:
+  - type: Sprite
+    state: brain
+  - type: Organ
+  - type: Input
+    context: "ghost"
+  - type: Brain
+  - type: InputMover
+  - type: Examiner
+  - type: BlockMovement
+  - type: BadFood
+  - type: Tag
+    tags:
+      - Meat
+  - type: SolutionManager
+    solutions:
+    - SolutionOrganNutriment
+    - SolutionOrganFoodGreyMatter
+  - type: FlavorProfile
+    flavors:
+      - people
+  - type: FoodSequenceElement
+    entries:
+      Burger: Brain
+      Taco: Brain
+  - type: Item
+    size: Small
+    heldPrefix: brain
+
+
+- type: entity
+  id: OrganXenoEyes
+  parent: [BaseXenoOrgan, BaseOrganEyes]
+  name: eyes
+  description: "How exactly do they see with these..?"
+  components:
+  - type: Sprite
+    layers:
+      - state: eyes
+  - type: Item
+    size: Small
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: MobXenoEyes
+
+- type: entity
+  id: OrganXenoTongue
+  parent: [BaseXenoOrgan, BaseOrganTongue]
+  name: tongue
+  description: "Proof that there is more jaws inside."
+  components:
+  - type: OrganTongue
+    allowedEmotes: [ "Hisses", "Purr", "Growl", "Scree", "Drool" ]
+    sounds:
+      Male: UnisexXeno
+      Female: UnisexXeno
+      Unsexed: UnisexXeno
+  - type: Sprite
+    state: tongue
+  - type: MeleeWeapon
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 5
+
+- type: entity
+  id: OrganXenoAppendix
+  parent: [BaseXenoOrgan, BaseOrganAppendix]
+  name: appendix
+  components:
+  - type: Sprite
+    layers:
+    - state: appendix
+    - state: appendix-inflamed
+      visible: false
+
+- type: entity
+  id: OrganXenoEars
+  parent: [BaseXenoOrgan, BaseOrganEars]
+  name: ears
+  description: "It hears you breathe."
+  components:
+  - type: Sprite
+    state: ears
+
+- type: entity
+  id: OrganXenoLungs
+  parent: [BaseXenoOrgan, BaseOrganLungs]
+  name: lungs
+  description: "Smells of alien pheromones and dog food."
+  components:
+  - type: Sprite
+    layers:
+      - state: lung-l
+      - state: lung-r
+  - type: Item
+    size: Small
+    heldPrefix: lungs
+  - type: Lung
+  - type: Metabolizer
+    metabolizerTypes: [ Xeno, Human ]
+    stages: [ Respiration ]
+  - type: SolutionManager
+    solutions:
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeatXeno
+    - SolutionOrganLung
+
+- type: entity
+  id: OrganXenoHeart
+  parent: [BaseXenoOrgan, BaseOrganHeart]
+  name: heart
+  description: "Full of acid!."
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [ Xeno ]
+    stages: [ Bloodstream ]
+  - type: Item
+    size: Small
+    heldPrefix: heart
+
+- type: entity
+  id: OrganXenoStomach
+  parent: [BaseXenoOrgan, BaseOrganStomach]
+  name: stomach
+  description: "It devours."
+  components:
+  - type: Sprite
+    state: stomach
+  - type: Item
+    size: Small
+    heldPrefix: stomach
+  - type: SolutionManager
+    solutions:
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeatXeno
+    - SolutionOrganStomach100
+  - type: Stomach
+    isSpecialDigestibleExclusive: false
+    specialDigestible:
+      tags:
+      - ClothMade
+      - Paper
+  - type: Metabolizer
+    maxReagents: 3
+    metabolizerTypes: [ Xeno ]
+    stages: [ Digestion ]
+
+- type: entity
+  id: OrganXenoLiver
+  parent: [BaseXenoOrgan, BaseOrganLiver]
+  name: liver
+  description: "Even if you normally like liver, you probably should not eat this."
+  components:
+  - type: Sprite
+    state: liver
+  - type: Item
+    size: Small
+    heldPrefix: liver
+  - type: Metabolizer
+    maxReagents: 1
+    metabolizerTypes: [ Xeno ]
+    stages: [ Metabolites ]
+
+- type: entity
+  id: OrganXenoKidneys
+  parent: [BaseXenoOrgan, BaseOrganKidneys]
+  name: kidneys
+  description: "Filters toxins from the bloodstream. But not the acid!"
+  components:
+  - type: Sprite
+    layers:
+      - state: kidney-l
+      - state: kidney-r
+  - type: Item
+    size: Small
+    heldPrefix: kidneys
+  - type: Metabolizer
+    maxReagents: 5
+    metabolizerTypes: [ Xeno ]

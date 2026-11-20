@@ -214,11 +214,13 @@ namespace Content.Client.Administration.UI.Bwoink
             ChannelSelector.PopulateList();
         }
 
-        public void SelectChannel(NetUserId channel)
+        public bool SelectChannel(NetUserId channel) // Starlight-edit: returns whether the player was found
         {
+            ChannelSelector.PopulateList(); // Starlight
+
             if (!ChannelSelector.PlayerInfo.TryFirstOrDefault(
                 i => i.SessionId == channel, out var info))
-                return;
+                return false; // Starlight edit
 
             // clear filter if we're trying to select a channel for a player that isn't currently filtered
             // i.e. through the message verb.
@@ -230,6 +232,7 @@ namespace Content.Client.Administration.UI.Bwoink
 
             ChannelSelector.PopulateList();
             ChannelSelector.PlayerListContainer.Select(data);
+            return true; // Starlight edit
         }
 
         public void UpdateButtons()

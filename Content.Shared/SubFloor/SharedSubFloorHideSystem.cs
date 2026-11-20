@@ -26,13 +26,11 @@ namespace Content.Shared.SubFloor
         [Dependency] private SharedVisibilitySystem _visibility = default!;
         [Dependency] protected SharedPopupSystem _popup = default!;
 
-        private EntityQuery<SubFloorHideComponent> _hideQuery;
+        [Dependency] private EntityQuery<SubFloorHideComponent> _hideQuery = default!;
 
         public override void Initialize()
         {
             base.Initialize();
-
-            _hideQuery = GetEntityQuery<SubFloorHideComponent>();
 
             SubscribeLocalEvent<TileChangedEvent>(OnTileChanged);
             SubscribeLocalEvent<SubFloorHideComponent, ComponentStartup>(OnSubFloorStarted);

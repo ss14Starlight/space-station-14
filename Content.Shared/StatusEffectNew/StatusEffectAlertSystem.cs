@@ -10,7 +10,7 @@ public sealed partial class StatusEffectAlertSystem : EntitySystem
 {
     [Dependency] private AlertsSystem _alerts = default!;
 
-    private EntityQuery<StatusEffectComponent> _effectQuery;
+    [Dependency] private EntityQuery<StatusEffectComponent> _effectQuery = default!;
 
     public override void Initialize()
     {
@@ -19,8 +19,6 @@ public sealed partial class StatusEffectAlertSystem : EntitySystem
         SubscribeLocalEvent<StatusEffectAlertComponent, StatusEffectAppliedEvent>(OnStatusEffectApplied);
         SubscribeLocalEvent<StatusEffectAlertComponent, StatusEffectRemovedEvent>(OnStatusEffectRemoved);
         SubscribeLocalEvent<StatusEffectAlertComponent, StatusEffectEndTimeUpdatedEvent>(OnEndTimeUpdated);
-
-        _effectQuery = GetEntityQuery<StatusEffectComponent>();
     }
 
     private void OnStatusEffectApplied(Entity<StatusEffectAlertComponent> ent, ref StatusEffectAppliedEvent args)

@@ -1,33 +1,121 @@
+#Damage Kits
 - type: entity
   id: PKAUpgradeDamageExp
   parent: BasePKAUpgrade
-  name: Experimental PKA modkit (damage)
-  description: An experimental modkit, sharpens projectiles into spikes before launching, at the cost of fire rate.
+  name: Experimental PKA modkit (Sharpened)
+  description: An experimental modkit, sharpens projectiles into spikes before launching, at the cost of some fire rate.
   components:
   - type: Sprite
     layers:
     - state: base
     - state: overlay-1
-      color: "#ec9b2d"
+      color: "#b37a2d"
     - state: overlay-2
-      color: "#a71010"
+      color: "#b37a2d"
     - state: overlay-3
-      color: "#eb4c13"
+      color: "#b37a2d"
   - type: GunUpgrade
     tags: [ GunUpgradeDamageExp ]
     examineText: gun-upgrade-examine-text-damage
   - type: GunUpgradeDamage
     damage:
       types:
-        Slash: 10
+        Slash: 5
+        Piercing: 5
   - type: GunUpgradeFireRate
-    coefficient: .6
+    coefficient: .7
 
+- type: entity
+  id: PKAUpgradeDamageStruct
+  parent: BasePKAUpgrade
+  name: Experimental PKA modkit (Structural)
+  description: An experimental modkit, makes each shot more destructive, at the cost of firerate and blunt damage.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay-1
+      color: "#70624f"
+    - state: overlay-2
+      color: "#70624f"
+    - state: overlay-3
+      color: "#70624f"
+  - type: GunUpgrade
+    tags: [ GunUpgradeDamageExp ]
+    examineText: gun-upgrade-examine-text-damage
+  - type: GunUpgradeDamage
+    damageMultiplier:
+      types:
+        Blunt: 0.25
+        Structural: 2.5
+  - type: GunUpgradeFireRate
+    coefficient: .7
+
+- type: entity
+  id: PKAUpgradeDamageCaus
+  parent: BasePKAUpgrade
+  name: Experimental PKA modkit (Acid)
+  description: An experimental modkit, imbues each round with fluorosulfonic acid. Damaging to structures and soft tissue, but dramatically slows shots, reduces firerate, and makes rounds deal very little blunt.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay-1
+      color: "#222f12"
+    - state: overlay-2
+      color: "#222f12"
+    - state: overlay-3
+      color: "#222f12"
+  - type: GunUpgrade
+    tags: [ GunUpgradeDamageExp ]
+    examineText: gun-upgrade-examine-text-damage
+  - type: GunUpgradeDamage
+    damage:
+      types:
+        Caustic: 8
+        Structural: 5
+    damageMultiplier:
+      types:
+        Blunt: 0.15
+  - type: GunUpgradeSpeed
+    coefficient: .7
+  - type: GunUpgradeFireRate
+    coefficient: .7
+
+- type: entity
+  id: PKAUpgradeDamageAdv
+  parent: BasePKAUpgrade
+  name: Advanced PKA modkit (damage)
+  description: An advanced version of the damage modkit, not compatible with its base or experimental variants.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay-1
+      color: "#ff1100"
+    - state: overlay-2
+      color: "#ff1100"
+    - state: overlay-3
+      color: "#ff1100"
+  - type: GunUpgrade
+    tags:
+      - GunUpgradeDamage
+      - GunUpgradeDamageExp
+    examineText: gun-upgrade-examine-text-damage
+  - type: GunUpgradeDamage
+    damage:
+      types:
+        Structural: 17
+    damageMultiplier:
+      types:
+        Blunt: 2
+
+#Range Kits
 - type: entity
   id: PKAUpgradeRangeExp
   parent: BasePKAUpgrade
   name: Experimental PKA modkit (range)
-  description: An experimental modkit, dramatically increases the speed of the projectile, at the cost of its structural damage.
+  description: An experimental modkit, dramatically increases the speed of the projectile and creating more blunt trauma, at the cost of its structural damage.
   components:
   - type: Sprite
     layers:
@@ -46,23 +134,50 @@
   - type: GunUpgradeDamage
     damage:
       types:
-        Structural: -10
+        Blunt: 7
+    damageMultiplier:
+      types:
+        Structural: 0
 
 - type: entity
-  id: PKAUpgradeFireRateExp
+  id: PKAUpgradeRangeAdv
   parent: BasePKAUpgrade
-  name: Experimental PKA modkit (fire rate)
-  description: An experimental modkit, dramatically increases firerate, at the cost of damage and projectile speed.
+  name: Advanced PKA modkit (range)
+  description: An advanced version of the range modkit, not compatible with its base or experimental variants.
   components:
   - type: Sprite
     layers:
     - state: base
     - state: overlay-1
-      color: "#bbf134"
+      color: "#d5e8ff"
     - state: overlay-2
-      color: "#07901b"
+      color: "#d5e8ff"
     - state: overlay-3
-      color: "#9bf134"
+      color: "#d5e8ff"
+  - type: GunUpgrade
+    tags:
+      - GunUpgradeRange
+      - GunUpgradeRangeExp
+    examineText: gun-upgrade-examine-text-range
+  - type: GunUpgradeSpeed
+    coefficient: 2.5
+
+# Firerate Kits
+- type: entity
+  id: PKAUpgradeFireRateExp
+  parent: BasePKAUpgrade
+  name: Experimental PKA modkit (fire rate)
+  description: An experimental modkit, dramatically increases firerate, at the cost of some damage and speed.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay-1
+      color: "#7dd415"
+    - state: overlay-2
+      color: "#7dd415"
+    - state: overlay-3
+      color: "#7dd415"
   - type: GunUpgrade
     tags: [ GunUpgradeReloadSpeedExp ]
     examineText: gun-upgrade-examine-text-reload
@@ -71,6 +186,30 @@
   - type: GunUpgradeSpeed
     coefficient: .9
   - type: GunUpgradeDamage
-    damage:
+    damageMultiplier:
       types:
-        Blunt: -7
+        Blunt: 0.9
+        Structural: .9
+
+- type: entity
+  id: PKAUpgradeFireRateAdv
+  parent: BasePKAUpgrade
+  name: Advanced PKA modkit (fire rate)
+  description: An advanced version of the firerate modkit, not compatible with its base or experimental variants.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay-1
+      color: "#e9ffb1"
+    - state: overlay-2
+      color: "#e9ffb1"
+    - state: overlay-3
+      color: "#e9ffb1"
+  - type: GunUpgrade
+    tags:
+      - GunUpgradeReloadSpeed
+      - GunUpgradeReloadSpeedExp
+    examineText: gun-upgrade-examine-text-reload
+  - type: GunUpgradeFireRate
+    coefficient: 2

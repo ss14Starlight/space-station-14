@@ -43,6 +43,11 @@
     eyes: ClothingEyesGlassesCommand
 
 - type: loadout
+  id: CaptainGlassesPrescription
+  equipment:
+    eyes: ClothingEyesGlassesCommandPrescription
+
+- type: loadout
   id: CaptainHud
   equipment:
     eyes: ClothingEyesHudCommand

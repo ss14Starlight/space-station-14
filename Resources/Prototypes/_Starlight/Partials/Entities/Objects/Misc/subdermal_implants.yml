@@ -4,6 +4,7 @@
   # Tracker rattle
   - type: TriggerOnMobstateChange
     mobState:
+    - SoftCritical
     - Critical
     - Dead
   - type: RattleOnTrigger
@@ -19,6 +20,11 @@
 - type: !PartialOnly entity
   id: DeathRattleImplant
   components:
+  - type: TriggerOnMobstateChange
+    mobState:
+    - SoftCritical
+    - Critical
+    - Dead
   - type: RattleOnTrigger
     radioChannel: [Syndicate] # syndicate isn't default rattle channel anymore
 

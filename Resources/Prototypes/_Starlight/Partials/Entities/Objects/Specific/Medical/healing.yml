@@ -7,6 +7,36 @@
     modifyBloodLevel: 30
 
 - type: !PartialOnly entity
+  id: Gauze
+  components:
+  - type: Healing
+    # Starlight Start
+    blacklist:
+      tags:
+      - Xeno
+    # Starlight End
+
+- type: !PartialOnly entity
+  id: Brutepack
+  components:
+  - type: Healing
+    # Starlight Start
+    blacklist:
+      tags:
+      - Xeno
+    # Starlight End
+
+- type: !PartialOnly entity
+  id: Ointment
+  components:
+  - type: Healing
+    # Starlight Start
+    blacklist:
+      tags:
+      - Xeno
+    # Starlight End
+
+- type: !PartialOnly entity
   id: BaseHealingItem
   components:
   - type: EmitSoundOnPickup

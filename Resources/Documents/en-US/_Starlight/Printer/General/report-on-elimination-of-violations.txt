@@ -1,0 +1,19 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀            [bold]ISSUE RESOLUTION REPORT[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+Issue(s) identified by: [form]
+Employee position: [form]
+
+Presented issue(s): [form]
+
+Measures taken to resolve issue(s): [form]
+
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+

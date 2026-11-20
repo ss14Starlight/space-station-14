@@ -1,0 +1,20 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀                           [bold]MAINTENANCE REPORT[/bold]
+─────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+Irregularities were identified in the station's [form].
+
+The problems were caused by: [form]
+
+Damage to the station: [form]
+
+Repairs performed: [form]
+
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+

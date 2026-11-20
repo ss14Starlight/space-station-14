@@ -1,0 +1,20 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀                         [bold]SALARY MODIFICATION REQUEST[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+I, [signature], hereby a salary modification of [form] (amount or percentage).
+
+Employee receiving salary change: [form]
+
+Employee's job title: [form]
+
+Reason for salary change: [form]
+
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+

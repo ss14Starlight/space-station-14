@@ -14,11 +14,12 @@
     - type: Armor
       modifiers:
         coefficients:
-          Blunt: 0.40
-          Slash: 0.40
+          Blunt: 0.55
+          Slash: 0.55
           Piercing: 0.40
           Radiation: 0.65
           Caustic: 0.6
+          Heat: 0.5
       staminaModifier: 0.3
     - type: FootstepModifier
       footstepSoundCollection:
