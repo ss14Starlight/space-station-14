@@ -245,7 +245,7 @@
       effects:
       - !type:EvenHealthChange
         damage:
-          Brute: -4.5
+          Brute: -3.0
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
