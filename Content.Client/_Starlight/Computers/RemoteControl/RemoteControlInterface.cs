@@ -1,18 +1,13 @@
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared._Starlight.Computers.RemoteControl;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Graphics;
-using Robust.Shared.IoC;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
-using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Content.Client.UserInterface.Controls;
-using Content.Client.UserInterface.Systems.Storage.Controls;
-using System.Numerics;
 
 namespace Content.Client._Starlight.Computers.RemoteControl;
 
@@ -105,7 +100,9 @@ public sealed partial class RemoteControlInterface : EntitySystem
         TryEmbedPendingWindow(pendingOpen);
     }
 
-    // The server marks remote-origin opens because the remote actor is not included in the client's replicated UI actor state.
+    /// <summary>
+    /// The server marks remote-origin opens because the remote actor is not included in the client's replicated UI actor state.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnBoundUiOpened(Entity<UserInterfaceComponent> entity, ref BoundUIOpenedEvent args)
     {

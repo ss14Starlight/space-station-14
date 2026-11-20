@@ -13,12 +13,6 @@ public abstract partial class SharedMeleeWeaponSystem
     /// <summary>
     /// Attempts a remote light attack against the specified target.
     /// </summary>
-    /// <param name="user">The entity performing the attack.</param>
-    /// <param name="weapon">The weapon entity and its melee component.</param>
-    /// <param name="target">The entity being attacked.</param>
-    /// <returns>
-    /// <see langword="true"/> if the attack was accepted; otherwise, <see langword="false"/>.
-    /// </returns>
     /// <remarks>
     /// A successful remote attack clears <see cref="MeleeWeaponComponent.Attacking"/> without resetting
     /// <see cref="MeleeWeaponComponent.NextAttack"/>.
@@ -39,13 +33,6 @@ public abstract partial class SharedMeleeWeaponSystem
     /// <summary>
     /// Attempts to execute a heavy attack for the remotely controlled entity.
     /// </summary>
-    /// <param name="user">The remote entity performing the attack.</param>
-    /// <param name="attack">The heavy-attack request.</param>
-    /// <param name="session">The session that sent the request, if any.</param>
-    /// <returns>
-    /// <see langword="true"/> only if the heavy attack is successfully initiated; otherwise,
-    /// <see langword="false"/>.
-    /// </returns>
     public bool TryAttemptRemoteHeavyAttack(EntityUid user, HeavyAttackEvent attack, ICommonSession? session)
     {
         if (!TryGetWeapon(user, out var weaponUid, out var weapon)
@@ -62,13 +49,6 @@ public abstract partial class SharedMeleeWeaponSystem
     /// <summary>
     /// Attempts a remote heavy attack toward the specified position.
     /// </summary>
-    /// <param name="user">The entity performing the remote attack.</param>
-    /// <param name="coordinates">The aimed-at position in entity coordinates, converted to map coordinates for the attack ray.</param>
-    /// <param name="session">The session associated with the request, if available; it is passed to the normal heavy-attack attempt.</param>
-    /// <returns>
-    /// <see langword="true"/> if the generated attack is accepted by <see cref="TryAttemptRemoteHeavyAttack"/>; otherwise,
-    /// <see langword="false"/>. A true return does not guarantee that a target was hit.
-    /// </returns>
     /// <remarks>
     /// The user must be in combat mode and have a melee weapon that is not already attacking or on cooldown, and
     /// <see cref="Blocker.CanAttack"/> must allow the attack. A use-key gun must have heavy melee alt-fire, and an

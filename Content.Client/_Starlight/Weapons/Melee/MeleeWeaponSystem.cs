@@ -8,12 +8,8 @@ public sealed partial class MeleeWeaponSystem
     /// <summary>
     /// Handles the remote heavy-attack input at the requested map position.
     /// </summary>
-    /// <param name="user">The entity receiving the attack input.</param>
-    /// <param name="mousePosition">The map position targeted by the input.</param>
     /// <returns>
-    /// <see langword="true"/> if the input is consumed, including when attack blocking, an active attack, a cooldown,
-    /// or a nullspace position prevents an attack; otherwise, <see langword="false"/> if the input does not qualify as
-    /// a remote heavy attack.
+    /// Returns the success of the function if consumed and handled.
     /// </returns>
     public bool TryHandleRemoteHeavyAttack(EntityUid user, MapCoordinates mousePosition)
         => TryHandleRemoteHeavyAttack(user, mousePosition, ignoreClientAttackState: false);
@@ -21,14 +17,8 @@ public sealed partial class MeleeWeaponSystem
     /// <summary>
     /// Handles remote heavy-attack input, optionally ignoring client-side attack state for hold repeats.
     /// </summary>
-    /// <param name="user">The entity receiving the attack input.</param>
-    /// <param name="mousePosition">The map position targeted by the input.</param>
-    /// <param name="ignoreClientAttackState">
-    /// Whether to ignore the locally replicated cooldown and active-attack state. The server still validates both.
-    /// </param>
     /// <returns>
-    /// <see langword="true"/> if the input is consumed; otherwise, <see langword="false"/> if the input does not qualify as
-    /// a remote heavy attack.
+    /// Returns the success of the function if consumed and handled.
     /// </returns>
     public bool TryHandleRemoteHeavyAttack(
         EntityUid user,

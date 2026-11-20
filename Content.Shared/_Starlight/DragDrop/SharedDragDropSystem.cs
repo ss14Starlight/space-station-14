@@ -9,9 +9,6 @@ public abstract partial class SharedDragDropSystem
     /// <summary>
     /// Attempts to drag <paramref name="dragged"/> onto <paramref name="target"/> after validating interaction access and range.
     /// </summary>
-    /// <param name="user">The entity performing the drag-and-drop interaction.</param>
-    /// <param name="dragged">The entity being dragged.</param>
-    /// <param name="target">The entity being targeted.</param>
     /// <returns>
     /// <see langword="false"/> if either entity is deleted, the user cannot interact with the target, the dragged
     /// entity cancels its interaction attempt, or either entity is outside unobstructed interaction range.

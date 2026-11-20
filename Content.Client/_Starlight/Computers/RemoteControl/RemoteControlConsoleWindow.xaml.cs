@@ -87,6 +87,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
     [Dependency] private IPlacementManager _placementManager = default!;
     [Dependency] private IConfigurationManager _configurationManager = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
+
     private readonly ItemStatusPanel _activeDeviceStatusPanel;
     private readonly TextureButton _inventoryToggleButton;
     private readonly Dictionary<string, SlotButton> _inventorySlotButtons = new();
