@@ -299,7 +299,7 @@
         - MiningConsumeables
         - SLSecret
       currencyWhitelist:
-        - SalvageTicket # Same currency as salvage vendor to promote sharing
+        - MiningTicket # Different currency as salvage vendor to discourage salvage spending all round on vgroid
 
 - type: entity
   parent: VendingMachine
