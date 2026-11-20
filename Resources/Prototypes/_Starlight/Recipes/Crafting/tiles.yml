@@ -1,0 +1,31 @@
+- type: construction
+  id: TileXenoSteel
+  graph: TileXenoSteel
+  startNode: start
+  targetNode: xenosteeltile
+  category: construction-category-tiles
+  objectType: Item
+
+- type: construction
+  id: TileXenoSteelCorner
+  graph: TileXenoSteelCorner
+  startNode: start
+  targetNode: xenosteelcornertile
+  category: construction-category-tiles
+  objectType: Item
+
+- type: construction
+  id: TileXenoTechmaint
+  graph: TileXenoTechmaint
+  startNode: start
+  targetNode: xenotechmainttile
+  category: construction-category-tiles
+  objectType: Item
+
+- type: construction
+  id: TileXeno
+  graph: TileXeno
+  startNode: start
+  targetNode: xenotile
+  category: construction-category-tiles
+  objectType: Item

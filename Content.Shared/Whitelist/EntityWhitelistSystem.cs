@@ -11,13 +11,7 @@ public sealed partial class EntityWhitelistSystem : EntitySystem
     [Dependency] private TagSystem _tag = default!;
     [Dependency] private SharedToolSystem _tools = default!; // Starlight
 
-    private EntityQuery<ItemComponent> _itemQuery;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        _itemQuery = GetEntityQuery<ItemComponent>();
-    }
+    [Dependency] private EntityQuery<ItemComponent> _itemQuery = default!;
 
     /// <inheritdoc cref="IsValid(Content.Shared.Whitelist.EntityWhitelist,Robust.Shared.GameObjects.EntityUid)"/>
     public bool IsValid(EntityWhitelist list, [NotNullWhen(true)] EntityUid? uid)

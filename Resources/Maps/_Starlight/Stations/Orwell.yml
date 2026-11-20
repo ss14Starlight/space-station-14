@@ -102075,13 +102075,11 @@ entities:
     components:
     - type: Transform
       parent: 2
-      rot: -1.5707963267948966 rad
       pos: 29.5,15.5
   - uid: 13389
     components:
     - type: Transform
       parent: 2
-      rot: -1.5707963267948966 rad
       pos: -61.5,77.5
     - type: TechnologyDatabase
       supportedDisciplines:

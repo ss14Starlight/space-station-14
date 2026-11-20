@@ -120,6 +120,238 @@
     song:
       path: /Audio/_Starlight/RadioStation/CDs/misc/security_psa.ogg
 
+# Speaker Advertisements
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertDonkPockets
+  name: "CD: Donk Pockets"
+  description: A CD containing a prerecorded advertisement for Donk Pockets.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/DonkPockets.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertGreybull
+  name: "CD: Greybull"
+  description: A CD containing a prerecorded advertisement for Greybull.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/Greybull.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertJoinCargonia
+  name: "CD: Join Cargonia"
+  description: A CD containing a prerecorded recruitment advertisement for Cargonia.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/JOIN_CARGONIA.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertJoinEngineering
+  name: "CD: Join Engineering"
+  description: A CD containing a prerecorded recruitment advertisement for the Engineering department.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/JOIN_ENGINEERING.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertJoinMedical
+  name: "CD: Join Medical"
+  description: A CD containing a prerecorded recruitment advertisement for the Medical department.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/JOIN_MEDICAL.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertJoinSecurity
+  name: "CD: Join Security"
+  description: A CD containing a prerecorded recruitment advertisement for the Security department.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/JOIN_SECURITY.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertJoinTheJanitors
+  name: "CD: Join the Janitors"
+  description: A CD containing a prerecorded recruitment advertisement for the Janitorial department.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/JOIN_THE_JANITORS2.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertJoinScienceTeam
+  name: "CD: Join the Science Team"
+  description: A CD containing a prerecorded recruitment advertisement for the Science department.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/JoinTheScienceTeamToday.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertMagmale
+  name: "CD: MAGMALE"
+  description: A CD containing a prerecorded advertisement for MAGMALE.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/MAGMALE.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertUncleGits
+  name: "CD: Uncle Git's Commercial"
+  description: A CD containing a prerecorded advertisement for Uncle Git's.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/UncleGitsCommercial.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertDiscountDans
+  name: "CD: Discount Dan's"
+  description: A CD containing a prerecorded advertisement for Discount Dan's.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/goon_DiscountDans.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertSpeakerSecurityPSA
+  name: "CD: Security PSA"
+  description: A CD containing a prerecorded public service announcement for the station's security department.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/goon_SecurityPSA.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertInspector
+  name: "CD: Inspector"
+  description: A CD containing a prerecorded advertisement for the Inspector.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/Inspector_ad.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertJoinBotany
+  name: "CD: Join Botany"
+  description: A CD containing a prerecorded recruitment advertisement for the Botany department.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/JOIN_BOTANY.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertKammerer
+  name: "CD: Kammerer"
+  description: A CD containing a prerecorded advertisement for Kammerer.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/Kammerer_ad.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertMimeFromBehind
+  name: "CD: Mime From Behind"
+  description: A CD containing a prerecorded advertisement for Mime From Behind.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/Mime_From_Behind.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertMosinNagant
+  name: "CD: Mosin-Nagant"
+  description: A CD containing a prerecorded advertisement for the Mosin-Nagant.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/Mosin_Nagant_ad.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertNomads
+  name: "CD: Nomads"
+  description: A CD containing a prerecorded advertisement for Nomads.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/Nomads.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertNTClownCollege
+  name: "CD: NT Clown College"
+  description: A CD containing a prerecorded advertisement for the NT Clown College.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/NT_Clown_College.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertSinguloTek
+  name: "CD: Singulo-Tek"
+  description: A CD containing a prerecorded advertisement for Singulo-Tek.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/Singulo-Tek.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertTOOB
+  name: "CD: TOOB"
+  description: A CD containing a prerecorded advertisement for TOOB.
+  components:
+  - type: RadioAdvert
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/Speaker/TOOB.ogg
+
 # Miscellaneous
 - type: entity
   parent: BaseCDDisc

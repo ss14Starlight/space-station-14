@@ -6,4 +6,5 @@ metabolizer-type-rodentia = Rodentia
 metabolizer-type-neo-vox = Neo-Vox
 metabolizer-type-doll = Doll
 metabolizer-type-experiment = Experiment
+metabolizer-type-xeno = Xen'Kara
 metabolizer-type-reptilian = Reptilian
