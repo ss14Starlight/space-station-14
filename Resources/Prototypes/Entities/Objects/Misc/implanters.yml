@@ -53,7 +53,8 @@
     - ITGTrackingImplant
     - MedTakMindShieldImplant
     - TSFMindShieldImplant
-    - ITGMindShieldImplant #Starlight end
+    - ITGMindShieldImplant
+    - BudgetBluespaceImplant #Starlight end
     deimplantFailureDamage:
       types:
         Cellular: 50

@@ -46,3 +46,31 @@
       noEngravingText: "engraving-picture-no-message"
       engraveSuccessMessage: "engraving-picture-succeed"
       hasEngravingText: "engraving-picture-has-message"
+
+# Acts like a lost property bag for items left behind by budget bluespace teleportation
+- type: entity
+  parent: [ BaseStorageItem, BaseContrabandTier3, BaseNanoTrasenContraband ]
+  id: BluespacePocketBelongings
+  name: unstable bluespace pocket
+  description: A localized tear in bluespace caused by a faulty teleportation. Equipment that failed to cross is trapped inside.
+  suffix: Bluespace, Belongings
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
+    noRot: true
+    layers:
+    - state: core
+  - type: Item
+    size: Tiny
+  - type: PointLight
+    radius: 1.5
+    energy: 3.5
+    color: "#00ccff"
+    castShadows: false
+  - type: Storage
+    maxItemSize: Ginormous
+    storageOpenSound:
+      collection: RadiationPulse
+    grid:
+    - 0,0,19,19
+  - type: ReadOnlyStorage
