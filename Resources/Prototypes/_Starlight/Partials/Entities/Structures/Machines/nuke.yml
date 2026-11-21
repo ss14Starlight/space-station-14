@@ -4,6 +4,7 @@
   - type: Tag
     tags:
       - Keg
+  - type: ItemSlots
   - type: ContainerContainer
     containers:
       paper_label: !type:ContainerSlot
