@@ -15,12 +15,12 @@
   - type: Transform
     noRot: false
   - type: Sprite
-    sprite: _Carpmosia/Structures/Piping/Atmospherics/heatexchanger.rsi # Carpmosia-edit - 5 pipe layers
+    sprite: _Starlight\Structures\Piping\Atmospherics\inlineradiator.rsi
     layers:
-    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
       state: pipeStraight
       map: [ "enum.PipeVisualLayers.Pipe" ]
-    - state: heStraight
+    - state: iheStraight
       map: [ "enum.SubfloorLayers.FirstLayer" ]
   - type: AtmosPipeLayers
     spriteRsiPaths: {}
@@ -43,10 +43,8 @@
     node: radiator
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: Thermoregulator
-  # Starlight start
   - type: VentCrawlTube
   - type: VentCrawlTransit
-  # Starlight end
   - type: GuideHelp
     guides:
     - Radiators
@@ -61,10 +59,10 @@
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
       layers:
-      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
         state: pipeBend
         map: [ "enum.PipeVisualLayers.Pipe" ]
-      - state: heBend
+      - state: iheBend
         map: [ "enum.SubfloorLayers.FirstLayer" ]
     - type: NodeContainer
       nodes:

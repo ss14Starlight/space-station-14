@@ -959,6 +959,8 @@
     - MixerGasMolar
     - Radiator
     - RadiatorBend
+    - InlineRadiator
+    - InlineRadiatorBend
     - SignalValve
     - CanisterPort
     - FilterGas
