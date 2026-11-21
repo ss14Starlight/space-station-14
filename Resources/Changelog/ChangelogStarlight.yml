@@ -1,83 +1,6 @@
 Entries:
 - author: CrazyPhantom, Vincolan
   changes:
-  - message: Removed the Travelers Camera from the Uplink, Replaced with the Photography Camera.
-    type: Remove
-  id: 410361
-  time: '2026-11-12T12:34:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7042
-- author: CrazyPhantom, Vincolan
-  changes:
-  - message: Added the Photography Camera to trinkets for 50 Reporter Hours.
-    type: Add
-  id: 410362
-  time: '2026-11-12T12:34:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7042
-- author: CrazyPhantom, Vincolan
-  changes:
-  - message: Added the Photography Camera PDA Cartridge, found in HoP's locker.
-    type: Add
-  id: 410363
-  time: '2026-11-12T12:34:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7042
-- author: CrazyPhantom, Vincolan
-  changes:
-  - message: Added the Photography Camera to HoP's Locker, Detectives Locker and Reporters bag on Spawn.
-    type: Add
-  id: 410364
-  time: '2026-11-12T12:34:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7042
-- author: CrazyPhantom, Vincolan
-  changes:
-  - message: Added Blank Photos.
-    type: Add
-  id: 410365
-  time: '2026-11-12T12:34:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7042
-- author: CrazyPhantom, Vincolan
-  changes:
-  - message: Photography Cameras now consume Blank Photos (Max 4 inserted).
-    type: Tweak
-  id: 410366
-  time: '2026-11-12T12:34:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7042
-- author: CrazyPhantom, Vincolan
-  changes:
-  - message: Blank Photos can now be printed at the AutoLathe for 1 paper each.
-    type: Tweak
-  id: 410367
-  time: '2026-11-12T12:34:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7042
-- author: CrazyPhantom, Vincolan
-  changes:
-  - message: Blank Photo box holding 9 blank photos, One found in HoP's locker, Detectives Locker and Reporters bag on spawn.
-    type: Add
-  id: 410368
-  time: '2026-11-12T12:34:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7042
-- author: CrazyPhantom, Vincolan
-  changes:
-  - message: Photography crate, buyable at Cargo for 4k, Contains 2 Photography Cameras and 4 Blank Photo Box's.
-    type: Add
-  id: 410369
-  time: '2026-11-12T12:34:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7042
-- author: CrazyPhantom, Vincolan
-  changes:
-  - message: You can now Insert flashes into Photography Cameras which produces light when taking a photo at the cost of a Flash Charge, You can also use this to convert by hitting someone with the camera that has a flash, PDA's cannot hold flashes.
-    type: Tweak
-  id: 410370
-  time: '2026-11-12T12:34:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7042
-- author: CrazyPhantom, Vincolan
-  changes:
-  - message: Hovering over an entity while taking a photo of them will now produce their Description on the Photo printed.
-    type: Tweak
-  id: 410371
-  time: '2026-11-12T12:34:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7042
-- author: CrazyPhantom, Vincolan
-  changes:
   - message: You can now upload Photographs to a news report by inserting it into the Mass Media Digiboard Or console, one Picture per Article, Not uploaded to the Discord.
     type: Add
   id: 410372
@@ -2799,4 +2722,81 @@ Entries:
   id: 410760
   time: '2026-11-21T10:26:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7376
+- author: Floximo
+  changes:
+  - message: Remote control can now handle heavy attack (swings).
+    type: Add
+  id: 410761
+  time: '2026-11-21T11:00:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7241
+- author: Floximo
+  changes:
+  - message: The remote control interface (brain-replacement) has now a visualization made by @redmushie.
+    type: Add
+  id: 410762
+  time: '2026-11-21T11:00:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7241
+- author: Floximo
+  changes:
+  - message: Remote control now supports auto-attack if enabled in options.
+    type: Add
+  id: 410763
+  time: '2026-11-21T11:00:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7241
+- author: Floximo
+  changes:
+  - message: Drag&Drop is now supported by remote control.
+    type: Add
+  id: 410764
+  time: '2026-11-21T11:00:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7241
+- author: Floximo
+  changes:
+  - message: The remote control interface is now no longer renamed by being inserted into or renaming a borg.
+    type: Tweak
+  id: 410765
+  time: '2026-11-21T11:00:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7241
+- author: Floximo
+  changes:
+  - message: Remote controlled entities now use the access privileges of the controller.
+    type: Tweak
+  id: 410766
+  time: '2026-11-21T11:00:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7241
+- author: Floximo
+  changes:
+  - message: SmartDispensers work now togehter with remote control.
+    type: Fix
+  id: 410767
+  time: '2026-11-21T11:00:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7241
+- author: Floximo
+  changes:
+  - message: All remote control windows are now opened in the right context.
+    type: Fix
+  id: 410768
+  time: '2026-11-21T11:00:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7241
+- author: Floximo
+  changes:
+  - message: Remote control keybinding issues got solved.
+    type: Fix
+  id: 410769
+  time: '2026-11-21T11:00:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7241
+- author: Floximo
+  changes:
+  - message: A bug with remote control window resizing was solved.
+    type: Fix
+  id: 410770
+  time: '2026-11-21T11:00:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7241
+- author: Floximo
+  changes:
+  - message: Client crash on using mobile remote + plushy and writing a message shortly before disconnecting.
+    type: Fix
+  id: 410771
+  time: '2026-11-21T11:00:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7241
 Order: -1
