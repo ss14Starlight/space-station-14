@@ -115,6 +115,7 @@ secure-terminal-chief-medical-officer-name = Chief Medical Officer
 secure-terminal-civilian-leadership-name = Civilian Leadership
 secure-terminal-command-name = Command
 secure-terminal-engineering-leadership-name = Engineering Leadership
+secure-terminal-executive-authority-name = Executive Authority
 secure-terminal-head-of-security-name = Head of Security
 secure-terminal-med-and-science-leadership-name = Medical and Science Leadership
 secure-terminal-medical-leadership-name = Medical Leadership
