@@ -1,18 +1,4 @@
 Entries:
-- author: Katzenminer
-  changes:
-  - message: Added the Photography Camera, A Camera that takes actual Pictures!
-    type: Add
-  id: 410359
-  time: '2026-11-12T12:34:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7042
-- author: CrazyPhantom, Vincolan
-  changes:
-  - message: Removed the Travelers Camera, replaced with the Photography Camera.
-    type: Remove
-  id: 410360
-  time: '2026-11-12T12:34:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7042
 - author: CrazyPhantom, Vincolan
   changes:
   - message: Removed the Travelers Camera from the Uplink, Replaced with the Photography Camera.
@@ -2799,4 +2785,18 @@ Entries:
   id: 410758
   time: '2026-11-21T10:07:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7378
+- author: Johnny
+  changes:
+  - message: Added a grate within the construction menu.
+    type: Add
+  id: 410759
+  time: '2026-11-21T10:26:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7376
+- author: Johnny
+  changes:
+  - message: Changed grates so they can be deconstructed.
+    type: Tweak
+  id: 410760
+  time: '2026-11-21T10:26:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7376
 Order: -1
