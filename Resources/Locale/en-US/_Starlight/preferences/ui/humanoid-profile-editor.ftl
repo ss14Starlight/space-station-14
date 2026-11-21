@@ -85,3 +85,4 @@ loadout-tab-pick-role = Pick a role on the left to change what it starts with.
 loadout-tab-search = Search items
 loadout-tab-antags = Antagonists
 loadout-tab-species = Species
+loadout-tab-folder-tooltip = {$count} items like {$item}. Click to show them all.

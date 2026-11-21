@@ -92,10 +92,10 @@ public sealed class MarkingCard : ContainerButton
     }
 
     /// <summary>
-    /// Scales a 32px sprite to fill as much of a card as whole pixels allow.
+    /// Scales a sprite to fill as much of a card as whole pixels allow. The sprite size is its larger side in pixels, 32 by default.
     /// </summary>
-    public static float ScaleFor(Vector2 cellSize)
-        => MathF.Max(1f, MathF.Floor((MathF.Min(cellSize.X, cellSize.Y) - 8f) / 32f));
+    public static float ScaleFor(Vector2 cellSize, float spriteSize = 32f)
+        => MathF.Max(1f, MathF.Floor((MathF.Min(cellSize.X, cellSize.Y) - 8f) / spriteSize));
 }
 
 /// <summary>
