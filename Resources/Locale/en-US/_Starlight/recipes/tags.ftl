@@ -18,3 +18,6 @@ construction-graph-tag-remote-signaller = a basic remote signaler
 construction-graph-tag-remote-signaller-adv = an advanced remote signaler
 
 drone-construction-guide-string = Insert a left and right cyborg arm into the drone shell.
+
+construction-recipe-inline-heat-exchanger = inline radiator
+construction-recipe-inline-heat-exchanger-bend = inline radiator bend
