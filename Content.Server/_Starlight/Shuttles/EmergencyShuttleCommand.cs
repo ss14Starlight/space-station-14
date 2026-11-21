@@ -11,6 +11,7 @@ using Content.Shared.Administration;
 using Content.Shared.Database;
 using Robust.Shared.Audio;
 using Robust.Shared.Toolshed;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.Shuttles;
 
@@ -29,9 +30,8 @@ public sealed partial class EmergencyShuttleCommand : ToolshedCommand
     /// Delay the departure of emergency shuttles by a specified number of seconds.
     /// </summary>
     [CommandImplementation("delayshuttledeparture")]
-    public void DelayEmergencyShuttleDeparture(IInvocationContext ctx, float seconds,
-        [Optional] [DefaultParameterValue(false)] bool sendAnnouncement,
-        [Optional] [DefaultParameterValue("")] string additionalText)
+    public void DelayEmergencyShuttleDeparture(IInvocationContext ctx, float seconds, bool sendAnnouncement = false,
+        string? additionalText = null)
     {
         _eShuttle ??= GetSys<EmergencyShuttleSystem>();
         if (!_eShuttle.EmergencyShuttleArrived || _eShuttle.ShuttlesLeft)
@@ -39,11 +39,12 @@ public sealed partial class EmergencyShuttleCommand : ToolshedCommand
             CommandMarkup.Error(ctx, "Emergency shuttles have already departed or have not arrived yet.");
             return;
         }
+
         _eShuttle.DelayShuttleDeparture(seconds, ctx.Session);
         if (sendAnnouncement)
         {
             var str = Loc.GetString("delayemergencyshuttledeparture-message", ("seconds", seconds));
-            if (additionalText != string.Empty) str += $"\n{additionalText}";
+            if (additionalText is not null) str += $"\n{additionalText}";
             _chat ??= GetSys<ChatSystem>();
             _chat.DispatchGlobalAnnouncement(str, "Central Command");
         }
@@ -55,23 +56,25 @@ public sealed partial class EmergencyShuttleCommand : ToolshedCommand
     /// Delay the arrival of the emergency shuttle to station by a specified number of seconds.
     /// </summary>
     [CommandImplementation("delayshuttlearrival")]
-    public void DelayEmergencyShuttleArrival(IInvocationContext ctx, float seconds,
-        [Optional] [DefaultParameterValue(false)] bool sendAnnouncement,
-        [Optional] [DefaultParameterValue("")] string additionalText)
+    public void DelayEmergencyShuttleArrival(IInvocationContext ctx, float seconds, bool sendAnnouncement = false,
+        string? additionalText = null)
     {
         _round ??= GetSys<RoundEndSystem>();
         _eShuttle ??= GetSys<EmergencyShuttleSystem>();
         _ticker ??= GetSys<GameTicker>();
-        if (!_round.IsRoundEndRequested() || _eShuttle.EmergencyShuttleArrived || _ticker.RunLevel != GameRunLevel.InRound) // Need to be more careful with this one
+        if (!_round.IsRoundEndRequested() || _eShuttle.EmergencyShuttleArrived ||
+            _ticker.RunLevel != GameRunLevel.InRound) // Need to be more careful with this one
         {
-            CommandMarkup.Error(ctx, "Can't add time to shuttle arrival right now. Either already arrived or not in round.");
+            CommandMarkup.Error(ctx,
+                "Can't add time to shuttle arrival right now. Either already arrived or not in round.");
             return;
         }
+
         _eShuttle.DelayShuttleArrival(seconds, ctx.Session);
         if (sendAnnouncement)
         {
             var str = Loc.GetString("delayemergencyshuttlearrival-message", ("seconds", seconds));
-            if (additionalText != string.Empty) str += $"\n{additionalText}";
+            if (additionalText is not null) str += $"\n{additionalText}";
             _chat ??= GetSys<ChatSystem>();
             _chat.DispatchGlobalAnnouncement(str, "Central Command");
         }
@@ -82,8 +85,8 @@ public sealed partial class EmergencyShuttleCommand : ToolshedCommand
     /// <summary>
     /// Instantly dock the emergency shuttle.
     /// </summary>
-    [AdminCommand(AdminFlags.Fun)]
     [CommandImplementation("dockshuttle")]
+    [AdminCommand( AdminFlags.Round | AdminFlags.Fun)]
     public void DockEmergencyShuttle(IInvocationContext ctx)
     {
         _eShuttle ??= GetSys<EmergencyShuttleSystem>();
@@ -101,7 +104,7 @@ public sealed partial class EmergencyShuttleCommand : ToolshedCommand
     /// Call the emergency shuttle with an optional arrival time.
     /// </summary>
     [CommandImplementation("callshuttle")]
-    public void CallEmergencyShuttle(IInvocationContext ctx, [Optional] [DefaultParameterValue(0f)] float seconds)
+    public void CallEmergencyShuttle(IInvocationContext ctx, float seconds = 0)
     {
         _round ??= GetSys<RoundEndSystem>();
         if (seconds == 0) _round.RequestRoundEnd(ctx.Session?.AttachedEntity, checkCooldown: false);
@@ -128,37 +131,31 @@ public sealed partial class EmergencyShuttleCommand : ToolshedCommand
         _eShuttle.EarlyLaunch(ctx.Session);
     }
 
-    // TODO: Improve this once nullable type parsers exist
     /// <summary>
     /// Allow or disallow calling the emergency shuttle. Note that this persists between rounds.
     /// </summary>
     [CommandImplementation("allowshuttlecalls")]
-    public void AllowEmergencyShuttleCalls(IInvocationContext ctx, bool state,
-        [Optional] [DefaultParameterValue(false)] bool announce, [Optional] [DefaultParameterValue("")] string message,
-        [Optional] [DefaultParameterValue("")] string sender, [Optional] [DefaultParameterValue("")] string color,
-        [Optional] [DefaultParameterValue("")] string soundPath)
+    public void AllowEmergencyShuttleCalls(IInvocationContext ctx, bool state, bool announce = false,
+        string? message = null, string? sender = null, string? color = null,
+        [CommandArgument(typeof(ResPathCompletionParser))] ResPath? soundPath = null)
     {
         _round ??= GetSys<RoundEndSystem>();
 
         if (announce)
         {
             _chat ??= GetSys<ChatSystem>();
-            var announcementText = message != string.Empty
-                ? message
-                : state
-                    ? "Emergency shuttle calls have been enabled."
-                    : "Emergency shuttle calls have been disabled.";
+            var announcementText = message ?? (state
+                ? "Emergency shuttle calls have been enabled."
+                : "Emergency shuttle calls have been disabled.");
 
-            var senderText = sender != string.Empty
-                ? sender
-                : "Central Command";
+            var senderText = sender ?? "Central Command";
 
-            var announcementColor = color != string.Empty
+            var announcementColor = color is not null
                 ? Color.FromHex(color)
                 : Color.Gold;
 
-            var announcementSound = soundPath != string.Empty
-                ? new SoundPathSpecifier(soundPath)
+            var announcementSound = soundPath is not null
+                ? new SoundPathSpecifier(soundPath.Value)
                 : null;
 
             _chat.DispatchGlobalAnnouncement(announcementText, senderText, true, announcementSound, announcementColor);

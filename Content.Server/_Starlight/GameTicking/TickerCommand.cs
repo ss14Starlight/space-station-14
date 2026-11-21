@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Runtime.InteropServices;
 using Content.Server._Starlight.Administration.Systems;
 using Content.Server._Starlight.Toolshed;
 using Content.Server.Administration;
@@ -49,7 +48,7 @@ public sealed partial class TickerCommand : ToolshedCommand
     /// End round if it isn't ended already and start the restart timer. Will restart timer if already active.
     /// </summary>
     [CommandImplementation("restartround")]
-    public void RestartRound(IInvocationContext ctx, [Optional] [DefaultParameterValue(-1f)] float countdownTime)
+    public void RestartRound(IInvocationContext ctx, float countdownTime = -1f)
     {
         _end ??= GetSys<RoundEndSystem>();
         _ticker ??= GetSys<GameTicker>();
@@ -133,7 +132,7 @@ public sealed partial class TickerCommand : ToolshedCommand
     /// Delay round start by a specified number of seconds, or pause if 0 or unspecified.
     /// </summary>
     [CommandImplementation("delaystart")]
-    public void DelayStart(IInvocationContext ctx, [Optional] [DefaultParameterValue(0)] int seconds)
+    public void DelayStart(IInvocationContext ctx, int seconds = 0)
     {
         _ticker ??= GetSys<GameTicker>();
         if (_ticker.RunLevel != GameRunLevel.PreRoundLobby)

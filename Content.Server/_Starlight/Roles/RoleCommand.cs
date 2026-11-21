@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Runtime.InteropServices;
 using Content.Server._Starlight.Toolshed;
 using Content.Shared._Starlight.Commands;
 using Content.Server.Administration;
@@ -102,12 +101,10 @@ public sealed partial class RoleCommand : ToolshedCommand
         ProtoId<RoleTypePrototype> role, bool notifyRoleUpdate) =>
         uid.Select(x => SetRole(ctx, x, role, notifyRoleUpdate));
 
-    // TODO: When my RT pull request gets merged, replace [DefaultParameterValue] in favor of OptionalValue<T>.
     [CommandImplementation("addrole")]
     public EntityUid AddRole(IInvocationContext ctx, [PipedArgument] EntityUid uid,
         [CommandArgument(typeof(EntProtoIdWithCompCompletionParser<MindRoleComponent>))] EntProtoId mindRolePrototype,
-        [Optional] [DefaultParameterValue(true)]
-        bool silent)
+        bool silent = true)
     {
         if (!_proto.TryIndex(mindRolePrototype, out var proto))
         {
@@ -138,8 +135,8 @@ public sealed partial class RoleCommand : ToolshedCommand
 
     [CommandImplementation("addrole")]
     public IEnumerable<EntityUid> AddRole(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid,
-        [CommandArgument(typeof(EntProtoIdWithCompCompletionParser<MindRoleComponent>))]
-        EntProtoId mindRolePrototype, [Optional] [DefaultParameterValue(true)] bool silent) =>
+        [CommandArgument(typeof(EntProtoIdWithCompCompletionParser<MindRoleComponent>))] EntProtoId mindRolePrototype,
+        bool silent = true) =>
         uid.Select(x => AddRole(ctx, x, mindRolePrototype, silent));
 
     [CommandImplementation("rmrole")]
