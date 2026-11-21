@@ -1,53 +1,4 @@
 Entries:
-- author: Hot Mic
-  changes:
-  - message: (Flotilla) Minor fixes.
-    type: Fix
-  id: 410351
-  time: '2026-11-12T01:33:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7187
-- author: redmushie
-  changes:
-  - message: (Ming) Change Distro/Waste layers to match docking port standard.
-    type: Tweak
-  id: 410352
-  time: '2026-11-12T01:33:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7181
-- author: redmushie
-  changes:
-  - message: (Ming) Route distro, waste and HV to every docking port.
-    type: Add
-  id: 410353
-  time: '2026-11-12T01:33:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7181
-- author: Johnny
-  changes:
-  - message: Added a new mindrole status named Survivor. Its for ghost roles that require, well, survival believe it or not.
-    type: Add
-  id: 410354
-  time: '2026-11-12T08:12:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7192
-- author: Johnny
-  changes:
-  - message: Changed the syndicate disaster victims to  be survivors instead of free agents.
-    type: Tweak
-  id: 410355
-  time: '2026-11-12T08:12:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7192
-- author: Johnny
-  changes:
-  - message: Changed Telecrystals to sell for 1000 spesos instead of 200.
-    type: Tweak
-  id: 410356
-  time: '2026-11-12T08:56:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7195
-- author: RedSpeeds
-  changes:
-  - message: Fixed Syndi reinforcement being able to sign syndie letter.
-    type: Fix
-  id: 410357
-  time: '2026-11-12T11:10:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7193
 - author: Rhapsody (Pepta, Soothe)
   changes:
   - message: Cosmic Cult conversion is now much more permissive and won't get locked up by having multiple targets on the glyph. It'll just pick a valid target at random and ignore invalid targets entirely.
@@ -2799,4 +2750,53 @@ Entries:
   id: 410750
   time: '2026-11-20T23:02:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7199
+- author: Rinary
+  changes:
+  - message: Added RGB/HSL/Grayscale supports for color picker in body tab of character editor.
+    type: Add
+  id: 410751
+  time: '2026-11-21T09:47:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7367
+- author: Rinary
+  changes:
+  - message: Readded groups from old loadout system to new UI.
+    type: Add
+  id: 410752
+  time: '2026-11-21T09:47:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7367
+- author: Rinary
+  changes:
+  - message: Changed how looks locked loadout options in loadout tab of character editor, now it has locked icon so you can see locked items.
+    type: Tweak
+  id: 410753
+  time: '2026-11-21T09:47:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7367
+- author: Rinary
+  changes:
+  - message: Changed body preview in body tab of character editor, now it's animated.
+    type: Tweak
+  id: 410754
+  time: '2026-11-21T09:47:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7367
+- author: Rinary
+  changes:
+  - message: Fixed bug when big markings had weird left/right shift.
+    type: Fix
+  id: 410755
+  time: '2026-11-21T09:47:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7367
+- author: Rinary
+  changes:
+  - message: Fixed bug when window in fullscreen mode can stay very very big when you're changing window size(doesn't adjust size with changing game window size).
+    type: Fix
+  id: 410756
+  time: '2026-11-21T09:47:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7367
+- author: Rinary
+  changes:
+  - message: Fixed bug with special category, now it's attached to body so you can actually see it and add markings.
+    type: Fix
+  id: 410757
+  time: '2026-11-21T09:47:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7367
 Order: -1
