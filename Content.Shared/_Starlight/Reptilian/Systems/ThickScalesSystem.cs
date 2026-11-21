@@ -8,7 +8,7 @@ using Content.Shared.Chemistry.Prototypes;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
-using Content.Shared.Tag; // <-- ADDED
+using Content.Shared.Tag; 
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
@@ -34,7 +34,7 @@ public sealed partial class ThickScalesSystem : EntitySystem
         if (!ent.Comp.BlockInstantInjectors
             || args.Cancelled
             || HasComp<PiercesThickScalesComponent>(args.UsedInjector)
-            || _tag.HasTag(args.UsedInjector, MedipenTag) //
+            || _tag.HasTag(args.UsedInjector, MedipenTag) 
             || !IsInstantInjector(args.UsedInjector)
             || (TryComp<InjectionPortComponent>(ent, out var port) && port.BypassScales))
             return;
@@ -52,14 +52,14 @@ public sealed partial class ThickScalesSystem : EntitySystem
         if (!args.Mode.Behavior.HasFlag(InjectorBehavior.Inject) && !args.Mode.Behavior.HasFlag(InjectorBehavior.Dynamic))
             return;
 
-        if (HasComp<PiercesThickScalesComponent>(args.Injector)) // 
+        if (HasComp<PiercesThickScalesComponent>(args.Injector)) 
             return;
 
         if (TryComp<InjectionPortComponent>(ent, out var port) && port.BypassScales) // < moved up so ports bypass auto-injector delay- DV
             return; 
 
         // Auto-injectors get a 3s do-after; hyposprays and jet injectors stay blocked.
-        if (args.Mode.InjectOnUse) //
+        if (args.Mode.InjectOnUse) 
         {
             if (!_tag.HasTag(args.Injector, MedipenTag))
                 return;
