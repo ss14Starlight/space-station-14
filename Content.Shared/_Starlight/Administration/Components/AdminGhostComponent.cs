@@ -10,4 +10,7 @@ public sealed partial class AdminGhostComponent : Component
     [DataField] public EntProtoId ToggleAGhostHideActionId = "ActionToggleAGhostHide";
     [ViewVariables, AutoNetworkedField] public bool HiddenFromNonAdminGhosts;
     [ViewVariables] public EntityUid? ToggleAGhostHideActionEntity;
+
+    [DataField] public EntProtoId ToggleAGhostAdminOverlayActionId = "ActionToggleAGhostAdminOverlay";
+    [ViewVariables] public EntityUid? ToggleAGhostAdminOverlayActionEntity;
 }
