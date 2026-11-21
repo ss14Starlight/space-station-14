@@ -1,0 +1,511 @@
+# Transit tubes reuse the disposal tube network (DisposalTube with its own network) and
+# disposal holders (the pods). TransitTube only changes how pods choose exits.
+
+- type: entity
+  id: TransitTubeBase
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Piping/TransitTube/tube.rsi
+    drawdepth: OverMobs
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 100
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Transform
+    anchored: true
+  - type: Climbable
+  - type: Tag # lets hand labelers name stations, and with them destinations
+    tags:
+    - Structure
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Glass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DisposalTube
+    network: Transit
+  - type: TransitTube
+  - type: TransitTubeGlass
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 1
+    fx: EffectRCDDeconstruct2
+    rpd: true
+  - type: StaticPrice
+    price: 40
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTube
+  name: transit tube
+  description: A reinforced glass tube that carries transit pods.
+  components:
+  - type: Sprite
+    layers:
+    - state: straight
+      map: [ "glass" ]
+    - state: straight_details
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeDiagonal
+  name: diagonal transit tube
+  description: A reinforced glass tube that carries transit pods diagonally.
+  components:
+  - type: Sprite
+    layers:
+    - state: diagonal
+      map: [ "glass" ]
+    - state: diagonal_details
+  - type: DisposalTube
+    exits:
+    - NorthEast
+    - SouthWest
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeCurved
+  name: curved transit tube
+  description: A reinforced glass tube that bends from straight to diagonal.
+  components:
+  - type: Sprite
+    layers:
+    - state: curved
+      map: [ "glass" ]
+    - state: curved_details
+  - type: DisposalTube
+    exits:
+    - South
+    - NorthEast
+
+- type: entity
+  parent: TransitTubeCurved
+  id: TransitTubeCurvedFlipped
+  suffix: Flipped
+  components:
+  - type: Sprite
+    layers:
+    - state: curved_flipped
+      map: [ "glass" ]
+    - state: curved_flipped_details
+  - type: DisposalTube
+    exits:
+    - South
+    - NorthWest
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeJunction
+  name: transit tube junction
+  description: Splits a transit tube in two. Pods coming from the trunk follow the arrow, pods coming from either branch merge back into the trunk.
+  components:
+  - type: Sprite
+    layers:
+    - state: junction
+      map: [ "glass" ]
+    - state: junction_details
+  - type: DisposalTube
+    exits:
+    - South
+    - NorthEast
+    - NorthWest
+  - type: TransitTube
+    preferredExit: NorthEast
+
+- type: entity
+  parent: TransitTubeJunction
+  id: TransitTubeJunctionFlipped
+  suffix: Flipped
+  components:
+  - type: Sprite
+    layers:
+    - state: junction
+      map: [ "glass" ]
+    - state: junction_flipped
+  - type: TransitTube
+    preferredExit: NorthWest
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeCap
+  name: transit tube cap
+  description: Seals the end of a transit tube. Pods turn back here.
+  components:
+  - type: Sprite
+    layers:
+    - state: cap
+      map: [ "glass" ]
+    - state: cap_details
+  - type: DisposalTube
+    exits:
+    - South
+
+# Stations
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeStation
+  name: transit tube station
+  description: Pods stop here, open up and take passengers. Climb in from the platform side.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Piping/TransitTube/station.rsi
+    layers:
+    - state: closed_station
+      map: [ "glass" ]
+    - state: closed_station_details
+      map: [ "details" ]
+  - type: DisposalTube
+    exits:
+    - East
+    - West
+  - type: TransitTubeStation
+  - type: UserInterface
+    interfaces:
+      enum.TransitStationUiKey.Key:
+        type: TransitStationBoundUserInterface
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSource
+    ports:
+    - TransitPodArrived
+    - TransitPodDeparted
+  - type: DeviceLinkSink
+    ports:
+    - TransitDepart
+    - TransitHold
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.TransitStationVisuals.State:
+        glass:
+          Closed: { state: closed_station }
+          Opening: { state: opening_station }
+          Open: { state: open_station }
+          Closing: { state: closing_station }
+        details:
+          Closed: { state: closed_station_details }
+          Opening: { state: opening_station_details }
+          Open: { state: open_station_details }
+          Closing: { state: closing_station_details }
+  - type: StaticPrice
+    price: 150
+
+- type: entity
+  parent: TransitTubeStation
+  id: TransitTubeTerminus
+  name: transit tube terminus
+  description: The end of the line. Pods stop here, take passengers and head back the way they came.
+  components:
+  - type: Sprite
+    layers:
+    - state: closed_terminus
+      map: [ "glass" ]
+    - state: closed_terminus_details
+      map: [ "details" ]
+  - type: DisposalTube
+    exits:
+    - West
+  - type: GenericVisualizer
+    visuals:
+      enum.TransitStationVisuals.State:
+        glass:
+          Closed: { state: closed_terminus }
+          Opening: { state: opening_terminus }
+          Open: { state: open_terminus }
+          Closing: { state: closing_terminus }
+        details:
+          Closed: { state: closed_terminus_details }
+          Opening: { state: opening_terminus_details }
+          Open: { state: open_terminus_details }
+          Closing: { state: closing_terminus_details }
+
+- type: entity
+  parent: TransitTubeTerminus
+  id: TransitTubeTerminusFlipped
+  suffix: Flipped
+  components:
+  - type: Sprite
+    layers:
+    - state: closed_terminus_flipped
+      map: [ "glass" ]
+    - state: closed_terminus_flipped_details
+      map: [ "details" ]
+  - type: DisposalTube
+    exits:
+    - East
+  - type: GenericVisualizer
+    visuals:
+      enum.TransitStationVisuals.State:
+        glass:
+          Closed: { state: closed_terminus_flipped }
+          Opening: { state: opening_terminus_flipped }
+          Open: { state: open_terminus_flipped }
+          Closing: { state: closing_terminus_flipped }
+        details:
+          Closed: { state: closed_terminus_flipped_details }
+          Opening: { state: opening_terminus_flipped_details }
+          Open: { state: open_terminus_flipped_details }
+          Closing: { state: closing_terminus_flipped_details }
+
+# Pods
+
+- type: entity
+  id: TransitPod
+  name: transit pod
+  description: A glass capsule braced with metal ribs. It keeps its air on the way, but not its temperature.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Piping/TransitTube/pod.rsi
+    drawdepth: Mobs
+    layers:
+    - state: pod
+      map: [ "base" ]
+    # Shown only while placing the pod, to tell which way it will leave a through station.
+    - sprite: Markers/arrow.rsi
+      state: mono
+      map: [ "direction" ]
+      scale: 0.6, 0.6
+      color: "#ffffffbb"
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.TransitPodVisuals.Occupied:
+        base:
+          False: { state: pod }
+          True: { state: pod_occupied }
+  - type: Clickable
+  - type: InteractionOutline
+  - type: DisposalHolder
+    traversalSpeed: 6
+    persistent: true
+    escapeChance: 0
+    maxAllowedDamage: 0
+    clangSound: null
+    air:
+      volume: 140
+      temperature: 293.15
+    container:
+      occludes: true
+      showEnts: false
+      ents: []
+  - type: ContainerContainer
+    containers:
+      DisposalHolderComponent: !type:Container
+  - type: Physics
+    bodyType: Kinematic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+  - type: TransitPod
+  - type: UserInterface
+    interfaces:
+      enum.TransitPodUiKey.Key:
+        type: TransitStationBoundUserInterface
+        requireInputValidation: false
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 2
+    fx: EffectRCDDeconstruct2
+    rpd: true
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Glass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassReinforced:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  parent: TransitPod
+  id: TransitPodInsulated
+  name: insulated transit pod
+  description: A sealed, heat-shielded pod. Nobody can see out, but it rides through fire and lava.
+  components:
+  - type: Sprite
+    layers:
+    - state: temppod
+      map: [ "base" ]
+    # Shown only while placing the pod, to tell which way it will leave a through station.
+    - sprite: Markers/arrow.rsi
+      state: mono
+      map: [ "direction" ]
+      scale: 0.6, 0.6
+      color: "#ffffffbb"
+  - type: GenericVisualizer
+    visuals:
+      enum.TransitPodVisuals.Occupied:
+        base:
+          False: { state: temppod }
+          True: { state: temppod_occupied }
+  - type: TransitPod
+    heatConductivity: 0.002
+  - type: ChildBlockVision
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: TransitTubeTerminus
+  id: TransitTubeDepot
+  name: transit tube depot
+  description: A siding where spare pods wait. A pod parked here leaves when a station calls for one, or when told to over the network.
+  suffix: Depot
+  components:
+  - type: Sprite
+    layers:
+    - state: closed_terminus
+      map: [ "glass" ]
+    - state: closed_depot
+      map: [ "details" ]
+  - type: TransitTubeStation
+    depot: true
+  - type: GenericVisualizer
+    visuals:
+      enum.TransitStationVisuals.State:
+        glass:
+          Closed: { state: closed_terminus }
+          Opening: { state: opening_terminus }
+          Open: { state: open_terminus }
+          Closing: { state: closing_terminus }
+        details:
+          Closed: { state: closed_depot }
+          Opening: { state: opening_depot }
+          Open: { state: open_depot }
+          Closing: { state: closing_depot }
+
+- type: entity
+  parent: TransitTubeTerminusFlipped
+  id: TransitTubeDepotFlipped
+  name: transit tube depot
+  description: A siding where spare pods wait. A pod parked here leaves when a station calls for one, or when told to over the network.
+  suffix: Depot, Flipped
+  components:
+  - type: Sprite
+    layers:
+    - state: closed_terminus_flipped
+      map: [ "glass" ]
+    - state: closed_depot_flipped
+      map: [ "details" ]
+  - type: TransitTubeStation
+    depot: true
+  - type: GenericVisualizer
+    visuals:
+      enum.TransitStationVisuals.State:
+        glass:
+          Closed: { state: closed_terminus_flipped }
+          Opening: { state: opening_terminus_flipped }
+          Open: { state: open_terminus_flipped }
+          Closing: { state: closing_terminus_flipped }
+        details:
+          Closed: { state: closed_depot_flipped }
+          Opening: { state: opening_depot_flipped }
+          Open: { state: open_depot_flipped }
+          Closing: { state: closing_depot_flipped }
+
+- type: entity
+  parent: TransitTubeStation
+  id: TransitTubeStationSecurity
+  suffix: Security
+  components:
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  parent: TransitTubeTerminus
+  id: TransitTubeTerminusSecurity
+  suffix: Security
+  components:
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  parent: TransitPodInsulated
+  id: TransitPodCargo
+  name: cargo transit pod
+  description: A sealed pod for crates and loose items. People are not allowed in.
+  components:
+  - type: Sprite
+    layers:
+    - state: cargopod
+      map: [ "base" ]
+    - state: cargopod_occupied
+      map: [ "load" ]
+      shader: unshaded
+      visible: false
+    # Shown only while placing the pod, to tell which way it will leave a through station.
+    - sprite: Markers/arrow.rsi
+      state: mono
+      map: [ "direction" ]
+      scale: 0.6, 0.6
+      color: "#ffffffbb"
+  - type: GenericVisualizer
+    visuals:
+      enum.TransitPodVisuals.Occupied:
+        base:
+          False: { state: cargopod }
+          True: { state: cargopod }
+      enum.TransitPodVisuals.Load:
+        load:
+          Empty: { visible: false }
+          Occupied: { visible: true, state: cargopod_occupied }
+          Full: { visible: true, state: cargopod_full }
+  - type: TransitPod
+    cargo: true
+    maxPassengers: 4

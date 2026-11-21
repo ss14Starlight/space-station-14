@@ -32,6 +32,11 @@ public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
             ["Vents"] = ("rpd-component-vents", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/vent_passive.png"))),
             ["SensorsMonitors"] = ("rpd-component-sensors-monitors", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/airalarm.png"))),
             ["InterfacesStorage"] = ("rpd-component-interfaces-storage", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/port.png"))),
+            ["TransitTubes"] = ("rpd-component-transit-tubes", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/transit_straight.png"))),
+            ["TransitJunctions"] = ("rpd-component-transit-junctions", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/transit_junction.png"))),
+            ["TransitStations"] = ("rpd-component-transit-stations", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/transit_station.png"))),
+            ["TransitControl"] = ("rpd-component-transit-control", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/transit_signalblock.png"))),
+            ["TransitLevels"] = ("rpd-component-transit-levels", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/transit_ramp_up.png"))),
             // Starlight End: RPD
             // Starlight Start: RPLD
             ["PlumbingDucts"] = ("rpld-component-ducts", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPLD/category_ducts.png"))),
@@ -107,26 +112,26 @@ public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
             list.Add(actionOption);
         }
 
-        var models = new RadialMenuOptionBase[buttonsByCategory.Count + topLevelActions.Count];
-        var i = 0;
+        // Starlight-start: categories can sit inside a group (transit tubes have several)
+        var categoryLayers = new List<(string Category, RadialMenuOptionBase Option)>(buttonsByCategory.Count);
         foreach (var (key, list) in buttonsByCategory)
         {
             var groupInfo = PrototypesGroupingInfo[key];
-            models[i] = new RadialMenuNestedLayerOption(list)
+            categoryLayers.Add((key, new RadialMenuNestedLayerOption(list)
             {
                 IconSpecifier = RadialMenuIconSpecifier.With(groupInfo.Sprite),
                 ToolTip = Loc.GetString(groupInfo.Tooltip)
-            };
-            i++;
+            }));
         }
 
+        var models = GroupCategories(categoryLayers);
         foreach (var action in topLevelActions)
         {
-            models[i] = action;
-            i++;
+            models.Add(action);
         }
 
         return models;
+        // Starlight-end
     }
 
     private void HandleMenuOptionClick(RCDPrototype proto)

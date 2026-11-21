@@ -1,0 +1,23 @@
+- type: transitTubeMaterial
+  id: TransitTubeReinforcedGlass
+  name: transit-tube-material-reinforced
+  stack: ReinforcedGlass
+  shard: ShardGlassReinforced
+
+- type: transitTubeMaterial
+  id: TransitTubePlasmaGlass
+  name: transit-tube-material-plasma
+  color: "#ff8cff"
+  stack: ReinforcedPlasmaGlass
+  shard: ShardGlassPlasma
+  modifiers: TransitTubePlasmaGlass
+  heatInsulation: 0.9
+
+- type: transitTubeMaterial
+  id: TransitTubeUraniumGlass
+  name: transit-tube-material-uranium
+  color: "#8cff8c"
+  stack: ReinforcedUraniumGlass
+  shard: ShardGlassUranium
+  modifiers: TransitTubeUraniumGlass
+  heatInsulation: 0.5

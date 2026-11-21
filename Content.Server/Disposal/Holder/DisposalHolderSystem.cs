@@ -66,6 +66,13 @@ public sealed partial class DisposalHolderSystem : SharedDisposalHolderSystem
         if (ent.Comp.IsExiting)
             return;
 
+        // Starlight-start: transit pods stop instead of breaking out of the tube
+        var attempt = new DisposalHolderExitAttemptEvent();
+        RaiseLocalEvent(ent, ref attempt);
+        if (attempt.Cancelled)
+            return;
+        // Starlight-end
+
         ent.Comp.IsExiting = true;
         Dirty(ent);
 

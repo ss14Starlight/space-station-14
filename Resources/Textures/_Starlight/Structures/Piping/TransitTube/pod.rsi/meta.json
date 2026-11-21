@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Rinary for Starlight",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "pod",
+      "directions": 8
+    },
+    {
+      "name": "pod_occupied",
+      "directions": 8
+    },
+    {
+      "name": "temppod",
+      "directions": 8
+    },
+    {
+      "name": "temppod_occupied",
+      "directions": 8
+    },
+    {
+      "name": "cargopod",
+      "directions": 8
+    },
+    {
+      "name": "cargopod_occupied",
+      "directions": 8
+    },
+    {
+      "name": "cargopod_full",
+      "directions": 8
+    }
+  ]
+}

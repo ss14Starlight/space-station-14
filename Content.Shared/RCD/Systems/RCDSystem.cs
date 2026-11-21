@@ -700,6 +700,7 @@ public sealed partial class RCDSystem : EntitySystem
         var isGrillePlacement = prototype.Prototype != null
             && _protoManager.TryIndex<EntityPrototype>(prototype.Prototype, out var grilleProto)
             && grilleProto.HasComponent<SharedCanBuildWindowOnTopComponent>(_entityManager.ComponentFactory);
+        var transitTubeLevel = GetTransitTubeLevel(prototype.Prototype);
         var isWallMountPlacement = prototype.Prototype != null
             && _protoManager.TryIndex<EntityPrototype>(prototype.Prototype, out var wallMountProto)
             && wallMountProto.HasComponent<WallMountComponent>(_entityManager.ComponentFactory);
@@ -740,6 +741,13 @@ public sealed partial class RCDSystem : EntitySystem
             if (isFirelock && HasComp<AirlockComponent>(ent))
                 continue;
             if (isGrillePlacement && HasComp<ConveyorComponent>(ent))
+            {
+                if (popMsgs)
+                    _popup.PopupClient(Loc.GetString("rcd-component-cannot-build-on-occupied-tile-message"), uid, user);
+
+                return false;
+            }
+            if (TransitTubeLevelTaken(ent, transitTubeLevel))
             {
                 if (popMsgs)
                     _popup.PopupClient(Loc.GetString("rcd-component-cannot-build-on-occupied-tile-message"), uid, user);
