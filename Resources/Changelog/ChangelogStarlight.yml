@@ -1,46 +1,4 @@
 Entries:
-- author: CrazyPhantom, Vincolan
-  changes:
-  - message: You can now upload Photographs to a news report by inserting it into the Mass Media Digiboard Or console, one Picture per Article, Not uploaded to the Discord.
-    type: Add
-  id: 410372
-  time: '2026-11-12T12:34:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7042
-- author: Floximo
-  changes:
-  - message: AI job slot is no longer freed on intellicard being used.
-    type: Fix
-  id: 410373
-  time: '2026-11-12T13:16:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7146
-- author: Floximo
-  changes:
-  - message: While being on intellicard, shunting is no longer possible.
-    type: Fix
-  id: 410374
-  time: '2026-11-12T13:16:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7146
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Devil monkeys, kobolds, and scurrets can now open the book of the damned.
-    type: Fix
-  id: 410375
-  time: '2026-11-13T09:42:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7206
-- author: Cvlancer
-  changes:
-  - message: (Orwell) Fixed a very minor spelling error.
-    type: Fix
-  id: 410376
-  time: '2026-11-13T09:42:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7179
-- author: neomoth
-  changes:
-  - message: Fixed a bug with borgs that caused error spam in console saying the key for their head slots didn't exist.
-    type: Fix
-  id: 410377
-  time: '2026-11-13T10:08:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7207
 - author: Rhapsody (Pepta, Soothe)
   changes:
   - message: Fixed changelings not being able to devour laspi, cyclorites, and dionae.
@@ -2799,4 +2757,46 @@ Entries:
   id: 410771
   time: '2026-11-21T11:00:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7241
+- author: Floximo
+  changes:
+  - message: Quick crafting for plastic and wood.
+    type: Add
+  id: 410772
+  time: '2026-11-21T11:00:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7335
+- author: Floximo
+  changes:
+  - message: Quick crafting for steel and steel rods got enhanced considerably, adding more recipes.
+    type: Add
+  id: 410773
+  time: '2026-11-21T11:00:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7335
+- author: Floximo
+  changes:
+  - message: ConveyorBeltAssembly now has now a use-action, placing construction ghosts directly.
+    type: Add
+  id: 410774
+  time: '2026-11-21T11:00:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7335
+- author: Floximo
+  changes:
+  - message: Quick crafting right click allows now to craft without closing the wheel or jumps to the crafting entry if its a placeable ghost.
+    type: Tweak
+  id: 410775
+  time: '2026-11-21T11:00:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7335
+- author: Floximo
+  changes:
+  - message: Missing crafts got added for RCD and RPD.
+    type: Tweak
+  id: 410776
+  time: '2026-11-21T11:00:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7335
+- author: Floximo
+  changes:
+  - message: Quick crafting supports now the alternate hotkey to switch between flipped types (control + mmb by default) like RPC/RPD.
+    type: Tweak
+  id: 410777
+  time: '2026-11-21T11:00:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7335
 Order: -1
