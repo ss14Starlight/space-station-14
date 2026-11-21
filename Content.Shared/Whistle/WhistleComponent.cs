@@ -21,4 +21,12 @@ public sealed partial class WhistleComponent : Component
     /// </summary>
     [DataField]
     public float Distance = 0;
+
+    // Starlight start
+    [DataField]
+    public EntProtoId Action = "ActionBlowWhistle";
+
+    [DataField]
+    public EntityUid? ActionEntity;
+    // Starlight end
 }

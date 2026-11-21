@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseAction
+  id: ActionBlowWhistle
+  name: Blow Whistle
+  description: Blow the whistle, drawing attention to nearby people.
+  components:
+  - type: Action
+    useDelay: 3
+    icon: { sprite: Objects/Fun/whistles.rsi, state: whistle }
+  - type: InstantAction
+    event: !type:WhistleActionEvent
