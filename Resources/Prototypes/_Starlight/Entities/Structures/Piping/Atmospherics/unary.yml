@@ -95,3 +95,81 @@
       range: 5
       sound:
         path: /Audio/Ambience/Objects/gas_vent.ogg
+
+- type: entity
+  parent: GasUnaryBase
+  id: InlineHeatExchanger
+  name: inline radiator
+  description: Transfers heat between the pipe and its surroundings.
+  placement:
+    mode: SnapgridCenter
+  components:
+    # Carpmosia-start - Atmos stacking
+    - type: Tag
+      tags:
+        - Unstackable
+    # Carpmosia-end - Atmos stacking
+    - type: Rotatable
+    - type: Transform
+      noRot: false
+    - type: Sprite
+      sprite: _Starlight\Structures\Piping\Atmospherics\inlineradiator.rsi
+      layers:
+        - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
+          state: pipeStraight
+          map: ["enum.PipeVisualLayers.Pipe"]
+        - state: iheStraight
+          map: ["enum.SubfloorLayers.FirstLayer"]
+    - type: AtmosPipeLayers
+      spriteRsiPaths: {}
+      numberOfPipeLayers: 1
+    - type: SubFloorHide
+      visibleLayers:
+        - enum.SubfloorLayers.FirstLayer
+    - type: Appearance
+    - type: PipeColorVisuals
+    - type: AtmosDevice
+    - type: InlineHeatExchanger
+    - type: NodeContainer
+      nodes:
+        pipe: !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: Longitudinal
+    - type: Construction
+      graph: GasUnary
+      node: radiator
+    - type: AtmosMonitoringConsoleDevice
+      navMapBlip: Thermoregulator
+    - type: VentCrawlTube
+    - type: VentCrawlTransit
+    - type: GuideHelp
+      guides:
+        - Radiators
+
+- type: entity
+  parent: InlineHeatExchanger
+  id: InlineHeatExchangerBend
+  suffix: Bend
+  components:
+    - type: SubFloorHide
+      visibleLayers:
+        - enum.SubfloorLayers.FirstLayer
+    - type: Sprite
+      layers:
+        - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
+          state: pipeBend
+          map: ["enum.PipeVisualLayers.Pipe"]
+        - state: iheBend
+          map: ["enum.SubfloorLayers.FirstLayer"]
+    - type: NodeContainer
+      nodes:
+        pipe: !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: SWBend
+    - type: Construction
+      graph: GasUnary
+      node: bendradiator
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlBend
+    # Starlight end

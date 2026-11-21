@@ -1,8 +1,8 @@
 using Content.Server.Atmos.Components;
-using Content.Server._Starlight.Atmos.Components; // Starlight - inlines
+using Content.Server._Starlight.Atmos.Components;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
-using Content.Server.NodeContainer.NodeGroups; // Starlight - inlines
+using Content.Server.NodeContainer.NodeGroups;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.CCVar;
@@ -134,7 +134,7 @@ public sealed partial class HeatExchangerSystem : EntitySystem
 
     }
 
-    // Starlight start - inline radiators
+    #region Starlight
     // largely the same as upstream radiator logic
     // i.e. identical maths, just inline instead of splitting the pipenet
     private void OnInlineHeatExchangerUpdate(EntityUid uid, InlineHeatExchangerComponent comp, ref AtmosDeviceUpdateEvent args)
@@ -148,8 +148,9 @@ public sealed partial class HeatExchangerSystem : EntitySystem
 
         // this section is the main inline-specific bit
         // it gets the gas mixture belonging to the entire connected pipe network instead of splitting it in two
-        if (!_nodeContainer.TryGetNodes<PipeNode, PipeNode>(uid, comp.NodeName, comp.NodeName, out var pipe, out _))
+        if (!_nodeContainer.TryGetNode<PipeNode>( uid, comp.NodeName, out var pipe))
             return;
+
         if (pipe?.NodeGroup is not PipeNet pipeNet)
             return;
         var air = pipeNet.Air;
@@ -201,5 +202,5 @@ public sealed partial class HeatExchangerSystem : EntitySystem
             _atmosphereSystem.AddHeat(environment, dE);
         }
     }
-    // Starlight end
+    #endregion
 }
