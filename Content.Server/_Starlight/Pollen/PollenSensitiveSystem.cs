@@ -20,6 +20,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs;
 
 namespace Content.Server._Starlight.Pollen;
+// todo: Move this to an own more global system.
 
 public sealed partial class PollenSensitiveSystem : EntitySystem
 {
