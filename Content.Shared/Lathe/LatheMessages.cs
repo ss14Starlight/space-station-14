@@ -5,7 +5,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Lathe;
 
 [Serializable, NetSerializable]
-public sealed class LatheUpdateState : BoundUserInterfaceState
+public sealed partial class LatheUpdateState : BoundUserInterfaceState // Starlight-edit: partial
 {
     public List<ProtoId<LatheRecipePrototype>> Recipes;
 

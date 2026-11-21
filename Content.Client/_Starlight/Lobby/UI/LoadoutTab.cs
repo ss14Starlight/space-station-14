@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client.Stylesheets;
+using Content.Client._Starlight.UserInterface.Controls;
 using Content.Client._Starlight.Stylesheets;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
@@ -59,33 +60,20 @@ public sealed class LoadoutTab : BoxContainer
 
     private readonly List<Section> _sections = [];
     private readonly Dictionary<string, (Button Button, BoxContainer Groups, Section Section, string Name)> _roles = [];
-    private readonly List<(LoadoutPrototype Proto, ContainerButton Card, Control Content, Control Lock, string Name)> _cards = [];
+    private readonly List<(LoadoutPrototype Proto, CatalogCard Card)> _cards = [];
 
     private readonly List<Folder> _folders = [];
 
     private readonly HashSet<string> _openFolders = [];
 
-    private static readonly Color LockedModulate = new(1f, 1f, 1f, 0.35f);
-
     private sealed record Folder(
         string Key,
-        ContainerButton Card,
-        Label Arrow,
-        Label Name,
+        CatalogCard Card,
         EntityPrototypeView View,
         Control Drawer,
-        List<(LoadoutPrototype Proto, ContainerButton Card, string Name)> Items)
+        List<(LoadoutPrototype Proto, CatalogCard Card)> Items)
     {
         public int Shown { get; set; }
-    }
-
-    private sealed class FullRowPanel : PanelContainer
-    {
-        protected override Vector2 MeasureOverride(Vector2 availableSize)
-        {
-            var size = base.MeasureOverride(availableSize);
-            return new Vector2(MathF.Max(size.X, availableSize.X), size.Y);
-        }
     }
 
     private string? _roleKey;
@@ -417,19 +405,14 @@ public sealed class LoadoutTab : BoxContainer
 
         var selected = loadout.SelectedLoadouts.TryGetValue(groupId, out var list) ? list : null;
         var collection = IoCManager.Instance!;
-        foreach (var (proto, card, content, lockIcon, name) in _cards)
+        foreach (var (proto, card) in _cards)
         {
             var valid = loadout.IsValid(profile, session, proto.ID, collection, out var reason);
-            card.Disabled = !valid;
-            content.Modulate = valid ? Color.White : LockedModulate;
-            lockIcon.Visible = !valid;
-            if (selected?.Any(l => l.Prototype == proto.ID) == true)
-                card.AddStyleClass(MarkingCard.StyleClassPicked);
-            else
-                card.RemoveStyleClass(MarkingCard.StyleClassPicked);
+            card.SetLocked(!valid);
+            card.Picked = selected?.Any(l => l.Prototype == proto.ID) == true;
 
             var tooltip = new FormattedMessage();
-            tooltip.AddText(name);
+            tooltip.AddText(card.Title);
             if (Description(proto) is { Length: > 0 } description)
             {
                 tooltip.PushNewline();
@@ -460,12 +443,9 @@ public sealed class LoadoutTab : BoxContainer
                 folder.View.SetPrototype(proto.DummyEntity ?? _entities.System<LoadoutSystem>().GetFirstOrNull(proto));
             }
 
-            var shownName = folder.Items[shown].Name;
-            folder.Name.Text = count > 0 ? $"{shownName} ({count})" : shownName;
-            if (count > 0)
-                folder.Card.AddStyleClass(MarkingCard.StyleClassPicked);
-            else
-                folder.Card.RemoveStyleClass(MarkingCard.StyleClassPicked);
+            var shownName = folder.Items[shown].Card.Title;
+            folder.Card.Title = count > 0 ? $"{shownName} ({count})" : shownName;
+            folder.Card.Picked = count > 0;
         }
     }
 
@@ -541,101 +521,50 @@ public sealed class LoadoutTab : BoxContainer
         FilterItems();
     }
 
-    private ContainerButton BuildCard(ProtoId<LoadoutGroupPrototype> groupId, LoadoutPrototype proto, LoadoutSystem loadoutSystem)
+    private CatalogCard BuildCard(ProtoId<LoadoutGroupPrototype> groupId, LoadoutPrototype proto, LoadoutSystem loadoutSystem)
     {
-        var name = loadoutSystem.GetName(proto);
-        var content = CardContent(proto, name, loadoutSystem, out _, out _);
-        var lockIcon = new TextureRect
-        {
-            TexturePath = "/Textures/Interface/VerbIcons/lock.svg.192dpi.png",
-            SetSize = new Vector2(18, 18),
-            Stretch = TextureRect.StretchMode.KeepAspectCentered,
-            HorizontalAlignment = HAlignment.Right,
-            VerticalAlignment = VAlignment.Top,
-            Margin = new Thickness(0, 4, 4, 0),
-            Visible = false,
-        };
-        var card = new ContainerButton
-        {
-            SetSize = new Vector2(CardWidth, CardHeight),
-            StyleClasses = { MarkingCard.StyleClassCard },
-            Children = { content, lockIcon },
-        };
+        var card = new CatalogCard(loadoutSystem.GetName(proto), new Vector2(CardWidth, CardHeight));
+        card.SetPreview(proto.DummyEntity ?? loadoutSystem.GetFirstOrNull(proto));
         var id = proto.ID;
         card.OnPressed += _ =>
         {
-            if (card.HasStyleClass(MarkingCard.StyleClassPicked))
+            if (card.Picked)
                 OnLoadoutUnpressed?.Invoke(groupId, id);
             else
                 OnLoadoutPressed?.Invoke(groupId, id);
         };
 
-        _cards.Add((proto, card, content, lockIcon, name));
+        _cards.Add((proto, card));
         return card;
     }
 
-    private Control CardContent(LoadoutPrototype proto, string name, LoadoutSystem loadoutSystem, out Label label, out EntityPrototypeView view)
-    {
-        view = new EntityPrototypeView
-        {
-            Scale = new Vector2(2, 2),
-            SetSize = new Vector2(64, 64),
-            HorizontalAlignment = HAlignment.Center,
-        };
-        view.SetPrototype(proto.DummyEntity ?? loadoutSystem.GetFirstOrNull(proto));
-
-        label = new Label { Text = name, ClipText = true, HorizontalAlignment = HAlignment.Center };
-        return new BoxContainer
-        {
-            Orientation = LayoutOrientation.Vertical,
-            Margin = new Thickness(4),
-            SeparationOverride = 2,
-            Children = { view, label },
-        };
-    }
-
+    /// <summary>
+    /// A card showing the first item of a bunch, or the picked one, with an arrow and the item count.
+    /// The items themselves go in a drawer below it.
+    /// </summary>
     private void BuildFolder(ProtoId<LoadoutGroupPrototype> groupId, string key, List<LoadoutPrototype> members, LoadoutSystem loadoutSystem)
     {
         var baseName = loadoutSystem.GetName(members[0]);
-        var content = CardContent(members[0], baseName, loadoutSystem, out var nameLabel, out var view);
-        var open = _openFolders.Contains(key);
-        var arrow = new Label
+        var card = new CatalogCard(baseName, new Vector2(CardWidth, CardHeight))
         {
-            Text = open ? "▼" : "▶",
-            HorizontalAlignment = HAlignment.Left,
-            VerticalAlignment = VAlignment.Top,
-            Margin = new Thickness(6, 2, 0, 0),
-        };
-        var countLabel = new Label
-        {
-            Text = members.Count.ToString(),
-            StyleClasses = { StyleClass.LabelSubText },
-            HorizontalAlignment = HAlignment.Right,
-            VerticalAlignment = VAlignment.Top,
-            Margin = new Thickness(0, 2, 6, 0),
-        };
-        var card = new ContainerButton
-        {
-            SetSize = new Vector2(CardWidth, CardHeight),
-            StyleClasses = { MarkingCard.StyleClassCard },
             ToolTip = Loc.GetString("loadout-tab-folder-tooltip", ("item", baseName), ("count", members.Count)),
-            Children = { content, arrow, countLabel },
         };
+        var view = card.SetPreview(members[0].DummyEntity ?? loadoutSystem.GetFirstOrNull(members[0]));
+        card.SetTopRight(members.Count.ToString());
 
         var inner = new WrapContainer { SeparationOverride = 6, CrossSeparationOverride = 6, Margin = new Thickness(6) };
         var drawer = new FullRowPanel
         {
             StyleClasses = { StarlightStyleClass.InsetPanel },
-            Visible = open,
             Children = { inner },
         };
 
-        var items = new List<(LoadoutPrototype Proto, ContainerButton Card, string Name)>();
+        var items = new List<(LoadoutPrototype Proto, CatalogCard Card)>();
         foreach (var member in members)
         {
             var memberCard = BuildCard(groupId, member, loadoutSystem);
             inner.AddChild(memberCard);
-            items.Add((member, memberCard, _cards[^1].Name));
+            items.Add((member, memberCard));
         }
 
         card.OnPressed += _ =>
@@ -645,7 +574,7 @@ public sealed class LoadoutTab : BoxContainer
             FilterItems();
         };
 
-        _folders.Add(new Folder(key, card, arrow, nameLabel, view, drawer, items));
+        _folders.Add(new Folder(key, card, view, drawer, items));
         _items.AddChild(card);
         _items.AddChild(drawer);
     }
@@ -653,16 +582,17 @@ public sealed class LoadoutTab : BoxContainer
     private void FilterItems()
     {
         var search = _search.Text.Trim();
-        foreach (var (_, card, _, _, name) in _cards)
-            card.Visible = search.Length == 0 || name.Contains(search, StringComparison.CurrentCultureIgnoreCase);
+        foreach (var (_, card) in _cards)
+            card.Visible = card.Matches(search);
 
+        // While searching, folders with a match open by themselves and the rest hide.
         foreach (var folder in _folders)
         {
             var open = _openFolders.Contains(folder.Key);
             var matches = search.Length == 0 || folder.Items.Any(i => i.Card.Visible);
             folder.Card.Visible = matches;
             folder.Drawer.Visible = matches && (open || search.Length > 0);
-            folder.Arrow.Text = folder.Drawer.Visible ? "▼" : "▶";
+            folder.Card.SetTopLeft(folder.Drawer.Visible ? "▼" : "▶");
         }
     }
 

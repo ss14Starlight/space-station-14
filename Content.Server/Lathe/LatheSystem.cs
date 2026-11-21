@@ -293,6 +293,13 @@ namespace Content.Server.Lathe
                 producing = node.Value.Recipe;
 
             var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue.ToArray(), producing);
+            // Starlight-start
+            if (component.CurrentRecipe != null && TryComp<LatheProducingComponent>(uid, out var producingComp))
+            {
+                state.ProductionStart = producingComp.StartTime;
+                state.ProductionLength = producingComp.ProductionLength;
+            }
+            // Starlight-end
             _uiSys.SetUiState(uid, LatheUiKey.Key, state);
         }
 

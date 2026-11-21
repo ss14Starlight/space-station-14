@@ -1,3 +1,4 @@
+using Content.Client._Starlight.Lathe.UI;
 using Content.Shared.Lathe;
 using Content.Shared.Research.Components;
 using JetBrains.Annotations;
@@ -9,7 +10,7 @@ namespace Content.Client.Lathe.UI
     public sealed class LatheBoundUserInterface : BoundUserInterface
     {
         [ViewVariables]
-        private LatheMenu? _menu;
+        private LatheWindow? _menu; // Starlight-edit
         public LatheBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
         }
@@ -18,7 +19,7 @@ namespace Content.Client.Lathe.UI
         {
             base.Open();
 
-            _menu = this.CreateWindowCenteredRight<LatheMenu>();
+            _menu = this.CreateWindowCenteredRight<LatheWindow>(); // Starlight-edit
             _menu.SetEntity(Owner);
 
             _menu.OnServerListButtonPressed += _ =>
@@ -49,6 +50,7 @@ namespace Content.Client.Lathe.UI
                     _menu?.UpdateCategories();
                     _menu?.PopulateQueueList(msg.Queue);
                     _menu?.SetQueueInfo(msg.CurrentlyProducing);
+                    _menu?.SetProgress(msg.ProductionStart, msg.ProductionLength); // Starlight-edit
                     break;
             }
         }

@@ -1,8 +1,6 @@
-using Content.Client.UserInterface.Controls;
-using Content.Client.VendingMachines.UI;
+using Content.Client._Starlight.VendingMachines.UI;
 using Content.Shared.VendingMachines;
 using Robust.Client.UserInterface;
-using Robust.Shared.Input;
 using System.Linq;
 
 namespace Content.Client.VendingMachines
@@ -10,11 +8,11 @@ namespace Content.Client.VendingMachines
     public sealed class VendingMachineBoundUserInterface : BoundUserInterface
     {
         [ViewVariables]
-        private VendingMachineMenu? _menu;
+        private VendingWindow? _menu; // Starlight-edit
 
         [ViewVariables]
         private List<VendingMachineInventoryEntry> _cachedInventory = new();
-        private bool _showPrices = true;  // 🌟Starlight🌟 Track if prices should be shown
+        private bool _showPrices = true; // Starlight-edit
 
         public VendingMachineBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
@@ -24,17 +22,16 @@ namespace Content.Client.VendingMachines
         {
             base.Open();
 
-            _menu = this.CreateWindowCenteredLeft<VendingMachineMenu>();
+            _menu = this.CreateWindowCenteredLeft<VendingWindow>(); // Starlight-edit
             _menu.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
             _menu.OnItemSelected += OnItemSelected;
 
-            Refresh(); // 🌟Starlight🌟
+            // Starlight-start
+            Refresh();
 
-            // 🌟Starlight🌟
             if (_showPrices)
-            {
                 RequestBalance(); // Client ask too, server also pushes on open now
-            }
+            // Starlight-end
         }
 
         protected override void ReceiveMessage(BoundUserInterfaceMessage message)
@@ -48,10 +45,8 @@ namespace Content.Client.VendingMachines
         /// <summary>
         /// Requests current balance from server
         /// </summary>
-        private void RequestBalance()         // 🌟Starlight🌟
-        {
-            SendMessage(new VendingMachineRequestBalanceMessage());
-        }
+        private void RequestBalance()
+            => SendMessage(new VendingMachineRequestBalanceMessage()); // Starlight-edit
 
         public void Refresh()
         {
@@ -63,7 +58,7 @@ namespace Content.Client.VendingMachines
 
             _menu?.Populate(_cachedInventory, enabled, _showPrices);
 
-            // 🌟Starlight start🌟
+            // Starlight-start
             if (_menu != null)
             {
                 if (_showPrices)
@@ -73,22 +68,22 @@ namespace Content.Client.VendingMachines
                 }
                 else
                 {
-                    _menu.ToggleBalance();
+                    _menu.ToggleBalance(false);
                 }
             }
-            //  // 🌟Starlight end🌟
+            // Starlight-end
         }
 
         public void UpdateAmounts()
         {
             var enabled = EntMan.TryGetComponent(Owner, out VendingMachineComponent? bendy) && !bendy.Ejecting;
-            _showPrices = bendy?.ShowPrices ?? true; // 🌟Starlight🌟
+            _showPrices = bendy?.ShowPrices ?? true; // Starlight-edit
 
             var system = EntMan.System<VendingMachineSystem>();
             _cachedInventory = system.GetAllInventory(Owner);
-            _menu?.UpdateAmounts(_cachedInventory, enabled, _showPrices); // 🌟Starlight🌟
+            _menu?.UpdateAmounts(_cachedInventory, enabled, _showPrices); // Starlight-edit
 
-            // 🌟Starlight start🌟
+            // Starlight-start
             if (_menu != null)
             {
                 if (_showPrices)
@@ -98,20 +93,14 @@ namespace Content.Client.VendingMachines
                 }
                 else
                 {
-                    _menu.ToggleBalance();
+                    _menu.ToggleBalance(false);
                 }
             }
-             // 🌟Starlight end🌟
+            // Starlight-end
         }
 
-        private void OnItemSelected(GUIBoundKeyEventArgs args, ListData data)
+        private void OnItemSelected(int itemIndex) // Starlight-edit
         {
-            if (args.Function != EngineKeyFunctions.UIClick)
-                return;
-
-            if (data is not VendorItemsListData { ItemIndex: var itemIndex })
-                return;
-
             if (_cachedInventory.Count == 0)
                 return;
 
@@ -120,8 +109,7 @@ namespace Content.Client.VendingMachines
             if (selectedItem == null)
                 return;
 
-            // 🌟Starlight🌟 Use non-predicted message so that the server processes the vend
-            SendMessage(new VendingMachineEjectMessage(selectedItem.Type, selectedItem.ID));
+            SendMessage(new VendingMachineEjectMessage(selectedItem.Type, selectedItem.ID)); // Starlight-edit: Use non-predicted message so that the server processes the vend
         }
 
         protected override void Dispose(bool disposing)
