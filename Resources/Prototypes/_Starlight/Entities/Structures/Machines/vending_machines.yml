@@ -258,6 +258,30 @@
     currencyWhitelist:
     - SalvageTicket
 
+# wallmount ticket vendor
+- type: entity
+  parent: SLVendingMachineSalvageITG
+  id: SLVendingMachineSalvageITGWallMount
+  categories: [ ShouldMapStation ]
+  name: wallmount salvage ticket machine
+  components:
+  - type: WallMount
+    arc: 175
+  - type: Sprite
+    drawdepth: WallMountedItems
+    noRot: false
+    sprite: _Starlight/Structures/Machines/VendingMachines/salvage.rsi
+    layers:
+    - state: "wallmount"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "normal-unshaded"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+  - type: Anchorable
+    flags: Anchorable
+  - type: Transform
+    anchored: true
+
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineMining
@@ -275,7 +299,7 @@
         - MiningConsumeables
         - SLSecret
       currencyWhitelist:
-        - SalvageTicket # Same currency as salvage vendor to promote sharing
+        - MiningTicket # Different currency as salvage vendor to discourage salvage spending all round on vgroid
 
 - type: entity
   parent: VendingMachine
