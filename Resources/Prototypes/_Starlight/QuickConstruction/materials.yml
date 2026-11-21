@@ -1,0 +1,310 @@
+- type: quickConstructionCategory
+  id: Plastic
+  categoryEntries:
+    - PlasticSeating
+    - PlasticContainers
+    - PlasticWindowFixtures
+    - PlasticBoxingRails
+
+- type: quickConstructionCategory
+  id: PlasticSeating
+  name: quickconstruction-category-plastic-seating
+  icon: { sprite: _Starlight/Structures/Furniture/Chairs/froggy_chair.rsi, state: froggy_chair }
+  constructionEntries:
+    - ChairFroggy
+    - ChairLovey
+
+- type: quickConstructionCategory
+  id: PlasticContainers
+  name: quickconstruction-category-plastic-containers
+  icon: { sprite: _Starlight/Objects/Storage/milkcrate.rsi, state: milkcrate-0 }
+  constructionEntries:
+    - MilkCrate
+    - RecordMilkCrate
+    - DrinkWaterBottleEmpty
+
+- type: quickConstructionCategory
+  id: PlasticWindowFixtures
+  name: quickconstruction-category-plastic-window-fixtures
+  icon: { sprite: Structures/plastic_flaps.rsi, state: plasticflaps }
+  constructionEntries:
+    - PlasticFlapsClear
+    - PlasticFlapsOpaque
+    - WindowBlinds
+
+- type: quickConstructionCategory
+  id: PlasticBoxingRails
+  name: quickconstruction-category-plastic-boxing-rails
+  icon: { sprite: _Starlight/Structures/Walls/railing.rsi, state: boxing_side }
+  constructionEntries:
+    - RailingBoxing
+    - RailingCornerBoxing
+
+- type: quickConstructionCategory
+  id: Atmospheric
+  name: quickconstruction-category-atmospheric
+  icon: /Textures/_Starlight/Interface/Radial/RPD/scrub_off.png
+  categoryEntries:
+    - Pipes
+    - SteelAirlocks
+    - AtmosphericPumpsValves
+    - AtmosphericVents
+    - AtmosphericUtility
+    - AtmosphericInterfacesStorage
+    - AtmosphericSensorsMonitors
+
+- type: quickConstructionCategory
+  id: SteelAirlocks
+  name: quickconstruction-category-steel-airlocks
+  icon: /Textures/_Starlight/Interface/Radial/RCD/airlock.png
+  constructionEntries:
+    - Airlock
+    - AirlockGlass
+    - Firelock
+    - FirelockEdge
+    - AirlockCycler
+    - AirlockCyclerButton
+
+- type: quickConstructionCategory
+  id: AtmosphericPumpsValves
+  name: rpd-component-pumps
+  icon: /Textures/_Starlight/Interface/Radial/RPD/pump_pressure.png
+  constructionEntries:
+    - GasPressurePump
+    - GasVolumePump
+    - GasValve
+    - SignalControlledValve
+    - PressureControlledValve
+    - GasPressureRegulator
+    - GasPassiveGate
+
+- type: quickConstructionCategory
+  id: AtmosphericVents
+  name: rpd-component-vents
+  icon: /Textures/_Starlight/Interface/Radial/RPD/vent_off.png
+  constructionEntries:
+    - GasOutletInjector
+    - GasVentScrubber
+    - GasVentPump
+    - GasDualPortVentPump
+    - GasPassiveVent
+    - GasInletSiphon
+
+- type: quickConstructionCategory
+  id: AtmosphericUtility
+  name: rpd-component-atmospheric-utility
+  icon: /Textures/_Starlight/Interface/Radial/RPD/radiator.png
+  constructionEntries:
+    - HeatExchanger
+    - GasMixer
+    - GasMolarMixer
+    - GasFilter
+    - GasFilterInline
+    - HeatExchangerBend
+    - GasPipeSensor
+
+- type: quickConstructionCategory
+  id: AtmosphericInterfacesStorage
+  name: rpd-component-interfaces-storage
+  icon: /Textures/_Starlight/Interface/Radial/RPD/port.png
+  constructionEntries:
+    - GasPort
+    - GasPipeTankSubfloor
+    - GasPipeTankTall
+
+- type: quickConstructionCategory
+  id: AtmosphericSensorsMonitors
+  name: rpd-component-sensors-monitors
+  icon: /Textures/_Starlight/Interface/Radial/RPD/airalarm.png
+  constructionEntries:
+    - AirSensor
+    - AirAlarmFixture
+
+- type: quickConstructionCategory
+  id: Wood
+  constructionEntries:
+    - MakeshiftMortarAndPestle
+  categoryEntries:
+    - WoodFurniture
+    - WoodStructures
+    - WoodYardAndFire
+
+- type: quickConstructionCategory
+  id: WoodFurniture
+  name: quickconstruction-category-wood-furniture-storage
+  icon: { sprite: Structures/Furniture/Tables/counterwood.rsi, state: full }
+  constructionEntries:
+    - TableCounterWood
+  categoryEntries:
+    - WoodSeating
+    - WoodPews
+    - WoodShelving
+
+- type: quickConstructionCategory
+  id: WoodSeating
+  name: quickconstruction-category-wood-seating
+  icon: { sprite: Structures/Furniture/chairs.rsi, state: wooden }
+  constructionEntries:
+    - ChairWood
+    - ChairWoodBench
+    - ChairRitual
+    - DogBed
+
+- type: quickConstructionCategory
+  id: WoodPews
+  name: quickconstruction-category-wood-pews
+  icon: { sprite: _Starlight/Structures/Furniture/Benches/pew_middle.rsi, state: base }
+  constructionEntries:
+    - PewEndLeft
+    - PewMiddle
+    - PewEndRight
+
+- type: quickConstructionCategory
+  id: WoodShelving
+  name: quickconstruction-category-wood-shelving
+  icon: { sprite: Structures/Storage/Shelfs/wood.rsi, state: base }
+  constructionEntries:
+    - ShelfWood
+    - ShelfBar
+    - Bookshelf
+    - Dresser
+    - NoticeBoard
+    - ShowCase
+
+- type: quickConstructionCategory
+  id: WoodStructures
+  name: quickconstruction-category-wood-structures
+  icon: { sprite: Structures/Walls/wood.rsi, state: full }
+  constructionEntries:
+    - WoodWall
+    - Barricade
+    - BarricadeDirectional
+    - BarricadeWood
+    - WoodDoor
+  categoryEntries:
+    - WoodFences
+    - WoodLowFences
+    - WoodRailings
+
+- type: quickConstructionCategory
+  id: WoodFences
+  name: quickconstruction-category-wood-fences
+  icon: { sprite: Structures/Walls/wooden_fence.rsi, state: straight }
+  constructionEntries:
+    - FenceWood
+    - FenceWoodEnd
+    - FenceWoodCorner
+    - FenceWoodTJunction
+    - FenceWoodGate
+
+- type: quickConstructionCategory
+  id: WoodLowFences
+  name: quickconstruction-category-wood-low-fences
+  icon: { sprite: Structures/Walls/wooden_fence.rsi, state: straight_small }
+  constructionEntries:
+    - FenceWoodSmall
+    - FenceWoodEndSmall
+    - FenceWoodCornerSmall
+    - FenceWoodTJunctionSmall
+    - FenceWoodGateSmall
+
+- type: quickConstructionCategory
+  id: WoodRailings
+  name: quickconstruction-category-wood-railings
+  icon: { sprite: _Starlight/Structures/Walls/railing.rsi, state: wood_side }
+  constructionEntries:
+    - RailingWood
+    - RailingWoodEnd
+    - RailingWoodEndAlt
+    - RailingCornerWood
+    - RailingCornerSmallWood
+    - RailingRoundWood
+
+- type: quickConstructionCategory
+  id: WoodYardAndFire
+  name: quickconstruction-category-wood-yard-and-fire
+  icon: { sprite: Structures/Decoration/bonfire.rsi, state: burning }
+  constructionEntries:
+    - Bonfire
+    - BonfireStake
+    - LightTorch
+
+- type: quickConstructionCategory
+  id: SteelDisposal
+  name: quickconstruction-category-steel-disposal
+  icon: { sprite: Structures/Piping/disposal.rsi, state: conpipe-c }
+  constructionEntries:
+    - DisposalJunction
+    - DisposalBend
+    - DisposalPipe
+    - DisposalTagger
+    - DisposalRouter
+    - DisposalSignalRouter
+    - DisposalSignaller
+    - DisposalTrunk
+    - DisposalUnit
+
+- type: quickConstructionCategory
+  id: SteelFramesDevices
+  name: quickconstruction-category-steel-frames-devices
+  icon: { sprite: Structures/Machines/parts.rsi, state: "0" }
+  constructionEntries:
+    - Computer
+    - MachineFrame
+    - camera
+    - cameraReinforced
+    - APC
+    - SignalButtonRecipe
+    - SignalSwitchRecipe
+    - TwoWayLeverRecipe
+
+- type: quickConstructionCategory
+  id: SteelLighting
+  name: quickconstruction-category-steel-lighting
+  icon: { sprite: _Starlight/Structures/Lighting/LightPosts/small_light_post.rsi, state: base }
+  constructionEntries:
+    - EmergencyLightFixture
+    - LightFloorFixture
+    - LightTubeFixture
+    - LightGroundFixture
+    - LightSmallFixture
+
+- type: quickConstructionCategory
+  id: SteelChainLinkFences
+  name: quickconstruction-category-steel-chain-link-fences
+  icon: { sprite: Structures/Walls/fence.rsi, state: door_closed }
+  constructionEntries:
+    - FenceMetal
+    - FenceMetalCorner
+    - FenceMetalEnd
+    - FenceMetalGate
+
+- type: quickConstructionCategory
+  id: SteelChairs
+  name: quickconstruction-category-steel-chairs
+  icon: { sprite: Structures/Furniture/chairs.rsi, state: chair }
+  constructionEntries:
+    - Chair
+    - ChairOfficeLight
+    - ChairOfficeDark
+    - ChairOfficeSleek
+    - ChairEvacSeat
+    - ChairBridgeSeat
+    - chairPilotSeat
+    - StoolBar
+    - Stool
+    - ChairSteelBench
+  categoryEntries:
+    - SteelComfyChairs
+
+- type: quickConstructionCategory
+  id: SteelComfyChairs
+  name: quickconstruction-category-steel-comfy-chairs
+  icon: { sprite: _Starlight/Structures/Furniture/Chairs/comfy_chair.rsi, state: base }
+  constructionEntries:
+    - ChairComfy
+    - ChairComfyWhite
+    - ChairComfyBlue
+    - ChairComfyGreen
+    - ChairComfyRed
+    - ChairComfyBrown

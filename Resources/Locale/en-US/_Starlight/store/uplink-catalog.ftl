@@ -207,6 +207,9 @@ uplink-lead-chemistry-vial-name = Lead Vial
 uplink-lead-chemistry-vial-desc = A small vial containing 15 units of lead.
 # Funky end
 
+uplink-combat-medkit-alt-name = Alternative Combat Medical Kit
+uplink-combat-medkit-alt-desc = A medkit filled with patches and pills instead of the usual supplies.
+
 uplink-boxcutter-syndi-name = Chemical Boxcutter
 uplink-boxcutter-syndi-desc = A boxcutter with special grooves that can hold up to 10 units of chemicals.
 

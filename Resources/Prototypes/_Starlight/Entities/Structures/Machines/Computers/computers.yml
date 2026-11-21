@@ -1170,3 +1170,17 @@
   - type: GuideHelp
     guides:
     - CombustionTurbine
+
+- type: entity
+  id: ITGComputerID
+  parent: ComputerId
+  name: salvage ID computer
+  description: Terminal for updating the accesses of any new hires to the ITG's local salvage team.
+  components:
+    - type: IdCardConsole
+      accessGroups:
+      - ITG
+      - General
+      - Shuttle
+      requiredTags:
+      - JobIconSalvage

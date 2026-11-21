@@ -25,3 +25,10 @@
     maxAngleDivider: 3.75
     minAngle: 0
     maxAngle: 0
+
+- type: !PartialOnly entity
+  id: WeaponRifleAk
+  components:
+  - type: Tag
+    tags:
+      - CommieAdvancedWeapon

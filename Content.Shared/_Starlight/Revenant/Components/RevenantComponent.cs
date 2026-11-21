@@ -21,7 +21,7 @@ public sealed partial class RevenantComponent
     /// the second corresponds to the amount of time the entity is made solid.
     /// </summary>
     [DataField("MisfireDebuffs")]
-    public Vector2 MisfireDebuffs = new(1, 25);
+    public Vector2 MisfireDebuffs = new(1, 5);
 
     /// <summary>
     /// How close to the gun the entity has to be in order to be targeted.

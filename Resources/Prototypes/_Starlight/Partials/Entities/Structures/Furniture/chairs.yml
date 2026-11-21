@@ -1,4 +1,11 @@
 - type: !PartialOnly entity
+  id: ChairXeno
+  components:
+  - type: Construction
+    graph: SeatXeno
+    node: chairXeno
+
+- type: !PartialOnly entity
   id: ChairWeb
   components:
   - type: Solution

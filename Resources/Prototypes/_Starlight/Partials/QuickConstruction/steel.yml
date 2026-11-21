@@ -1,0 +1,26 @@
+- type: !PartialOnly quickConstructionCategory
+  id: Steel
+  constructionEntries:
+    - !Remove MachineFrame
+    - !Remove Computer
+  categoryEntries:
+    - !Remove Pipes
+    - Atmospheric
+    - SteelFramesDevices
+    - SteelLighting
+    - SteelChairs
+
+- type: !PartialOnly quickConstructionCategory
+  id: MetalRod
+  constructionEntries:
+    - GrilleDiagonal
+  categoryEntries:
+    - SteelChainLinkFences
+
+- type: !PartialOnly quickConstructionCategory
+  id: Pipes
+  name: rpd-component-piping
+  constructionEntries:
+    - GasPipeHalf
+  categoryEntries:
+    - SteelDisposal
