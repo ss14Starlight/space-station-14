@@ -104,16 +104,14 @@
   placement:
     mode: SnapgridCenter
   components:
-    # Carpmosia-start - Atmos stacking
     - type: Tag
       tags:
         - Unstackable
-    # Carpmosia-end - Atmos stacking
     - type: Rotatable
     - type: Transform
       noRot: false
     - type: Sprite
-      sprite: _Starlight\Structures\Piping\Atmospherics\inlineradiator.rsi
+      sprite: _Starlight/Structures/Piping/Atmospherics/inlineradiator.rsi
       layers:
         - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
           state: pipeStraight
@@ -169,7 +167,5 @@
     - type: Construction
       graph: GasUnaryStarlight
       node: inlinebendradiator
-    # Starlight start
     - type: VentCrawlTube
     - type: VentCrawlBend
-    # Starlight end

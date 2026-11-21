@@ -242,7 +242,7 @@
   graph: GasUnaryStarlight
   startNode: start
   targetNode: inlineradiator
-  category: construction-category-atmospherics # Starlight
+  category: construction-category-atmospherics
   placementMode: SnapgridCenter
   canBuildInImpassable: false
 
@@ -252,7 +252,7 @@
   graph: GasUnaryStarlight
   startNode: start
   targetNode: inlinebendradiator
-  category: construction-category-atmospherics # Starlight
+  category: construction-category-atmospherics
   placementMode: SnapgridCenter
   canBuildInImpassable: false
 
