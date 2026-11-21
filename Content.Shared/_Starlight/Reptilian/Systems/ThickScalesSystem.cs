@@ -56,6 +56,7 @@ public sealed partial class ThickScalesSystem : EntitySystem
             return;
 
         if (TryComp<InjectionPortComponent>(ent, out var port) && port.BypassScales) // < moved up so ports bypass auto-injector delay- DV
+            return; 
 
         // Auto-injectors get a 3s do-after; hyposprays and jet injectors stay blocked.
         if (args.Mode.InjectOnUse) //
