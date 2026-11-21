@@ -1,0 +1,59 @@
+- type: body
+  id: Scurret
+  name: "scurret"
+  root: torso
+  slots:
+    head:
+      part: HeadScurret
+      connections:
+      - torso
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganScurretEyes
+        tongue: OrganScurretTongue
+        eye_implant: null
+        nose_implant: null
+        brain_implant: null
+    torso:
+      part: TorsoScurret
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganScurretHeart
+        lungs: OrganScurretLungs
+        stomach: OrganScurretStomach
+        liver: OrganScurretLiver
+        kidneys: OrganScurretKidneys
+        stomach_pouch: OrganScurretStomachPouch
+        cavity: null
+    right arm:
+      part: RightArmScurret
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmScurret
+      connections:
+      - left hand
+    right hand:
+      part: RightHandScurret
+      organs:
+        hand_implant: null
+    left hand:
+      part: LeftHandScurret
+      organs:
+        hand_implant: null
+    right leg:
+      part: RightLegScurret
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegScurret
+      connections:
+      - left foot
+    right foot:
+      part: RightFootScurret
+    left foot:
+      part: LeftFootScurret

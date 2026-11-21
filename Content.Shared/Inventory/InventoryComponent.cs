@@ -18,6 +18,12 @@ public sealed partial class InventoryComponent : Component
     public ProtoId<InventoryTemplatePrototype> TemplateId = "human";
 
     /// <summary>
+    /// Whether to ignore EVA dependancies or not
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool IgnoreSuitStorageDependencies;
+
+    /// <summary>
     /// For setting the TemplateId.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]

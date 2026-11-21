@@ -9,6 +9,9 @@ trait-language-foreigner-desc = You can't understand the common language, and yo
 trait-language-xenosocialized-name = Xenosocialized
 trait-language-xenosocialized-desc = You were raised without being taught the language your species normally uses.
 
+trait-language-exiled-name = Exiled
+trait-language-exiled-desc = You were exiled from Scurret society and can no longer speak or understand Scurret Sign. You learned to speak Galactic Common instead.
+
 trait-language-signlanguage-name = Galactic Sign Language
 trait-language-signlanguage-desc = A sign language commonly used for those who are deaf or mute. Especially popular with spacers, due to practicality in airless environments.
 

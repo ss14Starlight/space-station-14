@@ -1,0 +1,479 @@
+- type: entity
+  parent: BaseAction
+  id: ActionOpenStomachStorage
+  name: Stomach Storage
+  description: Opens your built-in stomach storage.
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -11
+    raiseOnUser: true
+    icon:
+      sprite: _Starlight/Interface/Actions/scurret.rsi
+      state: stomach
+  - type: InstantAction
+    event: !type:OpenStorageImplantEvent
+
+- type: entity
+  save: false
+  name: Urist McWawa
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableHuge]
+  id: BaseMobScurret
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - ScurretSign
+    understands:
+    - GalacticCommon
+    - ScurretSign
+  - type: Absorbable
+  - type: Hunger
+  - type: Icon
+    sprite: _Starlight/Mobs/Species/Scurret/parts.rsi
+    state: full
+  - type: Storage
+    clickInsert: false
+    showVerb: false
+    openOnActivate: false
+    grid:
+    - 0,0,1,2
+    maxItemSize: Large
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: Thirst
+  - type: ScurretWater
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Critical
+      180: Dead
+  - type: StomachStorage
+  - type: Body
+    prototype: Scurret
+    requiredLegs: 2
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatHuman
+      amount: 5
+  - type: Speech
+    speechVerb: Wawa
+    speechSounds: Wawa
+    allowedEmotes: ["Thump", "LagomorphStomp"]
+  - type: Vocal
+    sounds:
+      Male: Scurret
+      Female: Scurret
+      Unsexed: Scurret
+  - type: TypingIndicator
+    proto: moth
+  - type: BodyEmotes
+    soundsId: ScurretBodyEmotes
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 30
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 10
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 5
+    baseSprintSpeed: 7
+  - type: Puller
+    ignorePullingSlowdown: true
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+    - AnomalyHost
+    - NotLabelable
+  - type: Sprite
+    layers:
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Head" ]
+    - map: [ "enum.HumanoidVisualLayers.Snout" ]
+    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.RArm" ]
+    - map: [ "enum.HumanoidVisualLayers.LArm" ]
+    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: [ "jumpsuit" ]
+    - map: [ "enum.HumanoidVisualLayers.LFoot" ]
+    - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+    - map: [ "enum.HumanoidVisualLayers.LHand" ]
+    - map: [ "enum.HumanoidVisualLayers.RHand" ]
+    - map: [ "gloves" ]
+    - map: [ "shoes" ]
+    - map: [ "ears" ]
+    - map: [ "eyes" ]
+    - map: [ "outerClothing" ]
+    - map: [ "belt" ]
+    - map: [ "id" ]
+    - map: [ "back" ]
+    - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+    - map: [ "enum.HumanoidVisualLayers.Hair" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+  - type: DamageVisuals
+    thresholds: [ 10, 30, 50, 70 ]
+    targetLayers:
+    - "enum.HumanoidVisualLayers.Chest"
+    - "enum.HumanoidVisualLayers.Head"
+    - "enum.HumanoidVisualLayers.LArm"
+    - "enum.HumanoidVisualLayers.LLeg"
+    - "enum.HumanoidVisualLayers.RArm"
+    - "enum.HumanoidVisualLayers.RLeg"
+    damageOverlayGroups:
+      Brute:
+        sprite: _Starlight/Mobs/Effects/Rodentia/brute_damage.rsi
+        color: "#CC0000"
+      Burn:
+        sprite: _Starlight/Mobs/Effects/Rodentia/burn_damage.rsi
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 2
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+  - type: HumanoidAppearance
+    species: Scurret
+    hideLayersOnEquip:
+    - Hair
+    - HeadTop
+    - HeadSide
+    - Snout
+    allowProfileOverride: false
+    customSpecieName: species-custom-name-scurret
+    sex: Unsexed
+    eyeColor: '#FF0000'
+    skinColor: '#FFFFFF'
+    eyeGlowing: true
+
+- type: species
+  id: Scurret
+  name: species-name-scurret
+  roundStart: true
+  prototype: MobScurretPlayer
+  sprites: MobScurretSprites
+  defaultSkinTone: '#FFFFFF'
+  markingLimits: MobScurretMarkingLimits
+  dollPrototype: AppearanceScurret
+  skinColoration: Hues
+  maleFirstNames: NamesFirstScurret
+  femaleFirstNames: NamesFirstScurret
+  lastNames: NamesLastScurret
+  customName: true
+  sexes:
+  - Male
+  - Female
+  - Unsexed
+  standardSize: 100
+  standardWeight: 50
+  standardDensity: 60
+  minHeight: 0.85
+  maxHeight: 1.0
+
+- type: speciesBaseSprites
+  id: MobScurretSprites
+  sprites:
+    Head: MobScurretHead
+    Chest: MobScurretTorso
+    Eyes: MobScurretEyes
+    LArm: MobScurretLArm
+    RArm: MobScurretRArm
+    LHand: MobScurretLHand
+    RHand: MobScurretRHand
+    LLeg: MobScurretLLeg
+    RLeg: MobScurretRLeg
+    LFoot: MobScurretLFoot
+    RFoot: MobScurretRFoot
+    Tail: MobScurretTail
+    Snout: MobHumanoidAnyMarking
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+
+- type: markingPoints
+  id: MobScurretMarkingLimits
+  points:
+    Hair:
+      points: 0
+      required: false
+      onlyWhitelisted: true
+    FacialHair:
+      points: 0
+      required: false
+      onlyWhitelisted: true
+    Chest:
+      points: 2
+      required: false
+      onlyWhitelisted: true
+    Head:
+      points: 3
+      required: false
+      onlyWhitelisted: true
+    Tail:
+      points: 1
+      required: false
+      onlyWhitelisted: true
+    Arms:
+      points: 4
+      required: false
+      onlyWhitelisted: true
+    Legs:
+      points: 4
+      required: false
+      onlyWhitelisted: true
+
+- type: humanoidBaseSprite
+  id: MobScurretEyes
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Scurret/parts.rsi
+    state: eyes
+
+- type: humanoidBaseSprite
+  id: MobScurretHead
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Scurret/parts.rsi
+    state: head
+
+- type: humanoidBaseSprite
+  id: MobScurretHeadMale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Scurret/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobScurretHeadFemale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Scurret/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobScurretTorso
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Scurret/parts.rsi
+    state: torso
+
+- type: humanoidBaseSprite
+  id: MobScurretTorsoMale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Scurret/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobScurretTorsoFemale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Scurret/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobScurretLArm
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Scurret/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobScurretRArm
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Scurret/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobScurretLHand
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Scurret/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobScurretRHand
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Scurret/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobScurretLLeg
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Scurret/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobScurretRLeg
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Scurret/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobScurretLFoot
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Scurret/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobScurretRFoot
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Scurret/parts.rsi
+    state: r_foot
+
+- type: humanoidBaseSprite
+  id: MobScurretTail
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Scurret/parts.rsi
+    state: tail
+
+- type: entity
+  name: scurret
+  parent: [BaseMobScurret, BaseInventoryFemaleJumpsuit]
+  id: MobScurretSpecies
+  abstract: true
+  components:
+  - type: Inventory
+    templateId: human
+    ignoreSuitStorageDependencies: true
+    displacements:
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Scurret/displacement.rsi
+            state: eyes
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Scurret/displacement.rsi
+            state: head
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Scurret/displacement.rsi
+            state: ears
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Scurret/displacement.rsi
+            state: gloves
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Scurret/displacement.rsi
+            state: jumpsuit
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Scurret/displacement.rsi
+            state: shoes
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Scurret/displacement.rsi
+            state: outerClothing
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Scurret/displacement.rsi
+            state: back
+      suitStorage:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Scurret/displacement.rsi
+            state: suitStorage
+      inHand:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Scurret/displacement.rsi
+            state: inHand
+  - type: HumanoidAppearance
+    species: Scurret
+    allowProfileOverride: true
+    sex: Unsexed
+
+- type: entity
+  name: Urist McWawa
+  parent: MobScurretSpecies
+  id: MobScurretPlayer
+  abstract: false
+  categories: [ Mapping ]
+
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryFemaleJumpsuit]
+  id: AppearanceScurret
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Inventory
+    templateId: human
+    ignoreSuitStorageDependencies: true
+    displacements:
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Scurret/displacement.rsi
+            state: eyes
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Scurret/displacement.rsi
+            state: head
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Scurret/displacement.rsi
+            state: ears
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Scurret/displacement.rsi
+            state: gloves
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Scurret/displacement.rsi
+            state: jumpsuit
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Scurret/displacement.rsi
+            state: shoes
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Scurret/displacement.rsi
+            state: back
+      suitStorage:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Scurret/displacement.rsi
+            state: suitStorage
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Scurret/displacement.rsi
+            state: outerClothing
+  - type: Body
+    prototype: Scurret
+    requiredLegs: 2
+  - type: HumanoidAppearance
+    species: Scurret
+    sex: Unsexed
