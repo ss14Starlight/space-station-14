@@ -1,0 +1,56 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀                        [center][head=3]EOC DESIGNATION FORM[/head][/center]
+────────────────────────────────────────
+⠀[bold]Case Information[/bold]
+
+Date & Time: [datetime]
+Document Compiler: [signature]
+
+Suspect Identification
+• Suspect Name: [form]
+• Suspect Organization of Origin: [form]
+
+────────────────────────────────────────
+⠀[bold]Charged Offenses[/bold]
+⠀[italic]List all applicable Corporate Law crimes below:[/italic]
+
+• [form]  [ [form] points ]
+• [form]  [ [form] points ]
+• [form]  [ [form] points ]
+• [form]  [ [form] points ]
+
+Total Points: [form] / 4
+
+────────────────────────────────────────
+⠀[bold]Organization Ties & Evidence[/bold]
+
+Option A: Physical Evidence
+⠀[italic]See Security SOP, Special Situations, Enemies of the Corporation[/italic]
+
+• [form]
+
+Option B: Confession of Allegiance
+⠀[italic]Must be witnessed by at least two mindshielded security members.[/italic]
+
+Witness One Signature:
+⠀[signature]
+Witness Two Signature:
+⠀[signature]
+
+────────────────────────────────────────
+⠀[bold]Authorization[/bold]
+
+Authorizing Authority: [signature]
+
+⠀[italic]Requirements:[/italic]
+• Requires approval from any two of the following: Magistrate, (Acting) Captain or (Acting) Head of Security.
+• Upon designation, Enemies of the Corporation are to be permanently confined to the brig until evac, and are to be stripped of all crew-related equipment and identification.
+• CentComm should be informed as soon as possible of any EoC designations; this is generally done via fax.
+• If Central Command or authorizing officials deny this motion, the prisoner must be reinstated as crew and tried under standard Corporate Law procedures.
+
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+⠀

@@ -217,12 +217,35 @@ public sealed partial class AccessReaderSystem : EntitySystem
         if (!reader.Enabled)
             return true;
 
-        //Starlight start
+        // Starlight - start
         var @event = new AccessReadEvent();
         RaiseLocalEvent(user, ref @event);
         if (@event.Denied)
             return false;
-        //Starlight end
+
+        if (@event.AccessSource is { } accessSource && accessSource != user)
+        {
+            var seenAccessSources = new HashSet<EntityUid> { user };
+            while (true)
+            {
+                if (!seenAccessSources.Add(accessSource))
+                    return false;
+
+                var accessSourceEvent = new AccessReadEvent();
+                RaiseLocalEvent(accessSource, ref accessSourceEvent);
+                if (accessSourceEvent.Denied)
+                    return false;
+
+                if (accessSourceEvent.AccessSource is not { } nextSource
+                    || nextSource == accessSource)
+                    break;
+
+                accessSource = nextSource;
+            }
+
+            user = accessSource;
+        }
+        // Starlight - end
 
         var accessSources = FindPotentialAccessItems(user);
         var access = FindAccessTags(user, accessSources);

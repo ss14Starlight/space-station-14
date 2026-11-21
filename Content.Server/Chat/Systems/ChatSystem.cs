@@ -689,7 +689,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
 
         var replayWrap = WrapWhisperMessage(source, "chat-manager-entity-whisper-wrap-message", name, message.Text, language); // Starlight-edit: Languages
-        _replay.RecordServerMessage(new ChatMessage(ChatChannel.Whisper, message.Text, replayWrap, GetNetEntity(source), null, MessageRangeHideChatForReplay(range))); // Starlight-edit: Languages
+        _replay.RecordServerMessage(new ChatMessage(ChatChannel.Whisper, message.Text, replayWrap, GetNetEntity(source), null, MessageRangeHideChatForReplay(range), repeatCheckSender: !HasComp<ChatRepeatIgnoreSenderComponent>(source))); // Starlight-edit: Languages, chat stacking
 
         //Starlight begin
         var ev = customChannel is not null
@@ -922,7 +922,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             // Starlight - end
         }
 
-        _replay.RecordServerMessage(new ChatMessage(channel, message, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
+        _replay.RecordServerMessage(new ChatMessage(channel, message, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range), repeatCheckSender: !HasComp<ChatRepeatIgnoreSenderComponent>(source))); // Starlight: chat stacking
     }
 
     /// <summary>

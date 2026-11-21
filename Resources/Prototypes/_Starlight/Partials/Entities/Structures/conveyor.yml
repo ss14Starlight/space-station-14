@@ -7,3 +7,9 @@
       - CanBuildWindowOnTop # intact grilles
       - Airlock
     popup: anchorable-tile-blacklisted-grille-or-airlock
+
+- type: !PartialOnly entity
+  id: ConveyorBeltAssembly
+  components:
+  - type: ConstructionPlacementAction
+    construction: ConveyorBelt

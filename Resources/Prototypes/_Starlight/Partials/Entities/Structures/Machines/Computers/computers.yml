@@ -175,3 +175,8 @@
           sprite: Structures/Machines/computers.rsi
           state: comm_wizard
           visible: false
+
+- type: !PartialOnly entity
+  id: ComputerSurveillanceWirelessCameraMonitor
+  components:
+    - type: ChatRepeatIgnoreSender

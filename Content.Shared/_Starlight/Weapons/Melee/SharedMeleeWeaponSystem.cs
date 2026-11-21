@@ -1,0 +1,106 @@
+using Content.Shared.Weapons.Melee.Components;
+using Content.Shared.Weapons.Melee.Events;
+using Content.Shared.Weapons.Ranged.Components;
+using System.Linq;
+using Robust.Shared.Map;
+using Robust.Shared.Player;
+
+// ReSharper disable CheckNamespace
+namespace Content.Shared.Weapons.Melee;
+
+public abstract partial class SharedMeleeWeaponSystem
+{
+    /// <summary>
+    /// Attempts a remote light attack against the specified target.
+    /// </summary>
+    /// <remarks>
+    /// A successful remote attack clears <see cref="MeleeWeaponComponent.Attacking"/> without resetting
+    /// <see cref="MeleeWeaponComponent.NextAttack"/>.
+    /// </remarks>
+    public bool TryAttemptRemoteLightAttack(EntityUid user, Entity<MeleeWeaponComponent?> weapon, EntityUid target)
+    {
+        var weaponUid = weapon.Owner;
+        if (!Resolve(weaponUid, ref weapon.Comp)
+            || weapon.Comp is not { } weaponComponent
+            || !AttemptLightAttack(user, weaponUid, weaponComponent, target))
+            return false;
+
+        weaponComponent.Attacking = false;
+        DirtyField(weaponUid, weaponComponent, nameof(MeleeWeaponComponent.Attacking));
+        return true;
+    }
+
+    /// <summary>
+    /// Attempts to execute a heavy attack for the remotely controlled entity.
+    /// </summary>
+    public bool TryAttemptRemoteHeavyAttack(EntityUid user, HeavyAttackEvent attack, ICommonSession? session)
+    {
+        if (!TryGetWeapon(user, out var weaponUid, out var weapon)
+            || weaponUid != GetEntity(attack.Weapon)
+            || !CanUseRemoteHeavyAttackWeapon(user, weaponUid, weapon)
+            || !AttemptAttack(user, weaponUid, weapon, attack, session))
+            return false;
+
+        weapon.Attacking = false;
+        DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.Attacking));
+        return true;
+    }
+
+    /// <summary>
+    /// Attempts a remote heavy attack toward the specified position.
+    /// </summary>
+    /// <remarks>
+    /// The user must be in combat mode and have a melee weapon that is not already attacking or on cooldown, and
+    /// <see cref="Blocker.CanAttack"/> must allow the attack. A use-key gun must have heavy melee alt-fire, and an
+    /// unarmed weapon with <see cref="MeleeWeaponComponent.AltDisarm"/> enabled is not eligible. The user's origin
+    /// entity must have a transform, and the target position must be on the same map. The method then raycasts toward
+    /// the position and submits the resulting attack to the normal heavy-attack attempt.
+    /// </remarks>
+    public bool TryAttemptRemoteHeavyAttackAt(EntityUid user, EntityCoordinates coordinates, ICommonSession? session)
+    {
+        if (!CombatMode.IsInCombatMode(user)
+            || !TryGetWeapon(user, out var weaponUid, out var weapon))
+            return false;
+
+        if (!Blocker.CanAttack(user, weapon: (weaponUid, weapon))
+            || weapon.Attacking
+            || weapon.NextAttack > Timing.CurTime)
+            return false;
+
+        if (!CanUseRemoteHeavyAttackWeapon(user, weaponUid, weapon))
+            return false;
+
+        var originUid = GetOriginEntity(user);
+        if (!TryComp(originUid, out TransformComponent? originXform))
+            return false;
+
+        var targetMap = TransformSystem.ToMapCoordinates(coordinates);
+        if (targetMap.MapId != originXform.MapID)
+            return false;
+
+        var originPos = TransformSystem.GetWorldPosition(originXform);
+        var direction = targetMap.Position - originPos;
+        var distance = MathF.Min(weapon.Range, direction.Length());
+        var entities = GetNetEntitySet(ArcRayCast(
+            originPos,
+            direction.ToWorldAngle(),
+            weapon.Angle,
+            distance,
+            originXform.MapID,
+            originUid));
+        entities.Remove(GetNetEntity(user));
+        entities = entities.Take(Math.Min(MaxTargets, entities.Count)).ToHashSet();
+
+        var attack = new HeavyAttackEvent(
+            GetNetEntity(weaponUid),
+            entities,
+            GetNetCoordinates(coordinates));
+        return TryAttemptRemoteHeavyAttack(user, attack, session);
+    }
+
+    protected bool CanUseRemoteHeavyAttackWeapon(EntityUid user, EntityUid weaponUid, MeleeWeaponComponent weapon) =>
+        TryComp<GunComponent>(weaponUid, out var gun) && gun.UseKey
+            ? TryComp<AltFireMeleeComponent>(weaponUid, out var altFire)
+                && altFire.AttackType == AltFireAttackType.Heavy
+            : !weapon.AltDisarm || weaponUid != user;
+}
