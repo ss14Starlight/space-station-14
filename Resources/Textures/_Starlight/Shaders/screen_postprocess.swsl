@@ -200,10 +200,10 @@ void fragment()
     // Grade before brightness, so the player's brightness setting works on the graded picture.
     {
         highp float luma = dot(color, LUMA);
-        color = mix(vec3(luma), color, gradeSaturation);
-        // Around middle grey as the eye sees it: 0.5 in sRGB is about 0.214 in linear light.
-        color = (color - 0.214) * gradeContrast + 0.214;
-        color = max(color, 0.0) * gradeTint;
+        color = max(mix(vec3(luma), color, gradeSaturation), 0.0);
+        if (gradeContrast != 1.0 && luma > 0.0001)
+            color *= 0.214 * pow(luma / 0.214, gradeContrast) / luma;
+        color *= gradeTint;
         color += gradeShadows * (1.0 - clamp(color, 0.0, 1.0));
     }
 
