@@ -8,6 +8,7 @@ using Content.Shared.Chemistry.Prototypes;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
+using Content.Shared.Tag; // <-- ADDED
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
@@ -18,6 +19,9 @@ public sealed partial class ThickScalesSystem : EntitySystem
     [Dependency] private INetManager _net = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private TagSystem _tag = default!; 
+
+    private static readonly ProtoId<TagPrototype> MedipenTag = "Medipen"; 
 
     private bool IsInstantInjector(EntityUid injector)
         => TryComp<InjectorComponent>(injector, out var comp)
@@ -30,6 +34,7 @@ public sealed partial class ThickScalesSystem : EntitySystem
         if (!ent.Comp.BlockInstantInjectors
             || args.Cancelled
             || HasComp<PiercesThickScalesComponent>(args.UsedInjector)
+            || _tag.HasTag(args.UsedInjector, MedipenTag) //
             || !IsInstantInjector(args.UsedInjector)
             || (TryComp<InjectionPortComponent>(ent, out var port) && port.BypassScales))
             return;
@@ -47,12 +52,25 @@ public sealed partial class ThickScalesSystem : EntitySystem
         if (!args.Mode.Behavior.HasFlag(InjectorBehavior.Inject) && !args.Mode.Behavior.HasFlag(InjectorBehavior.Dynamic))
             return;
 
-        // Instant injectors are blocked outright when the injection happens.
-        if (args.Mode.InjectOnUse)
+        if (HasComp<PiercesThickScalesComponent>(args.Injector)) // 
             return;
 
-        if (TryComp<InjectionPortComponent>(ent, out var port) && port.BypassScales)
+        if (TryComp<InjectionPortComponent>(ent, out var port) && port.BypassScales) // < moved up so ports bypass auto-injector delay- DV
+
+        // Auto-injectors get a 3s do-after; hyposprays and jet injectors stay blocked.
+        if (args.Mode.InjectOnUse) //
+        {
+            if (!_tag.HasTag(args.Injector, MedipenTag))
+                return;
+
+            args.DoAfterTime = ent.Comp.AutoInjectorDoAfterTime;
+            _popup.PopupClient(Loc.GetString("thick-scales-autoinjector-slow",
+                    ("target", Identity.Entity(ent, EntityManager))),
+                ent,
+                args.User,
+                PopupType.SmallCaution);
             return;
+        }
 
         args.DoAfterTime *= ent.Comp.InjectTimeMultiplier;
         _popup.PopupClient(Loc.GetString("thick-scales-syringe-slow",

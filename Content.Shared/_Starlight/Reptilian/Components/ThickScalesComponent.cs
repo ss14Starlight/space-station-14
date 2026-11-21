@@ -23,6 +23,12 @@ public sealed partial class ThickScalesComponent : Component
     public bool BlockInstantInjectors = true;
 
     /// <summary>
+    /// Do-after duration for auto-injectors (medipens) on this mob.
+    /// </summary>
+    [DataField]
+    public TimeSpan AutoInjectorDoAfterTime = TimeSpan.FromSeconds(3);
+    
+    /// <summary>
     /// Whether darts, injecting projectiles and injecting melee weapons are blocked entirely.
     /// </summary>
     [DataField]
