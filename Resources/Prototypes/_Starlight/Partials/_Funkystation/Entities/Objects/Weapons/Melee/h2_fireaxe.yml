@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: MetalHydrogenAxe
+  components:
+    - type: Reflect
+      reflectProb: 0.10
+      slotFlags: NONE
