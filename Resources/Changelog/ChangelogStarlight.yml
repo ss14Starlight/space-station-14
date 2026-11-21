@@ -1,11 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Adjusted broken light flickering to make it less intense and happen slightly less frequently.
-    type: Tweak
-  id: 410383
-  time: '2026-11-13T11:50:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7201
 - author: MaxAlpine
   changes:
   - message: (Prism) added new radio host equipment.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410782
   time: '2026-11-21T11:20:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7372
+- author: Ohelig
+  changes:
+  - message: Firelocks will no longer immediately close on your face if you open them with your Command/Engi/Paramedic access.
+    type: Fix
+  id: 410783
+  time: '2026-11-21T11:20:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7371
 Order: -1
