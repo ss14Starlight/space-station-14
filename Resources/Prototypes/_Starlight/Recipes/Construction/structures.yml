@@ -82,6 +82,23 @@
   conditions:
   - !type:TileNotBlocked
 
+- type: construction
+  id: GrateGray
+  graph: GrateGray
+  startNode: start
+  targetNode: GrateGray
+  category: construction-category-structures
+  conditions:
+    - !type:TileNotBlocked
+      failIfSpace: false
+    - !type:TileType
+      targets:
+        - Lattice
+        - Plating
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
 #region Wood
 - type: construction
   id: RailingWood
