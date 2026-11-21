@@ -204,7 +204,7 @@
 - type: reaction
   id: Barozine
   reactants:
-    Nitrium:
+    Healium:
       amount: 20
     Aluminium:
       amount: 2
