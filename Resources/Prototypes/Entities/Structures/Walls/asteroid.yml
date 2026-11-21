@@ -89,7 +89,6 @@
     keysIn:
     - timer
   - type: Explosive
-    adminLogImpact: Medium # Starlight
     explosionType: DemolitionCharge
     totalIntensity: 450
     intensitySlope: 2.5
