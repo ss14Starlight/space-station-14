@@ -136,8 +136,8 @@
           nodeGroupID: Pipe
           pipeDirection: Longitudinal
     - type: Construction
-      graph: GasUnary
-      node: radiator
+      graph: GasUnaryStarlight
+      node: inlineradiator
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: Thermoregulator
     - type: VentCrawlTube
@@ -167,8 +167,8 @@
           nodeGroupID: Pipe
           pipeDirection: SWBend
     - type: Construction
-      graph: GasUnary
-      node: bendradiator
+      graph: GasUnaryStarlight
+      node: inlinebendradiator
     # Starlight start
     - type: VentCrawlTube
     - type: VentCrawlBend

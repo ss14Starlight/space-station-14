@@ -144,6 +144,18 @@
         amount: 2
         doAfter: 1
 
+    - to: inlineradiator
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: inlinebendradiator
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
   - node: ventpumpAlt1
     entity: GasVentPumpAlt1
     edges:
