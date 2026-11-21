@@ -215,4 +215,3 @@
   components:
   - type: ExplosionResistance
     damageCoefficient: 0
-  - type: FireproofContainer # Starlight
