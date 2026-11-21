@@ -393,23 +393,30 @@ public sealed partial class BodyTab : Control, IMarkingCardDragHost
     /// </summary>
     private Control BuildPreview(MarkingPrototype marking, IReadOnlyList<Color> colors, Vector2 cellSize)
     {
-        var scale = MarkingCard.ScaleFor(cellSize);
-        var stack = new LayoutContainer { SetSize = new Vector2(32, 32) * scale };
-
+        var textures = new List<(Texture Texture, Color Color)>();
         if (_entity.TryGetComponent(_previewEntity, out SpriteComponent? sprite)
             && _sprite.LayerMapTryGet((_previewEntity, sprite), marking.BodyPart, out var index, false)
             && sprite[index] is SpriteComponent.Layer { ActualRsi: { } rsi } layer
             && rsi.TryGetState(layer.State, out var state))
         {
-            AddTexture(stack, Frame(state), layer.Color, scale);
+            textures.Add((Frame(state), layer.Color));
         }
 
         var slotColors = marking.GetColorSlotColors(colors);
         for (var i = 0; i < marking.Sprites.Count; i++)
         {
             var color = marking.GetColorIndex(i) is var slot && slot < slotColors.Count ? slotColors[slot] : Color.White;
-            AddTexture(stack, Frame(_sprite.RsiStateLike(marking.Sprites[i])), color, scale);
+            textures.Add((Frame(_sprite.RsiStateLike(marking.Sprites[i])), color));
         }
+
+        var size = new Vector2(32, 32);
+        foreach (var (texture, _) in textures)
+            size = Vector2.Max(size, texture.Size);
+
+        var scale = MarkingCard.ScaleFor(cellSize, MathF.Max(size.X, size.Y));
+        var stack = new LayoutContainer { SetSize = size * scale };
+        foreach (var (texture, color) in textures)
+            AddTexture(stack, texture, color, scale, (size - texture.Size) / 2 * scale);
 
         return stack;
     }
@@ -417,14 +424,18 @@ public sealed partial class BodyTab : Control, IMarkingCardDragHost
     private Texture Frame(IRsiStateLike state)
         => state.GetFrame(state.RsiDirections == RsiDirectionType.Dir1 ? RsiDirection.South : BodyPreview.Direction, 0);
 
-    private static void AddTexture(LayoutContainer stack, Texture texture, Color color, float scale)
-        => stack.AddChild(new TextureRect
+    private static void AddTexture(LayoutContainer stack, Texture texture, Color color, float scale, Vector2 position)
+    {
+        var rect = new TextureRect
         {
             Texture = texture,
             TextureScale = new Vector2(scale),
             ModulateSelfOverride = color,
             MouseFilter = MouseFilterMode.Ignore,
-        });
+        };
+        LayoutContainer.SetPosition(rect, position);
+        stack.AddChild(rect);
+    }
 
     public void BeginDrag(MarkingCard card)
     {

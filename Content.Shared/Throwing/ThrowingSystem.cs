@@ -67,7 +67,8 @@ public sealed partial class ThrowingSystem : EntitySystem
         Subs.CVar(_configManager, CCVars.AirFriction, value => _airDamping = value, true);
     }
 
-    public void TryThrow(
+    /// <returns>Whether the entity was thrown.</returns>
+    public bool TryThrow( // Starlight
         EntityUid uid,
         EntityCoordinates coordinates,
         float baseThrowSpeed = 10.0f,
@@ -86,9 +87,9 @@ public sealed partial class ThrowingSystem : EntitySystem
         var mapPos = _transform.ToMapCoordinates(coordinates);
 
         if (mapPos.MapId != thrownPos.MapId)
-            return;
+            return false; // Starlight
 
-        TryThrow(uid, mapPos.Position - thrownPos.Position, baseThrowSpeed, user, pushbackRatio, friction, compensateFriction: compensateFriction, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin, unanchor: unanchor, predicted: predicted); // Starlight edit
+        return TryThrow(uid, mapPos.Position - thrownPos.Position, baseThrowSpeed, user, pushbackRatio, friction, compensateFriction: compensateFriction, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin, unanchor: unanchor, predicted: predicted); // Starlight edit
     }
 
     /// <summary>
@@ -102,7 +103,8 @@ public sealed partial class ThrowingSystem : EntitySystem
     /// <param name="compensateFriction">True will adjust the throw so the item stops at the target coordinates. False means it will land at the target and keep sliding.</param>
     /// <param name="doSpin">Whether spin will be applied to the thrown entity.</param>
     /// <param name="unanchor">If set to Unanchorable, if the entity has <see cref="AnchorableComponent"/> and is unanchorable, it will unanchor the thrown entity. If set to All, it will unanchor the entity regardless.</param>
-    public void TryThrow(EntityUid uid,
+    /// <returns>Whether the entity was thrown.</returns>
+    public bool TryThrow(EntityUid uid, // Starlight
         Vector2 direction,
         float baseThrowSpeed = 10.0f,
         EntityUid? user = null,
@@ -116,10 +118,11 @@ public sealed partial class ThrowingSystem : EntitySystem
         bool predicted = false, // Starlight
         ThrowingUnanchorStrength unanchor = ThrowingUnanchorStrength.None)
     {
-        if (!_physicsQuery.TryComp(uid, out var physics))
-            return;
+        var physicsQuery = GetEntityQuery<PhysicsComponent>();
+        if (!physicsQuery.TryGetComponent(uid, out var physics))
+            return false; // Starlight
 
-        TryThrow(
+        return TryThrow(
             uid,
             direction,
             physics,
@@ -141,7 +144,8 @@ public sealed partial class ThrowingSystem : EntitySystem
     /// <param name="compensateFriction">True will adjust the throw so the item stops at the target coordinates. False means it will land at the target and keep sliding.</param>
     /// <param name="doSpin">Whether spin will be applied to the thrown entity.</param>
     /// <param name="unanchor">If set to Unanchorable, if the entity has <see cref="AnchorableComponent"/> and is unanchorable, it will unanchor the thrown entity. If set to All, it will unanchor the entity regardless.</param>
-    public void TryThrow(EntityUid uid,
+    /// <returns>Whether the entity was thrown.</returns>
+    public bool TryThrow(EntityUid uid, // Starlight
         Vector2 direction,
         PhysicsComponent physics,
         TransformComponent transform,
@@ -158,7 +162,7 @@ public sealed partial class ThrowingSystem : EntitySystem
         ThrowingUnanchorStrength unanchor = ThrowingUnanchorStrength.None)
     {
         if (baseThrowSpeed <= 0 || direction == Vector2Helpers.Infinity || direction == Vector2Helpers.NaN || direction == Vector2.Zero || friction < 0)
-            return;
+            return false; // Starlight
 
         // Unanchor the entity if applicable
         if (unanchor == ThrowingUnanchorStrength.All ||
@@ -168,11 +172,11 @@ public sealed partial class ThrowingSystem : EntitySystem
             _transform.Unanchor(uid);
 
         if ((physics.BodyType & (BodyType.Dynamic | BodyType.KinematicController)) == 0x0)
-            return;
+            return false; // Starlight
 
         // Allow throwing if this projectile only acts as a projectile when shot, otherwise disallow
-        if (_projectileQuery.TryComp(uid, out var proj) && !proj.OnlyCollideWhenShot)
-            return;
+        if (_projectileQuery.TryComp(uid, out var proj) && !proj.OnlyCollideWhenShot) // Starlight
+            return false; // Starlight
 
         var comp = new ThrownItemComponent
         {
@@ -250,7 +254,7 @@ public sealed partial class ThrowingSystem : EntitySystem
         // Starlight end
 
         if (user == null)
-            return;
+            return true; // Starlight
 
         if (recoil && _gameTiming.IsFirstTimePredicted && (_net.IsClient || !predicted)) // Starlight edit
             _recoil.KickCamera(user.Value, -direction * 0.04f);
@@ -259,12 +263,12 @@ public sealed partial class ThrowingSystem : EntitySystem
         if (pushbackRatio == 0.0f ||
             physics.Mass == 0f ||
             !TryComp(user.Value, out PhysicsComponent? userPhysics))
-            return;
+            return true; // Starlight
         var msg = new ThrowPushbackAttemptEvent();
         RaiseLocalEvent(uid, msg);
 
         if (msg.Cancelled)
-            return;
+            return true; // Starlight
 
         var pushEv = new ThrowerImpulseEvent();
         RaiseLocalEvent(user.Value, ref pushEv);
@@ -272,6 +276,8 @@ public sealed partial class ThrowingSystem : EntitySystem
 
         if (pushEv.Push)
             _physics.ApplyLinearImpulse(user.Value, -impulseVector / physics.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: userPhysics);
+
+        return true; // Starlight
     }
 
     #region Starlight

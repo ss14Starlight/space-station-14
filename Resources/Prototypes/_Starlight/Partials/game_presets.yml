@@ -107,7 +107,7 @@
 
 - type: !PartialOnly gamePreset
   id: Sandbox
-  minPlayers: 5
+  minPlayers: 0
   rules:
     - XenoDemocracy # Let them vote in sandbox
     - WireCutScheduler
@@ -151,7 +151,6 @@
   minPlayers: 20
   rules:
   - !Remove DummyNonAntagChance
-  - SubGamemodesRuleNoWizard #No Dual Wizards at the start# midround is fine
   - SpaceTrafficControlEventScheduler
   - XenoDemocracy
   - WireCutScheduler

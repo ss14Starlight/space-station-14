@@ -2,7 +2,6 @@ using System.Numerics;
 using Content.Client.Clickable;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Graphics.RSI;
 using Robust.Shared.Reflection;
@@ -15,20 +14,25 @@ namespace Content.Client._Starlight.Lobby.UI;
 /// </summary>
 public sealed class BodyPreviewControl : BoxContainer
 {
-    private static readonly RsiDirection[] Directions =
+    private static readonly RsiDirection[] _directions =
         [RsiDirection.South, RsiDirection.East, RsiDirection.North, RsiDirection.West];
 
     private readonly LayoutContainer _canvas = new() { HorizontalAlignment = HAlignment.Center };
-    private readonly List<BodyPartPreviewControl> _layers = new();
+    private readonly List<BodyPartPreviewControl> _layers = [];
     private readonly IClickMapManager _clickMap;
     private readonly IEntityManager _entity;
     private readonly IReflectionManager _reflection;
 
     private int _direction;
 
-    public float Scale { get; set; } = 9;
+    public float Scale { get; set; } = 7;
 
-    public RsiDirection Direction => Directions[_direction];
+    /// <summary>
+    /// The largest the drawn character may get, in UI pixels. Bigger characters are drawn smaller to fit.
+    /// </summary>
+    public Vector2 MaxPreviewSize { get; set; } = new(296, 320);
+
+    public RsiDirection Direction => _directions[_direction];
 
     public event Action<BodyEditorPart>? PartPressed;
     public event Action<BodyEditorPart?>? PartHovered;
@@ -58,7 +62,7 @@ public sealed class BodyPreviewControl : BoxContainer
 
     private void Rotate(int step)
     {
-        _direction = (_direction + step + Directions.Length) % Directions.Length;
+        _direction = (_direction + step + _directions.Length) % _directions.Length;
         Rotated?.Invoke();
     }
 
@@ -90,7 +94,7 @@ public sealed class BodyPreviewControl : BoxContainer
         var displacements = GetDisplacements((entity, sprite), sprites);
 
         var spriteScale = Vector2.Abs(sprite.Scale);
-        var placed = new List<(BodyPartPreviewControl Control, Vector2 Position, Vector2 Size)>();
+        var placed = new List<(BodyPartPreviewControl Control, Vector2 Position)>();
         var index = 0;
         foreach (var layer in sprite.AllLayers)
         {
@@ -107,8 +111,8 @@ public sealed class BodyPreviewControl : BoxContainer
             control.OnMouseEntered += _ => PartHovered?.Invoke(control.Part);
             control.OnMouseExited += _ => PartHovered?.Invoke(null);
 
-            var frameSize = control.SetSize / spriteScale;
-            placed.Add((control, spriteLayer.Offset * new Vector2(1, -1) * EyeManager.PixelsPerMeter * Scale, frameSize));
+            var position = (spriteLayer.Offset * new Vector2(1, -1) * EyeManager.PixelsPerMeter) - (control.FrameSize / 2);
+            placed.Add((control, position));
             _canvas.AddChild(control);
             _layers.Add(control);
         }
@@ -116,7 +120,7 @@ public sealed class BodyPreviewControl : BoxContainer
         Place(placed, spriteScale);
     }
 
-    private void Place(List<(BodyPartPreviewControl Control, Vector2 Position, Vector2 Size)> placed, Vector2 spriteScale)
+    private void Place(List<(BodyPartPreviewControl Control, Vector2 Position)> placed, Vector2 spriteScale)
     {
         if (placed.Count == 0)
         {
@@ -126,17 +130,37 @@ public sealed class BodyPreviewControl : BoxContainer
 
         var min = new Vector2(float.MaxValue);
         var max = new Vector2(float.MinValue);
-        foreach (var (_, position, size) in placed)
+        foreach (var (control, position) in placed)
         {
-            min = Vector2.Min(min, position);
-            max = Vector2.Max(max, position + size);
+            var bounds = control.OpaqueBounds();
+            if (bounds == null)
+                continue;
+            min = Vector2.Min(min, position + bounds.Value.TopLeft);
+            max = Vector2.Max(max, position + bounds.Value.BottomRight);
         }
 
-        var feet = new Vector2((min.X + max.X) / 2, max.Y);
-        var canvas = Vector2.Max(max - min, (max - min) * spriteScale);
+        if (min.X > max.X)
+        {
+            foreach (var (control, position) in placed)
+            {
+                min = Vector2.Min(min, position);
+                max = Vector2.Max(max, position + control.FrameSize);
+            }
+        }
+
+        var box = new Vector2(2 * MathF.Max(MathF.Abs(min.X), MathF.Abs(max.X)), max.Y - min.Y);
+        var grown = Vector2.Max(Vector2.One, spriteScale);
+        var fit = MathF.Min(1f, MathF.Min(MaxPreviewSize.X / (box.X * grown.X * Scale), MaxPreviewSize.Y / (box.Y * grown.Y * Scale)));
+        var drawScale = spriteScale * Scale * fit;
+
+        var canvas = box * grown * Scale * fit;
+        var feet = new Vector2(0, max.Y);
         var anchor = new Vector2(canvas.X / 2, canvas.Y);
-        foreach (var (control, position, _) in placed)
-            LayoutContainer.SetPosition(control, anchor + ((position - feet) * spriteScale));
+        foreach (var (control, position) in placed)
+        {
+            control.SetScale(drawScale);
+            LayoutContainer.SetPosition(control, anchor + ((position - feet) * drawScale));
+        }
 
         _canvas.SetSize = canvas;
     }

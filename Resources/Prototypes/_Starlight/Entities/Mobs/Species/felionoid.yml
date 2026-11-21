@@ -17,6 +17,25 @@
   - type: Vocal
   - type: Hunger
   - type: Thirst
+  - type: Tiredness
+    sleepRecoveryMultiplier: 15
+    severeTirednessMovementSpeedModifier: 0.95
+    maximumTirednessMovementSpeedModifier: 0.75
+  - type: RegenerativeSleep
+    updateInterval: 1s
+    healingPerUpdate:
+      mixmax:
+        value: 1
+        types:
+        - Heat
+        - Cold
+        - Blunt
+        - Slash
+        - Piercing
+        - Bloodloss
+    bleedHealPerUpdate: 0.25
+  - type: LightSleep
+  - type: FelionoidPounce
   - type: Icon
     sprite: _Starlight/Mobs/Species/Felionoid/parts.rsi
     state: felionoid
