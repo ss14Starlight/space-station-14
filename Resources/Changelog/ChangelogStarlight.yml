@@ -1,11 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Cosmic Cult conversion is now much more permissive and won't get locked up by having multiple targets on the glyph. It'll just pick a valid target at random and ignore invalid targets entirely.
-    type: Tweak
-  id: 410358
-  time: '2026-11-12T11:35:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7186
 - author: Katzenminer
   changes:
   - message: Added the Photography Camera, A Camera that takes actual Pictures!
@@ -2799,4 +2792,11 @@ Entries:
   id: 410757
   time: '2026-11-21T09:47:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7367
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Remove a random AI camera hanging in the hallway.
+    type: Remove
+  id: 410758
+  time: '2026-11-21T10:07:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7378
 Order: -1
