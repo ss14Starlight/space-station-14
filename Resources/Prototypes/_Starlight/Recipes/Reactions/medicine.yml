@@ -196,6 +196,8 @@
       amount: 3
     Copper:
       amount: 2
+    Fluorine:
+      amount: 2
   products:
     Respirazone: 5
 
@@ -205,9 +207,11 @@
     Nitrium:
       amount: 20
     Aluminium:
-      amount: 1
+      amount: 2
     Silicon:
-      amount: 1
+      amount: 2
+    Iodine:
+      amount: 2
   products:
     Barozine: 2
 
