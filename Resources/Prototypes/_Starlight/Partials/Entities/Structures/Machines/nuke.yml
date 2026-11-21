@@ -4,6 +4,9 @@
   - type: Tag
     tags:
       - Keg
+  - type: ContainerContainer
+    containers:
+      paper_label: !type:ContainerSlot
   - type: PaperLabel
     labelSlot:
       priority: 100
