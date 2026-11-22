@@ -102,6 +102,14 @@ construction-recipe-counter-retro-white-orange = retro counter white orange
 construction-recipe-counter-retro-white-teal = retro counter white teal
 construction-recipe-counter-retro-diner = retro counter diner
 
+## Xeno Sofa
+
+construction-recipe-sofa-xeno-single = sofa (xeno, single)
+construction-recipe-sofa-xeno-left = sofa (xeno, end, left)
+construction-recipe-sofa-xeno-right = sofa (xeno, end, right)
+construction-recipe-sofa-xeno-middle = sofa (xeno, middle)
+construction-recipe-sofa-xeno-corner = sofa (xeno, corner)
+
 ## Froggy Chair
 construction-recipe-froggy-chair = froggy chair
 construction-recipe-lovey-chair = lovey chair

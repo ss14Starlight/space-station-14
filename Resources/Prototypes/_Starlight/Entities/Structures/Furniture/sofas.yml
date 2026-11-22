@@ -683,3 +683,84 @@
   - type: Construction
     graph: SofaSL
     node: brownSofaMid
+
+# Xeno sofas
+- type: entity
+  abstract: true
+  name: xeno sofa
+  id: XenoSofa
+  parent: SeatBase
+  description: Made of carefully woven strands of chitin. It's softer than you'd expect.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Rotatable
+  - type: Physics
+    bodyType: Static
+  - type: StaticPrice
+    price: 75
+
+- type: entity
+  parent: XenoSofa
+  suffix: Single
+  id: XenoSofaSingle
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Sofas/xeno_sofa.rsi
+    layers:
+    - state: single
+  - type: Construction
+    graph: SofaSL
+    node: xenoSofaSingle
+
+- type: entity
+  parent: XenoSofa
+  suffix: Middle
+  id: XenoSofaMiddle
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Sofas/xeno_sofa.rsi
+    layers:
+    - state: middle
+  - type: Construction
+    graph: SofaSL
+    node: xenoSofaMiddle
+
+- type: entity
+  parent: XenoSofa
+  suffix: Left End
+  id: XenoSofaLeftEnd
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Sofas/xeno_sofa.rsi
+    layers:
+    - state: leftEnd
+  - type: Construction
+    graph: SofaSL
+    node: xenoSofaLeftEnd
+
+- type: entity
+  parent: XenoSofa
+  suffix: Right End
+  id: XenoSofaRightEnd
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Sofas/xeno_sofa.rsi
+    layers:
+    - state: rightEnd
+  - type: Construction
+    graph: SofaSL
+    node: xenoSofaRightEnd
+
+- type: entity
+  parent: XenoSofa
+  suffix: Corner
+  id: XenoSofaCorner
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Sofas/xeno_sofa.rsi
+    layers:
+    - state: corner
+  - type: Construction
+    graph: SofaSL
+    node: xenoSofaCorner

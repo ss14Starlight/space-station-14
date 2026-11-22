@@ -227,6 +227,43 @@
             - material: Plastic
               amount: 2
 
+#region Xeno
+        - to: xenoSofaSingle
+          steps:
+            - material: Chitin
+              amount: 2
+              doAfter: 2
+            - material: Cloth
+              amount: 1
+        - to: xenoSofaMiddle
+          steps:
+            - material: Chitin
+              amount: 2
+              doAfter: 2
+            - material: Cloth
+              amount: 1
+        - to: xenoSofaLeftEnd
+          steps:
+            - material: Chitin
+              amount: 2
+              doAfter: 2
+            - material: Cloth
+              amount: 1
+        - to: xenoSofaRightEnd
+          steps:
+            - material: Chitin
+              amount: 2
+              doAfter: 2
+            - material: Cloth
+              amount: 1
+        - to: xenoSofaCorner
+          steps:
+            - material: Chitin
+              amount: 2
+              doAfter: 2
+            - material: Cloth
+              amount: 1
+
 #region Node-Gray
     - node: graySofaCorner
       entity: SofaCorner
@@ -682,6 +719,82 @@
             - !type:SpawnPrototype
               prototype: MaterialCloth1
               amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+#region Node-Xeno
+    - node: xenoSofaSingle
+      entity: XenoSofaSingle
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetChitin1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: xenoSofaMiddle
+      entity: XenoSofaMiddle
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetChitin1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: xenoSofaLeftEnd
+      entity: XenoSofaLeftEnd
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetChitin1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: xenoSofaRightEnd
+      entity: XenoSofaRightEnd
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetChitin1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: xenoSofaCorner
+      entity: XenoSofaCorner
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetChitin1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
           steps:
             - tool: Screwing
               doAfter: 2

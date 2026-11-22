@@ -396,3 +396,70 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+#region Xeno
+
+- type: construction
+  id: SofaSingleXeno
+  name: construction-recipe-sofa-xeno-single
+  graph: SofaSL
+  startNode: start
+  targetNode: xenoSofaSingle
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaMiddleXeno
+  name: construction-recipe-sofa-xeno-middle
+  graph: SofaSL
+  startNode: start
+  targetNode: xenoSofaMiddle
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaLeftEndXeno
+  name: construction-recipe-sofa-xeno-left
+  graph: SofaSL
+  startNode: start
+  targetNode: xenoSofaLeftEnd
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaRightEndXeno
+  name: construction-recipe-sofa-xeno-right
+  graph: SofaSL
+  startNode: start
+  targetNode: xenoSofaRightEnd
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaCornerXeno
+  name: construction-recipe-sofa-xeno-corner
+  graph: SofaSL
+  startNode: start
+  targetNode: xenoSofaCorner
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
