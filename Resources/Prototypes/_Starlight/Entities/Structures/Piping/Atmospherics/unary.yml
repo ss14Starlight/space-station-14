@@ -111,7 +111,7 @@
     - type: Transform
       noRot: false
     - type: Sprite
-      sprite: _Starlight/Structures/Piping/Atmospherics/inlineradiator.rsi
+      sprite: _Starlight/Structures/Piping/Atmospherics/inline_radiator.rsi
       layers:
         - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
           state: pipeStraight

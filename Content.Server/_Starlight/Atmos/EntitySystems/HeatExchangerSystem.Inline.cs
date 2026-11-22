@@ -20,7 +20,7 @@ public sealed partial class HeatExchangerSystem : EntitySystem
     {
         // same as upstream
         // make sure that the tile the device is on isn't blocked by a wall or something similar.
-        if (args.Grid is { } grid
+        if (args.Grid is {} grid
             && _transform.TryGetGridTilePosition(uid, out var tile)
             && _atmosphereSystem.IsTileAirBlockedCached(grid, tile))
             return;
