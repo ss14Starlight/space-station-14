@@ -393,7 +393,6 @@ public sealed class LatheWindow : FancyWindow
     public void PopulateQueueList(IReadOnlyCollection<LatheRecipeBatch> queue)
     {
         _queue.RemoveAllChildren();
-        _queueEmpty.Visible = queue.Count == 0 && !_producing.Visible;
 
         var index = 0;
         foreach (var batch in queue)
@@ -411,11 +410,14 @@ public sealed class LatheWindow : FancyWindow
             _queue.AddChild(row);
             index++;
         }
+
+        UpdateQueueEmpty();
     }
 
     public void SetQueueInfo(ProtoId<LatheRecipePrototype>? recipeId)
     {
         _producing.Visible = recipeId != null;
+        UpdateQueueEmpty();
         if (recipeId == null)
             return;
 
@@ -423,8 +425,10 @@ public sealed class LatheWindow : FancyWindow
         _producingIcon.RemoveAllChildren();
         _producingIcon.AddChild(RecipePreview(recipe, 1));
         _producingName.Text = _lathe.GetRecipeName(recipe);
-        _queueEmpty.Visible = false;
     }
+
+    private void UpdateQueueEmpty()
+        => _queueEmpty.Visible = _queue.ChildCount == 0 && !_producing.Visible;
 
     /// <summary>
     /// Sets the times the progress bar is drawn from. A null start means the lathe waits, for example for materials.

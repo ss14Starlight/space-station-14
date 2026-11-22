@@ -216,8 +216,7 @@ public sealed class WrapLabel : Label
 
     private string Wrap(float width)
     {
-        var font = FontOverride
-                   ?? (TryGetStyleProperty<Font>(StylePropertyFont, out var styled) ? styled : UserInterfaceManager.ThemeDefaults.DefaultFont);
+        var font = FontOverride ?? (TryGetStyleProperty<Font>(StylePropertyFont, out var styled) ? styled : UserInterfaceManager.ThemeDefaults.DefaultFont);
 
         var lines = new List<string>();
         var line = string.Empty;
