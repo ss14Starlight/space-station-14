@@ -41,6 +41,20 @@
   objectType: Structure
   placementMode: SnapgridCenter
 
+- type: construction
+  id: XenoResinWindow
+  graph: Window
+  startNode: start
+  targetNode: resinWindow
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+    - !type:EmptyOrWindowValidInTile
+    - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+
 # Lighting
 - type: construction
   id: StreetLamp
