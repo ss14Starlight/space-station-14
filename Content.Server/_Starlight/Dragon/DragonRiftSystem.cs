@@ -163,7 +163,7 @@ public sealed partial class DragonRiftSystem
     {
         State = ent.Comp.State,
         SharkMinnowLimit = ent.Comp.SharkMinnowLimit,
-        Percentage = (int) MathF.Round(ent.Comp.Accumulator / ent.Comp.MaxAccumulator * 100),
+        Percentage = ent.Comp.MaxAccumulator > 0 ? (int) MathF.Round(ent.Comp.Accumulator / ent.Comp.MaxAccumulator * 100) : 0,
     };
 
     private void CleanupSharkMinnows(DragonComponent dragon) =>
