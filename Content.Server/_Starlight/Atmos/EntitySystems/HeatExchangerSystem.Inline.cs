@@ -8,10 +8,10 @@ using Content.Shared.Atmos.Components;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
 
-namespace Content.Server.Atmos.EntitySystems;
-
 // ReSharper disable CheckNamespace
 // its a partial so has to use the same namespace
+namespace Content.Server.Atmos.EntitySystems;
+
 public sealed partial class HeatExchangerSystem : EntitySystem
 {
 
@@ -22,7 +22,7 @@ public sealed partial class HeatExchangerSystem : EntitySystem
     {
         // same as upstream
         // make sure that the tile the device is on isn't blocked by a wall or something similar.
-        if (args.Grid is {} grid
+        if (args.Grid is { } grid
             && _transform.TryGetGridTilePosition(uid, out var tile)
             && _atmosphereSystem.IsTileAirBlockedCached(grid, tile))
             return;
