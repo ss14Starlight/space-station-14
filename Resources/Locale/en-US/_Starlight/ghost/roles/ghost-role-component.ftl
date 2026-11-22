@@ -173,4 +173,4 @@ ghost-role-information-bombroach-description = You're the faithful trained pest 
 ghost-role-information-bombroach-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with the agent who summoned you.
 
 ghost-role-information-syndicate-listening-op-name = Syndicate Listening Operative
-ghost-role-information-syndicate-listening-op-description = You're a trained operative in the art of deception and sabotauge. Use your tools to listen in to the nearby station, and help any operatives within the station get the information and help they need.
+ghost-role-information-syndicate-listening-op-description = You're a trained operative in the art of deception and sabotage. Use your tools to listen in to the nearby station, and help any operatives within the station get the information and help they need.

@@ -156,7 +156,6 @@
   parent: EventHumanoid
   components:
   - type: GhostRole
-    makesentient: false
     name: ghost-role-information-syndicate-listening-op-name
     description: ghost-role-information-syndicate-listening-op-description
     rules: ghost-role-information-rules-team-antagonist
