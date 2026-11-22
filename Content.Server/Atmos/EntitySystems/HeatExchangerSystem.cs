@@ -24,8 +24,6 @@ public sealed partial class HeatExchangerSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<HeatExchangerComponent, AtmosDeviceUpdateEvent>(OnAtmosUpdate);
 
-        SubscribeLocalEvent<InlineHeatExchangerComponent, AtmosDeviceUpdateEvent>(OnInlineHeatExchangerUpdate); // Starlight - inlines
-
         // Getting CVars is expensive, don't do it every tick
         Subs.CVar(_cfg, CCVars.SuperconductionTileLoss, CacheTileLoss, true);
     }

@@ -12,8 +12,10 @@ namespace Content.Server.Atmos.EntitySystems;
 
 public sealed partial class HeatExchangerSystem : EntitySystem
 {
+
     // largely the same as upstream radiator logic
     // i.e. identical maths, just inline instead of splitting the pipenet
+    [SubscribeLocalEvent]
     private void OnInlineHeatExchangerUpdate(EntityUid uid, InlineHeatExchangerComponent comp, ref AtmosDeviceUpdateEvent args)
     {
         // same as upstream
@@ -62,7 +64,7 @@ public sealed partial class HeatExchangerSystem : EntitySystem
         float dTRA = MathF.Abs(dTR);
         float a0 = tileLoss / MathF.Pow(Atmospherics.T20C, 4);
         float kR = comp.alpha * a0 * TdivQ;
-        float dT2R = dTR * MathF.Pow(1f + 3f * kR * dt * dTRA * dTRA * dTRA, -1f / 3f);
+        float dT2R = dTR * MathF.Pow((1f + (3f * kR * dt * dTRA * dTRA * dTRA)), -1f / 3f);
         float dER = (dTR - dT2R) / TdivQ;
 
         _atmosphereSystem.AddHeat(air, -dER);
