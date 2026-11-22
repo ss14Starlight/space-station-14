@@ -11,8 +11,6 @@ public sealed class RiftProgressExamineSystem : EntitySystem
         SubscribeLocalEvent<DragonRiftComponent, ExaminedEvent>(OnExamined);
     }
 
-    private void OnExamined(Entity<DragonRiftComponent> ent, ref ExaminedEvent args)
-    {
+    private void OnExamined(Entity<DragonRiftComponent> ent, ref ExaminedEvent args) =>
         args.PushMarkup(Loc.GetString("carp-rift-examine", ("percentage", ent.Comp.ProgressPercentage)));
-    }
 }
