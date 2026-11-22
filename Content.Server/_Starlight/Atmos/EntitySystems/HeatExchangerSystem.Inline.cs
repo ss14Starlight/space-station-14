@@ -10,6 +10,8 @@ using Robust.Shared.Configuration;
 
 namespace Content.Server.Atmos.EntitySystems;
 
+// ReSharper disable CheckNamespace
+// its a partial so has to use the same namespace
 public sealed partial class HeatExchangerSystem : EntitySystem
 {
 
