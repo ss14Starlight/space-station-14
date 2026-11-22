@@ -2,7 +2,7 @@ using Content.Shared.Bed.Sleep;
 using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Containers;
 
-namespace Content.Server._Starlight.Sleepiness;
+namespace Content.Shared._Starlight.Sleepiness.Systems;
 
 public sealed partial class SleepingContainerStatusIconSystem : EntitySystem
 {
