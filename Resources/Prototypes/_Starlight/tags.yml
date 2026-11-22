@@ -918,7 +918,13 @@
   id: XenoEmotes
 
 - type: Tag
+  id: XenoHealer
+
+- type: Tag
   id: XenomoproachWearable # Allows xenomoproach to wear it, really only used for headsets. No system in place to use differing displacements for something with a given prefix/suffix, so this is needed for now.
+
+- type: Tag
+  id: XenoNest
 
 - type: Tag
   id: XenosDisasterSurvivorTraitBackground

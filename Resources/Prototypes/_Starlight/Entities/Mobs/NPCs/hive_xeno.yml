@@ -1,0 +1,98 @@
+- type: entity
+  parent: SimpleSpaceMobBase
+  id: HiveXeno
+  description: Nuke it from orbit, its the only way to be sure.
+  abstract: true
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: MovementAlwaysTouching
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: VentCrawler
+  - type: Stamina
+    baseCritThreshold: 50
+    animationThreshold: 25
+  - type: SlowOnDamage
+    speedModifierThresholds: {}
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: CombatMode
+  - type: Puller
+    needsHands: false
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: FluorosulfuricAcid
+        Quantity: 1300
+  - type: MeleeWeapon
+    attackRate: 1.8
+    altDisarm: true
+    angle: 0
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_spitacid.ogg
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 18
+        Structural: 15
+  - type: Prying
+    speedModifier: 1.5
+    pryPowered: true
+    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg
+    playSoundOnDoafter: true
+  - type: ReplacementAccent
+    accent: genericAggressive
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        density: 50
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: Tag
+    tags:
+      - HiveMember
+      - DoorBumpOpener
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 5.5
+    baseWalkSpeed: 5
+
+- type: entity
+  parent: HiveXeno
+  id: XenoHunter
+  name: xeno hunter
+  components:
+  - type: HTN
+    rootTask:
+      task: XenoRootCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      VisionRadius: !type:Single
+        20
+      AggroVisionRadius: !type:Single
+        10
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Aliens/Xenos/xenohunter.rsi
+    layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: alive
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Dead:
+        Base: dead

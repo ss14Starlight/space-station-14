@@ -1,0 +1,225 @@
+- type: utilityQuery
+  id: NearbyXenosInFight
+  query:
+    - !type:ComponentQuery
+      components:
+        - type: NpcFactionMember
+        - type: Damageable
+        - type: MobState
+  considerations:
+    - !type:TargetInFactionCon
+      faction: Xeno
+      curve: !type:BoolCurve
+    - !type:TargetIsAliveCon
+      curve: !type:BoolCurve
+    - !type:TargetInCombatModeCon
+      curve: !type:BoolCurve
+    # Descending curve: unhurt scores 0 (eliminated), more damage scores higher
+    - !type:TargetHealthCon
+      curve: !type:QuadraticCurve
+        slope: -1
+        exponent: 1
+        yOffset: 1
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+
+- type: htnCompound
+  id: ConvergeOnWoundedXenoCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyXenosInFight
+            key: ConvergeTarget
+            keyCoordinates: ConvergeCoordinates
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            targetKey: ConvergeCoordinates
+            rangeKey: FollowCloseRange
+
+- type: htnCompound
+  id: FleeToHealerCompound
+  branches:
+    - preconditions:
+        - !type:HasComponentPrecondition
+          invert: true
+          components:
+            - type: NPCRecentlyInjected
+        - !type:TotalDamagePrecondition
+          damage: 110
+        - !type:BuckledPrecondition
+          isBuckled: false
+        - !type:PulledPrecondition
+          isPulled: false
+      tasks:
+        # Let go of anyone mid-drag when the Xeno crosses 120
+        - !type:HTNPrimitiveTask
+          operator: !type:StopPullingOperator
+        - !type:HTNPrimitiveTask
+          operator: !type:PathToXenoHealerOperator
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            targetKey: HealerCoordinates
+            pathfindInPlanning: false
+
+- type: utilityQuery
+  id: NearbyCritTargets
+  query:
+    - !type:NearbyHostilesQuery
+  considerations:
+    - !type:TargetIsCritCon
+      curve: !type:BoolCurve
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+    - !type:TargetAccessibleCon
+      curve: !type:BoolCurve
+
+- type: htnCompound
+  id: DragCritSequenceCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyCritTargets
+            key: DragTarget
+            keyCoordinates: DragTargetCoordinates
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            targetKey: DragTargetCoordinates
+            rangeKey: InteractRange
+        - !type:HTNPrimitiveTask
+          operator: !type:PullTargetOperator
+            targetKey: DragTarget
+        - !type:HTNPrimitiveTask
+          operator: !type:PathToXenoHealerOperator
+            targetCoordinates: DragDestination
+            pathfindKey: DragPathfind
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            targetKey: DragDestination
+            pathfindKey: DragPathfind
+            pathfindInPlanning: false
+        - !type:HTNPrimitiveTask
+          operator: !type:StopPullingOperator
+
+- type: htnCompound
+  id: DragCritTargetIdleCompound
+  branches:
+    - preconditions:
+        - !type:HasComponentPrecondition
+          invert: true
+          components:
+            - type: NPCRecentlyInjected
+        - !type:BuckledPrecondition
+          isBuckled: false
+        - !type:PulledPrecondition
+          isPulled: false
+      tasks:
+        - !type:HTNCompoundTask
+          task: DragCritSequenceCompound
+
+- type: htnCompound
+  id: DragCritTargetCompound
+  branches:
+    - preconditions:
+        - !type:HasComponentPrecondition
+          invert: true
+          components:
+            - type: NPCRecentlyInjected
+        - !type:TotalDamagePrecondition
+          damage: 50
+        - !type:TotalDamagePrecondition
+          damage: 110
+          invert: true
+        - !type:BuckledPrecondition
+          isBuckled: false
+        - !type:PulledPrecondition
+          isPulled: false
+      tasks:
+        - !type:HTNCompoundTask
+          task: DragCritSequenceCompound
+
+- type: htnCompound
+  id: XenoRootCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: FleeToHealerCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: DragCritTargetCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MeleeCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: ConvergeOnWoundedXenoCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: DragCritTargetIdleCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
+#Healer
+
+# Find nearby injectable Xenos
+- type: utilityQuery
+  id: NearbyInjectableXenos
+  query:
+    - !type:ComponentQuery
+      components:
+        - type: NpcFactionMember
+        - type: InjectableSolution
+        - type: Damageable
+        - type: MobState
+    - !type:ComponentFilter
+      components:
+        - type: NPCRecentlyInjected
+      retainWithComp: false
+  considerations:
+    - !type:TargetInFactionCon
+      faction: Xeno
+      curve: !type:BoolCurve
+    - !type:TargetIsAliveCon
+      curve: !type:BoolCurve
+    - !type:TargetHealthCon
+      curve: !type:QuadraticCurve
+        slope: -1000
+        exponent: 1
+        xOffset: 0.999
+        yOffset: 0
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+    - !type:TargetAccessibleCon
+      curve: !type:BoolCurve
+
+# Treat nearby Xenos
+- type: htnCompound
+  id: XenoHealerCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyInjectableXenos
+            returnType: EnumerableDescending
+        - !type:HTNPrimitiveTask
+          operator: !type:PickNearbyInjectableOperator
+            targetKey: Target
+            targetMoveKey: TargetCoordinates
+        - !type:HTNCompoundTask
+          task: MedibotInject
+
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
+
+# Xeno Nest Root
+- type: htnCompound
+  id: XenoNestRootCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: XenoHealerCompound

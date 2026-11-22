@@ -41,6 +41,7 @@ using Content.Shared.Projectiles;
 using Content.Shared.Tag; // Persistence: Firebots can target reagent fires
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
+using Content.Shared.CombatMode;
 
 namespace Content.Server.NPC.Systems;
 
@@ -423,7 +424,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
 
                     return temperature.CurrentTemperature <= con.MinTemp ? 1f : 0f;
                 }
-            // Starlight
+            // Starlight - start
             case PDTargetIFFCon con:
                 {
                     if (TryComp<ProjectileComponent>(targetUid, out var projectile) && projectile.Shooter is not null)
@@ -432,6 +433,15 @@ public sealed partial class NPCUtilitySystem : EntitySystem
 
                     return 1f;
                 }
+            case TargetInFactionCon con:
+                {
+                    return _npcFaction.IsMember(targetUid, con.Faction) ? 1f : 0f;
+                }
+            case TargetInCombatModeCon:
+                {
+                    return TryComp<CombatModeComponent>(targetUid, out var combat) && combat.IsInCombatMode ? 1f : 0f;
+                }
+            // Starlight - end
             default:
                 throw new NotImplementedException();
         }

@@ -1,0 +1,80 @@
+- type: entity
+  id: XenoHive
+  placement:
+    mode: SnapgridCenter
+  name: Xeno Hive
+  description: A gathering point for xenos.
+  components:
+  - type: Appearance
+  - type: Clickable
+  - type: Physics
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Temperature
+  - type: TemperatureDamage
+    heatDamage:
+      types:
+        Heat: 5
+    coldDamage: {}
+    coldDamageThreshold: 0
+  - type: Flammable
+    fireSpread: true
+    damage:
+      types:
+        Heat: 5
+  - type: Reactive
+    groups:
+      Flammable: [Touch]
+      Extinguish: [Touch]
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Structures/Specific/xeno_building.rsi
+    layers:
+      - state: wardingtower
+      - state: wardingtower-unshaded
+        shader: unshaded
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 50
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - MidImpassable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: DoAfter
+  - type: Tag
+    tags:
+      - XenoHealer
+  - type: Medibot
+    treatments:
+      Alive:
+        reagent: Ichor
+        quantity: 20
+  - type: HTN
+    rootTask:
+      task: XenoHealerCompound
+    blackboard:
+      VisionRadius: !type:Single
+        2.5
+      AggroVisionRadius: !type:Single
+        2.5
