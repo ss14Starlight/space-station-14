@@ -78,3 +78,6 @@
         2.5
       AggroVisionRadius: !type:Single
         2.5
+  - type: EggLayer
+    eggSpawn:
+    - id: MobXenoLarva

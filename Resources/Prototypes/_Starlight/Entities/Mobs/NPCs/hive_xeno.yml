@@ -18,10 +18,6 @@
     animationThreshold: 25
   - type: SlowOnDamage
     speedModifierThresholds: {}
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      150: Dead
   - type: CombatMode
   - type: Puller
     needsHands: false
@@ -30,19 +26,8 @@
       reagents:
       - ReagentId: FluorosulfuricAcid
         Quantity: 1300
-  - type: MeleeWeapon
-    attackRate: 1.8
-    altDisarm: true
-    angle: 0
-    soundHit:
-      path: /Audio/Weapons/Xeno/alien_spitacid.ogg
-    animation: WeaponArcClaw
-    damage:
-      types:
-        Slash: 18
-        Structural: 15
   - type: Prying
-    speedModifier: 1.5
+    speedModifier: 2
     pryPowered: true
     useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg
     playSoundOnDoafter: true
@@ -64,14 +49,29 @@
       - HiveMember
       - DoorBumpOpener
   - type: MovementSpeedModifier
-    baseSprintSpeed : 5.5
-    baseWalkSpeed: 5
+    baseSprintSpeed : 4.5
+    baseWalkSpeed: 4
 
 - type: entity
   parent: HiveXeno
-  id: XenoHunter
+  id: MobXenoHunter
   name: xeno hunter
   components:
+  - type: MeleeWeapon
+    attackRate: 1.8
+    altDisarm: true
+    angle: 0
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_spitacid.ogg
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 18
+        Structural: 15
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      110: Dead
   - type: HTN
     rootTask:
       task: XenoRootCompound
@@ -96,3 +96,145 @@
         Base: alive
       Dead:
         Base: dead
+
+- type: entity
+  parent: HiveXeno
+  id: MobXenoEmpress
+  name: xenonid empress
+  components:
+  - type: HTN
+    rootTask:
+      task: XenoRootCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      VisionRadius: !type:Single
+        20
+      AggroVisionRadius: !type:Single
+        10
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Aliens/Xenos/xenoempress.rsi
+    layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: alive
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Dead:
+        Base: dead
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 3
+    baseWalkSpeed: 2
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    damage:
+      types:
+        Slash: 55
+        Structural: 110
+  - type: StaminaDamageOnHit
+    damage: 50
+  - type: MeleeThrowOnHit
+    speed: 25
+    distance: 5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: EggLayer
+    eggSpawn:
+    - id: MobXenoLarva
+      orGroup: larva
+      prob: 0.9
+    - id: MobXenoLarvaRoyal
+      orGroup: larva
+      prob: 0.05
+    - id: XenoHive
+      orGroup: larva
+      prob: 0.05
+
+- type: entity
+  parent: HiveXeno
+  id: MobXenoLarva
+  name: Xeno larva
+  description: A helpless creature, dont let it grow up...
+  components:
+  - type: HTN
+    rootTask:
+      task: LarvaRootCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      VisionRadius: !type:Single
+        30
+      AggroVisionRadius: !type:Single
+        30
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Aliens/Xenos/xenolarva.rsi
+    layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: alive
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Dead:
+        Base: dead
+  - type: DoAfter
+  - type: LarvaFeed
+    feedTime: 25
+    distanceThreshold: 2
+    breakOnDamage: true
+    breakOnMove: true
+    targetStates:
+      - Critical
+    rotAfter: 1200 #seconds
+    growInto: MobXenoHunter
+    deleteSelf: true
+    startPopup: larva-feed-start
+    damage:
+      types:
+        Piercing: 50
+        Cellular: 50
+    damageIgnoreResistances: false
+
+- type: entity
+  parent: MobXenoLarva
+  id: MobXenoLarvaRoyal
+  name: royal xeno larva
+  description: A helpless creature, dont let it grow up...
+  components:
+  - type: LarvaFeed
+    feedTime: 35
+    distanceThreshold: 2
+    breakOnDamage: true
+    breakOnMove: true
+    targetStates:
+      - Critical
+    rotAfter: 1200 #seconds
+    growInto: MobXenoEmpress
+    deleteSelf: true
+    startPopup: larva-feed-start
+    damage:
+      types:
+        Piercing: 50
+        Cellular: 50
+    damageIgnoreResistances: false

@@ -223,3 +223,32 @@
     - tasks:
         - !type:HTNCompoundTask
           task: XenoHealerCompound
+
+#Larva
+
+- type: htnCompound
+  id: LarvaFeedCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyCritTargets
+            key: FeedTarget
+            keyCoordinates: FeedTargetCoordinates
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            targetKey: FeedTargetCoordinates
+            rangeKey: InteractRange
+        - !type:HTNPrimitiveTask
+          operator: !type:LarvaFeedOperator
+            targetKey: FeedTarget
+
+- type: htnCompound
+  id: LarvaRootCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: LarvaFeedCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
