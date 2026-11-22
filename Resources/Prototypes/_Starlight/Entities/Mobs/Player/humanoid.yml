@@ -149,6 +149,28 @@
       factions:
         - DungeonSoviet
 
+## Syndicate
+
+- type: randomHumanoidSettings
+  id: SyndieListeningOp
+  parent: EventHumanoid
+  components:
+  - type: GhostRole
+    makesentient: false
+    name: ghost-role-information-syndicate-listening-op-name
+    description: ghost-role-information-syndicate-listening-op-description
+    rules: ghost-role-information-rules-team-antagonist
+    important: true
+    raffle:
+      settings: default
+    mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+  - type: Loadout
+    prototypes: [SyndicateOperativeGearCivilian]
+  - type: NpcFactionMember
+    factions:
+      - Syndicate
+
 ## NTSf
 
 - type: entity
