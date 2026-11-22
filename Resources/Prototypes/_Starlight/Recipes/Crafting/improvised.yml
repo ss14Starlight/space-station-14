@@ -553,3 +553,43 @@
   category: construction-category-weapons
   objectType: Item
   description: crafting-menu-text-molo
+
+- type: construction
+  id: MacheteMakeshift
+  graph: MacheteMakeshiftGraph
+  startNode: start
+  targetNode: machete
+  category: construction-category-weapons
+  objectType: Item
+
+- type: construction
+  id: AxeMakeshift
+  graph: AxeMakeshiftGraph
+  startNode: start
+  targetNode: axe
+  category: construction-category-weapons
+  objectType: Item
+
+- type: construction
+  id: SledgehammerMakeshift
+  graph: SledgehammerMakeshiftGraph
+  startNode: start
+  targetNode: sledgehammer
+  category: construction-category-weapons
+  objectType: Item
+
+- type: construction
+  id: ClubSpikedMakeshift
+  graph: ClubSpikedMakeshiftGraph
+  startNode: start
+  targetNode: club
+  category: construction-category-weapons
+  objectType: Item
+
+- type: construction
+  id: ThrowingKnifeMakeshift
+  graph: ThrowingKnifeMakeshiftGraph
+  startNode: start
+  targetNode: knife
+  category: construction-category-weapons
+  objectType: Item

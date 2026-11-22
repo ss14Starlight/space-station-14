@@ -1,0 +1,19 @@
+﻿- type: constructionGraph
+  id: ClubSpikedMakeshiftGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: club
+          steps:
+            - material: WoodPlank
+              amount: 5
+              doAfter: 4
+            - material: Steel
+              amount: 4
+              doAfter: 10
+            - material: Cloth
+              amount: 4
+              doAfter: 5
+    - node: club
+      entity: ClubSpikedMakeshift

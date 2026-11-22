@@ -1,0 +1,18 @@
+﻿- type: constructionGraph
+  id: AxeMakeshiftGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: axe
+          steps:
+            - material: WoodPlank
+              doAfter: 40
+            - material: Steel
+              amount: 40
+              doAfter: 12
+            - material: Cloth
+              amount: 30
+              doAfter: 5
+    - node: axe
+      entity: AxeMakeshift

@@ -1,0 +1,21 @@
+﻿- type: constructionGraph
+  id: SledgehammerMakeshiftGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: sledgehammer
+          steps:
+            - material: Steel
+              amount: 7
+              doAfter: 12
+            - material: Cloth
+              amount: 2
+              doAfter: 3
+            - tag: HiltWood
+              icon:
+                sprite: _Starlight/Objects/Misc/wooden_hilt.rsi
+                state: icon
+              name: crafting-menu-name-WH
+    - node: sledgehammer
+      entity: SledgehammerMakeshift

@@ -1,0 +1,19 @@
+﻿- type: constructionGraph
+  id: ThrowingKnifeMakeshiftGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: knife
+          steps:
+            - material: Steel
+              amount: 3
+              doAfter: 6
+            - material: MetalRod
+              amount: 1
+              doAfter: 2
+            - material: Cloth
+              amount: 2
+              doAfter: 3
+    - node: knife
+      entity: ThrowingKnifeMakeshift
