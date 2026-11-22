@@ -17,10 +17,15 @@ public sealed partial class XenoSpeechAccentSystem : EntitySystem
     {
         var message = args.Message.Text;
 
-        // s => x
+        // Leading s => x
         message = Regexs().Replace(message, "$1x");
-        // S => X
+        // Leading S => X
         message = RegexS().Replace(message, "$1X");
+
+        // Trailing c => k
+        message = Regexc().Replace(message, "k$1");
+        // Trailing C => K
+        message = RegexC().Replace(message, "K$1");
 
         args.Message.Text = message;
     }
@@ -29,4 +34,9 @@ public sealed partial class XenoSpeechAccentSystem : EntitySystem
     private static partial Regex Regexs();
     [GeneratedRegex("(^|\\s)S")]
     private static partial Regex RegexS();
+
+    [GeneratedRegex("c(\\b)")]
+    private static partial Regex Regexc();
+    [GeneratedRegex("C(\\b)")]
+    private static partial Regex RegexC();
 }
