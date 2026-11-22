@@ -8,7 +8,7 @@ using Content.Shared.Atmos.Components;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
 
-namespace Content.Server.Atmos.EntitySystems;
+namespace Content.Server._Starlight.Atmos.EntitySystems
 
 public sealed partial class HeatExchangerSystem : EntitySystem
 {
