@@ -1,0 +1,316 @@
+- type: entity
+  name: makeshift machete
+  parent: [ BaseSword, BaseMinorContraband ]
+  id: MacheteMakeshift
+  description: A steel blade on a wooden grip. Ugly, but it cuts.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Melee/makeshift_machete.rsi
+      state: icon
+    - type: MeleeWeapon
+      attackRate: 1
+      damage:
+        types:
+          Slash: 12
+      soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    - type: Item
+      sprite: _Starlight/Objects/Weapons/Melee/makeshift_machete.rsi
+      storedSprite:
+        state: storage
+        sprite: _Starlight/Objects/Weapons/Melee/makeshift_machete.rsi
+      shape:
+        - 0,0,0,2
+    - type: DisarmMalus
+    - type: Construction
+      graph: MacheteMakeshiftGraph
+      node: machete
+
+# Axe
+- type: entity
+  name: makeshift axe
+  parent: [ BaseItem, BaseMinorContraband ]
+  id: AxeMakeshift
+  description: A steel head bolted to a wood handle. Swing it with both hands and hope it holds together.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Melee/makeshift_axe.rsi
+      state: icon
+    - type: MeleeWeapon
+      wideAnimationRotation: 135
+      swingLeft: true
+      attackRate: 0.75
+      damage:
+        types:
+          Blunt: 3
+          Slash: 8
+          Structural: 8
+      soundHit:
+        collection: MetalThud
+    - type: Wieldable
+    - type: IncreaseDamageOnWield
+      damage:
+        types:
+          Slash: 12
+          Structural: 22
+    - type: Item
+      size: Large
+    - type: Clothing
+      sprite: _Starlight/Objects/Weapons/Melee/makeshift_axe.rsi
+      quickEquip: false
+      slots:
+        - back
+        - suitStorage
+    - type: DisarmMalus
+    - type: Construction
+      graph: AxeMakeshiftGraph
+      node: axe
+
+# Sledgehammer
+- type: entity
+  name: makeshift sledgehammer
+  parent: [ BaseItem, BaseMinorContraband ]
+  id: SledgehammerMakeshift
+  description: A lump of scrap steel fixed to a wooden handle. Slow and clumsy, but it hits like a freight elevator.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Melee/makeshift_sledgehammer.rsi
+      state: icon
+    - type: MeleeWeapon
+      wideAnimationRotation: -135
+      attackRate: 0.8
+      damage:
+        types:
+          Blunt: 8
+          Structural: 7
+      soundHit:
+        collection: MetalThud
+    - type: Wieldable
+    - type: IncreaseDamageOnWield
+      damage:
+        types:
+          Blunt: 8
+          Structural: 7
+    - type: Item
+      size: Large
+    - type: DisarmMalus
+    - type: Construction
+      graph: SledgehammerMakeshiftGraph
+      node: sledgehammer
+
+# Spiked club
+- type: entity
+  name: spiked club
+  parent: [ BaseItem, BaseMinorContraband ]
+  id: ClubSpikedMakeshift
+  description: A bat of wood wrapped in cloth and studded with scrap steel. Meant to hurt.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Melee/makeshift_truncheon.rsi
+      state: icon
+    - type: MeleeWeapon
+      wideAnimationRotation: -135
+      damage:
+        types:
+          Blunt: 9
+          Piercing: 2
+      soundHit:
+        collection: MetalThud
+    - type: Item
+      size: Normal
+    - type: Clothing
+      sprite: _Starlight/Objects/Weapons/Melee/makeshift_truncheon.rsi
+      quickEquip: false
+      slots:
+        - belt
+    - type: DisarmMalus
+    - type: Construction
+      graph: ClubSpikedMakeshiftGraph
+      node: club
+
+# Throwing knife
+- type: entity
+  name: makeshift throwing knife
+  parent: [ BaseKnife, BaseMinorContraband ]
+  id: ThrowingKnifeMakeshift
+  description: A scrap steel blade balanced well enough to throw. It will not fly true forever.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Melee/makeshift_throwing_knife.rsi
+      state: icon
+    - type: MeleeWeapon
+      wideAnimationRotation: -135
+      attackRate: 1.5
+      damage:
+        types:
+          Slash: 4
+    - type: EmbeddableProjectile
+      sound: /Audio/Weapons/star_hit.ogg
+      offset: -0.15,0.0
+      removalTime: 2
+    - type: LandAtCursor
+    - type: ThrowingAngle
+      angle: 225
+    - type: DamageOtherOnHit
+      damage:
+        types:
+          Slash: 5
+          Piercing: 7
+    - type: Item
+      size: Small
+      sprite: _Starlight/Objects/Weapons/Melee/makeshift_throwing_knife.rsi
+    - type: Construction
+      graph: ThrowingKnifeMakeshiftGraph
+      node: knife
+
+#crafting graphs
+
+- type: constructionGraph
+  id: MacheteMakeshiftGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: machete
+          steps:
+            - tag: BladeSteel
+              icon:
+                sprite: _Starlight/Objects/Misc/steel_blade.rsi
+                state: icon
+              name: crafting-menu-name-SB
+            - material: Steel
+              amount: 1
+              doAfter: 5
+            - material: Cloth
+              amount: 3
+              doAfter: 5
+            - tag: HiltWood
+              icon:
+                sprite: _Starlight/Objects/Misc/wooden_hilt.rsi
+                state: icon
+              name: crafting-menu-name-WH
+    - node: machete
+      entity: MacheteMakeshift
+
+- type: constructionGraph
+  id: AxeMakeshiftGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: axe
+          steps:
+            - material: WoodPlank
+              doAfter: 40
+            - material: Steel
+              amount: 40
+              doAfter: 12
+            - material: Cloth
+              amount: 30
+              doAfter: 5
+    - node: axe
+      entity: AxeMakeshift
+
+- type: constructionGraph
+  id: SledgehammerMakeshiftGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: sledgehammer
+          steps:
+            - material: Steel
+              amount: 7
+              doAfter: 12
+            - material: Cloth
+              amount: 2
+              doAfter: 3
+            - tag: HiltWood
+              icon:
+                sprite: _Starlight/Objects/Misc/wooden_hilt.rsi
+                state: icon
+              name: crafting-menu-name-WH
+    - node: sledgehammer
+      entity: SledgehammerMakeshift
+
+- type: constructionGraph
+  id: ClubSpikedMakeshiftGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: club
+          steps:
+            - material: WoodPlank
+              amount: 5
+              doAfter: 4
+            - material: Steel
+              amount: 4
+              doAfter: 10
+            - material: Cloth
+              amount: 4
+              doAfter: 5
+    - node: club
+      entity: ClubSpikedMakeshift
+
+- type: constructionGraph
+  id: ThrowingKnifeMakeshiftGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: knife
+          steps:
+            - material: Steel
+              amount: 3
+              doAfter: 6
+            - material: MetalRod
+              amount: 1
+              doAfter: 2
+            - material: Cloth
+              amount: 2
+              doAfter: 3
+    - node: knife
+      entity: ThrowingKnifeMakeshift
+
+#crafting menu
+
+- type: construction
+  id: MacheteMakeshift
+  graph: MacheteMakeshiftGraph
+  startNode: start
+  targetNode: machete
+  category: construction-category-weapons
+  objectType: Item
+
+- type: construction
+  id: AxeMakeshift
+  graph: AxeMakeshiftGraph
+  startNode: start
+  targetNode: axe
+  category: construction-category-weapons
+  objectType: Item
+
+- type: construction
+  id: SledgehammerMakeshift
+  graph: SledgehammerMakeshiftGraph
+  startNode: start
+  targetNode: sledgehammer
+  category: construction-category-weapons
+  objectType: Item
+
+- type: construction
+  id: ClubSpikedMakeshift
+  graph: ClubSpikedMakeshiftGraph
+  startNode: start
+  targetNode: club
+  category: construction-category-weapons
+  objectType: Item
+
+- type: construction
+  id: ThrowingKnifeMakeshift
+  graph: ThrowingKnifeMakeshiftGraph
+  startNode: start
+  targetNode: knife
+  category: construction-category-weapons
+  objectType: Item
