@@ -7,4 +7,5 @@ public sealed class DragonRiftComponentState : ComponentState
 {
     public DragonRiftState State;
     public int SharkMinnowLimit; // Starlight
+    public int Percentage; // Starlight
 }

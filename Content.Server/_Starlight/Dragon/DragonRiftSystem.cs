@@ -54,6 +54,13 @@ public sealed partial class DragonRiftSystem
                 comp.Accumulator += frameTime;
             }
 
+            var progress = comp.MaxAccumulator > 0 ? (int) MathF.Round(comp.Accumulator / comp.MaxAccumulator * 100) : 0;
+            if (comp.LastSentProgressPercentage != progress)
+            {
+                comp.LastSentProgressPercentage = progress;
+                Dirty(uid, comp);
+            }
+
             comp.SpawnAccumulator += frameTime;
 
             if (comp.State < DragonRiftState.AlmostFinished && comp.Accumulator > comp.MaxAccumulator / 2f)
@@ -156,6 +163,7 @@ public sealed partial class DragonRiftSystem
     {
         State = ent.Comp.State,
         SharkMinnowLimit = ent.Comp.SharkMinnowLimit,
+        Percentage = (int) MathF.Round(ent.Comp.Accumulator / ent.Comp.MaxAccumulator * 100),
     };
 
     private void CleanupSharkMinnows(DragonComponent dragon) =>
