@@ -198,7 +198,7 @@
   - type: IconSmooth
     key: ComfyChairXeno
   - type: Construction
-    graph: Seat
+    graph: ChairSL
     node: chairComfyXeno
 
 #endregion
