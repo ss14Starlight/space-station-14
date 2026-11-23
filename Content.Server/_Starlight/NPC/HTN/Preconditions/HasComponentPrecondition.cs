@@ -1,6 +1,6 @@
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.NPC.HTN.Preconditions;
+namespace Content.Server._Starlight.NPC.HTN.Preconditions;
 
 /// <summary>
 /// Does the owner have all of the given components. Use invert to require that it has none of them.

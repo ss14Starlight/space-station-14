@@ -2,7 +2,7 @@ using Content.Shared.Tag;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.NPC.HTN.Preconditions;
+namespace Content._Starlight.Server.NPC.HTN.Preconditions;
 
 /// <summary>
 /// Is any entity with the given tag within range of the owner.

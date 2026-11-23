@@ -2,7 +2,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 
-namespace Content.Server.NPC.HTN.Preconditions;
+namespace Content.Server._Starlight.NPC.HTN.Preconditions;
 
 /// <summary>
 /// Is the owner's total damage at or above a flat amount.

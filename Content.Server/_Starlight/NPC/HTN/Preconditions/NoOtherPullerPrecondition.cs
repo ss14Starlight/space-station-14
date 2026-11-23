@@ -1,6 +1,6 @@
 using Content.Shared.Movement.Pulling.Components;
 
-namespace Content.Server.NPC.HTN.Preconditions;
+namespace Content.Server._Starlight.NPC.HTN.Preconditions;
 
 /// <summary>
 /// True unless another HTN NPC is currently pulling something.
