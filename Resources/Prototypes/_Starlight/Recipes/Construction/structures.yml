@@ -444,3 +444,13 @@
   canBuildInImpassable: true
   conditions:
     - !type:WallmountCondition {}
+
+- type: construction
+  id: BarricadeBlock
+  graph: BarricadeCovering
+  startNode: start
+  targetNode: barricadecover
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
