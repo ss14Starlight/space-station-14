@@ -1,13 +1,6 @@
 Entries:
 - author: MaxAlpine
   changes:
-  - message: (Prism) moved floor lights in containment chamber to stop them blocking containment fields.
-    type: Fix
-  id: 410388
-  time: '2026-11-13T11:50:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7208
-- author: MaxAlpine
-  changes:
   - message: (Prism) fixed unlinked airlocks on the east side of the station.
     type: Fix
   id: 410389
@@ -2799,4 +2792,11 @@ Entries:
   id: 410787
   time: '2026-11-21T22:01:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7368
+- author: 0warie
+  changes:
+  - message: Fixed some guidebook additions showing hash tags instead of headings.
+    type: Fix
+  id: 410788
+  time: '2026-11-23T12:17:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7385
 Order: -1
