@@ -8,37 +8,37 @@ namespace Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 public sealed partial class DantalionComponent : VampireClassComponent
 {
 	/// <summary>
-	///     Base thrall limit before blood / power bonuses
+	/// Base thrall limit before blood / power bonuses
 	/// </summary>
 	[DataField]
 	public int BaseThrallLimit = 1;
 
 	/// <summary>
-	///     Runtime tracking of enthralled entities
+	/// Runtime tracking of enthralled entities
 	/// </summary>
 	[ViewVariables(VVAccess.ReadOnly)]
 	public HashSet<EntityUid> Thralls = new();
 
 	/// <summary>
-	///     Total thrall slots consumed.
+	/// Total thrall slots consumed.
 	/// </summary>
 	[ViewVariables(VVAccess.ReadOnly)]
 	public int ThrallSlotsUsed = 0;
 
 	/// <summary>
-	///     Whether Blood Bond is currently active
+	/// Whether Blood Bond is currently active
 	/// </summary>
 	[ViewVariables(VVAccess.ReadOnly)]
     [AutoNetworkedField]
 	public bool BloodBondActive = false;
 
 	/// <summary>
-	///     Loop id for Blood Bond to prevent duplicate loops
+	/// Loop id for Blood Bond to prevent duplicate loops
 	/// </summary>
 	public int BloodBondLoopId = 0;
 
 	/// <summary>
-	///     Thralls currently linked via Blood Bond
+	/// Thralls currently linked via Blood Bond
 	/// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     [AutoNetworkedField]
