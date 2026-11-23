@@ -1,25 +1,4 @@
 Entries:
-- author: Floximo
-  changes:
-  - message: pAI can now control a Remote Control Console if inserted in one.
-    type: Add
-  id: 410405
-  time: '2026-11-13T19:44:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6988
-- author: Floximo
-  changes:
-  - message: Some client and server crashes got fixed.
-    type: Fix
-  id: 410406
-  time: '2026-11-13T19:44:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6988
-- author: RedSpeeds
-  changes:
-  - message: Cargo sale barcodes. Allowing for sale of gas cans and other items by departments.
-    type: Add
-  id: 410407
-  time: '2026-11-13T20:35:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7066
 - author: neomoth
   changes:
   - message: ACTUALLY fix action order this time... i think... i HOPE...
@@ -2799,4 +2778,25 @@ Entries:
   id: 410804
   time: '2026-11-23T18:59:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7398
+- author: Rinary, baltdev
+  changes:
+  - message: Overhauled how comfy chairs are handled. They should be less annoying to place now.
+    type: Tweak
+  id: 410805
+  time: '2026-11-23T19:22:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7389
+- author: Rinary, baltdev
+  changes:
+  - message: Added xeno comfy chairs.
+    type: Add
+  id: 410806
+  time: '2026-11-23T19:22:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7389
+- author: Rinary, baltdev
+  changes:
+  - message: Proper description for chitinous wax.
+    type: Add
+  id: 410807
+  time: '2026-11-23T19:22:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7389
 Order: -1
