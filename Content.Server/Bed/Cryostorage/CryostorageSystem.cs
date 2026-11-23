@@ -243,6 +243,10 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
         UpdateCryostorageUIState((cryostorageEnt.Value, cryostorageComponent));
         AdminLog.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(ent):player} was entered into cryostorage inside of {ToPrettyString(cryostorageEnt.Value)}");
 
+        // Starlight-start
+        RemComp<VampireThrallComponent>(ent.Owner);
+        // Starlight-end
+
         if (!TryComp<StationRecordsComponent>(station, out var stationRecords))
             return;
 
@@ -260,7 +264,6 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
         //starlight start
         RemComp<HeadRevolutionaryComponent>(ent.Owner);
         RemComp<CommandStaffComponent>(ent.Owner);
-        RemComp<VampireThrallComponent>(ent.Owner);
         //starlight end
 
         _chatSystem.DispatchStationAnnouncement(station.Value,
