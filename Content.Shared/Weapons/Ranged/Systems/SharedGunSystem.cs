@@ -1,4 +1,4 @@
-using Content.Shared.Vehicle.Systems; // Far Horizons
+using Content.Shared.Vehicle.Systems;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared.ActionBlocker;
@@ -49,7 +49,7 @@ namespace Content.Shared.Weapons.Ranged.Systems;
 
 public abstract partial class SharedGunSystem : EntitySystem
 {
-    [Dependency] protected VehicleSystem RideVehicles = default!; // Far Horizons
+    [Dependency] protected VehicleSystem RideVehicles = default!; // Starlight
     [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private INetManager _netManager = default!;
@@ -508,7 +508,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
         // Starlight-end
 
-        if (!userImpulse)
+        if (!userImpulse) // Starlight
             return true;
 
         var shooterEv = new ShooterImpulseEvent();
@@ -516,10 +516,9 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         if (shooterEv.Push)
         {
-            // Far Horizons: recoil pushes the vehicle when the shooter is mounted.
-            var recoilTarget = RideVehicles.GetRideVehicle(user) ?? user;
-            if (TryComp<PhysicsComponent>(recoilTarget, out var recoilBody))
-                CauseImpulse(fromCoordinates, toCoordinates.Value, (recoilTarget, recoilBody));
+            var recoilTarget = RideVehicles.GetRideVehicle(user) ?? user; // Starlight
+            if (TryComp<PhysicsComponent>(recoilTarget, out var recoilBody)) // Starlight
+                CauseImpulse(fromCoordinates, toCoordinates.Value, (recoilTarget, recoilBody)); // Starlight
         }
         return true;
     }
@@ -569,7 +568,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
         else
         {
-            shooter = RideVehicles.GetRideVehicle(user) ?? user ?? gunUid; // Far Horizons
+            shooter = RideVehicles.GetRideVehicle(user) ?? user ?? gunUid; // Starlight
         }
         // Starlight-edit: end
 

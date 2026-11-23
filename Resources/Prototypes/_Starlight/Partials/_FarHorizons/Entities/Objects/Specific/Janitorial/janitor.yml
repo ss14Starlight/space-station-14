@@ -6,5 +6,5 @@
   - type: Solution
     id: watertank
     solution:
-      maxVol: 100
+      maxVol: 60
   - type: !Remove SolutionContainerManager

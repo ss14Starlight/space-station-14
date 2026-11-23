@@ -1,8 +1,9 @@
 - type: !PartialOnly trait
   id: WheelchairBound
-  cost: 0
-  components: !Remove
-  effects:
+  blacklist:
+    components:
+    - BorgChassis
+  effects: !Clear
   - !type:AddCompsEffect
     components:
     - type: BuckleOnMapInit

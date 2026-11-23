@@ -10,7 +10,7 @@ using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 
-namespace Content.Server._FarHorizons.Vehicles.Atmos;
+namespace Content.Server._Starlight.Vehicle.Atmos;
 
 /// <summary>
 /// Handles atmospheric systems for mechs including air circulation, fans, and life support.

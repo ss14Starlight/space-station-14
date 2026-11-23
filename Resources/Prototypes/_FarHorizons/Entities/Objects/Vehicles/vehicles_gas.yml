@@ -161,7 +161,7 @@
         vehicle_mods_container: !type:Container
     - type: Storage
       grid:
-      - 0,0,6,4
+      - 0,0,10,9
       maxItemSize: Huge
       openOnActivate: false
       clickInsert: false
@@ -183,6 +183,7 @@
             tags:
             - VehicleKey
             - STVKeys
+    - type: Hitch
     - type: VehicleBuckle
       armorAffectsVehicle: true
     - type: VehicleMods

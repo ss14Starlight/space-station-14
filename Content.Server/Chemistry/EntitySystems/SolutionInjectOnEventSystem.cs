@@ -1,4 +1,4 @@
-using Content.Shared.Vehicle.Systems; // Far Horizons
+using Content.Shared.Vehicle.Systems;
 using Content.Server.Chemistry.Components;
 using Content.Shared._Starlight.Chemistry.Events;
 using Content.Shared.Chemistry.EntitySystems;
@@ -21,7 +21,7 @@ namespace Content.Server.Chemistry.EntitySystems;
 /// </summary>
 public sealed partial class SolutionInjectOnCollideSystem : EntitySystem
 {
-    [Dependency] private VehicleSystem _rideVehicles = default!; // Far Horizons
+    [Dependency] private VehicleSystem _rideVehicles = default!; // Starlight
     [Dependency] private BloodstreamSystem _bloodstream = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
@@ -99,7 +99,7 @@ public sealed partial class SolutionInjectOnCollideSystem : EntitySystem
         var targetBloodstreams = new ValueList<Entity<BloodstreamComponent>>();
         foreach (var hit in targets)
         {
-            var target = _rideVehicles.GetExposedOperatorOrSelf(hit); // Far Horizons
+            var target = _rideVehicles.GetExposedOperatorOrSelf(hit); // Starlight
             if (Deleted(target))
                 continue;
 

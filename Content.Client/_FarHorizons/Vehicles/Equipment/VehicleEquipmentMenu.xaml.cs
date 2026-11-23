@@ -8,7 +8,7 @@ using Content.Client._Starlight.UI;
 using Content.Shared.Damage.Components;
 using Robust.Shared.Timing;
 using Content.Shared.PowerCell.Components;
-using Content.Shared._FarHorizons.ReagentDraw.Components;
+using Content.Shared._Starlight.ReagentDraw.Components;
 using Content.Shared.Power.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Power.EntitySystems;
@@ -75,9 +75,8 @@ public sealed partial class VehicleEquipmentMenu : FancyWindow
     public void UpdateWindow()
     {
         var target = Entity;
-        if (!_entityManager.TryGetComponent<VehicleModsComponent>(target, out var vmComp)
-        || !_entityManager.TryGetComponent<MetaDataComponent>(target, out var metaData)
-        )
+        if (!_entityManager.TryGetComponent<VehicleModsComponent>(target, out var vmComp) ||
+            !_entityManager.TryGetComponent<MetaDataComponent>(target, out var metaData)) // Starlight
             return;
         
         NameLabel.Text = metaData.EntityName;
@@ -85,8 +84,8 @@ public sealed partial class VehicleEquipmentMenu : FancyWindow
         SpriteView.Visible = true;
 
         var Integrity = 0;
-        if (Damage != null && vmComp.MaxIntegrity > 0)
-            Integrity = Math.Clamp((int) ((vmComp.MaxIntegrity - _damageable.GetTotalDamage((target, Damage))).Float() / vmComp.MaxIntegrity.Float() * 100), 0, 100);
+        if (Damage != null && vmComp.MaxIntegrity > 0) // Starlight
+            Integrity = Math.Clamp((int) ((vmComp.MaxIntegrity - _damageable.GetTotalDamage((target, Damage))).Float() / vmComp.MaxIntegrity.Float() * 100), 0, 100); // Starlight
 
         var color = Color.InterpolateBetween(_red, _green, (float)Integrity / 100);
 
@@ -95,7 +94,7 @@ public sealed partial class VehicleEquipmentMenu : FancyWindow
         HealthBar.ModulateSelfOverride = color;
 
         color = Color.InterpolateBetween(_red, _green, (float)GetRemainingPower(target) / 100);
-        FuelLabel.Text = PowerCell != null ? Loc.GetString("vehicle-equipment-power") : Loc.GetString("vehicle-equipment-fuel");
+        FuelLabel.Text = PowerCell != null ? Loc.GetString("vehicle-equipment-power") : Loc.GetString("vehicle-equipment-fuel"); // Starlight
         FuelPercent.Text = $"{GetRemainingPower(target)}%";
         FuelBar.Value = GetRemainingPower(target);
         FuelBar.ModulateSelfOverride = color;
@@ -193,7 +192,7 @@ public sealed partial class VehicleEquipmentMenu : FancyWindow
             _entityManager.TryGetComponent<VehicleEquipmentComponent>(mod, out var ve))
         {
             var integrity = Math.Clamp(
-                (int)((ve.Health - _damageable.GetTotalDamage((mod.Value, damage))) * 100 / ve.Health),
+                (int)((ve.Health - _damageable.GetTotalDamage((mod.Value, damage))) * 100 / ve.Health), // Starlight
                 0, 100);
 
             var color = Color.InterpolateBetween(_red, _green, integrity / 100f);
@@ -212,11 +211,11 @@ public sealed partial class VehicleEquipmentMenu : FancyWindow
 
     private int GetRemainingPower(EntityUid uid)
     {
-        if (PowerCell != null)
+        if (PowerCell != null) // Starlight
         {
-            if (!_container.TryGetContainer(uid, PowerCell.CellSlotId, out var slot))
-                return 0;
-            var cell = slot.ContainedEntities.FirstOrNull();
+            if (!_container.TryGetContainer(uid, PowerCell.CellSlotId, out var slot)) // Starlight
+                return 0; // Starlight
+            var cell = slot.ContainedEntities.FirstOrNull(); // Starlight
             if(cell == null || !_entityManager.TryGetComponent<BatteryComponent>(cell, out var batteryComp))
                 return 0;
             return (int)Math.Round(_battery.GetChargeLevel((cell.Value, batteryComp)) * 100f);

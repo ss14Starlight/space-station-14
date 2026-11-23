@@ -21,7 +21,7 @@ namespace Content.Server.Fluids.EntitySystems;
 
 public sealed partial class SpraySystem : SharedSpraySystem
 {
-    [Dependency] private VehicleSystem _rideVehicles = default!; // Far Horizons
+    [Dependency] private VehicleSystem _rideVehicles = default!; // Starlight
     [Dependency] private GravitySystem _gravity = default!;
     [Dependency] private PhysicsSystem _physics = default!;
     [Dependency] private UseDelaySystem _useDelay = default!;
@@ -167,7 +167,7 @@ public sealed partial class SpraySystem : SharedSpraySystem
             if (_container.TryGetOuterContainer(entity, sprayerXform, out var container))
                 thingGettingPushed = container.Owner;
 
-            thingGettingPushed = _rideVehicles.GetRideVehicle(user) ?? thingGettingPushed; // Far Horizons
+            thingGettingPushed = _rideVehicles.GetRideVehicle(user) ?? thingGettingPushed; // Starlight
             if (TryComp<PhysicsComponent>(thingGettingPushed, out var body))
             {
                 if (_gravity.IsWeightless(thingGettingPushed))

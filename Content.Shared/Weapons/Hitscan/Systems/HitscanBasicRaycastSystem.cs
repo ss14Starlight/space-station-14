@@ -33,7 +33,7 @@ namespace Content.Shared.Weapons.Hitscan.Systems;
 
 public sealed partial class HitscanBasicRaycastSystem : EntitySystem
 {
-    [Dependency] private VehicleSystem _rideVehicles = default!; // Far Horizons
+    [Dependency] private VehicleSystem _rideVehicles = default!; // Starlight
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private ISharedAdminLogManager _log = default!;
@@ -76,8 +76,8 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
             args.ShotDirection, ent.Comp.MaxDistance, (int) ent.Comp.CollisionMask, rayCastResults);
         RaiseLocalEvent(ref lagEv);
 
-        if (_rideVehicles.GetRideVehicle(shooter) is { } vehicle && args.OutputTrace == null) // Far Horizons
-            rayCastResults.RemoveAll(hit => hit.HitEntity == vehicle); // Far Horizons
+        if (_rideVehicles.GetRideVehicle(shooter) is { } vehicle && args.OutputTrace == null) // Starlight
+            rayCastResults.RemoveAll(hit => hit.HitEntity == vehicle); // Starlight
 
         var result = SelectHit(ent, shooter, mapCords, args.ShotDirection, pointer, args.Target, rayCastResults, args.PredictionSeed);
 

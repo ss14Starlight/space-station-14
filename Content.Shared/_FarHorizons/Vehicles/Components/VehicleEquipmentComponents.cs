@@ -20,19 +20,19 @@ public sealed partial class VehicleEquipmentComponent : Component
     public VehicleType AllowedVehicles = VehicleType.None;
 
     [DataField]
-    public TimeSpan InstallTime = TimeSpan.FromSeconds(5);
+    public TimeSpan InstallTime = TimeSpan.FromSeconds(5); // Starlight
 
-    [AutoNetworkedField]
-    public bool Broken;
+    [AutoNetworkedField] // Starlight
+    public bool Broken; // Starlight
 
     [DataField]
     public int Health = 100;
 
     [DataField]
-    public float DamageTransfer = 0.1f;
+    public float DamageTransfer = 0.1f; // Starlight
 
     [DataField]
-    public float DamageChance = 0.33f;
+    public float DamageChance = 0.33f; // Starlight
 }
 
 public static class EquipmentTypeExtensions

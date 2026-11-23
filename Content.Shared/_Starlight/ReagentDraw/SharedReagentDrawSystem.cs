@@ -1,12 +1,12 @@
 using System.Linq;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared._FarHorizons.ReagentDraw.Components;
+using Content.Shared._Starlight.ReagentDraw.Components;
 using Content.Shared.Destructible;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
-namespace Content.Shared._FarHorizons.ReagentDraw.EntitySystems;
+namespace Content.Shared._Starlight.ReagentDraw.EntitySystems;
 
 public sealed partial class SharedReagentDrawSystem : EntitySystem
 {

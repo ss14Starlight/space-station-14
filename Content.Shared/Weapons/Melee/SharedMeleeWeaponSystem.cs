@@ -1,4 +1,4 @@
-using Content.Shared.Vehicle.Systems; // Far Horizons
+using Content.Shared.Vehicle.Systems;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
@@ -51,7 +51,7 @@ namespace Content.Shared.Weapons.Melee;
 
 public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 {
-    [Dependency] private VehicleSystem _rideVehicles = default!; // Far Horizons
+    [Dependency] private VehicleSystem _rideVehicles = default!; // Starlight
     [Dependency] protected IGameTiming Timing = default!;
     [Dependency] protected SharedMapSystem MapManager = default!;
     [Dependency] private   INetManager _netMan = default!;
@@ -783,7 +783,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         var baseAngle = angle - widthRad / 2;
 
         var resSet = new HashSet<EntityUid>();
-        var ridden = _rideVehicles.GetRideVehicle(ignore); // Far Horizons
+        var ridden = _rideVehicles.GetRideVehicle(ignore); // Starlight
 
         for (var i = 0; i < increments; i++)
         {
@@ -797,7 +797,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
                 false)
                 .ToList();
 
-            if (ridden is { } vehicle)
+            if (ridden is { } vehicle) // Starlight
                 res.RemoveAll(result => result.HitEntity == vehicle);
 
             if (res.Count != 0)

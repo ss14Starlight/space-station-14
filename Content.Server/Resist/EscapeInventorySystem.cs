@@ -22,7 +22,7 @@ public sealed partial class EscapeInventorySystem : EntitySystem
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private SharedContainerSystem _containerSystem = default!;
     [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
-    [Dependency] private VehicleSystem _vehicles = default!; // Far Horizons
+    [Dependency] private VehicleSystem _vehicles = default!; // Starlight
     [Dependency] private SharedHandsSystem _handsSystem = default!;
     [Dependency] private TagSystem _tagSystem = default!; // Starlight Edit
     [Dependency] private TransformSystem _transformSystem = default!; // Starlight Edit
@@ -46,8 +46,8 @@ public sealed partial class EscapeInventorySystem : EntitySystem
         if (!_containerSystem.TryGetContainingContainer((uid, null, null), out var container) || !_actionBlockerSystem.CanInteract(uid, container.Owner))
             return;
 
-        if (_vehicles.GetRideVehicle(uid) == container.Owner) // Far Horizons
-            return; // Far Horizons
+        if (_vehicles.GetRideVehicle(uid) == container.Owner) // Starlight
+            return; // Starlight
 
         // Make sure there's nothing stopped the removal (like being glued)
         if (!_containerSystem.CanRemove(uid, container))

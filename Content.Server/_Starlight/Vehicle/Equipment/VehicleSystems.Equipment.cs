@@ -1,7 +1,7 @@
 using System.Linq;
-using Content.Server._FarHorizons.Vehicles.Atmos;
+using Content.Server._Starlight.Vehicle.Atmos;
 using Content.Server.Destructible;
-using Content.Shared._FarHorizons.ReagentDraw.Components;
+using Content.Shared._Starlight.ReagentDraw.Components;
 using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared._FarHorizons.Vehicles.Equipment;
 using Content.Shared._Starlight.Vehicle;
@@ -26,7 +26,7 @@ using Content.Shared.Vehicle.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Random;
 
-namespace Content.Server._FarHorizons.Vehicles.Equipment;
+namespace Content.Server._Starlight.Vehicle.Equipment;
 
 public sealed partial class VehicleEquipmentSystems : EntitySystem
 {

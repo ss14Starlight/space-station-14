@@ -10,7 +10,9 @@
     - type: Icon
       sprite: _FarHorizons/Tools/Towing/rope.rsi
       state: rope
-    - type: Towing
+    - type: TowingRope
+    - type: LimitedCharges
+      maxCharges: 5
 
 - type: entity
   parent: BaseItem
@@ -26,4 +28,6 @@
       sprite: _FarHorizons/Tools/Towing/rope.rsi
       state: hook
     - type: Hitch
-    - type: Towing
+    - type: TowingRope
+    - type: LimitedCharges
+      maxCharges: 1

@@ -1,4 +1,4 @@
-using Content.Shared.Vehicle.Systems; // Far Horizons
+using Content.Shared.Vehicle.Systems;
 using Content.Shared._Starlight.Weapons.Hitscan.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Stunnable;
@@ -10,7 +10,7 @@ namespace Content.Shared._Starlight.Weapons.Hitscan.Systems;
 
 public sealed partial class HitscanCrawlerTargetEffectsSystem : EntitySystem
 {
-    [Dependency] private VehicleSystem _rideVehicles = default!; // Far Horizons
+    [Dependency] private VehicleSystem _rideVehicles = default!; // Starlight
     [Dependency] private SharedStunSystem _stunSystem = default!;
     [Dependency] private MovementModStatusSystem _movementMod = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
@@ -27,7 +27,7 @@ public sealed partial class HitscanCrawlerTargetEffectsSystem : EntitySystem
         if (args.Data.HitEntity == null)
             return;
 
-        var target = _rideVehicles.GetExposedOperatorOrSelf(args.Data.HitEntity.Value); // Far Horizons
+        var target = _rideVehicles.GetExposedOperatorOrSelf(args.Data.HitEntity.Value); // Starlight
         if (TryComp<CrawlerComponent>(target, out var standing))
         {
             _stunSystem.TryAddStunDuration(target, hitscan.Comp.StunDuration);

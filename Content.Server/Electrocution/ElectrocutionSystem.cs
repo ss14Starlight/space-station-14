@@ -38,7 +38,7 @@ namespace Content.Server.Electrocution;
 
 public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
 {
-    [Dependency] private VehicleSystem _rideVehicles = default!; // Far Horizons
+    [Dependency] private VehicleSystem _rideVehicles = default!; // Starlight
     [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -220,7 +220,7 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
         EnsureComp<ActivatedElectrifiedComponent>(uid);
         _appearance.SetData(uid, ElectrifiedVisuals.ShowSparks, true);
 
-        targetUid = _rideVehicles.GetExposedOperatorOrSelf(targetUid); // Far Horizons
+        targetUid = _rideVehicles.GetExposedOperatorOrSelf(targetUid); // Starlight
         siemens *= electrified.SiemensCoefficient;
         if (!DoCommonElectrocutionAttempt(targetUid, uid, ref siemens) || siemens <= 0)
             return false; // If electrocution would fail, do nothing.

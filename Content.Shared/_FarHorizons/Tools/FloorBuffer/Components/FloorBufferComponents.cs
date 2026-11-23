@@ -6,8 +6,8 @@ namespace Content.Shared._FarHorizons.Tools.FloorBuffer.Components;
 [NetworkedComponent, RegisterComponent, AutoGenerateComponentState]
 public sealed partial class FloorBufferComponent : Component
 {
-    [AutoNetworkedField]
-    public bool Enabled;
+    [AutoNetworkedField] // Starlight
+    public bool Enabled; // Starlight
 
     [DataField]
     public float SpeedReduction = 0.33f;
@@ -15,6 +15,6 @@ public sealed partial class FloorBufferComponent : Component
     [DataField]
     public EntProtoId ToggleAction = "ActionToggleZamboni";
 
-    [AutoNetworkedField]
+    [AutoNetworkedField] // Starlight
     public EntityUid? ToggleActionEntity;
 }

@@ -7,14 +7,12 @@
     - type: Sprite
       sprite: Objects/Misc/moproach_shoes.rsi
       state: mopshoes
-    - type: SolutionContainerVisuals
-      maxFillLevels: 2
     - type: FloorBuffer
       solutionContainer: watertank
     - type: SolutionContainerManager
       solutions:
         watertank:
-          maxVol: 100
+          maxVol: 60
     - type: RefillableSolution
       solution: watertank
     - type: ExaminableSolution

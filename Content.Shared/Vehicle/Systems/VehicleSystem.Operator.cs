@@ -10,7 +10,7 @@ public sealed partial class VehicleSystem
     [SubscribeLocalEvent]
     private void OnVehicleStrapped(Entity<StrapVehicleComponent> ent, ref StrappedEvent args)
     {
-        if (!_vehicleQuery.TryComp(ent, out var vehicle))
+        if (_timing.ApplyingState || !_vehicleQuery.TryComp(ent, out var vehicle)) // Starlight
             return;
 
         TrySetOperator((ent, vehicle), args.Buckle);
@@ -19,7 +19,7 @@ public sealed partial class VehicleSystem
     [SubscribeLocalEvent]
     private void OnVehicleUnstrapped(Entity<StrapVehicleComponent> ent, ref UnstrappedEvent args)
     {
-        if (!_vehicleQuery.TryComp(ent, out var vehicle))
+        if (_timing.ApplyingState || !_vehicleQuery.TryComp(ent, out var vehicle)) // Starlight
             return;
 
         if (vehicle.Operator != args.Buckle)

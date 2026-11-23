@@ -1,39 +1,29 @@
-using Robust.Shared.GameStates;
+using Robust.Shared.Physics.Dynamics.Joints;
 using Robust.Shared.Serialization;
 using Content.Shared.DoAfter;
 
 namespace Content.Shared._FarHorizons.Towing.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent]
 public sealed partial class TiedComponent : Component
 {
     /// <summary>
     /// how long does it take to untie an entity
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField]
     public TimeSpan UntieTime = TimeSpan.FromSeconds(2);
 
     /// <summary>
     /// Attached to entity
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField]
     public EntityUid? AttachedTo;
 
     /// <summary>
-    /// Tied by what?
+    /// The towing joint
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public EntityUid? TiedBy;
-
-    /// <summary>
-    /// Tied by what?
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool isHitch = false;
+    public Joint? Joint; // Starlight
 }
-
-[Serializable, NetSerializable]
-public sealed partial class UnTieDoAfter : SimpleDoAfterEvent;
 
 [Serializable, NetSerializable]
 public sealed partial class DeployHitchDoAfter : SimpleDoAfterEvent;

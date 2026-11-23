@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Numerics;
-using Content.Shared._FarHorizons.ReagentDraw.Components;
-using Content.Shared._FarHorizons.ReagentDraw.EntitySystems;
+using Content.Shared._Starlight.ReagentDraw.Components;
+using Content.Shared._Starlight.ReagentDraw.EntitySystems;
 using Content.Shared._FarHorizons.Tools.FloorBuffer.Components;
 using Content.Shared.Actions;
 using Content.Shared.Audio;
@@ -22,7 +22,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._FarHorizons.Tools.FloorBuffer.Systems;
+namespace Content.Shared._Starlight.Tools.FloorBuffer.Systems;
 
 public sealed partial class FloorBufferSystem : EntitySystem
 {

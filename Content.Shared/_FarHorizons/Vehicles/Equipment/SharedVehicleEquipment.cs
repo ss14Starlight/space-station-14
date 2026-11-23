@@ -42,4 +42,4 @@ public sealed partial class InstallDoAfter : SimpleDoAfterEvent
     public InstallDoAfter(NetEntity part)
         => Part = part;
 }
-public sealed partial class VehicleSirenToggleEvent : InstantActionEvent;
+public sealed partial class VehicleSirenToggleEvent : InstantActionEvent; // Starlight

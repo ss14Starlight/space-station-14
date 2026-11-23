@@ -7,9 +7,7 @@ using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Robust.Shared.Timing;
-#region Starlight
 using Content.Shared.Body.Systems;
-#endregion
 
 namespace Content.Shared.Traits.Assorted;
 
@@ -18,8 +16,8 @@ public sealed partial class LegsParalyzedSystem : EntitySystem
     [Dependency] private MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
     [Dependency] private StandingStateSystem _standingSystem = default!;
     [Dependency] private SharedBodySystem _bodySystem = default!; // Starlight: Reverted NuBody
-    [Dependency] private SharedBuckleSystem _buckle = default!;
-    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedBuckleSystem _buckle = default!; // Starlight
+    [Dependency] private IGameTiming _timing = default!; // Starlight
 
     public override void Initialize()
     {
@@ -33,6 +31,7 @@ public sealed partial class LegsParalyzedSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, LegsParalyzedComponent component, ComponentStartup args)
     {
+        #region Starlight
         if (_timing.ApplyingState)
             return;
 
@@ -42,6 +41,7 @@ public sealed partial class LegsParalyzedSystem : EntitySystem
                 StartCrawling(uid);
             return;
         }
+        #endregion
 
         // TODO: In future probably must be surgery related wound
         _movementSpeedModifierSystem.ChangeBaseSpeed(uid, 0, 0, 20);
@@ -49,11 +49,11 @@ public sealed partial class LegsParalyzedSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, LegsParalyzedComponent component, ComponentShutdown args)
     {
-        if (_timing.ApplyingState || TerminatingOrDeleted(uid))
-            return;
+        if (_timing.ApplyingState || TerminatingOrDeleted(uid)) // Starlight
+            return; // Starlight
 
-        if (component.AllowCrawling)
-            StopCrawling(uid);
+        if (component.AllowCrawling) // Starlight
+            StopCrawling(uid); // Starlight
 
         _standingSystem.Stand(uid);
         _bodySystem.UpdateMovementSpeed(uid); // Starlight: Reverted NuBody
@@ -61,38 +61,39 @@ public sealed partial class LegsParalyzedSystem : EntitySystem
 
     private void OnBuckled(EntityUid uid, LegsParalyzedComponent component, ref BuckledEvent args)
     {
-        if (_timing.ApplyingState)
-            return;
+        if (_timing.ApplyingState) // Starlight
+            return; // Starlight
 
-        if (component.AllowCrawling)
-            StopCrawling(uid);
+        if (component.AllowCrawling) // Starlight
+            StopCrawling(uid); // Starlight
 
         _standingSystem.Stand(uid);
     }
 
     private void OnUnbuckled(EntityUid uid, LegsParalyzedComponent component, ref UnbuckledEvent args)
     {
-        if (_timing.ApplyingState)
-            return;
+        if (_timing.ApplyingState) // Starlight
+            return; // Starlight
 
-        if (component.AllowCrawling)
-            StartCrawling(uid);
-        else
+        if (component.AllowCrawling) // Starlight
+            StartCrawling(uid); // Starlight
+        else // Starlight
             _standingSystem.Down(uid);
     }
 
     private void OnUpdateCanMoveEvent(EntityUid uid, LegsParalyzedComponent component, UpdateCanMoveEvent args)
     {
-        if (!component.AllowCrawling)
+        if (!component.AllowCrawling) // Starlight
             args.Cancel();
     }
 
     private void OnThrowPushbackAttempt(EntityUid uid, LegsParalyzedComponent component, ThrowPushbackAttemptEvent args)
     {
-        if (!component.AllowCrawling)
+        if (!component.AllowCrawling) // Starlight
             args.Cancel();
     }
 
+    #region Starlight
     private void StartCrawling(EntityUid uid)
     {
         if (TerminatingOrDeleted(uid))
@@ -109,4 +110,5 @@ public sealed partial class LegsParalyzedSystem : EntitySystem
 
         RemComp<KnockedDownComponent>(uid);
     }
+    #endregion
 }

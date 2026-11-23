@@ -13,21 +13,21 @@ public sealed partial class VehicleModsComponent : Component
     public string ModContainer = "vehicle_mods_container";
 
     [DataField]
-    public List<EntProtoId> StartingEquipment = new();
+    public List<EntProtoId> StartingEquipment = new(); // Starlight
 
     [DataField]
-    public EquipmentType EquipmentSlots;
+    public EquipmentType EquipmentSlots; // Starlight
 
-    [AutoNetworkedField]
+    [AutoNetworkedField] // Starlight
     public Dictionary<EquipmentType, EntityUid?> Equipment = new();
 
     [DataField(required: true)]
-    public VehicleType VehicleType;
+    public VehicleType VehicleType; // Starlight
 
-    [AutoNetworkedField]
-    public FixedPoint2 MaxIntegrity;
+    [AutoNetworkedField] // Starlight
+    public FixedPoint2 MaxIntegrity; // Starlight
 
-    public ProtoId<DamageModifierSetPrototype>? OriginalArmor;
+    public ProtoId<DamageModifierSetPrototype>? OriginalArmor; // Starlight
 }
 
 [Serializable, NetSerializable]

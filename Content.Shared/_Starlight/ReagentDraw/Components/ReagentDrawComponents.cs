@@ -5,7 +5,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Shared._FarHorizons.ReagentDraw.Components;
+namespace Content.Shared._Starlight.ReagentDraw.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class ReagentDrawComponent : Component

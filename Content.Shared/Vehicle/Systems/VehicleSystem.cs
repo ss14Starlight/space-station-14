@@ -1,4 +1,4 @@
-using Content.Shared._Starlight.Vehicle; // Far Horizons
+using Content.Shared._Starlight.Vehicle;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Access.Components;
 using Content.Shared.ActionBlocker;
@@ -57,6 +57,9 @@ public sealed partial class VehicleSystem : EntitySystem
     private void OnBeforeDamageChanged(Entity<VehicleComponent> ent, ref BeforeDamageChangedEvent args)
     {
         if (!ent.Comp.TransferDamage || !args.Damage.AnyPositive() || ent.Comp.Operator is not { } operatorUid)
+            return;
+
+        if (TerminatingOrDeleted(operatorUid)) // Starlight
             return;
 
         var damage = DamageSpecifier.GetPositive(args.Damage);
@@ -161,7 +164,7 @@ public sealed partial class VehicleSystem : EntitySystem
         if (!CanOperate(entity.AsNullable(), operatorUid))
             return false;
 
-        if (!HasComp<VehicleIgnitionComponent>(entity) && !TryBlockHands(entity, operatorUid)) // Far Horizons, if it has an ignition, hands are blocked when operating
+        if (!HasComp<VehicleIgnitionComponent>(entity) && !TryBlockHands(entity, operatorUid)) // Starlight
             return false;
 
         entity.Comp.Operator = operatorUid;
@@ -204,7 +207,8 @@ public sealed partial class VehicleSystem : EntitySystem
             RaiseLocalEvent(currentOperator, ref exitEvent);
 
             currentOperatorComponent.Vehicle = null;
-            RemCompDeferred<VehicleOperatorComponent>(currentOperator);
+            if (currentOperatorComponent.LifeStage < ComponentLifeStage.Stopping) // Starlight
+                RemComp(currentOperator, currentOperatorComponent); // Starlight
         }
 
         UnblockHands(entity.Owner, currentOperator);
@@ -226,20 +230,23 @@ public sealed partial class VehicleSystem : EntitySystem
         if (_relayInputMoverQuery.TryComp(operatorUid, out var relayMover) &&
             relayMover.RelayEntity == vehicleUid)
         {
-            RemCompDeferred<RelayInputMoverComponent>(operatorUid);
+            RemComp(operatorUid, relayMover); // Starlight
         }
 
         if (_interactionRelayQuery.TryComp(operatorUid, out var interactionRelay) &&
             interactionRelay.RelayEntity == vehicleUid)
         {
-            RemCompDeferred<InteractionRelayComponent>(operatorUid);
+            RemComp(operatorUid, interactionRelay); // Starlight
         }
 
         if (_movementRelayQuery.TryComp(vehicleUid, out var relayTarget) &&
             relayTarget.Source == operatorUid)
         {
-            RemCompDeferred<MovementRelayTargetComponent>(vehicleUid);
+            RemComp(vehicleUid, relayTarget); // Starlight
         }
+
+        if (!TerminatingOrDeleted(operatorUid)) // Starlight
+            _actionBlocker.UpdateCanMove(operatorUid); // Starlight
     }
 
     /// <summary>
@@ -262,9 +269,10 @@ public sealed partial class VehicleSystem : EntitySystem
 
         _eye.SetTarget(operatorEntity.Owner, null);
         UnblockHands(vehicleUid.Value, operatorEntity.Owner);
-        ClearOperatorRelays(operatorEntity.Owner, vehicleUid.Value);
         operatorEntity.Comp.Vehicle = null;
-        RemCompDeferred<VehicleOperatorComponent>(operatorEntity.Owner);
+        if (operatorEntity.Comp.LifeStage < ComponentLifeStage.Stopping) // Starlight
+            RemComp(operatorEntity.Owner, operatorEntity.Comp); // Starlight
+        ClearOperatorRelays(operatorEntity.Owner, vehicleUid.Value);
         return true;
     }
 
@@ -346,7 +354,9 @@ public sealed partial class VehicleSystem : EntitySystem
                 vehicle.Owner,
                 operatorUid,
                 blockedHands, // Starlight
-                dropOthers: true)) return true;
+                dropOthers: true,
+                silent: HasComp<VehicleRideComponent>(vehicle))) // Starlight
+            return true;
 
         UnblockHands(vehicle.Owner, operatorUid);
         return false;

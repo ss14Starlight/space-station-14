@@ -47,13 +47,13 @@ public sealed partial class VehicleSystem
         if (!args.CanRun)
             return;
 
-        if (!_container.TryGetContainer(ent.Owner, ent.Comp.ContainerId, out _))
+        if (!_container.TryGetContainer(ent.Owner, ent.Comp.ContainerId, out _)) // Starlight
         {
             Log.Error($"Vehicle {ToPrettyString(ent)} has no key container {ent.Comp.ContainerId}!");
             args.CanRun = false;
             return;
         }
 
-        args.CanRun = HasVehicleKey((ent.Owner, ent.Comp)); // Far Horizons
+        args.CanRun = HasVehicleKey((ent.Owner, ent.Comp)); // Starlight
     }
 }
