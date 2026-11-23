@@ -1,34 +1,6 @@
 Entries:
 - author: MaxAlpine
   changes:
-  - message: (Prism) added new radio host equipment.
-    type: Add
-  id: 410384
-  time: '2026-11-13T11:50:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7208
-- author: MaxAlpine
-  changes:
-  - message: (Prism) moved APCs out of artifact chamber to cut down on unintentional artifact activation.
-    type: Tweak
-  id: 410385
-  time: '2026-11-13T11:50:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7208
-- author: MaxAlpine
-  changes:
-  - message: (Prism) vox box distro is now set off by default as it puts a constant strain on distro.
-    type: Tweak
-  id: 410386
-  time: '2026-11-13T11:50:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7208
-- author: MaxAlpine
-  changes:
-  - message: (Prism) removed poster spawners placed over other wallmounts.
-    type: Fix
-  id: 410387
-  time: '2026-11-13T11:50:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7208
-- author: MaxAlpine
-  changes:
   - message: (Prism) moved floor lights in containment chamber to stop them blocking containment fields.
     type: Fix
   id: 410388
@@ -2799,4 +2771,32 @@ Entries:
   id: 410783
   time: '2026-11-21T11:20:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7371
+- author: Swonki
+  changes:
+  - message: Keg Labelling.
+    type: Fix
+  id: 410784
+  time: '2026-11-21T12:14:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7373
+- author: DogeyOT
+  changes:
+  - message: Recipes for Barozine, Respirazone.
+    type: Add
+  id: 410785
+  time: '2026-11-21T22:01:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7368
+- author: DogeyOT
+  changes:
+  - message: Chem can now use Ultravasculine substituting Arithrazine and Hyronalin in production of chronexalin.
+    type: Add
+  id: 410786
+  time: '2026-11-21T22:01:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7368
+- author: DogeyOT
+  changes:
+  - message: Poly can be electrolysed for lithium, nitrogen and sodium.
+    type: Tweak
+  id: 410787
+  time: '2026-11-21T22:01:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7368
 Order: -1
