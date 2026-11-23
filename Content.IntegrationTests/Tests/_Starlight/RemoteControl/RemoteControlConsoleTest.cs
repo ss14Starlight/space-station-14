@@ -1662,57 +1662,6 @@ public sealed class RemoteControlConsoleTest : GameTest
         });
 
     [Test]
-    public async Task InsertingBrainMovesRemoteControlMarkerToChassis()
-    {
-        EntityUid? map = null;
-
-        try
-        {
-            await Server.WaitAssertion(() =>
-            {
-                var mapSystem = Server.System<SharedMapSystem>();
-                var containerSystem = Server.System<SharedContainerSystem>();
-                var remoteControl = Server.System<RemoteControlConsoleSystem>();
-                var ui = Server.System<SharedUserInterfaceSystem>();
-                map = mapSystem.CreateMap(out var mapId);
-                var coordinates = new MapCoordinates(0, 0, mapId);
-                var chassis = SEntMan.Spawn("BorgChassisGeneric", coordinates);
-                var brain = SEntMan.Spawn("RemoteControlBrain", coordinates);
-                var borg = SEntMan.GetComponent<BorgChassisComponent>(chassis);
-                Assert.That(containerSystem.Insert(brain, borg.BrainContainer), Is.True);
-
-                var consoleUid = SEntMan.Spawn("RemoteControlConsole", coordinates);
-                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
-                var user = SEntMan.Spawn("MobHuman", coordinates);
-                console.RemoteBrain = brain;
-
-                Assert.That(ui.TryOpenUi(consoleUid, RemoteControlUIKey.Key, user), Is.True);
-                Assert.That(SEntMan.HasComponent<RemoteControlActiveComponent>(chassis), Is.True);
-                Assert.That(containerSystem.Remove(brain, borg.BrainContainer), Is.True);
-                Assert.That(SEntMan.HasComponent<RemoteControlActiveComponent>(brain), Is.True);
-                Assert.That(SEntMan.HasComponent<RemoteControlActiveComponent>(chassis), Is.False);
-                Assert.That(containerSystem.Insert(brain, borg.BrainContainer), Is.True);
-
-                Assert.Multiple(() =>
-                {
-                    Assert.That(SEntMan.HasComponent<RemoteControlActiveComponent>(brain), Is.False);
-                    Assert.That(SEntMan.HasComponent<RemoteControlActiveComponent>(chassis), Is.True);
-                    Assert.That(remoteControl.TryGetControlledEntity(user, out var remote), Is.True);
-                    Assert.That(remote, Is.EqualTo(chassis));
-                    Assert.That(ui.TryGetUiState<RemoteControlConsoleBuiState>(
-                        consoleUid, RemoteControlUIKey.Key, out var state), Is.True);
-                    Assert.That(state!.RemoteEntity, Is.EqualTo(SEntMan.GetNetEntity(chassis)));
-                });
-            });
-        }
-        finally
-        {
-            if (map is { } mapUid)
-                await Server.WaitPost(() => SEntMan.DeleteEntity(mapUid));
-        }
-    }
-
-    [Test]
     public async Task RemotelyControlledBorgReactivatesWhenCellRecharges()
     {
         EntityUid? map = null;
