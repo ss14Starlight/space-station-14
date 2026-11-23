@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Conflee, DuckManZach
   changes:
-  - message: Cleanbots and moproaches now clean footprints.
-    type: Add
-  id: 410395
-  time: '2026-11-13T12:16:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7174
-- author: wonderfulnewworld, Conflee, DuckManZach
-  changes:
   - message: Footprints now go further or closer depending on how much solution was in the puddle. (10u max).
     type: Tweak
   id: 410396
@@ -2799,4 +2792,11 @@ Entries:
   id: 410794
   time: '2026-11-23T12:17:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7384
+- author: Floximo
+  changes:
+  - message: A new sleep icon shows now when a character is asleep, even if hidden in a container.
+    type: Add
+  id: 410795
+  time: '2026-11-23T12:48:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7390
 Order: -1
