@@ -239,7 +239,11 @@ public sealed partial class TowingSystem : EntitySystem
             return;
 
         if (TryComp<TowingRopeComponent>(ent, out var rope) && rope.FirstEnd == ent.Comp.AttachedTo)
+        {
             rope.FirstEnd = null;
+            if (HasComp<HitchComponent>(ent))
+                QueueDel(ent);
+        }
 
         if (TryComp<JointVisualsComponent>(ent, out var visuals) && visuals.Target == ent.Comp.AttachedTo)
             RemComp(ent, visuals);

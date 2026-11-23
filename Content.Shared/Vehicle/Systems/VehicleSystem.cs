@@ -288,7 +288,7 @@ public sealed partial class VehicleSystem : EntitySystem
         if (!Resolve(entity, ref entity.Comp))
             return false;
 
-        if (entity.Comp.Operator is not { } operatorUid)
+        if (entity.Comp.Operator is not { } operatorUid || TerminatingOrDeleted(operatorUid)) // Starlight
             return false;
 
         if (!_operatorQuery.TryComp(operatorUid, out var operatorComponent))

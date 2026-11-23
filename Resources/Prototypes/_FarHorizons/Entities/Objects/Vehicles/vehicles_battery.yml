@@ -197,7 +197,7 @@
 - type: entity
   id: VehicleSecwayS
   parent: VehicleSecway
-  suffix: S
+  suffix: NS
   components:
     - type: Sprite
       drawdepth: OverMobs

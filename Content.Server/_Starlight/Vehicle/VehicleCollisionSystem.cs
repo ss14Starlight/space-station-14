@@ -6,7 +6,6 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
-using Content.Shared.Effects;
 using Content.Shared.GameTicking;
 using Content.Server.GameTicking;
 using Content.Shared.Movement.Components;
@@ -16,7 +15,6 @@ using Content.Shared.Throwing;
 using Content.Shared.Vehicle.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Vehicle;
@@ -24,7 +22,7 @@ namespace Content.Server._Starlight.Vehicle;
 public sealed partial class VehicleCollisionSystem : EntitySystem
 {
     private static readonly ProtoId<DamageTypePrototype> Blunt = "Blunt";
-    private static readonly EntProtoId CollisionSlowdown = "VehicleImpactSlowdown";
+    private static readonly EntProtoId CollisionSlowdown = "StatusEffectSlowdownNoMobState";
 
     [Dependency] private VehicleSystem _vehicles = default!;
     [Dependency] private SharedBuckleSystem _buckle = default!;
@@ -33,7 +31,6 @@ public sealed partial class VehicleCollisionSystem : EntitySystem
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private MovementModStatusSystem _movement = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private SharedColorFlashEffectSystem _color = default!;
     [Dependency] private IPrototypeManager _prototypes = default!;
     [Dependency] private GameTicker _ticker = default!;
     [Dependency] private Content.Shared.Administration.Logs.ISharedAdminLogManager _logs = default!;
@@ -77,8 +74,7 @@ public sealed partial class VehicleCollisionSystem : EntitySystem
         _audio.PlayPvs(impact, ent);
         var damage = new DamageSpecifier(_prototypes.Index(Blunt), Math.Clamp(10 + 5 * speed / crashSpeed, 10, 20));
         _damageable.TryChangeDamage(args.OtherEntity, damage, origin: driver);
-        _color.RaiseEffect(Color.Red, [args.OtherEntity], Filter.Pvs(args.OtherEntity, entityManager: EntityManager));
-        _movement.TryUpdateMovementSpeedModDuration(ent.Owner, CollisionSlowdown, TimeSpan.FromSeconds(2), 0.25f);
+        _movement.TryAddMovementSpeedModDuration(ent.Owner, CollisionSlowdown, TimeSpan.FromSeconds(2), 0.25f);
         _logs.Add(LogType.Damaged, LogImpact.High,
             $"{ToPrettyString(driver)} ran over {ToPrettyString(args.OtherEntity)} with {ToPrettyString(ent)}");
     }

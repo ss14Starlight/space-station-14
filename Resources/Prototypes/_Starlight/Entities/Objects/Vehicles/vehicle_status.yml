@@ -1,5 +1,0 @@
-- type: entity
-  parent: StatusEffectBase
-  id: VehicleImpactSlowdown
-  components:
-  - type: MovementModStatusEffect

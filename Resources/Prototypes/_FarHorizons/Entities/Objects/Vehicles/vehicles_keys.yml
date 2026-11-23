@@ -42,7 +42,7 @@
   id: VehicleKeySecwayS
   name: secway electronic key
   description: The EVIL USB to the future.
-  suffix: S
+  suffix: NS
   components:
   - type: Tag
     tags:

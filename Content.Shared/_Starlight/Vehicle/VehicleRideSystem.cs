@@ -270,7 +270,10 @@ public sealed partial class VehicleRideSystem : EntitySystem
 
     [SubscribeLocalEvent]
     private void OnRepaired(Entity<VehicleHullComponent> ent, ref RepairedEvent args)
-        => SetBroken(ent, false);
+    {
+        if (_net.IsServer)
+            SetBroken(ent, false);
+    }
 
     private void SetBroken(Entity<VehicleHullComponent> ent, bool broken)
     {
