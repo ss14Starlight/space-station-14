@@ -146,17 +146,13 @@ public sealed partial class IconSmoothSystem
 
     private static bool IsLinearMatch(IconSmoothComponent smooth, EntityUid entity,
         EntityQuery<IconSmoothComponent> smoothQuery, [NotNullWhen(true)] out IconSmoothComponent? other)
-    {
-        return smoothQuery.TryGetComponent(entity, out other)
+        => smoothQuery.TryGetComponent(entity, out other)
             && other.SmoothKey != null
             && other.Enabled
             && (other.SmoothKey == smooth.SmoothKey || smooth.AdditionalKeys.Contains(other.SmoothKey));
-    }
 
     private static Angle CardinalRotation(TransformComponent xform)
-    {
-        return xform.LocalRotation.GetCardinalDir().ToAngle();
-    }
+        => xform.LocalRotation.GetCardinalDir().ToAngle();
 
     private static Vector2i RotatedOffset(Angle rotation, Vector2 offset)
     {
