@@ -22,3 +22,55 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+
+
+- type: Tag
+  id: Barricade
+
+- type: !PartialOnly entity
+  id: BaseBarricade
+  components:
+  - type: Tag
+    tags:
+    - Barricade
+
+- type: !PartialOnly entity
+  id: Barricade
+  components:
+  - type: Tag
+    tags:
+    - Barricade
+    - Wooden
+
+- type: !PartialOnly entity
+  id: BarricadeDirectional
+  components:
+  - type: Tag
+    tags:
+    - Barricade
+    - Wooden
+
+- type: !PartialOnly entity
+  id: BaseBarricadeCover
+  components:
+  - type: Tag
+    tags:
+    - Barricade
+    - ForceNoFixRotations
+
+- type: !PartialOnly entity
+  id: BarricadeSandbagsFrame
+  components:
+  - type: Tag
+    tags:
+    - Barricade
+    - ForceNoFixRotations
+
+- type: !PartialOnly entity
+  id: BarricadeWood
+  components:
+  - type: Tag
+    tags:
+    - Barricade
+    - ForceNoFixRotations
+    - Wooden

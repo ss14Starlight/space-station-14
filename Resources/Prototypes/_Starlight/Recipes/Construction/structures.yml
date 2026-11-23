@@ -454,3 +454,9 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
+  conditions:
+    - !type:NoEntityInTile
+      blacklist:
+        tags:
+        - Barricade
+      guideString: construction-step-condition-no-barricade-in-tile
