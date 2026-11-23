@@ -23,7 +23,7 @@ public sealed class EqualColumnsContainer : Container
 
     private int ColumnCount(int visible) => Columns > 0 ? Columns : Math.Max(1, visible);
 
-    private float ColumnWidth(float width, int columns) => Math.Max(0, (width - Separation * (columns - 1)) / columns);
+    private float ColumnWidth(float width, int columns) => Math.Max(0, (width - (Separation * (columns - 1))) / columns);
 
     protected override Vector2 MeasureOverride(Vector2 availableSize)
     {

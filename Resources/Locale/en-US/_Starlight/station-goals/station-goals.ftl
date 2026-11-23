@@ -56,7 +56,7 @@ station-goal-exotic-harvest-description = Central Command is cataloguing plant s
 station-goal-exotic-harvest-objective = Ship {$kinds} different kinds of produce, {$amount} of each
 
 station-goal-artifact-shipment-name = Artifact survey
-station-goal-artifact-shipment-description = The research division wants alien artifacts. Find {$amount} artifacts, research them and sell. 
+station-goal-artifact-shipment-description = The research division wants alien artifacts. Find {$amount} artifacts, research them and sell.
 station-goal-artifact-shipment-objective = Ship {$amount} alien artifacts
 
 station-goal-bsh-name = Bluespace harvest

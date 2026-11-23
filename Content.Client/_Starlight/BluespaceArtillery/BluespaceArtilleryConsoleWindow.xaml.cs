@@ -86,12 +86,10 @@ public sealed partial class BluespaceArtilleryConsoleWindow : FancyWindow
     }
 
     private bool CanFire()
-    {
-        return _state != null
+        => _state != null
             && _state.Charge >= 1f
             && _state.Target != null
             && _state.CooldownEnd <= _timing.CurTime;
-    }
 
     private void OnFirePressed()
     {
@@ -114,7 +112,7 @@ public sealed partial class BluespaceArtilleryConsoleWindow : FancyWindow
     private void UpdateFireButton()
     {
         var canFire = CanFire();
-        if (!canFire || _armedAt is { } armed && _timing.CurTime > armed + ConfirmWindow)
+        if (!canFire || (_armedAt is { } armed && _timing.CurTime > armed + ConfirmWindow))
             _armedAt = null;
 
         FireButton.Disabled = !canFire;
@@ -181,9 +179,7 @@ public sealed partial class BluespaceArtilleryConsoleWindow : FancyWindow
     }
 
     private static string FormatPower(float watts)
-    {
-        return watts >= 1_000_000f
+        => watts >= 1_000_000f
             ? $"{watts / 1_000_000f:0.##} MW"
             : $"{watts / 1000f:0.#} kW";
-    }
 }

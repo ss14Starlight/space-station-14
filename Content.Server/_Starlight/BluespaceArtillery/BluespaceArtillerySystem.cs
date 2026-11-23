@@ -60,7 +60,7 @@ public sealed partial class BluespaceArtillerySystem : EntitySystem
             }
 
             consumer.DrawRate = cannon.DrawRate;
-            cannon.Stored = Math.Min(cannon.ChargeEnergy, cannon.Stored + consumer.ReceivedPower * frameTime);
+            cannon.Stored = Math.Min(cannon.ChargeEnergy, cannon.Stored + (consumer.ReceivedPower * frameTime));
 
             if (cannon.Stored >= cannon.ChargeEnergy)
             {
