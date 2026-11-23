@@ -1590,19 +1590,22 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
                 var observerConsoleUid = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
                 var observerConsole = SEntMan.GetComponent<RemoteControlConsoleComponent>(observerConsoleUid);
-                var user = SEntMan.SpawnEntity(null, coordinates);
+                var user = SEntMan.SpawnEntity("MobHuman", coordinates);
                 var originalRelay = SEntMan.SpawnEntity(null, coordinates);
                 console.RemoteBrain = brain;
                 observerConsole.RemoteBrain = brain;
-                console.Users.Add(user);
                 observerConsole.Users.Add(user);
 
                 if (controlling)
                 {
-                    SetTestController(consoleUid, console, user);
-                    console.PreviousRelayEntity = previousRelay ? originalRelay : null;
-                    mover.SetRelay(user, chassis);
+                    if (previousRelay)
+                        mover.SetRelay(user, originalRelay);
+
+                    Assert.That(ui.TryOpenUi(consoleUid, RemoteControlUIKey.Key, user), Is.True);
+                    Assert.That(console.Controller, Is.EqualTo(user));
                 }
+                else
+                    console.Users.Add(user);
 
                 Assert.That(containerSystem.Remove(brain, borg.BrainContainer), Is.True);
                 appearanceSystem.SetData(brain, RemoteControlBrainVisuals.Connected, true, brainAppearance);
@@ -1614,6 +1617,8 @@ public sealed class RemoteControlConsoleTest : GameTest
                     Assert.That(console.Users, Does.Contain(user));
                     Assert.That(observerConsole.Users, Does.Contain(user));
                     Assert.That(console.Controller, Is.EqualTo(controlling ? user : (EntityUid?) null));
+                    Assert.That(SEntMan.HasComponent<RemoteControlActiveComponent>(chassis), Is.False);
+                    Assert.That(SEntMan.HasComponent<RemoteControlActiveComponent>(brain), Is.EqualTo(controlling));
                     Assert.That(console.PreviousRelayEntity, Is.Null);
                     Assert.That(remoteControl.TryGetControlledEntity(user, out var remote), Is.EqualTo(controlling));
                     if (controlling)

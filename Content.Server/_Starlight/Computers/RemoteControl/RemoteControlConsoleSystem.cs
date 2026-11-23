@@ -476,6 +476,9 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             RefreshRemoteState(consoleUid, console, brain.Owner);
             Dirty(consoleEntity);
         }
+
+        UpdateRemoteControlledAppearance(args.Container.Owner);
+        UpdateRemoteControlledAppearance(brain.Owner);
     }
 
     private void RefreshRemoteConsoleStates(EntityUid remoteEntity)
