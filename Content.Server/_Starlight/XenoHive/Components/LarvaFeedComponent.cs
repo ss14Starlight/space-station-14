@@ -28,7 +28,7 @@ public sealed partial class LarvaFeedComponent : Component
 
     /// <summary>Mob states a target can be in to be fed on.</summary>
     [DataField]
-    public HashSet<MobState> TargetStates = new() { Mobstate.Alive, MobState.Critical, MobState.Dead };
+    public HashSet<MobState> TargetStates = new() { MobState.Critical, MobState.Dead };
 
     /// <summary>If set, the target must pass this.</summary>
     [DataField]

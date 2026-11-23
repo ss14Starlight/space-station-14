@@ -4,6 +4,7 @@ using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Server._Starlight.XenoHive;
+using Content.Server._Starlight.XenoHive.Components;
 
 namespace Content.Server._Starlight.NPC.HTN.PrimitiveTasks.Operators;
 
