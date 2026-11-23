@@ -61,7 +61,7 @@ public sealed partial class StationGoalSystem : EntitySystem
                 FinishVote(ent);
 
             if (comp.Vote == null && now >= comp.NextRefresh)
-                RefreshOffers((ent, ent.Comp));
+                RefreshOffers((uid, comp));
 
             for (var i = comp.Active.Count - 1; i >= 0; i--)
             {
@@ -84,7 +84,7 @@ public sealed partial class StationGoalSystem : EntitySystem
         var comp = ent.Comp;
         comp.Offers.Clear();
         comp.NextRefresh = _timing.CurTime + comp.RefreshInterval;
-        UpdateMarkets(ent);
+        UpdateMarkets((ent, ent.Comp));
 
         var pool = new List<StationGoalPrototype>();
         foreach (var goal in _proto.EnumeratePrototypes<StationGoalPrototype>())
