@@ -49,5 +49,4 @@
   parent: PinpointerBase
   components:
   - type: Pinpointer
-    targetName: ITG tracker signal
   - type: ItgResourceReclaimer

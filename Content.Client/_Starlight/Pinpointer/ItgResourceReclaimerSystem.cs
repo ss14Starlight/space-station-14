@@ -1,19 +1,38 @@
 using Content.Client.Items;
 using Content.Client.Message;
+using Content.Shared._Starlight.Pinpointer;
 using Content.Shared._Starlight.Pinpointer.Components;
+using Content.Shared.Pinpointer;
+using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Timing;
 
 namespace Content.Client._Starlight.Pinpointer;
 
-public sealed class ItgResourceReclaimerSystem : EntitySystem
+public sealed partial class ItgResourceReclaimerSystem : SharedItgResourceReclaimerSystem
 {
+    [Dependency] private SpriteSystem _sprite = null!;
+
     public override void Initialize()
     {
         base.Initialize();
 
         Subs.ItemStatus<ItgResourceReclaimerComponent>(OnItemStatus);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<ItgResourceReclaimerComponent, PinpointerComponent, SpriteComponent>();
+        while (query.MoveNext(out var uid, out _, out var pinpointer, out var sprite))
+        {
+            if (pinpointer.HasTarget)
+                continue;
+
+            _sprite.LayerSetRotation((uid, sprite), PinpointerLayers.Screen, Angle.Zero);
+        }
     }
 
     private static Control OnItemStatus(Entity<ItgResourceReclaimerComponent> entity) => new ModeStatusControl(entity.Comp);
