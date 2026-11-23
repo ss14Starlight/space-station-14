@@ -20,7 +20,7 @@ public sealed partial class DantalionComponent : VampireClassComponent
 	public HashSet<EntityUid> Thralls = new();
 
 	/// <summary>
-	///     Total thrall slots consumed. Does not decrease when thralls are lost.
+	///     Total thrall slots consumed.
 	/// </summary>
 	[ViewVariables(VVAccess.ReadOnly)]
 	public int ThrallSlotsUsed = 0;
