@@ -458,3 +458,19 @@
   canBuildInImpassable: true
   conditions:
     - !type:WallmountCondition {}
+
+- type: construction
+  id: BarricadeBlock
+  graph: BarricadeCovering
+  startNode: start
+  targetNode: barricadecover
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+    - !type:NoEntityInTile
+      blacklist:
+        tags:
+        - Barricade
+      guideString: construction-step-condition-no-barricade-in-tile
