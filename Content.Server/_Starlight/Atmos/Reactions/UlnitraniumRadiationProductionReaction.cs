@@ -57,7 +57,7 @@ public sealed partial class UlnitraniumRadiationProductionReaction : IGasReactio
                     // create a temporary entity to actaully be able to measure the radiation on the tile
                     if (!_tileReceivers.TryGetValue(tileLookup, out var receiver) || s_ent.Deleted(receiver))
                     {
-                        receiver = s_ent.SpawnEntity(null, coords);
+                        receiver = s_ent.SpawnAtPosition(null, coords);
 
                         s_ent.EnsureComponent<RadiationReceiverComponent>(receiver);
 

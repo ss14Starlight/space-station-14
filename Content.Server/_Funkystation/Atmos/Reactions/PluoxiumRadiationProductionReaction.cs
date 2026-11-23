@@ -60,7 +60,7 @@ public sealed partial class PluoxiumRadiationProductionReaction : IGasReactionEf
             // create a temporary entity to actaully be able to measure the radiation on the tile if one doesnt already exist
             if (!_tileReceivers.TryGetValue(tileLookup, out var receiver) || entityManager.Deleted(receiver))
             {
-                receiver = entityManager.SpawnEntity(null, coords);
+                receiver = entityManager.SpawnAtPosition(null, coords);
 
                 entityManager.EnsureComponent<RadiationReceiverComponent>(receiver);
 
