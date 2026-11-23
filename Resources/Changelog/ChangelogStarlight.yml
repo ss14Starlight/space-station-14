@@ -1,32 +1,4 @@
 Entries:
-- author: wonderfulnewworld, Conflee, DuckManZach
-  changes:
-  - message: Footprints can carry up to 10u now instead of 1u, and disperse more units per print now.
-    type: Tweak
-  id: 410397
-  time: '2026-11-13T12:16:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7174
-- author: wonderfulnewworld, Conflee, DuckManZach
-  changes:
-  - message: Fixed stains sometimes becoming desynced from the client.
-    type: Fix
-  id: 410398
-  time: '2026-11-13T12:16:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7174
-- author: WNP78
-  changes:
-  - message: Fixed admin edit note UI not working when the admin notes panel has been closed.
-    type: Fix
-  id: 410399
-  time: '2026-11-13T12:39:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7113
-- author: WNP78
-  changes:
-  - message: Fixed admin edit note UI filling in expiry date instead of duration into duration field.
-    type: Fix
-  id: 410400
-  time: '2026-11-13T12:39:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7113
 - author: Floximo
   changes:
   - message: Remote Control Interface and Remote Control Console are now buildable after research.
@@ -2799,4 +2771,32 @@ Entries:
   id: 410796
   time: '2026-11-23T12:48:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7391
+- author: Citrea
+  changes:
+  - message: Resin windows can now be built from chitin.
+    type: Add
+  id: 410797
+  time: '2026-11-23T13:14:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7393
+- author: Citrea
+  changes:
+  - message: Xen'Kara accent now also hardens trailing C into K.
+    type: Tweak
+  id: 410798
+  time: '2026-11-23T13:14:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7393
+- author: Citrea
+  changes:
+  - message: Xen'Kara acid spit is now properly affected by pacifism.
+    type: Fix
+  id: 410799
+  time: '2026-11-23T13:14:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7393
+- author: Citrea
+  changes:
+  - message: Wizard spells are now properly affected by pacifism.
+    type: Fix
+  id: 410800
+  time: '2026-11-23T13:14:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7393
 Order: -1
