@@ -40,12 +40,14 @@ public partial class RadiationSystem
         var sourcesCount = _sourceDataMap.Count;
         if (_activeReceivers.Count == 0 || sourcesCount == 0)
         {
+            // Starlight start
+            // ensure that all active radiation receivers have their radiation reset to zero when there are no radiation sources available
             foreach (var uid in _activeReceivers)
             {
                 if (_receiverQuery.TryComp(uid, out var receiver))
                     receiver.CurrentRadiation = 0f;
             }
-
+            // Starlight end
             RaiseLocalEvent(new RadiationSystemUpdatedEvent());
             return;
         }
