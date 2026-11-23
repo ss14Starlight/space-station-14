@@ -1,13 +1,6 @@
 Entries:
 - author: Floximo
   changes:
-  - message: Remote Control uses now a channel system. 6 digits that are shown on inspecting a controllable entity.
-    type: Add
-  id: 410403
-  time: '2026-11-13T19:44:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6988
-- author: Floximo
-  changes:
   - message: pAI can now buy a toy class remote control and can use it by being told a channel of a controllable entity.
     type: Add
   id: 410404
@@ -2799,4 +2792,11 @@ Entries:
   id: 410802
   time: '2026-11-23T14:26:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7395
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Aielith's Haemostatic Glyph and Rejuvenating Seed spells once again work on reptilians.
+    type: Fix
+  id: 410803
+  time: '2026-11-23T14:51:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7397
 Order: -1
