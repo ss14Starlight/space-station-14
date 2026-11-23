@@ -177,7 +177,8 @@ public sealed partial class BluespaceHarvesterSystem : EntitySystem
                     component.PointAccumulator -= added;
                     component.Points += added;
                     component.TotalPoints += added;
-                    _goals.ReportProgress(_station.GetOwningStation(uid), GoalPointsKey, added);
+                    if (_station.GetOwningStation(uid) is { } station)
+                        _goals.ReportProgress(_station.GetOwningStation(uid), GoalPointsKey, added);
                 }
             }
 
@@ -185,7 +186,8 @@ public sealed partial class BluespaceHarvesterSystem : EntitySystem
             if (component.CurrentLevel >= component.DangerousLevelThreshold)
             {
                 TrySpawnPortal(uid, component, deltaTime);
-                _goals.ReportProgress(_station.GetOwningStation(uid), GoalDangerSecondsKey, deltaTime);
+                if (_station.GetOwningStation(uid) is { } station)
+                    _goals.ReportProgress(_station.GetOwningStation(uid), GoalDangerSecondsKey, deltaTime);
             }
 
             UpdateUi(uid, component, powerConsumer);

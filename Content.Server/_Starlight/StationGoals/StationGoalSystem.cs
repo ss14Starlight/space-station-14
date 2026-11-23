@@ -61,7 +61,7 @@ public sealed partial class StationGoalSystem : EntitySystem
                 FinishVote(ent);
 
             if (comp.Vote == null && now >= comp.NextRefresh)
-                RefreshOffers(ent);
+                RefreshOffers((ent, ent.Comp));
 
             for (var i = comp.Active.Count - 1; i >= 0; i--)
             {
@@ -76,8 +76,11 @@ public sealed partial class StationGoalSystem : EntitySystem
     /// <summary>
     /// Draws a new set of cards from the goals that fit next to the active ones.
     /// </summary>
-    public void RefreshOffers(Entity<StationGoalsComponent> ent)
+    public void RefreshOffers(Entity<StationGoalsComponent?> ent)
     {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+
         var comp = ent.Comp;
         comp.Offers.Clear();
         comp.NextRefresh = _timing.CurTime + comp.RefreshInterval;
@@ -275,7 +278,7 @@ public sealed partial class StationGoalSystem : EntitySystem
         var ev = new StationGoalActivatedEvent(ent, goalId);
         RaiseLocalEvent(ref ev);
 
-        RefreshOffers(ent);
+        RefreshOffers((ent, ent.Comp));
         return true;
     }
 

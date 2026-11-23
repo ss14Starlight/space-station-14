@@ -1,37 +1,27 @@
 using System.Numerics;
 using Content.Server.Beam;
 using Content.Server.Mining;
-using Content.Server.Popups;
 using Content.Server.Station.Systems;
 using Content.Server._Starlight.StationGoals;
 using Content.Shared._Starlight.MeteorShield;
-using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Interaction;
 using Content.Shared.Physics;
 using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.MeteorShield;
 
-public sealed partial class MeteorShieldSystem : EntitySystem
+public sealed partial class MeteorShieldSystem : SharedMeteorShieldSystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private BeamSystem _beam = default!;
-    [Dependency] private PopupSystem _popup = default!;
-    [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private AppearanceSystem _appearance = default!;
     [Dependency] private MapSystem _map = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private StationGoalSystem _goals = default!;
@@ -71,73 +61,9 @@ public sealed partial class MeteorShieldSystem : EntitySystem
 
     [SubscribeLocalEvent]
     private void OnSatelliteMapInit(Entity<MeteorShieldSatelliteComponent> ent, ref MapInitEvent _)
-        => ent.Comp.Designation = _nextDesignation++;
-
-    [SubscribeLocalEvent]
-    private void OnSatelliteActivate(Entity<MeteorShieldSatelliteComponent> ent, ref ActivateInWorldEvent args)
     {
-        if (args.Handled || !args.Complex)
-            return;
-
-        args.Handled = true;
-        TryToggle(ent, args.User);
-    }
-
-    [SubscribeLocalEvent]
-    private void OnSatelliteExamined(Entity<MeteorShieldSatelliteComponent> ent, ref ExaminedEvent args)
-        => args.PushMarkup(Loc.GetString("meteor-shield-satellite-examine",
-            ("designation", Designation(ent.Comp)),
-            ("active", ent.Comp.Active)));
-
-    public static string Designation(MeteorShieldSatelliteComponent comp) => $"MSAT-{comp.Designation}";
-
-    /// <summary>
-    /// Switches a satellite. It only switches on while floating in open space, and stays locked in place while on.
-    /// </summary>
-    public bool TryToggle(Entity<MeteorShieldSatelliteComponent> ent, EntityUid? user)
-    {
-        if (!ent.Comp.Active && !IsInSpace(ent))
-        {
-            if (user != null)
-                _popup.PopupEntity(Loc.GetString("meteor-shield-satellite-not-in-space"), ent, user.Value);
-            return false;
-        }
-
-        SetActive(ent, !ent.Comp.Active);
-        _audio.PlayPvs(ent.Comp.ToggleSound, ent);
-        return true;
-    }
-
-    private void SetActive(Entity<MeteorShieldSatelliteComponent> ent, bool active)
-    {
-        ent.Comp.Active = active;
-        ent.Comp.NextCheck = _timing.CurTime;
-
-        if (TryComp<PhysicsComponent>(ent, out var physics))
-        {
-            _physics.SetLinearVelocity(ent, Vector2.Zero, body: physics);
-            _physics.SetAngularVelocity(ent, 0f, body: physics);
-            _physics.SetBodyType(ent, active ? BodyType.Static : BodyType.Dynamic, body: physics);
-        }
-
-        _appearance.SetData(ent, MeteorShieldSatelliteVisuals.Active, active);
-    }
-
-    /// <summary>
-    /// True when the satellite floats off any grid, or above an empty tile of a station's main grid.
-    /// Every other grid counts as a shuttle or wreck, so satellites never work there, even over a hull gap.
-    /// </summary>
-    public bool IsInSpace(EntityUid uid)
-    {
-        var xform = Transform(uid);
-        if (xform.GridUid is not { } gridUid || !TryComp<MapGridComponent>(gridUid, out var grid))
-            return true;
-
-        if (!TryComp<StationMemberComponent>(gridUid, out var member)
-            || _station.GetLargestGrid(member.Station) != gridUid)
-            return false;
-
-        return !_map.TryGetTileRef(gridUid, grid, xform.Coordinates, out var tile) || tile.Tile.IsEmpty;
+        ent.Comp.Designation = _nextDesignation++;
+        Dirty(ent);
     }
 
     public override void Update(float frameTime)

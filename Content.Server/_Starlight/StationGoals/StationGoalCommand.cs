@@ -42,7 +42,7 @@ public sealed partial class StationGoalCommand : LocalizedEntityCommands
                 shell.WriteLine($"Finished: {string.Join(", ", comp.Finished)}");
                 break;
             case "refresh":
-                _goals.RefreshOffers(station);
+                _goals.RefreshOffers((station, station.Comp));
                 shell.WriteLine($"Offers: {string.Join(", ", comp.Offers)}");
                 break;
             case "vote":
