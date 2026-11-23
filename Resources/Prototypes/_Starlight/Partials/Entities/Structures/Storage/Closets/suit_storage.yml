@@ -1,0 +1,86 @@
+# Let's make these hackable, and accessible by AI! Mirrors secure closets.
+- type: !PartialOnly entity
+  id: SuitStorageBase
+  components:
+  - type: Lock
+    popupMessage: false
+    powerNeeded: true
+  - type: PoweredLocker
+  - type: StationAiWhitelist
+  - type: WiresPanel
+  - type: WiresPanelSecurity
+    wiresAccessible: true
+  - type: WiresVisuals
+  - type: Wires
+    boardName: wires-board-name-locker
+    layoutId: Locker
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: GenericVisualizer
+    visuals:
+      enum.ElectrifiedVisuals.ShowSparks:
+        enum.ElectrifiedLayers.Sparks:
+          True: { visible: True }
+          False: { visible: False }
+  - type: ESSparkOnHit
+    prob: 0.25
+    count: 2
+  - type: Electrified
+    enabled: false
+  - type: Construction
+    graph: SuitStorageSecure
+    node: done
+    containers:
+    - entity_storage
+  - type: Sprite
+    layers:
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false
+    - state: electrified_ai
+      sprite: Interface/Misc/ai_hud.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.HUD"]
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      map: ["enum.ElectrifiedLayers.Sparks"]
+      shader: unshaded
+      visible: false
+
+# Like their locker counterparts, these should have equivalent plating blocking the wire panel.
+- type: !PartialOnly entity
+  id: SuitStorageCaptain
+  components: &suitStoragePlating
+  - type: Construction
+    graph: SuitStorageSecure
+    node: done
+    containers:
+    - entity_storage
+  - type: Tag
+    tags:
+    - SecuredLocker
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+- type: !PartialOnly entity
+  id: SuitStorageHOS
+  components: *suitStoragePlating
+
+- type: !PartialOnly entity
+  id: SuitStorageWarden
+  components: *suitStoragePlating
+
+- type: !PartialOnly entity
+  id: SuitStorageCE
+  components: *suitStoragePlating
+
+- type: !PartialOnly entity
+  id: SuitStorageCMO
+  components: *suitStoragePlating
+
+- type: !PartialOnly entity
+  id: SuitStorageRD
+  components: *suitStoragePlating
