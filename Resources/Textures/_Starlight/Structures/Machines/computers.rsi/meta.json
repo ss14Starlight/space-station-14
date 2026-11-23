@@ -503,6 +503,12 @@
             "name": "turbine",
             "copyright": "Taken from Aurora Station at commit https://github.com/Aurorastation/Aurora.3/commit/4c83a7bac48311e4e0fd9449a27980ca35eed7a7 (icons/obj/modular_computers/modular_terminal.dmi, turbinecomp)",
             "directions": 4
+        },
+        {
+            "name": "accelerator",
+            "directions": 4,
+            "license": "CC-BY-SA-3.0",
+            "copyright": "Taken from ParadiseSS13 at commit b9c9ec7ceb99d74091598f2d362dda87c3777225 (icons/obj/computer.dmi)"
         }
     ]
 }

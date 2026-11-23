@@ -1,0 +1,10 @@
+- type: sourcePort
+  id: ArtilleryFusor
+  name: signal-port-name-artillery-fusor
+  description: signal-port-description-artillery-fusor
+  defaultLinks: [ ]
+
+- type: sinkPort
+  id: ArtilleryLink
+  name: signal-port-name-artillery-link
+  description: signal-port-description-artillery-link

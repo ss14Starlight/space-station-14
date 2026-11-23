@@ -1,7 +1,7 @@
 using Content.Shared._Starlight.Power.BluespaceHarvester;
 using Robust.Client.UserInterface;
 
-namespace Content.Client._Starlight.Power.UI;
+namespace Content.Client._Starlight.Power.BluespaceHarvester;
 
 public sealed class BluespaceHarvesterBoundUserInterface : BoundUserInterface
 {

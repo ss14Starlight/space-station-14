@@ -81,3 +81,22 @@ public sealed class BluespaceHarvesterPoolEntry
         Enabled = enabled;
     }
 }
+
+[Serializable, NetSerializable]
+public enum BluespaceHarvesterVisuals : byte
+{
+    State,
+}
+
+[Serializable, NetSerializable]
+public enum BluespaceHarvesterVisualState : byte
+{
+    Off,
+    Stage0,
+    Stage1,
+    Stage2,
+    Stage3,
+    Stage4,
+    Stage5,
+    Cascade,
+}

@@ -1,0 +1,145 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from ParadiseSS13 at commit b9c9ec7ceb99d74091598f2d362dda87c3777225 (icons/obj/machines/particle_accelerator.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "generator",
+      "directions": 4
+    },
+    {
+      "name": "fusor",
+      "directions": 4
+    },
+    {
+      "name": "bore",
+      "directions": 4
+    },
+    {
+      "name": "generator_unanchored",
+      "directions": 4
+    },
+    {
+      "name": "fusor_unanchored",
+      "directions": 4
+    },
+    {
+      "name": "bore_unanchored",
+      "directions": 4
+    },
+    {
+      "name": "console_broken"
+    },
+    {
+      "name": "console_unpowered"
+    },
+    {
+      "name": "console_idle",
+      "directions": 4
+    },
+    {
+      "name": "console_ready",
+      "directions": 4,
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.04,
+          0.04,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.04,
+          0.04,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.04,
+          0.04,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.04,
+          0.04,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "console_charging",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Power.BluespaceHarvester;
@@ -55,6 +56,29 @@ public sealed partial class BluespaceHarvesterComponent : Component
     [DataField] public float PortalMaxDistance = 5f;
 
     [DataField] public float PortalBlockDuration = 30f;
+
+    [DataField]
+    public EntProtoId PurchaseEffect = "BluespaceHarvesterFlash";
+
+    [DataField]
+    public SoundSpecifier PurchaseSound = new SoundPathSpecifier("/Audio/Magic/blink.ogg");
+
+    /// <summary>
+    /// Light color for each visual stage, from the idle core (stage 0) up to stage 5.
+    /// </summary>
+    [DataField]
+    public List<Color> StageLightColors = new()
+    {
+        Color.FromHex("#4a4a5a"),
+        Color.FromHex("#3fa0ff"),
+        Color.FromHex("#6cdc4a"),
+        Color.FromHex("#f0d040"),
+        Color.FromHex("#ff9030"),
+        Color.FromHex("#ff3030"),
+    };
+
+    [DataField]
+    public Color CascadeLightColor = Color.FromHex("#ff0000");
 
     [ViewVariables(VVAccess.ReadOnly)]
     public int CurrentLevel;

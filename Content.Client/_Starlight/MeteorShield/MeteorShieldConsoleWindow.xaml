@@ -1,0 +1,35 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    x:Class="Content.Client._Starlight.MeteorShield.MeteorShieldConsoleWindow"
+    Title="{Loc 'meteor-shield-console-title'}"
+    MinSize="480 420"
+    SetSize="540 520">
+
+    <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="8">
+        <PanelContainer StyleClasses="InsetPanel">
+            <BoxContainer Orientation="Vertical" Margin="10 8" SeparationOverride="4">
+                <BoxContainer Orientation="Horizontal">
+                    <Label Text="{Loc 'meteor-shield-console-coverage'}" StyleClasses="LabelHeading" HorizontalExpand="True" />
+                    <Label Name="CoverageLabel" StyleClasses="LabelHeading" />
+                </BoxContainer>
+                <ProgressBar Name="CoverageBar" MinValue="0" MaxValue="1" MinHeight="14" />
+                <BoxContainer Orientation="Horizontal">
+                    <Label Name="GoalLabel" StyleClasses="LabelWeak" HorizontalExpand="True" />
+                    <Label Name="DestroyedLabel" StyleClasses="LabelWeak" />
+                </BoxContainer>
+            </BoxContainer>
+        </PanelContainer>
+
+        <BoxContainer Orientation="Vertical" VerticalExpand="True" SeparationOverride="4">
+            <Label Text="{Loc 'meteor-shield-console-satellites'}" StyleClasses="LabelKeyText" />
+            <PanelContainer StyleClasses="InsetPanel" VerticalExpand="True">
+                <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                    <BoxContainer Name="SatelliteList" Orientation="Vertical" Margin="8" SeparationOverride="4" />
+                </ScrollContainer>
+            </PanelContainer>
+        </BoxContainer>
+
+        <RichTextLabel Name="HelpLabel" />
+    </BoxContainer>
+</controls:FancyWindow>

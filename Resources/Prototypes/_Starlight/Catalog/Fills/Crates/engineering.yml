@@ -135,3 +135,28 @@
       entity_storage: !type:AllSelector
         children:
         - id: JerryCanFuel
+
+- type: entity
+  id: CrateMeteorShieldSatellites
+  parent: CrateEngineeringSecure
+  name: meteor shield satellite crate
+  description: Three meteor shield satellites. Drag them out into space around the station and switch them on.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MeteorShieldSatellite
+          amount: 3
+
+- type: entity
+  id: CrateMeteorShieldConsole
+  parent: CrateEngineeringSecure
+  name: meteor shield control crate
+  description: The circuit board for a meteor shield control console.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MeteorShieldComputerCircuitboard

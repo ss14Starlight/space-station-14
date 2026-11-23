@@ -21,7 +21,64 @@
   - type: Sprite
     sprite: _Starlight/Structures/Power/bluespace_harvester.rsi
     layers:
-      - state: bluespace_tap
+    - state: off
+      map: [ "base" ]
+    - state: screen
+      map: [ "screen" ]
+      shader: unshaded
+      visible: false
+    - state: stage0_glow
+      map: [ "glow" ]
+      shader: unshaded
+      visible: false
+    - state: cascade_overlay
+      map: [ "cascade" ]
+      shader: unshaded
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.BluespaceHarvesterVisuals.State:
+        base:
+          Off: { state: off }
+          Stage0: { state: stage0 }
+          Stage1: { state: stage1 }
+          Stage2: { state: stage2 }
+          Stage3: { state: stage3 }
+          Stage4: { state: stage4 }
+          Stage5: { state: stage5 }
+          Cascade: { state: cascade }
+        screen:
+          Off: { visible: false }
+          Stage0: { visible: true }
+          Stage1: { visible: true }
+          Stage2: { visible: true }
+          Stage3: { visible: true }
+          Stage4: { visible: true }
+          Stage5: { visible: true }
+          Cascade: { visible: false }
+        glow:
+          Off: { visible: false }
+          Stage0: { visible: true, state: stage0_glow }
+          Stage1: { visible: true, state: stage1_glow }
+          Stage2: { visible: true, state: stage2_glow }
+          Stage3: { visible: true, state: stage3_glow }
+          Stage4: { visible: true, state: stage4_glow }
+          Stage5: { visible: true, state: stage5_glow }
+          Cascade: { visible: true, state: cascade_glow }
+        cascade:
+          Off: { visible: false }
+          Stage0: { visible: false }
+          Stage1: { visible: false }
+          Stage2: { visible: false }
+          Stage3: { visible: false }
+          Stage4: { visible: false }
+          Stage5: { visible: false }
+          Cascade: { visible: true }
+  - type: PointLight
+    enabled: false
+    radius: 2
+    energy: 1.5
+    castShadows: false
   - type: Transform
     anchored: true
   - type: Physics
@@ -50,7 +107,7 @@
     sourceNode: input
     collectionName: bluespaceHarvester
     sprite: _Starlight/Structures/Power/bluespace_harvester.rsi
-    state: bluespace_monitor
+    state: monitor
   - type: BluespaceHarvester
   - type: UserInterface
     interfaces:
@@ -73,3 +130,20 @@
         behaviors:
           - !type:DoActsBehavior
             acts: ["Destruction"]
+
+- type: entity
+  id: BluespaceHarvesterFlash
+  categories: [ HideSpawnMenu ]
+  name: bluespace flash
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: _Starlight/Structures/Power/bluespace_harvester.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: flash
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 0.3

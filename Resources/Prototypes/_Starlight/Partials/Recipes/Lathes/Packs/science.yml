@@ -2,3 +2,11 @@
 #  id: ScienceBoards
 #  recipes:
 #  - RemoteControlConsoleCircuitboard
+
+- type: !PartialOnly latheRecipePack
+  id: ScienceBoards
+  recipes:
+  - BluespaceArtilleryComputerCircuitboard
+  - BluespaceArtilleryGeneratorMachineCircuitboard
+  - BluespaceArtilleryFusorMachineCircuitboard
+  - BluespaceArtilleryBoreMachineCircuitboard

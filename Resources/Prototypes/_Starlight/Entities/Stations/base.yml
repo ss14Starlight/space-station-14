@@ -32,3 +32,16 @@
   abstract: true
   components:
     - type: SecureCommandTerminalStation
+
+- type: entity
+  id: BaseStationGoals
+  abstract: true
+  components:
+    - type: StationGoals
+      departmentAccounts:
+        Cargo: Cargo
+        Engineering: Engineering
+        Medical: Medical
+        Science: Science
+        Security: Security
+        Civilian: Service

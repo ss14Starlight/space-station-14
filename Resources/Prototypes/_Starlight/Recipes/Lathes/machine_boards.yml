@@ -67,3 +67,33 @@
   parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
   id: IgniterMachineCircuitboard
   result: IgniterMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: BluespaceArtilleryGeneratorMachineCircuitboard
+  result: BluespaceArtilleryGeneratorMachineCircuitboard
+  materials:
+    Steel: 100
+    Glass: 500
+    Gold: 300
+    Silver: 300
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: BluespaceArtilleryFusorMachineCircuitboard
+  result: BluespaceArtilleryFusorMachineCircuitboard
+  materials:
+    Steel: 100
+    Glass: 500
+    Gold: 300
+    Silver: 300
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: BluespaceArtilleryBoreMachineCircuitboard
+  result: BluespaceArtilleryBoreMachineCircuitboard
+  materials:
+    Steel: 100
+    Glass: 500
+    Gold: 300
+    Silver: 300

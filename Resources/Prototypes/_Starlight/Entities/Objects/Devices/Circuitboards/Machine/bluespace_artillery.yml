@@ -1,0 +1,43 @@
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: BluespaceArtilleryGeneratorMachineCircuitboard
+  name: artillery generator machine board
+  description: A machine printed circuit board for the back section of the bluespace artillery.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: BluespaceArtilleryGenerator
+    stackRequirements:
+      Manipulator: 5
+      BluespaceCrystal: 5
+      CableHV: 10
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: BluespaceArtilleryFusorMachineCircuitboard
+  name: artillery fusor machine board
+  description: A machine printed circuit board for the middle section of the bluespace artillery.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: BluespaceArtilleryFusor
+    stackRequirements:
+      BluespaceCrystal: 10
+      Plasma: 10
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: BluespaceArtilleryBoreMachineCircuitboard
+  name: artillery bore machine board
+  description: A machine printed circuit board for the front section of the bluespace artillery.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: BluespaceArtilleryBore
+    stackRequirements:
+      Manipulator: 5
+      BluespaceCrystal: 5
+      Plasteel: 10
