@@ -1,32 +1,8 @@
 #Equipment
 
 - type: listing
-  id: VendorMiningProtoKineticShotgun
-  productEntity: WeaponProtoKineticShotgun
-  cost:
-    SalvageTicket: 350
-  categories:
-  - MiningEquipment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 5
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorMiningPTK
-  productEntity: PTKFlatpack
-  cost:
-    SalvageTicket: 400
-  categories:
-  - MiningEquipment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 4
-  - !type:BuyerAccessCondition
-
-- type: listing
   id: VendorVehicleSkeletonMotorcycleMining
-  productEntity: VehicleSkeletonMotorcycleFueledwithKEys
+  productEntity: VehicleSkeletonMotorcycleFueledKeys
   cost:
     SalvageTicket: 800
   categories:

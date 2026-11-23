@@ -1,0 +1,4 @@
+- type: !PartialOnly stealTargetGroup
+  id: VehicleSecwaySteal
+  sprite:
+    sprite: _FarHorizons/Objects/Vehicles/secway.rsi

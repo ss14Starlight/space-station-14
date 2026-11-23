@@ -1,7 +1,7 @@
+using Content.Shared.Vehicle.Systems; // Far Horizons
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
-using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared._Starlight.Weapons.Melee.Events; // Starlight-edit
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions.Events;
@@ -51,6 +51,7 @@ namespace Content.Shared.Weapons.Melee;
 
 public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 {
+    [Dependency] private VehicleSystem _rideVehicles = default!; // Far Horizons
     [Dependency] protected IGameTiming Timing = default!;
     [Dependency] protected SharedMapSystem MapManager = default!;
     [Dependency] private   INetManager _netMan = default!;
@@ -782,13 +783,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         var baseAngle = angle - widthRad / 2;
 
         var resSet = new HashSet<EntityUid>();
-
-        //FarHorizons Start
-        EntityUid? ridden = null;
-
-        if (TryComp<RiderComponent>(ignore, out var rider))
-            ridden = rider.Riding;
-        //FarHorizons End
+        var ridden = _rideVehicles.GetRideVehicle(ignore); // Far Horizons
 
         for (var i = 0; i < increments; i++)
         {
@@ -801,13 +796,9 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
                 ignore,
                 false)
                 .ToList();
-            
-            //FarHorizons Start
-            if(ridden != null)
-            {
-                res.RemoveAll(x => x.HitEntity == ridden.Value);
-            }
-            //FarHorizons End
+
+            if (ridden is { } vehicle)
+                res.RemoveAll(result => result.HitEntity == vehicle);
 
             if (res.Count != 0)
             {

@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.Vehicle.Components;
 using Robust.Shared.Containers;
 
@@ -48,16 +47,13 @@ public sealed partial class VehicleSystem
         if (!args.CanRun)
             return;
 
-        if (!_container.TryGetContainer(ent.Owner, ent.Comp.ContainerId, out var container))
+        if (!_container.TryGetContainer(ent.Owner, ent.Comp.ContainerId, out _))
         {
             Log.Error($"Vehicle {ToPrettyString(ent)} has no key container {ent.Comp.ContainerId}!");
             args.CanRun = false;
             return;
         }
 
-        var hasKey = container.ContainedEntities.Any(contained =>
-            _entityWhitelist.IsWhitelistPass(ent.Comp.KeyWhitelist, contained));
-
-        args.CanRun = hasKey;
+        args.CanRun = HasVehicleKey((ent.Owner, ent.Comp)); // Far Horizons
     }
 }

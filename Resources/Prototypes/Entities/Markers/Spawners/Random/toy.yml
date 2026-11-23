@@ -335,9 +335,6 @@
       - id: SingularityToy
       - id: TeslaToy
       - id: PonderingOrb
-    - !type:GroupSelector ##FarHorizons
-      children:
-      - id: VehicleUnicycleFolded
 
 # Entities that don't do much more than make a unique sound. Plushies excluded.
 - type: entityTable # size 1x2  # price 100

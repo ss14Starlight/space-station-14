@@ -1,3 +1,4 @@
+using Content.Shared.Vehicle.Systems; // Far Horizons
 using System.Linq;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
@@ -27,7 +28,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
-using Content.Shared._FarHorizons.Vehicles.Components;
 
 namespace Content.Shared.Damage.Systems;
 
@@ -35,6 +35,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 {
     public static readonly EntProtoId StaminaLow = "StatusEffectStaminaLow";
 
+    [Dependency] private VehicleSystem _rideVehicles = default!; // Far Horizons
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] protected IGameTiming Timing = default!;
     [Dependency] private INetManager _net = default!;
@@ -168,18 +169,16 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 
         var toHit = new List<(EntityUid Entity, StaminaComponent Component)>();
 
-        // Split stamina damage between all eligible targets. //Far Horizons-edit Start
-        foreach (var ent in args.HitEntities)
+        // Split stamina damage between all eligible targets.
+        foreach (var hit in args.HitEntities)
         {
-            var target = ent;
-            if(TryComp<VehicleComponent>(target, out var vehicle) && HasComp<VehicleBuckleComponent>(target) && vehicle.Rider != null)
-                target = vehicle.Rider.Value;
-            if (!_stamQuery.TryGetComponent(target, out var stam))
+            var ent = _rideVehicles.GetExposedOperatorOrSelf(hit); // Far Horizons
+            if (!_stamQuery.TryGetComponent(ent, out var stam))
                 continue;
 
-            toHit.Add((target, stam));
+            if (!toHit.Contains((ent, stam)))
+                toHit.Add((ent, stam));
         }
-        //Far Horizons-edit End
 
         var hitEvent = new StaminaMeleeHitEvent(toHit);
         RaiseLocalEvent(uid, hitEvent);
@@ -201,7 +200,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 
     private void OnProjectileHit(EntityUid uid, StaminaDamageOnCollideComponent component, ref ProjectileHitEvent args)
     {
-        OnCollide(uid, component, args.Target);
+        OnCollide(uid, component, _rideVehicles.GetExposedOperatorOrSelf(args.Target)); // Far Horizons
     }
 
     private void OnProjectileEmbed(EntityUid uid, StaminaDamageOnEmbedComponent component, ref EmbedEvent args)

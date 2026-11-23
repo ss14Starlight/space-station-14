@@ -2,3 +2,8 @@
   id: ChemistryStatic
   recipes:
   - !Remove 'ClothingEyesGlassesChemical'
+
+- type: !PartialOnly latheRecipePack
+  id: MedicalStatic
+  recipes:
+  - VehicleWheelchairBlueFolded

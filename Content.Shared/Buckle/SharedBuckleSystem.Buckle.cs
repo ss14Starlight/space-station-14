@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
-using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared.Alert;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Cuffs.Components;
@@ -85,7 +84,6 @@ public abstract partial class SharedBuckleSystem
 
     private void OnPullStarted(Entity<BuckleComponent> ent, ref PullStartedMessage args)
     {
-        if(HasComp<RiderComponent>(ent.Owner)) return; //FarHorizons
         Unbuckle(ent!, args.PullerUid);
     }
 
@@ -139,8 +137,6 @@ public abstract partial class SharedBuckleSystem
             return;
         }
 
-        if(HasComp<RiderComponent>(buckle.Owner)) return; //FarHorizons
-
         var delta = (xform.LocalPosition - strapComp.BuckleOffset).LengthSquared();
         if (delta > 1e-5)
             Unbuckle(buckle, (strapUid, strapComp), null);
@@ -185,8 +181,7 @@ public abstract partial class SharedBuckleSystem
             return;
 
         if (component.Buckled)
-            if(!HasComp<RiderComponent>(uid)) //FarHorizons
-                args.Cancel();
+            args.Cancel();
     }
 
     public bool IsBuckled(EntityUid uid, BuckleComponent? component = null)

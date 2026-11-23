@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseToggleAction
   id: ActionToggleSecuritySiren
-  name: Toggle Security Siren
+  name: toggle security siren
   description: Toggles the security siren on and off.
   components:
   - type: Action
@@ -14,7 +14,7 @@
 - type: entity
   parent: BaseToggleAction
   id: ActionToggleZamboni
-  name: Toggle Floor Buffer
+  name: toggle floor buffer
   description: Toggle those mop brushes on and off.
   components: 
   - type: Action

@@ -1,0 +1,4 @@
+- type: !PartialOnly cargoProduct
+  id: FunATV
+  icon:
+    sprite: _FarHorizons/Objects/Vehicles/atv.rsi

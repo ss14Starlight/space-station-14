@@ -866,7 +866,6 @@
         whitelist:
           components:
           - FitsInDispenser
-    - item: FloorCleaner ##Far-Horizons
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-cleaning-module }
 

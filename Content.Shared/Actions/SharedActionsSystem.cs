@@ -984,14 +984,6 @@ public abstract partial class SharedActionsSystem : EntitySystem
             return;
 
         var ev = new GetItemActionsEvent(_actionContainer, args.EquipTarget, args.Equipment, args.SlotFlags);
-
-        //FarHorizons Start
-        if(ev.Cancelled)
-        {
-            return;
-        }
-        //FarHorizons End
-
         RaiseLocalEvent(args.Equipment, ev);
 
         if (ev.Actions.Count == 0)
@@ -1007,13 +999,6 @@ public abstract partial class SharedActionsSystem : EntitySystem
 
         var ev = new GetItemActionsEvent(_actionContainer, args.User, args.Equipped);
         RaiseLocalEvent(args.Equipped, ev);
-
-        //FarHorizons Start
-        if(ev.Cancelled)
-        {
-            return;
-        }
-        //FarHorizons End
 
         if (ev.Actions.Count == 0)
             return;

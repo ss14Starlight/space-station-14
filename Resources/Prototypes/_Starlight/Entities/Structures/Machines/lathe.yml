@@ -496,6 +496,9 @@
     - SecurityModularHudModules
     - CommandModularHudModules
     - MedicalModularHudModules
+    - FarHorizonsVehicleBasicPartsDynamic
+    - FarHorizonsVehicleBasicAdvancedDynamic
+    - FarHorizonsSecurityVehiclePartsDynamic
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSyndicateModulesSecfab
@@ -650,6 +653,9 @@
     - SecurityModularHudModules
     - CommandModularHudModules
     - MedicalModularHudModules
+    - FarHorizonsVehicleBasicPartsDynamic
+    - FarHorizonsVehicleBasicAdvancedDynamic
+    - FarHorizonsSecurityVehiclePartsDynamic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient

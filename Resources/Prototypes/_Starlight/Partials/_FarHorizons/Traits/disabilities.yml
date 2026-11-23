@@ -1,0 +1,11 @@
+- type: !PartialOnly trait
+  id: WheelchairBound
+  cost: 0
+  components: !Remove
+  effects:
+  - !type:AddCompsEffect
+    components:
+    - type: BuckleOnMapInit
+      prototype: VehicleWheelchairBlue
+    - type: LegsParalyzed
+      allowCrawling: true

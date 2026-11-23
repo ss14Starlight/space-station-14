@@ -1,3 +1,4 @@
+using Content.Shared.Vehicle.Systems; // Far Horizons
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared.ActionBlocker;
@@ -36,19 +37,19 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Weapons.DualWield;
-using Content.Shared._FarHorizons.Vehicles.Components;
+using Content.Shared.Mech.Components;
 using Content.Shared._Starlight.Utility;
+using Content.Shared.Weapons.Hitscan.Events;
+using Content.Shared.Movement.Components;
 using Content.Shared._Starlight.Camera;
 using Content.Shared._Starlight.VentCrawl.Components;
 using Content.Shared._Starlight.Weapons.Hitscan.Events;
-using Content.Shared.Mech.Components;
-using Content.Shared.Movement.Components;
-using Content.Shared.Weapons.Hitscan.Events;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
 public abstract partial class SharedGunSystem : EntitySystem
 {
+    [Dependency] protected VehicleSystem RideVehicles = default!; // Far Horizons
     [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private INetManager _netManager = default!;
@@ -507,14 +508,19 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
         // Starlight-end
 
-        if (!userImpulse || !TryComp<PhysicsComponent>(user, out var userPhysics))
+        if (!userImpulse)
             return true;
 
         var shooterEv = new ShooterImpulseEvent();
         RaiseLocalEvent(user, ref shooterEv);
 
         if (shooterEv.Push)
-            CauseImpulse(fromCoordinates, toCoordinates.Value, (user, userPhysics));
+        {
+            // Far Horizons: recoil pushes the vehicle when the shooter is mounted.
+            var recoilTarget = RideVehicles.GetRideVehicle(user) ?? user;
+            if (TryComp<PhysicsComponent>(recoilTarget, out var recoilBody))
+                CauseImpulse(fromCoordinates, toCoordinates.Value, (recoilTarget, recoilBody));
+        }
         return true;
     }
 
@@ -561,15 +567,9 @@ public abstract partial class SharedGunSystem : EntitySystem
         {
             shooter = pilotMech;
         }
-        //FarHorizon-edit: start
-        else if(user != null && TryComp<RiderComponent>(user.Value, out var riderComp))
-        {
-            shooter = riderComp.Riding;
-        }
-        //FarHorizon-edit: end
         else
         {
-            shooter = user ?? gunUid;
+            shooter = RideVehicles.GetRideVehicle(user) ?? user ?? gunUid; // Far Horizons
         }
         // Starlight-edit: end
 
@@ -799,26 +799,15 @@ public abstract partial class SharedGunSystem : EntitySystem
         CreateEffect(gun, ev, user);
     }
 
-    public void CauseImpulse(EntityCoordinates fromCoordinates, EntityCoordinates toCoordinates, EntityUid user, PhysicsComponent userPhysics)
+    public void CauseImpulse(EntityCoordinates fromCoordinates, EntityCoordinates toCoordinates, Entity<PhysicsComponent> user)
     {
-        //FarHorizons-edit: start
-        var userId = user;
-        var userPhys = userPhysics;
-        if(TryComp<RiderComponent>(userId, out var riderComp))
-        {
-            if(riderComp.Riding != null)
-                userId =  riderComp.Riding.Value;
-            if(TryComp<PhysicsComponent>(userId, out var vehiclePhys))
-                userPhys = vehiclePhys;
-        }
-        //FarHorizons-edit: end
         var fromMap = TransformSystem.ToMapCoordinates(fromCoordinates).Position;
         var toMap = TransformSystem.ToMapCoordinates(toCoordinates).Position;
         var shotDirection = (toMap - fromMap).Normalized();
 
         const float impulseStrength = 25.0f;
         var impulseVector = shotDirection * impulseStrength;
-        Physics.ApplyLinearImpulse(userId, -impulseVector, body: userPhys); //FarHorizons-edit
+        Physics.ApplyLinearImpulse(user, -impulseVector, body: user.Comp);
     }
 
     /// <summary>

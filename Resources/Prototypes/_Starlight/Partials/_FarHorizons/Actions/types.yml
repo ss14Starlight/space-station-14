@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: ActionToggleSecuritySiren
+  components:
+  - type: Action
+    icon:
+      sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi

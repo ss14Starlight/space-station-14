@@ -1,5 +1,5 @@
 - type: entity
-  name: Floor Buffer
+  name: floor buffer
   id: FloorCleaner
   parent: BaseItem
   description: Quickly clean anything in your way by just running over it!
@@ -23,7 +23,7 @@
     - type: ReagentDraw
       enabled: false
       solutionContainer: watertank
-      whitelistedReagants: 
+      whitelistedReagents:
       - Water
       drainRate: 1
     - type: SolutionTransfer

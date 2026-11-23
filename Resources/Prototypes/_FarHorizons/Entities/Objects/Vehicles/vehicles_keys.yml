@@ -11,7 +11,7 @@
 - type: entity
   parent: VehicleKeyBase
   id: VehicleKeySegway
-  name: Segway Electronic Key
+  name: segway electronic key
   description: The USB to the present.
   components:
   - type: Tag
@@ -25,7 +25,7 @@
 - type: entity
   parent: [VehicleKeyBase, BaseSecurityContraband]
   id: VehicleKeySecway
-  name: Secway Electronic Key
+  name: secway electronic key
   description: The USB to the future.
   suffix: NT
   components:
@@ -40,7 +40,7 @@
 - type: entity
   parent: [VehicleKeyBase, BaseSecurityContraband]
   id: VehicleKeySecwayS
-  name: Secway Electronic Key
+  name: secway electronic key
   description: The EVIL USB to the future.
   suffix: S
   components:
@@ -55,7 +55,7 @@
 - type: entity
   parent: [VehicleKeyBase, BaseSyndicateContraband]
   id: VehicleKeyElectronicNST
-  name: Universal Electronic Key
+  name: universal electronic key
   description: The EVILER USB to the future. Able to fit in security-issued Secways, as well as normal Segways.
   suffix: NST
   components:
@@ -72,7 +72,7 @@
 - type: entity
   parent: [VehicleKeyBase, BaseSecurityContraband]
   id: VehicleKeySecwayTurbo
-  name: Secway Turbo Electronic Key
+  name: secway turbo electronic key
   description: Enforcing justice at the speed of sound. Not compatible with Secways due to software differences.
   suffix: NT
   components:
@@ -87,7 +87,7 @@
 - type: entity
   parent: VehicleKeyBase
   id: VehicleKeyATV
-  name: ATV Key
+  name: atv key
   description: Think this looks like just one key? ATV keys means "actually two vehicle keys."
   components:
   - type: Tag
@@ -98,7 +98,7 @@
 - type: entity
   parent: [VehicleKeyBase, BaseSecurityContraband]
   id: VehicleKeySTV
-  name: STV Key
+  name: stv key
   description: Universal STV key, does not fit in ATVs.
   suffix: NT
   components:
@@ -113,7 +113,7 @@
 - type: entity
   parent: VehicleKeyBase
   id: VehicleKeyClowncar
-  name: Clowncar Key
+  name: clowncar key
   description: The keys to an incomprehensible evil...
   components:
   - type: Tag
@@ -126,22 +126,8 @@
 
 - type: entity
   parent: VehicleKeyBase
-  id: VehicleKeyJanicart
-  name: Janicart Key
-  description: The keys to the cleanest steed in the station.
-  components:
-  - type: Tag
-    tags:
-    - VehicleKey
-    - JanicartKeys
-  - type: Sprite
-    sprite: Objects/Vehicles/janicart.rsi
-    state: keys
-
-- type: entity
-  parent: VehicleKeyBase
   id: VehicleKeyMotorcycle
-  name: Motorcycle Key
+  name: motorcycle key
   description: The keys to a bad ass vehicle.
   components:
   - type: Tag

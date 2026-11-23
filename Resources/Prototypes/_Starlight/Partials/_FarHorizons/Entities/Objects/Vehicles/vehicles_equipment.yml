@@ -1,0 +1,23 @@
+- type: !PartialOnly entity
+  id: BasicHeadlight
+  components:
+  - type: PointLight
+    lightMask: ConeSingle
+    containerOccluded: false
+    mask: !Remove
+
+- type: !PartialOnly entity
+  id: HeadlightLED
+  components:
+  - type: PointLight
+    lightMask: ConeSingle
+    containerOccluded: false
+    mask: !Remove
+
+- type: !PartialOnly entity
+  id: SecSiren
+  components:
+  - type: PointLight
+    lightMask: ConeDouble
+    mask: !Remove
+  - type: !Remove UnpoweredFlashlight

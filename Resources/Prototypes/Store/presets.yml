@@ -17,7 +17,6 @@
     - UplinkJob
     - UplinkCybernetics
     - UplinkPointless
-    - UplinkVehicles #FH
     - UplinkObjective
     - UplinkDAGD # funkystation
     currencyWhitelist:

@@ -61,10 +61,11 @@
       equipmentSlots: [tires, engine, armor, headlight]
 
 #region NT
+
 - type: entity
   id: VehicleSecway
   parent: [VehicleBatteryBuckleBase, BaseSecurityContraband]
-  name: Secway
+  name: secway
   description: The future of transportation. Popularized by St. James, the patron saint of security officers and internet forum moderators.
   suffix: NT
   components:
@@ -148,7 +149,7 @@
 - type: entity
   id: VehicleSecwayTurbo
   parent: VehicleSecway
-  name: Secway Turbo
+  name: secway turbo
   description: An upgraded Secway, it is better in every single aspect.
   components:
     - type: Sprite
@@ -192,6 +193,7 @@
         - SecSiren
 
 #region Syndicate
+
 - type: entity
   id: VehicleSecwayS
   parent: VehicleSecway
@@ -228,7 +230,7 @@
   id: VehicleSegwayNST
   parent: [VehicleBatteryBuckleBase, BaseSyndicateContraband]
   suffix: NST
-  name: Syndicate Segway
+  name: syndicate segway
   description: It's a segway but painted red with the symbol of the syndicate stamped on it.
   components:
     - type: Sprite
@@ -300,10 +302,11 @@
         - HeadlightLED
 
 #region Civilian
+
 - type: entity
   id: VehicleSegway
   parent: VehicleBatteryBuckleBase
-  name: Segway
+  name: segway
   components:
     - type: Sprite
       drawdepth: OverMobs
@@ -353,72 +356,6 @@
         - BasicTires
         - ElectricEngine
         - BasicHeadlight
-
-- type: entity
-  id: VehicleJanicart
-  parent: VehicleBatteryBuckleBase
-  name: Janicart
-  description: The janitor's trusty steed.
-  components:
-  - type: VehicleBuckle
-    armorAffectsVehicle: true
-  - type: Vehicle
-    brokenState: destroyed
-    handsNeeded: 2
-  - type: Sprite
-    drawdepth: OverMobs
-    sprite: Objects/Vehicles/janicart.rsi
-    layers:
-    - state: vehicle
-      map: ["enum.VehicleVisualLayers.Base"]
-    noRot: true
-  - type: ItemSlots
-    slots:
-      key_slot:
-        name: Keys
-        whitelist:
-          requireAll: true
-          tags:
-          - VehicleKey
-          - JanicartKeys
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        disableEject: true
-        swap: true
-      trashbag_slot:
-        name: janitorial-trolley-slot-component-slot-name-trashbag
-        whitelist:
-          tags:
-            - TrashBag
-  - type: SolutionContainerManager
-    solutions:
-      watertank:
-        maxVol: 100
-  - type: RefillableSolution
-    solution: watertank
-  - type: ExaminableSolution
-    solution: watertank
-    exactVolume: true
-  - type: ReagentDraw
-    enabled: false
-    solutionContainer: watertank
-    whitelistedReagants:
-    - Water
-    drainRate: 1
-  - type: ItemMapper
-    mapLayers:
-      storage:
-        whitelist:
-          tags:
-            - TrashBag
-    sprite: Objects/Vehicles/janicart.rsi
-  - type: FloorBuffer
-    solutionContainer: watertank
-  - type: AmbientSound
-    sound: "/Audio/_FarHorizons/Machines/floor_buffer.ogg"
-    range: 10
-    volume: -5
-    enabled: false
 
 - type: entity
   id: VehicleJanicartFilled

@@ -1,13 +1,8 @@
 using System.Numerics;
 using Content.Server.Cargo.Systems;
 using Content.Server.Weapons.Ranged.Components;
-using Content.Shared._FarHorizons.VehicleContainer.Components;
-using Content.Shared._FarHorizons.Vehicles.Components;
-using Content.Shared._FarHorizons.VehicleBuckle.Components;
-using Content.Shared._Starlight.CCVar;
 using Content.Shared.Cargo;
 using Content.Shared.Damage;
-using Content.Shared.Mech.Components;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged;
@@ -21,8 +16,10 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Mech.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Random;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 
 namespace Content.Server.Weapons.Ranged.Systems;
@@ -180,13 +177,12 @@ public sealed partial class GunSystem : SharedGunSystem
         void CreateAndFireProjectiles(EntityUid ammoEnt, AmmoComponent ammoComp)
         {
             // Startlight-edit: start
-            var isMechShooter = TryGetMechShooter(user, out _);
-            isMechShooter = user != null && HasComp<RiderComponent>(user.Value);
+            var isMountedShooter = TryGetMechShooter(user, out _) || RideVehicles.GetRideVehicle(user) != null; // Far Horizons
             const float MechMuzzleOffset = 0.8f;
 
             EntityCoordinates SpawnFrom(Angle angle)
             {
-                if (!isMechShooter)
+                if (!isMountedShooter)
                     return fromEnt;
 
                 var localAngle = angle;
@@ -205,7 +201,7 @@ public sealed partial class GunSystem : SharedGunSystem
                 // Starlight-edit: the pattern follows recoil/movement spread and every pellet deviates randomly
                 var angles = GetPelletAngles(gun, ammoSpreadComp, mapDirection.ToAngle(), ammoIndex);
                 // Startlight-edit: start
-                if (isMechShooter)
+                if (isMountedShooter)
                 {
                     var spawn = SpawnFrom(angles[0]);
                     _transform.SetCoordinates(ammoEnt, Transform(ammoEnt), spawn);
@@ -217,7 +213,7 @@ public sealed partial class GunSystem : SharedGunSystem
                 for (var i = 1; i < ammoSpreadComp.Count; i++)
                 {
                     // Startlight-edit: start
-                    var spawn = isMechShooter ? SpawnFrom(angles[i]) : fromEnt;
+                    var spawn = isMountedShooter ? SpawnFrom(angles[i]) : fromEnt;
                     var newuid = Spawn(ammoSpreadComp.Proto, spawn);
                     // Startlight-edit: end
                     ShootOrThrow(newuid, angles[i].ToVec(), gunVelocity, gun, user, GetHitscanSeed(gun, ammoIndex, i)); // Starlight-edit
@@ -227,7 +223,7 @@ public sealed partial class GunSystem : SharedGunSystem
             else
             {
                 // Startlight-edit: start
-                if (isMechShooter)
+                if (isMountedShooter)
                 {
                     var spawn = SpawnFrom(mapDirection.ToAngle());
                     _transform.SetCoordinates(ammoEnt, Transform(ammoEnt), spawn);

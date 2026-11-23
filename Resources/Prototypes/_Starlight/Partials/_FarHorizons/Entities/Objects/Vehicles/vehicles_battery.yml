@@ -1,0 +1,125 @@
+- type: !PartialOnly entity
+  id: VehicleBatteryBuckleBase
+  components:
+  - type: StrapVehicle
+  - type: Strap
+    buckleOffset: "0,-0.15"
+  - type: VehicleIgnition
+  - type: VehicleHandBlocker
+    blockedHands: 1
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      tags:
+      - VehicleKey
+  - type: VehicleRide
+    unbuckleDelay: 2
+    dismountOnStun: true
+    dismountOnKnockdown: true
+    disallowWielding: true
+    gunStaminaRecoil: true
+    gunSpreadPenalty: 20
+  - type: !Remove Vehicle
+  - type: !Remove VehicleBuckle
+  save: !Remove
+
+- type: !PartialOnly entity
+  id: VehicleSecway
+  components:
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - SecwayKeys
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+  - type: VehicleRide
+    riderSpeedAffectsVehicle: true
+  - type: !Remove VehicleBuckle
+
+- type: !PartialOnly entity
+  id: VehicleSecwayTurbo
+  components:
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - SecwayTurboKeys
+
+- type: !PartialOnly entity
+  id: VehicleSecwayTurboFilled
+  components:
+  - type: ContainerFill
+    containers:
+      key_slot: !Clear
+      - VehicleKeySecwayTurbo
+
+- type: !PartialOnly entity
+  id: VehicleSecwayS
+  components:
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+
+- type: !PartialOnly entity
+  id: VehicleSegwayNST
+  components:
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+  - type: VehicleRide
+    riderSpeedAffectsVehicle: true
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - SyndicateSegwayKeys
+  - type: !Remove VehicleBuckle
+
+- type: !PartialOnly entity
+  id: VehicleSegway
+  components:
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - SegwayKeys
+  - type: VehicleRide
+    riderSpeedAffectsVehicle: true
+  - type: !Remove VehicleBuckle
+
+- type: !PartialOnly entity
+  id: VehicleJanicartFilled
+  components:
+  - type: Solution
+    id: watertank
+    solution:
+      maxVol: 100
+      reagents:
+      - ReagentId: Water
+        Quantity: 100
+  - type: ContainerFill
+    containers:
+      cell_slot: !Remove
+  - type: !Remove SolutionContainerManager
+  - type: !Remove VehicleMods

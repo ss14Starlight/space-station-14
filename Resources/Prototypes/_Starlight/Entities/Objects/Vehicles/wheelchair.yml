@@ -1,0 +1,17 @@
+- type: entity
+  parent: VehicleWheelchair
+  id: VehicleWheelchairBlue
+  name: blue wheelchair
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/wheelchairblue.rsi
+
+- type: entity
+  parent: VehicleWheelchairBlue
+  id: VehicleWheelchairBlueFolded
+  suffix: Folded
+  components:
+  - type: Foldable
+    folded: true
+  - type: Strap
+    enabled: false

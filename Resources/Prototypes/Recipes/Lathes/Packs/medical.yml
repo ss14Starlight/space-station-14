@@ -57,8 +57,7 @@
   - RollerBedSpawnFolded
   - CheapRollerBedSpawnFolded
   - EmergencyRollerBedSpawnFolded
-  - VehicleWheelchairFolded ##Far Horizons
- 
+
 - type: latheRecipePack
   id: MedicalClothingStatic
   recipes:

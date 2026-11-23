@@ -1,4 +1,9 @@
 - type: latheRecipe
+  parent: VehicleWheelchairFolded
+  id: VehicleWheelchairBlueFolded
+  result: VehicleWheelchairBlueFolded
+
+- type: latheRecipe
   id: ScalpelAdvanced
   result: ScalpelAdvanced
   categories:

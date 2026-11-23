@@ -14,11 +14,11 @@ using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.Body.Components;
 using Content.Shared.Mech.Components;
+using Content.Shared.Vehicle.Systems;
 using Content.Shared.Weapons.Reflect;
 using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 using Content.Shared._Starlight.NullSpace;
-using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared.Tag;
 using System.Reflection;
 using Content.Shared.Movement.Components;
@@ -33,6 +33,7 @@ namespace Content.Shared.Weapons.Hitscan.Systems;
 
 public sealed partial class HitscanBasicRaycastSystem : EntitySystem
 {
+    [Dependency] private VehicleSystem _rideVehicles = default!; // Far Horizons
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private ISharedAdminLogManager _log = default!;
@@ -59,18 +60,6 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
         // Starlight end
 
         var mapCords = _transform.ToMapCoordinates(args.FromCoordinates);
-        var ray = new CollisionRay(mapCords.Position, args.ShotDirection, (int) ent.Comp.CollisionMask);
-        //FarHorizons-edit start
-        var rayCastResults = _physics.IntersectRay(mapCords.MapId, ray, ent.Comp.MaxDistance, shooter, false).ToList();
-
-        if (TryComp<RiderComponent>(shooter, out var rider) && rider.Riding != null)
-        {
-            var ridden = rider.Riding;
-            rayCastResults.RemoveAll(x => x.HitEntity == ridden.Value);
-        }
-        //FarHorizons-edit end
-
-        var target = args.Target;
         // If you are in a container, use the raycast result
         // Otherwise:
         //  1.) Hit the first entity that you targeted.
@@ -86,6 +75,9 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
         var lagEv = new HitscanLagCompensationEvent(args.Shooter, shooter, mapCords.MapId, mapCords.Position,
             args.ShotDirection, ent.Comp.MaxDistance, (int) ent.Comp.CollisionMask, rayCastResults);
         RaiseLocalEvent(ref lagEv);
+
+        if (_rideVehicles.GetRideVehicle(shooter) is { } vehicle && args.OutputTrace == null) // Far Horizons
+            rayCastResults.RemoveAll(hit => hit.HitEntity == vehicle); // Far Horizons
 
         var result = SelectHit(ent, shooter, mapCords, args.ShotDirection, pointer, args.Target, rayCastResults, args.PredictionSeed);
 

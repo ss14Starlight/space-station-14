@@ -1,0 +1,34 @@
+# Far Horizons
+- type: !PartialOnly entity
+  id: VehicleJanicart
+  components:
+  - type: FloorBuffer
+  - type: Solution
+    id: watertank
+    solution:
+      maxVol: 100
+  - type: RefillableSolution
+    solution: watertank
+  - type: ExaminableSolution
+    solution: watertank
+    exactVolume: true
+  - type: ReagentDraw
+    enabled: false
+    solutionContainer: watertank
+    whitelistedReagents:
+    - Water
+  - type: AmbientSound
+    sound: /Audio/_FarHorizons/Machines/floor_buffer.ogg
+    range: 10
+    volume: -5
+    enabled: false
+
+- type: !PartialOnly entity
+  id: VehicleWheelchair
+  components:
+  - type: Strap
+    position: Stand
+
+- type: !PartialOnly entity
+  id: VehicleWheelchairFolded
+  suffix: Folded

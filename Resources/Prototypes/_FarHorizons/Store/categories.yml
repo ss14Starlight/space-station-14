@@ -1,0 +1,5 @@
+#uplink
+- type: storeCategory
+  id: UplinkVehicles
+  name: construction-category-vehicles # bear with me, it literally just says Vehicles. No point to duplicate.
+  priority: 11

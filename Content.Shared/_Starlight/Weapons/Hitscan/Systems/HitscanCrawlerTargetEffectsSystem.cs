@@ -1,4 +1,4 @@
-using Content.Shared._FarHorizons.Vehicles.Components;
+using Content.Shared.Vehicle.Systems; // Far Horizons
 using Content.Shared._Starlight.Weapons.Hitscan.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Stunnable;
@@ -10,6 +10,7 @@ namespace Content.Shared._Starlight.Weapons.Hitscan.Systems;
 
 public sealed partial class HitscanCrawlerTargetEffectsSystem : EntitySystem
 {
+    [Dependency] private VehicleSystem _rideVehicles = default!; // Far Horizons
     [Dependency] private SharedStunSystem _stunSystem = default!;
     [Dependency] private MovementModStatusSystem _movementMod = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
@@ -25,11 +26,8 @@ public sealed partial class HitscanCrawlerTargetEffectsSystem : EntitySystem
     {
         if (args.Data.HitEntity == null)
             return;
-        //FarHorizons-edit Start
-        var target = args.Data.HitEntity.Value;
-        if(TryComp<VehicleComponent>(target, out var vehicle) && HasComp<VehicleBuckleComponent>(target) && vehicle.Rider != null)
-            target = vehicle.Rider.Value;
 
+        var target = _rideVehicles.GetExposedOperatorOrSelf(args.Data.HitEntity.Value); // Far Horizons
         if (TryComp<CrawlerComponent>(target, out var standing))
         {
             _stunSystem.TryAddStunDuration(target, hitscan.Comp.StunDuration);
@@ -37,7 +35,7 @@ public sealed partial class HitscanCrawlerTargetEffectsSystem : EntitySystem
             var knockedDown = _stunSystem.TryKnockdown((target, standing), hitscan.Comp.KnockdownDuration, true);
 
             _movementMod.TryUpdateMovementSpeedModDuration(
-                target, //FarHorizons-edit end
+                target,
                 MovementModStatusSystem.TaserSlowdown,
                 hitscan.Comp.SlowDuration,
                 hitscan.Comp.WalkSpeedMultiplier,
@@ -47,7 +45,7 @@ public sealed partial class HitscanCrawlerTargetEffectsSystem : EntitySystem
         if (knockedDown)
             _adminLogger.Add(LogType.DisarmedKnockdown,
                     LogImpact.Medium,
-                    $"Projectile {ToPrettyString(hitscan):projectile} shot by {ToPrettyString(args.Data.Shooter):user} from {ToPrettyString(args.Data.Gun):weapon} hit {ToPrettyString(args.Data.HitEntity):target} and knocked them down");
+                    $"Projectile {ToPrettyString(hitscan):projectile} shot by {ToPrettyString(args.Data.Shooter):user} from {ToPrettyString(args.Data.Gun):weapon} hit {ToPrettyString(target):target} and knocked them down");
         }
     }
 }

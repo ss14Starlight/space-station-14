@@ -1,5 +1,5 @@
 - type: entity
-  name: Secway Spawner
+  name: secway spawner
   id: SpawnVehicleSecway
   parent: MarkerBase
   suffix: NT
@@ -14,7 +14,7 @@
       - VehicleSecwayFilled
 
 - type: entity
-  name: Secway Spawner
+  name: secway spawner
   id: SpawnVehicleSecwayS
   parent: MarkerBase
   suffix: Syndicate
@@ -29,7 +29,7 @@
       - VehicleSecwaySFilled
 
 - type: entity
-  name: Segway Spawner
+  name: segway spawner
   id: SpawnVehicleSegway
   parent: MarkerBase
   components:
@@ -43,7 +43,7 @@
       - VehicleSegwayFilled
 
 - type: entity
-  name: ATV Spawner
+  name: atv spawner
   id: SpawnVehicleATV
   parent: MarkerBase
   components:
@@ -57,7 +57,7 @@
       - VehicleATVFilled
 
 - type: entity
-  name: STV Spawner
+  name: stv spawner
   id: SpawnVehicleSTV
   parent: MarkerBase
   components:
@@ -71,7 +71,7 @@
       - VehicleATVNTSecFilled
 
 - type: entity
-  name: STV Spawner
+  name: stv spawner
   id: SpawnVehicleSTVNoKeys
   parent: MarkerBase
   suffix: No keys
@@ -86,7 +86,7 @@
       - VehicleATVNTSecFueled
 
 - type: entity
-  name: Wheelchair Spawner
+  name: wheelchair spawner
   id: SpawnVehicleWheelchair
   parent: MarkerBase
   components:
@@ -100,7 +100,8 @@
       - VehicleWheelchair
 
 - type: entity
-  name: Wheelchair [Folded] Spawner
+  name: wheelchair spawner
+  suffix: Folded
   id: SpawnVehicleWheelchairFolded
   parent: MarkerBase
   components:
@@ -114,7 +115,7 @@
       - VehicleWheelchairFolded
 
 - type: entity
-  name: Janicart Spawner
+  name: janicart spawner
   id: SpawnVehicleJanicart
   parent: MarkerBase
   components:

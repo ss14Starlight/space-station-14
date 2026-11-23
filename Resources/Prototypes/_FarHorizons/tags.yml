@@ -20,9 +20,6 @@
   id: ReactorPart
 
 - type: Tag
-  id: JanicartKeys
-
-- type: Tag
   id: IPC
 
 - type: Tag

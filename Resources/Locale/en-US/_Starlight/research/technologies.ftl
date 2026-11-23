@@ -56,3 +56,8 @@ research-technology-modular-hud-modules-industrial-t2 = Advanced Industrial HUD 
 research-technology-modular-hud-modules-arsenal-t1 = Security HUD Modules
 research-technology-modular-hud-modules-arsenal-t2 = Advanced Security HUD Modules
 research-technology-modular-hud-modules-medical-t2 = Medical HUD Modules
+
+# Far Horizons
+research-technology-vehicle-basic-parts = Basic Vehicle Parts
+research-technology-vehicle-advanced-parts = Advanced Vehicle Parts
+research-technology-vehicle-security-parts = Security Vehicle Parts

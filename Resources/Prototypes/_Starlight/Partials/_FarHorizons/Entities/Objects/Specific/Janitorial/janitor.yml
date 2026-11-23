@@ -1,0 +1,10 @@
+- type: !PartialOnly entity
+  id: FloorCleaner
+  components:
+  - type: FloorBuffer
+    solutionContainer: !Remove
+  - type: Solution
+    id: watertank
+    solution:
+      maxVol: 100
+  - type: !Remove SolutionContainerManager

@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseAction
   id: ActionTurnKeys
-  name: Turn Keys
+  name: turn keys
   description: Turn the keys to start or stop the vehicle
   components:
   - type: Action
@@ -17,7 +17,7 @@
 - type: entity
   parent: BaseAction
   id: ActionVehicleHorn
-  name: Honk
+  name: honk
   description: Honk!
   components:
   - type: Action  
@@ -33,7 +33,7 @@
 - type: entity
   parent: BaseToggleAction
   id: ActionVehicleToggleSecuritySiren
-  name: Toggle Security Siren
+  name: toggle security siren
   description: Toggles the security siren on and off.
   components:
   - type: Action
@@ -46,7 +46,7 @@
 - type: entity
   parent: BaseAction
   id: ActionToggleTrunk
-  name: Unlocks/Lock Trunk
+  name: unlocks/lock trunk
   components:
   - type: Action  
     useDelay: 1
@@ -60,7 +60,7 @@
 
 - type: entity
   id: ActionVehicleFanToggle
-  name: Toggle Life Support
+  name: toggle life support
   description: Start ventilating air from the external atmosphere with a gas tank back up.
   components:
   - type: Action

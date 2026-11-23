@@ -74,7 +74,7 @@
   - type: ReagentDraw
     enabled: false
     solutionContainer: fueltank
-    whitelistedReagants:
+    whitelistedReagents:
     - WeldingFuel
   - type: FootstepModifier
     footstepSoundCollection:
@@ -90,7 +90,7 @@
 - type: entity
   id: VehicleATV
   parent: VehicleGasBuckleBase
-  name: ATV
+  name: atv
   description: All-Tile Vehicle.
   components:
   - type: RandomMetadata
@@ -143,7 +143,7 @@
 - type: entity
   id: VehicleATVNTSec
   parent: [VehicleGasBuckleBase, BaseSecurityContraband]
-  name: STV
+  name: stv
   suffix: NT
   description: Law enforcement variant of the ATV, comes included with sirens to blare at Tiders.
   components:
@@ -222,7 +222,7 @@
 - type: entity
   id: VehicleSkeletonMotorcycle
   parent: VehicleGasBuckleBase
-  name: Motorcycle
+  name: motorcycle
   description: Bad to the bone.
   components:
   - type: Sprite
@@ -261,7 +261,7 @@
     vehicleType: Gas
 
 - type: entity
-  id: VehicleSkeletonMotorcycleFueledwithKEys
+  id: VehicleSkeletonMotorcycleFueledKeys
   parent: VehicleSkeletonMotorcycle
   suffix: Fueled, Keys
   components:
@@ -334,7 +334,7 @@
   - type: ReagentDraw
     enabled: false
     solutionContainer: fueltank
-    whitelistedReagants:
+    whitelistedReagents:
     - WeldingFuel
   - type: FootstepModifier
     footstepSoundCollection:
@@ -400,7 +400,7 @@
 - type: entity
   id: VehicleClownCar
   parent: VehicleContainerBase
-  name: Clown Car
+  name: clown car
   description: What sort of horrors lie within...
   components:
   - type: VehicleContainer

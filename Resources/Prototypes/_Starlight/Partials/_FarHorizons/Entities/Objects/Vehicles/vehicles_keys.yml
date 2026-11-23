@@ -1,0 +1,12 @@
+- type: !PartialOnly entity
+  id: VehicleKeyBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/atv.rsi
+
+- type: !PartialOnly entity
+  id: VehicleKeyMotorcycle
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/motorbike.rsi

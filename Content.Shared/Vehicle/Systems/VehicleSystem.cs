@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Vehicle; // Far Horizons
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Access.Components;
 using Content.Shared.ActionBlocker;
@@ -160,7 +161,7 @@ public sealed partial class VehicleSystem : EntitySystem
         if (!CanOperate(entity.AsNullable(), operatorUid))
             return false;
 
-        if (!TryBlockHands(entity, operatorUid))
+        if (!HasComp<VehicleIgnitionComponent>(entity) && !TryBlockHands(entity, operatorUid)) // Far Horizons, if it has an ignition, hands are blocked when operating
             return false;
 
         entity.Comp.Operator = operatorUid;

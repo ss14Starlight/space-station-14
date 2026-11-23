@@ -1,6 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Containers;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._FarHorizons.Vehicles.Components;
@@ -11,34 +12,22 @@ public sealed partial class VehicleModsComponent : Component
     [DataField]
     public string ModContainer = "vehicle_mods_container";
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    public Container ModSlot = default!;
+    [DataField]
+    public List<EntProtoId> StartingEquipment = new();
 
     [DataField]
-    public HashSet<EntProtoId> StartingEquipment = new();
+    public EquipmentType EquipmentSlots;
 
-    [ViewVariables, AutoNetworkedField]
-    public HashSet<EntityUid> SpawnedEquipment = new();
-
-    [DataField]
-    [Access(typeof(EquipmentType), Other = AccessPermissions.ReadExecute)]
-    public EquipmentType EquipmentSlots = EquipmentType.NONE;
-
-    [ViewVariables, AutoNetworkedField]
+    [AutoNetworkedField]
     public Dictionary<EquipmentType, EntityUid?> Equipment = new();
 
-    [DataField(required:true)]
-    public VehicleType VehicleType = VehicleType.None;
-}
+    [DataField(required: true)]
+    public VehicleType VehicleType;
 
-public sealed class InstalledVehicleEquipment : EntityEventArgs
-{
-    public EntityUid Vehicle;
-}
+    [AutoNetworkedField]
+    public FixedPoint2 MaxIntegrity;
 
-public sealed class UnInstalledVehicleEquipment : EntityEventArgs
-{
-    public EntityUid Vehicle;
+    public ProtoId<DamageModifierSetPrototype>? OriginalArmor;
 }
 
 [Serializable, NetSerializable]

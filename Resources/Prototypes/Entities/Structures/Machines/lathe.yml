@@ -321,8 +321,6 @@
     - BorgModules
     - MechParts
     - MechEquipment
-    - FarHorizonsVehicleBasicPartsDynamic #FarHorizons
-    - FarHorizonsVehicleBasicAdvancedDynamic #FarHorizons
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
@@ -409,8 +407,6 @@
     # - SecurityAmmo // Starlight - This pack commented and can't be changed in partials
     - SecurityWeapons
     - SecurityDisablers
-    - FarHorizonsSecurityArmorDynamic #FarHorizons
-    - FarHorizonsSecurityVehiclePartsDynamic #FarHorizons
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SyndicateAmmoStatic

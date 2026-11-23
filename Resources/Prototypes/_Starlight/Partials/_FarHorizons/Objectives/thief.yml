@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: VehicleSecwayStealObjective
+  parent: [BaseThiefSecurityStealObjective]
+  components:
+  - type: !Remove NotJobRequirement

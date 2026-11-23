@@ -15,3 +15,8 @@ vehicle-verb-remove = Remove Passenger
 vehicle-remove-passenger-attempt = Someone starts to remove a passenger from the vehicle
 
 vehicle-examine-broken = This vehicle is completely broken.
+vehicle-verb-steal-keys = Steal keys
+vehicle-invalid-fuel = This liquid is incompatible with the tank.
+vehicle-maintenance-running = Turn off the vehicle before working on it.
+vehicle-equipment-power = Power
+vehicle-equipment-fuel = Fuel

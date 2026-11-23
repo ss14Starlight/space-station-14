@@ -1,3 +1,4 @@
+using Content.Shared.Actions;
 using Robust.Shared.Serialization;
 using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared.DoAfter;
@@ -41,3 +42,4 @@ public sealed partial class InstallDoAfter : SimpleDoAfterEvent
     public InstallDoAfter(NetEntity part)
         => Part = part;
 }
+public sealed partial class VehicleSirenToggleEvent : InstantActionEvent;

@@ -19,7 +19,7 @@
   id: BaseVehicleRideable
   abstract: true
   save: false
-  name: Vehicle
+  name: vehicle
   components:
   - type: InputMover
   - type: MobMover
@@ -43,7 +43,7 @@
   id: BaseVehicleRideableDamageable
   abstract: true
   save: false
-  name: VehicleDamageable
+  name: vehicledamageable
   components:
   - type: Repairable
     doAfterDelay: 20
@@ -76,79 +76,9 @@
         type: VehicleEquipmentBoundUserInterface
 
 - type: entity
-  id: VehicleWheelchair
-  parent: [BaseVehicleRideable, BaseFoldable, BaseItem]
-  name: Wheelchair
-  description: A chair with big wheels. It looks like you can move in these on your own.
-  components:
-    - type: Sprite
-      drawdepth: BelowMobs
-      sprite: _FarHorizons/Objects/Vehicles/wheelchair.rsi
-      layers:
-      - state: wheelchair
-        map: ["enum.VehicleVisualLayers.Base", "unfoldedLayer"]
-      - state: wheelchair_folded
-        map: ["foldedLayer"]
-        visible: false
-      noRot: true
-    - type: Vehicle
-      requireIgnition: false
-      baseState: wheelchair
-      handsNeeded: 0
-      riderWhitelist:
-        tags:
-          - CanPilot
-      soundHit:
-        collection: MetalThud
-    - type: VehicleBuckle
-      unbuckleTime: 1
-      dismountOnStun: true
-      dismountOnKnockdown: true
-      armorAffectsVehicle: true
-      northOffset: "0, -0.15"
-      southOffset: "0, -0.15"
-      eastOffset: "0, -0.15"
-      westOffset: "-0, -0.15"
-      southDrawDepth: BelowMobs
-    - type: MovementSpeedModifier
-      baseSprintSpeed: 4.5
-      baseWalkSpeed: 2.5
-      baseAcceleration: 2
-      baseFriction: 0.25 #Friction is dynamically updated apparently eugh
-    - type: Strap
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeCircle
-            radius: 0.2
-          density: 50
-          restitution: 0.0
-          mask:
-            - MobMask
-    - type: FootstepModifier
-      footstepSoundCollection:
-        path: /Audio/Effects/Footsteps/borgwalk1.ogg
-        params:
-          pitch: 0.75
-          variation: 0.05
-    - type: StaticPrice
-      price: 70
-
-- type: entity
-  parent: VehicleWheelchair
-  id: VehicleWheelchairFolded
-  suffix: folded
-  components:
-    - type: Foldable
-      folded: true
-    - type: Strap
-      enabled: false
-
-- type: entity
   id: VehicleUnicycle
   parent: [BaseVehicleRideable, BaseFoldable, BaseItem]
-  name: Unicycle
+  name: unicycle
   description: It only has one wheel!
   components:
     - type: Sprite

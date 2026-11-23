@@ -1,4 +1,3 @@
-using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared._ST.Interaction;
 using Content.Shared._Starlight.Movement.Pulling.Components;
 using Content.Shared.ActionBlocker;
@@ -579,17 +578,8 @@ public sealed partial class PullingSystem : EntitySystem
         // joint state handling will manage its own state
         if (!_timing.ApplyingState)
         {
-            var puller = pullerUid;
-            var pullerCenter = pullerPhysics.LocalCenter;
-            if(TryComp<RiderComponent>(puller, out var ridercomp))
-            {
-                if(ridercomp.Riding != null)
-                    puller = ridercomp.Riding.Value;
-                if(TryComp<PhysicsComponent>(puller, out var physcomp))
-                    pullerCenter = physcomp.LocalCenter;
-            }
-            var joint = _joints.CreateDistanceJoint(pullableUid, puller,
-                    pullablePhysics.LocalCenter, pullerCenter,
+            var joint = _joints.CreateDistanceJoint(pullableUid, pullerUid,
+                    pullablePhysics.LocalCenter, pullerPhysics.LocalCenter,
                     id: pullableComp.PullJointId);
             joint.CollideConnected = false;
             // This maximum has to be there because if the object is constrained too closely, the clamping goes backwards and asserts.

@@ -1,0 +1,214 @@
+- type: !PartialOnly entity
+  id: VehicleGasBuckleBase
+  components:
+  - type: VehicleIgnition
+    startupSound:
+      path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+      params:
+        volume: -3
+  - type: VehicleHandBlocker
+    blockedHands: 2
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - ATVKeys
+  - type: VehicleRide
+    hornSound:
+      path: /Audio/_FarHorizons/Vehicles/carhorn.ogg
+      params:
+        volume: -3
+    impactSound:
+      collection: MetalThud
+    gunSpreadPenalty: 20
+    ejectOnCrash: true
+    unbuckleDelay: 2
+    dismountOnStun: true
+    dismountOnKnockdown: true
+  - type: StrapVehicle
+  - type: Strap
+    buckleOffset: "0,-0.15"
+  - type: Solution
+    id: fueltank
+    solution:
+      maxVol: 150
+  - type: !Remove Vehicle
+  - type: !Remove VehicleBuckle
+  - type: !Remove SolutionContainerManager
+  save: !Remove
+
+- type: !PartialOnly entity
+  id: VehicleATV
+  components:
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - ATVKeys
+  - type: VehicleRide
+    riderSpeedAffectsVehicle: true
+  - type: !Remove VehicleBuckle
+
+- type: !PartialOnly entity
+  id: VehicleATVFilled
+  components:
+  - type: Solution
+    id: fueltank
+    solution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 150
+      maxVol: 150
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: VehicleATVNTSec
+  components:
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - STVKeys
+  - type: VehicleRide
+    riderSpeedAffectsVehicle: true
+  - type: !Remove VehicleBuckle
+
+- type: !PartialOnly entity
+  id: VehicleATVNTSecFueled
+  components:
+  - type: Solution
+    id: fueltank
+    solution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 150
+      maxVol: 150
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: VehicleSkeletonMotorcycle
+  components:
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - MotorcycleKeys
+  - type: VehicleRide
+    riderSpeedAffectsVehicle: true
+  - type: !Remove VehicleBuckle
+
+- type: !PartialOnly entity
+  id: VehicleSkeletonMotorcycleFueledKeys
+  components:
+  - type: Solution
+    id: fueltank
+    solution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 150
+      maxVol: 150
+  - type: !Remove SolutionContainerManager
+
+- type: !PartialOnly entity
+  id: VehicleContainerBase
+  components:
+  - type: VehicleIgnition
+    startupSound:
+      path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+      params:
+        volume: -3
+  - type: VehicleHandBlocker
+    blockedHands: 2
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      tags:
+      - VehicleKey
+  - type: VehicleRide
+    hornSound:
+      path: /Audio/_FarHorizons/Vehicles/carhorn.ogg
+      params:
+        volume: -3
+    impactSound:
+      collection: MetalThud
+    gunSpreadPenalty: 30
+    trunkAction: ActionToggleTrunk
+  - type: Vehicle
+    transferDamage: false
+    cellPowered: !Remove
+    requireIgnition: !Remove
+    allowCrashing: !Remove
+    baseState: !Remove
+    brokenState: !Remove
+    startupTime: !Remove
+    startUp: !Remove
+    hornSound: !Remove
+    riderWhitelist: !Remove
+    soundHit: !Remove
+  - type: ContainerVehicle
+    containerId: passenger_slot
+  - type: ContainerVehicleEntry
+    entryDelay: 1.5
+    exitDelay: 1.5
+  - type: VehiclePassengerSeats
+    seats: 2
+    passengerWhitelist:
+      components:
+      - Body
+  - type: Solution
+    id: fueltank
+    solution:
+      maxVol: 150
+  - type: !Remove VehicleContainer
+  - type: !Remove SolutionContainerManager
+  save: !Remove
+
+- type: !PartialOnly entity
+  id: VehicleClownCar
+  components:
+  - type: VehiclePassengerSeats
+    seats: 8
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - ClowncarKeys
+  - type: !Remove VehicleContainer
+
+- type: !PartialOnly entity
+  id: VehicleClownCarFilled
+  components:
+  - type: Solution
+    id: fueltank
+    solution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 150
+      maxVol: 150
+  - type: !Remove SolutionContainerManager

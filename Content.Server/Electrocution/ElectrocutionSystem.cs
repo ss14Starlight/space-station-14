@@ -4,7 +4,6 @@ using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Power.NodeGroups;
 using Content.Server.Weapons.Melee;
-using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
@@ -23,6 +22,7 @@ using Content.Shared.Speech.EntitySystems;
 using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
+using Content.Shared.Vehicle.Systems;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -38,6 +38,7 @@ namespace Content.Server.Electrocution;
 
 public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
 {
+    [Dependency] private VehicleSystem _rideVehicles = default!; // Far Horizons
     [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -215,22 +216,17 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
 
         if (!_random.Prob(electrified.Probability))
             return false;
-        
+
         EnsureComp<ActivatedElectrifiedComponent>(uid);
         _appearance.SetData(uid, ElectrifiedVisuals.ShowSparks, true);
-        
-        //FarHorizons Start
-        var target = targetUid;
-        if(TryComp<VehicleComponent>(target, out var vehicleComp) && HasComp<VehicleBuckleComponent>(target))
-            if(vehicleComp.Rider != null)
-                target = vehicleComp.Rider.Value;
-        //FarHorizons End
+
+        targetUid = _rideVehicles.GetExposedOperatorOrSelf(targetUid); // Far Horizons
         siemens *= electrified.SiemensCoefficient;
-        if (!DoCommonElectrocutionAttempt(target, uid, ref siemens) || siemens <= 0) //FarHorizons-edit
+        if (!DoCommonElectrocutionAttempt(targetUid, uid, ref siemens) || siemens <= 0)
             return false; // If electrocution would fail, do nothing.
 
         var targets = new List<(EntityUid entity, int depth)>();
-        GetChainedElectrocutionTargets(target, targets); //FarHorizons-edit
+        GetChainedElectrocutionTargets(targetUid, targets);
         if (!electrified.RequirePower || electrified.UsesApcPower)
         {
             var lastRet = true;

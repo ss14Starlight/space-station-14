@@ -41,7 +41,7 @@
 - type: entity
   id: BasicHeadlight
   parent: VehicleEquipmentBase
-  name: Basic Headlights
+  name: basic headlights
   description: Standard light for most vehicles. Excellent for seeing those maints grilles before you crash into them! 
   components:
     - type: UnpoweredFlashlight
@@ -66,7 +66,7 @@
 - type: entity
   id: HeadlightLED
   parent: VehicleEquipmentBase
-  name: LED Headlights
+  name: led headlights
   description: Upgraded light for most vehicles. Excellent for seeing those maints grilles before you crash into them! 
   components:
     - type: UnpoweredFlashlight
@@ -92,7 +92,7 @@
 - type: entity
   id: SecSiren
   parent: VehicleEquipmentBase
-  name: Security Siren
+  name: security siren
   description: Turn this thing on and those tiders will scatter like roaches, or they will jump you... Who knows?
   components:
     - type: UnpoweredFlashlight
@@ -128,7 +128,7 @@
 - type: entity
   id: BasicTires
   parent: VehicleEquipmentBaseBig
-  name: Basic Tires
+  name: basic tires
   description: Basic tires that have basic acceleration and traction. 
   components:
     - type: Sprite
@@ -145,7 +145,7 @@
 - type: entity
   id: BasicEngine
   parent: VehicleEquipmentBaseBig
-  name: Basic Engine
+  name: basic engine
   description: A basic engine with basic speed.
   components:
     - type: Sprite
@@ -164,7 +164,7 @@
 - type: entity
   id: AdvancedEngine
   parent: BasicEngine
-  name: Advanced Engine
+  name: advanced engine
   description: An advanced engine with more power output but consumes more fuel.
   components:
     - type: MovementSpeedModifier
@@ -176,7 +176,7 @@
 - type: entity
   id: GroundEngine
   parent: BasicEngine
-  name: Ground Engine
+  name: ground engine
   description: An engine designed to move a space ship from point A to B but thats it.
   components:
     - type: MovementSpeedModifier
@@ -188,7 +188,7 @@
 - type: entity
   id: ElectricEngine
   parent: VehicleEquipmentBaseBig
-  name: Electric Motor
+  name: electric motor
   description: A cheap electric motor capable of decent power output.
   components:
     - type: Sprite
@@ -207,7 +207,7 @@
 - type: entity
   id: ElectricTurboEngine
   parent: ElectricEngine
-  name: Electric Turbo Motor
+  name: electric turbo motor
   description: A higher quality electric egine that doubles the output of the engine at the cost of more power draw.
   components:
     - type: MovementSpeedModifier
@@ -220,7 +220,7 @@
 - type: entity
   id: BasicThrusters
   parent: VehicleEquipmentBaseBig
-  name: Basic Thrusters
+  name: basic thrusters
   description: A a mass produced thruster with spaceflight capabilities but no FTL.
   components:
     - type: Sprite
@@ -238,7 +238,7 @@
 - type: entity
   id: VehicleAirTank
   parent: VehicleEquipmentBase
-  name: Vehicle Air Tank
+  name: vehicle air tank
   description: A special air canister capable of holding a large amount of air.
   components:
     - type: Item
@@ -279,7 +279,7 @@
 - type: entity
   id: VentFan
   parent: VehicleEquipmentBase
-  name: Vent Fan
+  name: vent fan
   description: A special fan that pumps gas in and out of the vehicle cabin.
   components:
     - type: Item
@@ -299,7 +299,7 @@
 - type: entity
   id: BasicArmorKit
   parent: VehicleEquipmentBaseBig
-  name: Basic Armor Kit
+  name: basic armor kit
   description: This kit allows you to upgrade most vehicle's armor to tier I.
   components:
     - type: Item
@@ -317,7 +317,7 @@
 - type: entity
   id: LightArmorKit
   parent: BasicArmorKit
-  name: Light Armor Kit
+  name: light armor kit
   description: This kit allows you to upgrade most vehicle's armor to tier II.
   components:
     - type: Sprite

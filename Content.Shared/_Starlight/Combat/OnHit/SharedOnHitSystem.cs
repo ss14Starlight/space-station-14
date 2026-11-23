@@ -1,3 +1,4 @@
+using Content.Shared.Vehicle.Systems; // Far Horizons
 using System.Linq;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
@@ -11,12 +12,12 @@ using Content.Shared.FixedPoint;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
-using Content.Shared._FarHorizons.Vehicles.Components;
 
 namespace Content.Shared._Starlight.Combat.OnHit;
 
 public abstract partial class SharedOnHitSystem : EntitySystem
 {
+    [Dependency] private VehicleSystem _rideVehicles = default!; // Far Horizons
     [Dependency] protected INetManager _net = default!;
     [Dependency] protected SharedDoAfterSystem _doAfter = default!;
     [Dependency] protected SharedAudioSystem _audio = default!;
@@ -73,19 +74,15 @@ public abstract partial class SharedOnHitSystem : EntitySystem
         if (ev.Cancelled)
             return;
 
-        foreach (var targeting in args.HitEntities)//FarHorizons-edit
+        foreach (var hit in args.HitEntities)
         {
+            var target = _rideVehicles.GetExposedOperatorOrSelf(hit); // Far Horizons
             // Check for target-specific immunity (like hardsuit immunity)
             var targetAttempt = new InjectOnHitAttemptEvent(false, args.User, ent.Owner);
             RaiseLocalEvent(target, ref targetAttempt, true);
             if (targetAttempt.Cancelled)
                 continue;
 
-            //FarHorizons-edit Start
-            var target = targeting;
-            if(TryComp<VehicleComponent>(target, out var vehicle) && HasComp<VehicleBuckleComponent>(target) && vehicle.Rider != null)
-                target = vehicle.Rider.Value;
-            //FarHorizons-edit End
             if (_solutionContainers.TryGetInjectableSolution(target, out var targetSoln, out var targetSolution))
             {
                 var solution = new Solution(ent.Comp.Reagents);

@@ -1,13 +1,4 @@
 - type: trait
-  id: MessyDrinker
-  name: trait-messy-drinker-name
-  description: trait-messy-drinker-desc
-  category: Disabilities
-  components:
-    - type: MessyDrinker
-      spillChance: 0.33
-
-- type: trait
   id: WheelchairBound
   name: trait-wheelchair-bound-name
   description: trait-wheelchair-bound-desc
