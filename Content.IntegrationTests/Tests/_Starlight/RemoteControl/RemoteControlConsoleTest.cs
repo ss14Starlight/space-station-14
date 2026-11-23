@@ -26,6 +26,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Power.Components;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.Borgs;
+using Content.Shared.StatusIcon.Components;
 using Content.Shared.Throwing;
 using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
@@ -274,11 +275,14 @@ public sealed class RemoteControlConsoleTest : GameTest
                     Assert.That(remoteControl.TryGetBody((consoleUid, console), out var body), Is.True);
                     Assert.That(body, Is.EqualTo(remote));
                     Assert.That(console.Controller, Is.EqualTo(controller));
+                    Assert.That(SEntMan.HasComponent<RemoteControlActiveComponent>(remote), Is.True);
+                    Assert.That(SEntMan.HasComponent<StatusIconComponent>(remote), Is.True);
                     Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(controller).RelayEntity,
                         Is.EqualTo(remote));
                 });
 
                 SEntMan.EventBus.RaiseLocalEvent(consoleUid, toggleMessage);
+                Assert.That(SEntMan.HasComponent<RemoteControlActiveComponent>(remote), Is.False);
                 Assert.That(SEntMan.HasComponent<RelayInputMoverComponent>(controller), Is.False);
 
                 SetChannel(RemoteControlChannel.Format(secondRemoteBrain.Channel));

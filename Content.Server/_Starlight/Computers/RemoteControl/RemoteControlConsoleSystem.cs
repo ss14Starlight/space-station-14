@@ -49,6 +49,7 @@ using Content.Shared.RCD.Components;
 using Content.Shared.RCD.Systems;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.StatusIcon.Components;
 using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Stunnable;
@@ -1827,11 +1828,9 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         console.BorgActivatedByRemote = false;
     }
 
-    private void UpdateRemoteBorgControlledAppearance(EntityUid? remoteEntity)
+    private void UpdateRemoteControlledAppearance(EntityUid? remoteEntity)
     {
-        if (remoteEntity is not { } chassis
-            || TerminatingOrDeleted(chassis)
-            || !TryComp<BorgChassisComponent>(chassis, out var chassisComp))
+        if (remoteEntity is not { } remote || TerminatingOrDeleted(remote))
             return;
 
         var controlled = false;
@@ -1840,15 +1839,28 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         {
             if (console.Controller is null
                 || !_sharedRemoteControl.TryGetRemoteEntity((consoleUid, console), out var controlledEntity)
-                || controlledEntity != chassis)
+                || controlledEntity != remote)
                 continue;
 
             controlled = true;
             break;
         }
 
-        EnsureComp<AppearanceComponent>(chassis);
-        _appearance.SetData(chassis, BorgVisualsStarlight.RemoteControlled, controlled);
+        if (controlled)
+        {
+            EnsureComp<StatusIconComponent>(remote);
+            EnsureComp<RemoteControlActiveComponent>(remote);
+        }
+        else
+        {
+            RemComp<RemoteControlActiveComponent>(remote);
+        }
+
+        if (!TryComp<BorgChassisComponent>(remote, out var chassisComp))
+            return;
+
+        EnsureComp<AppearanceComponent>(remote);
+        _appearance.SetData(remote, BorgVisualsStarlight.RemoteControlled, controlled);
 
         if (chassisComp.BrainContainer.ContainedEntity is { } brain)
             UpdateRemoteBrainConnectedAppearance(brain, controlled);
@@ -2000,7 +2012,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         {
             UpdateControllerIndex(entity.Owner, entity.Comp.Controller, null);
             entity.Comp.Controller = null;
-            UpdateRemoteBorgControlledAppearance(remoteEntity);
+            UpdateRemoteControlledAppearance(remoteEntity);
             if (controllingUser is not null)
                 UpdateRemoteBrainConnectedAppearance(entity.Comp.RemoteBrain, false);
             Dirty(entity);
@@ -2146,7 +2158,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         var controllerBeforeUpdate = component.Controller;
         component.Controller = controller;
-        UpdateRemoteBorgControlledAppearance(remoteEntity);
+        UpdateRemoteControlledAppearance(remoteEntity);
         if (controllerBeforeUpdate is not null && controller is null)
             UpdateRemoteBrainConnectedAppearance(component.RemoteBrain, false);
 
