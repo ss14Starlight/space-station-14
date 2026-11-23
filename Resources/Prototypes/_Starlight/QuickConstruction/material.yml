@@ -3,6 +3,7 @@
   constructionEntries:
     - WallChitin
     - ReinforcedWallChitin
+    - XenoResinWindow
     - AirlockXeno
     - TableXeno
     - ChairXeno
