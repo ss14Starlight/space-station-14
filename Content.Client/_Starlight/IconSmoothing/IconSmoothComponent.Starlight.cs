@@ -5,4 +5,7 @@ public sealed partial class IconSmoothComponent
 {
     [DataField]
     public string StateSuffix = string.Empty;
+
+    [DataField]
+    public bool LinearCorners;
 }

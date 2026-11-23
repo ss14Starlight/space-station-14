@@ -7,10 +7,10 @@
     "y": 32
   },
   "states": [
-    { "name": "single", "directions": 4, "copyright": "baltdev" },
-    { "name": "corner", "directions": 4, "copyright": "baltdev" },
-    { "name": "leftEnd", "directions": 4, "copyright": "baltdev" },
-    { "name": "middle", "directions": 4, "copyright": "baltdev" },
-    { "name": "rightEnd", "directions": 4, "copyright": "baltdev" }
+    { "name": "line_0", "directions": 4, "copyright": "baltdev" },
+    { "name": "line_1", "directions": 4, "copyright": "baltdev" },
+    { "name": "line_2", "directions": 4, "copyright": "baltdev" },
+    { "name": "line_3", "directions": 4, "copyright": "baltdev" },
+    { "name": "corner", "directions": 4, "copyright": "baltdev" }
   ]
 }
