@@ -20,6 +20,16 @@
     - !type:BuyerAccessCondition
 
 - type: listing
+  id: VendorSalvageITGResourceReclaimer
+  productEntity: ITGResourceReclaimer
+  cost:
+    SalvageTicket: 400
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorSalvageMechClarke
   productEntity: MechClarke
   cost:

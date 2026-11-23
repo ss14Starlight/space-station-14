@@ -41,3 +41,13 @@
       - state: inhand-right-top
   - type: Icon
     state: pinpointer-way
+
+- type: entity
+  id: ITGResourceReclaimer
+  name: ITG resource reclaimer
+  description: A handheld tracking device that points toward the nearest ITG tracker signal in the selected condition.
+  parent: PinpointerBase
+  components:
+  - type: Pinpointer
+    targetName: ITG tracker signal
+  - type: ItgResourceReclaimer

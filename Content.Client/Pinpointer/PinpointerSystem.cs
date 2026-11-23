@@ -21,8 +21,14 @@ public sealed partial class PinpointerSystem : SharedPinpointerSystem
         var query = EntityQueryEnumerator<PinpointerComponent, SpriteComponent>();
         while (query.MoveNext(out var uid, out var pinpointer, out var sprite))
         {
+            // Starlight - start
             if (!pinpointer.HasTarget)
+            {
+                _sprite.LayerSetRotation((uid, sprite), PinpointerLayers.Screen, Angle.Zero);
                 continue;
+            }
+            // Starlight - end
+
             var eye = _eyeManager.CurrentEye;
             var angle = pinpointer.ArrowAngle + eye.Rotation;
 
