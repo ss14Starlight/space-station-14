@@ -1,0 +1,6 @@
+- type: ssdIcon
+  id: SleepIcon
+  icon:
+    sprite: /Textures/_Starlight/Effects/sleep.rsi
+    state: sleep
+  locationPreference: Left
