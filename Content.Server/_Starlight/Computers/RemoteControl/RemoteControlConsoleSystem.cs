@@ -422,6 +422,18 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         => RefreshRemoteContainerState(args.Container.Owner);
 
     [SubscribeLocalEvent]
+    private void OnRemoteBrainInserted(Entity<RemoteControlBrainComponent> brain,
+        ref EntGotInsertedIntoContainerMessage args)
+    {
+        if (!TryComp<BorgChassisComponent>(args.Container.Owner, out var chassis)
+            || args.Container != chassis.BrainContainer)
+            return;
+
+        UpdateRemoteControlledAppearance(brain.Owner);
+        UpdateRemoteControlledAppearance(args.Container.Owner);
+    }
+
+    [SubscribeLocalEvent]
     private void OnRemoteContainerRemoved(EntGotRemovedFromContainerMessage args)
         => RefreshRemoteContainerState(args.Container.Owner);
 
