@@ -1,7 +1,7 @@
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 
-namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators.Interactions;
+namespace Content.Server._Starlight.NPC.HTN.PrimitiveTasks.Operators.Interactions;
 
 /// <summary>
 /// Releases whatever the NPC is currently pulling.

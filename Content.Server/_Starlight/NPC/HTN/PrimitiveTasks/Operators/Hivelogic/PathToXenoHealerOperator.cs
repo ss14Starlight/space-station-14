@@ -6,7 +6,7 @@ using Content.Shared.Tag;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators;
+namespace Content.Server._Starlight.NPC.HTN.PrimitiveTasks.Operators;
 
 /// <summary>
 /// Finds the nearest reachable entity tagged XenoHealer and pathfinds to it.

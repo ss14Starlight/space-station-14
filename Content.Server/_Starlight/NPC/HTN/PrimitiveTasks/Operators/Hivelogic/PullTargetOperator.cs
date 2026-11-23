@@ -2,7 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Shared.Movement.Pulling.Systems;
 
-namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators.Interactions;
+namespace Content.Server._Starlight.NPC.HTN.PrimitiveTasks.Operators.Interactions;
 
 public sealed partial class PullTargetOperator : HTNOperator
 {

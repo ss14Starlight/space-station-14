@@ -2,7 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server._Starlight.XenoHive;
 
-namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators;
+namespace Content.Server._Starlight.NPC.HTN.PrimitiveTasks.Operators;
 
 /// <summary>
 /// Starts feeding on the entity in the target key and waits for it to finish.
