@@ -66,6 +66,10 @@
     - type: WorldTargetAction
       event: !type:ProjectileSpellEvent
         prototype: BulletAcid
+    - type: Magic
+      requiresClothes: false
+      requiresSpeech: false
+      isAggressive: true
     - type: EorgPreventAction
 
 - type: entity
