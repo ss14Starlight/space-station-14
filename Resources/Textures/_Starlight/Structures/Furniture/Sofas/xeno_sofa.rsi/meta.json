@@ -11,11 +11,6 @@
     { "name": "corner", "directions": 4, "copyright": "baltdev" },
     { "name": "leftEnd", "directions": 4, "copyright": "baltdev" },
     { "name": "middle", "directions": 4, "copyright": "baltdev" },
-    { "name": "rightEnd", "directions": 4, "copyright": "baltdev" },
-    { "name": "singleOverlay", "directions": 4, "copyright": "baltdev" },
-    { "name": "cornerOverlay", "directions": 4, "copyright": "baltdev" },
-    { "name": "leftEndOverlay", "directions": 4, "copyright": "baltdev" },
-    { "name": "middleOverlay", "directions": 4, "copyright": "baltdev" },
-    { "name": "rightEndOverlay", "directions": 4, "copyright": "baltdev" }
+    { "name": "rightEnd", "directions": 4, "copyright": "baltdev" }
   ]
 }
