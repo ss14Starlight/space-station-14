@@ -1,67 +1,4 @@
 Entries:
-- author: MaxAlpine
-  changes:
-  - message: (Prism) moved floor lights in containment chamber to stop them blocking containment fields.
-    type: Fix
-  id: 410388
-  time: '2026-11-13T11:50:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7208
-- author: MaxAlpine
-  changes:
-  - message: (Prism) fixed unlinked airlocks on the east side of the station.
-    type: Fix
-  id: 410389
-  time: '2026-11-13T11:50:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7208
-- author: Sparlight
-  changes:
-  - message: Added the ability to toggle your own ghost sprite in replays.
-    type: Add
-  id: 410390
-  time: '2026-11-13T12:16:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7136
-- author: Sparlight
-  changes:
-  - message: Added the ability to toggle faction icons in replays.
-    type: Add
-  id: 410391
-  time: '2026-11-13T12:16:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7136
-- author: Sparlight
-  changes:
-  - message: Added the ability to jump to a specified time in the round.
-    type: Add
-  id: 410392
-  time: '2026-11-13T12:16:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7136
-- author: wonderfulnewworld, Conflee, DuckManZach
-  changes:
-  - message: Added clientside config option to disable or half visibility of footprints.
-    type: Add
-  id: 410393
-  time: '2026-11-13T12:16:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7174
-- author: wonderfulnewworld, Conflee, DuckManZach
-  changes:
-  - message: Added doormats to clean your shoes/footprints on.
-    type: Add
-  id: 410394
-  time: '2026-11-13T12:16:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7174
-- author: wonderfulnewworld, Conflee, DuckManZach
-  changes:
-  - message: Cleanbots and moproaches now clean footprints.
-    type: Add
-  id: 410395
-  time: '2026-11-13T12:16:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7174
-- author: wonderfulnewworld, Conflee, DuckManZach
-  changes:
-  - message: Footprints now go further or closer depending on how much solution was in the puddle. (10u max).
-    type: Tweak
-  id: 410396
-  time: '2026-11-13T12:16:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7174
 - author: wonderfulnewworld, Conflee, DuckManZach
   changes:
   - message: Footprints can carry up to 10u now instead of 1u, and disperse more units per print now.
@@ -2799,4 +2736,67 @@ Entries:
   id: 410787
   time: '2026-11-21T22:01:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7368
+- author: 0warie
+  changes:
+  - message: Fixed some guidebook additions showing hash tags instead of headings.
+    type: Fix
+  id: 410788
+  time: '2026-11-23T12:17:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7385
+- author: MaxAlpine
+  changes:
+  - message: (Prism) added distro and waste sensors to the atmos network.
+    type: Add
+  id: 410789
+  time: '2026-11-23T12:17:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7384
+- author: MaxAlpine
+  changes:
+  - message: (Prism) added Smartfridge between botany and kitchen.
+    type: Add
+  id: 410790
+  time: '2026-11-23T12:17:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7384
+- author: MaxAlpine
+  changes:
+  - message: (Prism) added Breaking News console.
+    type: Add
+  id: 410791
+  time: '2026-11-23T12:17:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7384
+- author: MaxAlpine
+  changes:
+  - message: (Prism) changed starlight colour to be less bright when the lights are totally out.
+    type: Tweak
+  id: 410792
+  time: '2026-11-23T12:17:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7384
+- author: MaxAlpine
+  changes:
+  - message: (Prism) fixed lawdrobe and legaldrobe being in the wrong place (who named these things?).
+    type: Fix
+  id: 410793
+  time: '2026-11-23T12:17:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7384
+- author: MaxAlpine
+  changes:
+  - message: (Prism) fixed button outside TEG burn chamber being unreachable.
+    type: Fix
+  id: 410794
+  time: '2026-11-23T12:17:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7384
+- author: Floximo
+  changes:
+  - message: A new sleep icon shows now when a character is asleep, even if hidden in a container.
+    type: Add
+  id: 410795
+  time: '2026-11-23T12:48:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7390
+- author: Johnny
+  changes:
+  - message: Changed something.
+    type: Tweak
+  id: 410796
+  time: '2026-11-23T12:48:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7391
 Order: -1
