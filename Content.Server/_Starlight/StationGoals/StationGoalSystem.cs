@@ -166,7 +166,7 @@ public sealed partial class StationGoalSystem : EntitySystem
 
         vote.Votes[voter.UserId] = (goal, name);
 
-        if (vote.Votes.Count >= CountVoters(ent.Comp))
+        if (AllVotersVoted(ent.Comp, vote))
             FinishVote(ent);
         else
             UpdateConsoles(ent);
@@ -179,10 +179,29 @@ public sealed partial class StationGoalSystem : EntitySystem
     /// </summary>
     public int CountVoters(StationGoalsComponent comp)
     {
-        if (!_proto.Resolve(comp.VoterDepartment, out var department))
-            return 1;
-
         var count = 0;
+        foreach (var _ in EligibleVoters(comp))
+            count++;
+
+        return Math.Max(1, count);
+    }
+
+    private bool AllVotersVoted(StationGoalsComponent comp, StationGoalVote vote)
+    {
+        foreach (var session in EligibleVoters(comp))
+        {
+            if (!vote.Votes.ContainsKey(session.UserId))
+                return false;
+        }
+
+        return true;
+    }
+
+    private IEnumerable<ICommonSession> EligibleVoters(StationGoalsComponent comp)
+    {
+        if (!_proto.Resolve(comp.VoterDepartment, out var department))
+            yield break;
+
         foreach (var session in _players.Sessions)
         {
             if (session.AttachedEntity is not { } mob || _mobState.IsDead(mob))
@@ -194,10 +213,8 @@ public sealed partial class StationGoalSystem : EntitySystem
                 || !department.Roles.Contains(job.Value))
                 continue;
 
-            count++;
+            yield return session;
         }
-
-        return Math.Max(1, count);
     }
 
     private void FinishVote(Entity<StationGoalsComponent> ent)

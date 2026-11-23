@@ -20,7 +20,7 @@
                     <Label Text="{Loc 'station-goal-console-offers'}" StyleClasses="LabelHeading" HorizontalExpand="True" />
                     <Label Name="RefreshLabel" StyleClasses="LabelWeak" VAlign="Center" />
                 </BoxContainer>
-                <goals:EqualColumnsContainer Name="OffersContainer" Columns="3" />
+                <goals:EqualColumnsContainer Name="OffersContainer" />
                 <Label Name="NoOffersLabel" Text="{Loc 'station-goal-console-no-offers'}" StyleClasses="LabelWeak" Visible="False" />
             </BoxContainer>
         </ScrollContainer>

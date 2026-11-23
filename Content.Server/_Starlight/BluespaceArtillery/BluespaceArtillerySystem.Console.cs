@@ -107,7 +107,7 @@ public sealed partial class BluespaceArtillerySystem
         }
 
         ent.Comp.Operator = args.Actor;
-        if (TryFire(cannon, target, args.Actor, out var reason))
+        if (TryFire((cannon.Owner, cannon.Comp), target, args.Actor, out var reason))
         {
             ent.Comp.Notice = Loc.GetString("bsa-console-notice-fired");
             ent.Comp.AlertedTarget = null;

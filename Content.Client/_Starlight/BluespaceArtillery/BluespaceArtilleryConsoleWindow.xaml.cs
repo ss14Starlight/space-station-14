@@ -41,6 +41,9 @@ public sealed partial class BluespaceArtilleryConsoleWindow : FancyWindow
 
     public void UpdateState(BluespaceArtilleryConsoleUiState state)
     {
+        if (_state?.Target != state.Target)
+            _armedAt = null;
+
         _state = state;
 
         BuildPanel.Visible = !state.Connected;

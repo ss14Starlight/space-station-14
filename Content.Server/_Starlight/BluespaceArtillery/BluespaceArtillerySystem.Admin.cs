@@ -67,6 +67,12 @@ public sealed partial class BluespaceArtillerySystem
         if (!IsCharged(cannon) || console.Comp.Target is not { } target || console.Comp.AlertedTarget == target)
             return;
 
+        if (!Exists(target))
+        {
+            console.Comp.Target = null;
+            return;
+        }
+
         console.Comp.AlertedTarget = target;
         _chat.SendAdminAlert(Loc.GetString("bsa-admin-alert-ready",
             ("operator", OperatorName(console.Comp.Operator)),

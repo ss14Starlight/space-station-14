@@ -124,13 +124,18 @@ public sealed partial class MeteorShieldSystem : EntitySystem
     }
 
     /// <summary>
-    /// True when the satellite floats off any grid or above an empty tile.
+    /// True when the satellite floats off any grid, or above an empty tile of a station's main grid.
+    /// Every other grid counts as a shuttle or wreck, so satellites never work there, even over a hull gap.
     /// </summary>
     public bool IsInSpace(EntityUid uid)
     {
         var xform = Transform(uid);
         if (xform.GridUid is not { } gridUid || !TryComp<MapGridComponent>(gridUid, out var grid))
             return true;
+
+        if (!TryComp<StationMemberComponent>(gridUid, out var member)
+            || _station.GetLargestGrid(member.Station) != gridUid)
+            return false;
 
         return !_map.TryGetTileRef(gridUid, grid, xform.Coordinates, out var tile) || tile.Tile.IsEmpty;
     }
@@ -213,7 +218,7 @@ public sealed partial class MeteorShieldSystem : EntitySystem
 
         var bounds = _transform.GetWorldMatrix(gridUid).TransformBox(grid.LocalAABB);
         var center = bounds.Center;
-        var radius = (MathF.Max(bounds.Width, bounds.Height) / 2f) + 4f;
+        var radius = (bounds.Size.Length() / 2f) + 4f;
 
         var sampled = 0;
         var covered = 0;

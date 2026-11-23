@@ -28,7 +28,7 @@ public sealed partial class BluespaceArtillerySystem : EntitySystem
     [Dependency] private PointLightSystem _light = default!;
     [Dependency] private PowerNetSystem _powerNet = default!;
 
-    private static readonly TimeSpan UiInterval = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan _uiInterval = TimeSpan.FromSeconds(1);
     private TimeSpan _nextUi;
 
     public override void Initialize()
@@ -45,13 +45,17 @@ public sealed partial class BluespaceArtillerySystem : EntitySystem
         var now = _timing.CurTime;
         var refreshUi = now >= _nextUi;
         if (refreshUi)
-            _nextUi = now + UiInterval;
+            _nextUi = now + _uiInterval;
 
         var cannons = EntityQueryEnumerator<BluespaceArtilleryComponent, PowerConsumerComponent>();
         while (cannons.MoveNext(out var uid, out var cannon, out var consumer))
         {
             if (refreshUi)
+            {
                 UpdateCannonVisuals((uid, cannon), consumer);
+
+                UpdateConsoleOf((uid, cannon));
+            }
 
             if (!cannon.Charging)
             {
@@ -72,10 +76,6 @@ public sealed partial class BluespaceArtillerySystem : EntitySystem
                 UpdateConsoleOf((uid, cannon));
                 UpdateCannonVisuals((uid, cannon), consumer);
             }
-            else if (refreshUi)
-            {
-                UpdateConsoleOf((uid, cannon));
-            }
         }
 
         var shells = EntityQueryEnumerator<BluespaceArtilleryShellComponent>();
@@ -88,7 +88,10 @@ public sealed partial class BluespaceArtillerySystem : EntitySystem
         UpdateTestSites(now);
     }
 
-    public bool IsCharged(BluespaceArtilleryComponent cannon) => cannon.Stored >= cannon.ChargeEnergy;
+    /// <summary>
+    /// Returns true if artillery charged.
+    /// </summary>
+    public static bool IsCharged(BluespaceArtilleryComponent cannon) => cannon.Stored >= cannon.ChargeEnergy;
 
     private void UpdateCannonVisuals(Entity<BluespaceArtilleryComponent> cannon, PowerConsumerComponent? consumer = null)
     {
@@ -129,8 +132,14 @@ public sealed partial class BluespaceArtillerySystem : EntitySystem
     /// <summary>
     /// Tries to fire a charged cannon at the console's target.
     /// </summary>
-    public bool TryFire(Entity<BluespaceArtilleryComponent> cannon, EntityUid target, EntityUid? user, out string? reason)
+    public bool TryFire(Entity<BluespaceArtilleryComponent?> cannon, EntityUid target, EntityUid? user, out string? reason)
     {
+        if (!Resolve(cannon, ref cannon.Comp, false))
+        {
+            reason = Loc.GetString("bsa-console-notice-bad");
+            return false;
+        }
+
         reason = null;
         var now = _timing.CurTime;
 
@@ -198,8 +207,8 @@ public sealed partial class BluespaceArtillerySystem : EntitySystem
         }
 
         SendFireAlert(cannon, target, shell.TargetCoordinates, user);
-        UpdateConsoleOf(cannon);
-        UpdateCannonVisuals(cannon);
+        UpdateConsoleOf((cannon, cannon.Comp));
+        UpdateCannonVisuals((cannon, cannon.Comp));
         return true;
     }
 

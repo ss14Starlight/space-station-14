@@ -67,18 +67,33 @@ public sealed partial class BluespaceArtilleryComponent : Component
     [DataField]
     public TimeSpan ShellLifetime = TimeSpan.FromSeconds(2.5);
 
+    /// <summary>
+    /// Explosion type which will be caused at target place.
+    /// </summary>
     [DataField]
     public string ExplosionType = "Default";
 
+    /// <summary>
+    /// Intensity of explosion which will be caused at target place.
+    /// </summary>
     [DataField]
     public float TotalIntensity = 3000f;
 
+    /// <summary>
+    /// Slope of explosion which will be caused at target place.
+    /// </summary>
     [DataField]
     public float Slope = 4f;
 
+    /// <summary>
+    /// Max intensity per tile for explosion which will be caused at target place.
+    /// </summary>
     [DataField]
     public float MaxTileIntensity = 60f;
 
+    /// <summary>
+    /// Sound player by BSA when fired.
+    /// </summary>
     [DataField]
     public SoundSpecifier FireSound = new SoundPathSpecifier("/Audio/Effects/Lightning/lightningbolt.ogg");
 
@@ -97,6 +112,9 @@ public sealed partial class BluespaceArtilleryComponent : Component
     [DataField]
     public Color CooldownLightColor = Color.FromHex("#ff7a40");
 
+    /// <summary>
+    /// Sound played by BSA when charged.
+    /// </summary>
     [DataField]
     public SoundSpecifier ChargedSound = new SoundPathSpecifier("/Audio/Machines/high_tech_confirm.ogg");
 
@@ -106,12 +124,21 @@ public sealed partial class BluespaceArtilleryComponent : Component
     [ViewVariables]
     public float Stored;
 
+    /// <summary>
+    /// Determines if BSA is charging right now.
+    /// </summary>
     [ViewVariables]
     public bool Charging;
 
+    /// <summary>
+    /// Relative time, determines when BSA cooldown ends.
+    /// </summary>
     [ViewVariables]
     public TimeSpan CooldownEnd;
 
+    /// <summary>
+    /// Link to BSA console.
+    /// </summary>
     [ViewVariables]
     public EntityUid? Console;
 }

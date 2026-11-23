@@ -45,6 +45,9 @@ public sealed partial class BluespaceArtillerySystem
         }
     }
 
+    /// <summary>
+    /// Spawns test site for BSA's station goal.
+    /// </summary>
     public EntityUid SpawnTestSite(EntityUid station)
     {
         var map = _map.CreateMap(out var mapId);
