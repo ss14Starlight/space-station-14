@@ -5,6 +5,7 @@ construction-recipe-comfy-chair-blue = comfy chair (blue)
 construction-recipe-comfy-chair-green = comfy chair (green)
 construction-recipe-comfy-chair-red = comfy chair (red)
 construction-recipe-comfy-chair-brown = comfy chair (brown)
+construction-recipe-comfy-chair-xeno = comfy chair (xeno)
 
 # Chairs
 construction-recipe-evac-seat = evac seat
