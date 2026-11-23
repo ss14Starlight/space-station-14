@@ -5,15 +5,15 @@ using Content.Shared.Mobs;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._Starlight.Xeno;
+namespace Content.Server._Starlight.XenoHive.Components;
 
 /// <summary>
-/// Lets an entity feed on a downed target over a do-after, apply effects to it, then optionally become something else.
+/// Lets an entity feed on a downed target over a do-after, apply effects to it, then optionally become something else. Use the LarvaFeedOperator on the HTN logic for it to function.
 /// </summary>
 [RegisterComponent]
 public sealed partial class LarvaFeedComponent : Component
 {
-    /// <summary>How long the feed takes.</summary>
+    /// <summary>How long the feed takes in seconds.</summary>
     [DataField]
     public TimeSpan FeedTime = TimeSpan.FromSeconds(10);
 
@@ -28,7 +28,7 @@ public sealed partial class LarvaFeedComponent : Component
 
     /// <summary>Mob states a target can be in to be fed on.</summary>
     [DataField]
-    public HashSet<MobState> TargetStates = new() { MobState.Critical, MobState.Dead };
+    public HashSet<MobState> TargetStates = new() { Mobstate.Alive, MobState.Critical, MobState.Dead };
 
     /// <summary>If set, the target must pass this.</summary>
     [DataField]

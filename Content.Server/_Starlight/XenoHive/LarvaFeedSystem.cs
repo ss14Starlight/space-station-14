@@ -1,4 +1,4 @@
-using Content.Shared._Starlight.Xeno;
+using Content.Shared._Starlight.XenoHive.Components;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
@@ -7,7 +7,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Whitelist;
 
-namespace Content.Server._Starlight.Xeno;
+namespace Content.Server._Starlight.XenoHive;
 
 public sealed class LarvaFeedSystem : EntitySystem
 {
@@ -63,7 +63,7 @@ public sealed class LarvaFeedSystem : EntitySystem
         return true;
     }
 
-    /// <summary>Called when the HTN plan is interrupted mid-feed.</summary>
+    /// <summary>Called when the HTN plan is interrupted.</summary>
     public void CancelFeed(EntityUid feeder)
     {
         if (TryComp<LarvaFeedComponent>(feeder, out var comp) && comp.DoAfter is { } id)
@@ -98,10 +98,10 @@ public sealed class LarvaFeedSystem : EntitySystem
         // One-time damage, dealt first so everything after sees the final state
         if (comp.Damage != null)
             _damageable.TryChangeDamage(target, comp.Damage, comp.DamageIgnoreResistances, origin: feeder);
-
+        // Add a component to the target
         if (comp.AddToTarget.Count > 0)
             EntityManager.AddComponents(target, comp.AddToTarget, removeExisting: false);
-
+        // Set a rot timer (changeling does this so why not)
         if (comp.RotAfter is { } rot && TryComp<PerishableComponent>(target, out var perishable))
             _rotting.SetRotAfter(target, rot, perishable);
     }
