@@ -24,7 +24,7 @@ public sealed partial class PluoxiumRadiationProductionReaction : IGasReactionEf
     private SharedMapSystem mapSystem => systemManager.GetEntitySystem<SharedMapSystem>();
     private const float RadiationThreshold = 0.01f;
     private static readonly TimeSpan TimerDuration = TimeSpan.FromSeconds(5);
-    private readonly Dictionary<(EntityUid Grid, Vector2i Tile), EntityUid> _tileReceivers = new();
+    private readonly Dictionary<(EntityUid Grid, Vector2i Tile), EntityUid> _tileReceivers = new(); // Starlight
 
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
