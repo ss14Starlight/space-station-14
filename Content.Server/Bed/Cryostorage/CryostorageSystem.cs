@@ -29,6 +29,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Content.Server._Starlight.Bed.Cryostorage;
+using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared.Anomaly.Components;
 
 namespace Content.Server.Bed.Cryostorage;
@@ -259,6 +260,7 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
         //starlight start
         RemComp<HeadRevolutionaryComponent>(ent.Owner);
         RemComp<CommandStaffComponent>(ent.Owner);
+        RemComp<VampireThrallComponent>(ent.Owner);
         //starlight end
 
         _chatSystem.DispatchStationAnnouncement(station.Value,
