@@ -40,6 +40,12 @@ public partial class RadiationSystem
         var sourcesCount = _sourceDataMap.Count;
         if (_activeReceivers.Count == 0 || sourcesCount == 0)
         {
+            foreach (var uid in _activeReceivers)
+            {
+                if (_receiverQuery.TryComp(uid, out var receiver))
+                    receiver.CurrentRadiation = 0f;
+            }
+
             RaiseLocalEvent(new RadiationSystemUpdatedEvent());
             return;
         }
