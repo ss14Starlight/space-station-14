@@ -1,4 +1,5 @@
-using Content.Shared._Starlight.XenoHive.Components;
+using Content.Server._Starlight.XenoHive.Components;
+using Content.Shared._Starlight.XenoHive;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;

@@ -1,5 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Content.Server.NPC;
+using Content.Server.NPC.HTN;
+using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Server._Starlight.XenoHive;
 
 namespace Content.Server._Starlight.NPC.HTN.PrimitiveTasks.Operators;

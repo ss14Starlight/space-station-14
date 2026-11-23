@@ -1,6 +1,10 @@
 using Content.Shared.Tag;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Content.Server.NPC;
+using Content.Server.NPC.HTN.Preconditions;
+using Content.Server.NPC.HTN.PrimitiveTasks;
+using Content.Server.NPC.HTN;
 
 namespace Content._Starlight.Server.NPC.HTN.Preconditions;
 

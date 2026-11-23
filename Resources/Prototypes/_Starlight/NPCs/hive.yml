@@ -53,7 +53,7 @@
         - !type:PulledPrecondition
           isPulled: false
       tasks:
-        # Let go of anyone mid-drag when the Xeno crosses 120
+        # Let go of anyone mid-drag when the Xeno crosses threshold
         - !type:HTNPrimitiveTask
           operator: !type:StopPullingOperator
         - !type:HTNPrimitiveTask
