@@ -36,7 +36,7 @@ public sealed partial class DocumentParsingManager
             .Assert(_tagControlParsers.ContainsKey, tag => $"unknown tag: {tag}")
             .Bind(tag => _tagControlParsers[tag]);
 
-        var whitespaceAndCommentParser = SkipWhitespaces.Then(Try(String("<!--").Then(Parser<char>.Any.SkipUntil(Try(String("-->"))))).SkipMany());
+        var whitespaceAndCommentParser = SkipWhitespaces.Then(Try(String("<!--").Then(Parser<char>.Any.SkipUntil(Try(String("-->")))).Then(Try(SkipNewline).Then(SkipWhitespaces).Or(Parser<char>.Return(Unit.Value)))).SkipMany()); // Starlight-edit
 
         _controlParser = OneOf(_tagParser, TryHeaderControl, ListControlParser, TextControlParser)
             .Before(whitespaceAndCommentParser);
