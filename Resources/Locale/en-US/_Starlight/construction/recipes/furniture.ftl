@@ -75,7 +75,6 @@ construction-recipe-counter-retro-diner = retro counter diner
 
 ## Xeno Sofa
 
-construction-recipe-sofa-xeno-single = sofa (xeno, single)
 construction-recipe-sofa-xeno-left = sofa (xeno, end, left)
 construction-recipe-sofa-xeno-right = sofa (xeno, end, right)
 construction-recipe-sofa-xeno-middle = sofa (xeno, middle)
