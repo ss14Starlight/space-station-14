@@ -300,7 +300,7 @@
 - type: quickConstructionCategory
   id: SteelComfyChairs
   name: quickconstruction-category-steel-comfy-chairs
-  icon: { sprite: _Starlight/Structures/Furniture/Chairs/comfy_chair.rsi, state: base }
+  icon: { sprite: _Starlight/Structures/Furniture/Chairs/comfy_chair.rsi, state: comfy_0 }
   constructionEntries:
     - ChairComfy
     - ChairComfyWhite

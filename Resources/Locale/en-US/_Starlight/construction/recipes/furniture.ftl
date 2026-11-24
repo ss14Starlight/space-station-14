@@ -5,6 +5,7 @@ construction-recipe-comfy-chair-blue = comfy chair (blue)
 construction-recipe-comfy-chair-green = comfy chair (green)
 construction-recipe-comfy-chair-red = comfy chair (red)
 construction-recipe-comfy-chair-brown = comfy chair (brown)
+construction-recipe-comfy-chair-xeno = comfy chair (xeno)
 
 # Chairs
 construction-recipe-evac-seat = evac seat
@@ -55,36 +56,6 @@ construction-recipe-pew-mid = wooden pew (middle)
 construction-recipe-pew-right = wooden pew (right)
 
 ## Sofas
-construction-recipe-sofa-gray-corner = sofa (gray, corner)
-construction-recipe-sofa-gray-left = sofa (gray, end, left)
-construction-recipe-sofa-gray-right = sofa (gray, end, right)
-construction-recipe-sofa-gray-mid = sofa (gray, middle)
-
-construction-recipe-sofa-white-corner = sofa (white, corner)
-construction-recipe-sofa-white-left = sofa (white, end, left)
-construction-recipe-sofa-white-right = sofa (white, end, right)
-construction-recipe-sofa-white-mid = sofa (white, middle)
-
-construction-recipe-sofa-blue-corner = sofa (blue, corner)
-construction-recipe-sofa-blue-left = sofa (blue, end, left)
-construction-recipe-sofa-blue-right = sofa (blue, end, right)
-construction-recipe-sofa-blue-mid = sofa (blue, middle)
-
-construction-recipe-sofa-red-corner = sofa (red, corner)
-construction-recipe-sofa-red-left = sofa (red, end, left)
-construction-recipe-sofa-red-right = sofa (red, end, right)
-construction-recipe-sofa-red-mid = sofa (red, middle)
-
-construction-recipe-sofa-green-corner = sofa (green, corner)
-construction-recipe-sofa-green-left = sofa (green, end, left)
-construction-recipe-sofa-green-right = sofa (green, end, right)
-construction-recipe-sofa-green-mid = sofa (green, middle)
-
-construction-recipe-sofa-brown-corner = sofa (brown, corner)
-construction-recipe-sofa-brown-left = sofa (brown, end, left)
-construction-recipe-sofa-brown-right = sofa (brown, end, right)
-construction-recipe-sofa-brown-mid = sofa (brown, middle)
-
 construction-recipe-sofa-fancy-left = fancy sofa (left)
 construction-recipe-sofa-fancy-right = fancy sofa (right)
 construction-recipe-sofa-fancy-mid = fancy sofa (middle)
@@ -101,6 +72,9 @@ construction-recipe-counter-retro-steel-wood = retro counter steel wood
 construction-recipe-counter-retro-white-orange = retro counter white orange
 construction-recipe-counter-retro-white-teal = retro counter white teal
 construction-recipe-counter-retro-diner = retro counter diner
+
+## Xeno Sofa
+
 
 ## Froggy Chair
 construction-recipe-froggy-chair = froggy chair

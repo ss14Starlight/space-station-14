@@ -1,151 +1,4 @@
 Entries:
-- author: MaxAlpine
-  changes:
-  - message: (Prism) moved floor lights in containment chamber to stop them blocking containment fields.
-    type: Fix
-  id: 410388
-  time: '2026-11-13T11:50:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7208
-- author: MaxAlpine
-  changes:
-  - message: (Prism) fixed unlinked airlocks on the east side of the station.
-    type: Fix
-  id: 410389
-  time: '2026-11-13T11:50:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7208
-- author: Sparlight
-  changes:
-  - message: Added the ability to toggle your own ghost sprite in replays.
-    type: Add
-  id: 410390
-  time: '2026-11-13T12:16:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7136
-- author: Sparlight
-  changes:
-  - message: Added the ability to toggle faction icons in replays.
-    type: Add
-  id: 410391
-  time: '2026-11-13T12:16:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7136
-- author: Sparlight
-  changes:
-  - message: Added the ability to jump to a specified time in the round.
-    type: Add
-  id: 410392
-  time: '2026-11-13T12:16:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7136
-- author: wonderfulnewworld, Conflee, DuckManZach
-  changes:
-  - message: Added clientside config option to disable or half visibility of footprints.
-    type: Add
-  id: 410393
-  time: '2026-11-13T12:16:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7174
-- author: wonderfulnewworld, Conflee, DuckManZach
-  changes:
-  - message: Added doormats to clean your shoes/footprints on.
-    type: Add
-  id: 410394
-  time: '2026-11-13T12:16:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7174
-- author: wonderfulnewworld, Conflee, DuckManZach
-  changes:
-  - message: Cleanbots and moproaches now clean footprints.
-    type: Add
-  id: 410395
-  time: '2026-11-13T12:16:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7174
-- author: wonderfulnewworld, Conflee, DuckManZach
-  changes:
-  - message: Footprints now go further or closer depending on how much solution was in the puddle. (10u max).
-    type: Tweak
-  id: 410396
-  time: '2026-11-13T12:16:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7174
-- author: wonderfulnewworld, Conflee, DuckManZach
-  changes:
-  - message: Footprints can carry up to 10u now instead of 1u, and disperse more units per print now.
-    type: Tweak
-  id: 410397
-  time: '2026-11-13T12:16:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7174
-- author: wonderfulnewworld, Conflee, DuckManZach
-  changes:
-  - message: Fixed stains sometimes becoming desynced from the client.
-    type: Fix
-  id: 410398
-  time: '2026-11-13T12:16:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7174
-- author: WNP78
-  changes:
-  - message: Fixed admin edit note UI not working when the admin notes panel has been closed.
-    type: Fix
-  id: 410399
-  time: '2026-11-13T12:39:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7113
-- author: WNP78
-  changes:
-  - message: Fixed admin edit note UI filling in expiry date instead of duration into duration field.
-    type: Fix
-  id: 410400
-  time: '2026-11-13T12:39:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7113
-- author: Floximo
-  changes:
-  - message: Remote Control Interface and Remote Control Console are now buildable after research.
-    type: Add
-  id: 410401
-  time: '2026-11-13T19:44:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6988
-- author: Floximo
-  changes:
-  - message: Rouny and Flox (new plushy) are now remote controllable.
-    type: Add
-  id: 410402
-  time: '2026-11-13T19:44:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6988
-- author: Floximo
-  changes:
-  - message: Remote Control uses now a channel system. 6 digits that are shown on inspecting a controllable entity.
-    type: Add
-  id: 410403
-  time: '2026-11-13T19:44:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6988
-- author: Floximo
-  changes:
-  - message: pAI can now buy a toy class remote control and can use it by being told a channel of a controllable entity.
-    type: Add
-  id: 410404
-  time: '2026-11-13T19:44:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6988
-- author: Floximo
-  changes:
-  - message: pAI can now control a Remote Control Console if inserted in one.
-    type: Add
-  id: 410405
-  time: '2026-11-13T19:44:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6988
-- author: Floximo
-  changes:
-  - message: Some client and server crashes got fixed.
-    type: Fix
-  id: 410406
-  time: '2026-11-13T19:44:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6988
-- author: RedSpeeds
-  changes:
-  - message: Cargo sale barcodes. Allowing for sale of gas cans and other items by departments.
-    type: Add
-  id: 410407
-  time: '2026-11-13T20:35:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7066
-- author: neomoth
-  changes:
-  - message: ACTUALLY fix action order this time... i think... i HOPE...
-    type: Fix
-  id: 410408
-  time: '2026-11-13T21:17:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7133
 - author: Tjmaxmillion
   changes:
   - message: Station AI can now use the Secure Command Terminal for select requests (Code Violet, Emergency Access, and Escape Pods), but cannot cancel pending requests.
@@ -2799,4 +2652,151 @@ Entries:
   id: 410787
   time: '2026-11-21T22:01:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7368
+- author: 0warie
+  changes:
+  - message: Fixed some guidebook additions showing hash tags instead of headings.
+    type: Fix
+  id: 410788
+  time: '2026-11-23T12:17:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7385
+- author: MaxAlpine
+  changes:
+  - message: (Prism) added distro and waste sensors to the atmos network.
+    type: Add
+  id: 410789
+  time: '2026-11-23T12:17:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7384
+- author: MaxAlpine
+  changes:
+  - message: (Prism) added Smartfridge between botany and kitchen.
+    type: Add
+  id: 410790
+  time: '2026-11-23T12:17:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7384
+- author: MaxAlpine
+  changes:
+  - message: (Prism) added Breaking News console.
+    type: Add
+  id: 410791
+  time: '2026-11-23T12:17:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7384
+- author: MaxAlpine
+  changes:
+  - message: (Prism) changed starlight colour to be less bright when the lights are totally out.
+    type: Tweak
+  id: 410792
+  time: '2026-11-23T12:17:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7384
+- author: MaxAlpine
+  changes:
+  - message: (Prism) fixed lawdrobe and legaldrobe being in the wrong place (who named these things?).
+    type: Fix
+  id: 410793
+  time: '2026-11-23T12:17:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7384
+- author: MaxAlpine
+  changes:
+  - message: (Prism) fixed button outside TEG burn chamber being unreachable.
+    type: Fix
+  id: 410794
+  time: '2026-11-23T12:17:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7384
+- author: Floximo
+  changes:
+  - message: A new sleep icon shows now when a character is asleep, even if hidden in a container.
+    type: Add
+  id: 410795
+  time: '2026-11-23T12:48:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7390
+- author: Johnny
+  changes:
+  - message: Changed something.
+    type: Tweak
+  id: 410796
+  time: '2026-11-23T12:48:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7391
+- author: Citrea
+  changes:
+  - message: Resin windows can now be built from chitin.
+    type: Add
+  id: 410797
+  time: '2026-11-23T13:14:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7393
+- author: Citrea
+  changes:
+  - message: Xen'Kara accent now also hardens trailing C into K.
+    type: Tweak
+  id: 410798
+  time: '2026-11-23T13:14:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7393
+- author: Citrea
+  changes:
+  - message: Xen'Kara acid spit is now properly affected by pacifism.
+    type: Fix
+  id: 410799
+  time: '2026-11-23T13:14:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7393
+- author: Citrea
+  changes:
+  - message: Wizard spells are now properly affected by pacifism.
+    type: Fix
+  id: 410800
+  time: '2026-11-23T13:14:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7393
+- author: baltdev
+  changes:
+  - message: Added a construction recipe for structure-mounted wooden barricades.
+    type: Add
+  id: 410801
+  time: '2026-11-23T14:26:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7395
+- author: baltdev
+  changes:
+  - message: Nerfed structure-mounted wooden barricades to balance them relative to their other, more expensive counterpart.
+    type: Tweak
+  id: 410802
+  time: '2026-11-23T14:26:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7395
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Aielith's Haemostatic Glyph and Rejuvenating Seed spells once again work on reptilians.
+    type: Fix
+  id: 410803
+  time: '2026-11-23T14:51:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7397
+- author: VBlankFF
+  changes:
+  - message: Dantalion vampires get a thrall slot back when a thrall enters cryogenic storage.
+    type: Fix
+  id: 410804
+  time: '2026-11-23T18:59:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7398
+- author: Rinary, baltdev
+  changes:
+  - message: Overhauled how comfy chairs are handled. They should be less annoying to place now.
+    type: Tweak
+  id: 410805
+  time: '2026-11-23T19:22:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7389
+- author: Rinary, baltdev
+  changes:
+  - message: Added xeno comfy chairs.
+    type: Add
+  id: 410806
+  time: '2026-11-23T19:22:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7389
+- author: Rinary, baltdev
+  changes:
+  - message: Proper description for chitinous wax.
+    type: Add
+  id: 410807
+  time: '2026-11-23T19:22:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7389
+- author: SirLutz
+  changes:
+  - message: C4 and X4 can not be triggered while EOR pacified.
+    type: Add
+  id: 410808
+  time: '2026-11-24T14:44:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7408
 Order: -1
