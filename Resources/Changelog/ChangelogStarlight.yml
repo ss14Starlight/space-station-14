@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
   changes:
-  - message: Added new researches to unlock modular hud frames.
-    type: Add
-  id: 410411
-  time: '2026-11-13T22:00:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7203
-- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
-  changes:
   - message: Added a chemical hud module to CMO's locker, and thermal vision hud module to CE's locker.
     type: Add
   id: 410412
@@ -2799,4 +2792,11 @@ Entries:
   id: 410810
   time: '2026-11-24T19:51:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7409
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Chameleon clothing can no longer be eaten by moths.
+    type: Tweak
+  id: 410811
+  time: '2026-11-24T20:25:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7403
 Order: -1
