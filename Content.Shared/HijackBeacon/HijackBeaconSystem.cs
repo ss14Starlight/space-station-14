@@ -249,7 +249,7 @@ public sealed partial class HijackBeaconSystem : EntitySystem
         Dirty(beaconXForm.GridUid.Value, station);
 
         // Broadcast that the ATS has been hacked.
-        var ev = new HijackBeaconSuccessEvent(ent.Comp.Fine, ent.Comp.FinePercentage);
+        var ev = new HijackBeaconSuccessEvent(ent.Comp.Fine, ent.Comp.FinePercentage); // Starlight - include percentage
         RaiseLocalEvent(ref ev);
 
         //global announcement
