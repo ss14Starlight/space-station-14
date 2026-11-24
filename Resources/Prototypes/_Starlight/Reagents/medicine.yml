@@ -828,21 +828,21 @@
         - !type:MobStateCondition
           mobstate: Alive
         - !type:TemperatureCondition
-          min: -280.0
+          min: 280.0
         amount: -5000
       - !type:AdjustTemperature
         conditions:
         - !type:MobStateCondition
           mobstate: Critical
         - !type:TemperatureCondition
-          min: -280.0
+          min: 280.0
         amount: -5000
       - !type:AdjustTemperature
         conditions:
         - !type:MobStateCondition
           mobstate: SoftCritical
         - !type:TemperatureCondition
-          min: -280.0
+          min: 280.0
         amount: -5000
       #Start of OD effects
       - !type:HealthChange
