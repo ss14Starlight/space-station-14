@@ -1,8 +1,17 @@
+### Notice for Starlight ###
+#
+# Do not make further edits to this file.
+# The handling of these spawners has been moved to
+# Resources/Prototypes/_Starlight/Entities/Markers/Spawners/NPCs/
+# and edits here will not be reflected ingame.
+############################
+
 # Antags
 - type: entity
   parent: SalvageHumanCorpse
   id: MobRandomSyndicateCorpse
   suffix: Dead, Syndicate
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Loadout
     prototypes:
@@ -12,6 +21,7 @@
   parent: SalvageHumanCorpse
   id: MobRandomNukieCorpse
   suffix: Dead, Nukie
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Loadout
     prototypes:
@@ -21,6 +31,7 @@
   parent: SalvageHumanCorpse
   id: MobRandomSovietCorpse
   suffix: Dead, Soviet
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Loadout
     prototypes:
@@ -30,6 +41,7 @@
   parent: SalvageHumanCorpse
   id: MobRandomMercenaryCorpse
   suffix: Dead, Mercenary
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Loadout
     prototypes:
@@ -39,6 +51,7 @@
   parent: SalvageHumanCorpse
   id: MobRandomPirateCorpse
   suffix: Dead, Pirate
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Loadout
     prototypes:

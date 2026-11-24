@@ -1,0 +1,199 @@
+- type: randomHumanoidSettings
+  id: SLDiverseNPC
+  abstract: true
+  speciesBlacklist:
+    - Vox # they'd die without nitrogen
+    - IPC # they'd die without power
+    - Experiment # they'd die without food
+    - Neocyte # the frame is fucked fsr
+    # neocyte subspecies would overwhelm the randomizer
+    - NeoArachnid
+    - NeoAvali
+    - NeoCyclorite
+    - NeoDwarf
+    - NeoDiona
+    - NeoFelionoid
+    - NeoHuman
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoSlimePerson
+    - NeoThaven
+    - NeoVox
+    - NeoVulpkanin
+    - NeoKin
+    - NeoElf
+    - NeoLagomorph
+
+- type: randomHumanoidSettings
+  id: SLSalvageHumanCorpse
+  parent: SLDiverseNPC
+  name: unidentified corpse
+  description: I think they're dead.
+  components:
+    - type: Damageable
+      damage:
+        types:
+          Bloodloss: 80
+          Asphyxiation: 106
+          Slash: 86
+          Blunt: 59
+    - type: Inventory
+      templateId: corpse
+
+- type: randomHumanoidSettings
+  parent: SLSalvageHumanCorpse
+  id: SLMobRandomServiceCorpse
+  components:
+    - type: Loadout
+      prototypes:
+        - HoPCorpseGear
+        - ClownCorpseGear
+        - MimeCorpseGear
+        - JanitorCorpseGear
+        - ServiceWorkerCorpseGear
+        - MusicianCorpseGear
+        - BotanistCorpseGear
+        - ChefCorpseGear
+        - ChaplainCorpseGear
+        - AssistantCorpseGear
+        - TiderCorpseGear
+
+- type: randomHumanoidSettings
+  parent: SLSalvageHumanCorpse
+  id: SLMobRandomEngineerCorpse
+  components:
+    - type: Loadout
+      prototypes:
+        - TechnicalAssistantCorpseGear
+        - AtmosphericTechnicianCorpseGear
+        - StationEngineerCorpseGear
+
+- type: randomHumanoidSettings
+  parent: SLSalvageHumanCorpse
+  id: SLMobRandomCargoCorpse
+  components:
+    - type: Loadout
+      prototypes:
+        - CargoTechCorpseGear
+        - MailTechCorpseGear
+        - MinerCorpseGear
+        - SalvageSpecialistCorpseGear
+
+- type: randomHumanoidSettings
+  parent: SLSalvageHumanCorpse
+  id: SLMobRandomMedicCorpse
+  components:
+    - type: Loadout
+      prototypes:
+        - MedicalInternCorpseGear
+        - PsychologistCorpseGear
+        - ChemistCorpseGear
+        - DoctorCorpseGear
+        - VirologistCorpseGear
+        - GeneticsCorpseGear
+
+- type: randomHumanoidSettings
+  parent: SLSalvageHumanCorpse
+  id: SLMobRandomScienceCorpse
+  components:
+    - type: Loadout
+      prototypes:
+        - ResearchAssistantCorpseGear
+        - ScientistCorpseGear
+        - RoboticistCorpseGear
+
+- type: randomHumanoidSettings
+  parent: SLSalvageHumanCorpse
+  id: SLMobRandomSecurityCorpse
+  components:
+    - type: Loadout
+      prototypes:
+        - SecurityCadetCorpseGear
+        - SecurityOfficerCorpseGear
+        - DetectiveCorpseGear
+        - BrigMedicCorpseGear
+        - WardenCorpseGear
+        - PrisonerCorpseGear
+
+- type: randomHumanoidSettings
+  parent: SLSalvageHumanCorpse
+  id: SLMobRandomCommandCorpse
+  components:
+    - type: Loadout
+      prototypes:
+        - HoPCorpseGear
+        - CentcomCorpseGear
+        - CaptainCorpseGear
+        - HoSCorpseGear
+        - ResearchDirectorCorpseGear
+        - CMOCorpseGear
+        - ChiefEngineerCorpseGear
+        - QuartermasterCorpseGear
+        - IAACorpseGear
+        - MagistrateCorpseGear
+        - NTRCorpseGear
+        - BSOCorpseGear
+        - NTMarineCorpseGear
+
+- type: randomHumanoidSettings
+  parent: SLSalvageHumanCorpse
+  id: SLMobRandomSyndicateCorpse
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateCorpseGear
+
+- type: randomHumanoidSettings
+  parent: SLSalvageHumanCorpse
+  id: SLMobRandomNukieCorpse
+  components:
+    - type: Loadout
+      prototypes:
+        - NukieCorpseGear
+
+- type: randomHumanoidSettings
+  parent: SLSalvageHumanCorpse
+  id: SLMobRandomSovietCorpse
+  components:
+    - type: Loadout
+      prototypes:
+        - SovietCorpseGear
+
+- type: randomHumanoidSettings
+  parent: SLSalvageHumanCorpse
+  id: SLMobRandomMercenaryCorpse
+  components:
+    - type: Loadout
+      prototypes:
+        - MercenaryCorpseGear
+
+- type: randomHumanoidSettings
+  parent: SLSalvageHumanCorpse
+  id: SLMobRandomPirateCorpse
+  components:
+    - type: Loadout
+      prototypes:
+        - PirateCorpseGear
+
+- type: randomHumanoidSettings
+  id: SLMobSyndicateFootsoldier
+  parent: SLDiverseNPC
+  name: syndicate footsoldier
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Loadout
+      prototypes:
+        - SyndicateFootsoldierGearRuin
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+
+- type: randomHumanoidSettings
+  id: SLMobSyndicateFootsoldierPilot
+  parent: SLMobSyndicateFootsoldier
+  name: syndicate shuttle pilot

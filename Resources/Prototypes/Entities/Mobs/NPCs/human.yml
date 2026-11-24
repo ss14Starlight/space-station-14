@@ -1,3 +1,11 @@
+### Notice for Starlight ###
+#
+# Do not make further edits to this file.
+# The handling of these entities through spawners has been moved to
+# Resources/Prototypes/_Starlight/Entities/Markers/Spawners/NPCs/
+# and edits here will likely not be reflected ingame.
+############################
+
 - type: entity
   name: civilian
   parent: BaseMobHuman # Starlight Edit: MobHuman -> BaseMobHuman

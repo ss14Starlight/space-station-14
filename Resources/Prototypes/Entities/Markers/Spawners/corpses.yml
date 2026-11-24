@@ -1,6 +1,15 @@
+### Notice for Starlight ###
+#
+# Do not make further edits to this file.
+# The handling of these spawners has been moved to
+# Resources/Prototypes/_Starlight/Entities/Markers/Spawners/NPCs/
+# and edits here will not be reflected ingame.
+############################
+
 - type: entity
   name: Human Corpse Spawner
   id: SalvageHumanCorpseSpawner
+  categories: [ HideSpawnMenu ] # Starlight
   parent: MarkerBase
   components:
   - type: Sprite
@@ -15,6 +24,7 @@
   name: Random Service Corpse Spawner
   id: RandomServiceCorpseSpawner
   parent: SalvageHumanCorpseSpawner
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Sprite
     layers:
@@ -28,6 +38,7 @@
   name: Random Engineer Corpse Spawner
   id: RandomEngineerCorpseSpawner
   parent: SalvageHumanCorpseSpawner
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Sprite
     layers:
@@ -41,6 +52,7 @@
   name: Random Cargo Corpse Spawner
   id: RandomCargoCorpseSpawner
   parent: SalvageHumanCorpseSpawner
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Sprite
     layers:
@@ -54,6 +66,7 @@
   name: Random Medic Corpse Spawner
   id: RandomMedicCorpseSpawner
   parent: SalvageHumanCorpseSpawner
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Sprite
     layers:
@@ -67,6 +80,7 @@
   name: Random Science Corpse Spawner
   id: RandomScienceCorpseSpawner
   parent: SalvageHumanCorpseSpawner
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Sprite
     layers:
@@ -80,6 +94,7 @@
   name: Random Security Corpse Spawner
   id: RandomSecurityCorpseSpawner
   parent: SalvageHumanCorpseSpawner
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Sprite
     layers:
@@ -93,6 +108,7 @@
   name: Random Command Corpse Spawner
   id: RandomCommandCorpseSpawner
   parent: SalvageHumanCorpseSpawner
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Sprite
     layers:

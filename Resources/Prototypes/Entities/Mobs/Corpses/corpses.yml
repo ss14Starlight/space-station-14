@@ -1,3 +1,11 @@
+### Notice for Starlight ###
+#
+# Do not make further edits to this file.
+# The handling of these spawners has been moved to
+# Resources/Prototypes/_Starlight/Entities/Markers/Spawners/NPCs/
+# and edits here will not be reflected ingame.
+############################
+
 - type: entity
   parent: SalvageHumanCorpse
   id: MobRandomServiceCorpse
