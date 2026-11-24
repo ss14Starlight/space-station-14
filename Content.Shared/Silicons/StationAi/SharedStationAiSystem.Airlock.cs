@@ -82,6 +82,14 @@ public abstract partial class SharedStationAiSystem
     /// </summary>
     private void OnElectrified(EntityUid ent, ElectrifiedComponent component, StationAiElectrifiedEvent args)
     {
+        // Starlight - start
+        if (!component.HasElectrifyingWire)
+        {
+            ShowDeviceNotRespondingPopup(args.User);
+            return;
+        }
+        // Starlight - end
+
         if (component.IsWireCut || !PowerReceiver.IsPowered(ent))
         {
             ShowDeviceNotRespondingPopup(args.User);

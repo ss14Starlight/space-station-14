@@ -9,5 +9,6 @@ namespace Content.Shared._Starlight.UserInterface.Setup;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, ComponentProtoName("Setup")]
 public sealed partial class SetupableComponent : Component
 {
+    [DataField, AutoNetworkedField] public bool AllowRenaming;
     [DataField, AutoNetworkedField] public bool NameSet;
 }

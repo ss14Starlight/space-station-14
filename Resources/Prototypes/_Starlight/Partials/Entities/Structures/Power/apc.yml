@@ -2,8 +2,11 @@
   id: BaseAPC
   components:
   - type: Setup
+    allowRenaming: true
   - type: ApcLighting
   - type: UserInterface
     interfaces:
+      enum.AiUi.Key:
+        type: StationAiBoundUserInterface
       enum.SetupUiKey.Key:
         type: SetupMenuBoundUi

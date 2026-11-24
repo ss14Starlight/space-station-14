@@ -56,6 +56,11 @@ public sealed partial class StationAiSystem
 
     private void OnDoorElectrifiedGetRadial(Entity<ElectrifiedComponent> ent, ref GetStationAiRadialEvent args)
     {
+        // Starlight - start
+        if (!ent.Comp.HasElectrifyingWire)
+            return;
+        // Starlight - end
+
         args.Actions.Add(
             new StationAiRadial
             {

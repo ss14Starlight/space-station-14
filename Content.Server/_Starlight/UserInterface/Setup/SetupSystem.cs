@@ -30,8 +30,11 @@ public sealed partial class SetupSystem : SharedSetupSystem
 
     private void OnSetName(Entity<SetupableComponent> ent, ref SetupSetName args)
     {
-        if (args.UiKey is not SetupUiKey || string.IsNullOrEmpty(args.Name) ||
-            args.Name.Length > SetupNameLimit) return;
+        if (args.UiKey is not SetupUiKey
+            || string.IsNullOrEmpty(args.Name)
+            || args.Name.Length > SetupNameLimit
+            || (ent.Comp.NameSet && !ent.Comp.AllowRenaming))
+            return;
         ent.Comp.NameSet = true;
         var meta = MetaData(ent);
         _metadata.SetEntityName(ent.Owner, $"{meta.EntityPrototype?.Name} ({args.Name})");
@@ -51,13 +54,13 @@ public sealed partial class SetupSystem : SharedSetupSystem
     {
         if (!Resolve(uid, ref comp)) return;
 
-        if (comp.NameSet)
+        if (comp.NameSet && !comp.AllowRenaming)
         {
             _userInterface.CloseUi(uid, SetupUiKey.Key);
             return;
         }
 
-        var state = new SetupBoundUiState(MetaData(uid).EntityName, comp.NameSet);
+        var state = new SetupBoundUiState(MetaData(uid).EntityName, comp.NameSet && !comp.AllowRenaming);
         _userInterface.SetUiState(uid, SetupUiKey.Key, state);
     }
 }

@@ -78,6 +78,14 @@ station-ai-warp-no-results = No destinations found.
 station-ai-warp-section-crew = Crew
 station-ai-warp-section-locations = Locations
 station-ai-warp-radial-tooltip = Warp
+station-ai-access-wires = Device wiring
+station-ai-wires-menu-help-popup =
+    Click a gold contact to pulse the wire.
+    Hold a wire for one second to cut it.
+    The AI cannot reconnect cut wires.
+
+    The lights at the top show the state of the machine, messing with wires will probably do stuff to them.
+    Wire layouts are different each round, but consistent between machines of the same type.
 
 station-ai-deathrattle-sender = AI SYSTEM ALERT
 station-ai-deathrattle-connection-lost = Connection to Station AI {$ai} was lost {$position}.

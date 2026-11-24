@@ -1,4 +1,5 @@
 using Content.Shared.Emp;
+using Content.Shared.Silicons.StationAi;
 using Content.Shared.SurveillanceCamera.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Serialization;
@@ -19,15 +20,19 @@ public abstract partial class SharedSurveillanceCameraSystem : EntitySystem
         if (!args.CanInteract || !args.CanComplexInteract)
             return;
 
-        if (component.NameSet && component.NetworkSet)
+        // Starlight - start
+        if (HasComp<StationAiHeldComponent>(args.User) && HasComp<StationAiWhitelistComponent>(uid))
             return;
+        // Starlight - end
 
+        // Starlight - start
         AlternativeVerb verb = new()
         {
             Text = Loc.GetString("surveillance-camera-setup"),
             Act = () => OpenSetupInterface(uid, args.User, component)
         };
         args.Verbs.Add(verb);
+        // Starlight - end
     }
 
     private void OnEmpPulse(EntityUid uid, SurveillanceCameraComponent component, ref EmpPulseEvent args)

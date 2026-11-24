@@ -4,6 +4,7 @@ using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Power;
+using Content.Shared.Silicons.StationAi;
 using Content.Shared.Wires;
 using Robust.Shared.Player;
 
@@ -57,8 +58,10 @@ public sealed partial class AirlockSystem : SharedAirlockSystem
         if (args.Handled || !args.Complex)
             return;
 
+        // Starlight - start
         if (TryComp<WiresPanelComponent>(uid, out var panel) &&
             panel.Open &&
+            !HasComp<StationAiHeldComponent>(args.User) &&
             TryComp<ActorComponent>(args.User, out var actor))
         {
             if (TryComp<WiresPanelSecurityComponent>(uid, out var wiresPanelSecurity) &&
@@ -69,6 +72,7 @@ public sealed partial class AirlockSystem : SharedAirlockSystem
             args.Handled = true;
             return;
         }
+        // Starlight - end
 
         if (component.KeepOpenIfClicked && component.AutoClose)
         {

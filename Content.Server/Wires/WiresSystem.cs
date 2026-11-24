@@ -396,6 +396,11 @@ public sealed partial class WiresSystem : SharedWiresSystem
     {
         var player = args.Actor;
 
+        // Starlight - start
+        if (TryDoStationAiWireAction(uid, player, args.Id, args.Action, component))
+            return;
+        // Starlight - end
+
         if (!TryComp(player, out HandsComponent? handsComponent))
         {
             _popupSystem.PopupEntity(Loc.GetString("wires-component-ui-on-receive-message-no-hands"), uid, player);
@@ -480,6 +485,10 @@ public sealed partial class WiresSystem : SharedWiresSystem
     {
         if (!string.IsNullOrEmpty(component.LayoutId))
             SetOrCreateWireLayout(uid, component);
+
+        // Starlight - start
+        UpdateElectrificationWireAvailability(uid, component);
+        // Starlight - end
 
         if (component.SerialNumber == null)
             GenerateSerialNumber(uid, component);

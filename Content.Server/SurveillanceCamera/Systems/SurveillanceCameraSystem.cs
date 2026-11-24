@@ -198,12 +198,6 @@ public sealed partial class SurveillanceCameraSystem : SharedSurveillanceCameraS
             return;
         }
 
-        if (camera.NameSet && camera.NetworkSet)
-        {
-            _userInterface.CloseUi(uid, SurveillanceCameraSetupUiKey.Camera);
-            return;
-        }
-
         if (camera.AvailableNetworks.Count == 0)
         {
             if (deviceNet.ReceiveFrequencyId is { } recvFreq)
@@ -217,9 +211,11 @@ public sealed partial class SurveillanceCameraSystem : SharedSurveillanceCameraS
             }
         }
 
+        // Starlight - start
         var name = camera.UseEntityNameAsCameraId ? MetaData(uid).EntityName : camera.CameraId;
         var state = new SurveillanceCameraSetupBoundUiState(name, deviceNet.ReceiveFrequency ?? 0,
-            camera.AvailableNetworks, camera.NameSet, camera.NetworkSet);
+            camera.AvailableNetworks, false, false);
+        // Starlight - end
         _userInterface.SetUiState(uid, SurveillanceCameraSetupUiKey.Camera, state);
     }
 

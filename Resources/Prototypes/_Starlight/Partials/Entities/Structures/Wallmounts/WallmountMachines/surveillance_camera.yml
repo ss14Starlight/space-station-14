@@ -1,0 +1,8 @@
+- type: !PartialOnly entity
+  id: SurveillanceCameraBase
+  components:
+  - type: StationAiWhitelist
+  - type: UserInterface
+    interfaces:
+      enum.AiUi.Key:
+        type: StationAiBoundUserInterface

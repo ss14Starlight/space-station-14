@@ -15,7 +15,7 @@ using static Robust.Client.UserInterface.Controls.BoxContainer;
 
 namespace Content.Client.Wires.UI
 {
-    public sealed partial class WiresMenu : BaseWindow
+    public sealed partial class WiresMenu : BaseWindow // Starlight
     {
         [Dependency] private IResourceCache _resourceCache = default!;
 
@@ -187,7 +187,9 @@ namespace Content.Client.Wires.UI
 
             helpButton.OnPressed += a =>
             {
-                var popup = new HelpPopup();
+                // Starlight - start
+                var popup = new HelpPopup(_stationAiInteraction);
+                // Starlight - end
                 UserInterfaceManager.ModalRoot.AddChild(popup);
 
                 popup.Open(UIBox2.FromDimensions(a.Event.PointerLocation.Position, new Vector2(400, 200)));
@@ -243,16 +245,24 @@ namespace Content.Client.Wires.UI
                 var mirror = random.Next(2) == 0;
                 var flip = random.Next(2) == 0;
                 var type = random.Next(2);
-                var control = new WireControl(wire.Color, wire.Letter, wire.IsCut, flip, mirror, type, _resourceCache)
+                // Starlight - start
+                var control = new WireControl(wire.Color, wire.Letter, wire.IsCut, flip, mirror, type, _resourceCache,
+                    _stationAiInteraction)
                 {
                     VerticalAlignment = VAlignment.Bottom
                 };
+                // Starlight - end
                 _wiresHBox.AddChild(control);
 
+                // Starlight - start
                 control.WireClicked += () =>
                 {
-                    OnAction?.Invoke(wire.Id, wire.IsCut ? WiresAction.Mend : WiresAction.Cut);
+                    if (_stationAiInteraction)
+                        OnAction?.Invoke(wire.Id, WiresAction.Cut);
+                    else
+                        OnAction?.Invoke(wire.Id, wire.IsCut ? WiresAction.Mend : WiresAction.Cut);
                 };
+                // Starlight - end
 
                 control.ContactsClicked += () =>
                 {
@@ -291,7 +301,7 @@ namespace Content.Client.Wires.UI
             return false;
         }
 
-        private sealed class WireControl : Control
+        private sealed partial class WireControl : Control // Starlight
         {
             private IResourceCache _resourceCache;
 
@@ -301,8 +311,11 @@ namespace Content.Client.Wires.UI
             public event Action? ContactsClicked;
 
             public WireControl(WireColor color, WireLetter letter, bool isCut, bool flip, bool mirror, int type,
-                IResourceCache resourceCache)
+                IResourceCache resourceCache, bool stationAiInteraction) // Starlight
             {
+                // Starlight - start
+                _stationAiInteraction = stationAiInteraction;
+                // Starlight - end
                 _resourceCache = resourceCache;
 
                 HorizontalAlignment = HAlignment.Center;
@@ -352,6 +365,11 @@ namespace Content.Client.Wires.UI
                 layout.AddChild(wire);
                 LayoutContainer.SetPosition(wire, new Vector2(2, 16));
 
+                // Starlight - start
+                if (stationAiInteraction)
+                    InitializeStationAiWireHoldProgress(layout);
+                // Starlight - end
+
                 ToolTip = color.Name();
                 MinSize = new Vector2(20, 102);
             }
@@ -364,6 +382,14 @@ namespace Content.Client.Wires.UI
                 {
                     return;
                 }
+
+                // Starlight - start
+                if (_stationAiInteraction)
+                {
+                    BeginStationAiWireClick(args);
+                    return;
+                }
+                // Starlight - end
 
                 if (args.RelativePosition.Y > 20 && args.RelativePosition.Y < 60)
                 {
@@ -593,10 +619,14 @@ namespace Content.Client.Wires.UI
 
         private sealed class HelpPopup : Popup
         {
-            public HelpPopup()
+            public HelpPopup(bool stationAiInteraction) // Starlight
             {
                 var label = new RichTextLabel();
-                label.SetMessage(Loc.GetString("wires-menu-help-popup"));
+                // Starlight - start
+                label.SetMessage(Loc.GetString(stationAiInteraction
+                    ? "station-ai-wires-menu-help-popup"
+                    : "wires-menu-help-popup"));
+                // Starlight - end
                 AddChild(new PanelContainer
                 {
                     StyleClasses = {ExamineSystem.StyleClassEntityTooltip},

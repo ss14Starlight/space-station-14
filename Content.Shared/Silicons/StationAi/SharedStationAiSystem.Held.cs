@@ -206,6 +206,11 @@ public abstract partial class SharedStationAiSystem
 
         var target = args.Target;
 
+        // Starlight - start
+        if (ent.Comp.Enabled)
+            AddCameraSetupVerb(target, user, ref args);
+        // Starlight - end
+
         var isOpen = _uiSystem.IsUiOpen(target, AiUi.Key, user);
 
         var verb = new AlternativeVerb

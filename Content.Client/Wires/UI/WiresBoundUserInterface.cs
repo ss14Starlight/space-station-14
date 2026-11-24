@@ -3,19 +3,25 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client.Wires.UI
 {
-    public sealed class WiresBoundUserInterface : BoundUserInterface
+    public sealed partial class WiresBoundUserInterface : BoundUserInterface // Starlight
     {
         [ViewVariables]
         private WiresMenu? _menu;
 
         public WiresBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
+            // Starlight - start
+            IoCManager.InjectDependencies(this);
+            // Starlight - end
         }
 
         protected override void Open()
         {
             base.Open();
             _menu = this.CreateWindow<WiresMenu>();
+            // Starlight - start
+            _menu.SetStationAiInteraction(_isStationAiUser);
+            // Starlight - end
             _menu.OnAction += PerformAction;
         }
 
