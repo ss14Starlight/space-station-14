@@ -23,7 +23,6 @@ public sealed partial class PinpointerSystem : SharedPinpointerSystem
         {
             if (!pinpointer.HasTarget)
                 continue;
-
             var eye = _eyeManager.CurrentEye;
             var angle = pinpointer.ArrowAngle + eye.Rotation;
 

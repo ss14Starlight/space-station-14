@@ -14,6 +14,9 @@ public sealed partial class ItgResourceReclaimerSystem : SharedItgResourceReclai
 {
     [Dependency] private SpriteSystem _sprite = null!;
 
+    private const float NoTargetRotationUpdateInterval = 0.25f;
+    private float _noTargetRotationUpdateAccumulator = NoTargetRotationUpdateInterval;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -24,6 +27,12 @@ public sealed partial class ItgResourceReclaimerSystem : SharedItgResourceReclai
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        _noTargetRotationUpdateAccumulator += frameTime;
+        if (_noTargetRotationUpdateAccumulator < NoTargetRotationUpdateInterval)
+            return;
+
+        _noTargetRotationUpdateAccumulator %= NoTargetRotationUpdateInterval;
 
         var query = EntityQueryEnumerator<ItgResourceReclaimerComponent, PinpointerComponent, SpriteComponent>();
         while (query.MoveNext(out var uid, out _, out var pinpointer, out var sprite))

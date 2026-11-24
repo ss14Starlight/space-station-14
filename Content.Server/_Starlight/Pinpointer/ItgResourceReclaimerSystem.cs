@@ -17,7 +17,7 @@ public sealed partial class ItgResourceReclaimerSystem : SharedItgResourceReclai
     [Dependency] private SharedTransformSystem _transform = null!;
     [Dependency] private SharedAppearanceSystem _appearance = null!;
 
-    private EntityQuery<TransformComponent> _xformQuery;
+    [Dependency] private EntityQuery<TransformComponent> _xformQuery = default!;
 
     private readonly Dictionary<MapId, List<CachedTarget>> _targetsByMap = new();
     private readonly List<EntityUid> _cachedReclaimers = [];
@@ -27,13 +27,6 @@ public sealed partial class ItgResourceReclaimerSystem : SharedItgResourceReclai
     private float _targetUpdateAccumulator;
 
     private readonly record struct CachedTarget(EntityUid Uid, MobState State);
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        _xformQuery = GetEntityQuery<TransformComponent>();
-    }
 
     public override void Update(float frameTime)
     {
