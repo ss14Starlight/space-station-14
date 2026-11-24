@@ -47,6 +47,7 @@ public sealed partial class HijackBeaconComponent : Component
 
     /// <summary>
     ///     How much cash should be withdrawn from each department account?
+    ///     (Starlight: This is a minimum.)
     /// </summary>
     [DataField]
     public int Fine = 5000;

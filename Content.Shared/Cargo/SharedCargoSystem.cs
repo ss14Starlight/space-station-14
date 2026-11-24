@@ -34,8 +34,11 @@ public abstract partial class SharedCargoSystem : EntitySystem
         {
             foreach (var (account, cash) in comp.Accounts)
             {
-                comp.Accounts[account] = cash - args.Fine;
-                args.Total += args.Fine;
+                // Starlight-start - the fine is now a minimum
+                int totalFine = Math.Max(args.Fine, (int)(args.FinePercentage * cash));
+                comp.Accounts[account] = cash - totalFine;
+                args.Total += totalFine;
+                // Starlight-end
             }
 
             var ev = new BankBalanceUpdatedEvent(uid, comp.Accounts);
