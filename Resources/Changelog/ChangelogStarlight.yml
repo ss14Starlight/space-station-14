@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
   changes:
-  - message: 'Added modular HUDs: flexible, modular eyewear which lets you put together the infinity stones of eyewear.'
-    type: Add
-  id: 410410
-  time: '2026-11-13T22:00:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7203
-- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
-  changes:
   - message: Added new researches to unlock modular hud frames.
     type: Add
   id: 410411
@@ -2799,4 +2792,11 @@ Entries:
   id: 410809
   time: '2026-11-24T19:51:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7405
+- author: VBlankFF
+  changes:
+  - message: Blood bond range increased from 3 to 8, and it now works through walls.
+    type: Tweak
+  id: 410810
+  time: '2026-11-24T19:51:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7409
 Order: -1
