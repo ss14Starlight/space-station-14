@@ -8,8 +8,6 @@ using Content.Shared._Starlight.Changeling;
 using Content.Shared._Starlight.Medical.Body.Components;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared._Starlight.Medical.Body.Systems;
-using Content.Shared._Starlight.Medical.Surgery;
-using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared.Actions.Components;
 using Content.Shared.Actions.Events;
@@ -60,7 +58,6 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private StomachSystem _stomach = default!;
     [Dependency] private TagSystem _tag = default!;
     [Dependency] private EnsnareableSystem _ensnareable = default!;
-    [Dependency] private SharedSurgerySystem _surgery = default!;
 
     private static readonly ProtoId<ReagentPrototype> FerrochromicAcidPrototype = "FerrochromicAcid";
     private static readonly ProtoId<ReagentPrototype> PolytrinicAcidPrototype = "PolytrinicAcid";
