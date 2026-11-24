@@ -6,7 +6,9 @@ using Content.Server.Ensnaring;
 using Content.Shared._Starlight.Actions.Components;
 using Content.Shared._Starlight.Changeling;
 using Content.Shared._Starlight.Medical.Body.Components;
+using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Medical.Surgery;
 using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared.Actions.Components;
@@ -58,6 +60,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private StomachSystem _stomach = default!;
     [Dependency] private TagSystem _tag = default!;
     [Dependency] private EnsnareableSystem _ensnareable = default!;
+    [Dependency] private SharedSurgerySystem _surgery = default!;
 
     private static readonly ProtoId<ReagentPrototype> FerrochromicAcidPrototype = "FerrochromicAcid";
     private static readonly ProtoId<ReagentPrototype> PolytrinicAcidPrototype = "PolytrinicAcid";
@@ -177,23 +180,14 @@ public sealed partial class ChangelingSystem : EntitySystem
         }
         // Starlight edit end
 
-        // Remove their organs, we just ate them!
-        if (TryComp<BodyComponent>(args.Consumed, out var consumed))
+        foreach (var (torso, torsoComp) in _body.GetBodyChildrenOfType(args.Consumed, BodyPartType.Torso))
         {
-            foreach (var (organId, _) in _body.GetBodyOrgans(args.Consumed, consumed))
+            // Remove their organs, we just ate them!
+            foreach (var (organId, _) in _body.GetPartOrgans(torso, torsoComp))
             {
-                if (
-                    HasComp<OrganAppendixComponent>(organId) ||
-                    HasComp<OrganHeartComponent>(organId) ||
-                    HasComp<OrganKidneysComponent>(organId) ||
-                    HasComp<OrganLiverComponent>(organId) ||
-                    HasComp<OrganLungsComponent>(organId) ||
-                    HasComp<OrganStomachComponent>(organId)
-                )
-                {
-                    _body.RemoveOrgan(organId);
-                    QueueDel(organId);
-                }
+                if (HasComp<BrainComponent>(organId)) continue; // We don't want to RR Laspi!
+                _body.RemoveOrgan(organId);
+                QueueDel(organId);
             }
         }
 
