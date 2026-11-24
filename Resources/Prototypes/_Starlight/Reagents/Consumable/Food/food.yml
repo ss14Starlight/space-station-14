@@ -178,6 +178,10 @@
   flavor: minty
   color: "#b4fbd0"
   recognizable: true
+  metabolisms:
+    Digestion:
+      metabolites:
+        Menthol: 0.5
 
 - type: reagent
   id: Cinnamon
@@ -219,3 +223,23 @@
         reagent: Stellibinin
         amount: -0.05
         # Starlight-End
+
+- type: reagent
+  id: Menthol
+  group: Foods
+  name: reagent-name-menthol
+  desc: reagent-desc-menthol
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: minty
+  color: "#d6f1e9"
+  metabolisms:
+    Metabolites:
+      effects:
+        - !type:HealthChange
+          probability: 0.5
+          damage:
+            types:
+              Heat: -1.0
+        - !type:AdjustTemperature
+          probability: 0.5
+          amount: -250

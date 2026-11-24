@@ -2,3 +2,9 @@
   id: ChemistryStatic
   recipes:
   - !Remove 'ClothingEyesGlassesChemical'
+  - SprayBottle
+
+- type: !PartialOnly latheRecipePack
+  id: Chemistry
+  recipes:
+  - MegaSprayBottle
