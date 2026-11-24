@@ -1,20 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
   changes:
-  - message: Replaced a bunch of preexisting HUDs with modular HUDs.
-    type: Tweak
-  id: 410414
-  time: '2026-11-13T22:00:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7203
-- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
-  changes:
-  - message: The short-sighted trait now comes with a prescription hud module; select some modular eyewear on loadout or go to medical for a frame.
-    type: Tweak
-  id: 410415
-  time: '2026-11-13T22:00:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7203
-- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
-  changes:
   - message: Health eyewear is now t2 medical contraband. Don't want people rushing to get it without a permit!
     type: Tweak
   id: 410416
@@ -2799,4 +2785,18 @@ Entries:
   id: 410813
   time: '2026-11-24T21:39:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7394
+- author: Talirson
+  changes:
+  - message: Fixed pluox/ulnit radiation reaction only occuring in pipe entities, and not working in tile atmospheres.
+    type: Fix
+  id: 410814
+  time: '2026-11-24T21:39:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7399
+- author: Talirson
+  changes:
+  - message: Fixed radiation recievers like geiger counters not having their radiation reset to zero and showing false radiation readings when there are no active radiation sources anywhere.
+    type: Fix
+  id: 410815
+  time: '2026-11-24T21:39:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7399
 Order: -1
