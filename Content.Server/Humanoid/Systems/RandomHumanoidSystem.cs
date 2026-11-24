@@ -40,9 +40,6 @@ public sealed partial class RandomHumanoidSystem : EntitySystem
         if (!_prototypeManager.TryIndex<RandomHumanoidSettingsPrototype>(prototypeId, out var prototype))
             throw new ArgumentException("Could not get random humanoid settings");
 
-        var random = IoCManager.Resolve<IRobustRandom>();
-        Log.Debug($"Random seed: {random.NextLong()}");
-
         var profile = HumanoidCharacterProfile.Random(prototype.SpeciesBlacklist);
         // Starlight - ensure the appearance is valid
         profile.Appearance = HumanoidCharacterAppearance.EnsureValid(profile.Appearance, profile.Species, profile.Sex);

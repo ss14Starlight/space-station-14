@@ -16,6 +16,12 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// </summary>
     [DataField]
     public SpeciesProfileMigration? ProfileMigration { get; private set; }
+
+    /// <summary>
+    /// The weight this species has for being picked randomly.
+    /// </summary>
+    [DataField("weight")]
+    public double Weight { get; private set; } = 1;
 }
 
 

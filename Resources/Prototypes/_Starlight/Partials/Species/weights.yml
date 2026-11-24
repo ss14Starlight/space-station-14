@@ -1,0 +1,81 @@
+# Weights suggested by Floximo
+
+- type: !PartialOnly species
+  id: Human
+  weight: 4.63
+
+- type: !PartialOnly species
+  id: Vulpkanin
+  weight: 2.39
+
+- type: !PartialOnly species
+  id: Shadekin
+  weight: 1.79
+
+- type: !PartialOnly species
+  id: Moth
+  weight: 1.64
+
+- type: !PartialOnly species
+  id: Reptilian
+  weight: 1.2
+
+- type: !PartialOnly species
+  id: Doll
+  weight: 1.12
+
+- type: !PartialOnly species
+  id: Avali
+  weight: 1.05
+
+- type: !PartialOnly species
+  id: Elf
+  weight: 0.9
+
+- type: !PartialOnly species
+  id: Experiment
+  weight: 0.82
+
+- type: !PartialOnly species
+  id: Thaven
+  weight: 0.82
+
+- type: !PartialOnly species
+  id: Resomi
+  weight: 0.675
+
+- type: !PartialOnly species
+  id: Dwarf
+  weight: 0.6
+
+- type: !PartialOnly species
+  id: Lagomorph
+  weight: 0.6
+
+- type: !PartialOnly species
+  id: Felionoid
+  weight: 0.6
+
+- type: !PartialOnly species
+  id: Cyclorite
+  weight: 0.52
+
+- type: !PartialOnly species
+  id: Diona
+  weight: 0.45
+
+- type: !PartialOnly species
+  id: Rodentia
+  weight: 0.45
+
+- type: !PartialOnly species
+  id: SlimePerson
+  weight: 0.3
+
+- type: !PartialOnly species
+  id: Xeno
+  weight: 0.3
+
+- type: !PartialOnly species
+  id: Arachnid
+  weight: 0.15
