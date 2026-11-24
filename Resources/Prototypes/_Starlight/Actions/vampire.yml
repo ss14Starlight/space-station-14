@@ -622,7 +622,7 @@
   parent: BaseAction
   id: ActionVampireBloodBond
   name: Blood Bond (2.5/1s)
-  description: Toggle to attach blood tethers to nearby visible thralls, splitting your incoming damage across the group.
+  description: Toggle to attach blood tethers to nearby thralls, splitting your incoming damage across the group.
   components:
     - type: Action
       useDelay: 2 # Toggle
