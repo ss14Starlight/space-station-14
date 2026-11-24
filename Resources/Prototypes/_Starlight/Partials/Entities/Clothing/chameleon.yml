@@ -1,0 +1,34 @@
+- type: !PartialOnly entity
+  id: ClothingUniformJumpsuitChameleon
+  components:
+  - type: Tag
+    tags:
+    - !Remove ClothMade
+
+- type: !PartialOnly entity
+  id: ClothingShoesChameleon
+  components:
+  - type: Tag
+    tags:
+    - !Remove ClothMade
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatChameleon
+  components:
+  - type: Tag
+    tags:
+    - !Remove ClothMade
+
+- type: !PartialOnly entity
+  id: ClothingHandsChameleon
+  components:
+  - type: Tag
+    tags:
+    - !Remove ClothMade
+
+- type: !PartialOnly entity
+  id: ClothingNeckChameleon
+  components:
+  - type: Tag
+    tags:
+    - !Remove ClothMade
