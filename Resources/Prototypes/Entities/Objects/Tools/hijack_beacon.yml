@@ -2,7 +2,7 @@
   parent: [ BaseItem, BaseSyndicateContraband ]
   id: HijackBeacon
   name: hijack beacon
-  description: A device that bypasses the firewall on Nanotrasen-brand Automated Trade Stations. Must be placed on a buy or sell pallet on ATS to work.
+  description: A device that bypasses the firewall on Nanotrasen-brand Automated Trade Stations.
   components:
   - type: Transform
     anchored: false
