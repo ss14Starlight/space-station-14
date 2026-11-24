@@ -119,16 +119,16 @@
     Steel: 200
 
 # Has to be a variant of the AiInterface by resource cost, as the ai interface includes the function
-#- type: latheRecipe # Disabled until fully cooked
-#  parent: BaseRoboticsRecipe
-#  id: RemoteControlBrain
-#  result: RemoteControlBrain
-#  completetime: 6
-#  materials:
-#    Steel: 250
-#    Glass: 250
-#    Gold: 50
-#    Silver: 50
+- type: latheRecipe
+  parent: BaseRoboticsRecipe
+  id: RemoteControlBrain
+  result: RemoteControlBrain
+  completetime: 6
+  materials:
+    Steel: 250
+    Glass: 250
+    Gold: 50
+    Silver: 50
 
 # Custom Generic Borg Modules
 - type: latheRecipe

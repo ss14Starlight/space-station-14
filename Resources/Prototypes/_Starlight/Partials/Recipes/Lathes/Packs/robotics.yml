@@ -1,4 +1,4 @@
-#- type: !PartialOnly latheRecipePack # Disabled until fully cooked
-#  id: Robotics
-#  recipes:
-#  - RemoteControlBrain
+- type: !PartialOnly latheRecipePack
+  id: Robotics
+  recipes:
+  - RemoteControlBrain
