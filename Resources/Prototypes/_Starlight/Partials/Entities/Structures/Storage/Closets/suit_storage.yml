@@ -49,7 +49,6 @@
       shader: unshaded
       visible: false
 
-# Like their locker counterparts, these should have equivalent plating blocking the wire panel.
 - type: !PartialOnly entity
   id: SuitStorageCaptain
   components: &suitStoragePlating
