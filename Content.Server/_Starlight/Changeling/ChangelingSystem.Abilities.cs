@@ -5,12 +5,15 @@ using Content.Server.Changeling.Systems;
 using Content.Server.Ensnaring;
 using Content.Shared._Starlight.Actions.Components;
 using Content.Shared._Starlight.Changeling;
+using Content.Shared._Starlight.Medical.Body.Components;
 using Content.Shared._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared.Actions.Components;
 using Content.Shared.Actions.Events;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Organ;
 using Content.Shared.Body.Systems;
 using Content.Shared.Changeling.Components;
 using Content.Shared.Changeling.Systems;
@@ -173,6 +176,26 @@ public sealed partial class ChangelingSystem : EntitySystem
             _blood.ChangeBloodReagents(target, blood);
         }
         // Starlight edit end
+
+        // Remove their organs, we just ate them!
+        if (TryComp<BodyComponent>(args.Consumed, out var consumed))
+        {
+            foreach (var (organId, _) in _body.GetBodyOrgans(args.Consumed, consumed))
+            {
+                if (
+                    HasComp<OrganAppendixComponent>(organId) ||
+                    HasComp<OrganHeartComponent>(organId) ||
+                    HasComp<OrganKidneysComponent>(organId) ||
+                    HasComp<OrganLiverComponent>(organId) ||
+                    HasComp<OrganLungsComponent>(organId) ||
+                    HasComp<OrganStomachComponent>(organId)
+                )
+                {
+                    _body.RemoveOrgan(organId);
+                    QueueDel(organId);
+                }
+            }
+        }
 
         EnsureComp<AbsorbedComponent>(target);
         if (TryComp<PerishableComponent>(target, out var perishable))
