@@ -1,11 +1,4 @@
 Entries:
-- author: Tjmaxmillion
-  changes:
-  - message: Station AI can now use the Secure Command Terminal for select requests (Code Violet, Emergency Access, and Escape Pods), but cannot cancel pending requests.
-    type: Tweak
-  id: 410409
-  time: '2026-11-13T22:00:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7135
 - author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
   changes:
   - message: 'Added modular HUDs: flexible, modular eyewear which lets you put together the infinity stones of eyewear.'
@@ -2799,4 +2792,11 @@ Entries:
   id: 410808
   time: '2026-11-24T14:44:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7408
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Organ pods now properly give organs again when sliced open.
+    type: Fix
+  id: 410809
+  time: '2026-11-24T19:51:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7405
 Order: -1
