@@ -13,10 +13,11 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [SubscribeLocalEvent]
     private void OnProgressUpdated(Entity<SurgeryProgressComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (!TryComp<BodyPartComponent>(ent, out var part) || part.Body is not { } body)
+        if (!TryComp<BodyPartComponent>(ent, out var part))
             return;
 
-        if (_ui.TryGetOpenUi<SurgeryBui>(body, SurgeryUIKey.Key, out var bui))
+        var uiOwner = part.Body ?? ent.Owner;
+        if (_ui.TryGetOpenUi<SurgeryBui>(uiOwner, SurgeryUIKey.Key, out var bui))
             bui.RefreshUI();
     }
 }
