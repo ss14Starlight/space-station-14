@@ -285,14 +285,10 @@ public sealed partial class HijackBeaconSystem : EntitySystem
     ///     Check if the beacon is on the Trade Station and if the Trade Station has not been hijacked already.
     /// </summary>
     private bool CanActivate(Entity<HijackBeaconComponent> ent)
-    {
-        return TryComp(Transform(ent).GridUid, out TradeStationComponent? tradeStation)
+        => TryComp(Transform(ent).GridUid, out TradeStationComponent? tradeStation)
             && !tradeStation.Hacked
             && _anchor.CanAnchorAt(ent.Owner)
-            // Starlight-begin
-            && SLCanActivate(ent)
-            ;// Starlight-end
-    }
+            && SLCanActivate(ent); // Starlight
 
     /// <summary>
     ///     Anchoring helper
