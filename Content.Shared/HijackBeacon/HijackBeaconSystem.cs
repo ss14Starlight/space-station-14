@@ -286,8 +286,12 @@ public sealed partial class HijackBeaconSystem : EntitySystem
     /// </summary>
     private bool CanActivate(Entity<HijackBeaconComponent> ent)
     {
-        return TryComp(Transform(ent).GridUid, out TradeStationComponent? tradeStation) && !tradeStation.Hacked &&
-               _anchor.CanAnchorAt(ent.Owner);
+        return TryComp(Transform(ent).GridUid, out TradeStationComponent? tradeStation)
+            && !tradeStation.Hacked
+            && _anchor.CanAnchorAt(ent.Owner)
+            // Starlight-begin
+            && SLCanActivate(ent)
+            ;// Starlight-end
     }
 
     /// <summary>

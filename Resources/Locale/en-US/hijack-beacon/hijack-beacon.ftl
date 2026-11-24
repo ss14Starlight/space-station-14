@@ -12,6 +12,7 @@ hijack-beacon-popup-anchor = The beacon anchors itself into the ground!
 hijack-beacon-popup-unanchor = The beacon unanchors itself from the ground.
 
 hijack-beacon-verb-activate-text = Activate
-hijack-beacon-verb-activate-message = The beacon can only be armed on the Automated Trade Station, on an unoccupied tile.
+# Starlight - adjusted activation message to fit new requirements
+hijack-beacon-verb-activate-message = The beacon can only be armed on the ATS, on an unoccupied buy/sell pallet.
 hijack-beacon-verb-deactivate-text = Deactivate
 hijack-beacon-verb-deactivate-message = The beacon isn't going to deactivate itself, you know.
