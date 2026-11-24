@@ -1,7 +1,7 @@
 - type: quickPhrase
   id: BaseNounsPhrase
   parent: BaseCommonPhrase
-  group: Nouns
+  group: aac-group-nouns #Starlight: Make group names localization friendly
   abstract: true
 
 - type: quickPhrase

@@ -1,0 +1,22 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀                         [bold]REQUEST FOR PROMOTION[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+I, [signature], assert that the following employee has obtained the necessary qualifications and experience to be promoted.
+
+Employee to be promoted: [form]
+
+Requested position: [form]
+
+Supervisor(s): [form]
+
+Reason for promotion: [form]
+
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+

@@ -1,0 +1,23 @@
+- type: construction
+  id: ChairXeno
+  graph: SeatXeno
+  startNode: start
+  targetNode: chairXeno
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: TableXeno
+  graph: Table
+  startNode: start
+  targetNode: TableXeno
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

@@ -199,7 +199,7 @@ public sealed partial class HorseStandSystem : EntitySystem
 
             // Removing an organ doesn't blind anyone by itself. Surgery raises this event for that,
             // so it is raised here too (blindness, hidden eye sprite on the victim).
-            var ev = new SurgeryOrganExtracted(target, container.Owner, eye.Owner);
+            var ev = new SurgeryOrganExtracted(target, container.Owner, eye.Owner, args.Performer);
             RaiseLocalEvent(eye.Owner, ref ev);
 
             // Make sure the eyes end up on the ground at the victim's feet.

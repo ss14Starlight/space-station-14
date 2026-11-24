@@ -649,6 +649,9 @@
   id: MimeMask #used in the security mime mask crafting graph
 
 - type: Tag
+  id: MiningTicket
+
+- type: Tag
   id: ModularBarrel
 
 - type: Tag
@@ -774,6 +777,9 @@
   id: SalvageTicket
 
 - type: Tag
+  id: JobIconSalvage
+
+- type: Tag
   id: Sausage # MetamorphRecipe: FoodSausageBun
 
 - type: Tag
@@ -879,9 +885,6 @@
   id: TiderAnvilParts
 
 - type: Tag
-  id: TrashBagBlue
-
-- type: Tag
   id: UnDissolvable
 
 - type: Tag
@@ -913,6 +916,12 @@
 
 - type: Tag
   id: RawXenoMeat #BountySalvageRawXenoMeat
+
+- type: Tag
+  id: Xeno
+
+- type: Tag
+  id: XenoEmotes
 
 - type: Tag
   id: XenomoproachWearable # Allows xenomoproach to wear it, really only used for headsets. No system in place to use differing displacements for something with a given prefix/suffix, so this is needed for now.

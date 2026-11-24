@@ -81,7 +81,7 @@ public sealed partial class GunUpgradeSystem : EntitySystem
         if (_entityWhitelist.IsWhitelistFail(ent.Comp.Whitelist, args.Used))
             return;
 
-        if (GetCurrentUpgradeTags(ent).ToHashSet().IsSupersetOf(upgradeComponent.Tags))
+        if (GetCurrentUpgradeTags(ent).ToHashSet().Overlaps(upgradeComponent.Tags)) // Starlight-edit
         {
             _popup.PopupPredicted(Loc.GetString("upgradeable-gun-popup-already-present"), ent, args.User);
             return;
@@ -109,8 +109,20 @@ public sealed partial class GunUpgradeSystem : EntitySystem
     {
         foreach (var (ammo, _) in args.Ammo)
         {
-            if (TryComp<ProjectileComponent>(ammo, out var proj))
+        //Starlight-start: continue
+            if (!TryComp<ProjectileComponent>(ammo, out var proj))
+                continue;
+        //Starlight-end
+
                 proj.Damage += ent.Comp.Damage;
+
+        //Starlight-start
+                foreach (var (type, multiplier) in ent.Comp.DamageMultiplier.DamageDict)
+                {
+                    if (proj.Damage.DamageDict.TryGetValue(type, out var damage))
+                        proj.Damage.DamageDict[type] = damage * multiplier;
+                }
+        //Starlight-end
         }
     }
 

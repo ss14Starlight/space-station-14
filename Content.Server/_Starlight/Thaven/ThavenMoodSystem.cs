@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._Starlight.Achievement;
 using Content.Server.Actions;
 using Content.Server.Chat.Managers;
 using Content.Shared.Chat;
@@ -29,6 +30,7 @@ public sealed partial class ThavenMoodsSystem : SharedThavenMoodSystem
     [Dependency] private UserInterfaceSystem _bui = default!;
     [Dependency] private IChatManager _chatManager = default!;
     [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private AchievementSystem _achievements = default!;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public IReadOnlyList<ThavenMood> SharedMoods => _sharedMoods.AsReadOnly();
@@ -369,7 +371,7 @@ public sealed partial class ThavenMoodsSystem : SharedThavenMoodSystem
         base.OnEmagged(ent, ref args);
         if (!args.Handled)
             return;
-
+        _achievements.QueueUnlockAchievement(ent.Owner, "fishos");
         TryAddRandomMood(ent, ent.Comp.Wildcard);
     }
 

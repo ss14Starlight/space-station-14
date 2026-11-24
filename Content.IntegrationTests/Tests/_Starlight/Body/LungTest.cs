@@ -1,6 +1,8 @@
 using Content.IntegrationTests.Fixtures;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.Body.Components;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
 using Content.Shared.Atmos.Components;
 using Robust.Shared;
@@ -9,6 +11,7 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using System.Numerics;
 using Robust.Shared.EntitySerialization.Systems;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Medical.Body.Systems;
 
@@ -122,6 +125,110 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
                     GetMapMoles(), Is.EqualTo(startingMoles).Within(0.0002),
                     "Did not exhale as much gas as was inhaled"
                 );
+            }
+        }
+
+        [Test]
+        public async Task SleepingReducesGasIntakeWithoutChangingBreathingInterval()
+        {
+            var pair = Pair;
+            var server = pair.Server;
+            await server.WaitIdleAsync();
+
+            var entityManager = server.ResolveDependency<IEntityManager>();
+            var mapLoader = entityManager.System<MapLoaderSystem>();
+            var mapSys = entityManager.System<SharedMapSystem>();
+            EntityUid? grid = null;
+            EntityUid human = default;
+            GridAtmosphereComponent relevantAtmos = default;
+            RespiratorComponent respirator = null!;
+            var testMapName = new ResPath("Maps/Test/Breathing/3by3-20oxy-80nit.yml");
+
+            await server.WaitPost(() =>
+            {
+                mapSys.CreateMap(out var mapId);
+                Assert.That(mapLoader.TryLoadGrid(mapId, testMapName, out var gridEnt));
+                grid = gridEnt!.Value.Owner;
+            });
+
+            Assert.That(grid, Is.Not.Null, $"Test blueprint {testMapName} not found.");
+
+            float GetMapMoles()
+            {
+                var totalMapMoles = 0.0f;
+                foreach (var tile in relevantAtmos.Tiles.Values)
+                {
+                    totalMapMoles += tile.Air?.TotalMoles ?? 0.0f;
+                }
+
+                return totalMapMoles;
+            }
+
+            await server.WaitAssertion(() =>
+            {
+                var coordinates = new EntityCoordinates(grid.Value, new Vector2(0.5f, 0.5f));
+                human = entityManager.SpawnAttachedTo("HumanLungDummy", coordinates);
+                relevantAtmos = entityManager.GetComponent<GridAtmosphereComponent>(grid.Value);
+                respirator = entityManager.GetComponent<RespiratorComponent>(human);
+            });
+
+            try
+            {
+                await pair.RunSeconds(1);
+
+                var awakeGasIntake = 0f;
+                var sleepingGasIntake = 0f;
+                var nextUpdateBeforeSleep = TimeSpan.Zero;
+                var adjustedUpdateIntervalBeforeSleep = TimeSpan.Zero;
+                await server.WaitAssertion(() =>
+                {
+                    var respiratorSystem = server.System<RespiratorSystem>();
+                    var sleeping = server.System<SleepingSystem>();
+
+                    var awakeMolesBefore = GetMapMoles();
+                    respiratorSystem.Inhale((human, respirator));
+                    awakeGasIntake = awakeMolesBefore - GetMapMoles();
+
+                    nextUpdateBeforeSleep = respirator.NextUpdate;
+                    adjustedUpdateIntervalBeforeSleep = respirator.AdjustedUpdateInterval;
+                    using (Assert.EnterMultipleScope())
+                    {
+                        Assert.That(sleeping.TrySleeping(human), Is.True);
+                        Assert.That(respirator.NextUpdate, Is.EqualTo(nextUpdateBeforeSleep));
+                    }
+
+                    var sleepingMolesBefore = GetMapMoles();
+                    respiratorSystem.Inhale((human, respirator));
+                    sleepingGasIntake = sleepingMolesBefore - GetMapMoles();
+                });
+
+                using (Assert.EnterMultipleScope())
+                {
+                    Assert.That(awakeGasIntake, Is.GreaterThan(0f));
+                    Assert.That(sleepingGasIntake,
+                        Is.EqualTo(awakeGasIntake / 3f).Within(awakeGasIntake * 0.05f));
+                }
+
+                await PoolManager.WaitUntil(server, () => respirator.NextUpdate > nextUpdateBeforeSleep);
+                await server.WaitAssertion(() =>
+                {
+                    var sleeping = server.System<SleepingSystem>();
+                    var timing = server.ResolveDependency<IGameTiming>();
+
+                    using (Assert.EnterMultipleScope())
+                    {
+                        Assert.That((respirator.NextUpdate - timing.CurTime).TotalSeconds,
+                            Is.EqualTo(adjustedUpdateIntervalBeforeSleep.TotalSeconds).Within(0.1));
+                        Assert.That(sleeping.TryWaking(human, force: true), Is.True);
+                        Assert.That((respirator.NextUpdate - timing.CurTime).TotalSeconds,
+                            Is.EqualTo(adjustedUpdateIntervalBeforeSleep.TotalSeconds).Within(0.1));
+                    }
+                });
+            }
+            finally
+            {
+                await server.WaitPost(() => entityManager.DeleteEntity(human));
+                await pair.RunUntilSynced();
             }
         }
 
