@@ -1,4 +1,3 @@
-# Let's make these hackable, and accessible by AI! Mirrors secure closets.
 - type: !PartialOnly entity
   id: SuitStorageBase
   components:
