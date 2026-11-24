@@ -633,7 +633,7 @@
         state: blood_bond
     - type: InstantAction
       event: !type:VampireBloodBondActionEvent
-        range: 3
+        range: 8
         bloodCostPerTick: 5
         tickInterval: 2
         beamPrototype: VampireBloodBondBeamVisual
