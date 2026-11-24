@@ -30,13 +30,8 @@
   - type: StrapVehicle
   - type: Strap
     buckleOffset: "0,-0.15"
-  - type: Solution
-    id: fueltank
-    solution:
-      maxVol: 150
   - type: !Remove Vehicle
   - type: !Remove VehicleBuckle
-  - type: !Remove SolutionContainerManager
   save: !Remove
 
 - type: !PartialOnly entity
@@ -56,18 +51,9 @@
   - type: VehicleRide
     riderSpeedAffectsVehicle: true
   - type: !Remove VehicleBuckle
-
-- type: !PartialOnly entity
-  id: VehicleATVFilled
-  components:
-  - type: Solution
-    id: fueltank
-    solution:
-      reagents:
-      - ReagentId: WeldingFuel
-        Quantity: 150
-      maxVol: 150
-  - type: !Remove SolutionContainerManager
+  - type: FootprintOwner
+    printState: Tire
+    alternateStepOffset: 0.2
 
 - type: !PartialOnly entity
   id: VehicleATVNTSec
@@ -86,18 +72,9 @@
   - type: VehicleRide
     riderSpeedAffectsVehicle: true
   - type: !Remove VehicleBuckle
-
-- type: !PartialOnly entity
-  id: VehicleATVNTSecFueled
-  components:
-  - type: Solution
-    id: fueltank
-    solution:
-      reagents:
-      - ReagentId: WeldingFuel
-        Quantity: 150
-      maxVol: 150
-  - type: !Remove SolutionContainerManager
+  - type: FootprintOwner
+    printState: Tire
+    alternateStepOffset: 0.2
 
 - type: !PartialOnly entity
   id: VehicleSkeletonMotorcycle
@@ -116,18 +93,9 @@
   - type: VehicleRide
     riderSpeedAffectsVehicle: true
   - type: !Remove VehicleBuckle
-
-- type: !PartialOnly entity
-  id: VehicleSkeletonMotorcycleFueledKeys
-  components:
-  - type: Solution
-    id: fueltank
-    solution:
-      reagents:
-      - ReagentId: WeldingFuel
-        Quantity: 150
-      maxVol: 150
-  - type: !Remove SolutionContainerManager
+  - type: FootprintOwner
+    printState: Tire
+    alternateStepOffset: 0
 
 - type: !PartialOnly entity
   id: VehicleContainerBase
@@ -177,10 +145,7 @@
       - Body
   - type: Solution
     id: fueltank
-    solution:
-      maxVol: 150
   - type: !Remove VehicleContainer
-  - type: !Remove SolutionContainerManager
   save: !Remove
 
 - type: !PartialOnly entity
@@ -200,15 +165,6 @@
       - VehicleKey
       - ClowncarKeys
   - type: !Remove VehicleContainer
-
-- type: !PartialOnly entity
-  id: VehicleClownCarFilled
-  components:
-  - type: Solution
-    id: fueltank
-    solution:
-      reagents:
-      - ReagentId: WeldingFuel
-        Quantity: 150
-      maxVol: 150
-  - type: !Remove SolutionContainerManager
+  - type: FootprintOwner
+    printState: Tire
+    alternateStepOffset: 0.2

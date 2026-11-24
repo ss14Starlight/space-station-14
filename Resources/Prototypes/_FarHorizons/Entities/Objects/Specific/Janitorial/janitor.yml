@@ -1,26 +1,22 @@
 - type: entity
   name: floor buffer
   id: FloorCleaner
-  parent: BaseItem
+  parent: [ BaseItem, SolutionTank, SolutionSmall ]
   description: Quickly clean anything in your way by just running over it!
   components:
     - type: Sprite
       sprite: Objects/Misc/moproach_shoes.rsi
       state: mopshoes
     - type: FloorBuffer
-      solutionContainer: watertank
-    - type: SolutionContainerManager
-      solutions:
-        watertank:
-          maxVol: 60
+      solutionContainer: tank
     - type: RefillableSolution
-      solution: watertank
+      solution: tank
     - type: ExaminableSolution
-      solution: watertank
+      solution: tank
       exactVolume: true
     - type: ReagentDraw
       enabled: false
-      solutionContainer: watertank
+      solutionContainer: tank
       whitelistedReagents:
       - Water
       drainRate: 1
@@ -29,7 +25,7 @@
       transferAmount: 20
     - type: Absorbent
       pickupAmount: 10
-      solutionName: watertank
+      solutionName: tank
     - type: AmbientSound
       sound: "/Audio/_FarHorizons/Machines/floor_buffer.ogg"
       range: 10

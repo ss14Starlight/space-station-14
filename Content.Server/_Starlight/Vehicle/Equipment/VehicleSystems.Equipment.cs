@@ -246,6 +246,15 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
 
         var armor = CompOrNull<DamageableComponent>(WorkingPart(ent, EquipmentType.ARMOR));
         _damage.SetDamageModifierSetId(ent.Owner, armor?.DamageModifierSetId ?? ent.Comp.OriginalArmor);
+
+        if (ent.Comp.EquipmentSlots.HasFlag(EquipmentType.TIRES))
+        {
+            var tires = CompOrNull<MovementSpeedModifierComponent>(WorkingPart(ent, EquipmentType.TIRES));
+            var friction = tires?.BaseFriction ?? 20f;
+            _movement.ChangeBaseFriction(ent, friction, friction, tires?.BaseAcceleration ?? 0.5f);
+        }
+
+        _movement.RefreshMovementSpeedModifiers(ent);
         _movement.RefreshFrictionModifiers(ent);
         _movement.RefreshWeightlessModifiers(ent);
     }
@@ -254,26 +263,6 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
     {
         return vehicle.Comp.Equipment.TryGetValue(slot, out var part) &&
                TryComp<VehicleEquipmentComponent>(part, out var component) && !component.Broken ? part : null;
-    }
-
-    [SubscribeLocalEvent]
-    private void OnFriction(Entity<VehicleModsComponent> ent, ref RefreshFrictionModifiersEvent args)
-    {
-        if (!ent.Comp.EquipmentSlots.HasFlag(EquipmentType.TIRES))
-            return;
-
-        if (TryComp<MovementSpeedModifierComponent>(WorkingPart(ent, EquipmentType.TIRES), out var tires))
-        {
-            args.Acceleration = tires.BaseAcceleration;
-            args.Friction = tires.BaseFriction;
-            args.FrictionNoInput = tires.BaseFriction;
-        }
-        else
-        {
-            args.Acceleration = 0.5f;
-            args.Friction = 16f;
-            args.FrictionNoInput = 16f;
-        }
     }
 
     [SubscribeLocalEvent]

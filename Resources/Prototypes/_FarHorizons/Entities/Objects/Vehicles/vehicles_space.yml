@@ -51,10 +51,10 @@
     containers:
       key_slot: !type:ContainerSlot
       vehicle_mods_container: !type:Container
-  - type: SolutionContainerManager
-    solutions:
-      fueltank:
-        maxVol: 150
+  - type: Solution
+    id: fueltank
+    solution:
+      maxVol: 150
   - type: RefillableSolution
     solution: fueltank
   - type: ExaminableSolution
@@ -121,13 +121,11 @@
   parent: VehicleTransport
   suffix: Filled
   components:
-    - type: SolutionContainerManager
-      solutions:
-        fueltank:
-          reagents:
-          - ReagentId: WeldingFuel
-            Quantity: 150
-          maxVol: 150
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 150
     - type: VehicleMods
       startingEquipment:
         - BasicTires

@@ -1,4 +1,4 @@
-#Equipment
+# vehicles
 
 - type: listing
   id: VendorVehicleSkeletonMotorcycleMining
@@ -6,8 +6,18 @@
   cost:
     SalvageTicket: 800
   categories:
-  - MiningEquipment
+  - MiningVehicles
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorVehicleATV
+  productEntity: VehicleATVFilled
+  cost:
+    SalvageTicket: 300
+  categories:
+  - MiningVehicles
+  conditions:
   - !type:BuyerAccessCondition

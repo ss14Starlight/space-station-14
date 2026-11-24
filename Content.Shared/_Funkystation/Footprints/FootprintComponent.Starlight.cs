@@ -54,4 +54,5 @@ public enum FootprintVisualState : byte
     Moth,
     Spider,
     Diona,
+    Tire,
 }

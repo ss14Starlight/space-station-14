@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared._Starlight.Movement.Events;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage.Components;
@@ -177,19 +178,16 @@ public sealed partial class VehicleRideSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnRiderSpeedChanged(EntityUid owner, VehicleOperatorComponent component, RefreshMovementSpeedModifiersEvent args)
+    private void OnRiderSpeedChanged(Entity<VehicleOperatorComponent> ent, ref MovementSpeedModifiersChangedEvent args)
     {
-        var ent = new Entity<VehicleOperatorComponent>(owner, component);
         if (ent.Comp.Vehicle is not { } vehicle ||
-            !TryComp<VehicleRideComponent>(vehicle, out var ride) || !ride.RiderSpeedAffectsVehicle)
+            TerminatingOrDeleted(vehicle) ||
+            !TryComp<VehicleRideComponent>(vehicle, out var ride) ||
+            !ride.RiderSpeedAffectsVehicle ||
+            _vehicles.GetOperatorOrNull(vehicle) != ent.Owner)
             return;
 
-        // The operator's modifiers are committed after the refresh event returns.
-        Timer.Spawn(0, () =>
-        {
-            if (!TerminatingOrDeleted(vehicle) && _vehicles.GetOperatorOrNull(vehicle) == ent.Owner)
-                _movementSpeed.RefreshMovementSpeedModifiers(vehicle);
-        });
+        _movementSpeed.RefreshMovementSpeedModifiers(vehicle);
     }
 
     [SubscribeLocalEvent]

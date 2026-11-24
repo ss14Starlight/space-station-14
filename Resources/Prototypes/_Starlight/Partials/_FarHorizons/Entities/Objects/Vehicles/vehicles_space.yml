@@ -47,13 +47,8 @@
   - type: ContainerContainer
     containers:
       passenger_slot: !type:Container { showEnts: false }
-  - type: Solution
-    id: fueltank
-    solution:
-      maxVol: 150
   - type: !Remove VehicleContainer
   - type: !Remove IntrinsicUI
-  - type: !Remove SolutionContainerManager
 
 - type: !PartialOnly entity
   id: VehicleTransport
@@ -72,15 +67,3 @@
       - VehicleKey
       - ATVKeys
   - type: !Remove VehicleContainer
-
-- type: !PartialOnly entity
-  id: VehicleTransportFueledKeys
-  components:
-  - type: Solution
-    id: fueltank
-    solution:
-      reagents:
-      - ReagentId: WeldingFuel
-        Quantity: 150
-      maxVol: 150
-  - type: !Remove SolutionContainerManager

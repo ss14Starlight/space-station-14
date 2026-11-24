@@ -3,8 +3,3 @@
   components:
   - type: FloorBuffer
     solutionContainer: !Remove
-  - type: Solution
-    id: watertank
-    solution:
-      maxVol: 60
-  - type: !Remove SolutionContainerManager

@@ -40,6 +40,9 @@
   - type: VehicleRide
     riderSpeedAffectsVehicle: true
   - type: !Remove VehicleBuckle
+  - type: FootprintOwner
+    printState: Tire
+    alternateStepOffset: 0.15
 
 - type: !PartialOnly entity
   id: VehicleSecwayTurbo
@@ -89,6 +92,9 @@
       - VehicleKey
       - SyndicateSegwayKeys
   - type: !Remove VehicleBuckle
+  - type: FootprintOwner
+    printState: Tire
+    alternateStepOffset: 0.15
 
 - type: !PartialOnly entity
   id: VehicleSegway
@@ -107,19 +113,14 @@
   - type: VehicleRide
     riderSpeedAffectsVehicle: true
   - type: !Remove VehicleBuckle
+  - type: FootprintOwner
+    printState: Tire
+    alternateStepOffset: 0.15
 
 - type: !PartialOnly entity
   id: VehicleJanicartFilled
   components:
-  - type: Solution
-    id: watertank
-    solution:
-      maxVol: 100
-      reagents:
-      - ReagentId: Water
-        Quantity: 100
   - type: ContainerFill
     containers:
       cell_slot: !Remove
-  - type: !Remove SolutionContainerManager
   - type: !Remove VehicleMods

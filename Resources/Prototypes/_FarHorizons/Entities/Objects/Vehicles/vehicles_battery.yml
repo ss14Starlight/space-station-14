@@ -362,13 +362,11 @@
   parent: VehicleJanicart
   suffix: Filled, Keys
   components:
-    - type: SolutionContainerManager
-      solutions:
-        watertank:
-          reagents:
-          - ReagentId: Water
-            Quantity: 100
-          maxVol: 100
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: Water
+          Quantity: 120
     - type: ContainerFill
       containers:
         cell_slot:

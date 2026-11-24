@@ -6,7 +6,7 @@
   - type: Solution
     id: watertank
     solution:
-      maxVol: 100
+      maxVol: 120
   - type: RefillableSolution
     solution: watertank
   - type: ExaminableSolution

@@ -62,10 +62,10 @@
     containers:
       key_slot: !type:ContainerSlot
       vehicle_mods_container: !type:Container
-  - type: SolutionContainerManager
-    solutions:
-      fueltank:
-        maxVol: 150
+  - type: Solution
+    id: fueltank
+    solution:
+      maxVol: 150
   - type: RefillableSolution
     solution: fueltank
   - type: ExaminableSolution
@@ -123,13 +123,11 @@
   parent: VehicleATV
   suffix: Filled
   components:
-    - type: SolutionContainerManager
-      solutions:
-        fueltank:
-          reagents:
-          - ReagentId: WeldingFuel
-            Quantity: 150
-          maxVol: 150
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 150
     - type: ContainerFill
       containers:
         key_slot:
@@ -195,13 +193,11 @@
   parent: VehicleATVNTSec
   suffix: Fueled
   components:
-    - type: SolutionContainerManager
-      solutions:
-        fueltank:
-          reagents:
-          - ReagentId: WeldingFuel
-            Quantity: 150
-          maxVol: 150
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 150
     - type: VehicleMods
       startingEquipment:
         - BasicTires
@@ -266,13 +262,11 @@
   parent: VehicleSkeletonMotorcycle
   suffix: Fueled, Keys
   components:
-    - type: SolutionContainerManager
-      solutions:
-        fueltank:
-          reagents:
-          - ReagentId: WeldingFuel
-            Quantity: 150
-          maxVol: 150
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 150
     - type: ContainerFill
       containers:
         key_slot:
@@ -323,10 +317,9 @@
       passenger_slot: !type:Container
       storagebase: !type:Container
       vehicle_mods_container: !type:Container
-  - type: SolutionContainerManager
-    solutions:
-      fueltank:
-        maxVol: 150
+  - type: Solution
+    solution:
+      maxVol: 150
   - type: RefillableSolution
     solution: fueltank
   - type: ExaminableSolution
@@ -429,13 +422,11 @@
   parent: VehicleClownCar
   suffix: Filled
   components:
-    - type: SolutionContainerManager
-      solutions:
-        fueltank:
-          reagents:
-          - ReagentId: WeldingFuel
-            Quantity: 150
-          maxVol: 150
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 150
     - type: ContainerFill
       containers:
         key_slot:

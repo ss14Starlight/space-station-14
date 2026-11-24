@@ -123,6 +123,7 @@ public sealed partial class FootprintSystem : EntitySystem
         FootprintVisualState.Moth => new(component.SpeciesSprites, "moth"),
         FootprintVisualState.Spider => new(component.SpeciesSprites, "spider"),
         FootprintVisualState.Diona => new(component.SpeciesSprites, "diona"),
+        FootprintVisualState.Tire => new(new ResPath("/Textures/_FarHorizons/Mobs/footprints.rsi"), "tire"),
         _ => new(component.Sprites, "foot"),
     };
 }

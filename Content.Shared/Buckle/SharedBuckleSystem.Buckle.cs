@@ -235,7 +235,7 @@ public abstract partial class SharedBuckleSystem
         BuckleComponent buckleComp)
     {
         strapComp = null;
-        if (!Resolve(strapUid, ref strapComp, false))
+        if (!Resolve(strapUid, ref strapComp, false) || !strapComp.Enabled) // Starlight
             return false;
 
         // Does it pass the Whitelist
