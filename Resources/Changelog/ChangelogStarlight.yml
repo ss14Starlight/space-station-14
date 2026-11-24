@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
   changes:
-  - message: Added a new blue noir filter.
-    type: Add
-  id: 410413
-  time: '2026-11-13T22:00:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7203
-- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
-  changes:
   - message: Replaced a bunch of preexisting HUDs with modular HUDs.
     type: Tweak
   id: 410414
@@ -2799,4 +2792,11 @@ Entries:
   id: 410812
   time: '2026-11-24T20:59:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7386
+- author: Floximo
+  changes:
+  - message: Remote Controlled entities will now have an RC-Icon appearing on them while controlled.
+    type: Add
+  id: 410813
+  time: '2026-11-24T21:39:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7394
 Order: -1
