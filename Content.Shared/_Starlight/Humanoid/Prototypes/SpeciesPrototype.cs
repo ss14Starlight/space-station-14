@@ -22,7 +22,7 @@ public sealed partial class SpeciesPrototype
     /// The weight this species has for being picked randomly.
     /// </summary>
     [DataField("weight")]
-    public double Weight { get; private set; } = 1;
+    public double Weight { get; private set; } = 0;
 }
 
 
