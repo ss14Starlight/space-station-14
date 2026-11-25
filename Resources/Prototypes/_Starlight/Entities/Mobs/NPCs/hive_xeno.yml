@@ -79,11 +79,6 @@
       types:
         Slash: 18
         Structural: 15
-  - type: FootstepModifier
-    footstepSoundCollection:
-      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
-      params:
-        volume: -6
   - type: MobThresholds
     thresholds:
       0: Alive
