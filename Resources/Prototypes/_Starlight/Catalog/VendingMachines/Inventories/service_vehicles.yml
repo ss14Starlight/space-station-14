@@ -1,0 +1,12 @@
+- type: listing
+  id: VendorUnicycle
+  productEntity: VehicleUnicycle
+  cost:
+    NTCredit: 300
+  categories:
+  - SLClown
+  - SLMime
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerAccessCondition

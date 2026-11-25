@@ -3,7 +3,13 @@
   components:
   - type: StrapVehicle
   - type: Strap
-    buckleOffset: "0,-0.15"
+    modifyBuckleDrawDepth: false
+  - type: DirectionalOverride
+    offsets:
+      North: "0, -0.0625"
+      South: "0, -0.0625"
+      East: "0.03125, -0.0625"
+      West: "-0.03125, -0.0625"
   - type: VehicleIgnition
   - type: VehicleHandBlocker
     blockedHands: 1
@@ -39,6 +45,10 @@
       - SegwayKeys
   - type: VehicleRide
     riderSpeedAffectsVehicle: true
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
   - type: !Remove VehicleBuckle
   - type: FootprintOwner
     printState: Tire
@@ -47,6 +57,10 @@
 - type: !PartialOnly entity
   id: VehicleSecway
   components:
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
   - type: GenericKeyedVehicle
     containerId: key_slot
     keyWhitelist:
@@ -78,6 +92,10 @@
 - type: !PartialOnly entity
   id: VehicleSegwayNST
   components:
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
   - type: Sprite
     layers: !Clear
     - state: vehicle

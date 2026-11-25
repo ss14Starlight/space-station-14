@@ -53,6 +53,10 @@
 - type: !PartialOnly entity
   id: VehicleTransport
   components:
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
   - type: VehiclePassengerSeats
     seats: 1
   - type: Sprite

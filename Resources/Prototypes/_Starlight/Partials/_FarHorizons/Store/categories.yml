@@ -1,0 +1,7 @@
+- type: !PartialOnly storeCategory
+  id: UplinkVehicles
+  name: store-category-vehicles
+
+- type: !PartialOnly storeCategory
+  id: MiningVehicles
+  name: store-category-vehicles

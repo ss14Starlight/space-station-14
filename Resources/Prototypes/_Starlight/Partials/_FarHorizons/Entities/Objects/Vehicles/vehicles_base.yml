@@ -57,5 +57,5 @@
     hornSound:
       path: /Audio/_FarHorizons/Vehicles/bicyclebell.ogg
   - type: Strap
-    buckleOffset: "0,-0.25"
+    modifyBuckleDrawDepth: false
   - type: !Remove VehicleBuckle

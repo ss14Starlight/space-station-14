@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Shared._Funkystation.Footprints;
 using Content.Shared._Starlight.ReagentDraw.Components;
 using Content.Shared._Starlight.ReagentDraw.EntitySystems;
 using Content.Shared._FarHorizons.Tools.FloorBuffer.Components;
@@ -150,10 +151,16 @@ public sealed partial class FloorBufferSystem : EntitySystem
                 }
             }
 
-            foreach (var puddle in _lookup.GetLocalEntitiesIntersecting(tile, 0f).ToArray())
+            foreach (var target in _lookup.GetLocalEntitiesIntersecting(tile, 0f).ToArray())
             {
-                if (!TryComp<PuddleComponent>(puddle, out var comp) ||
-                    !_solutions.TryGetSolution(puddle, comp.SolutionName, out var entity, out var solution))
+                if (HasComp<FootprintComponent>(target))
+                {
+                    QueueDel(target);
+                    continue;
+                }
+
+                if (!TryComp<PuddleComponent>(target, out var comp) ||
+                    !_solutions.TryGetSolution(target, comp.SolutionName, out var entity, out var solution))
                     continue;
 
                 var removed = _solutions.SplitSolutionWithout(entity.Value, solution.Volume * 0.05, Water);
