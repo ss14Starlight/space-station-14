@@ -219,3 +219,22 @@
         reagent: Stellibinin
         amount: -0.05
         # Starlight-End
+
+- type: reagent
+  id: XenoEgg
+  name: reagent-name-royaljelly
+  group: Foods
+  desc: reagent-desc-royaljelly
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: xenoEgg
+  color: "#9d42d5"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:EvenHealthChange
+        damage:
+          Brute: -2
+          Burn: -2
+          Toxin: -2
+          Genetic: -2
+  recognizable: true

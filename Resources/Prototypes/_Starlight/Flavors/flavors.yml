@@ -342,3 +342,8 @@
   id: sawianBlood
   flavorType: Complex
   description: flavor-complex-sawian-blood
+
+- type: flavor
+  id: xenoEgg
+  flavorType: Complex
+  description: flavor-complex-xeno-egg

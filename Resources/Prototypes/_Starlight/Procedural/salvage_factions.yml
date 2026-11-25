@@ -177,3 +177,20 @@
 # Abandoned
 
 # Hive
+
+- type: salvageFaction
+  id: Hive
+  desc: Hive
+  entries:
+    - proto: MobXenoHunter
+      cost: 1
+      prob: 0.95
+    - proto: MobXenoStunner
+      cost: 1
+      prob: 0.15
+    - proto: MobXenoEmpress
+      cost: 100
+  difficulties:
+    - Hive
+  configs:
+    Megafauna: MobXenoEmpress

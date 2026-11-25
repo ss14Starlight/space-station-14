@@ -1,0 +1,11 @@
+# Xeno Difficulties
+
+- type: salvageDifficulty
+  id: Hive
+  lootPrototype: "SalvageLootXenosEasy"
+  lootBudget: 15
+  mobBudget: 199
+  modifierBudget: 3
+  color: "#9FED5896"
+  recommendedPlayers: 6
+  probability: 20

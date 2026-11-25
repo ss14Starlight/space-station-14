@@ -47,7 +47,7 @@
           components:
             - type: NPCRecentlyInjected
         - !type:TotalDamagePrecondition
-          damage: 110
+          damage: 100
         - !type:BuckledPrecondition
           isBuckled: false
         - !type:PulledPrecondition
@@ -131,7 +131,7 @@
         - !type:TotalDamagePrecondition
           damage: 50
         - !type:TotalDamagePrecondition
-          damage: 110
+          damage: 100
           invert: true
         - !type:BuckledPrecondition
           isBuckled: false
@@ -227,6 +227,31 @@
 #Larva
 
 - type: htnCompound
+  id: FleeToHealerLarvaCompound
+  branches:
+    - preconditions:
+        - !type:HasComponentPrecondition
+          invert: true
+          components:
+            - type: NPCRecentlyInjected
+        - !type:TotalDamagePrecondition
+          damage: 1
+        - !type:BuckledPrecondition
+          isBuckled: false
+        - !type:PulledPrecondition
+          isPulled: false
+      tasks:
+        # Let go of anyone mid-drag when the Xeno crosses threshold
+        - !type:HTNPrimitiveTask
+          operator: !type:StopPullingOperator
+        - !type:HTNPrimitiveTask
+          operator: !type:PathToXenoHealerOperator
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            targetKey: HealerCoordinates
+            pathfindInPlanning: false
+
+- type: htnCompound
   id: LarvaFeedCompound
   branches:
     - tasks:
@@ -246,6 +271,9 @@
 - type: htnCompound
   id: LarvaRootCompound
   branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: FleeToHealerLarvaCompound
     - tasks:
         - !type:HTNCompoundTask
           task: LarvaFeedCompound

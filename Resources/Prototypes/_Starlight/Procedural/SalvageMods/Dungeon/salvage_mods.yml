@@ -154,7 +154,6 @@
   desc: salvage-dungeon-mod-hive
   proto: Hive
   biomes:
-    - Caves
-    - Abyss
+    - Snow
   difficulties:
-    - Xeno-Hard
+    - Hive

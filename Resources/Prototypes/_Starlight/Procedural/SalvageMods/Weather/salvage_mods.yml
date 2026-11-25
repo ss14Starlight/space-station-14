@@ -1,0 +1,11 @@
+- type: salvageWeatherMod
+  id: SnowStorm
+  desc: Snowblind
+  biome: Snow
+  difficulties:
+    - Xeno-Hard
+    - Carp-Hard
+    - Argocyte-Hard
+    - Silicon-Hard
+    - Hive
+  weather: WeatherSnowfallLobster

@@ -706,10 +706,7 @@
       tags:
       - Hive
     presets:
-    - Bucket
-    - Wow
-    - SpaceShip
-    - Tall
+    - HiveGrid
 
   - !type:CorridorDunGen
     width: 2
@@ -753,17 +750,18 @@
   id: HiveDungeonEntrance
   table: !type:GroupSelector
     children:
-    - id: AirlockXeno
+    - id: AirlockXenoDoorBump
 
 - type: entityTable
   id: XenoWall
   table: !type:GroupSelector
     children:
+    - id: AirlockXenoDoorBump
     - id: WallSolidChitin
 
 - type: entityTable
   id: XenoWindow
   table: !type:GroupSelector
     children:
-    - id: Grille
+    - id: AirlockXenoDoorBump
     - id: XenoResinWindow

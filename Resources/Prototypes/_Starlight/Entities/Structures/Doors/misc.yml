@@ -32,3 +32,45 @@
             - !type:DoActsBehavior
               acts: ["Destruction"]
     - type: BlockWeather
+
+#Xeno
+- type: entity
+  parent: BaseMaterialDoorNavMap
+  id: AirlockXenoDoorBump
+  components:
+  - type: Door
+    bumpOpen: true
+    clickOpen: true
+    canCrush: true
+    closeTimeOne: 0.8
+    closeTimeTwo: 1.2
+    openTimeOne: 0.8
+    openTimeTwo: 1.2
+    openingAnimationTime: 1.2
+    closingAnimationTime: 1.2
+    openSound:
+      path: /Audio/_RMC/Voice/Xeno/alien_growl1.ogg
+    closeSound:
+      path: /Audio/_RMC/Voice/Xeno/alien_growl1.ogg
+  - type: TimedDoorClosing
+    autoCloseDelay: 5
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/xeno.rsi
+  - type: Paintable
+    group: null
+  - type: RCDDeconstructable
+    deconstructable: true
+    cost: 4
+    delay: 6
+    fx: EffectRCDDeconstruct6
+  - type: Damageable
+    damageContainer: MalignStructure
+    damageModifierSet: StructuralMalignStone
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]

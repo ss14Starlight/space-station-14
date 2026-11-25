@@ -1,5 +1,5 @@
 - type: entity
-  parent: SimpleSpaceMobBase
+  parent: [SimpleSpaceMobBase, BaseSlicingRefinable]
   id: HiveXeno
   description: Nuke it from orbit, its the only way to be sure.
   abstract: true
@@ -26,13 +26,14 @@
       reagents:
       - ReagentId: FluorosulfuricAcid
         Quantity: 1300
+  - type: Insulated
   - type: Prying
     speedModifier: 2
     pryPowered: true
     useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg
     playSoundOnDoafter: true
   - type: ReplacementAccent
-    accent: genericAggressive
+    accent: xeno
   - type: Fixtures
     fixtures:
       fix1:
@@ -50,7 +51,17 @@
       - DoorBumpOpener
   - type: MovementSpeedModifier
     baseSprintSpeed : 4.5
-    baseWalkSpeed: 4
+    baseWalkSpeed: 3.8
+  - type: Body
+    prototype: Animal
+  - type: !Append ToolRefinable #Starlight
+    refineResult:
+    - id: FoodMeatXeno
+      amount: 1
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatXeno
+      amount: 1
 
 - type: entity
   parent: HiveXeno
@@ -66,12 +77,12 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Slash: 18
+        Slash: 15
         Structural: 15
   - type: MobThresholds
     thresholds:
       0: Alive
-      110: Dead
+      140: Dead
   - type: HTN
     rootTask:
       task: XenoRootCompound
@@ -81,9 +92,9 @@
       NavSmash: !type:Bool
         true
       VisionRadius: !type:Single
-        20
+        15
       AggroVisionRadius: !type:Single
-        10
+        12
   - type: Sprite
     drawdepth: Mobs
     sprite: _Starlight/Mobs/Aliens/Xenos/xenohunter.rsi
@@ -96,6 +107,44 @@
         Base: alive
       Dead:
         Base: dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: !Append ToolRefinable #Starlight
+    refineResult:
+    - id: FoodMeatXeno
+      amount: 5
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatXeno
+      amount: 5
+
+- type: entity
+  parent: MobXenoHunter
+  id: MobXenoStunner
+  name: xeno stunner
+  components:
+  - type: MeleeWeapon
+    attackRate: 1
+    altDisarm: true
+    angle: 0
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_spitacid.ogg
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 3
+        Structural: 15
+  - type: StaminaDamageOnHit
+    damage: 10
 
 - type: entity
   parent: HiveXeno
@@ -117,7 +166,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      150: Dead
+      250: Dead
   - type: Sprite
     drawdepth: Mobs
     sprite: _Starlight/Mobs/Aliens/Xenos/xenoempress.rsi
@@ -131,8 +180,8 @@
       Dead:
         Base: dead
   - type: MovementSpeedModifier
-    baseSprintSpeed : 3
-    baseWalkSpeed: 2
+    baseSprintSpeed : 2
+    baseWalkSpeed: 1.5
   - type: MeleeWeapon
     soundHit:
       collection: Punch
@@ -167,6 +216,18 @@
     - id: XenoHive
       orGroup: larva
       prob: 0.05
+  - type: !Append ToolRefinable
+    refineResult:
+    - id: FoodMeatXeno
+      amount: 15
+    - id: FoodEggXeno
+      amount: 2
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatXeno
+      amount: 15
+    - id: FoodEggXeno
+      amount: 2
 
 - type: entity
   parent: HiveXeno
@@ -186,6 +247,10 @@
         30
       AggroVisionRadius: !type:Single
         30
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      20: Dead
   - type: Sprite
     drawdepth: Mobs
     sprite: _Starlight/Mobs/Aliens/Xenos/xenolarva.rsi
