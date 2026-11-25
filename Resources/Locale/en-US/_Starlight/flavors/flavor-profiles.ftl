@@ -64,7 +64,7 @@ flavor-complex-uranium-ice-cream = like sickening green candy apple
 flavor-complex-vox-ice-cream = like crisp mint and faint aftertaste of welding fluid
 flavor-base-cinnamon = cinnamony
 flavor-complex-sawian-blood = like science, and a lack of ethics
-flavor-complex-xeno-Egg = like it night... mostly
+flavor-complex-xeno-Egg = mostly like night... mostly
 
 # Milks
 flavor-complex-chocolate-milk = like chocolate milk
