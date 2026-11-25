@@ -77,7 +77,8 @@ public sealed partial class ReagentFireSystem : EntitySystem
     private float _smallPuddleBurnPercent = 0.5f;
 
     #region Starlight
-    private const float PluoxiumFactor = 8f; // Starlight - pluoxium contributes 8x as much effective oxidiser than oxygen so make a constant for it relative to oxygen for ease of conversion
+    // pluoxium contributes 8x as much effective oxidiser than oxygen so make a constant for it relative to oxygen for ease of conversion
+    private const float PluoxiumFactor = 8f;
     #endregion
 
     public override void Initialize()
