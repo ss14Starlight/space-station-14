@@ -49,6 +49,7 @@
     shownDepartments:
     - Command
     alwaysShowTrackingImplants: true
+    shownTrackingImplant: CommandTrackingImplant
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor

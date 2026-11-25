@@ -203,9 +203,16 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
             foreach (var sensor in allSensors)
             {
                 var clientEntity = GetEntity(sensor.SuitSensorUid);
+
                 if (TryComp<SubdermalImplantComponent>(clientEntity, out var suitSensor) && (filter.ShownFactions.Count == 0 || filter.ShownFactions.Contains(sensor.Faction)))
                 {
-                    filteredSensors.Add(sensor);
+                    //Starlight Start
+                    //Replaced filteredSensors.Add(sensor) with following:
+                    if (filter.ShownTrackingImplant == default)
+                        filteredSensors.Add(sensor);
+                    else if (filter.ShownTrackingImplant == MetaData(suitSensor.Owner).EntityPrototype!.ID)
+                        filteredSensors.Add(sensor);
+                    //Starlight End
                 }
             }
         }

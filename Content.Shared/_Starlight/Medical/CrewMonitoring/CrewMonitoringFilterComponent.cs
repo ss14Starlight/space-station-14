@@ -18,6 +18,12 @@ public sealed partial class CrewMonitoringFilterComponent : Component
     public bool AlwaysShowTrackingImplants = false;
 
     /// <summary>
+    ///     Shows only the crew wearing the specific tracking implant.
+    /// </summary>
+    [DataField("shownTrackingImplant"), ViewVariables(VVAccess.ReadWrite)]
+    public string? ShownTrackingImplant = default;
+
+    /// <summary>
     ///     Only show crew who are wounded or dead.
     /// <summary>
     [DataField("onlyShowWoundedOrDead"), ViewVariables(VVAccess.ReadWrite)]
