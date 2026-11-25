@@ -1,46 +1,46 @@
 - type: entity
-  name: secway spawner
-  id: SpawnVehicleSecway
+  name: electric scooter spawner
+  id: SpawnVehicleScooterElectricCommand
   parent: MarkerBase
-  suffix: NT
+  suffix: Command
   components:
   - type: Sprite
     layers:
       - state: green
-      - sprite: _FarHorizons/Objects/Vehicles/secway.rsi
+      - sprite: _FarHorizons/Objects/Vehicles/electric_scooter_command.rsi
         state: vehicle
   - type: ConditionalSpawner
     prototypes:
-      - VehicleSecwayFilled
+      - VehicleScooterElectricCommandFilled
 
 - type: entity
-  name: secway spawner
-  id: SpawnVehicleSecwayS
+  name: electric scooter spawner
+  id: SpawnVehicleScooterElectricSecurity
   parent: MarkerBase
-  suffix: Syndicate
+  suffix: Security
   components:
   - type: Sprite
     layers:
       - state: green
-      - sprite: _FarHorizons/Objects/Vehicles/neosol_secway.rsi
+      - sprite: _FarHorizons/Objects/Vehicles/electric_scooter_security.rsi
         state: vehicle
   - type: ConditionalSpawner
     prototypes:
-      - VehicleSecwaySFilled
+      - VehicleScooterElectricSecurityFilled
 
 - type: entity
-  name: segway spawner
-  id: SpawnVehicleSegway
+  name: electric scooter spawner
+  id: SpawnVehicleScooterElectric
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
       - state: green
-      - sprite: _FarHorizons/Objects/Vehicles/segway.rsi
+      - sprite: _FarHorizons/Objects/Vehicles/electric_scooter.rsi
         state: vehicle
   - type: ConditionalSpawner
     prototypes:
-      - VehicleSegwayFilled
+      - VehicleScooterElectricFilled
 
 - type: entity
   name: atv spawner
@@ -57,8 +57,8 @@
       - VehicleATVFilled
 
 - type: entity
-  name: stv spawner
-  id: SpawnVehicleSTV
+  name: ntv spawner
+  id: SpawnVehicleATVNanoTrasen
   parent: MarkerBase
   components:
   - type: Sprite
@@ -68,22 +68,7 @@
         state: vehicle
   - type: ConditionalSpawner
     prototypes:
-      - VehicleATVNTSecFilled
-
-- type: entity
-  name: stv spawner
-  id: SpawnVehicleSTVNoKeys
-  parent: MarkerBase
-  suffix: No keys
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-      - sprite: _FarHorizons/Objects/Vehicles/sectv.rsi
-        state: vehicle
-  - type: ConditionalSpawner
-    prototypes:
-      - VehicleATVNTSecFueled
+      - VehicleATVNanoTrasenFilled
 
 - type: entity
   name: wheelchair spawner

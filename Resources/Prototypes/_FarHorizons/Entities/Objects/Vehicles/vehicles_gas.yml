@@ -144,11 +144,10 @@
         - BasicHeadlight
 
 - type: entity
-  id: VehicleATVNTSec
-  parent: [VehicleGasBuckleBase, BaseSecurityContraband]
-  name: stv
-  suffix: NT
-  description: Law enforcement variant of the ATV, comes included with sirens to blare at Tiders.
+  id: VehicleATVNanoTrasen
+  parent: VehicleGasBuckleBase
+  name: ntv
+  description: A luxurious variant of the ATV.
   components:
     - type: Sprite
       drawdepth: OverMobs
@@ -185,7 +184,7 @@
             requireAll: true
             tags:
             - VehicleKey
-            - STVKeys
+            - NTVKeys
     - type: Hitch
     - type: VehicleBuckle
       armorAffectsVehicle: true
@@ -194,35 +193,28 @@
       equipmentSlots: [tires, engine, armor, headlight, lightbar]
 
 - type: entity
-  id: VehicleATVNTSecFueled
-  parent: VehicleATVNTSec
-  suffix: Fueled
+  id: VehicleATVNanoTrasenFilled
+  parent: VehicleATVNanoTrasen
+  suffix: Filled
   components:
     - type: Solution
       solution:
         reagents:
         - ReagentId: WeldingFuel
           Quantity: 150
+    - type: ContainerFill
+      containers:
+        key_slot:
+        - VehicleKeyNTV
     - type: VehicleMods
       startingEquipment:
         - BasicTires
         - BasicEngine
         - BasicArmorKit
         - BasicHeadlight
-        - SecSiren
 
 - type: entity
-  id: VehicleATVNTSecFilled
-  parent: VehicleATVNTSecFueled
-  suffix: Filled
-  components:
-    - type: ContainerFill
-      containers:
-        key_slot:
-        - VehicleKeySTV
-
-- type: entity
-  id: VehicleSkeletonMotorcycle
+  id: VehicleMotorcycle
   parent: VehicleGasBuckleBase
   name: motorcycle
   description: Bad to the bone.
@@ -263,9 +255,9 @@
     vehicleType: Gas
 
 - type: entity
-  id: VehicleSkeletonMotorcycleFueledKeys
-  parent: VehicleSkeletonMotorcycle
-  suffix: Fueled, Keys
+  id: VehicleMotorcycleFilled
+  parent: VehicleMotorcycle
+  suffix: Filled
   components:
     - type: Solution
       solution:

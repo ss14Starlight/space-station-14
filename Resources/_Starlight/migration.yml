@@ -554,7 +554,4 @@ SofaMiddleBrown: ComfyChairBrown
 
 #2026-11-23 - Legacy vehicle IDs, we probably won't ever run into a case where this matters since they're so old
 VehicleKeySkeleton: VehicleKeyMotorcycle
-VehicleKeySyndicateSegway: VehicleKeyElectronicNST
 VehicleKeySkeletonMotorcycle: VehicleKeyMotorcycle
-VehicleSyndicateSegway: VehicleSegwayNST
-SpawnVehicleMotobike: VehicleSkeletonMotorcycleFueledKeys

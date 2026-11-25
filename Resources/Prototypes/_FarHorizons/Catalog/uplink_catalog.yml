@@ -1,11 +1,11 @@
 - type: listing
-  id: UplinkSyndicateSecway
-  name: uplink-syndicate-secway-name
-  description: uplink-syndicate-secway-description
-  icon: { sprite: /Textures/_FarHorizons/Objects/Vehicles/syndicate_segway.rsi, state: icon}
-  productEntity: VehicleSegwayNSTFilled
+  id: UplinkSyndicateElectricScooter
+  name: uplink-syndicate-electric-scooter-name
+  description: uplink-syndicate-electric-scooter-description
+  icon: { sprite: /Textures/_FarHorizons/Objects/Vehicles/electric_scooter_syndicate.rsi, state: icon}
+  productEntity: VehicleScooterElectricSyndicateFilled
   cost:
-    Telecrystal: 2 # What's more loud than a bloodred? A red segway. Plus, not that useful in the grand theme of things, asides from the universal key you get.. Funny though.
+    Telecrystal: 2
   categories:
     - UplinkVehicles
   conditions:
@@ -13,11 +13,11 @@
     stock: 3 # Fun for the whole family
 
 - type: listing
-  id: UplinkSyndicateSecwayArmoredLight
-  name: uplink-syndicate-secway-armored-light-name
-  description: uplink-syndicate-secway-armored-light-description
-  icon: { sprite: /Textures/_FarHorizons/Objects/Vehicles/Armored/syndicate_segway_armored_light.rsi, state: icon}
-  productEntity: VehicleSegwayArmoredLightNST
+  id: UplinkSyndicateElectricScooterArmoredLight
+  name: uplink-syndicate-electric-scooter-armored-light-name
+  description: uplink-syndicate-electric-scooter-armored-light-description
+  icon: { sprite: /Textures/_FarHorizons/Objects/Vehicles/Armored/electric_scooter_syndicate_light_armored.rsi, state: icon}
+  productEntity: VehicleScooterElectricSyndicateArmoredLight
   cost:
     Telecrystal: 4 # May I introduce you to it's slightly less useless cousin?
   categories:

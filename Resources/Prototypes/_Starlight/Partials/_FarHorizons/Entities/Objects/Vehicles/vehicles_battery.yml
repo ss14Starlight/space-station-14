@@ -30,7 +30,7 @@
   save: !Remove
 
 - type: !PartialOnly entity
-  id: VehicleSegway
+  id: VehicleScooterElectric
   components:
   - type: Sprite
     layers: !Clear
@@ -42,7 +42,7 @@
       requireAll: true
       tags:
       - VehicleKey
-      - SegwayKeys
+      - ScooterElectricKeys
   - type: VehicleRide
     riderSpeedAffectsVehicle: true
   - type: ItemSlots
@@ -55,7 +55,7 @@
     alternateStepOffset: 0.15
 
 - type: !PartialOnly entity
-  id: VehicleSecway
+  id: VehicleScooterElectricRestrictedBase
   components:
   - type: ItemSlots
     slots:
@@ -67,14 +67,14 @@
       requireAll: true
       tags:
       - VehicleKey
-      - SecwayKeys
+      - ScooterElectricSecurityKeys
   - type: Sprite
     layers: !Clear
     - state: vehicle
       map: ["base"]
 
 - type: !PartialOnly entity
-  id: VehicleSecwayTurbo
+  id: VehicleScooterElectricTurbo
   components:
   - type: Sprite
     layers: !Clear
@@ -82,7 +82,7 @@
       map: ["base"]
 
 - type: !PartialOnly entity
-  id: VehicleSecwayS
+  id: VehicleScooterElectricSecurity
   components:
   - type: Sprite
     layers: !Clear
@@ -90,7 +90,7 @@
       map: ["base"]
 
 - type: !PartialOnly entity
-  id: VehicleSegwayNST
+  id: VehicleScooterElectricSyndicate
   components:
   - type: ItemSlots
     slots:
@@ -106,7 +106,7 @@
       requireAll: true
       tags:
       - VehicleKey
-      - SyndicateSegwayKeys
+      - ScooterElectricSyndicateKeys
 
 - type: !PartialOnly entity
   id: VehicleJanicartFilled

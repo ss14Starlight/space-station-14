@@ -66,13 +66,13 @@
       equipmentSlots: [tires, engine, armor, headlight]
 
 - type: entity
-  id: VehicleSegway
+  id: VehicleScooterElectric
   parent: VehicleBatteryBuckleBase
-  name: segway
+  name: electric scooter
   components:
     - type: Sprite
       drawdepth: OverMobs
-      sprite: _FarHorizons/Objects/Vehicles/segway.rsi
+      sprite: _FarHorizons/Objects/Vehicles/electric_scooter.rsi
       layers:
       - state: vehicle
         map: ["enum.VehicleVisualLayers.Base"]
@@ -85,7 +85,7 @@
             requireAll: true
             tags:
             - VehicleKey
-            - SegwayKeys
+            - ScooterElectricKeys
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           disableEject: true
@@ -103,8 +103,8 @@
               - VehicleLightArmor
 
 - type: entity
-  id: VehicleSegwayFilled
-  parent: VehicleSegway
+  id: VehicleScooterElectricFilled
+  parent: VehicleScooterElectric
   suffix: Filled
   components:
     - type: ContainerFill
@@ -112,7 +112,7 @@
         cell_slot:
         - PowerCellMedium
         key_slot:
-        - VehicleKeySegway
+        - VehicleKeyScooterElectric
     - type: VehicleMods
       startingEquipment:
         - BasicTires
@@ -120,11 +120,11 @@
         - BasicHeadlight
 
 - type: entity
-  id: VehicleSecway
-  parent: [VehicleSegway, BaseSecurityContraband]
-  name: secway
-  description: The future of transportation. Popularized by St. James, the patron saint of security officers and internet forum moderators.
-  suffix: NT
+  id: VehicleScooterElectricRestrictedBase
+  parent: VehicleScooterElectric
+  abstract: true
+  name: electric scooter
+  description: The future of transportation. Popularized by St. James, the patron saint of internet forum moderators.
   components:
   - type: ItemSlots
     slots:
@@ -134,37 +134,42 @@
           requireAll: true
           tags:
           - VehicleKey
-          - SecwayKeys
+          - ScooterElectricSecurityKeys
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         disableEject: true
         swap: true
   - type: Sprite
     drawdepth: OverMobs
-    sprite: _FarHorizons/Objects/Vehicles/secway.rsi
+    sprite: _FarHorizons/Objects/Vehicles/electric_scooter_command.rsi
     layers:
     - state: vehicle
       map: ["enum.VehicleVisualLayers.Base"]
     noRot: true
   - type: StealTarget
-    stealGroup: VehicleSecwaySteal
+    stealGroup: VehicleScooterElectricSteal
   - type: Tag
     tags:
-    - Secway
+    - SecurityElectricScooter
     - DoorBumpOpener
     - FootstepSound
 
 - type: entity
-  id: VehicleSecwayFilled
-  parent: VehicleSecway
-  suffix: Filled, NT
+  id: VehicleScooterElectricCommand
+  parent: [VehicleScooterElectricRestrictedBase, BaseCommandContraband]
+  suffix: Command
+
+- type: entity
+  id: VehicleScooterElectricCommandFilled
+  parent: VehicleScooterElectricCommand
+  suffix: Command, Filled
   components:
     - type: ContainerFill
       containers:
         cell_slot:
         - PowerCellMedium
         key_slot:
-        - VehicleKeySecway
+        - VehicleKeyScooterElectricCommand
     - type: VehicleMods
       startingEquipment:
         - BasicTires
@@ -174,16 +179,16 @@
         - SecSiren
 
 - type: entity
-  id: VehicleSecwayArmoredLight
-  parent: VehicleSecway
-  suffix: Filled, NT, Armored
+  id: VehicleScooterElectricCommandArmoredLight
+  parent: VehicleScooterElectricCommand
+  suffix: Command, Filled, Armored
   components:
     - type: ContainerFill
       containers:
         cell_slot:
         - PowerCellMedium
         key_slot:
-        - VehicleKeySecway
+        - VehicleKeyScooterElectricCommand
     - type: VehicleMods
       startingEquipment:
         - BasicTires
@@ -193,30 +198,31 @@
         - SecSiren
 
 - type: entity
-  id: VehicleSecwayTurbo
-  parent: VehicleSecway
-  name: secway turbo
-  description: An upgraded Secway, it is better in every single aspect.
+  id: VehicleScooterElectricTurbo
+  parent: VehicleScooterElectricCommand
+  name: turbo electric scooter
+  description: An upgraded electric scooter, better in every single aspect.
+  suffix: Command
   components:
     - type: Sprite
       drawdepth: OverMobs
-      sprite: _FarHorizons/Objects/Vehicles/secway_turbo.rsi
+      sprite: _FarHorizons/Objects/Vehicles/electric_scooter_turbo.rsi
       layers:
       - state: vehicle
         map: ["enum.VehicleVisualLayers.Base"]
       noRot: true
 
 - type: entity
-  id: VehicleSecwayTurboFilled
-  parent: VehicleSecwayTurbo
-  suffix: Filled, NT
+  id: VehicleScooterElectricTurboFilled
+  parent: VehicleScooterElectricTurbo
+  suffix: Command, Filled
   components:
     - type: ContainerFill
       containers:
         cell_slot:
         - PowerCellMedium
         key_slot:
-        - VehicleKeySecway
+        - VehicleKeyScooterElectricCommand
     - type: VehicleMods
       startingEquipment:
         - BasicTires
@@ -226,29 +232,29 @@
         - SecSiren
 
 - type: entity
-  id: VehicleSecwayS
-  parent: VehicleSecway
-  suffix: NS
+  id: VehicleScooterElectricSecurity
+  parent: [VehicleScooterElectricRestrictedBase, BaseSecurityContraband]
+  suffix: Security
   components:
     - type: Sprite
       drawdepth: OverMobs
-      sprite: _FarHorizons/Objects/Vehicles/neosol_secway.rsi
+      sprite: _FarHorizons/Objects/Vehicles/electric_scooter_security.rsi
       layers:
       - state: vehicle
         map: ["enum.VehicleVisualLayers.Base"]
       noRot: true
 
 - type: entity
-  id: VehicleSecwaySFilled
-  parent: VehicleSecwayS
-  suffix: Filled, S
+  id: VehicleScooterElectricSecurityFilled
+  parent: VehicleScooterElectricSecurity
+  suffix: Security, Filled
   components:
     - type: ContainerFill
       containers:
         cell_slot:
         - PowerCellMedium
         key_slot:
-        - VehicleKeySecway
+        - VehicleKeyScooterElectricSecurity
     - type: VehicleMods
       startingEquipment:
         - BasicTires
@@ -258,15 +264,15 @@
         - SecSiren
 
 - type: entity
-  id: VehicleSegwayNST
-  parent: [VehicleSegway, BaseSyndicateContraband]
-  suffix: NST
-  name: syndicate segway
-  description: It's a segway but painted red with the symbol of the syndicate stamped on it.
+  id: VehicleScooterElectricSyndicate
+  parent: [VehicleScooterElectric, BaseSyndicateContraband]
+  suffix: Syndicate
+  name: electric scooter
+  description: An electric scooter painted red with the Syndicate's symbol stamped on it.
   components:
     - type: Sprite
       drawdepth: OverMobs
-      sprite: _FarHorizons/Objects/Vehicles/syndicate_segway.rsi
+      sprite: _FarHorizons/Objects/Vehicles/electric_scooter_syndicate.rsi
       layers:
       - state: vehicle
         map: ["enum.VehicleVisualLayers.Base"]
@@ -279,23 +285,23 @@
             requireAll: true
             tags:
             - VehicleKey
-            - SyndicateSegwayKeys
+            - ScooterElectricSyndicateKeys
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           disableEject: true
           swap: true
 
 - type: entity
-  id: VehicleSegwayNSTFilled
-  parent: VehicleSegwayNST
-  suffix: Filled, NST
+  id: VehicleScooterElectricSyndicateFilled
+  parent: VehicleScooterElectricSyndicate
+  suffix: Syndicate, Filled
   components:
     - type: ContainerFill
       containers:
         cell_slot:
         - PowerCellMedium
         key_slot:
-        - VehicleKeyElectronicNST
+        - VehicleKeyElectronicSyndicate
     - type: VehicleMods
       startingEquipment:
         - BasicTires
@@ -304,16 +310,16 @@
         - HeadlightLED
 
 - type: entity
-  id: VehicleSegwayArmoredLightNST
-  parent: VehicleSegwayNST
-  suffix: Filled, NST, Armored
+  id: VehicleScooterElectricSyndicateArmoredLight
+  parent: VehicleScooterElectricSyndicate
+  suffix: Syndicate, Filled, Armored
   components:
     - type: ContainerFill
       containers:
         cell_slot:
         - PowerCellMedium
         key_slot:
-        - VehicleKeyElectronicNST
+        - VehicleKeyElectronicSyndicate
     - type: VehicleMods
       startingEquipment:
         - BasicTires
@@ -324,7 +330,7 @@
 - type: entity
   id: VehicleJanicartFilled
   parent: VehicleJanicart
-  suffix: Filled, Keys
+  suffix: Filled
   components:
     - type: Solution
       solution:

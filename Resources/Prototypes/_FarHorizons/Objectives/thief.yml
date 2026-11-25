@@ -14,12 +14,12 @@
 
 - type: entity
   parent: BaseThiefStealStructureObjective
-  id: VehicleSecwayStealObjective
+  id: VehicleScooterElectricStealObjective
   components:
   - type: NotJobRequirement
     job: SecurityOfficer
   - type: StealCondition
-    stealGroup: VehicleSecwaySteal
+    stealGroup: VehicleScooterElectricSteal
     verifyMapExistence: false
   - type: Objective
     difficulty: 1

@@ -6,6 +6,6 @@ steal-target-groups-reactorfuelrod = reactor fuel rod
 
 # Thief Structures
 
-steal-target-groups-secway = secway
+steal-target-groups-electric-scooter = electric scooter
 
 # Thief Animal

@@ -70,7 +70,7 @@
     alternateStepOffset: 0.2
 
 - type: !PartialOnly entity
-  id: VehicleATVNTSec
+  id: VehicleATVNanoTrasen
   components:
   - type: DirectionalOverride
     offsets:
@@ -92,7 +92,7 @@
       requireAll: true
       tags:
       - VehicleKey
-      - STVKeys
+      - NTVKeys
   - type: VehicleRide
     riderSpeedAffectsVehicle: true
   - type: !Remove VehicleBuckle
@@ -101,7 +101,7 @@
     alternateStepOffset: 0.2
 
 - type: !PartialOnly entity
-  id: VehicleSkeletonMotorcycle
+  id: VehicleMotorcycle
   components:
   - type: DirectionalOverride
     offsets:

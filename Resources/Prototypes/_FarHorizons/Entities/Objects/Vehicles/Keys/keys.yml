@@ -10,63 +10,63 @@
 
 - type: entity
   parent: VehicleKeyBase
-  id: VehicleKeySegway
-  name: segway electronic key
+  id: VehicleKeyScooterElectric
+  name: electric scooter key
   description: The USB to the present.
   components:
   - type: Tag
     tags:
     - VehicleKey
-    - SegwayKeys
+    - ScooterElectricKeys
   - type: Sprite
-    sprite: _FarHorizons/Objects/Vehicles/segway.rsi
+    sprite: _FarHorizons/Objects/Vehicles/electric_scooter.rsi
     state: keys
 
 - type: entity
-  parent: [VehicleKeyBase, BaseSecurityContraband]
-  id: VehicleKeySecway
-  name: secway electronic key
+  parent: [VehicleKeyBase, BaseCommandContraband]
+  id: VehicleKeyScooterElectricCommand
+  name: electric scooter key
   description: The USB to the future.
-  suffix: NT
+  suffix: Command
   components:
   - type: Tag
     tags:
     - VehicleKey
-    - SecwayKeys
+    - ScooterElectricSecurityKeys
   - type: Sprite
-    sprite: _FarHorizons/Objects/Vehicles/secway.rsi
+    sprite: _FarHorizons/Objects/Vehicles/electric_scooter_command.rsi
     state: keys
 
 - type: entity
   parent: [VehicleKeyBase, BaseSecurityContraband]
-  id: VehicleKeySecwayS
-  name: secway electronic key
+  id: VehicleKeyScooterElectricSecurity
+  name: electric scooter key
   description: The EVIL USB to the future.
-  suffix: NS
+  suffix: Security
   components:
   - type: Tag
     tags:
     - VehicleKey
-    - SecwayKeys
+    - ScooterElectricSecurityKeys
   - type: Sprite
-    sprite: _FarHorizons/Objects/Vehicles/neosol_secway.rsi
+    sprite: _FarHorizons/Objects/Vehicles/electric_scooter_security.rsi
     state: keys
 
 - type: entity
   parent: [VehicleKeyBase, BaseSyndicateContraband]
-  id: VehicleKeyElectronicNST
+  id: VehicleKeyElectronicSyndicate
   name: universal electronic key
-  description: The EVILER USB to the future. Able to fit in security-issued Secways, as well as normal Segways.
-  suffix: NST
+  description: The EVILER USB to the future. It fits both standard and security-issued electric scooters.
+  suffix: Syndicate
   components:
   - type: Tag
     tags:
     - VehicleKey
-    - SecwayKeys
-    - SyndicateSegwayKeys
-    - SegwayKeys
+    - ScooterElectricSecurityKeys
+    - ScooterElectricSyndicateKeys
+    - ScooterElectricKeys
   - type: Sprite
-    sprite: _FarHorizons/Objects/Vehicles/syndicate_segway.rsi
+    sprite: _FarHorizons/Objects/Vehicles/electric_scooter_syndicate.rsi
     state: keys
 
 - type: entity
@@ -81,11 +81,10 @@
     - ATVKeys
 
 - type: entity
-  parent: [VehicleKeyBase, BaseSecurityContraband]
-  id: VehicleKeySTV
-  name: stv key
-  description: Universal STV key, does not fit in ATVs.
-  suffix: NT
+  parent: VehicleKeyBase
+  id: VehicleKeyNTV
+  name: ntv key
+  description: A key for the NTV.
   components:
   - type: Sprite
     sprite: _FarHorizons/Objects/Vehicles/sectv.rsi
@@ -93,7 +92,7 @@
   - type: Tag
     tags:
     - VehicleKey
-    - STVKeys
+    - NTVKeys
 
 - type: entity
   parent: VehicleKeyBase
