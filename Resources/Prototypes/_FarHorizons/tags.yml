@@ -8,6 +8,9 @@
   id: ClowncarKeys
 
 - type: Tag
+  id: ElectricScooter
+
+- type: Tag
   id: GasTurbineBlade
 
 - type: Tag
@@ -29,28 +32,25 @@
   id: MotorcycleKeys
 
 - type: Tag
+  id: NTVKeys
+
+- type: Tag
   id: RamChip
 
 - type: Tag
-  id: SecwayKeys
+  id: ScooterElectricKeys
+
+- type: Tag
+  id: ScooterElectricSecurityKeys
+
+- type: Tag
+  id: ScooterElectricSyndicateKeys
+
+- type: Tag
+  id: SecurityElectricScooter
 
 - type: Tag
   id: SiliconEmotesFH
-
-- type: Tag
-  id: STVKeys
-
-- type: Tag
-  id: Secway
-
-- type: Tag
-  id: Segway
-
-- type: Tag
-  id: SegwayKeys
-
-- type: Tag
-  id: SyndicateSegwayKeys
 
 - type: Tag
   id: VehicleLightArmor

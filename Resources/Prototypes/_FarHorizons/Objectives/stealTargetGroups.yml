@@ -8,8 +8,8 @@
     state: default_rod
 
 - type: stealTargetGroup
-  id: VehicleSecwaySteal
-  name: steal-target-groups-secway
+  id: VehicleScooterElectricSteal
+  name: steal-target-groups-electric-scooter
   sprite:
-    sprite: Objects/Vehicles/secway.rsi
+    sprite: _FarHorizons/Objects/Vehicles/electric_scooter_command.rsi
     state: icon

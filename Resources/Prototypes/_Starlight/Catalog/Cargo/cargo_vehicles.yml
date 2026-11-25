@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: CargoElectricScooter
+  icon:
+    sprite: _FarHorizons/Objects/Vehicles/electric_scooter.rsi
+    state: icon
+  product: CrateElectricScooter
+  cost: 1500
+  category: cargoproduct-category-name-vehicles
+  group: market

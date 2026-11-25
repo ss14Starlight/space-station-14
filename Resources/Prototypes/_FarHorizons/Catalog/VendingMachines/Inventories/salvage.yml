@@ -1,8 +1,8 @@
 #Equipment
 
 - type: listing
-  id: VendorVehicleSkeletonMotorcycle
-  productEntity: VehicleSkeletonMotorcycleFueledKeys
+  id: VendorVehicleMotorcycle
+  productEntity: VehicleMotorcycleFilled
   cost:
     SalvageTicket: 800
   categories:

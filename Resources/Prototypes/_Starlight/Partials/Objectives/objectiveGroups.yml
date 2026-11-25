@@ -91,4 +91,4 @@
 - type: !PartialOnly weightedRandom
   id: ThiefObjectiveGroupStructure
   weights:
-    VehicleSecwayStealObjective: 1
+    VehicleScooterElectricStealObjective: 1

@@ -2,3 +2,4 @@
   id: BasePlasticExplosive
   components:
   - type: EorgPreventSticking
+  - type: EorgPreventTrigger

@@ -8,7 +8,7 @@
       size: Normal
       heldPrefix: light
     - type: Sprite
-      sprite: _FarHorizons/Objects/Misc/Upgrade_Kits/secway_armor.rsi
+      sprite: _FarHorizons/Objects/Misc/Upgrade_Kits/electric_scooter_armor.rsi
       state: light
     - type: VehicleEquipment
       slot: ARMOR
@@ -23,7 +23,7 @@
   description: This kit allows you to upgrade most vehicle's armor to tier II.
   components:
     - type: Sprite
-      sprite: _FarHorizons/Objects/Misc/Upgrade_Kits/secway_armor.rsi
+      sprite: _FarHorizons/Objects/Misc/Upgrade_Kits/electric_scooter_armor.rsi
       state: light
     - type: Damageable
       damageModifierSet: VehicleLightArmor

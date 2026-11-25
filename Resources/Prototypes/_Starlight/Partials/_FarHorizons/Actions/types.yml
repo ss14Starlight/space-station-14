@@ -4,3 +4,7 @@
   - type: Action
     icon:
       sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi
+
+- type: !PartialOnly entity
+  id: ActionToggleZamboni
+  name: Toggle Floor Buffer

@@ -29,7 +29,11 @@
     dismountOnKnockdown: true
   - type: StrapVehicle
   - type: Strap
-    buckleOffset: "0,-0.15"
+    modifyBuckleDrawDepth: false
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
   - type: !Remove Vehicle
   - type: !Remove VehicleBuckle
   save: !Remove
@@ -37,6 +41,16 @@
 - type: !PartialOnly entity
   id: VehicleATV
   components:
+  - type: DirectionalOverride
+    offsets:
+      North: "0, -0.125"
+      South: "0, -0.125"
+      East: "0.0625, -0.125"
+      West: "-0.0625, -0.125"
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
   - type: Sprite
     layers: !Clear
     - state: vehicle
@@ -56,8 +70,18 @@
     alternateStepOffset: 0.2
 
 - type: !PartialOnly entity
-  id: VehicleATVNTSec
+  id: VehicleATVNanoTrasen
   components:
+  - type: DirectionalOverride
+    offsets:
+      North: "0, -0.125"
+      South: "0, -0.125"
+      East: "0.0625, -0.0625"
+      West: "-0.0625, -0.0625"
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
   - type: Sprite
     layers: !Clear
     - state: vehicle
@@ -68,7 +92,7 @@
       requireAll: true
       tags:
       - VehicleKey
-      - STVKeys
+      - NTVKeys
   - type: VehicleRide
     riderSpeedAffectsVehicle: true
   - type: !Remove VehicleBuckle
@@ -77,8 +101,18 @@
     alternateStepOffset: 0.2
 
 - type: !PartialOnly entity
-  id: VehicleSkeletonMotorcycle
+  id: VehicleMotorcycle
   components:
+  - type: DirectionalOverride
+    offsets:
+      North: "0, -0.1875"
+      South: "0, -0.1875"
+      East: "0.09375, -0.15625"
+      West: "-0.09375, -0.15625"
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
   - type: Sprite
     layers: !Clear
     - state: vehicle
@@ -149,6 +183,10 @@
 - type: !PartialOnly entity
   id: VehicleClownCar
   components:
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
   - type: VehiclePassengerSeats
     seats: 8
   - type: Sprite

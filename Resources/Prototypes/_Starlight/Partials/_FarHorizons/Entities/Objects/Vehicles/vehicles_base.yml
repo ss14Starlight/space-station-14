@@ -56,6 +56,8 @@
     riderSpeedAffectsVehicle: true
     hornSound:
       path: /Audio/_FarHorizons/Vehicles/bicyclebell.ogg
+  - type: Strap
+    modifyBuckleDrawDepth: false
   - type: !Remove VehicleBuckle
   - type: FootprintOwner
     printState: Tire

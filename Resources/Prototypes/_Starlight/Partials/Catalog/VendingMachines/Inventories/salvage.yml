@@ -11,6 +11,8 @@
     RadioHandheldExpedition: 6
     WeaponGrapplingGun: 8
     WeaponProtoKineticAccelerator: 10
+    VehicleATVFilled: 1
+    VehicleMotorcycleFilled: 1
   emaggedInventory: # Blimpuf
     WeaponGrapplingGunSyndie: 1 # Blimpuf
     PickaxeDiamond: 1 # Blimpuf

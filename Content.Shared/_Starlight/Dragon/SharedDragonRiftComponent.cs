@@ -6,4 +6,6 @@ public abstract partial class SharedDragonRiftComponent
 {
     [DataField]
     public int SharkMinnowLimit;
+
+    public int LastSentProgressPercentage = -1;
 }

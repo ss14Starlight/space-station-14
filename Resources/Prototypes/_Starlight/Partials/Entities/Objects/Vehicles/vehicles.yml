@@ -2,6 +2,16 @@
 - type: !PartialOnly entity
   id: VehicleJanicart
   components:
+  - type: Sprite
+    drawdepth: OverMobs
+  - type: Strap
+    buckleOffset: "0, 0"
+  - type: DirectionalOverride
+    offsets:
+      North: "0, -0.15625"
+      South: "0, -0.15625"
+      East: "0.0625, -0.15625"
+      West: "-0.0625, -0.15625"
   - type: FloorBuffer
   - type: Solution
     id: watertank

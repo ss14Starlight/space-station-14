@@ -3,7 +3,13 @@
   components:
   - type: StrapVehicle
   - type: Strap
-    buckleOffset: "0,-0.15"
+    modifyBuckleDrawDepth: false
+  - type: DirectionalOverride
+    offsets:
+      North: "0, -0.0625"
+      South: "0, -0.0625"
+      East: "0.03125, -0.0625"
+      West: "-0.03125, -0.0625"
   - type: VehicleIgnition
   - type: VehicleHandBlocker
     blockedHands: 1
@@ -24,7 +30,7 @@
   save: !Remove
 
 - type: !PartialOnly entity
-  id: VehicleSegway
+  id: VehicleScooterElectric
   components:
   - type: Sprite
     layers: !Clear
@@ -36,31 +42,39 @@
       requireAll: true
       tags:
       - VehicleKey
-      - SegwayKeys
+      - ScooterElectricKeys
   - type: VehicleRide
     riderSpeedAffectsVehicle: true
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
   - type: !Remove VehicleBuckle
   - type: FootprintOwner
     printState: Tire
     alternateStepOffset: 0.15
 
 - type: !PartialOnly entity
-  id: VehicleSecway
+  id: VehicleScooterElectricRestrictedBase
   components:
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
   - type: GenericKeyedVehicle
     containerId: key_slot
     keyWhitelist:
       requireAll: true
       tags:
       - VehicleKey
-      - SecwayKeys
+      - ScooterElectricSecurityKeys
   - type: Sprite
     layers: !Clear
     - state: vehicle
       map: ["base"]
 
 - type: !PartialOnly entity
-  id: VehicleSecwayTurbo
+  id: VehicleScooterElectricTurbo
   components:
   - type: Sprite
     layers: !Clear
@@ -68,7 +82,7 @@
       map: ["base"]
 
 - type: !PartialOnly entity
-  id: VehicleSecwayS
+  id: VehicleScooterElectricSecurity
   components:
   - type: Sprite
     layers: !Clear
@@ -76,8 +90,12 @@
       map: ["base"]
 
 - type: !PartialOnly entity
-  id: VehicleSegwayNST
+  id: VehicleScooterElectricSyndicate
   components:
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
   - type: Sprite
     layers: !Clear
     - state: vehicle
@@ -88,7 +106,7 @@
       requireAll: true
       tags:
       - VehicleKey
-      - SyndicateSegwayKeys
+      - ScooterElectricSyndicateKeys
 
 - type: !PartialOnly entity
   id: VehicleJanicartFilled

@@ -57,3 +57,4 @@ store-category-salvage-mercenary-equipment = Scrapper
 store-category-salvage-cybernetics = Cybernetics
 store-category-mining-equipment = Equipment
 store-category-mining-consumeables = Consumeables
+store-category-vehicles = Vehicles

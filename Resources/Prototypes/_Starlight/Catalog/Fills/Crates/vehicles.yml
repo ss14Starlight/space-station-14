@@ -1,0 +1,10 @@
+- type: entity
+  id: CrateElectricScooter
+  parent: CrateGenericSteel
+  name: electric scooter crate
+  description: Contains a standard electric scooter.
+  components:
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - VehicleScooterElectricFilled

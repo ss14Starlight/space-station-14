@@ -182,17 +182,17 @@ SyndiCrewMonitorEmpty: null
 #SpawnVehicleWheelchairFolded: null
 #VehicleWheelchair: null
 #VehicleWheelchairFolded: null
-#VehicleSecwayStealObjective: null
+VehicleSecwayStealObjective: VehicleScooterElectricStealObjective
 #VehicleKeyJanicart: null
-#VehicleKeySecway: null
+VehicleKeySecway: VehicleKeyScooterElectricCommand
 #VehicleKeyATV: null
 #VehicleKeySkeleton: null
-#VehicleKeySyndicateSegway: null
+VehicleKeySyndicateSegway: VehicleKeyElectronicSyndicate
 #VehicleKeySkeletonMotorcycle: null
-#VehicleSecway: null
+VehicleSecway: VehicleScooterElectricCommand
 #VehicleATV: null
-#VehicleSyndicateSegway: null
-#VehicleSkeletonMotorcycle: null
+VehicleSyndicateSegway: VehicleScooterElectricSyndicate
+VehicleSkeletonMotorcycle: VehicleMotorcycle
 #VehicleUnicycle: null
 #VehicleUnicycleFolded: null
 #ActionVehicleHorn: null
@@ -200,9 +200,9 @@ SyndiCrewMonitorEmpty: null
 CrateFunSyndicateSegway: null
 MobTaxiBot: null
 # MobSupplyBot: null
-#SpawnVehicleMotobike: null
+SpawnVehicleMotobike: VehicleMotorcycleFilled
 #SpawnVehicleATV: null
-#SpawnVehicleSecway: null
+SpawnVehicleSecway: SpawnVehicleScooterElectricCommand
 #SpawnVehicleJanicart: null
 #VehicleJanicart: null
 VehicleJanicartDestroyed: null

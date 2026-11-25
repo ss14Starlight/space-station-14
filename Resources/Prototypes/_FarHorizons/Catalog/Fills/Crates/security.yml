@@ -1,29 +1,29 @@
 - type: entity
-  id: CrateSecuritySecway
+  id: CrateSecurityScooterElectric
   parent: CrateSecgear
-  name: secway crate
-  description: A standard-issue secway for apprehending criminals, or a poor substitute for exercise. Probably both.
+  name: security electric scooter crate
+  description: A standard-issue electric scooter for apprehending criminals, or a poor substitute for exercise. Probably both.
   components:
   - type: StorageFill
     contents:
-      - id: VehicleSecwayFilled
+      - id: VehicleScooterElectricSecurityFilled
 
 - type: entity
-  id: CrateSecuritySecwayTurbo
-  parent: CrateSecgear
-  name: secway turbo crate
-  description: A premium-grade secway for catching and shooting criminals at the same time.
+  id: CrateCommandScooterElectricTurbo
+  parent: [CrateCommandSecure, BaseCommandContraband]
+  name: turbo electric scooter crate
+  description: Contains a turbo electric scooter with an upgraded motor.
   components:
   - type: StorageFill
     contents:
-      - id: VehicleSecwayTurboFilled
+      - id: VehicleScooterElectricTurboFilled
 
 - type: entity
-  id: CrateSecuritySTV
+  id: CrateSecurityNTV
   parent: CrateSecgear
-  name: stv crate
-  description: A security-grade ATV for catching criminals and running over Tiders.
+  name: ntv crate
+  description: Contains a luxurious ATV.
   components:
   - type: StorageFill
     contents:
-      - id: VehicleATVNTSecFilled
+      - id: VehicleATVNanoTrasenFilled

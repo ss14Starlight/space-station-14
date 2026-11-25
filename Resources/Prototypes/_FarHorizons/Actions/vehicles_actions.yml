@@ -17,7 +17,7 @@
 - type: entity
   parent: BaseAction
   id: ActionVehicleHorn
-  name: honk
+  name: Honk
   description: Honk!
   components:
   - type: Action  
@@ -33,7 +33,7 @@
 - type: entity
   parent: BaseToggleAction
   id: ActionVehicleToggleSecuritySiren
-  name: toggle security siren
+  name: Toggle Security Siren
   description: Toggles the security siren on and off.
   components:
   - type: Action

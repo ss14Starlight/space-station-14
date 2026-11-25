@@ -155,7 +155,7 @@ public sealed partial class FloorBufferSystem : EntitySystem
             {
                 if (HasComp<FootprintComponent>(target))
                 {
-                    RaiseLocalEvent(target, new FootprintCleanEvent());
+                    QueueDel(target);
                     continue;
                 }
 
