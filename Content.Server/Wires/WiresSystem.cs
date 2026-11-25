@@ -903,6 +903,9 @@ public sealed partial class WiresSystem : SharedWiresSystem
     private void Reset(RoundRestartCleanupEvent args)
     {
         _layouts.Clear();
+        // Starlight - start
+        _stationAiWireCutHolds.Clear();
+        // Starlight - end
     }
     #endregion
 }

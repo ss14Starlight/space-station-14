@@ -16,6 +16,7 @@ namespace Content.Client.Wires.UI
             _menu = this.CreateWindow<WiresMenu>();
             // Starlight - start
             _menu.SetStationAiInteraction(_isStationAiUser);
+            _menu.StationAiWireCutHoldChanged += SendStationAiWireCutHoldMessage; // Starlight
             // Starlight - end
             _menu.OnAction += PerformAction;
         }

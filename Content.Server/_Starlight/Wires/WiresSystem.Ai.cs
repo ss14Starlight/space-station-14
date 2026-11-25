@@ -1,18 +1,59 @@
 using Content.Shared.Hands.Components;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared._Starlight.Computers.RemoteControl;
+using Content.Shared._Starlight.Wires;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Tools.Components;
 using Content.Shared.Wires;
 using Robust.Shared.Audio;
+using Robust.Shared.Timing;
 
 // ReSharper disable CheckNamespace
 namespace Content.Server.Wires;
 
 public sealed partial class WiresSystem
 {
+    private static readonly TimeSpan StationAiWireCutHoldDuration = TimeSpan.FromSeconds(1);
+
     [Dependency] private SharedRemoteControlConsoleSystem _sharedRemoteControl = default!;
     [Dependency] private SharedPowerReceiverSystem _powerReceiver = null!;
+    [Dependency] private IGameTiming _timing = default!;
+
+    private readonly Dictionary<EntityUid, (EntityUid Target, int WireId, TimeSpan StartedAt)> _stationAiWireCutHolds = new();
+
+    [SubscribeLocalEvent]
+    private void OnStationAiWireCutHoldMessage(EntityUid target, WiresComponent wires, StationAiWireCutHoldMessage args)
+    {
+        if (!args.Started)
+        {
+            if (_stationAiWireCutHolds.TryGetValue(args.Actor, out var activeHold)
+                && activeHold.Target == target
+                && activeHold.WireId == args.Id)
+            {
+                _stationAiWireCutHolds.Remove(args.Actor);
+            }
+
+            return;
+        }
+
+        _stationAiWireCutHolds.Remove(args.Actor);
+
+        if (!HasComp<StationAiHeldComponent>(args.Actor)
+            || !TryComp<StationAiWhitelistComponent>(target, out var whitelist)
+            || !whitelist.Enabled
+            || !HasComp<WiresPanelComponent>(target)
+            || !_uiSystem.IsUiOpen(target, WiresUiKey.Key, args.Actor)
+            || (TryComp<WiresPanelSecurityComponent>(target, out var panelSecurity)
+                && !panelSecurity.WiresAccessible))
+        {
+            return;
+        }
+
+        if (TryGetWire(target, args.Id, wires) == null)
+            return;
+
+        _stationAiWireCutHolds[args.Actor] = (target, args.Id, _timing.CurTime);
+    }
 
     [SubscribeLocalEvent]
     private void OnStationAiOpenWiresPanel(EntityUid uid, WiresComponent component, StationAiOpenWiresPanelEvent args)
@@ -62,6 +103,9 @@ public sealed partial class WiresSystem
     {
         if (!HasComp<StationAiHeldComponent>(user))
             return false;
+
+        if (action == WiresAction.Cut && !TryConsumeStationAiWireCutHold(target, user, id))
+            return true;
 
         if ((action != WiresAction.Cut && action != WiresAction.Pulse)
             || !TryComp<StationAiWhitelistComponent>(target, out var whitelist)
@@ -120,6 +164,17 @@ public sealed partial class WiresSystem
 
         wires.WiresQueue.Remove(id);
         return true;
+    }
+
+    private bool TryConsumeStationAiWireCutHold(EntityUid target, EntityUid user, int id)
+    {
+        if (!_stationAiWireCutHolds.TryGetValue(user, out var activeHold))
+            return false;
+
+        _stationAiWireCutHolds.Remove(user);
+        return activeHold.Target == target
+               && activeHold.WireId == id
+               && _timing.CurTime - activeHold.StartedAt >= StationAiWireCutHoldDuration;
     }
 
     /// <summary>

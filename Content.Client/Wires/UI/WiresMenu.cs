@@ -255,6 +255,7 @@ namespace Content.Client.Wires.UI
                 _wiresHBox.AddChild(control);
 
                 // Starlight - start
+                control.StationAiWireCutHoldChanged += started => StationAiWireCutHoldChanged?.Invoke(wire.Id, started); // Starlight
                 control.WireClicked += () =>
                 {
                     if (_stationAiInteraction)
