@@ -1,53 +1,4 @@
 Entries:
-- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
-  changes:
-  - message: Health eyewear is now t2 medical contraband. Don't want people rushing to get it without a permit!
-    type: Tweak
-  id: 410416
-  time: '2026-11-13T22:00:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7203
-- author: Floximo
-  changes:
-  - message: The way sleep inducing drugs apply movement speed modifiers was generalized.
-    type: Tweak
-  id: 410417
-  time: '2026-11-13T22:35:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7158
-- author: neomoth
-  changes:
-  - message: Pacifism management during end of round is now automated. Zeds or an active attempt to nuke Central Command will cause pacifism to not trigger until the threat is eliminated.
-    type: Add
-  id: 410418
-  time: '2026-11-13T22:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6927
-- author: neomoth
-  changes:
-  - message: Fix an issue with EOR pacification involving polymorphed entities whose parent entities were deleted (e.g. bread smite on a ghost) causing EOR to break really really badly.
-    type: Fix
-  id: 410419
-  time: '2026-11-13T22:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6927
-- author: Rinary
-  changes:
-  - message: Added fireballs for lizards, based on reagents in stomach.
-    type: Add
-  id: 410420
-  time: '2026-11-13T23:10:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7214
-- author: Rinary
-  changes:
-  - message: Added protection from fast injectors for lizards(hyposprays, emergency spray, abductor injector wand, etc).
-    type: Add
-  id: 410421
-  time: '2026-11-13T23:10:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7214
-- author: Rinary
-  changes:
-  - message: Added 2x speed debuff for syringe when trying to inject smth in lizard.
-    type: Add
-  id: 410422
-  time: '2026-11-13T23:10:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7214
 - author: Rinary
   changes:
   - message: Changed digest speed for lizards, it's 1.5x faster now.
@@ -2799,4 +2750,53 @@ Entries:
   id: 410815
   time: '2026-11-24T21:39:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7399
+- author: Way
+  changes:
+  - message: Slightly altered the parallax art on Space Mall to better reflect how it's meant to look.
+    type: Tweak
+  id: 410816
+  time: '2026-11-25T05:25:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7416
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Fixed being unable to perform brain surgery on laspi.
+    type: Fix
+  id: 410817
+  time: '2026-11-25T05:25:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7412
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Fixed patients having open incisions after finishing brain surgery despite appearing to be "closed", requiring the surgeon to open and then close them again to fix.
+    type: Fix
+  id: 410818
+  time: '2026-11-25T05:25:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7412
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Fixed surgery step completion sometimes desyncing from the server.
+    type: Fix
+  id: 410819
+  time: '2026-11-25T05:25:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7412
+- author: Floximo
+  changes:
+  - message: ITG resource reclaimer, a way to track alive, crit and dead people with ITG tracking implant.
+    type: Add
+  id: 410820
+  time: '2026-11-25T14:46:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7401
+- author: Floximo
+  changes:
+  - message: The salvage medic starts with it. Additional ones can be bought for the seep price of 400 tickets.
+    type: Add
+  id: 410821
+  time: '2026-11-25T14:46:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7401
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Suit storage units can now be hacked, and locked/unlocked by the Station AI.
+    type: Tweak
+  id: 410822
+  time: '2026-11-25T15:09:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7396
 Order: -1
