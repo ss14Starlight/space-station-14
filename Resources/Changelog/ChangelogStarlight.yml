@@ -1,13 +1,6 @@
 Entries:
 - author: redmushie
   changes:
-  - message: (Terror Spiders) Buckling into a web cocoon no longer makes you appear permanently invisible.
-    type: Fix
-  id: 410430
-  time: '2026-11-13T23:10:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7215
-- author: redmushie
-  changes:
   - message: (Terror Spiders) Injecting eggs no longer fails silently when too far away.
     type: Fix
   id: 410431
@@ -2799,4 +2792,11 @@ Entries:
   id: 410829
   time: '2026-11-25T19:19:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7425
+- author: Rinary
+  changes:
+  - message: Fixed bug when being regular player you can see other ticket(s) in your window.
+    type: Fix
+  id: 410830
+  time: '2026-11-25T19:52:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7420
 Order: -1
