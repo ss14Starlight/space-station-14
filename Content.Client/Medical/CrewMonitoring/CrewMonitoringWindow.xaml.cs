@@ -420,7 +420,7 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
 
             AddTrackerFilter(TrackerType[0], TrackerType[1]);
         }
-        
+
         TrackingFilter.Visible = true;
         TrackingFilter.Select(InitialIndex);
     }
