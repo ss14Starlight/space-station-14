@@ -48,10 +48,10 @@ public sealed partial class RandomHumanoidSystem : EntitySystem
         var humanoid = EntityManager.CreateEntityUninitialized(speciesProto.Prototype, coordinates);
 
         // Starlight-begin
-        
+
         // Move this before loading profile
         EntityManager.InitializeAndStartEntity(humanoid);
-        
+
         // Custom name/description, randomize appearance
         _metaData.SetEntityName(humanoid, prototype.Name ?? (prototype.RandomizeName ? profile.Name : name));
         if (prototype.Description is {} entDesc)
