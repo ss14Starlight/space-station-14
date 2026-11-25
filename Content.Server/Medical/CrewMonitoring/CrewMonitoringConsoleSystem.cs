@@ -256,7 +256,7 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
             bool ValidRequest = false;
 
             foreach (string[] TrackerType in filter.AllowedTrackingImplants)
-            {   
+            {
                 if (args.TrackingImplant == TrackerType[0])
                 {
                     ValidRequest = true;
