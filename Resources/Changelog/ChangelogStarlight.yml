@@ -1,13 +1,6 @@
 Entries:
 - author: CrazyPhantom
   changes:
-  - message: PDA Cameras no longer give you more view range.
-    type: Remove
-  id: 410437
-  time: '2026-11-14T08:10:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7223
-- author: CrazyPhantom
-  changes:
   - message: PDA Cameras no longer flash.
     type: Fix
   id: 410438
@@ -2799,4 +2792,11 @@ Entries:
   id: 410836
   time: '2026-11-25T20:24:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7417
+- author: Rinary
+  changes:
+  - message: Fixed old bug about character image export not capture height/weight correctly, as example for avali.
+    type: Fix
+  id: 410837
+  time: '2026-11-25T20:52:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7424
 Order: -1
