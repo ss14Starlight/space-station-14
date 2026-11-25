@@ -1,4 +1,9 @@
 - type: !PartialOnly entity
+  id: JanitorBorgChassisDerelict
+  components:
+  - type: NoFootprints
+
+- type: !PartialOnly entity
   id: BorgChassisSyndicateMedical
   components:
   - type: ShowHealthBars

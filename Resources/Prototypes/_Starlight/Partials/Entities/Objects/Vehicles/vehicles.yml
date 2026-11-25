@@ -28,6 +28,9 @@
   components:
   - type: Strap
     position: Stand
+  - type: FootprintOwner
+    printState: Tire
+    alternateStepOffset: 0.2
 
 - type: !PartialOnly entity
   id: VehicleWheelchairFolded
