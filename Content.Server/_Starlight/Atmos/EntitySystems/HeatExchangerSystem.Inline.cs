@@ -9,19 +9,13 @@ using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
 
 // ReSharper disable CheckNamespace
-// its a partial so has to use the same namespace
 namespace Content.Server.Atmos.EntitySystems;
 
 public sealed partial class HeatExchangerSystem : EntitySystem
 {
-
-    // largely the same as upstream radiator logic
-    // i.e. identical maths, just inline instead of splitting the pipenet
     [SubscribeLocalEvent]
     private void OnInlineHeatExchangerUpdate(EntityUid uid, InlineHeatExchangerComponent comp, ref AtmosDeviceUpdateEvent args)
     {
-        // same as upstream
-        // make sure that the tile the device is on isn't blocked by a wall or something similar.
         if (args.Grid is { } grid
             && _transform.TryGetGridTilePosition(uid, out var tile)
             && _atmosphereSystem.IsTileAirBlockedCached(grid, tile))
