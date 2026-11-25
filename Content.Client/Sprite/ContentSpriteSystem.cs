@@ -94,8 +94,8 @@ public sealed partial class ContentSpriteSystem : EntitySystem
         var pixelSize = halfExtents * 2f * EyeManager.PixelsPerMeter;
 
         var size = new Vector2i(
-            (int) MathF.Ceiling(pixelSize.X / 2f - 0.001f) * 2,
-            (int) MathF.Ceiling(pixelSize.Y / 2f - 0.001f) * 2);
+            (int) MathF.Ceiling((pixelSize.X / 2f) - 0.001f) * 2,
+            (int) MathF.Ceiling((pixelSize.Y / 2f) - 0.001f) * 2);
 
         if (size.X <= 0 || size.Y <= 0)
             return;
