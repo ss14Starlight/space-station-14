@@ -1,13 +1,6 @@
 Entries:
 - author: redmushie
   changes:
-  - message: (Terror Spiders) Web cocoons now heal 20x as much. Yes, really.
-    type: Tweak
-  id: 410428
-  time: '2026-11-13T23:10:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7215
-- author: redmushie
-  changes:
   - message: (Terror Spiders) Placing a web over web structures (e.g. web cocoon) no longer deletes them instantly.
     type: Fix
   id: 410429
@@ -2799,4 +2792,11 @@ Entries:
   id: 410827
   time: '2026-11-25T16:20:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7422
+- author: Rinary
+  changes:
+  - message: Fixed old bug with missing texture when downloading AI with monochrome customization into intellicard.
+    type: Fix
+  id: 410828
+  time: '2026-11-25T18:52:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7423
 Order: -1
