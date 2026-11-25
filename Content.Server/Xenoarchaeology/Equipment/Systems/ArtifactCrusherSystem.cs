@@ -22,10 +22,6 @@ public sealed partial class ArtifactCrusherSystem : SharedArtifactCrusherSystem
     [Dependency] private GibbingSystem _gibbing = default!;
     [Dependency] private StackSystem _stack = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private TagSystem _tagSystem = default!; //Starlight-edit
-
-    private const string XenoBorgCrusherTag = "XenoBorgCrusher";
-    private const string XenoBorgBag = "XenoborgStorageBag";
 
     // TODO: Move to shared once StackSystem spawning is in Shared and we have RandomPredicted
     public override void FinishCrushing(Entity<ArtifactCrusherComponent, EntityStorageComponent> ent)

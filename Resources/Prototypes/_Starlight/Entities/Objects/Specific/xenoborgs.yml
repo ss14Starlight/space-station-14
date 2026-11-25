@@ -77,8 +77,8 @@
 - type: entity
   parent: [ BaseXenoborgContraband, BaseStorageItem, BaseBagOpenClose ]
   id: XenoborgStorageBag
-  name: Corpse storage bag
-  description: A storage bag for the belongs of the deceased.
+  name: corpse storage bag
+  description: A storage bag for the belongings of the deceased.
   components:
     - type: Storage
       maxItemSize: Ginormous

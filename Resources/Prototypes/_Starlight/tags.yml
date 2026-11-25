@@ -921,6 +921,9 @@
   id: Xeno
 
 - type: Tag
+  id: XenoBorgCrusher
+
+- type: Tag
   id: XenoEmotes
 
 - type: Tag
@@ -928,9 +931,6 @@
 
 - type: Tag
   id: XenosDisasterSurvivorTraitBackground
-
-- type: Tag
-  id: XenoBorgCrusher
 
 - type: Tag
   id: StationRadioCircuitboard
