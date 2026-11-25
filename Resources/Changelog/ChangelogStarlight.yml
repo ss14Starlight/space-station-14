@@ -1,13 +1,6 @@
 Entries:
 - author: redmushie
   changes:
-  - message: (Terror Spiders) Various spiders recover blood 33% faster.
-    type: Tweak
-  id: 410427
-  time: '2026-11-13T23:10:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7215
-- author: redmushie
-  changes:
   - message: (Terror Spiders) Web cocoons now heal 20x as much. Yes, really.
     type: Tweak
   id: 410428
@@ -2799,4 +2792,11 @@ Entries:
   id: 410826
   time: '2026-11-25T15:46:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7327
+- author: SirLutz
+  changes:
+  - message: raised DynamicLowpop colossus spawn population from 25 to 40, and spawntime from 25 minutes to 45 minutes.
+    type: Tweak
+  id: 410827
+  time: '2026-11-25T16:20:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7422
 Order: -1
