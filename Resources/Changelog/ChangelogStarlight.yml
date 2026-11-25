@@ -1,11 +1,4 @@
 Entries:
-- author: Vincolan
-  changes:
-  - message: Reporter News Digiboard now has a little more autonomy.
-    type: Tweak
-  id: 410436
-  time: '2026-11-13T23:33:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7217
 - author: CrazyPhantom
   changes:
   - message: PDA Cameras no longer give you more view range.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410835
   time: '2026-11-25T20:23:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7418
+- author: Alice
+  changes:
+  - message: Added new lobby/radio music "Welcome to SS14".
+    type: Add
+  id: 410836
+  time: '2026-11-25T20:24:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7417
 Order: -1
