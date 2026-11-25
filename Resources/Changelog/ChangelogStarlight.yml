@@ -1,25 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: Changed digest speed for lizards, it's 1.5x faster now.
-    type: Tweak
-  id: 410423
-  time: '2026-11-13T23:10:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7214
-- author: Rinary
-  changes:
-  - message: Changed damage modifiers for lizards, now they also protected from blunt/slash damage by 10%.
-    type: Tweak
-  id: 410424
-  time: '2026-11-13T23:10:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7214
-- author: redmushie
-  changes:
-  - message: (Terror Spiders) They no longer slow down after getting hit by 1 bullet, instead now only when below 30% health.
-    type: Tweak
-  id: 410425
-  time: '2026-11-13T23:10:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7215
 - author: redmushie
   changes:
   - message: (Terror Spiders) They no longer need to breathe.
@@ -2799,4 +2778,25 @@ Entries:
   id: 410822
   time: '2026-11-25T15:09:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7396
+- author: baltdev
+  changes:
+  - message: Increased the amount of time it takes to hijack ATS from 200 to 360 seconds.
+    type: Tweak
+  id: 410823
+  time: '2026-11-25T15:46:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7267
+- author: baltdev
+  changes:
+  - message: The ATS hijack beacon now must be placed on an ATS buy/sell pallet.
+    type: Tweak
+  id: 410824
+  time: '2026-11-25T15:46:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7267
+- author: baltdev
+  changes:
+  - message: The amount of money hijacking ATS gives now scales based on each department's balance.
+    type: Tweak
+  id: 410825
+  time: '2026-11-25T15:46:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7267
 Order: -1
