@@ -155,12 +155,7 @@ public sealed partial class MentorSystem : SharedMentorSystem
         //         RaiseNetworkEvent(@event, channel);
         // }
 
-        var recipients = _adminManager.ActiveAdmins
-            .Concat([_playerManager.GetSessionById(ticket.Creator)])
-            .Concat(ticket.Mentor is not null
-                ? [_playerManager.GetSessionById(ticket.Mentor.Value)]
-                : _nullLinkPlayers.Mentors)
-            .Distinct();
+        var recipients = GetRecipients(ticket);
 
         foreach (var channel in recipients)
             RaiseNetworkEvent(msg, channel);
@@ -197,12 +192,7 @@ public sealed partial class MentorSystem : SharedMentorSystem
 
         _sawmill.Info($"mhelp ticket {ticketId} closed");
 
-        var recipients = _adminManager.ActiveAdmins
-            .Concat([_playerManager.GetSessionById(ticket.Creator)])
-            .Concat(ticket.Mentor is not null
-                ? [_playerManager.GetSessionById(ticket.Mentor.Value)]
-                : _nullLinkPlayers.Mentors)
-            .Distinct();
+        var recipients = GetRecipients(ticket);
 
         foreach (var channel in recipients)
             RaiseNetworkEvent(msg, channel);
@@ -249,13 +239,7 @@ public sealed partial class MentorSystem : SharedMentorSystem
         if (ticket is null && !_tickets.TryGetValue(msg.Ticket, out ticket))
             return;
 
-        var recipients = _adminManager.ActiveAdmins
-            .Concat([_playerManager.GetSessionById(ticket.Creator)])
-            .Concat(ticket.Mentor is not null
-                ? [_playerManager.GetSessionById(ticket.Mentor.Value)]
-                : _nullLinkPlayers.Mentors)
-            .Except([senderSession])
-            .Distinct();
+        var recipients = GetRecipients(ticket).Except([senderSession]);
 
         var update = new MHelpTypingUpdated
         {
@@ -266,6 +250,33 @@ public sealed partial class MentorSystem : SharedMentorSystem
 
         foreach (var channel in recipients)
             RaiseNetworkEvent(update, channel);
+    }
+
+    /// <summary>
+    /// Everyone who should see a ticket. That is its creator plus the staff from <see cref="GetStaffRecipients"/>.
+    /// </summary>
+    private IEnumerable<ICommonSession> GetRecipients(MentorTicket ticket)
+    {
+        var staff = GetStaffRecipients(ticket);
+        return _playerManager.TryGetSessionById(ticket.Creator, out var creator)
+            ? staff.Append(creator).Distinct()
+            : staff;
+    }
+
+    /// <summary>
+    /// Staff who should see a ticket. Admins count only with the Adminhelp flag, the same check the client uses to show the mentor window.
+    /// Without it an admin gets the plain player window, which merges every ticket into one chat.
+    /// </summary>
+    private IEnumerable<ICommonSession> GetStaffRecipients(MentorTicket ticket)
+    {
+        var admins = _adminManager.ActiveAdmins
+            .Where(s => _adminManager.GetAdminData(s)?.HasFlag(AdminFlags.Adminhelp) ?? false);
+
+        IEnumerable<ICommonSession> mentors = ticket.Mentor is { } mentorId
+            ? _playerManager.TryGetSessionById(mentorId, out var mentor) ? [mentor] : []
+            : _nullLinkPlayers.Mentors;
+
+        return admins.Concat(mentors).Distinct();
     }
 
     private async void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
@@ -281,12 +292,7 @@ public sealed partial class MentorSystem : SharedMentorSystem
         var tickets = _tickets.Values.Where(t => t.Creator == e.Session.UserId || t.Mentor == e.Session.UserId);
         foreach (var ticket in tickets)
         {
-            var recipients = _adminManager.ActiveAdmins
-                 .Concat(ticket.Mentor is not null
-                     ? [_playerManager.GetSessionById(ticket.Mentor.Value)]
-                     : _nullLinkPlayers.Mentors)
-                 .Except([e.Session])
-                 .Distinct();
+            var recipients = GetStaffRecipients(ticket).Except([e.Session]);
 
             var msg = new MHelpTextMessage
             {

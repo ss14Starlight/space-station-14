@@ -1,5 +1,4 @@
 using System.Numerics;
-using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 
@@ -54,10 +53,7 @@ internal static class PopOutHelper
             };
         }
 
-        var panel = new PanelContainer
-        {
-            PanelOverride = new StyleBoxFlat(Color.FromHex("#25252A")),
-        };
+        var panel = new PanelContainer { StyleClasses = { "BackgroundDark" } };
         panel.AddChild(content);
 
         window.AddChild(panel);

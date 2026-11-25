@@ -1,0 +1,3 @@
+﻿prayer-chat-notify-medtak = MEDTAK
+
+prayer-popup-notify-medtak-sent = You left a voicemail message for MedTak High Command...
