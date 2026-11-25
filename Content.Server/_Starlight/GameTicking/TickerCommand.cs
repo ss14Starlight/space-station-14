@@ -133,7 +133,7 @@ public sealed partial class TickerCommand : ToolshedCommand
     /// Delay round start by a specified number of seconds, or pause if 0 or unspecified.
     /// </summary>
     [CommandImplementation("delaystart")]
-    public void DelayStart(IInvocationContext ctx, [Optional] [DefaultParameterValue(0u)] uint seconds)
+    public void DelayStart(IInvocationContext ctx, [Optional] [DefaultParameterValue(0)] int seconds)
     {
         _ticker ??= GetSys<GameTicker>();
         if (_ticker.RunLevel != GameRunLevel.PreRoundLobby)

@@ -44,6 +44,17 @@
       stock: 1
 
 - type: listing
+  id: VendorPlushieFlox
+  productEntity: PlushieFlox
+  cost:
+    NTCredit: 20
+  categories:
+    - SLCrew
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
   id: VendorPlushieGalio
   productEntity: PlushieGalio
   cost:
@@ -297,6 +308,17 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
+
+- type: listing
+  id: VendorPlushieEeeplet
+  productEntity: PlushieEeeplet
+  cost:
+    NTCredit: 20
+  categories:
+    - SLPlushies
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
 
 - type: listing
   id: VendorPlushieExperiment
@@ -619,6 +641,17 @@
     stock: 1
 
 - type: listing
+  id: VendorHandheldRemoteControlToy
+  productEntity: HandheldRemoteControlToy
+  cost:
+    NTCredit: 20
+  categories:
+  - SLToys
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
   id: VendorSingularityToy
   productEntity: SingularityToy
   cost:
@@ -628,4 +661,3 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
-

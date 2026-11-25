@@ -592,6 +592,23 @@
 
 - type: entity
   parent: BaseVinylDisc
+  id: VinylLaw2OpenArmory
+  name: "vinyl: Law 2 Open Armory"
+  description: "A fast pace electronic tune. By: mrjajkes"
+  components:
+  - type: Sprite
+    state: default
+    layers:
+    - state: default
+    - state: label
+      color: "#8f2222"
+  - type: Vinyl
+    labelColor: "#8f2222"
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/mrjajkes/LAW2OPENARMORY.ogg
+
+- type: entity
+  parent: BaseVinylDisc
   id: VinylNukiesTrap
   name: "vinyl: Nukies Trap Remix"
   description: "A fast pace electronic tune. By: mrjajkes"

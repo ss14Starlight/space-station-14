@@ -25,7 +25,6 @@
     - Atmospherics
     - GenpopEnter
     - GenpopLeave
-    - Cadet
     - IAA
     - Brigmedic
     - Robotics
@@ -109,3 +108,8 @@
 - type: accessLevel
   id: Visitor
   name: id-card-access-level-visitor
+
+- type: accessGroup
+  id: Shuttle
+  tags:
+  - Shuttle

@@ -28,7 +28,7 @@ public sealed partial class ChangelingComponent : Component
         "ActionEvolutionMenu",
         "ActionStingExtractDNA",
         "ActionEnterStasis",
-        "ActionExitStasis"
+        "ActionExitStasis",
     };
 
     /// <summary>

@@ -92,6 +92,11 @@
     {
       "name": "brain_implant_scan",
       "copyright": "DocMoth"
+    },
+    {
+      "name": "injection_port",
+		  "delays": [ [0.5, 0.5, 0.5, 0.5 ] ],
+      "copyright": "SevenShades"
     }
   ]
 }

@@ -1,0 +1,31 @@
+light_mode unshaded;
+blend_mode none;
+
+// Finds what glows on its own. On station tiles that is every pixel brighter than the light it stands in, which only
+// unshaded layers such as screens, lamps and signs can be. Open space gives a flat starlight colour instead.
+
+uniform sampler2D SCREEN_TEXTURE;
+uniform sampler2D LIGHT_TEXTURE;
+uniform sampler2D STENCIL_TEXTURE;
+
+uniform highp vec2 targetSize;
+uniform highp float threshold;
+// Scales the glow of sprites.
+uniform highp float emissionStrength;
+// Colour of open space, already scaled by its strength. Black turns starlight off.
+uniform highp vec3 starlight;
+
+void fragment()
+{
+    highp vec2 uv = FRAGCOORD.xy / targetSize;
+    highp vec3 screen = zTextureSpec(SCREEN_TEXTURE, uv).rgb;
+    highp vec3 light = texture2D(LIGHT_TEXTURE, uv).rgb;
+    highp float station = texture2D(STENCIL_TEXTURE, uv).a;
+
+    // A lit sprite is at most as bright as its light, everything above it is glow.
+    highp vec3 glow = max(screen - light, 0.0) * step(0.5, station);
+    highp float peak = max(glow.r, max(glow.g, glow.b));
+    glow *= smoothstep(threshold, threshold + 0.1, peak) * emissionStrength;
+
+    COLOR = vec4(glow + starlight * (1.0 - step(0.5, station)), 1.0);
+}

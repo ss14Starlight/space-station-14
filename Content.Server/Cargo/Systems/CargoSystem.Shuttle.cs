@@ -8,6 +8,7 @@ using Content.Shared.Cargo.Events;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.CCVar;
 using Content.Shared.HijackBeacon;
+using Content.Shared.Labels.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 #region Starlight
@@ -254,7 +255,16 @@ public sealed partial class CargoSystem
                 if (price == 0)
                     continue;
                 toSell.Add(ent);
-                goods.Add((ent, CompOrNull<OverrideSellComponent>(ent), price));
+                //Starlight start
+                OverrideSellComponent? overrideSell = CompOrNull<OverrideSellComponent>(ent);
+
+                if (overrideSell == null && TryComp<PaperLabelComponent>(ent, out var label))
+                    if (label.LabelSlot.Item is { Valid: true } labelItem &&
+                        TryComp<OverrideSellComponent>(labelItem, out var barcodeOverride))
+                        overrideSell = barcodeOverride;
+
+                goods.Add((ent, overrideSell, price));
+                //Starlight end
             }
         }
     }

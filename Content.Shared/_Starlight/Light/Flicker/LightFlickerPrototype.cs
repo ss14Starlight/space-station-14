@@ -59,4 +59,16 @@ public sealed partial class LightFlickerPrototype : IPrototype
     /// </summary>
     [DataField]
     public float SoundChance = 1f;
+
+    /// <summary>
+    /// Scales the fixture's light radius while a blip has it flipped on.
+    /// </summary>
+    [DataField]
+    public float RadiusMultiplier = 1f;
+
+    /// <summary>
+    /// Scales the fixture's light energy while a blip has it flipped on.
+    /// </summary>
+    [DataField]
+    public float EnergyMultiplier = 1f;
 }

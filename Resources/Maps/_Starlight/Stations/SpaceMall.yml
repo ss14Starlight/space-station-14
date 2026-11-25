@@ -108643,10 +108643,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 17.5,29.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: CrateServiceBureaucracy
   entities:
   - uid: 17730
@@ -230772,10 +230768,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 22.5,29.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 35701
     components:
     - type: Transform

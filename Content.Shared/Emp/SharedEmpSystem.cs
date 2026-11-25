@@ -21,8 +21,9 @@ public abstract partial class SharedEmpSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedCyberneticDisruptionSystem _disrupt = default!; // Starlight
 
+    [Dependency] private EntityQuery<EmpResistanceComponent> _resistanceQuery = default!;
+
     private HashSet<EntityUid> _entSet = new();
-    private EntityQuery<EmpResistanceComponent> _resistanceQuery;
 
     public override void Initialize()
     {
@@ -33,8 +34,6 @@ public abstract partial class SharedEmpSystem : EntitySystem
         SubscribeLocalEvent<EmpDisabledComponent, RejuvenateEvent>(OnRejuvenate);
 
         SubscribeLocalEvent<EmpResistanceComponent, EmpAttemptEvent>(OnResistEmpAttempt);
-
-        _resistanceQuery = GetEntityQuery<EmpResistanceComponent>();
     }
 
     public static readonly EntProtoId EmpPulseEffectPrototype = "EffectEmpPulse";

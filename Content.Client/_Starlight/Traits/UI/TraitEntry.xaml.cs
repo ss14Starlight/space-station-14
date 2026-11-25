@@ -1,3 +1,4 @@
+using Content.Client.Stylesheets;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Shared._Starlight.Traits;
 using Content.Shared.Preferences;
@@ -42,9 +43,14 @@ public sealed partial class TraitEntry : PanelContainer
 
         // Format cost display
         var costPrefix = trait.Cost > 0 ? "+" : "";
-        var costColor = trait.Cost > 0 ? "#ff6b6b" : trait.Cost < 0 ? "#6bff6b" : "#888888";
         TraitCostLabel.Text = $"{costPrefix}{trait.Cost}";
-        TraitCostLabel.ModulateSelfOverride = Color.FromHex(costColor);
+        // Theme colors: spending points reads as negative, gaining them as positive.
+        if (trait.Cost > 0)
+            TraitCostLabel.AddStyleClass(StyleClass.Negative);
+        else if (trait.Cost < 0)
+            TraitCostLabel.AddStyleClass(StyleClass.Positive);
+        else
+            TraitCostLabel.AddStyleClass(StyleClass.LabelSubText);
 
         TraitCheckbox.OnToggled += OnCheckboxToggled;
     }

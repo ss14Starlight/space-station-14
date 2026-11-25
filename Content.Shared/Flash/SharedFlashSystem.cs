@@ -45,8 +45,9 @@ public abstract partial class SharedFlashSystem : EntitySystem
     [Dependency] private UseDelaySystem _useDelay = default!;
     [Dependency] private IRobustRandom _rand = default!;
 
-    private EntityQuery<StatusEffectsComponent> _statusEffectsQuery;
-    private EntityQuery<DamagedByFlashingComponent> _damagedByFlashingQuery;
+    [Dependency] private EntityQuery<StatusEffectsComponent> _statusEffectsQuery = default!;
+    [Dependency] private EntityQuery<DamagedByFlashingComponent> _damagedByFlashingQuery = default!;
+
     private HashSet<EntityUid> _entSet = new();
 
     // The tag to add when a flash has no charges left.
@@ -68,9 +69,23 @@ public abstract partial class SharedFlashSystem : EntitySystem
         SubscribeLocalEvent<FlashImmunityComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<FlashComponent, MapInitEvent>(OnFlashMapInit); // Starlight
 
-        _statusEffectsQuery = GetEntityQuery<StatusEffectsComponent>();
-        _damagedByFlashingQuery = GetEntityQuery<DamagedByFlashingComponent>();
     }
+
+    // Moffstation - Start
+    /// <summary>
+    /// Returns true if the given entity CANNOT be affected by flashes. This is generally the result of the entity
+    /// having <see cref="FlashImmunityComponent">flash immune</see> equipment on.
+    /// </summary>
+    public bool IsFlashImmune(EntityUid uid)
+    {
+        var ev = new FlashAttemptEvent(uid, User: null, Used: null)
+        {
+            IsImmunityQuery = true // Starlight
+        };
+        RaiseLocalEvent(uid, ref ev);
+        return ev.Cancelled;
+    }
+    // Moffstation - End
 
     // Starlight begin
     /// <summary>
@@ -78,7 +93,7 @@ public abstract partial class SharedFlashSystem : EntitySystem
     /// </summary>
     private void OnFlashMapInit(EntityUid uid, FlashComponent flash, ref MapInitEvent args)
     {
-        if (TryComp<LimitedChargesComponent>(uid, out var charges) && ((charges.MaxCharges == 0)))
+        if (TryComp<LimitedChargesComponent>(uid, out var charges) && (charges.MaxCharges == 0))
         {
             _appearance.SetData(uid, FlashVisuals.Burnt, true);
             _tag.AddTag(uid, TrashTag);

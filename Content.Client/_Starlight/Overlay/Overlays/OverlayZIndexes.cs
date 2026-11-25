@@ -4,6 +4,7 @@ namespace Content.Client._Starlight.Overlay.Overlays;
 public enum OverlayZIndexes
 {
     Cyclorite = 10000, //starting index
+    Xeno = 9999, //starting index
     NightVision,
     ThermalVisionEntityHighlight,
     ThermalVision,

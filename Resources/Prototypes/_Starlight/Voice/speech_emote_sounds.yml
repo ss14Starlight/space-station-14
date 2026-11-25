@@ -1161,3 +1161,74 @@
       collection: FemaleYawn
     Snore:
       collection: Snores
+
+- type: emoteSounds
+  id: UnisexXeno
+  sounds:
+    Scream:
+      collection: XenoScream
+      params:
+        variation: 0.125
+    Laugh:
+      path: /Audio/_RMC/Voice/Xeno/deep_alien_screech2.ogg
+      params:
+        pitch: 2.0
+        variation: 0.125
+    Sneeze:
+      path: /Audio/_RMC/Voice/Xeno/alien_pounce.ogg
+      params:
+        variation: 0.125
+    Honk:
+      collection: BikeHorn
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Gasp:
+      collection: XenoHiss
+      params:
+        pitch: 1.5
+        variation: 0.125
+    DefaultDeathgasp:
+      collection: XenoDeath
+      params:
+        variation: 0.125
+    Sigh:
+      collection: XenoHiss
+      params:
+        pitch: 0.8
+        variation: 0.125
+    Crying:
+      collection: XenoScream
+      params:
+        pitch: 0.6
+        variation: 0.125
+    Cough:
+      path: /Audio/_RMC/Voice/Xeno/alien_pounce.ogg
+      params:
+        pitch: 0.8
+        variation: 0.125
+    Yawn:
+      collection: XenoTinyRoar
+      params:
+        variation: 0.125
+    Hisses:
+      collection: XenoHiss
+      params:
+        variation: 0.125
+    Purr:
+      collection: XenoScreechDeep
+      params:
+        variation: 0.125
+    Growl:
+      collection: XenoGrowl
+      params:
+        variation: 0.125
+    Scree:
+      collection: XenoRoar
+      params:
+        variation: 0.125
+    Drool:
+      collection: XenoDrool
+      params:
+        variation: 0.125

@@ -19,3 +19,20 @@
     - ConstructionMaterial
     # end inherited
     - SheetUranium
+
+- type: !PartialOnly entity
+  id: SheetPlastic
+  components:
+  - type: ActivatableUI
+    inHandsOnly: true
+    singleUser: true
+    requireActiveHand: false
+    key: enum.QuickConstructionUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
+      enum.QuickConstructionUiKey.Key:
+        type: QuickConstructionBoundUserInterface
+  - type: QuickConstructable
+    category: Plastic

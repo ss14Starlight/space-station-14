@@ -9,6 +9,7 @@
   - FlowerWreath # Starlight ^
   - Headphones
   - ReporterHeadphonesTrinket # Starlight
+  - PhotoCameraTrinket # Starlight
   - HighEndHeadphones # Starlight
   - PlushieLizard
   - PlushieSpaceLizard
@@ -626,7 +627,8 @@
   - BibleTaoTeChing
   - BibleTorah
   - BibleTripitaka
-  - BibleRigVeda # starlight end
+  - BibleRigVeda
+  - BibleBookOfLife # starlight end
 
 - type: loadoutGroup
   id: JanitorHead

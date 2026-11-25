@@ -156,11 +156,11 @@
   impact: Medium
   minTemp: 370
   reactants:
-    Diphenhydramine:
+    Acrileni:
       amount: 1
     Doxarubixadone:
       amount: 1
-    Acrileni:
+    Diphenhydramine:
       amount: 1
     Mannitol:
       amount: 1
@@ -184,3 +184,57 @@
       amount: 1
   products:
     CellCultureMedium: 6
+
+- type: reaction
+  id: Respirazone
+  reactants:
+    Ulnitranium:
+      amount: 5
+    Pluoxium:
+      amount: 5
+    Iron:
+      amount: 3
+    Copper:
+      amount: 2
+    Fluorine:
+      amount: 2
+  products:
+    Respirazone: 5
+
+- type: reaction
+  id: Barozine
+  reactants:
+    Healium:
+      amount: 20
+    Aluminium:
+      amount: 2
+    Silicon:
+      amount: 2
+    Iodine:
+      amount: 2
+  products:
+    Barozine: 2
+
+- type: reaction
+  id: PolyElectrolyze
+  requiredMixerCategories:
+  - Electrolysis
+  reactants:
+    PolypyryliumOligomers:
+      amount: 3
+  products:
+    Lithium: 1
+    Nitrogen: 1
+    Sodium: 1
+
+- type: reaction
+  id: ChronexalineUlt
+  reactants:
+    Ultravasculine:
+      amount: 2
+    Cryoxadone:
+      amount: 2
+    Necrosol:
+      amount: 1
+  products:
+    Chronexaline: 3

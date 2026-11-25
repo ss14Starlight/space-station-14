@@ -1,0 +1,158 @@
+light_mode unshaded;
+blend_mode none;
+
+// One bounce of light off walls. TEXTURE is the jump flood result (nearest wall pixel for every pixel).
+// Every floor pixel casts rays, sphere-traces them through the distance field and, where a ray hits a wall,
+// takes the light that wall pixel got from the engine's light map (lit faces carry it through wall bleed).
+
+uniform sampler2D LIGHT_TEXTURE;
+uniform highp vec2 targetSize;
+// Furthest a ray goes, in pixels of this target.
+uniform highp float maxDistance;
+uniform lowp int rays;
+// Last frame's result in this frame's pixels, alpha 0 where there is none.
+uniform sampler2D HISTORY_TEXTURE;
+// Share of the history a pixel keeps, 0 turns accumulation off.
+uniform highp float historyWeight;
+// Share of the bounce light next to a hit wall that the wall throws back.
+uniform highp float feedback;
+// Glowing sprites in this target's pixels, black where nothing glows.
+uniform sampler2D EMISSION_TEXTURE;
+// Brightness of glowing sprites as light sources, 0 when there are none.
+uniform highp float emissionGain;
+// Surface colours in this target's pixels, alpha 0 where the colour is unknown.
+uniform sampler2D ALBEDO_TEXTURE;
+// How strongly a hit wall's colour tints the light it throws back, 0 to 1.
+uniform highp float surfaceTint;
+// How strongly coloured floors along the rays shift the colour of the light here, 0 turns it off.
+// Grey floors shift nothing, and the shift never changes the brightness.
+uniform highp float floorBounce;
+// Frame counter, turns the rays a little every frame.
+uniform highp float frame;
+
+const lowp int MAX_RAYS = 32;
+const lowp int MAX_STEPS = 32;
+const highp float TAU = 6.28318530718;
+const highp vec3 LUMA = vec3(0.2126, 0.7152, 0.0722);
+
+// Colour of a wall as a tint. The caller rescales the tinted light so its brightness stays the same.
+highp vec3 surfaceColour(highp vec2 uv)
+{
+    highp vec4 albedo = texture2D(ALBEDO_TEXTURE, uv);
+    highp float luma = dot(albedo.rgb, LUMA);
+    highp vec3 tint = luma > 0.01 ? min(albedo.rgb / luma, vec3(2.0)) : vec3(1.0);
+    return mix(vec3(1.0), tint, surfaceTint * albedo.a);
+}
+
+// Interleaved gradient noise, a fixed rotation per pixel so neighbouring pixels sample between each other's rays.
+highp float ign(highp vec2 p)
+{
+    return fract(52.9829189 * fract(dot(p, vec2(0.06711056, 0.00583715))));
+}
+
+// Distance to the nearest wall pixel centre, maxDistance when none is in reach.
+highp float wallDistance(highp vec2 p, out highp vec2 wall)
+{
+    // Snap to the pixel centre: blending two seeds would point somewhere in between.
+    highp vec4 seed = texture2D(TEXTURE, (floor(p) + 0.5) / targetSize);
+    wall = seed.xy;
+    if (seed.x < 0.25)
+        return maxDistance;
+
+    return distance(seed.xy, p);
+}
+
+void fragment()
+{
+    highp vec2 origin = FRAGCOORD.xy;
+    highp vec2 wall;
+    highp vec3 sum = vec3(0.0);
+    highp float count = float(rays);
+    highp float escaped = 0.0;
+    highp vec3 floorSum = vec3(0.0);
+
+    // Walls get their light from the engine's wall bleed. No early return: the body is inlined into main().
+    if (wallDistance(origin, wall) >= 0.5)
+    {
+        // Golden ratio steps cover the circle evenly over consecutive frames.
+        highp float jitter = fract(ign(origin) + frame * 0.61803398875);
+
+        for (int i = 0; i < MAX_RAYS; i++)
+        {
+            if (i >= rays)
+                break;
+
+            highp float angle = (float(i) + jitter) / count * TAU;
+            highp vec2 dir = vec2(cos(angle), sin(angle));
+            highp float travelled = 0.0;
+
+            for (int j = 0; j < MAX_STEPS; j++)
+            {
+                highp vec2 p = origin + dir * travelled;
+                if (p.x < 0.0 || p.y < 0.0 || p.x >= targetSize.x || p.y >= targetSize.y)
+                {
+                    escaped += 1.0;
+                    break;
+                }
+
+                highp float d = wallDistance(p, wall);
+                if (d < 1.0)
+                {
+                    highp vec3 bounced = texture2D(LIGHT_TEXTURE, wall / targetSize).rgb;
+                    if (surfaceTint > 0.0)
+                    {
+                        highp float before = dot(bounced, LUMA);
+                        bounced *= surfaceColour(wall / targetSize);
+                        highp float after = dot(bounced, LUMA);
+                        bounced *= after > 0.0001 ? before / after : 0.0;
+                    }
+
+                    if (emissionGain > 0.0)
+                        bounced += texture2D(EMISSION_TEXTURE, wall / targetSize).rgb * emissionGain;
+
+                    if (feedback > 0.0)
+                    {
+                        // The floor in front of the wall, where last frame's bounce light lies.
+                        highp vec2 front = clamp(p - dir * 1.5, vec2(0.5), targetSize - 0.5);
+                        highp vec4 previous = texture2D(HISTORY_TEXTURE, front / targetSize);
+                        bounced += previous.rgb * previous.a * feedback;
+                    }
+
+                    sum += bounced;
+                    break;
+                }
+
+                highp float stepLength = min(max(d - 0.5, 1.0), maxDistance - travelled);
+                if (floorBounce > 0.0)
+                {
+                    highp float exitX = dir.x > 0.0 ? (targetSize.x - p.x) / dir.x
+                        : dir.x < 0.0 ? -p.x / dir.x : maxDistance;
+                    highp float exitY = dir.y > 0.0 ? (targetSize.y - p.y) / dir.y
+                        : dir.y < 0.0 ? -p.y / dir.y : maxDistance;
+                    highp float inside = clamp(min(exitX, exitY), 0.0, stepLength);
+
+                    highp vec2 middle = (p + dir * inside * 0.5) / targetSize;
+                    highp vec4 floorColour = texture2D(ALBEDO_TEXTURE, middle);
+                    highp vec3 light = texture2D(LIGHT_TEXTURE, middle).rgb;
+                    highp float lightLuma = dot(light, LUMA);
+                    if (lightLuma > 0.0001)
+                    {
+                        highp vec3 weighted = light * floorColour.rgb;
+                        highp vec3 shift = weighted - light * (dot(weighted, LUMA) / lightLuma);
+                        floorSum += shift * floorColour.a * inside;
+                    }
+                }
+
+                travelled += stepLength;
+                if (travelled >= maxDistance)
+                    break;
+            }
+        }
+    }
+
+    highp vec4 history = texture2D(HISTORY_TEXTURE, origin / targetSize);
+    highp float known = count - escaped;
+    highp vec3 traced = known > 0.5 ? sum / known : vec3(0.0);
+    traced += floorSum * (floorBounce / (count * maxDistance));
+    COLOR = vec4(mix(traced, history.rgb, historyWeight * history.a), 1.0);
+}

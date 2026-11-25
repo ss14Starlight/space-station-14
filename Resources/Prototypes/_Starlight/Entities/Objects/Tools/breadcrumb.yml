@@ -68,6 +68,14 @@
 
 - type: entity
   parent: GlowstoneDropper
+  id: GlowstoneDropperFilled50
+  suffix: "Filled, 50"
+  components:
+    - type: LimitedCharges
+      lastCharges: 50
+
+- type: entity
+  parent: GlowstoneDropper
   id: GlowstoneDropperFilled500
   suffix: "Filled, 500"
   components:

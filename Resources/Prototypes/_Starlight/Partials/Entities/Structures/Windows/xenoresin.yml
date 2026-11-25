@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: XenoResinWindow
+  components:
+  - type: Construction
+    graph: Window
+    node: resinWindow

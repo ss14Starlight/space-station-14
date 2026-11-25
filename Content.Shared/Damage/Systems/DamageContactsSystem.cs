@@ -1,5 +1,4 @@
 using Content.Shared.Damage.Components;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Whitelist;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
@@ -15,9 +14,7 @@ public sealed partial class DamageContactsSystem : EntitySystem
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
-    #region Starlight
-    [Dependency] private MobStateSystem _mobState = default!;
-    #endregion
+    [Dependency] private EntityQuery<DamageContactsComponent> _damageQuery = default!;
 
     public override void Initialize()
     {
@@ -38,13 +35,8 @@ public sealed partial class DamageContactsSystem : EntitySystem
                 continue;
             damaged.NextSecond = _timing.CurTime + TimeSpan.FromSeconds(1);
 
-            // Starlight-start: By default, don't damage entities that are already dead to not doomstack damage.
-            if (damaged.Damage == null
-                || (!damaged.DamageDead && _mobState.IsDead(ent)))
-                continue;
-
-            _damageable.TryChangeDamage(ent, damaged.Damage, interruptsDoAfters: false);
-            // Starlight-end
+            if (damaged.Damage != null)
+                _damageable.TryChangeDamage(ent, damaged.Damage, interruptsDoAfters: false);
         }
     }
 
@@ -55,13 +47,12 @@ public sealed partial class DamageContactsSystem : EntitySystem
         if (!TryComp<PhysicsComponent>(otherUid, out var body))
             return;
 
-        var damageQuery = GetEntityQuery<DamageContactsComponent>();
         foreach (var ent in _physics.GetContactingEntities(otherUid, body))
         {
             if (ent == uid)
                 continue;
 
-            if (damageQuery.HasComponent(ent))
+            if (_damageQuery.HasComponent(ent))
                 return;
         }
 
@@ -80,6 +71,5 @@ public sealed partial class DamageContactsSystem : EntitySystem
 
         var damagedByContact = EnsureComp<DamagedByContactComponent>(otherUid);
         damagedByContact.Damage = component.Damage;
-        damagedByContact.DamageDead = component.DamageDead; // Starlight-edit
     }
 }

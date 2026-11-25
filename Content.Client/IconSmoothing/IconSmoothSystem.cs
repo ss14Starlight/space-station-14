@@ -185,7 +185,8 @@ namespace Content.Client.IconSmoothing
             DirtyEntities(_mapSystem.GetAnchoredEntities(entityUid, grid, pos + new Vector2i(0, 1)));
             DirtyEntities(_mapSystem.GetAnchoredEntities(entityUid, grid, pos + new Vector2i(0, -1)));
 
-            if (comp.Mode is IconSmoothingMode.Corners or IconSmoothingMode.NoSprite or IconSmoothingMode.Diagonal)
+            if (comp.Mode is IconSmoothingMode.Corners or IconSmoothingMode.NoSprite or IconSmoothingMode.Diagonal
+                || comp is { Mode: IconSmoothingMode.Linear, LinearCorners: true }) // Starlight-edit
             {
                 DirtyEntities(_mapSystem.GetAnchoredEntities(entityUid, grid, pos + new Vector2i(1, 1)));
                 DirtyEntities(_mapSystem.GetAnchoredEntities(entityUid, grid, pos + new Vector2i(-1, -1)));

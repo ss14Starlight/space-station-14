@@ -68,6 +68,14 @@
             volume: -4
 
 - type: entity
+  parent: AirlockCycler
+  id: AirlockCyclerBoltOpen
+  suffix: Bolts Open
+  components:
+  - type: AirlockCycler
+    boltOpen: true
+
+- type: entity
   parent: BaseWallmountMetallic
   id: AirlockCyclerButton
   name: airlock cycle button
@@ -86,7 +94,7 @@
     - AirlockCyclerButton
   - type: Appearance
   - type: Sprite
-    drawdepth: SmallObjects
+    drawdepth: WallMountedItems # Above button frames
     sprite: _Starlight/Structures/Wallmounts/airlock_cycler_button.rsi
     layers:
     - state: off
@@ -158,7 +166,7 @@
   description: An unfinished airlock cycle button. Pressing it does nothing yet.
   components:
   - type: Sprite
-    drawdepth: SmallObjects
+    drawdepth: WallMountedItems
     sprite: _Starlight/Structures/Wallmounts/airlock_cycler_button.rsi
     layers:
     - state: frame

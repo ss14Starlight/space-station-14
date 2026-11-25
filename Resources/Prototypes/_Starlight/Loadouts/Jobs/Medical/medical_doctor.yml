@@ -56,15 +56,16 @@
     gloves: ClothingHandsGlovesNitrile
 
 # Eyewear
-- type: loadout
-  id: MedicalGlassesPrescription
-  equipment:
-    eyes: ClothingEyeGlassesMedicalPrescription
 
 - type: loadout
   id: MedicalHud
   equipment:
     eyes: ClothingEyesHudMedical
+
+- type: loadout
+  id: MedicalGlassesPrescription
+  equipment:
+    eyes: ClothingEyeGlassesMedicalPrescription
 
 - type: loadout
   id: MedicalEyePatchHud
@@ -75,3 +76,8 @@
   id: WindbreakerMedical
   equipment:
     outerClothing: ClothingOuterWindbreakerMedical
+
+- type: loadout
+  id: MedicalSunglasses
+  equipment:
+    eyes: ClothingEyesGlassesMedSunglasses

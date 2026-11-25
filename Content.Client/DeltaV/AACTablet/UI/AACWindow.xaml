@@ -1,9 +1,16 @@
+<!-- Starlight-edit: Resizable is true, sizes adjusted -->
 <controls:FancyWindow xmlns="https://spacestation14.io"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     Title="{Loc 'aac-tablet-title'}"
-    Resizable="False"
-    SetSize="540 300"
-    MinSize="540 300">
-    <ScrollContainer HScrollEnabled="False" Name="WindowBody">
-    </ScrollContainer>
+    Resizable="True"
+    SetSize="650 400"
+    MinSize="450 250">
+    <!-- Starlight-start: Add SearchBar LineEdit, add localized placeholder, modifies containers to expand for resizing -->
+    <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="4">
+        <LineEdit Name="SearchBar" PlaceHolder="{Loc 'aac-window-search-placeholder'}" HorizontalExpand="True" Margin="0 0 0 4" />
+        <PanelContainer VerticalExpand="True" HorizontalExpand="True">
+            <TabContainer Name="WindowBody" VerticalExpand="True" HorizontalExpand="True" />
+        </PanelContainer>
+    </BoxContainer>
+    <!-- Starlight-end -->
 </controls:FancyWindow>
