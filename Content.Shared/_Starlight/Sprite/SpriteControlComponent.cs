@@ -27,7 +27,7 @@ public sealed partial class SpriteControlComponent : Component
     /// Set entity to use specific sprite specifier.
     /// </summary>
     /// <remarks>
-    /// Disabled if you are a ghost and not in <see cref="StarlightCCVars.PermittedSpriteControlAdmins"/>
+    /// Disabled if you are a ghost and don't have +Bypass.
     /// </remarks>
     [DataField, AutoNetworkedField] public SpriteSpecifier? Sprite;
 
