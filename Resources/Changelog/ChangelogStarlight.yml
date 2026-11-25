@@ -1,20 +1,6 @@
 Entries:
 - author: Rinary
   changes:
-  - message: Added fireballs for lizards, based on reagents in stomach.
-    type: Add
-  id: 410420
-  time: '2026-11-13T23:10:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7214
-- author: Rinary
-  changes:
-  - message: Added protection from fast injectors for lizards(hyposprays, emergency spray, abductor injector wand, etc).
-    type: Add
-  id: 410421
-  time: '2026-11-13T23:10:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7214
-- author: Rinary
-  changes:
   - message: Added 2x speed debuff for syringe when trying to inject smth in lizard.
     type: Add
   id: 410422
@@ -2799,4 +2785,18 @@ Entries:
   id: 410819
   time: '2026-11-25T05:25:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7412
+- author: Floximo
+  changes:
+  - message: ITG resource reclaimer, a way to track alive, crit and dead people with ITG tracking implant.
+    type: Add
+  id: 410820
+  time: '2026-11-25T14:46:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7401
+- author: Floximo
+  changes:
+  - message: The salvage medic starts with it. Additional ones can be bought for the seep price of 400 tickets.
+    type: Add
+  id: 410821
+  time: '2026-11-25T14:46:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7401
 Order: -1
