@@ -1,10 +1,4 @@
-### Notice for Starlight ###
-#
-# Do not make further edits to this file.
-# The handling of these spawners has been moved to
-# Resources/Prototypes/_Starlight/Entities/Markers/Spawners/NPCs/
-# and edits here will not be reflected ingame.
-############################
+# Starlight notice: All prototypes in this file are deprecated. Don't edit.
 
 - type: entity
   parent: SalvageHumanCorpse
