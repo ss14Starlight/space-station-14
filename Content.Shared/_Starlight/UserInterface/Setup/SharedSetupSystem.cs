@@ -20,8 +20,8 @@ public abstract partial class SharedSetupSystem : EntitySystem
         if (component.NameSet && !component.AllowRenaming) return;
 
         var aiWheelAvailable = HasComp<StationAiHeldComponent>(args.User)
-                               && HasComp<StationAiWhitelistComponent>(uid)
-                               && _userInterface.HasUi(uid, AiUi.Key);
+                                    && HasComp<StationAiWhitelistComponent>(uid)
+                                    && _userInterface.HasUi(uid, AiUi.Key);
         AlternativeVerb verb = new()
         {
             Text = Loc.GetString("setup-verb-text"),
