@@ -1,13 +1,6 @@
 Entries:
 - author: Rinary
   changes:
-  - message: Added 2x speed debuff for syringe when trying to inject smth in lizard.
-    type: Add
-  id: 410422
-  time: '2026-11-13T23:10:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7214
-- author: Rinary
-  changes:
   - message: Changed digest speed for lizards, it's 1.5x faster now.
     type: Tweak
   id: 410423
@@ -2799,4 +2792,11 @@ Entries:
   id: 410821
   time: '2026-11-25T14:46:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7401
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Suit storage units can now be hacked, and locked/unlocked by the Station AI.
+    type: Tweak
+  id: 410822
+  time: '2026-11-25T15:09:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7396
 Order: -1
