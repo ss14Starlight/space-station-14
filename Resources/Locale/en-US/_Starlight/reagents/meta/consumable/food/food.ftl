@@ -24,3 +24,7 @@ reagent-physical-desc-cinnamon = cinnamony
 
 reagent-name-stellibininsyrup = stellibinin syrup
 reagent-desc-stellibininsyrup = Worse as a medicine, but when added to food, can prevent theobromine and allicin poisoning. Metabolizes slowly.
+
+reagent-name-xenoegg = Xeno Egg Yolk
+reagent-desc-xenoegg = A viscous slime, the smell burns your nose.
+
