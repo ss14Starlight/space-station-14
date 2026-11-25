@@ -26,8 +26,6 @@ namespace Content.Client.Medical.CrewMonitoring;
 [GenerateTypedNameReferences]
 public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starlight: popout support
 {
-    private readonly ISawmill _sawmill = Logger.GetSawmill("crewmonitoring"); // Starlight
-    
     [Dependency] private IEntityManager _entManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     private readonly SharedTransformSystem _transformSystem;
@@ -400,17 +398,16 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
 
         UpdateSensorsTable(_trackedEntity, prevTrackedEntity);
     }
-
+    private readonly ISawmill _sawmill = Logger.GetSawmill("crewmonitoring"); // Starlight
     // Starlight-start
     public void PopulateTrackingFilters(List<string[]> allowedTrackers, string? initialTracker)
     {
-        //if (TrackingFilter.ItemCount != 0)
-        //    return;
+        if (allowedTrackers.Count == 0)
+            return;
 
         int InitialIndex = 0;
 
         AddTrackerFilter("AllTrackers", "All");
-
         foreach (string[] TrackerType in allowedTrackers)
         {
             if (TrackerType[0] == initialTracker)
@@ -434,7 +431,6 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
 
         if (eventArgs.Button.SelectedMetadata is string TrackingImplant)
         {
-            _sawmill.Debug($"[Starlight] {eventArgs.Id} Meta: {TrackingImplant}");
             FilterSelected?.Invoke(TrackingImplant);
         }
     }

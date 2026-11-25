@@ -17,8 +17,6 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
     [Dependency] private ISharedPlayerManager _playerManager = default!; // Starlight
     [Dependency] private IGameTiming _gameTiming = default!; // Starlight
 
-    private readonly ISawmill _sawmill = Logger.GetSawmill("crewmonitoring"); // Starlight
-
     [ViewVariables]
     private CrewMonitoringWindow? _menu;
 
@@ -51,7 +49,7 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
 
         if (EntMan.TryGetComponent<CrewMonitoringFilterComponent>(Owner, out var component))
         {
-            _menu.PopulateTrackingFilters(component.AllowedTrackingImplants, component.ShownTrackingImplant);
+            _menu!.PopulateTrackingFilters(component.AllowedTrackingImplants, component.ShownTrackingImplant);
         }
         //Starlight End
     }
@@ -76,9 +74,7 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
     // Starlight-start
     private void OnFilterSelected(string trackingImplant)
     {
-        _sawmill.Debug($"[Starlight] Received filter: {trackingImplant}");
         SendMessage(new CrewMonitoringUpdateFilterRequestMessage(trackingImplant));
-        _sawmill.Debug($"[Starlight] sent filter: {trackingImplant}");
     }
 
     private void OnMapClicked(EntityCoordinates coordinates)

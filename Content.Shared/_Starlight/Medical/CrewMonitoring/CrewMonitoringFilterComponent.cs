@@ -27,11 +27,7 @@ public sealed partial class CrewMonitoringFilterComponent : Component
     ///     The given tracking implants that the monitor can see.
     ///  </summary>
     [DataField("allowedTrackingImplants"), ViewVariables(VVAccess.ReadWrite)]
-    public List<string[]> AllowedTrackingImplants = new() { 
-        new[] {"CommandTrackingImplant", "Command"}, 
-        new[] {"TrackingImplant", "Security"},
-        new[] {"ITGTrackingImplant", "ITG"} 
-        };
+    public List<string[]> AllowedTrackingImplants = new() {};
 
     /// <summary>
     ///     Only show crew who are wounded or dead.

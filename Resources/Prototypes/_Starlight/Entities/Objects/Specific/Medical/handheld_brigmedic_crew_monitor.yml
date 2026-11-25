@@ -46,6 +46,11 @@
   - type: CrewMonitoringFilter
     shownDepartments:
     - Security
+    allowedTrackingImplants: 
+      - - CommandTrackingImplant
+        - Command
+      - - TrackingImplant
+        - Security
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor

@@ -50,6 +50,13 @@
     - Command
     alwaysShowTrackingImplants: true
     shownTrackingImplant: CommandTrackingImplant
+    allowedTrackingImplants: 
+      - - CommandTrackingImplant
+        - Command
+      - - TrackingImplant
+        - Security
+      - - ITGTrackingImplant
+        - ITG
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor

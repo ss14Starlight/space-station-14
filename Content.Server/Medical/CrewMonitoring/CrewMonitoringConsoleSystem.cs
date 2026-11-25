@@ -236,8 +236,6 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
 
     private void OnFilterRequest(EntityUid uid, CrewMonitoringConsoleComponent component, ref CrewMonitoringUpdateFilterRequestMessage args)
     {
-        _sawmill.Debug($"[Starlight] Received filter: {args.TrackingImplant}");
-
         if (args.Actor is not { Valid: true } actor)
         {
             _sawmill.Warning($"Received crew monitor update filter request with no valid actor for console {uid}.");
