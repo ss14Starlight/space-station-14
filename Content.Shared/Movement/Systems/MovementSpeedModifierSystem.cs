@@ -132,9 +132,6 @@ namespace Content.Shared.Movement.Systems
             move.SprintSpeedModifier = applyScale.ChangedSprintSpeedModifier ?? ev.SprintSpeedModifier;
             // Starlight-end
             Dirty(uid, move);
-
-            var changed = new MovementSpeedModifiersChangedEvent(); // Starlight
-            RaiseLocalEvent(uid, ref changed); // Starlight
         }
 
         public void ChangeBaseSpeed(EntityUid uid, float baseWalkSpeed, float baseSprintSpeed, float acceleration, MovementSpeedModifierComponent? move = null,

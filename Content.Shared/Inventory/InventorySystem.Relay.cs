@@ -5,6 +5,7 @@ using Content.Shared.Atmos;
 using Content.Shared.Chat;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Events;
+using Content.Shared.Clothing;
 using Content.Shared.Climbing.Events;
 using Content.Shared._Blimpuf.Contraband;
 using Content.Shared.Damage.Events;
@@ -53,6 +54,7 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, ElectrocutionAttemptEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, SlipAttemptEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, RefreshMovementSpeedModifiersEvent>(RelayInventoryEvent);
+        SubscribeLocalEvent<InventoryComponent, ClothingSpeedModifierQueryEvent>(RelayInventoryEvent); // Far Horizons
         SubscribeLocalEvent<InventoryComponent, BeforeStripEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, SeeIdentityAttemptEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, ModifyChangedTemperatureEvent>(RelayInventoryEvent);

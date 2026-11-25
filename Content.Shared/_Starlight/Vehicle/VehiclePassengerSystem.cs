@@ -1,7 +1,10 @@
 using System.Linq;
 using Content.Shared.Body.Components;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
@@ -70,23 +73,28 @@ public sealed partial class VehiclePassengerSystem : EntitySystem
             return;
         }
 
-        var passenger = seats.ContainedEntities.FirstOrDefault(uid => uid != driver);
-        if (!passenger.IsValid())
-            return;
-
-        args.Verbs.Add(new AlternativeVerb
+        foreach (var passenger in seats.ContainedEntities)
         {
-            Text = Loc.GetString("vehicle-verb-remove"),
-            Act = () =>
+            if (passenger == driver)
+                continue;
+
+            args.Verbs.Add(new AlternativeVerb
             {
-                if (_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, ent.Comp.RemoveTime,
-                        new RemoveVehiclePassengerDoAfter(GetNetEntity(passenger)), ent.Owner, target: ent.Owner)
-                    { BreakOnMove = true, BreakOnDamage = true }))
+                Category = VerbCategory.Eject,
+                IconEntity = GetNetEntity(passenger),
+                Text = Loc.GetString("vehicle-verb-remove", ("passenger", Identity.Entity(passenger, EntityManager))),
+                Act = () =>
                 {
-                    _popup.PopupClient(Loc.GetString("vehicle-remove-passenger-attempt"), ent, passenger);
-                }
-            },
-        });
+                    if (_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, ent.Comp.RemoveTime,
+                            new RemoveVehiclePassengerDoAfter(GetNetEntity(passenger)), ent.Owner, target: ent.Owner)
+                        { BreakOnMove = true, BreakOnDamage = true }))
+                    {
+                        _popup.PopupEntity(Loc.GetString("vehicle-remove-passenger-attempt",
+                            ("user", Identity.Entity(user, EntityManager))), ent.Owner, passenger, PopupType.LargeCaution);
+                    }
+                },
+            });
+        }
     }
 
     [SubscribeLocalEvent]
@@ -95,10 +103,18 @@ public sealed partial class VehiclePassengerSystem : EntitySystem
         var ent = new Entity<VehiclePassengerSeatsComponent>(owner, component);
         if (args.Cancelled || args.Handled || !_interaction.InRangeUnobstructed(args.User, ent.Owner) ||
             !_vehicles.TryGetOperatorContainer(ent.Owner, out var seats) ||
-            !TryGetEntity(args.Passenger, out var passenger) || passenger is not { } uid || !seats.Contains(uid))
+            !TryGetEntity(args.Passenger, out var passenger) || passenger is not { } uid || !seats.Contains(uid) ||
+            uid == _vehicles.GetOperatorOrNull(ent.Owner))
             return;
 
         args.Handled = _containers.Remove(uid, seats);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnBreakage(EntityUid uid, VehiclePassengerSeatsComponent component, BreakageEventArgs args)
+    {
+        if (_vehicles.TryGetOperatorContainer(uid, out var seats))
+            _containers.EmptyContainer(seats, force: true);
     }
 
     [SubscribeLocalEvent]
@@ -109,7 +125,7 @@ public sealed partial class VehiclePassengerSystem : EntitySystem
             !_vehicles.TryGetOperatorContainer(ent.Owner, out var seats) || seats.ContainedEntities.Count == 0)
             return;
 
-        var share = damage * (ent.Comp.DamageTransfer / seats.ContainedEntities.Count);
+        var share = DamageSpecifier.GetPositive(damage) * (ent.Comp.DamageTransfer / seats.ContainedEntities.Count);
         foreach (var passenger in seats.ContainedEntities.ToArray())
         {
             if (!TerminatingOrDeleted(passenger))

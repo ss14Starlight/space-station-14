@@ -35,9 +35,6 @@
   id: SecwayKeys
 
 - type: Tag
-  id: SecwayTurboKeys
-
-- type: Tag
   id: SiliconEmotesFH
 
 - type: Tag

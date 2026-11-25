@@ -532,3 +532,6 @@ VehicleKeySyndicateSegway: VehicleKeyElectronicNST
 VehicleKeySkeletonMotorcycle: VehicleKeyMotorcycle
 VehicleSyndicateSegway: VehicleSegwayNST
 SpawnVehicleMotobike: VehicleSkeletonMotorcycleFueledKeys
+
+# 2026-11-24 - Secway and Secway Turbo share keys
+VehicleKeySecwayTurbo: VehicleKeySecway

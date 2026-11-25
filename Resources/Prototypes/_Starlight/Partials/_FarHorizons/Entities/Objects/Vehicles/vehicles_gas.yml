@@ -143,8 +143,6 @@
     passengerWhitelist:
       components:
       - Body
-  - type: Solution
-    id: fueltank
   - type: !Remove VehicleContainer
   save: !Remove
 

@@ -1,0 +1,15 @@
+- type: entity
+  id: BasicTires
+  parent: VehicleEquipmentBaseBig
+  name: basic tires
+  description: Basic tires that have basic acceleration and traction.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi
+      state: tires
+    - type: VehicleEquipment
+      slot: tires
+      allowedVehicles: [Electric, Gas, Spaceship]
+    - type: MovementSpeedModifier
+      baseAcceleration: 2
+      baseFriction: 4.5

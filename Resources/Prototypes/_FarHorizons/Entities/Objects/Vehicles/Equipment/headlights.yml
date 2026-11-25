@@ -1,0 +1,49 @@
+- type: entity
+  id: BasicHeadlight
+  parent: VehicleEquipmentBase
+  name: basic headlights
+  description: Standard light for most vehicles. Excellent for seeing those maints grilles before you crash into them!
+  components:
+    - type: UnpoweredFlashlight
+    - type: PointLight
+      enabled: false
+      radius: 5
+      softness: 2
+      lightMask: ConeSingle
+      autoRot: true
+      containerOccluded: true
+    - type: Sprite
+      sprite: Objects/Power/light_bulb.rsi
+      layers:
+        - map: [ enum.LightBulbVisualLayers.Base ]
+          state: normal
+    - type: VehicleEquipment
+      actionProto: ActionToggleLight
+      slot: headlight
+      allowedVehicles: [Electric, Gas, Spaceship]
+    - type: Appearance
+
+- type: entity
+  id: HeadlightLED
+  parent: VehicleEquipmentBase
+  name: led headlights
+  description: Upgraded light for most vehicles. Excellent for seeing those maints grilles before you crash into them!
+  components:
+    - type: UnpoweredFlashlight
+    - type: PointLight
+      enabled: false
+      radius: 8
+      softness: 2
+      lightMask: ConeSingle
+      autoRot: true
+      containerOccluded: true
+    - type: Sprite
+      sprite: Objects/Power/light_bulb.rsi
+      layers:
+        - map: [ enum.LightBulbVisualLayers.Base ]
+          state: normal
+    - type: VehicleEquipment
+      actionProto: ActionToggleLight
+      slot: headlight
+      allowedVehicles: [Electric, Gas, Spaceship]
+    - type: Appearance

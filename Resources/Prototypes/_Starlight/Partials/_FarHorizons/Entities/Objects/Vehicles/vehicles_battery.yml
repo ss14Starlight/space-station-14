@@ -24,79 +24,6 @@
   save: !Remove
 
 - type: !PartialOnly entity
-  id: VehicleSecway
-  components:
-  - type: GenericKeyedVehicle
-    containerId: key_slot
-    keyWhitelist:
-      requireAll: true
-      tags:
-      - VehicleKey
-      - SecwayKeys
-  - type: Sprite
-    layers: !Clear
-    - state: vehicle
-      map: ["base"]
-  - type: VehicleRide
-    riderSpeedAffectsVehicle: true
-  - type: !Remove VehicleBuckle
-  - type: FootprintOwner
-    printState: Tire
-    alternateStepOffset: 0.15
-
-- type: !PartialOnly entity
-  id: VehicleSecwayTurbo
-  components:
-  - type: Sprite
-    layers: !Clear
-    - state: vehicle
-      map: ["base"]
-  - type: GenericKeyedVehicle
-    containerId: key_slot
-    keyWhitelist:
-      requireAll: true
-      tags:
-      - VehicleKey
-      - SecwayTurboKeys
-
-- type: !PartialOnly entity
-  id: VehicleSecwayTurboFilled
-  components:
-  - type: ContainerFill
-    containers:
-      key_slot: !Clear
-      - VehicleKeySecwayTurbo
-
-- type: !PartialOnly entity
-  id: VehicleSecwayS
-  components:
-  - type: Sprite
-    layers: !Clear
-    - state: vehicle
-      map: ["base"]
-
-- type: !PartialOnly entity
-  id: VehicleSegwayNST
-  components:
-  - type: Sprite
-    layers: !Clear
-    - state: vehicle
-      map: ["base"]
-  - type: VehicleRide
-    riderSpeedAffectsVehicle: true
-  - type: GenericKeyedVehicle
-    containerId: key_slot
-    keyWhitelist:
-      requireAll: true
-      tags:
-      - VehicleKey
-      - SyndicateSegwayKeys
-  - type: !Remove VehicleBuckle
-  - type: FootprintOwner
-    printState: Tire
-    alternateStepOffset: 0.15
-
-- type: !PartialOnly entity
   id: VehicleSegway
   components:
   - type: Sprite
@@ -116,6 +43,52 @@
   - type: FootprintOwner
     printState: Tire
     alternateStepOffset: 0.15
+
+- type: !PartialOnly entity
+  id: VehicleSecway
+  components:
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - SecwayKeys
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+
+- type: !PartialOnly entity
+  id: VehicleSecwayTurbo
+  components:
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+
+- type: !PartialOnly entity
+  id: VehicleSecwayS
+  components:
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+
+- type: !PartialOnly entity
+  id: VehicleSegwayNST
+  components:
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - SyndicateSegwayKeys
 
 - type: !PartialOnly entity
   id: VehicleJanicartFilled

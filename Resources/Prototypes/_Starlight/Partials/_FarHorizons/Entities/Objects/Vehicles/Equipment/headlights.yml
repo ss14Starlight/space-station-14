@@ -9,8 +9,3 @@
   components:
   - type: PointLight
     containerOccluded: false
-
-- type: !PartialOnly entity
-  id: SecSiren
-  components:
-  - type: !Remove UnpoweredFlashlight

@@ -6,7 +6,7 @@
   effects: !Clear
   - !type:AddCompsEffect
     components:
-    - type: BuckleOnMapInit
+    - type: BuckleOnTraitsApplied
       prototype: VehicleWheelchairBlue
     - type: LegsParalyzed
       allowCrawling: true

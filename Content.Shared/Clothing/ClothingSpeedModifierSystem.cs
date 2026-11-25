@@ -22,6 +22,7 @@ public sealed partial class ClothingSpeedModifierSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        InitializeFH(); // Far Horizons
 
         SubscribeLocalEvent<ClothingSpeedModifierComponent, ComponentGetState>(OnGetState);
         SubscribeLocalEvent<ClothingSpeedModifierComponent, ComponentHandleState>(OnHandleState);

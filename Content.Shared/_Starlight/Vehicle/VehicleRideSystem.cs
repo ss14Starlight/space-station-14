@@ -1,21 +1,23 @@
 using Content.Shared.Actions;
-using Content.Shared._Starlight.Movement.Events;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Clothing;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
+using Content.Shared.Examine;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
+using Content.Shared.Inventory;
 using Content.Shared.Lock;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Repairable;
+using Content.Shared.Tools;
 using Content.Shared.Stunnable;
 using Content.Shared.Vehicle;
 using Content.Shared.Vehicle.Components;
@@ -28,6 +30,7 @@ using Content.Shared.Wieldable.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Vehicle;
 
@@ -50,6 +53,10 @@ public sealed partial class VehicleRideSystem : EntitySystem
     [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private INetManager _net = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+
+    private const SlotFlags WeightSlots = SlotFlags.FEET | SlotFlags.HEAD | SlotFlags.EYES |
+        SlotFlags.GLOVES | SlotFlags.MASK | SlotFlags.NECK | SlotFlags.INNERCLOTHING | SlotFlags.OUTERCLOTHING;
 
     [SubscribeLocalEvent]
     private void OnOperatorChanged(Entity<VehicleRideComponent> ent, ref VehicleOperatorSetEvent args)
@@ -178,7 +185,7 @@ public sealed partial class VehicleRideSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnRiderSpeedChanged(Entity<VehicleOperatorComponent> ent, ref MovementSpeedModifiersChangedEvent args)
+    private void OnRiderSpeedRefresh(Entity<VehicleOperatorComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
     {
         if (ent.Comp.Vehicle is not { } vehicle ||
             TerminatingOrDeleted(vehicle) ||
@@ -194,9 +201,12 @@ public sealed partial class VehicleRideSystem : EntitySystem
     private void OnRefreshSpeed(EntityUid owner, VehicleRideComponent component, RefreshMovementSpeedModifiersEvent args)
     {
         var ent = new Entity<VehicleRideComponent>(owner, component);
-        if (ent.Comp.RiderSpeedAffectsVehicle &&
-            TryComp<MovementSpeedModifierComponent>(_vehicles.GetOperatorOrNull(ent.Owner), out var speed))
-            args.ModifySpeed(speed.WalkSpeedModifier, speed.SprintSpeedModifier);
+        if (!ent.Comp.RiderSpeedAffectsVehicle || _vehicles.GetOperatorOrNull(ent.Owner) is not { } driver)
+            return;
+
+        var clothing = new ClothingSpeedModifierQueryEvent(WeightSlots);
+        RaiseLocalEvent(driver, clothing);
+        args.ModifySpeed(clothing.TotalWalkCoefficient, clothing.TotalSprintCoefficient);
     }
 
     [SubscribeLocalEvent]
@@ -271,6 +281,20 @@ public sealed partial class VehicleRideSystem : EntitySystem
     {
         if (_net.IsServer)
             SetBroken(ent, false);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnExamineHull(Entity<VehicleHullComponent> ent, ref ExaminedEvent args)
+    {
+        if (!ent.Comp.Broken)
+            return;
+
+        args.PushMarkup(Loc.GetString("vehicle-examine-broken"));
+        if (TryComp<RepairableComponent>(ent, out var repairable) &&
+            _prototypes.TryIndex<ToolQualityPrototype>(repairable.QualityNeeded, out var quality))
+        {
+            args.PushMarkup(Loc.GetString("vehicle-examine-repair", ("quality", Loc.GetString(quality.ToolName))));
+        }
     }
 
     private void SetBroken(Entity<VehicleHullComponent> ent, bool broken)

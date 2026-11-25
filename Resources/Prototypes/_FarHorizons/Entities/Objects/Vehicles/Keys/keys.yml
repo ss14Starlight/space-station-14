@@ -70,21 +70,6 @@
     state: keys
 
 - type: entity
-  parent: [VehicleKeyBase, BaseSecurityContraband]
-  id: VehicleKeySecwayTurbo
-  name: secway turbo electronic key
-  description: Enforcing justice at the speed of sound. Not compatible with Secways due to software differences.
-  suffix: NT
-  components:
-  - type: Tag
-    tags:
-    - VehicleKey
-    - SecwayTurboKeys
-  - type: Sprite
-    sprite: _FarHorizons/Objects/Vehicles/secway_turbo.rsi
-    state: keys
-
-- type: entity
   parent: VehicleKeyBase
   id: VehicleKeyATV
   name: atv key

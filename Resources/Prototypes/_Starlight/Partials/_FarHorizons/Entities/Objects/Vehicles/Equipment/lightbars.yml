@@ -1,0 +1,4 @@
+- type: !PartialOnly entity
+  id: SecSiren
+  components:
+  - type: !Remove UnpoweredFlashlight

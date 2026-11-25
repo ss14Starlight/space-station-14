@@ -1,0 +1,73 @@
+- type: entity
+  id: BasicEngine
+  parent: VehicleEquipmentBaseBig
+  name: basic engine
+  description: A basic engine with basic speed.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi
+      state: gas_engine
+      scale: 0.7, 0.7
+    - type: VehicleEquipment
+      slot: ENGINE
+      allowedVehicles: [Gas, Spaceship]
+    - type: MovementSpeedModifier
+      baseSprintSpeed: 7.5
+      baseWalkSpeed: 10
+    - type: ReagentDraw
+      drainRate: 0.25
+
+- type: entity
+  id: AdvancedEngine
+  parent: BasicEngine
+  name: advanced engine
+  description: An advanced engine with more power output but consumes more fuel.
+  components:
+    - type: MovementSpeedModifier
+      baseSprintSpeed: 10
+      baseWalkSpeed: 15
+    - type: ReagentDraw
+      drainRate: 0.375
+
+- type: entity
+  id: GroundEngine
+  parent: BasicEngine
+  name: ground engine
+  description: An engine designed to move a space ship from point A to B but thats it.
+  components:
+    - type: MovementSpeedModifier
+      baseSprintSpeed: 5
+      baseWalkSpeed: 2.5
+    - type: ReagentDraw
+      drainRate: 0.25
+
+- type: entity
+  id: ElectricEngine
+  parent: VehicleEquipmentBaseBig
+  name: electric motor
+  description: A cheap electric motor capable of decent power output.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi
+      state: electric_engine
+      scale: 0.7, 0.7
+    - type: VehicleEquipment
+      slot: ENGINE
+      allowedVehicles: Electric
+    - type: MovementSpeedModifier
+      baseSprintSpeed: 5
+      baseWalkSpeed: 2.5
+    - type: PowerCellDraw
+      drawRate: 1
+
+- type: entity
+  id: ElectricTurboEngine
+  parent: ElectricEngine
+  name: electric turbo motor
+  description: A higher quality electric egine that doubles the output of the engine at the cost of more power draw.
+  components:
+    - type: MovementSpeedModifier
+      baseSprintSpeed: 10
+      baseWalkSpeed: 5
+    - type: PowerCellDraw
+      drawRate: 1.5

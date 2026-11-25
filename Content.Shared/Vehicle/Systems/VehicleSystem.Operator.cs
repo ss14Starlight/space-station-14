@@ -86,12 +86,12 @@ public sealed partial class VehicleSystem
     /// <summary>
     /// Checks whether an entity can physically enter a container vehicle without checking operator eligibility.
     /// </summary>
-    private bool CanEnterContainer(Entity<VehicleComponent?> vehicle, EntityUid toEnter)
+    private bool CanEnterContainer(Entity<VehicleComponent?> vehicle, EntityUid toEnter, bool allowImmobile = false) // Starlight
     {
         if (!Resolve(vehicle, ref vehicle.Comp, false))
             return false;
 
-        if (!_actionBlocker.CanMove(toEnter))
+        if (!allowImmobile && !_actionBlocker.CanMove(toEnter)) // Starlight
             return false;
 
         if (GetOperatorOrNull(vehicle) == toEnter)

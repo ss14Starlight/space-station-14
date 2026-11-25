@@ -7,6 +7,6 @@
   effects:
   - !type:AddCompsEffect
     components:
-    - type: BuckleOnMapInit
+    - type: BuckleOnTraitsApplied
       prototype: VehicleWheelchair
     - type: LegsParalyzed
