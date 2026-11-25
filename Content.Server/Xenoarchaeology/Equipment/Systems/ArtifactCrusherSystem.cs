@@ -64,7 +64,8 @@ public sealed partial class ArtifactCrusherSystem : SharedArtifactCrusherSystem
             {
                 if (bagStorage != null
                     && !HasComp<BrainComponent>(gib)
-                    && ContainerSystem.Insert((gib, null, null, null), bagStorage, force: true))
+                    && ContainerSystem.Insert((gib, null, null, null), bagStorage, force: true)
+                    && bagStorage.Contains(gib))
                     continue;
 
                 ContainerSystem.Insert((gib, null, null, null), crusher.OutputContainer);
