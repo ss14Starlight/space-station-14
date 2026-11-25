@@ -251,17 +251,24 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
             return;
         }
 
-        bool ValidRequest = false;
-        foreach (string[] TrackerType in filter.AllowedTrackingImplants)
+        if (args.TrackingImplant != "AllTrackers")
         {
-            if (args.TrackingImplant == TrackerType[0])
-                ValidRequest = true;
-        }
+            bool ValidRequest = false;
 
-        if (!ValidRequest)
-        {
-            _sawmill.Warning($"Entity {Name(actor)} ({actor}) attempted to update filter on crew monitor {uid} which is not in the AllowedTrackers.");
-            return;
+            foreach (string[] TrackerType in filter.AllowedTrackingImplants)
+            {   
+                if (args.TrackingImplant == TrackerType[0])
+                {
+                    ValidRequest = true;
+                    break;
+                }
+            }
+
+            if (!ValidRequest)
+            {
+                _sawmill.Warning($"Entity {Name(actor)} ({actor}) attempted to update filter on crew monitor {uid} which is not in the AllowedTrackers.");
+                return;
+            }
         }
 
         filter.ShownTrackingImplant = args.TrackingImplant;

@@ -403,6 +403,8 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
     /// <summary>
     /// Populates the tracking filter with the allowed tracking implants and sets initial tracker.
     /// <summary>
+    /// <param name="allowedTrackers"> The given list of trackers allowed in the monitor, organised into lists, where [0] is the prototype ID, and where [1] is the localisation label.</param>
+    /// /// <param name="initialTracker"> The tracker filter to be selected by default, should be taken from ShownTrackingImplant in CrewMonitoringFilterComponent.</param>
     public void PopulateTrackingFilters(List<string[]> allowedTrackers, string? initialTracker)
     {
         if (allowedTrackers.Count == 0)
