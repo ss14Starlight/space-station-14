@@ -2,11 +2,10 @@
   id: SLDiverseNPC
   abstract: true
   speciesBlacklist:
-    - Vox # they'd die without nitrogen
-    - IPC # they'd die without power
-    - Experiment # they'd die without food
-    - Neocyte # the frame is fucked fsr
-    # neocyte subspecies would overwhelm the randomizer
+    - Vox
+    - IPC
+    - Experiment
+    - Neocyte
     - NeoArachnid
     - NeoAvali
     - NeoCyclorite
