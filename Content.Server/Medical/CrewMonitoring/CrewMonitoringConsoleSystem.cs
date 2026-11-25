@@ -265,7 +265,7 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
         }
 
         filter.ShownTrackingImplant = args.TrackingImplant;
-        Dirty(uid, component);
+        Dirty(uid, filter);
         UpdateUserInterface(uid, component);
     }
 
