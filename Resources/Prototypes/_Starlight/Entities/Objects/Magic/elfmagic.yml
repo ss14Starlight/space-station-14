@@ -119,6 +119,7 @@
     radius: 1
     energy: 8
     color: "#93F02E"
+  - type: PiercesThickScales
   - type: Injector
     solutionName: pen
     currentTransferAmount: null
@@ -217,6 +218,7 @@
     radius: 1
     energy: 8
     color: "#93F02E"
+  - type: PiercesThickScales
   - type: Injector
     solutionName: pen
     currentTransferAmount: null

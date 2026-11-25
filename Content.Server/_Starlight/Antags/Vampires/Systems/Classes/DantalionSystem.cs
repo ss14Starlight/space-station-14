@@ -292,6 +292,7 @@ public sealed partial class DantalionSystem : EntitySystem
             || !dantalion.Thralls.Remove(uid))
             return;
 
+        TryReleaseThrall(uid);
         dantalion.ThrallSlotsUsed = Math.Max(0, dantalion.ThrallSlotsUsed - 1);
     }
 
@@ -336,8 +337,11 @@ public sealed partial class DantalionSystem : EntitySystem
             }
         }
 
-        //Remove the component
-        RemComp<VampireThrallComponent>(thrall);
+        //Remove the component, if it isn't being shut down (and thus probably removed) already
+        if (comp.LifeStage != ComponentLifeStage.Stopping)
+        {
+            RemComp<VampireThrallComponent>(thrall);
+        }
 
         _language.RemoveLanguage(thrall, "Dantalion");
 
@@ -804,10 +808,6 @@ public sealed partial class DantalionSystem : EntitySystem
         {
             var thrallCoords = Transform(thrall).Coordinates;
             if (!thrallCoords.TryDistance(EntityManager, _transform, coords, out var distance) || distance > active.Range)
-                continue;
-
-            // Prevent bond beams working through walls
-            if (!_examine.InRangeUnOccluded(uid, thrall, active.Range))
                 continue;
 
             if (TryComp<MobStateComponent>(thrall, out var thrallMobState)
