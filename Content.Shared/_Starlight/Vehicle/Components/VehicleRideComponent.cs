@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -48,6 +49,9 @@ public sealed partial class VehicleRideComponent : Component
 
     [DataField]
     public bool EjectOnCrash;
+
+    [DataField]
+    public DamageSpecifier? DriverCrashDamage;
 
     [DataField]
     public SoundSpecifier? ImpactSound;

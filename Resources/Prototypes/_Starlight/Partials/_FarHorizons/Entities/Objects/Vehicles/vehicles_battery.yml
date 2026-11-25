@@ -74,12 +74,33 @@
       map: ["base"]
 
 - type: !PartialOnly entity
+  id: VehicleScooterElectricCommandFilled
+  components:
+  - type: VehicleMods
+    startingEquipment:
+    - !Remove SecSiren
+
+- type: !PartialOnly entity
+  id: VehicleScooterElectricCommandArmoredLight
+  components:
+  - type: VehicleMods
+    startingEquipment:
+    - !Remove SecSiren
+
+- type: !PartialOnly entity
   id: VehicleScooterElectricTurbo
   components:
   - type: Sprite
     layers: !Clear
     - state: vehicle
       map: ["base"]
+
+- type: !PartialOnly entity
+  id: VehicleScooterElectricTurboFilled
+  components:
+  - type: VehicleMods
+    startingEquipment:
+    - !Remove SecSiren
 
 - type: !PartialOnly entity
   id: VehicleScooterElectricSecurity
@@ -111,7 +132,14 @@
 - type: !PartialOnly entity
   id: VehicleJanicartFilled
   components:
+  - type: Solution
+    solution:
+      reagents: !Clear
+      - ReagentId: Water
+        Quantity: 180
   - type: ContainerFill
     containers:
       cell_slot: !Remove
-  - type: !Remove VehicleMods
+  - type: VehicleMods
+    vehicleType: !Remove
+    startingEquipment: !Remove

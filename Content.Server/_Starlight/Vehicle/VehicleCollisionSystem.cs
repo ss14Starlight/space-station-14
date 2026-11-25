@@ -64,6 +64,9 @@ public sealed partial class VehicleCollisionSystem : EntitySystem
                     _stun.TryAddStunDuration(passenger, TimeSpan.FromSeconds(3));
             }
 
+            if (ent.Comp.DriverCrashDamage is { } crashDamage)
+                _damageable.TryChangeDamage(driver, crashDamage, origin: ent.Owner);
+
             return;
         }
 

@@ -47,11 +47,11 @@ public sealed partial class SharedReagentDrawSystem : EntitySystem
         Dirty(ent);
     }
 
-    public bool HasDrawReagent(Entity<ReagentDrawComponent?> ent)
+    public bool HasDrawReagent(Entity<ReagentDrawComponent?> ent, FixedPoint2 additionalDrain = default)
     {
         return Resolve(ent, ref ent.Comp, false) &&
                _solutions.ResolveSolution(ent.Owner, ent.Comp.SolutionContainer, ref ent.Comp.Solution, out var solution) &&
-               solution.Volume >= FixedPoint2.Max(FixedPoint2.Epsilon, ent.Comp.DrainRate);
+               solution.Volume >= FixedPoint2.Max(FixedPoint2.Epsilon, ent.Comp.DrainRate + additionalDrain);
     }
 
     public override void Update(float frameTime)
@@ -67,7 +67,12 @@ public sealed partial class SharedReagentDrawSystem : EntitySystem
 
             comp.NextUpdate = _timing.CurTime + comp.Delay;
             if (HasDrawReagent((uid, comp)))
-                _solutions.SplitSolution(comp.Solution!.Value, comp.DrainRate);
+            {
+                var solution = comp.Solution!.Value;
+                var draw = new BeforeReagentDrawEvent(solution.Comp.Solution.Volume, comp.DrainRate);
+                RaiseLocalEvent(uid, ref draw);
+                _solutions.SplitSolution(solution, draw.DrainAmount);
+            }
 
             if (HasDrawReagent((uid, comp)))
                 continue;

@@ -101,6 +101,16 @@
     alternateStepOffset: 0.2
 
 - type: !PartialOnly entity
+  id: VehicleATVNanoTrasenFilled
+  components:
+  - type: VehicleMods
+    startingEquipment:
+    - !Remove BasicEngine
+    - !Remove BasicHeadlight
+    - AdvancedEngine
+    - HeadlightLED
+
+- type: !PartialOnly entity
   id: VehicleMotorcycle
   components:
   - type: DirectionalOverride

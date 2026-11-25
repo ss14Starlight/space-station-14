@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Shared._Funkystation.Footprints;
 using Content.Shared._Starlight.ReagentDraw.Components;
 using Content.Shared._Starlight.ReagentDraw.EntitySystems;
+using Content.Shared._Starlight.Vehicle;
 using Content.Shared._FarHorizons.Tools.FloorBuffer.Components;
 using Content.Shared.Actions;
 using Content.Shared.Audio;
@@ -10,6 +11,7 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Decals;
+using Content.Shared.FixedPoint;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
@@ -17,6 +19,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Toggleable;
 using Content.Shared.Vehicle;
 using Content.Shared.Vehicle.Systems;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
@@ -35,10 +38,12 @@ public sealed partial class FloorBufferSystem : EntitySystem
     [Dependency] private MovementSpeedModifierSystem _speed = default!;
     [Dependency] private SharedReagentDrawSystem _reagents = default!;
     [Dependency] private SharedAmbientSoundSystem _ambient = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private VehicleSystem _vehicles = default!;
     [Dependency] private INetManager _net = default!;
     private static readonly ProtoId<ReagentPrototype> Water = "Water";
+    private static readonly FixedPoint2 BufferWaterDraw = 1;
 
     [SubscribeLocalEvent]
     private void OnGetActions(EntityUid owner, FloorBufferComponent component, GetItemActionsEvent args)
@@ -76,7 +81,7 @@ public sealed partial class FloorBufferSystem : EntitySystem
         if (!driving && !_hands.IsHolding(args.Performer, ent.Owner))
             return;
 
-        if (ent.Comp.Enabled || _reagents.HasDrawReagent(ent.Owner))
+        if (ent.Comp.Enabled || CanStart(ent))
             SetEnabled(ent, !ent.Comp.Enabled, driving ? ent.Owner : args.Performer);
 
         args.Handled = true;
@@ -85,6 +90,41 @@ public sealed partial class FloorBufferSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnWaterEmpty(Entity<FloorBufferComponent> ent, ref ReagentContainerSlotEmptyEvent args)
         => SetEnabled(ent, false, GetMovingEntity(ent));
+
+    [SubscribeLocalEvent]
+    private void OnShutdown(Entity<FloorBufferComponent> ent, ref ComponentShutdown args)
+        => ent.Comp.SoundStream = _audio.Stop(ent.Comp.SoundStream);
+
+    [SubscribeLocalEvent]
+    private void OnIgnitionChanged(Entity<FloorBufferComponent> ent, ref VehicleIgnitionChangedEvent args)
+    {
+        if (!args.Started)
+            SetEnabled(ent, false, GetMovingEntity(ent));
+    }
+
+    [SubscribeLocalEvent]
+    private void OnReagentDraw(Entity<FloorBufferComponent> ent, ref BeforeReagentDrawEvent args)
+    {
+        if (!ent.Comp.Enabled || !HasComp<VehicleIgnitionComponent>(ent))
+            return;
+
+        var combinedDrain = args.DrainAmount + BufferWaterDraw;
+        if (args.AvailableVolume < combinedDrain)
+        {
+            SetEnabled(ent, false, GetMovingEntity(ent));
+            return;
+        }
+
+        args.DrainAmount = combinedDrain;
+    }
+
+    private bool CanStart(Entity<FloorBufferComponent> ent)
+    {
+        if (!TryComp<VehicleIgnitionComponent>(ent, out var ignition))
+            return _reagents.HasDrawReagent(ent.Owner);
+
+        return ignition.Started && _reagents.HasDrawReagent(ent.Owner, BufferWaterDraw);
+    }
 
     private EntityUid GetMovingEntity(EntityUid buffer)
     {
@@ -99,10 +139,21 @@ public sealed partial class FloorBufferSystem : EntitySystem
 
         ent.Comp.Enabled = enabled;
         Dirty(ent);
-        if (TryComp<ReagentDrawComponent>(ent, out var draw))
+        if (!HasComp<VehicleIgnitionComponent>(ent) && TryComp<ReagentDrawComponent>(ent, out var draw))
             _reagents.SetDrawEnabled((ent.Owner, draw), enabled);
         _actions.SetToggled(ent.Comp.ToggleActionEntity, enabled);
-        _ambient.SetAmbience(ent, enabled);
+        if (ent.Comp.ActiveSound is { } sound)
+        {
+            if (_net.IsServer)
+            {
+                ent.Comp.SoundStream = enabled
+                    ? _audio.PlayPvs(sound, ent.Owner, sound.Params.WithLoop(true))?.Entity
+                    : _audio.Stop(ent.Comp.SoundStream);
+            }
+        }
+        else
+            _ambient.SetAmbience(ent, enabled);
+
         _speed.RefreshMovementSpeedModifiers(movingEntity);
     }
 

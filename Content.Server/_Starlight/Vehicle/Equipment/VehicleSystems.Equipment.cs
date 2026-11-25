@@ -237,7 +237,9 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
 
             if (TryComp<PowerCellDrawComponent>(engine, out var electric))
                 _powerCell.SetDrawRate(ent.Owner, electric.DrawRate);
-            if (TryComp<ReagentDrawComponent>(engine, out var gas) && TryComp<ReagentDrawComponent>(ent, out var draw))
+            if (HasComp<VehicleIgnitionComponent>(ent) &&
+                TryComp<ReagentDrawComponent>(engine, out var gas) &&
+                TryComp<ReagentDrawComponent>(ent, out var draw))
             {
                 draw.DrainRate = gas.DrainRate;
                 Dirty(ent.Owner, draw);
@@ -350,6 +352,6 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
             _vehicles.GetOperatorOrNull(container.Owner) != args.Performer)
             return;
 
-        args.Handled = _toggle.Toggle(ent.Owner, args.Performer);
+        args.Handled = _toggle.Toggle(ent.Owner, args.Performer, predicted: false);
     }
 }

@@ -33,3 +33,10 @@ public sealed partial class ReagentDrawComponent : Component
 
 [ByRefEvent]
 public readonly record struct ReagentContainerSlotEmptyEvent;
+
+[ByRefEvent]
+public struct BeforeReagentDrawEvent(FixedPoint2 availableVolume, FixedPoint2 drainAmount)
+{
+    public readonly FixedPoint2 AvailableVolume = availableVolume;
+    public FixedPoint2 DrainAmount = drainAmount;
+}
