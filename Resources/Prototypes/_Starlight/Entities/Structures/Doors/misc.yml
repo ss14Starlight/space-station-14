@@ -41,7 +41,6 @@
   - type: Door
     bumpOpen: true
     clickOpen: true
-    canCrush: true
     closeTimeOne: 0.8
     closeTimeTwo: 1.2
     openTimeOne: 0.8

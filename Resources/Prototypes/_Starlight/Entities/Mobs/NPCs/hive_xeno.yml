@@ -73,16 +73,21 @@
     altDisarm: true
     angle: 0
     soundHit:
-      path: /Audio/Weapons/Xeno/alien_spitacid.ogg
+      path: /Audio/_RMC/Voice/Xeno/alien_bite1.ogg
     animation: WeaponArcClaw
     damage:
       types:
-        Slash: 15
+        Slash: 18
         Structural: 15
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        volume: -6
   - type: MobThresholds
     thresholds:
       0: Alive
-      140: Dead
+      150: Dead
   - type: HTN
     rootTask:
       task: XenoRootCompound
@@ -90,6 +95,10 @@
       NavClimb: !type:Bool
         true
       NavSmash: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
         true
       VisionRadius: !type:Single
         15
@@ -115,9 +124,9 @@
           radius: 0.25
         density: 50
         mask:
-        - MobMask
+        - SmallMobMask
         layer:
-        - MobLayer
+        - SmallMobLayer
   - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
@@ -133,7 +142,7 @@
   name: xeno stunner
   components:
   - type: MeleeWeapon
-    attackRate: 1
+    attackRate: .7
     altDisarm: true
     angle: 0
     soundHit:
@@ -141,10 +150,14 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Slash: 3
+        Slash: 10
         Structural: 15
   - type: StaminaDamageOnHit
-    damage: 10
+    damage: 25
+  - type: Stealth
+    minVisibility: 0.1
+    lastVisibility: 0.1
+    shimmerFrequency: 0.05
 
 - type: entity
   parent: HiveXeno
@@ -158,6 +171,10 @@
       NavClimb: !type:Bool
         true
       NavSmash: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
         true
       VisionRadius: !type:Single
         20
@@ -180,15 +197,23 @@
       Dead:
         Base: dead
   - type: MovementSpeedModifier
-    baseSprintSpeed : 2
-    baseWalkSpeed: 1.5
+    baseSprintSpeed : 3
+    baseWalkSpeed: 2.5
   - type: MeleeWeapon
     soundHit:
-      collection: Punch
+      path: /Audio/_RMC/Voice/Xeno/alien_bite1.ogg
+    animation: WeaponArcClaw
     damage:
       types:
         Slash: 55
         Structural: 110
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        volume: 4
+        pitch: 0.3
+        variation: 0.025
   - type: StaminaDamageOnHit
     damage: 50
   - type: MeleeThrowOnHit
