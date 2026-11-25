@@ -23,6 +23,8 @@ public abstract partial class SharedSurveillanceCameraSystem : EntitySystem
         // Starlight - start
         if (HasComp<StationAiHeldComponent>(args.User) && HasComp<StationAiWhitelistComponent>(uid))
             return;
+        if (component is { NameSet: true, NetworkSet: true } && !HasComp<StationAiHeldComponent>(args.User))
+            return;
         // Starlight - end
 
         // Starlight - start

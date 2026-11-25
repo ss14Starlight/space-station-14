@@ -214,7 +214,7 @@ public sealed partial class SurveillanceCameraSystem : SharedSurveillanceCameraS
         // Starlight - start
         var name = camera.UseEntityNameAsCameraId ? MetaData(uid).EntityName : camera.CameraId;
         var state = new SurveillanceCameraSetupBoundUiState(name, deviceNet.ReceiveFrequency ?? 0,
-            camera.AvailableNetworks, false, false);
+            camera.AvailableNetworks, camera.UseEntityNameAsCameraId, false); // Starlight
         // Starlight - end
         _userInterface.SetUiState(uid, SurveillanceCameraSetupUiKey.Camera, state);
     }

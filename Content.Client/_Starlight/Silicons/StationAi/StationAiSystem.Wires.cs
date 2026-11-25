@@ -10,7 +10,7 @@ public sealed partial class StationAiSystem
 {
     [Dependency] private UserInterfaceSystem _userInterface = default!;
 
-    private readonly ResPath _aiWiresRsi = new ResPath("/Textures/Interface/Actions/actions_borg.rsi");
+    private readonly ResPath _aiWiresRsi = new("/Textures/Interface/Actions/actions_borg.rsi");
 
     [SubscribeLocalEvent]
     private void OnWiresGetRadial(Entity<WiresPanelComponent> ent, ref GetStationAiRadialEvent args)

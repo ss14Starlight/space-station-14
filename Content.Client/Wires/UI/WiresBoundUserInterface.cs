@@ -8,12 +8,7 @@ namespace Content.Client.Wires.UI
         [ViewVariables]
         private WiresMenu? _menu;
 
-        public WiresBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-        {
-            // Starlight - start
-            IoCManager.InjectDependencies(this);
-            // Starlight - end
-        }
+        public WiresBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) => IoCManager.InjectDependencies(this); // Starlight
 
         protected override void Open()
         {

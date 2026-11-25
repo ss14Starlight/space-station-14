@@ -128,7 +128,4 @@ public sealed partial class ElectrifiedComponent : Component
 
     [DataField, AutoNetworkedField]
     public bool IsWireCut = false;
-
-    [DataField, AutoNetworkedField] // Starlight
-    public bool HasElectrifyingWire; // Starlight
 }
