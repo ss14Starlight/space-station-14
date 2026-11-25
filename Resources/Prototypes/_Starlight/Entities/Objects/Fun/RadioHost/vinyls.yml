@@ -1727,7 +1727,7 @@
 
 - type: entity
   parent: BaseVinylDisc
-  id: VinylPlasmaflare
+  id: VinylWelcomeToSS14
   name: "vinyl: Welcome To SS14"
   description: "Music about video game. By: Alice"
   components:
@@ -1740,4 +1740,4 @@
   - type: Vinyl
     labelColor: "#4d32ba"
     song:
-      path: /Audio/_Starlight/Lobby/welcome_to_ss14.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/welcome_to_ss14.ogg
