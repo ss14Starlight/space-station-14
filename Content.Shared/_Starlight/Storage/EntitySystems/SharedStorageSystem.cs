@@ -2,6 +2,7 @@ using Content.Shared.Item;
 using Content.Shared.Item.ItemToggle.Components;
 using Robust.Shared.Containers;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Storage.EntitySystems;
 
 public abstract partial class SharedStorageSystem
@@ -75,7 +76,7 @@ public abstract partial class SharedStorageSystem
         location = current;
 
         _resizeShape.Clear();
-        ItemSystem.GetAdjustedItemShape(_resizeShape, shape, current.Rotation, current.Position);
+        SharedItemSystem.GetAdjustedItemShape(_resizeShape, shape, current.Rotation, current.Position);
         if (_resizeShape.Count == 0)
             return false;
 

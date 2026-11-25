@@ -2,6 +2,7 @@ using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Storage;
 using Robust.Shared.Prototypes;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Item;
 
 public abstract partial class SharedItemSystem
@@ -9,7 +10,7 @@ public abstract partial class SharedItemSystem
     /// <summary>
     /// Gets an arbitrary item shape, adjusting for rotation and offset.
     /// </summary>
-    public void GetAdjustedItemShape(List<Box2i> adjustedShapes, IReadOnlyList<Box2i> shapes, Angle rotation, Vector2i position)
+    public static void GetAdjustedItemShape(List<Box2i> adjustedShapes, IReadOnlyList<Box2i> shapes, Angle rotation, Vector2i position)
     {
         if (shapes.Count == 0)
             return;
@@ -33,7 +34,7 @@ public abstract partial class SharedItemSystem
     /// Gets the size and shape the item would have after toggle.
     /// </summary>
     public bool TryGetToggledShape(
-        Entity<ItemToggleSizeComponent, ItemComponent?> ent,
+        Entity<ItemToggleSizeComponent?, ItemComponent?> ent,
         bool activated,
         out ProtoId<ItemSizePrototype> size,
         out IReadOnlyList<Box2i> shape)
@@ -41,7 +42,7 @@ public abstract partial class SharedItemSystem
         size = default;
         shape = [];
 
-        if (!Resolve(ent, ref ent.Comp2, false))
+        if (!Resolve(ent, ref ent.Comp1, false) || !Resolve(ent, ref ent.Comp2, false))
             return false;
 
         var toggle = ent.Comp1;
