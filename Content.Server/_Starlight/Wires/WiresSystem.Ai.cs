@@ -173,8 +173,8 @@ public sealed partial class WiresSystem
 
         _stationAiWireCutHolds.Remove(user);
         return activeHold.Target == target
-               && activeHold.WireId == id
-               && _timing.CurTime - activeHold.StartedAt >= StationAiWireCutHoldDuration;
+                && activeHold.WireId == id
+                && _timing.CurTime - activeHold.StartedAt >= StationAiWireCutHoldDuration;
     }
 
     /// <summary>
