@@ -50,7 +50,7 @@
     - Command
     alwaysShowTrackingImplants: true
     shownTrackingImplant: CommandTrackingImplant
-    allowedTrackingImplants: 
+    allowedTrackingImplants:
       - - CommandTrackingImplant
         - Command
       - - TrackingImplant

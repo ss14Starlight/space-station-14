@@ -209,6 +209,9 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
                 {
                     //Starlight Start
                     //Replaced filteredSensors.Add(sensor) with following:
+                    if (filter.ShownTrackingImplant == default && filter.AllowedTrackingImplants.Count != 0)
+                        filter.ShownTrackingImplant = "AllTrackers";
+                    
                     if (filter.ShownTrackingImplant == default)
                         filteredSensors.Add(sensor);
                     else if (filter.ShownTrackingImplant == "AllTrackers")
@@ -216,7 +219,7 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
                         foreach (string[] TrackerType in filter.AllowedTrackingImplants)
                         {
                             string TrackerTypeSensor = MetaData(suitSensor.Owner).EntityPrototype!.ID;
-                            
+
                             if (TrackerType[0] != TrackerTypeSensor)
                                 continue;
 

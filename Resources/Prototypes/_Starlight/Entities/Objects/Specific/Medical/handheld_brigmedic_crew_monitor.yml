@@ -46,7 +46,8 @@
   - type: CrewMonitoringFilter
     shownDepartments:
     - Security
-    allowedTrackingImplants: 
+    alwaysShowTrackingImplants: true
+    allowedTrackingImplants:
       - - CommandTrackingImplant
         - Command
       - - TrackingImplant

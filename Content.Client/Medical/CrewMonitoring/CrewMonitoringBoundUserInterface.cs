@@ -44,8 +44,8 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
         //Starlight Start
         _menu = this.CreatePopOutableWindow<CrewMonitoringWindow>(EntMan);
         _menu.Set(gridUid, Owner);
-        _menu.MapClicked += OnMapClicked; 
-        _menu.FilterSelected += OnFilterSelected; 
+        _menu.MapClicked += OnMapClicked;
+        _menu.FilterSelected += OnFilterSelected;
 
         if (EntMan.TryGetComponent<CrewMonitoringFilterComponent>(Owner, out var component))
         {

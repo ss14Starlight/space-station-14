@@ -23,7 +23,7 @@
 				<!-- Starlight Begin -->
 				<OptionButton Name="TrackingFilter"/>
 				<!-- Starlight End -->
-				
+
                 <ScrollContainer Name="SensorScroller"
                                  VerticalExpand="True"
                                  SetWidth="520"
