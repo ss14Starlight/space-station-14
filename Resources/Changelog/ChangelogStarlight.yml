@@ -1,144 +1,4 @@
 Entries:
-- author: neomoth
-  changes:
-  - message: ACTUALLY fix action order this time... i think... i HOPE...
-    type: Fix
-  id: 410408
-  time: '2026-11-13T21:17:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7133
-- author: Tjmaxmillion
-  changes:
-  - message: Station AI can now use the Secure Command Terminal for select requests (Code Violet, Emergency Access, and Escape Pods), but cannot cancel pending requests.
-    type: Tweak
-  id: 410409
-  time: '2026-11-13T22:00:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7135
-- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
-  changes:
-  - message: 'Added modular HUDs: flexible, modular eyewear which lets you put together the infinity stones of eyewear.'
-    type: Add
-  id: 410410
-  time: '2026-11-13T22:00:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7203
-- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
-  changes:
-  - message: Added new researches to unlock modular hud frames.
-    type: Add
-  id: 410411
-  time: '2026-11-13T22:00:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7203
-- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
-  changes:
-  - message: Added a chemical hud module to CMO's locker, and thermal vision hud module to CE's locker.
-    type: Add
-  id: 410412
-  time: '2026-11-13T22:00:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7203
-- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
-  changes:
-  - message: Added a new blue noir filter.
-    type: Add
-  id: 410413
-  time: '2026-11-13T22:00:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7203
-- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
-  changes:
-  - message: Replaced a bunch of preexisting HUDs with modular HUDs.
-    type: Tweak
-  id: 410414
-  time: '2026-11-13T22:00:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7203
-- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
-  changes:
-  - message: The short-sighted trait now comes with a prescription hud module; select some modular eyewear on loadout or go to medical for a frame.
-    type: Tweak
-  id: 410415
-  time: '2026-11-13T22:00:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7203
-- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
-  changes:
-  - message: Health eyewear is now t2 medical contraband. Don't want people rushing to get it without a permit!
-    type: Tweak
-  id: 410416
-  time: '2026-11-13T22:00:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7203
-- author: Floximo
-  changes:
-  - message: The way sleep inducing drugs apply movement speed modifiers was generalized.
-    type: Tweak
-  id: 410417
-  time: '2026-11-13T22:35:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7158
-- author: neomoth
-  changes:
-  - message: Pacifism management during end of round is now automated. Zeds or an active attempt to nuke Central Command will cause pacifism to not trigger until the threat is eliminated.
-    type: Add
-  id: 410418
-  time: '2026-11-13T22:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6927
-- author: neomoth
-  changes:
-  - message: Fix an issue with EOR pacification involving polymorphed entities whose parent entities were deleted (e.g. bread smite on a ghost) causing EOR to break really really badly.
-    type: Fix
-  id: 410419
-  time: '2026-11-13T22:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6927
-- author: Rinary
-  changes:
-  - message: Added fireballs for lizards, based on reagents in stomach.
-    type: Add
-  id: 410420
-  time: '2026-11-13T23:10:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7214
-- author: Rinary
-  changes:
-  - message: Added protection from fast injectors for lizards(hyposprays, emergency spray, abductor injector wand, etc).
-    type: Add
-  id: 410421
-  time: '2026-11-13T23:10:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7214
-- author: Rinary
-  changes:
-  - message: Added 2x speed debuff for syringe when trying to inject smth in lizard.
-    type: Add
-  id: 410422
-  time: '2026-11-13T23:10:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7214
-- author: Rinary
-  changes:
-  - message: Changed digest speed for lizards, it's 1.5x faster now.
-    type: Tweak
-  id: 410423
-  time: '2026-11-13T23:10:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7214
-- author: Rinary
-  changes:
-  - message: Changed damage modifiers for lizards, now they also protected from blunt/slash damage by 10%.
-    type: Tweak
-  id: 410424
-  time: '2026-11-13T23:10:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7214
-- author: redmushie
-  changes:
-  - message: (Terror Spiders) They no longer slow down after getting hit by 1 bullet, instead now only when below 30% health.
-    type: Tweak
-  id: 410425
-  time: '2026-11-13T23:10:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7215
-- author: redmushie
-  changes:
-  - message: (Terror Spiders) They no longer need to breathe.
-    type: Tweak
-  id: 410426
-  time: '2026-11-13T23:10:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7215
-- author: redmushie
-  changes:
-  - message: (Terror Spiders) Various spiders recover blood 33% faster.
-    type: Tweak
-  id: 410427
-  time: '2026-11-13T23:10:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7215
 - author: redmushie
   changes:
   - message: (Terror Spiders) Web cocoons now heal 20x as much. Yes, really.
@@ -2799,4 +2659,144 @@ Entries:
   id: 410807
   time: '2026-11-23T19:22:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7389
+- author: SirLutz
+  changes:
+  - message: C4 and X4 can not be triggered while EOR pacified.
+    type: Add
+  id: 410808
+  time: '2026-11-24T14:44:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7408
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Organ pods now properly give organs again when sliced open.
+    type: Fix
+  id: 410809
+  time: '2026-11-24T19:51:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7405
+- author: VBlankFF
+  changes:
+  - message: Blood bond range increased from 3 to 8, and it now works through walls.
+    type: Tweak
+  id: 410810
+  time: '2026-11-24T19:51:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7409
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Chameleon clothing can no longer be eaten by moths.
+    type: Tweak
+  id: 410811
+  time: '2026-11-24T20:25:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7403
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Added prediction to carp rift and supply rift charge indicators on their tooltip.
+    type: Fix
+  id: 410812
+  time: '2026-11-24T20:59:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7386
+- author: Floximo
+  changes:
+  - message: Remote Controlled entities will now have an RC-Icon appearing on them while controlled.
+    type: Add
+  id: 410813
+  time: '2026-11-24T21:39:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7394
+- author: Talirson
+  changes:
+  - message: Fixed pluox/ulnit radiation reaction only occuring in pipe entities, and not working in tile atmospheres.
+    type: Fix
+  id: 410814
+  time: '2026-11-24T21:39:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7399
+- author: Talirson
+  changes:
+  - message: Fixed radiation recievers like geiger counters not having their radiation reset to zero and showing false radiation readings when there are no active radiation sources anywhere.
+    type: Fix
+  id: 410815
+  time: '2026-11-24T21:39:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7399
+- author: Way
+  changes:
+  - message: Slightly altered the parallax art on Space Mall to better reflect how it's meant to look.
+    type: Tweak
+  id: 410816
+  time: '2026-11-25T05:25:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7416
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Fixed being unable to perform brain surgery on laspi.
+    type: Fix
+  id: 410817
+  time: '2026-11-25T05:25:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7412
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Fixed patients having open incisions after finishing brain surgery despite appearing to be "closed", requiring the surgeon to open and then close them again to fix.
+    type: Fix
+  id: 410818
+  time: '2026-11-25T05:25:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7412
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Fixed surgery step completion sometimes desyncing from the server.
+    type: Fix
+  id: 410819
+  time: '2026-11-25T05:25:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7412
+- author: Floximo
+  changes:
+  - message: ITG resource reclaimer, a way to track alive, crit and dead people with ITG tracking implant.
+    type: Add
+  id: 410820
+  time: '2026-11-25T14:46:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7401
+- author: Floximo
+  changes:
+  - message: The salvage medic starts with it. Additional ones can be bought for the seep price of 400 tickets.
+    type: Add
+  id: 410821
+  time: '2026-11-25T14:46:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7401
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Suit storage units can now be hacked, and locked/unlocked by the Station AI.
+    type: Tweak
+  id: 410822
+  time: '2026-11-25T15:09:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7396
+- author: baltdev
+  changes:
+  - message: Increased the amount of time it takes to hijack ATS from 200 to 360 seconds.
+    type: Tweak
+  id: 410823
+  time: '2026-11-25T15:46:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7267
+- author: baltdev
+  changes:
+  - message: The ATS hijack beacon now must be placed on an ATS buy/sell pallet.
+    type: Tweak
+  id: 410824
+  time: '2026-11-25T15:46:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7267
+- author: baltdev
+  changes:
+  - message: The amount of money hijacking ATS gives now scales based on each department's balance.
+    type: Tweak
+  id: 410825
+  time: '2026-11-25T15:46:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7267
+- author: d270rg
+  changes:
+  - message: Made sec shields (Laser, Riot, Ballistic) wearable in back slot, similar to some weapons.
+    type: Tweak
+  id: 410826
+  time: '2026-11-25T15:46:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7327
+- author: SirLutz
+  changes:
+  - message: raised DynamicLowpop colossus spawn population from 25 to 40, and spawntime from 25 minutes to 45 minutes.
+    type: Tweak
+  id: 410827
+  time: '2026-11-25T16:20:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7422
 Order: -1
