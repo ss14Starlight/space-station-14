@@ -2,7 +2,6 @@
   id: BaseMech
   components:
   - type: FootprintOwner
-    printState: Tire
     alternateStepOffset: 0.2
   - type: !Remove AirFilter
   - type: !Remove AirIntake
