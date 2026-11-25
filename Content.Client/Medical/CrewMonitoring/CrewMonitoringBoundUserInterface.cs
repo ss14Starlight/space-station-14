@@ -71,7 +71,7 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
         }
     }
 
-    // Starlight-start
+    #region "Starlight"
     private void OnFilterSelected(string trackingImplant)
     {
         SendMessage(new CrewMonitoringUpdateFilterRequestMessage(trackingImplant));
@@ -103,5 +103,5 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
 
         base.Dispose(disposing);
     }
-    // Starlight-end
+    #endregion
 }

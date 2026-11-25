@@ -211,7 +211,7 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
                     //Replaced filteredSensors.Add(sensor) with following:
                     if (filter.ShownTrackingImplant == default && filter.AllowedTrackingImplants.Count != 0)
                         filter.ShownTrackingImplant = "AllTrackers";
-                    
+
                     if (filter.ShownTrackingImplant == default)
                         filteredSensors.Add(sensor);
                     else if (filter.ShownTrackingImplant == "AllTrackers")
@@ -251,8 +251,21 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
             return;
         }
 
-        filter.ShownTrackingImplant = args.TrackingImplant;
+        bool ValidRequest = false;
+        foreach (string[] TrackerType in filter.AllowedTrackingImplants)
+        {
+            if (args.TrackingImplant == TrackerType[0])
+                ValidRequest = true;
+        }
 
+        if (!ValidRequest)
+        {
+            _sawmill.Warning($"Entity {Name(actor)} ({actor}) attempted to update filter on crew monitor {uid} which is not in the AllowedTrackers.");
+            return;
+        }
+
+        filter.ShownTrackingImplant = args.TrackingImplant;
+        Dirty(uid, component);
         UpdateUserInterface(uid, component);
     }
 

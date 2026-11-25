@@ -52,11 +52,11 @@
     shownTrackingImplant: CommandTrackingImplant
     allowedTrackingImplants:
       - - CommandTrackingImplant
-        - Command
+        - tracking-implant-filter-label-command
       - - TrackingImplant
-        - Security
+        - tracking-implant-filter-label-security
       - - ITGTrackingImplant
-        - ITG
+        - tracking-implant-filter-label-itg
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor

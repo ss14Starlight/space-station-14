@@ -399,7 +399,10 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
         UpdateSensorsTable(_trackedEntity, prevTrackedEntity);
     }
 
-    // Starlight-start
+    #region "Starlight"
+    /// <summary>
+    /// Populates the tracking filter with the allowed tracking implants and sets initial tracker.
+    /// <summary>
     public void PopulateTrackingFilters(List<string[]> allowedTrackers, string? initialTracker)
     {
         if (allowedTrackers.Count == 0)
@@ -407,7 +410,7 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
 
         int InitialIndex = 0;
 
-        AddTrackerFilter("AllTrackers", "All");
+        AddTrackerFilter("AllTrackers", "tracking-implant-filter-label-all");
         foreach (string[] TrackerType in allowedTrackers)
         {
             if (TrackerType[0] == initialTracker)
@@ -415,13 +418,14 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
 
             AddTrackerFilter(TrackerType[0], TrackerType[1]);
         }
-
+        
+        TrackingFilter.Visible = true;
         TrackingFilter.Select(InitialIndex);
     }
 
     private void AddTrackerFilter(string trackingImplant, string label)
     {
-        TrackingFilter.AddItem(label);
+        TrackingFilter.AddItem(Loc.GetString(label));
         TrackingFilter.SetItemMetadata(TrackingFilter.ItemCount - 1, trackingImplant);
     }
 
@@ -450,7 +454,7 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
 
         base.Dispose(disposing);
     }
-    // Starlight-end
+    #endregion
 
     private void UpdateSensorsTable(NetEntity? currTrackedEntity, NetEntity? prevTrackedEntity)
     {

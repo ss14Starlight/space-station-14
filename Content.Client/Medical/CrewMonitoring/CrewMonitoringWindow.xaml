@@ -21,7 +21,7 @@
                           PlaceHolder="{Loc crew-monitoring-ui-filter-line-placeholder}" />
 
 				<!-- Starlight Begin -->
-				<OptionButton Name="TrackingFilter"/>
+				<OptionButton Name="TrackingFilter" Visible="False"/>
 				<!-- Starlight End -->
 
                 <ScrollContainer Name="SensorScroller"

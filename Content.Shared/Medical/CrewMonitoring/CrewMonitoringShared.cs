@@ -24,7 +24,7 @@ public sealed class CrewMonitoringState : BoundUserInterfaceState
         Sensors = sensors;
     }
 }
-// Starlight-start
+#region "Starlight"
 [Serializable, NetSerializable]
 public sealed partial class CrewMonitoringUpdateFilterRequestMessage : BoundUserInterfaceMessage
 {
@@ -69,4 +69,4 @@ public enum CrewMonitorVisuals
 {
     Alert,
 }
-// Starlight-end
+#endregion
