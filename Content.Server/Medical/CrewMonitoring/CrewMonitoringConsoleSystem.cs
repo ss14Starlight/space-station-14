@@ -211,6 +211,19 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
                     //Replaced filteredSensors.Add(sensor) with following:
                     if (filter.ShownTrackingImplant == default)
                         filteredSensors.Add(sensor);
+                    else if (filter.ShownTrackingImplant == "AllTrackers")
+                    {
+                        foreach (string[] TrackerType in filter.AllowedTrackingImplants)
+                        {
+                            string TrackerTypeSensor = MetaData(suitSensor.Owner).EntityPrototype!.ID;
+                            
+                            if (TrackerType[0] != TrackerTypeSensor)
+                                continue;
+
+                            filteredSensors.Add(sensor);
+                            break;
+                        }
+                    }
                     else if (filter.ShownTrackingImplant == MetaData(suitSensor.Owner).EntityPrototype!.ID)
                         filteredSensors.Add(sensor);
                     //Starlight End
@@ -223,6 +236,8 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
 
     private void OnFilterRequest(EntityUid uid, CrewMonitoringConsoleComponent component, ref CrewMonitoringUpdateFilterRequestMessage args)
     {
+        _sawmill.Debug($"[Starlight] Received filter: {args.TrackingImplant}");
+
         if (args.Actor is not { Valid: true } actor)
         {
             _sawmill.Warning($"Received crew monitor update filter request with no valid actor for console {uid}.");

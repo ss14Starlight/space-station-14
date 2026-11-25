@@ -7,6 +7,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Client._Starlight.UserInterface;
+using Content.Shared._Starlight.Medical.CrewMonitoring;
 #endregion
 
 namespace Content.Client.Medical.CrewMonitoring;
@@ -15,6 +16,8 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
 {
     [Dependency] private ISharedPlayerManager _playerManager = default!; // Starlight
     [Dependency] private IGameTiming _gameTiming = default!; // Starlight
+
+    private readonly ISawmill _sawmill = Logger.GetSawmill("crewmonitoring"); // Starlight
 
     [ViewVariables]
     private CrewMonitoringWindow? _menu;
@@ -40,10 +43,17 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
             gridUid = xform.GridUid;
         }
 
-        _menu = this.CreatePopOutableWindow<CrewMonitoringWindow>(EntMan); // Starlight
-        _menu.Set(gridUid, Owner); // Starlight
-        _menu.MapClicked += OnMapClicked; // Starlight
-        _menu.FilterSelected += OnFilterSelected; //Starlight
+        //Starlight Start
+        _menu = this.CreatePopOutableWindow<CrewMonitoringWindow>(EntMan);
+        _menu.Set(gridUid, Owner);
+        _menu.MapClicked += OnMapClicked; 
+        _menu.FilterSelected += OnFilterSelected; 
+
+        if (EntMan.TryGetComponent<CrewMonitoringFilterComponent>(Owner, out var component))
+        {
+            _menu.PopulateTrackingFilters(component.AllowedTrackingImplants, component.ShownTrackingImplant);
+        }
+        //Starlight End
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -66,7 +76,9 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
     // Starlight-start
     private void OnFilterSelected(string trackingImplant)
     {
+        _sawmill.Debug($"[Starlight] Received filter: {trackingImplant}");
         SendMessage(new CrewMonitoringUpdateFilterRequestMessage(trackingImplant));
+        _sawmill.Debug($"[Starlight] sent filter: {trackingImplant}");
     }
 
     private void OnMapClicked(EntityCoordinates coordinates)

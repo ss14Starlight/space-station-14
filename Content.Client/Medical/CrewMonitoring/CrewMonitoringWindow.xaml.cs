@@ -26,6 +26,8 @@ namespace Content.Client.Medical.CrewMonitoring;
 [GenerateTypedNameReferences]
 public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starlight: popout support
 {
+    private readonly ISawmill _sawmill = Logger.GetSawmill("crewmonitoring"); // Starlight
+    
     [Dependency] private IEntityManager _entManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     private readonly SharedTransformSystem _transformSystem;
@@ -203,8 +205,6 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
 
             PopulateDepartmentList(remainingSensors);
         }
-
-        PopulateTrackingFilters(); //Starlight
 
         // Starlight BEGIN: Moved to top of function
         /*
@@ -402,15 +402,27 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
     }
 
     // Starlight-start
-    private void PopulateTrackingFilters()
+    public void PopulateTrackingFilters(List<string[]> allowedTrackers, string? initialTracker)
     {
-        AddTrackerFilter("All", "AllTrackers");
-        AddTrackerFilter("Command Trackers", "CommandTrackingImplant");
-        AddTrackerFilter("Security Trackers", "TrackingImplant");
-        AddTrackerFilter("ITG Trackers", "ITGTrackingImplant");
+        //if (TrackingFilter.ItemCount != 0)
+        //    return;
+
+        int InitialIndex = 0;
+
+        AddTrackerFilter("AllTrackers", "All");
+
+        foreach (string[] TrackerType in allowedTrackers)
+        {
+            if (TrackerType[0] == initialTracker)
+                InitialIndex = TrackingFilter.ItemCount;
+
+            AddTrackerFilter(TrackerType[0], TrackerType[1]);
+        }
+
+        TrackingFilter.Select(InitialIndex);
     }
 
-    private void AddTrackerFilter(string label, string trackingImplant)
+    private void AddTrackerFilter(string trackingImplant, string label)
     {
         TrackingFilter.AddItem(label);
         TrackingFilter.SetItemMetadata(TrackingFilter.ItemCount - 1, trackingImplant);
@@ -418,8 +430,13 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
 
     private void OnFilterSelected(OptionButton.ItemSelectedEventArgs eventArgs)
     {
+        TrackingFilter.Select(eventArgs.Id);
+
         if (eventArgs.Button.SelectedMetadata is string TrackingImplant)
+        {
+            _sawmill.Debug($"[Starlight] {eventArgs.Id} Meta: {TrackingImplant}");
             FilterSelected?.Invoke(TrackingImplant);
+        }
     }
 
     private void OnNavMapClicked(EntityCoordinates coordinates)
