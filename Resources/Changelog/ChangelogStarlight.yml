@@ -1,25 +1,4 @@
 Entries:
-- author: neomoth
-  changes:
-  - message: You can now view the accesses on any player or item as an observer in replays.
-    type: Add
-  id: 410432
-  time: '2026-11-13T23:33:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7218
-- author: Vincolan
-  changes:
-  - message: Added Photography folder.
-    type: Add
-  id: 410433
-  time: '2026-11-13T23:33:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7217
-- author: Vincolan
-  changes:
-  - message: Removed the camera from reporter bag (use the app!).
-    type: Remove
-  id: 410434
-  time: '2026-11-13T23:33:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7217
 - author: Vincolan
   changes:
   - message: Reporter loses the BlankPhotosBox and receives the Photography folder instead.
@@ -2799,4 +2778,25 @@ Entries:
   id: 410831
   time: '2026-11-25T19:52:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7426
+- author: Rinary
+  changes:
+  - message: Fixed small checkbox for character activation in Character Editor.
+    type: Fix
+  id: 410832
+  time: '2026-11-25T20:23:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7421
+- author: Rinary
+  changes:
+  - message: Fixed small group buttons in loadout section of Character Editor.
+    type: Fix
+  id: 410833
+  time: '2026-11-25T20:23:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7421
+- author: Rinary
+  changes:
+  - message: Fixed incorrect background color when using Pop Out future in Character Editor.
+    type: Fix
+  id: 410834
+  time: '2026-11-25T20:23:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7421
 Order: -1
