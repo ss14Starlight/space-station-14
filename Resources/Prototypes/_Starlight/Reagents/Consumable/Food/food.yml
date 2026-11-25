@@ -228,10 +228,4 @@
   physicalDesc: reagent-physical-desc-opaque
   flavor: xenoEgg
   color: "#9d42d5"
-  metabolisms:
-    Digestion:
-      effects:
-      - !type:EvenHealthChange
-        damage:
-          Toxin: 2
   recognizable: true

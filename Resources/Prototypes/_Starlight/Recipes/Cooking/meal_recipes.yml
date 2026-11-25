@@ -1190,7 +1190,7 @@
   result: FoodXenoOmelette
   time: 20
   group: Savory
-  deviceType: Stove
+  deviceType: Microwave
   reagents:
     XenoEgg: 15
     TableSalt: 1

@@ -1,12 +1,16 @@
 - type: entity
   parent: FoodInjectableBase
   id: FoodXenoEgg
+  name: Xeno Egg
+  description: its exterior is tough, grinding it is the only way to get whats inside. 
   components:
   - type: FlavorProfile
     flavors:
       - xenoEgg
   - type: Sprite
-    sprite: Objects/Consumable/Food/meat.rsi
+    sprite: _RMC14/Structures/Xenos/xeno_egg.rsi
+    layers:
+    - state: egg_item
   - type: Extractable
     grindableSolutionName: food
   - type: Solution
@@ -23,7 +27,6 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.25,-0.25,0.25,0.25"
-        # less mass so it can cook faster, a single strip of bacon isnt 5kg
         density: 1
         mask:
         - ItemMask
