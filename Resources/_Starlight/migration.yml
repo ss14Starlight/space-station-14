@@ -526,12 +526,35 @@ ClothingEyesGlassesMusicianSunglasses: ClothingEyesModularHudSunglasses
 PrintedDocumentEmploymentStatement: PrintedDocumentEmploymentContract
 PrintedDocumentSurgeryConsentPermit: PrintedDocumentSurgeryConsentForm
 
+# 2026-11-23
+SofaCorner: ComfyChair
+SofaEndLeft: ComfyChair
+SofaEndRight: ComfyChair
+SofaMiddle: ComfyChair
+SofaCornerWhite: ComfyChairWhite
+SofaEndLeftWhite: ComfyChairWhite
+SofaEndRightWhite: ComfyChairWhite
+SofaMiddleWhite: ComfyChairWhite
+SofaCornerBlue: ComfyChairBlue
+SofaEndLeftBlue: ComfyChairBlue
+SofaEndRightBlue: ComfyChairBlue
+SofaMiddleBlue: ComfyChairBlue
+SofaCornerRed: ComfyChairRed
+SofaEndLeftRed: ComfyChairRed
+SofaEndRightRed: ComfyChairRed
+SofaMiddleRed: ComfyChairRed
+SofaCornerGreen: ComfyChairGreen
+SofaEndLeftGreen: ComfyChairGreen
+SofaEndRightGreen: ComfyChairGreen
+SofaMiddleGreen: ComfyChairGreen
+SofaCornerBrown: ComfyChairBrown
+SofaEndLeftBrown: ComfyChairBrown
+SofaEndRightBrown: ComfyChairBrown
+SofaMiddleBrown: ComfyChairBrown
+
 #2026-11-23 - Legacy vehicle IDs, we probably won't ever run into a case where this matters since they're so old
 VehicleKeySkeleton: VehicleKeyMotorcycle
 VehicleKeySyndicateSegway: VehicleKeyElectronicNST
 VehicleKeySkeletonMotorcycle: VehicleKeyMotorcycle
 VehicleSyndicateSegway: VehicleSegwayNST
 SpawnVehicleMotobike: VehicleSkeletonMotorcycleFueledKeys
-
-# 2026-11-24 - Secway and Secway Turbo share keys
-VehicleKeySecwayTurbo: VehicleKeySecway

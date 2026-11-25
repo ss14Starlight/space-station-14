@@ -127,6 +127,19 @@
   conditions:
     - !type:TileNotBlocked
 
+- type: construction
+  id: ChairComfyXeno
+  name: construction-recipe-comfy-chair-xeno
+  graph: ChairSL
+  startNode: start
+  targetNode: chairComfyXeno
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
 # Regal
 - type: construction
   id: ChairRegal

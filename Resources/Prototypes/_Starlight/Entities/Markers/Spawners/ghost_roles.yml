@@ -229,3 +229,16 @@
     - state: green
     - sprite: Mobs/Silicon/Chassis/derelict.rsi
       state: borg
+
+- type: entity
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostSyndicateListeningOp
+  name: syndicate listening operator ghost role spawn point
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Decoration/banner.rsi
+        state: banner_syndicate
+  - type: RandomHumanoidSpawner
+    settings: SyndieListeningOp

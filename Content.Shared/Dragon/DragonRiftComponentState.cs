@@ -6,5 +6,8 @@ namespace Content.Shared.Dragon;
 public sealed class DragonRiftComponentState : ComponentState
 {
     public DragonRiftState State;
-    public int SharkMinnowLimit; // Starlight
+    #region Starlight
+    public int SharkMinnowLimit;
+    public int Percentage;
+    #endregion
 }
