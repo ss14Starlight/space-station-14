@@ -40,6 +40,7 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, BoundUIOpenedEvent>(OnUIOpened);
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, CrewMonitoringWarpRequestMessage>(OnWarpRequest); // Starlight
+        SubscribeLocalEvent<CrewMonitoringConsoleComponent, CrewMonitoringUpdateFilterRequestMessage>(OnFilterRequest); //Starlight
     }
 
     /// <summary>
@@ -219,6 +220,26 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
         filteredSensors = filteredSensors.Distinct().ToList();
         _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(_gameTiming.CurTime, component.LastSensorDataReceivedAt, filteredSensors)); // Starlight end
     }
+
+    private void OnFilterRequest(EntityUid uid, CrewMonitoringConsoleComponent component, ref CrewMonitoringUpdateFilterRequestMessage args)
+    {
+        if (args.Actor is not { Valid: true } actor)
+        {
+            _sawmill.Warning($"Received crew monitor update filter request with no valid actor for console {uid}.");
+            return;
+        }
+
+        if (!TryComp<CrewMonitoringFilterComponent>(uid, out var filter))
+        {
+            _sawmill.Warning($"Entity {Name(actor)} ({actor}) attempted to update filter on crew monitor {uid} without CrewMonitoringFilterComponent.");
+            return;
+        }
+
+        filter.ShownTrackingImplant = args.TrackingImplant;
+
+        UpdateUserInterface(uid, component);
+    }
+
     private void OnWarpRequest(EntityUid uid, CrewMonitoringConsoleComponent component, ref CrewMonitoringWarpRequestMessage args)
     {
         if (args.Actor is not { Valid: true } actor)

@@ -43,6 +43,7 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
         _menu = this.CreatePopOutableWindow<CrewMonitoringWindow>(EntMan); // Starlight
         _menu.Set(gridUid, Owner); // Starlight
         _menu.MapClicked += OnMapClicked; // Starlight
+        _menu.FilterSelected += OnFilterSelected; //Starlight
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -63,6 +64,11 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
     }
 
     // Starlight-start
+    private void OnFilterSelected(string trackingImplant)
+    {
+        SendMessage(new CrewMonitoringUpdateFilterRequestMessage(trackingImplant));
+    }
+
     private void OnMapClicked(EntityCoordinates coordinates)
     {
         var local = _playerManager.LocalEntity;
@@ -81,6 +87,7 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
             if (_menu != null)
             {
                 _menu.MapClicked -= OnMapClicked;
+                _menu.FilterSelected -= OnFilterSelected;
                 _menu.DisposePopOut(); // Starlight: close the popout
                 _menu = null;
             }

@@ -37,6 +37,7 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
     private bool _tryToScrollToListFocus;
     private Texture? _blipTexture;
     public event Action<EntityCoordinates>? MapClicked; // Starlight
+    public event Action<string>? FilterSelected; //Starlight
 
     public CrewMonitoringWindow()
     {
@@ -48,6 +49,7 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
 
         NavMap.TrackedEntitySelectedAction += SetTrackedEntityFromNavMap;
         NavMap.MapClicked += OnNavMapClicked;  // Starlight
+        TrackingFilter.OnItemSelected += OnFilterSelected; //Starlight
     }
 
     public void Set(EntityUid? mapUid, EntityUid owner) // Starlight
@@ -201,6 +203,8 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
 
             PopulateDepartmentList(remainingSensors);
         }
+
+        PopulateTrackingFilters(); //Starlight
 
         // Starlight BEGIN: Moved to top of function
         /*
@@ -398,6 +402,26 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
     }
 
     // Starlight-start
+    private void PopulateTrackingFilters()
+    {
+        AddTrackerFilter("All", "AllTrackers");
+        AddTrackerFilter("Command Trackers", "CommandTrackingImplant");
+        AddTrackerFilter("Security Trackers", "TrackingImplant");
+        AddTrackerFilter("ITG Trackers", "ITGTrackingImplant");
+    }
+
+    private void AddTrackerFilter(string label, string trackingImplant)
+    {
+        TrackingFilter.AddItem(label);
+        TrackingFilter.SetItemMetadata(TrackingFilter.ItemCount - 1, trackingImplant);
+    }
+
+    private void OnFilterSelected(OptionButton.ItemSelectedEventArgs eventArgs)
+    {
+        if (eventArgs.Button.SelectedMetadata is string TrackingImplant)
+            FilterSelected?.Invoke(TrackingImplant);
+    }
+
     private void OnNavMapClicked(EntityCoordinates coordinates)
     {
         MapClicked?.Invoke(coordinates);
