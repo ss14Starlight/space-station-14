@@ -1,3 +1,5 @@
+
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Humanoid.Prototypes;
 
 public sealed partial class RandomHumanoidSettingsPrototype
