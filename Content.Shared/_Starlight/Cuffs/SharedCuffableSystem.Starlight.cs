@@ -2,6 +2,8 @@
 using System.Linq;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Hands.Components;
+using Content.Shared.Interaction.Events;
+using Content.Shared.Zombies;
 
 namespace Content.Shared.Cuffs;
 
@@ -15,4 +17,12 @@ public abstract partial class SharedCuffableSystem
 
     public bool IsCuffed(EntityUid target, bool requireFullyCuffed = true, CuffableComponent? cuffable = null) =>
         Resolve(target, ref cuffable) && IsCuffed((target, cuffable), requireFullyCuffed);
+
+    private void OnAttackAttempt(EntityUid uid, CuffableComponent component, AttackAttemptEvent args)
+    {
+        if (!args.Disarm && args.Weapon?.Owner == uid && HasComp<ZombieComponent>(uid))
+            return;
+
+        CheckAct(uid, component, args);
+    }
 }
