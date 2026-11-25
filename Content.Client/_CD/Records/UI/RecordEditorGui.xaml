@@ -1,5 +1,6 @@
 <Control xmlns="https://spacestation14.io"
          xmlns:cdrecords="clr-namespace:Content.Client._CD.Records.UI">
+    <!-- Starlight-start -->
     <BoxContainer Orientation="Vertical">
          <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
              <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="10">
@@ -66,5 +67,6 @@
              </BoxContainer>
          </ScrollContainer>
     </BoxContainer>
+    <!-- Starlight-end -->
 </Control>
 

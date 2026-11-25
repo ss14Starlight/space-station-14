@@ -1,4 +1,5 @@
 <Control xmlns="https://spacestation14.io">
+    <!-- Starlight-start -->
     <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
         <ItemList Name="EntrySelector" HorizontalExpand="True" VerticalExpand="True" MinSize="300 200" />
         <BoxContainer Orientation="Horizontal" SeparationOverride="4">
@@ -14,4 +15,5 @@
             </GridContainer>
         </BoxContainer>
     </BoxContainer>
+    <!-- Starlight-end -->
 </Control>
