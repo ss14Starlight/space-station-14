@@ -398,7 +398,7 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
 
         UpdateSensorsTable(_trackedEntity, prevTrackedEntity);
     }
-    private readonly ISawmill _sawmill = Logger.GetSawmill("crewmonitoring"); // Starlight
+
     // Starlight-start
     public void PopulateTrackingFilters(List<string[]> allowedTrackers, string? initialTracker)
     {
