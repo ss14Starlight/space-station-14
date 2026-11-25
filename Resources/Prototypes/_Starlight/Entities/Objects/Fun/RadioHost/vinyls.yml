@@ -1724,3 +1724,20 @@
     labelColor: "#7eb389"
     song:
       path: /Audio/_Starlight/RadioStation/Vinyls/music/plasmaflare.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylPlasmaflare
+  name: "vinyl: Welcome To SS14"
+  description: "Music about video game. By: Alice"
+  components:
+  - type: Sprite
+    layers:
+    - state: base-light
+    - state: base-shine
+    - state: label
+      color: "#4d32ba"
+  - type: Vinyl
+    labelColor: "#4d32ba"
+    song:
+      path: /Audio/_Starlight/Lobby/welcome_to_ss14.ogg
