@@ -88,7 +88,7 @@ public sealed partial class TickerCommand : ToolshedCommand
     /// <summary>
     /// Cancels the restart timer.
     /// </summary>
-    [AdminCommand(AdminFlags.Fun)]
+    [AdminCommand(AdminFlags.Round | AdminFlags.Fun)]
     [CommandImplementation("cancelrestart")]
     public void CancelRestartTimer(IInvocationContext ctx)
     {
@@ -105,7 +105,7 @@ public sealed partial class TickerCommand : ToolshedCommand
     /// <summary>
     /// Cancels the post-round state, making the game act as though the round has not yet ended.
     /// </summary>
-    [AdminCommand(AdminFlags.Fun)]
+    [AdminCommand(AdminFlags.Round | AdminFlags.Fun)]
     [CommandImplementation("cancelpostround")]
     public void CancelPostRound(IInvocationContext ctx)
     {
@@ -119,7 +119,7 @@ public sealed partial class TickerCommand : ToolshedCommand
     /// <summary>
     /// Toggles the automatic timer on round end.
     /// </summary>
-    [AdminCommand(AdminFlags.Fun)]
+    [AdminCommand(AdminFlags.Round | AdminFlags.Fun)]
     [CommandImplementation("toggletimeronend")]
     public void ToggleTimerOnend(IInvocationContext ctx, bool state)
     {
@@ -154,7 +154,7 @@ public sealed partial class TickerCommand : ToolshedCommand
     /// <summary>
     /// Add or remove time until the round end system kicks in (emergency shuttle call).
     /// </summary>
-    [AdminCommand(AdminFlags.Fun)]
+    [AdminCommand(AdminFlags.Round | AdminFlags.Fun)]
     [CommandImplementation("changeshifttime")]
     public void ExtendShiftTime(IInvocationContext ctx, float seconds)
     {
@@ -223,7 +223,7 @@ public sealed partial class TickerCommand : ToolshedCommand
     /// <summary>
     /// Add a gamerule entity prototype to the round.
     /// </summary>
-    [AdminCommand(AdminFlags.Fun)]
+    [AdminCommand(AdminFlags.Round | AdminFlags.Fun)]
     [CommandImplementation("addrule")]
     public EntityUid AddRule(IInvocationContext ctx,
         [CommandArgument(typeof(EntProtoIdWithCompCompletionParser<GameRuleComponent>))] EntProtoId ruleId)
@@ -251,7 +251,7 @@ public sealed partial class TickerCommand : ToolshedCommand
     /// <summary>
     /// End a gamerule entity's gamerule.
     /// </summary>
-    [AdminCommand(AdminFlags.Fun)]
+    [AdminCommand(AdminFlags.Round | AdminFlags.Fun)]
     [CommandImplementation("endrule")]
     public EntityUid EndRuleFiltered(IInvocationContext ctx,
         [CommandArgument(typeof(EntityWithCompCompletionParser<ActiveGameRuleComponent>))] EntityUid uid) =>
@@ -260,14 +260,14 @@ public sealed partial class TickerCommand : ToolshedCommand
     /// <summary>
     /// End a gamerule entity's gamerule. This one lets you pipe in an entity instead.
     /// </summary>
-    [AdminCommand(AdminFlags.Fun)]
+    [AdminCommand(AdminFlags.Round | AdminFlags.Fun)]
     [CommandImplementation("endrule")]
     public EntityUid EndRulePiped(IInvocationContext ctx, [PipedArgument] EntityUid uid) => EndRuleDo(ctx, uid);
 
     /// <summary>
     /// End a gamerule entity's gamerule. This one lets you pipe in a set of entities instead.
     /// </summary>
-    [AdminCommand(AdminFlags.Fun)]
+    [AdminCommand(AdminFlags.Round | AdminFlags.Fun)]
     [CommandImplementation("endrule")]
     public IEnumerable<EntityUid> EndRulePiped(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid) =>
         uid.Select(x => EndRulePiped(ctx, x));
