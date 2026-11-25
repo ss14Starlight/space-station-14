@@ -423,4 +423,4 @@
           - ReagentId: Protein
             Quantity: 50
   - type: StaticPrice
-    price: 50000
+    price: 20000

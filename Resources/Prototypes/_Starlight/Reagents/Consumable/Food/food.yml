@@ -222,9 +222,9 @@
 
 - type: reagent
   id: XenoEgg
-  name: reagent-name-royaljelly
+  name: reagent-name-xenoegg
   group: Foods
-  desc: reagent-desc-royaljelly
+  desc: reagent-desc-xenoegg
   physicalDesc: reagent-physical-desc-opaque
   flavor: xenoEgg
   color: "#9d42d5"
@@ -233,8 +233,5 @@
       effects:
       - !type:EvenHealthChange
         damage:
-          Brute: -2
-          Burn: -2
-          Toxin: -2
-          Genetic: -2
+          Toxin: 2
   recognizable: true

@@ -1181,3 +1181,17 @@
   reagents:
     IceCream: 15
     WeldingFuel: 5
+
+#Xeno
+
+- type: microwaveMealRecipe
+  id: RecipeXenoOmelette
+  name: xeno omelette recipe
+  result: FoodXenoOmelette
+  time: 20
+  group: Savory
+  deviceType: Stove
+  reagents:
+    XenoEgg: 15
+    TableSalt: 1
+    Blackpepper: 1
