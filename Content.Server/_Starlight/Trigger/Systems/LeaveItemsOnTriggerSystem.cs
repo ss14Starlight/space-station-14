@@ -43,7 +43,7 @@ public sealed partial class LeaveItemsOnTriggerSystem : EntitySystem
         if (_turf.TryGetTileRef(coords, out var tile) && !_turf.IsSpace(tile.Value))
             coords = _turf.GetTileCenter(tile.Value);
 
-        var storageEnt = Spawn(ent.Comp.Proto, coords);
+        var storageEnt = SpawnAtPosition(ent.Comp.Proto, coords);
         if (_container.TryGetContainer(storageEnt, StorageComponent.ContainerId, out var container))
         {
             // Force insert bypasses the ReadOnlyStorage restriction

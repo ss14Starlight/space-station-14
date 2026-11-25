@@ -10,6 +10,9 @@ namespace Content.Shared._Starlight.Trigger.Components.Effects;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class LeaveItemsOnTriggerComponent : BaseXOnTriggerComponent
 {
+    /// <summary>
+    /// Storage entity spawned to hold the target's gear (must have a StorageComponent).
+    /// </summary>
     [DataField, AutoNetworkedField]
     public EntProtoId Proto = "BluespacePocketBelongings";
 }
