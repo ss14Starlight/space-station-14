@@ -1,11 +1,4 @@
 Entries:
-- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
-  changes:
-  - message: Health eyewear is now t2 medical contraband. Don't want people rushing to get it without a permit!
-    type: Tweak
-  id: 410416
-  time: '2026-11-13T22:00:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7203
 - author: Floximo
   changes:
   - message: The way sleep inducing drugs apply movement speed modifiers was generalized.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410815
   time: '2026-11-24T21:39:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7399
+- author: Way
+  changes:
+  - message: Slightly altered the parallax art on Space Mall to better reflect how it's meant to look.
+    type: Tweak
+  id: 410816
+  time: '2026-11-25T05:25:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7416
 Order: -1
