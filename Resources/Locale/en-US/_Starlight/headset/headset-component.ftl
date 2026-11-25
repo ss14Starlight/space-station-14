@@ -12,6 +12,6 @@ chat-radio-aspace = Aspace
 chat-radio-medtak = MedTak
 chat-radio-medtak-borg = MedTak Silicon
 chat-radio-gorlex = Gorlex Marauder
-
+chat-radio-ntnc = NanoTrasen Navy Corps
 headset-loud-mode-examine-active = The headset's loudmode speaker is [color=green]ACTIVE[/color].
 headset-loud-mode-examine-inactive = The headset's loudmode speaker is [color=red]INACTIVE[/color].
