@@ -30,6 +30,9 @@
   name: unidentified corpse
   description: I think they're dead.
   components:
+    - type: Unrevivable
+      reasonMessage: defibrillator-corpse
+    - type: LanguageGrantImmune
     - type: Damageable
       damage:
         types:

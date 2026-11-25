@@ -1,20 +1,20 @@
-# Weights suggested by Floximo
+# Weights are relative, any species not listed here has a weight of 1
 
 - type: !PartialOnly species
   id: Human
-  weight: 4.63
+  weight: 4.6
 
 - type: !PartialOnly species
   id: Vulpkanin
-  weight: 2.39
+  weight: 2.4
 
 - type: !PartialOnly species
   id: Shadekin
-  weight: 1.79
+  weight: 1.8
 
 - type: !PartialOnly species
   id: Moth
-  weight: 1.64
+  weight: 1.6
 
 - type: !PartialOnly species
   id: Reptilian
@@ -22,11 +22,11 @@
 
 - type: !PartialOnly species
   id: Doll
-  weight: 1.12
+  weight: 1.1
 
 - type: !PartialOnly species
   id: Avali
-  weight: 1.05
+  weight: 1.1
 
 - type: !PartialOnly species
   id: Elf
@@ -34,15 +34,15 @@
 
 - type: !PartialOnly species
   id: Experiment
-  weight: 0.82
+  weight: 0.8
 
 - type: !PartialOnly species
   id: Thaven
-  weight: 0.82
+  weight: 0.8
 
 - type: !PartialOnly species
   id: Resomi
-  weight: 0.675
+  weight: 0.7
 
 - type: !PartialOnly species
   id: Dwarf
@@ -58,15 +58,15 @@
 
 - type: !PartialOnly species
   id: Cyclorite
-  weight: 0.52
+  weight: 0.5
 
 - type: !PartialOnly species
   id: Diona
-  weight: 0.45
+  weight: 0.4
 
 - type: !PartialOnly species
   id: Rodentia
-  weight: 0.45
+  weight: 0.4
 
 - type: !PartialOnly species
   id: SlimePerson
@@ -78,4 +78,4 @@
 
 - type: !PartialOnly species
   id: Arachnid
-  weight: 0.15
+  weight: 0.2

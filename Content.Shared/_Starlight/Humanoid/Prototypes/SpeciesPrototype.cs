@@ -1,9 +1,10 @@
 using Content.Shared.DisplacementMap;
 using Robust.Shared.Prototypes;
 
+// Resharper disable once CheckNamespace
 namespace Content.Shared.Humanoid.Prototypes;
 
-public sealed partial class SpeciesPrototype : IPrototype
+public sealed partial class SpeciesPrototype
 {
     /// <summary>
     /// Displacement applied to this species' base body sprites and compatible markings.

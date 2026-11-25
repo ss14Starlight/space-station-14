@@ -2,7 +2,6 @@
   name: syndicate footsoldier spawner
   id: SpawnMobSyndicateFootSoldier
   parent: MarkerBase
-  categories: [ HideSpawnMenu ] # Starlight
   components:
 #God forgive me for what I'm about to do
   - type: Sprite
@@ -30,7 +29,6 @@
   name: syndicate shuttle pilot spawner
   id: SpawnMobSyndicateFootsoldierPilot
   parent: SpawnMobSyndicateFootSoldier
-  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: ConditionalSpawner
     prototypes:
