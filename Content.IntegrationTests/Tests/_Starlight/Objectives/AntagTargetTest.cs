@@ -3,6 +3,7 @@ using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.Server.Mind;
 using Content.Server.Objectives.Components;
+using Content.Server.Objectives.Systems;
 using Content.Server.Roles;
 using Content.Server._Starlight.Objectives.Components;
 using Content.Shared.Mind;
@@ -109,6 +110,52 @@ public sealed class AntagTargetTest : GameTest
                 var pick = SEntMan.GetComponent<PickRandomPersonComponent>(objective);
                 Assert.That(targetSys.PickFromPool(pick.Pool, pick.Filters, chooser), Is.Null,
                     "Explicit eligibility must not bypass NoObjectiveTarget or the objective's filters.");
+            }
+        });
+
+    [Test]
+    public async Task DifferentTargetObjectivesCannotShareTarget()
+        => await Server.WaitAssertion(() =>
+        {
+            var minds = Server.System<MindSystem>();
+            var targetSys = Server.System<TargetSystem>();
+            var objectiveTargets = Server.System<TargetObjectiveSystem>();
+            Entity<MindComponent> Traitor(string prototype)
+            {
+                var mind = minds.CreateMind(null);
+                minds.TransferTo(mind, SEntMan.SpawnEntity(prototype, MapCoordinates.Nullspace));
+                Server.System<RoleSystem>().MindAddRole(mind, "MindRoleTraitor", silent: true);
+                return mind;
+            }
+
+            var chooser = Traitor("MobHuman");
+            var target = Traitor("MobHuman");
+            SEntMan.AddComponent<MarkedForDeathComponent>(target.Comp.OwnedEntity!.Value);
+            var prototypes = new[]
+            {
+                "KillRandomPersonObjective", "KillRandomHeadObjective", "TeachRandomPersonObjective",
+                "TeachRandomHeadObjective", "RandomTraitorAliveObjective", "RandomTraitorProgressObjective",
+                "ChangelingKillRandomPersonObjective", "ChangelingTeachRandomPersonObjective",
+                "VampireKillRandomPersonObjective",
+            };
+
+            foreach (var assignedProto in prototypes)
+            {
+                var assigned = SEntMan.SpawnEntity(assignedProto, MapCoordinates.Nullspace);
+                objectiveTargets.SetTarget(assigned, target.Owner);
+                chooser.Comp.Objectives.Add(assigned);
+
+                foreach (var otherProto in prototypes)
+                {
+                    var other = SEntMan.SpawnEntity(otherProto, MapCoordinates.Nullspace);
+                    var pick = SEntMan.GetComponent<PickRandomPersonComponent>(other);
+                    Assert.That(targetSys.PickFromPool(pick.Pool, pick.Filters, chooser), Is.Null,
+                        $"{otherProto} must not target someone already targeted by {assignedProto}.");
+                    SEntMan.DeleteEntity(other);
+                }
+
+                chooser.Comp.Objectives.Remove(assigned);
+                SEntMan.DeleteEntity(assigned);
             }
         });
 }

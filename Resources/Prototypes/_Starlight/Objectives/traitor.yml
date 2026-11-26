@@ -111,11 +111,14 @@
       pool: !type:WeightedAlivePool
         weightHighValue: true
       filters:
-      # Can't have multiple objectives to teach the same person.
+      # Can't have multiple objectives on the same person.
       - !type:TargetObjectiveMindFilter
         blacklist:
           components:
           - TeachALessonCondition
+          - KillPersonCondition
+          - KeepAliveCondition
+          - HelpProgressCondition
 
 - type: entity
   parent: [BaseTraitorObjective, BaseTeachALessonObjective]
@@ -138,7 +141,11 @@
       - !type:TargetObjectiveMindFilter
         blacklist:
           components:
-          - TeachALessonCondition # Don't assign multiple lessons for the same person.
+          # Don't assign multiple objectives for the same person.
+          - TeachALessonCondition
+          - KillPersonCondition
+          - KeepAliveCondition
+          - HelpProgressCondition
 
 - type: entity
   parent: BaseRDStealObjective

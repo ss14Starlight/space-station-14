@@ -19,6 +19,9 @@
       blacklist:
         components:
         - KillPersonCondition
+        - TeachALessonCondition
+        - KeepAliveCondition
+        - HelpProgressCondition
 
 - type: !PartialOnly entity
   id: DieObjective
@@ -88,3 +91,6 @@
       blacklist:
         components:
         - TeachALessonCondition
+        - KillPersonCondition
+        - KeepAliveCondition
+        - HelpProgressCondition

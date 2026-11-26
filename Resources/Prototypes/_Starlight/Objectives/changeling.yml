@@ -180,6 +180,9 @@
       blacklist:
         components:
         - KillPersonCondition
+        - TeachALessonCondition
+        - KeepAliveCondition
+        - HelpProgressCondition
   - type: KillPersonCondition
     requireMaroon: true
 
@@ -203,6 +206,9 @@
       blacklist:
         components:
         - KillPersonCondition
+        - TeachALessonCondition
+        - KeepAliveCondition
+        - HelpProgressCondition
   - type: KillPersonCondition
     requireMaroon: true
     requireDead: true
@@ -227,6 +233,9 @@
       blacklist:
         components:
         - TeachALessonCondition
+        - KillPersonCondition
+        - KeepAliveCondition
+        - HelpProgressCondition
 
 - type: entity
   parent: [BaseChangelingObjective, BaseTeachALessonObjective]
@@ -248,3 +257,6 @@
       blacklist:
         components:
         - TeachALessonCondition
+        - KillPersonCondition
+        - KeepAliveCondition
+        - HelpProgressCondition

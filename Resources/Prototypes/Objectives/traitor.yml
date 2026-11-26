@@ -107,6 +107,11 @@
       blacklist:
         components:
         - KillPersonCondition
+        # Starlight-start - no different objectives on the same person
+        - TeachALessonCondition
+        - KeepAliveCondition
+        - HelpProgressCondition
+        # Starlight-end
   - type: KillPersonCondition
     requireMaroon: true
 
@@ -188,6 +193,10 @@
         - HelpProgressCondition
         - KeepAliveCondition
         - DieCondition # Starlight, don't help DAGDs.
+        # Starlight-start - no different objectives on the same person
+        - KillPersonCondition
+        - TeachALessonCondition
+        # Starlight-end
 
 - type: entity
   parent: [BaseTraitorSocialObjective, BaseHelpProgressObjective]
@@ -219,6 +228,10 @@
         - HelpProgressCondition
         - KeepAliveCondition
         - DieCondition # Starlight start, don't help DAGDs.
+        # Starlight-start - no different objectives on the same person
+        - KillPersonCondition
+        - TeachALessonCondition
+        # Starlight-end
   - type: ObjectiveBlacklistRequirement # Only one, its not that cool, noone wants all their objectives to be "help X"
     blacklist:
       components:
