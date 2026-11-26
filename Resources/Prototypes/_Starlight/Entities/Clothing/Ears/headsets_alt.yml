@@ -251,6 +251,7 @@
       - EncryptionKeyCentCom
       - EncryptionKeyNanoTrasenUnremovable
       - EncryptionKeyStationMaster
+      - EncryptionKeyNTNC
   - type: Sprite
     sprite: Clothing/Ears/Headsets/command.rsi
   - type: Clothing

@@ -935,3 +935,30 @@
     - GasPipeTankTallAlt4
 
 # Tall gas tank END
+
+# Airlock controller
+- type: construction
+  id: AirlockCycler
+  graph: AirlockCycler
+  startNode: start
+  targetNode: airlock_cycler
+  category: construction-category-atmospherics
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition {}
+
+- type: construction
+  id: AirlockCyclerButton
+  graph: AirlockCyclerButton
+  startNode: start
+  targetNode: button
+  category: construction-category-atmospherics
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition {}

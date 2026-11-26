@@ -297,7 +297,7 @@
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg # Starlight
     Laugh:
-      path: /Audio/_Starlight/Voice/Reptilian/neo_lizard_laugh.ogg # Starlight
+      path: /Audio/_Starlight/Voice/Reptilian/neo_lizard_happy.ogg
 
 - type: emoteSounds
   parent: NeoHumanFSounds
@@ -306,7 +306,7 @@
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg # Starlight
     Laugh:
-      path: /Audio/_Starlight/Voice/Reptilian/neo_lizard_laugh.ogg # Starlight
+      path: /Audio/_Starlight/Voice/Reptilian/neo_lizard_happy.ogg
 
 - type: emoteSounds
   parent: NeoHumanMSounds

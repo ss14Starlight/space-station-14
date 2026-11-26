@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "State-based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon-open",
+      "copyright": "Made by DocMoth",
+      "license": "CC-BY-SA-4.0"
+    },
+    {
+      "name": "icon-closed",
+      "copyright": "Made by DocMoth",
+      "license": "CC-BY-SA-4.0"
+    },
+    {
+      "name": "fill-1",
+      "copyright": "Made by DocMoth",
+      "license": "CC-BY-SA-4.0"
+    },
+    {
+      "name": "fill-2",
+      "copyright": "Made by DocMoth",
+      "license": "CC-BY-SA-4.0"
+    },
+    {
+      "name": "fill-3",
+      "copyright": "Made by DocMoth",
+      "license": "CC-BY-SA-4.0"
+    }
+  ]
+}

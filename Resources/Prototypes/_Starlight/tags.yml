@@ -30,6 +30,9 @@
   id: Arachnid
 
 - type: Tag
+  id: AtmosFireHelmet # ConstructionGraph: AtmosianHelmet
+
+- type: Tag
   id: AutoMender
 
 - type: Tag
@@ -192,6 +195,9 @@
   id: Citrus # Artifact citrus trigger
 
 - type: Tag
+  id: Cloning # BountySalvageCloning
+
+- type: Tag
   id: CluwneBeastWearable
 
 - type: Tag
@@ -199,6 +205,12 @@
 
 - type: Tag
   id: CombatRemote # Tag: used on the RemoteSignallerCombat
+
+- type: Tag
+  id: CommieBasicWeapon # BountySalvageCommieWeapons
+
+- type: Tag
+  id: CommieAdvancedWeapon # BountySalvageAKMS
 
 - type: Tag
   id: CommieID # BountySalvageCommieID
@@ -253,6 +265,9 @@
 
 - type: Tag
   id: DogEmotes
+
+- type: Tag
+  id: DragonMeat # BountySalvageDragon
 
 - type: Tag
   id: Drone
@@ -477,6 +492,9 @@
   id: K9Wearable
 
 - type: Tag
+  id: Keg # BountySalvageKeg
+
+- type: Tag
   id: L6Saw
 
 - type: Tag
@@ -511,6 +529,9 @@
 
 - type: Tag
   id: MagazineBoxBoltRifle
+
+- type: Tag
+  id: MetalHydrogenHelmet # ConstructionGraph: AtmosianHelmet
 
 - type: Tag
   id: CartridgeImpactBolt
@@ -603,6 +624,9 @@
   id: MechReactor
 
 - type: Tag
+  id: MechReactorExpedition # BountySalvageReactor
+
+- type: Tag
   id: MechThruster
 
 - type: Tag
@@ -625,7 +649,19 @@
   id: MimeMask #used in the security mime mask crafting graph
 
 - type: Tag
+  id: MiningTicket
+
+- type: Tag
   id: ModularBarrel
+
+- type: Tag
+  id: ModularHudGoggles
+
+- type: Tag
+  id: ModularHudSingleEye
+
+- type: Tag
+  id: ModularHudSyndicate
 
 - type: Tag
   id: ModuleBlacklistXenoborgEngiWeapon
@@ -697,6 +733,9 @@
   id: PowerCellTiny
 
 - type: Tag
+  id: Protolathe # BountyProtolatheMachineBoard
+
+- type: Tag
   id: PrototypeJawsOfLife
 
 - type: Tag
@@ -704,9 +743,6 @@
 
 - type: Tag
   id: RemoteSignallerAdvanced # Crafting whitelist: Advanced Deadman remote trigger
-
-- type: Tag
-  id: RequiredForLmgTag
 
 - type: Tag
   id: Resomi
@@ -739,6 +775,9 @@
 
 - type: Tag
   id: SalvageTicket
+
+- type: Tag
+  id: JobIconSalvage
 
 - type: Tag
   id: Sausage # MetamorphRecipe: FoodSausageBun
@@ -846,13 +885,13 @@
   id: TiderAnvilParts
 
 - type: Tag
-  id: TrashBagBlue
-
-- type: Tag
   id: UnDissolvable
 
 - type: Tag
   id: USSPTraitBackground
+
+- type: Tag
+  id: Vodkizine # BountySalvageVodkizine
 
 - type: Tag
   id: Vial
@@ -879,6 +918,12 @@
   id: RawXenoMeat #BountySalvageRawXenoMeat
 
 - type: Tag
+  id: Xeno
+
+- type: Tag
+  id: XenoEmotes
+
+- type: Tag
   id: XenomoproachWearable # Allows xenomoproach to wear it, really only used for headsets. No system in place to use differing displacements for something with a given prefix/suffix, so this is needed for now.
 
 - type: Tag
@@ -886,3 +931,6 @@
 
 - type: Tag
   id: StationRadioCircuitboard
+
+- type: Tag
+  id: AirlockCyclerElectronics # ConstructionGraph: AirlockCycler

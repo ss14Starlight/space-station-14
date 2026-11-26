@@ -29,6 +29,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Content.Server._Starlight.Bed.Cryostorage;
+using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared.Anomaly.Components;
 
 namespace Content.Server.Bed.Cryostorage;
@@ -241,6 +242,10 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
         Dirty(ent, comp);
         UpdateCryostorageUIState((cryostorageEnt.Value, cryostorageComponent));
         AdminLog.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(ent):player} was entered into cryostorage inside of {ToPrettyString(cryostorageEnt.Value)}");
+
+        // Starlight-start
+        RemComp<VampireThrallComponent>(ent.Owner);
+        // Starlight-end
 
         if (!TryComp<StationRecordsComponent>(station, out var stationRecords))
             return;

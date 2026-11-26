@@ -11,6 +11,18 @@ namespace Content.Shared._Starlight.Silicons.Borgs;
 public sealed partial class StationAIShuntableComponent : Component
 {
     /// <summary>
+    /// Action that allows the AI to shunt into another target.
+    /// </summary>
+    [DataField]
+    public EntProtoId<ActionComponent> ShuntAction = "ActionAIShunt";
+
+    /// <summary>
+    /// Action that allows the AI to reconnect to its last shunt target.
+    /// </summary>
+    [DataField]
+    public EntProtoId<ActionComponent> ReconnectShuntAction = "ActionAIReconnectShunt";
+
+    /// <summary>
     /// what action is granted to the ai to allow them to return to their body.
     /// </summary>
     [DataField]
@@ -21,4 +33,16 @@ public sealed partial class StationAIShuntableComponent : Component
     /// </summary>
     [ViewVariables]
     public EntityUid? Inhabited = null;
+
+    /// <summary>
+    /// Station whose AI job slot this AI reserves while it is in an intellicard.
+    /// </summary>
+    [ViewVariables]
+    public EntityUid? SlotReservationStation;
+
+    [ViewVariables]
+    public EntityUid? ShuntActionEntity;
+
+    [ViewVariables]
+    public EntityUid? ReconnectShuntActionEntity;
 }

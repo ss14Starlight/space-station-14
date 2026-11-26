@@ -1,0 +1,18 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀                          [bold]NOTICE OF RESIGNATION[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+I, [signature], hereby resign my position because of [form].
+
+⠀[check] I accept to pay the penalty established by the terms of termination of my contract at the end of the shift.
+
+⠀[check] I will surrender my departmental work gear and equipment.
+
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+

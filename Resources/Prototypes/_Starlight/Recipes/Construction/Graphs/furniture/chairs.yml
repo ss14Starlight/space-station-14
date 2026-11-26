@@ -36,6 +36,11 @@
             - material: Steel
               amount: 2
               doAfter: 1
+        - to: chairComfyXeno
+          steps:
+            - material: Chitin
+              amount: 2
+              doAfter: 1
         - to: chairRegal
           steps:
             - material: WoodPlank
@@ -134,6 +139,18 @@
           completed:
             - !type:SpawnPrototype
               prototype: SheetSteel1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: chairComfyXeno
+      entity: ComfyChairXeno
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetChitin1
               amount: 2
           steps:
             - tool: Screwing

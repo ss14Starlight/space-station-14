@@ -306,6 +306,96 @@
     {
       "name": "cotton_tail_twotone",
       "directions": 4
+    },
+    {
+      "name": "fluffed",
+      "directions": 4,
+      "copyright": "Made by DocMoth"
+    },
+    {
+      "name": "back_scar",
+      "directions": 4,
+      "copyright": "Made by DocMoth"
+    },
+    {
+      "name": "chest_scar",
+      "directions": 4,
+      "copyright": "Made by DocMoth"
+    },
+    {
+      "name": "eye_scar2_L",
+      "directions": 4,
+      "copyright": "Made by DocMoth"
+    },
+    {
+      "name": "eye_scar2_R",
+      "directions": 4,
+      "copyright": "Made by DocMoth"
+    },
+    {
+      "name": "head_lion",
+      "directions": 4,
+      "copyright": "Made by DocMoth"
+    },
+    {
+      "name": "eye_spot_L",
+      "directions": 4,
+      "copyright": "Modified by Docmoth from Lago body sprites"
+    },
+    {
+      "name": "eye_spot_R",
+      "directions": 4,
+      "copyright": "Modified by Docmoth from Lago body sprites"
+    },
+    {
+      "name": "head_dutch",
+      "directions": 4,
+      "copyright": "Modified by Docmoth from Lago body sprites"
+    },
+    {
+      "name": "head_blaze",
+      "directions": 4,
+      "copyright": "Modified by Docmoth from Lago body sprites"
+    },
+    {
+      "name": "head_harlequinn_R",
+      "directions": 4,
+      "copyright": "Modified by Docmoth from Lago body sprites"
+    },
+    {
+      "name": "head_harlequinn_L",
+      "directions": 4,
+      "copyright": "Modified by Docmoth from Lago body sprites"
+    },
+    {
+      "name": "chest_dutch",
+      "directions": 4,
+      "copyright": "Modified by Docmoth from Lago body sprites"
+    },
+    {
+      "name": "chest_harl_R",
+      "directions": 4,
+      "copyright": "Modified by Docmoth from Lago body sprites"
+    },
+    {
+      "name": "chest_harl_L",
+      "directions": 4,
+      "copyright": "Modified by Docmoth from Lago body sprites"
+    },
+    {
+      "name": "head_gauze_blindfold",
+      "directions": 4,
+      "copyright": "Modified gauze sprites by Docmoth made from KittenColony human gauze sprites"
+    },
+    {
+      "name": "leg_gauze_L",
+      "directions": 4,
+      "copyright": "Modified gauze sprites by Docmoth made from KittenColony human gauze sprites"
+    },
+    {
+      "name": "leg_gauze_R",
+      "directions": 4,
+      "copyright": "Modified gauze sprites by Docmoth made from KittenColony human gauze sprites"
     }
   ]
 }

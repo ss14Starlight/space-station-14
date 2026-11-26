@@ -1,4 +1,5 @@
 comms-console-announcement-title-tsf = Trans-Solar Federation
+comms-console-announcement-title-medtak = MedTak
 
 comms-console-announcement-title-command = Command
 comms-console-announcement-title-eng = Engineering
@@ -8,5 +9,6 @@ comms-console-announcement-title-sec = Security
 comms-console-announcement-title-srv = Service
 comms-console-announcement-title-sup = Cargo
 comms-console-announcement-title-law = Law
+comms-console-announcement-title-news = Breaking News
 
 comms-console-menu-shuttle-button-disabled = { $text } (disabled)

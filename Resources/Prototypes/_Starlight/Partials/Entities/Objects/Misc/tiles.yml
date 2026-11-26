@@ -7,3 +7,53 @@
         type: StackCustomSplitBoundUserInterface
   - type: !Remove DamageOnLand
     damage: !Remove
+
+- type: !PartialOnly entity
+  id: FloorTileItemXeno
+  components:
+  - type: Construction
+    graph: TileXeno
+    node: xenotile
+
+- type: !PartialOnly entity
+  id: FloorTileItemXenoSteel
+  components:
+  - type: Construction
+    graph: TileXenoSteel
+    node: xenosteeltile
+
+- type: !PartialOnly entity
+  id: FloorTileItemXenoSteelCorner
+  components:
+  - type: Construction
+    graph: TileXenoSteelCorner
+    node: xenosteelcornertile
+
+- type: !PartialOnly entity
+  id: FloorTileItemXenoMaint
+  components:
+  - type: Construction
+    graph: TileXenoTechmaint
+    node: xenotechmainttile
+
+- type: !PartialOnly entity
+  id: FloorTileItemWeb
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 10
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 10
+  - type: Tag
+    tags:
+    - ClothMade
+  - type: Edible
+    requiresSpecialDigestion: true
+    solution: food
+  - type: FlavorProfile
+    flavors:
+      - cobwebs
+    ignoreReagents:
+      - Fiber

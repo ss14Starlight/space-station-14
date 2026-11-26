@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._Starlight.Traits;
 using Content.Shared._Starlight.Traits.Effects;
 using Content.Shared.GameTicking;
@@ -10,6 +11,8 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared.Body.Components;
+using Content.Shared.Body.Systems;
 
 namespace Content.Server._Starlight.Traits;
 
@@ -24,6 +27,7 @@ public sealed partial class TraitSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private SharedBodySystem _body = default!;
 
     private int _maxTraitCount;
     private int _maxTraitPoints;
@@ -90,7 +94,7 @@ public sealed partial class TraitSystem : EntitySystem
         var categoryTraitCounts = new Dictionary<ProtoId<TraitCategoryPrototype>, int>();
         var categoryPointTotals = new Dictionary<ProtoId<TraitCategoryPrototype>, int>();
 
-        foreach (var traitId in selectedTraits)
+        foreach (var traitId in TraitOrdering.OrderForValidation(selectedTraits, _prototype))
         {
             if (!_prototype.TryIndex(traitId, out var trait))
             {
@@ -165,7 +169,7 @@ public sealed partial class TraitSystem : EntitySystem
             categoryPointTotals[trait.Category] = catPoints + trait.Cost;
         }
 
-        return validTraits;
+        return new HashSet<ProtoId<TraitPrototype>>(selectedTraits.Where(validTraits.Contains));
     }
 
     /// <summary>
@@ -221,6 +225,9 @@ public sealed partial class TraitSystem : EntitySystem
                 // Handle SpawnItemInHandEffect specially since it needs server-side systems
                 if (effect is SpawnItemInHandEffect spawnEffect)
                     ApplySpawnItemEffect(player, spawnEffect, transform);
+                // Handle SpawnItemAsImplantEffect specially since it needs server-side systems
+                else if (effect is SpawnItemAsImplantEffect spawnImplantEffect)
+                    ApplySpawnImplantEffect(player, spawnImplantEffect, transform);
                 else
                     effect.Apply(effectCtx);
             }
@@ -247,5 +254,26 @@ public sealed partial class TraitSystem : EntitySystem
 
         if (!_hands.TryPickup(player, item, checkActionBlocker: false, handsComp: hands))
             Log.Debug($"Could not pick up trait item {effect.Item}, leaving at feet");
+    }
+
+    /// <summary>
+    /// Handles the SpawnItemAsImplantEffect since it requires server-side systems.
+    /// </summary>
+    private void ApplySpawnImplantEffect(EntityUid player, SpawnItemAsImplantEffect effect, TransformComponent transform)
+    {
+        if (!TryComp<BodyComponent>(player, out var body))
+        {
+            Log.Warning("Cannot spawn trait item: player has no body component");
+            return;
+        }
+
+        var coords = transform.Coordinates;
+        var item = SpawnAttachedTo(effect.Item, coords);
+
+        foreach(var part in _body.GetBodyChildren(player))
+        {
+            if(_body.CanInsertOrgan(part.Id, effect.Slot) && _body.InsertOrgan(part.Id, item, effect.Slot))
+                return;
+        }
     }
 }

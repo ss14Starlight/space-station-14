@@ -8,3 +8,9 @@
     sound:
       path: /Audio/_Starlight/Items/Handling/component_drop.ogg
 
+- type: !PartialOnly entity
+  id: CloningConsoleComputerCircuitboard
+  components:
+  - type: Tag
+    tags:
+      - Cloning

@@ -1,0 +1,25 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀           [bold]EMERGENCY RESPONSE TEAM REQUEST[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+I, [signature], request an ERT team to be sent to the station to assist with an ongoing problem that exceeds the station's current resources to resolve.
+
+Threat(s) to the station:
+⠀• [form]
+    • [form]
+
+Type of ERT requested: [form]
+(Security / Engineering / Janitorial / Medical / ...)
+
+Fatalities (approximate number): [form]
+Other casualties (approximate number): [form]
+
+⠀ [italic]Abuse of this form may lead to immediate dismissal of the person(s) involved in this request.[/italic]
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+

@@ -9,7 +9,6 @@ loadout-group-roboticist-shoes = Roboticist shoes
 loadout-group-roboticist-neck = Roboticist neck
 
 # Civilian
-loadout-group-assistant-glasses = Assistant glasses
 loadout-group-assistant-head = Assistant head
 loadout-group-assistant-backpack = Assistant backpack
 
@@ -162,3 +161,4 @@ loadout-group-NanotrasenCareerTrainer-eyewear = NanoTrasen Career Trainer eyewea
 
 # Security
 loadout-group-warden-neck = Warden neck
+loadout-group-bartender-eyewear = Bartender eyewear

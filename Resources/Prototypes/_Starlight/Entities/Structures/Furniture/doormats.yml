@@ -1,0 +1,124 @@
+- type: entity
+  id: BaseDoormat
+  parent: BaseStructure
+  abstract: true
+  name: doormat
+  description: Wipe your feet before coming in.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/doormats.rsi
+    state: door_mat
+    drawdepth: FloorTiles
+  - type: Physics
+    canCollide: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 5
+        hard: false
+        layer:
+        - SlipLayer
+        mask:
+        - ItemMask
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.1
+  - type: PassiveWash
+    washSlots: [FEET]
+    washFootprints: true
+    washAmount: 1
+    washInterval: 0.5
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: ToolRefinable
+    qualityNeeded: Slicing
+    refineFuel: 0
+    refineResult:
+    - id: MaterialDurathread1
+      amount: 2
+
+- type: entity
+  id: Doormat
+  parent: BaseDoormat
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/doormats.rsi
+    state: door_mat
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [Destruction]
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [Destruction]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          DoormatRoll:
+            min: 1
+            max: 1
+
+- type: entity
+  id: DoormatWelcome
+  parent: BaseDoormat
+  suffix: Welcome
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/doormats.rsi
+    state: welcome_mat
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [Destruction]
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [Destruction]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          DoormatRollWelcome:
+            min: 1
+            max: 1
+
+- type: entity
+  id: DoormatBless
+  parent: BaseDoormat
+  suffix: Bless This Spess
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/doormats.rsi
+    state: bless_this_spess
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [Destruction]
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [Destruction]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          DoormatRollBless:
+            min: 1
+            max: 1

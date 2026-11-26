@@ -1,7 +1,9 @@
 using Content.Shared.ActionBlocker;
 using Content.Shared.Body.Organ;
 using Content.Shared.Interaction;
+using Content.Shared.Movement.Components;
 using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared._Starlight.Access;
 using Robust.Shared.Containers;
 
 // ReSharper disable CheckNamespace
@@ -13,12 +15,7 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
     [Dependency] private SharedContainerSystem _containers = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<RemoteControlInteractionCheckEvent>(OnRemoteControlInteractionCheck);
-    }
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
 
     /// <summary>
     /// Gets the remote entity controlled by an actor.
@@ -45,6 +42,24 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
         return false;
     }
 
+    public bool TryGetControllerForRemoteEntity(EntityUid remoteEntity, out EntityUid controller)
+    {
+        var query = EntityQueryEnumerator<RemoteControlConsoleComponent>();
+        while (query.MoveNext(out var consoleUid, out var console))
+        {
+            if (console.Controller is not { } activeController
+                || !TryGetRemoteEntity((consoleUid, console), out var candidateRemote)
+                || candidateRemote != remoteEntity)
+                continue;
+
+            controller = activeController;
+            return true;
+        }
+
+        controller = default;
+        return false;
+    }
+
     /// <summary>
     /// Checks whether the controlled remote entity is eligible to perform conscious actions.
     /// </summary>
@@ -58,7 +73,7 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
     /// </returns>
     public bool CanRemoteControlledEntityAct(EntityUid remoteEntity)
         => _actionBlocker.CanConsciouslyPerformAction(remoteEntity);
-
+    [SubscribeLocalEvent]
     private void OnRemoteControlInteractionCheck(ref RemoteControlInteractionCheckEvent args)
     {
         if (!TryGetControlledEntity(args.Actor, out var remoteEntity))
@@ -67,6 +82,31 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
         args.RemoteEntity = remoteEntity;
         args.Allowed = CanRemoteControlledEntityAct(remoteEntity)
             && _interaction.InRangeAndAccessible(remoteEntity, args.Target);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnBorgAccessRead(EntityUid uid, BorgChassisComponent component, ref AccessReadEvent args)
+    {
+        if (TryGetControllerForRemoteEntity(uid, out var controller) && controller != uid)
+            args.AccessSource = controller;
+    }
+
+    [SubscribeLocalEvent]
+    private void OnRemoteUiInteractionActor(ref RemoteControlUiInteractionActorEvent args)
+    {
+        if (!TryGetControlledEntity(args.Controller, out var remoteEntity)
+            || !CanRemoteControlledEntityAct(remoteEntity))
+            return;
+
+        if (!args.IsOpenAttempt
+            && args.Target != remoteEntity
+            && !_ui.IsUiOpen(args.Target, args.UiKey, remoteEntity))
+            return;
+
+        if (!_interaction.IsAccessible(remoteEntity, args.Target))
+            return;
+
+        args.Actor = remoteEntity;
     }
 
     public bool TryGetRemoteEntity(Entity<RemoteControlConsoleComponent?> entity, out EntityUid remoteEntity)
@@ -119,9 +159,16 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
             return true;
         }
 
-        return _containers.TryGetContainingContainer(brain, out var container)
+        if (_containers.TryGetContainingContainer(brain, out var container)
             && container.ID == "borg_brain"
             && TryComp<BorgChassisComponent>(container.Owner, out _)
-            && (body = container.Owner) != default;
+            && (body = container.Owner) != default)
+            return true;
+
+        if (!HasComp<InputMoverComponent>(brain))
+            return false;
+
+        body = brain;
+        return true;
     }
 }

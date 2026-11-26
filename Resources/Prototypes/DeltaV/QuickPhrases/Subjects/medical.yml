@@ -11,7 +11,7 @@
 - type: quickPhrase
   id: BaseMedicinePhrase
   parent: BaseMedicalSubjectPhrase
-  group: Medicine #starlight
+  group: aac-group-medicine #Starlight: Make group names localization friendly
   abstract: true
 
 - type: quickPhrase

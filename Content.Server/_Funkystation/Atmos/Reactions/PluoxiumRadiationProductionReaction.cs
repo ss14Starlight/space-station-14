@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 using Robust.Shared.Timing;
 using Content.Server.Radiation.Systems;
 using Content.Server.Radiation.Components;
-
+using Robust.Shared.Map.Components;
 
 namespace Content.Server.Atmos.Reactions;
 
@@ -24,6 +24,10 @@ public sealed partial class PluoxiumRadiationProductionReaction : IGasReactionEf
     private SharedMapSystem mapSystem => systemManager.GetEntitySystem<SharedMapSystem>();
     private const float RadiationThreshold = 0.01f;
     private static readonly TimeSpan TimerDuration = TimeSpan.FromSeconds(5);
+
+    #region Starlight
+    private readonly Dictionary<(EntityUid Grid, Vector2i Tile), EntityUid> _tileReceivers = new();
+    #endregion
 
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
@@ -46,19 +50,33 @@ public sealed partial class PluoxiumRadiationProductionReaction : IGasReactionEf
         }
         else if (holder is TileAtmosphere tile)
         {
+            // Starlight start
             var tileRef = atmosphereSystem.GetTileRef(tile);
-            var gridUid = tileRef.GridUid;
-
-            // We use the center of the tile to ensure the Raycast actually hits the intended area
             var coords = mapSystem.ToCenterCoordinates(tileRef);
-            radiationLevel = radiationSystem.GetRadiationAtCoordinates(coords);
-
-            // If we have no data, or data is too low, we MUST request a sample for the future
-            if (radiationLevel < RadiationThreshold)
+            var gridUid = tileRef.GridUid;
+            var gridComp = entityManager.GetComponent<MapGridComponent>(gridUid);
+            var tileIndices = mapSystem.TileIndicesFor((gridUid, gridComp), coords);
+            var tileLookup = (tileRef.GridUid, tileIndices);
+            // create a temporary entity to actaully be able to measure the radiation on the tile if one doesnt already exist
+            if (!_tileReceivers.TryGetValue(tileLookup, out var receiver) || entityManager.Deleted(receiver))
             {
-                radiationSystem.RequestTileRadiationSampling(coords);
+                receiver = entityManager.SpawnAtPosition(null, coords);
+
+                entityManager.EnsureComponent<RadiationReceiverComponent>(receiver);
+
+                var timer = entityManager.EnsureComponent<RadiationReceiverTimerComponent>(receiver);
+                timer.TimerExpiresAt = gameTiming.CurTime + TimerDuration;
+                timer.DeleteEntityOnExpire = true;
+
+                _tileReceivers[tileLookup] = receiver;
+
                 return ReactionResult.Reacting;
             }
+            var receiverTimer = entityManager.EnsureComponent<RadiationReceiverTimerComponent>(receiver);
+
+            receiverTimer.TimerExpiresAt = gameTiming.CurTime + TimerDuration;
+            radiationLevel = entityManager.GetComponent<RadiationReceiverComponent>(receiver).CurrentRadiation;
+            // Starlight end
         }
         else if (holder is PipeNet pipeNet) // Very resource heavy. Could be disabled or commented out with flavor being pipes have some kind of shielding.
         {
@@ -140,6 +158,10 @@ public sealed partial class PluoxiumRadiationProductionReaction : IGasReactionEf
 public sealed partial class RadiationReceiverTimerComponent : Component
 {
     public TimeSpan TimerExpiresAt { get; set; } = TimeSpan.Zero;
+
+    #region Starlight
+    public bool DeleteEntityOnExpire { get; set; } = false;
+    #endregion
 }
 
 public sealed partial class RadiationTimerSystem : EntitySystem
@@ -154,7 +176,16 @@ public sealed partial class RadiationTimerSystem : EntitySystem
         var query = entityManager.EntityQueryEnumerator<RadiationReceiverTimerComponent>();
         while (query.MoveNext(out var uid, out var timer))
         {
-            if (_timing.CurTime >= timer.TimerExpiresAt)
+            // Starlight start
+            if (_timing.CurTime < timer.TimerExpiresAt)
+                continue;
+            // cleanup of inactive temporary radiation recievers
+            if (timer.DeleteEntityOnExpire)
+            {
+                entityManager.QueueDeleteEntity(uid);
+            }
+            else
+            // Starlight end
             {
                 entityManager.RemoveComponent<RadiationReceiverComponent>(uid);
                 entityManager.RemoveComponent<RadiationReceiverTimerComponent>(uid);

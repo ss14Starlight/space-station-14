@@ -1,6 +1,6 @@
 - type: entity
   parent:
-    [BaseNanoTrasenContraband, ClothingOuterVestWeb]
+    [BaseNanoTrasenContraband, ClothingOuterVestWeb, ClothingOuterBaseWinter]
   id: ClothingOuterVestWebNTNCEnsign
   name: NanoTrasen navy marine ensign's carapace.
   description: An armoured carapace designed for the best of the best within the navy, allowing the wearer to remain protected and stylish.
@@ -11,10 +11,10 @@
       sprite: _Starlight/Admeme/Clothing/OuterClothing/Vests/ntnc-ensign.rsi
 
 - type: entity
-  parent: [ BaseNanoTrasenContraband, ClothingOuterArmorBase ] # Blimpuf
+  parent: [ BaseNanoTrasenContraband, ClothingOuterArmorBase, ClothingOuterBaseWinter ] # Blimpuf
   id: ClothingOuterVestNTNC
   name: NanoTrasen navy marine's vest
-  description: Much better than a standard type-1 security vest. Don't lose it, you will NOT get a replacement.
+  description: An upgraded and modified vest designed for use by NT Marines. This vest features additional hardpoints, allowing armour plating and other attachments to be fitted.
   components:
     - type: Sprite
       sprite: _Starlight/Admeme/Clothing/OuterClothing/Vests/ntnc_vest.rsi
@@ -27,8 +27,8 @@
         coefficients:
           Blunt: 0.5
           Slash: 0.5
-          Piercing: 0.4
           Heat: 0.7
+          Piercing: 0.4
           Caustic: 0.75
     - type: ExplosionResistance
       damageCoefficient: 0.60

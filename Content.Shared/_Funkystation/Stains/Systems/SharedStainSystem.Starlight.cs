@@ -28,16 +28,19 @@ public abstract partial class SharedStainSystem : EntitySystem
     }
 
     /// <summary>
-    /// Removes stains from every item equipped by an entity.
+    /// Removes stains from equipped items in the selected slots.
     /// When <paramref name="amount"/> is specified, at most that much solution is removed from each item.
     /// </summary>
-    public void CleanEquippedClothing(Entity<InventoryComponent?> wearer, FixedPoint2? amount = null)
+    public void CleanEquippedClothing(
+        Entity<InventoryComponent?> wearer,
+        FixedPoint2? amount = null,
+        SlotFlags slots = SlotFlags.WITHOUT_POCKET)
     {
         if (!Resolve(wearer.Owner, ref wearer.Comp, false))
             return;
 
         var cleaned = new HashSet<EntityUid>();
-        var enumerator = _inventory.GetSlotEnumerator((wearer.Owner, wearer.Comp), SlotFlags.WITHOUT_POCKET);
+        var enumerator = _inventory.GetSlotEnumerator((wearer.Owner, wearer.Comp), slots);
         while (enumerator.NextItem(out var item))
         {
             if (cleaned.Add(item) && TryComp<StainableComponent>(item, out var stain))

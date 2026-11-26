@@ -1,7 +1,10 @@
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
+using Content.Shared.Chat;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Eye.Blinding.Systems;
+using Content.Shared.Movement.Systems;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.StatusEffectNew.Components;
 using Content.Shared._Starlight.Sleepiness.Components;
@@ -19,7 +22,11 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
 
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SleepingSystem _sleeping = default!;
+    [Dependency] private BlindableSystem _blindable = default!;
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private SleepinessMovementSpeedSystem _sleepinessMovementSpeed = default!;
+    [Dependency] private SharedChatSystem _chat = default!;
     [Dependency] private SharedSolutionContainerSystem _solutions = default!;
     [Dependency] private IRobustRandom _random = default!;
 
@@ -39,15 +46,33 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
         var query = EntityQueryEnumerator<SleepinessStatusEffectComponent, StatusEffectComponent>();
         while (query.MoveNext(out var uid, out var sleepiness, out var statusEffect))
         {
-            if (statusEffect.AppliedTo is not { } target || statusEffect.EndEffectTime is not { } endTime)
+            // Let the removal event handle queued effects and preserve pending wake requests.
+            if (EntityManager.IsQueuedForDeletion(uid) ||
+                statusEffect.AppliedTo is not { } target)
                 continue;
 
-            var remaining = endTime - _timing.CurTime;
+            var endTime = statusEffect.EndEffectTime;
+            var remaining = endTime is { } expiration
+                ? expiration - _timing.CurTime
+                : sleepiness.MaximumSlowdownSleepiness;
+
+            _movementSpeedModifier.RefreshMovementSpeedModifiers(target);
+
+            if (remaining > TimeSpan.Zero && _random.Prob(sleepiness.YawnChance))
+                _chat.TryEmoteWithChat(target, "Yawn");
+
+            if (endTime is null)
+                continue;
+
+            if (HasComp<LightSleepComponent>(target) &&
+                HasComp<SleepinessInducedSleepComponent>(target) &&
+                HasComp<SleepingComponent>(target))
+                _blindable.UpdateIsBlind(target);
 
             if (sleepiness.SleepImmediately && !HasComp<SleepingComponent>(target) &&
                 CanInduceSleep(target, sleepiness))
             {
-                if (_sleeping.TrySleeping(target))
+                if (TrySleepFromSleepiness(target))
                 {
                     sleepiness.SleepImmediately = false;
                     Dirty(uid, sleepiness);
@@ -76,9 +101,20 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
                 !CanInduceSleep(target, sleepiness))
                 continue;
 
-            if (!_sleeping.TrySleeping(target))
+            if (!TrySleepFromSleepiness(target))
                 continue;
         }
+    }
+
+    private bool TrySleepFromSleepiness(EntityUid target)
+    {
+        EnsureComp<SleepinessInducedSleepComponent>(target);
+
+        if (_sleeping.TrySleeping(target))
+            return true;
+
+        RemComp<SleepinessInducedSleepComponent>(target);
+        return false;
     }
 
     private bool CanInduceSleep(EntityUid target, SleepinessStatusEffectComponent sleepiness)
@@ -144,9 +180,14 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
 
     private void OnSleepinessRemoved(Entity<SleepinessStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
     {
-        if (!TryComp<SleepingComponent>(args.Target, out var sleeping))
-            return;
+        _sleepinessMovementSpeed.RefreshMovementSpeedAfterSleepinessRemoved(ent.Owner, args.Target);
 
-        _sleeping.TryWaking((args.Target, sleeping));
+        if (ent.Comp.WakeRequested && TryComp<SleepingComponent>(args.Target, out var sleeping))
+            _sleeping.TryWaking((args.Target, sleeping), ignoreSsd: true);
+
+        if (HasComp<LightSleepComponent>(args.Target) &&
+            HasComp<SleepinessInducedSleepComponent>(args.Target) &&
+            HasComp<SleepingComponent>(args.Target))
+            _blindable.UpdateIsBlind(args.Target);
     }
 }

@@ -90,10 +90,10 @@
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-    Laugh: # Starlight start
-      path: /Audio/_Starlight/Voice/Reptilian/lizard_laugh.ogg
-    Sneeze:
-      collection: MaleSneezes # Starlight end
+    Laugh:
+      path: /Audio/Animals/lizard_happy.ogg
+    Sneeze: # Starlight
+      collection: MaleSneezes # Starlight
     Honk:
       collection: BikeHorn
     Whistle:
@@ -122,10 +122,10 @@
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-    Laugh: # Starlight start
-      path: /Audio/_Starlight/Voice/Reptilian/lizard_laugh.ogg
-    Sneeze:
-      collection: FemaleSneezes # Starlight end
+    Laugh:
+      path: /Audio/Animals/lizard_happy.ogg
+    Sneeze: # Starlight
+      collection: FemaleSneezes # Starlight
     Honk:
       collection: BikeHorn
     Whistle:

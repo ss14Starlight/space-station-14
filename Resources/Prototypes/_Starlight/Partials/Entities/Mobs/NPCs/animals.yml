@@ -31,6 +31,19 @@
   - type: FirelockOpener
 
 - type: !PartialOnly entity
+  id: MobBaseAncestor
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.VampireClassUiKey.Key:
+        type: VampireClassBui
+      enum.VampireLocateUiKey.Key:
+        type: VampireLocateBui
+      enum.DamnationsMenuUiKey.Key:
+        type: DevilDamnationsBoundUserInterface
+        requireInputValidation: false
+
+- type: !PartialOnly entity
   id: MobBaseKobold
   components:
   - type: CosmicLapseForm # Kobolds inherit the monkey species ID, so lapse needs an explicit form
@@ -60,31 +73,23 @@
 
 # Paw prints instead of the default foot sprite.
 - type: !PartialOnly entity
-  id: MobCorgiBaseTemplate
+  id: !type:CreateVariants
+    values:
+    - MobCorgiBaseTemplate
+    - MobCat
+    - MobFox
+    - MobMcGriff
+    - MobWalter
+    - MobBingus
+    - MobCatShadow
+    - MobBreadDog
+    - MobCatCake
   components:
   - type: FootprintOwner
     printState: Paw
     footstepDistance: 0.25
-    minPrintVolume: 0.025
-    maxFootprintVolume: 0.05
-
-- type: !PartialOnly entity
-  id: MobCat
-  components:
-  - type: FootprintOwner
-    printState: Paw
-    footstepDistance: 0.25
-    minPrintVolume: 0.025
-    maxFootprintVolume: 0.05
-
-- type: !PartialOnly entity
-  id: MobFox
-  components:
-  - type: FootprintOwner
-    printState: Paw
-    footstepDistance: 0.25
-    minPrintVolume: 0.025
-    maxFootprintVolume: 0.05
+    minFootprintVolume: 0.25
+    maxFootprintVolume: 0.5
 
 - type: !PartialOnly entity
   id: MobMonkeySyndicateAgentNukeops

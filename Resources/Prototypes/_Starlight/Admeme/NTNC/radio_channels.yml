@@ -1,0 +1,7 @@
+- type: radioChannel
+  id: NTNC
+  name: chat-radio-ntnc
+  keycode: "2"
+  frequency: 2182
+  color: "#0488ff"
+  longRange: true

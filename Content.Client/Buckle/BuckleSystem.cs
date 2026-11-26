@@ -95,16 +95,6 @@ internal sealed partial class BuckleSystem : SharedBuckleSystem
         if (!TryComp<SpriteComponent>(ent.Owner, out var buckledSprite))
             return;
 
-        // Starlight-start
-
-        if (strapComp.SetVisible)
-        {
-            ent.Comp.OriginalVisible = buckledSprite.Visible;
-            buckledSprite.Visible = false;
-        }
-
-        // Starlight-end
-
         var angle = _xformSystem.GetWorldRotation(args.Strap) + _eye.CurrentEye.Rotation; // Get true screen position, or close enough
         var isLowered = (angle.GetCardinalDir().AsFlag() & strapComp.LoweredDrawdepthDirections) != 0; //Starlight
 
@@ -123,16 +113,6 @@ internal sealed partial class BuckleSystem : SharedBuckleSystem
         if (!TryComp<SpriteComponent>(ent.Owner, out var buckledSprite))
             return;
 
-        if (!TryComp<StrapComponent>(args.Strap, out var strapComp)) //Starlight
-            return;
-
-        // Starlight-start
-
-        if (strapComp.SetVisible && ent.Comp.OriginalVisible is { } originalVis)
-            buckledSprite.Visible = originalVis;
-
-        // Starlight-end
-
         if (!ent.Comp.OriginalDrawDepth.HasValue)
             return;
 
@@ -142,12 +122,33 @@ internal sealed partial class BuckleSystem : SharedBuckleSystem
 
     private void OnAppearanceChange(EntityUid uid, BuckleComponent component, ref AppearanceChangeEvent args)
     {
+        // Starlight-start
+        var buckled = Appearance.TryGetData<bool>(uid, BuckleVisuals.Buckled, out var isBuckled, args.Component) && isBuckled;
+
+        if (args.Sprite != null)
+        {
+            var shouldHide = buckled
+                && component.BuckledTo is { } strapUid
+                && TryComp<StrapComponent>(strapUid, out var strap)
+                && strap.SetVisible;
+
+            if (shouldHide)
+            {
+                component.OriginalVisible ??= args.Sprite.Visible;
+                _sprite.SetVisible((uid, args.Sprite), false);
+            }
+            else if (component.OriginalVisible is { } originalVis)
+            {
+                _sprite.SetVisible((uid, args.Sprite), originalVis);
+                component.OriginalVisible = null;
+            }
+        }
+        // Starlight-end
+
         if (!TryComp<RotationVisualsComponent>(uid, out var rotVisuals))
             return;
 
-        if (!Appearance.TryGetData<bool>(uid, BuckleVisuals.Buckled, out var buckled, args.Component) ||
-            !buckled ||
-            args.Sprite == null)
+        if (!buckled || args.Sprite == null) // Starlight-edit
         {
             _rotationVisualizerSystem.SetHorizontalAngle((uid, rotVisuals), rotVisuals.DefaultRotation);
             return;

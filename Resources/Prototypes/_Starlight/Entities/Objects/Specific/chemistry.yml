@@ -103,7 +103,6 @@
     grid:
     - 0,0,2,1
   - type: Item
-    sprite: Objects/Consumable/Smokeables/vials/case.rsi
     size: Small
     shape:
     - 0,0,1,1
