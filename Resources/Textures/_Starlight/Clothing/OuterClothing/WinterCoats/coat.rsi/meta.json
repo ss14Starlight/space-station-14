@@ -68,6 +68,30 @@
       "name": "ROBO-inhand-right",
       "directions": 4,
 	  "copyright": "TG Station, Dutch-VanDerLinde, Cvlancer"
+    },
+    {
+      "name": "MINER-icon",
+	  "copyright": "TG Station, Dutch-VanDerLinde, Reestock"
+    },
+    {
+      "name": "MINER-equipped-OUTERCLOTHING",
+      "directions": 4,
+	  "copyright": "TG Station, Dutch-VanDerLinde, Reestock"
+    },
+    {
+      "name": "MINER-equipped-OUTERCLOTHING-vox",
+      "directions": 4,
+	  "copyright": "TG Station, Dutch-VanDerLinde, Reestock"
+    },
+    {
+      "name": "MINER-inhand-left",
+      "directions": 4,
+	  "copyright": "TG Station, Dutch-VanDerLinde, Reestock"
+    },
+    {
+      "name": "MINER-inhand-right",
+      "directions": 4,
+	  "copyright": "TG Station, Dutch-VanDerLinde, Reestock"
     }
   ]
 }

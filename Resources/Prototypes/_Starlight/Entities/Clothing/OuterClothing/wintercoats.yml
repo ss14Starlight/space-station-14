@@ -66,6 +66,39 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterSeniorCourier
 
+- type: entity
+  parent: ClothingOuterWinterCoatToggleable
+  id: ClothingOuterWinterMiningSpecialist
+  name: mining winter coat
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/WinterCoats/coat.rsi
+    layers:
+    - state: MINER-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: MINER-inhand-left
+      right:
+      - state: MINER-inhand-right
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/WinterCoats/coat.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: MINER-equipped-OUTERCLOTHING
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.95
+        Heat: 0.90
+        Cold: 0.85
+        Caustic: 0.75
+    priceMultiplier: 0.15
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodWinterMiningSpecialist
+
 # Science
 - type: entity
   parent: ClothingOuterWinterCoatToggleable

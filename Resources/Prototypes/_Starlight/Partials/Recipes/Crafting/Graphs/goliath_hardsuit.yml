@@ -1,0 +1,21 @@
+﻿- type: !PartialOnly constructionGraph
+  id: HardsuitGoliath
+  graph: !Clear
+  - node: start
+    edges:
+    - to: hardsuitGoliath
+      steps:
+      - tag: HardsuitMining
+        icon:
+          sprite: _Starlight/Clothing/OuterClothing/Hardsuits/mining.rsi
+          state: icon
+        name: construction-graph-tag-mining-hardsuit
+        doAfter: 10
+      - material: Durathread
+        amount: 5
+        doAfter: 10
+      - material: GoliathHide
+        amount: 12
+        doAfter: 10
+  - node: hardsuitGoliath
+    entity: ClothingOuterHardsuitGoliathMining

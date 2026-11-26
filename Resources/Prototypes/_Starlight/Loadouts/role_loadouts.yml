@@ -109,10 +109,10 @@
   id: JobMiningSpecialist
   groups:
   - GroupTankHarness # for Vox
-  - SalvageSpecialistBackpack
+  - MiningSpecialistBackpack
   - MiningSpecialistJumpsuit
-  - SalvageSpecialistOuterClothing
-  - SalvageSpecialistShoes
+  - MiningSpecialistOuterClothing
+  - MiningSpecialistShoes
   - MiningSpecialistPDA
   - Glasses
   - Survival

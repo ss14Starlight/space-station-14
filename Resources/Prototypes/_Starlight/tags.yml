@@ -402,6 +402,9 @@
   id: HandheldEngineeringMonitor #CE's handheld monitor
 
 - type: Tag
+  id: HardsuitMining
+
+- type: Tag
   id: Heart
 
 - type: Tag

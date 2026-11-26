@@ -18,9 +18,9 @@
         - Screwdriver
         - Flashlight
         - Wrench
-#        - GeigerCounter Starlight start
-#        - Flare
-#        - CableCoil
+        - GeigerCounter # Readded for mining specialists.
+        - Flare
+#        - CableCoil # Starlight start
 #        - Powerdrill # They only get to carry simple tools, they shouldn't be using this as free toolbelt
 #        - JawsOfLife # Starlight end
         - CigPack

@@ -1,0 +1,17 @@
+- type: !PartialOnly latheRecipe
+  id: PKAUpgradeDamage
+  materials: !Clear
+    Steel: 500
+    Gold: 500
+
+- type: !PartialOnly latheRecipe
+  id: PKAUpgradeRange
+  materials: !Clear
+    Steel: 500
+    Silver: 500
+
+- type: !PartialOnly latheRecipe
+  id: PKAUpgradeFireRate
+  materials: !Clear
+    Steel: 500
+    Plasma: 700
