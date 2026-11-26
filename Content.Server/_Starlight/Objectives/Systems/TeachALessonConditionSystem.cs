@@ -131,9 +131,7 @@ public sealed partial class TeachALessonConditionSystem : EntitySystem
     }
 
     private void OnTargetMindUserIdChanged(Entity<TeachALessonTargetComponent> ent, ref MindUserIdChangedEvent args)
-    {
-        ReevaluateTeachers(ent);
-    }
+        => ReevaluateTeachers(ent);
 
     private void ReevaluateTeachers(Entity<TeachALessonTargetComponent> ent)
     {
