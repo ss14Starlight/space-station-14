@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Oasis) Added a hatchet to gen pop island.
-    type: Add
-  id: 410462
-  time: '2026-11-14T22:08:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7232
-- author: Cvlancer
-  changes:
   - message: (Manor) Added a few maints locker to maints cargo.
     type: Add
   id: 410463
@@ -2799,4 +2792,11 @@ Entries:
   id: 410861
   time: '2026-11-26T21:43:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7469
+- author: Rinary
+  changes:
+  - message: Fixed bug when disabled shuttle call spams with announcements while zeds are winning.
+    type: Fix
+  id: 410862
+  time: '2026-11-26T22:19:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7476
 Order: -1
