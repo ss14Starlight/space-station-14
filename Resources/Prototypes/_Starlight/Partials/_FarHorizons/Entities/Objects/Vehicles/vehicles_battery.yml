@@ -26,7 +26,6 @@
     gunStaminaRecoil: true
     gunSpreadPenalty: 20
   - type: !Remove Vehicle
-  - type: !Remove VehicleBuckle
   save: !Remove
 
 - type: !PartialOnly entity
@@ -49,7 +48,6 @@
     slots:
       key_slot:
         name: vehicle-slot-component-slot-name-keys
-  - type: !Remove VehicleBuckle
   - type: FootprintOwner
     printState: Tire
     alternateStepOffset: 0.15

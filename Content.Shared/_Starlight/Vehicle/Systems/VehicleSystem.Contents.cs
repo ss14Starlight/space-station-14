@@ -6,6 +6,7 @@ using Content.Shared.Storage.Components;
 using Content.Shared.Vehicle.Components;
 using Robust.Shared.Network;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Vehicle.Systems;
 
 public sealed partial class VehicleSystem

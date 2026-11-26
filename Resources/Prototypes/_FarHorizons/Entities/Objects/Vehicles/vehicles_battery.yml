@@ -46,10 +46,6 @@
       allowGunKnockback: true
       soundHit:
         collection: MetalThud
-    - type: VehicleBuckle
-      unbuckleTime: 2
-      dismountOnStun: true
-      dismountOnKnockdown: true
     - type: DirectionalOverride
       offsets:
         North: "0, -0.12"
@@ -90,8 +86,6 @@
           name: power-cell-slot-component-slot-name-default
           disableEject: true
           swap: true
-    - type: VehicleBuckle
-      armorAffectsVehicle: true
     - type: VehicleMods
       vehicleType: Electric
       equipmentSlots: [tires, engine, armor, headlight, lightbar]

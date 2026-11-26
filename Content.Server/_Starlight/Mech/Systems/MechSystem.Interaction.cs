@@ -18,6 +18,7 @@ using Content.Shared.Whitelist;
 using Content.Shared.Wires;
 using Robust.Shared.Prototypes;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Mech.Systems;
 
 public sealed partial class MechSystem

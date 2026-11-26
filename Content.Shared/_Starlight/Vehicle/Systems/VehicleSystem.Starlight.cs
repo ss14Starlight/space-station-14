@@ -5,6 +5,7 @@ using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Vehicle.Components;
 using Content.Shared.Whitelist;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Vehicle.Systems;
 
 public sealed partial class VehicleSystem
@@ -41,9 +42,10 @@ public sealed partial class VehicleSystem
         RefreshCanRun(ent);
     }
 
-    public bool HasVehicleKey(Entity<GenericKeyedVehicleComponent?> vehicle) => Resolve(vehicle, ref vehicle.Comp, false) &&
-               _container.TryGetContainer(vehicle, vehicle.Comp.ContainerId, out var slot) &&
-               slot.ContainedEntities.Any(key => _entityWhitelist.IsWhitelistPass(vehicle.Comp.KeyWhitelist, key));
+    public bool HasVehicleKey(Entity<GenericKeyedVehicleComponent?> vehicle) =>
+        Resolve(vehicle, ref vehicle.Comp, false) &&
+        _container.TryGetContainer(vehicle, vehicle.Comp.ContainerId, out var slot) &&
+        slot.ContainedEntities.Any(key => _entityWhitelist.IsWhitelistPass(vehicle.Comp.KeyWhitelist, key));
 
     public string? GetVehicleKeySlot(EntityUid vehicle) =>
         TryComp<GenericKeyedVehicleComponent>(vehicle, out var keyed) ? keyed.ContainerId : null;

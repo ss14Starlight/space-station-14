@@ -1,3 +1,4 @@
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Vehicle;
 
 public sealed partial class ContainerVehicleExitEvent

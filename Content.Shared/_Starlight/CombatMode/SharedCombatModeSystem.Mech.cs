@@ -1,6 +1,7 @@
 using Content.Shared.Mech.EntitySystems;
 using Content.Shared.Movement.Components;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.CombatMode;
 
 public abstract partial class SharedCombatModeSystem

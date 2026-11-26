@@ -1,6 +1,6 @@
 using Content.Server._Starlight.Mech.Components;
+using Content.Shared._Starlight.Mech;
 using Content.Shared.FixedPoint;
-using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Power;
@@ -10,6 +10,7 @@ using Robust.Server.Containers;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Mech.Systems;
 
 public sealed partial class MechSystem

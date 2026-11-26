@@ -3,7 +3,7 @@
   id: ActionToggleZamboni
   name: toggle floor buffer
   description: Toggle those mop brushes on and off.
-  components: 
+  components:
   - type: Action
     icon:
       sprite: Objects/Misc/moproach_shoes.rsi

@@ -25,11 +25,11 @@ public sealed partial class CardboardBoxComponent : Component
     [DataField]
     public SoundSpecifier? EffectSound;
 
-	/// <summary>
-	/// Whether to prevent the box from making the sound and effect
-	/// </summary>
+    /// <summary>
+    /// Whether to prevent the box from making the sound and effect
+    /// </summary>
     [DataField]
-	public bool Quiet;
+    public bool Quiet;
 
     /// <summary>
     /// How far should the box opening effect go?

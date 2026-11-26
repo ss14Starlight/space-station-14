@@ -25,7 +25,7 @@ public sealed class VehicleAtmosphereSystem : EntitySystem
 
     /// <inheritdoc/>
     public override void Initialize()
-    {        
+    {
         SubscribeLocalEvent<VehicleModsComponent, AtmosDeviceUpdateEvent>(OnAtmosUpdate);
         SubscribeLocalEvent<VehicleEquipmentComponent, VehicleFanToggle>(OnFanToggle);
 
@@ -99,7 +99,7 @@ public sealed class VehicleAtmosphereSystem : EntitySystem
     private EntityUid? GetCabinVehicle(EntityUid occupant)
     {
         return _vehicles.GetOccupiedVehicle(occupant) is { } vehicle &&
-               HasComp<VehiclePassengerSeatsComponent>(vehicle) ? vehicle : null;
+            HasComp<VehiclePassengerSeatsComponent>(vehicle) ? vehicle : null;
     }
 
     private GasMixture? GetBreathMixture(EntityUid vehicle, bool excite = true)
@@ -145,7 +145,7 @@ public sealed class VehicleAtmosphereSystem : EntitySystem
         GasTankComponent tankComp,
         GasMixture tankAir,
         float frameTime)
-    {        
+    {
         var external = _atmosphere.GetContainingMixture(ent.Owner);
 
         var transferVolume = fanModule.Comp.GasProcessingRate * frameTime;
@@ -205,7 +205,7 @@ public sealed class VehicleAtmosphereSystem : EntitySystem
             // Return filtered gases to external environment.
             _atmosphere.Merge(external, filtered);
         }
-        
+
 
         // Add remaining gas to internal tank (either unfiltered, or post-scrub remainder).
         _atmosphere.Merge(tankAir, removed);

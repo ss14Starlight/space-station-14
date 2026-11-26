@@ -25,11 +25,6 @@
         - CanPilot
     soundHit:
       collection: MetalThud
-  - type: VehicleBuckle
-    unbuckleTime: 2
-    dismountOnStun: true
-    dismountOnKnockdown: true
-    ejectOnCrash: true
   - type: DirectionalOverride
     offsets:
       North: "0, -0.12"
@@ -117,8 +112,6 @@
           - VehicleKey
           - ATVKeys
   - type: Hitch
-  - type: VehicleBuckle
-    armorAffectsVehicle: true
   - type: VehicleMods
     vehicleType: Gas
     equipmentSlots: [tires, engine, armor, headlight]
@@ -186,8 +179,6 @@
             - VehicleKey
             - NTVKeys
     - type: Hitch
-    - type: VehicleBuckle
-      armorAffectsVehicle: true
     - type: VehicleMods
       vehicleType: Gas
       equipmentSlots: [tires, engine, armor, headlight, lightbar]
@@ -249,8 +240,6 @@
     maxItemSize: Huge
     openOnActivate: false
     clickInsert: false
-  - type: VehicleBuckle
-    armorAffectsVehicle: true
   - type: VehicleMods
     vehicleType: Gas
 
@@ -303,11 +292,6 @@
         - CanPilot
     soundHit:
       collection: MetalThud
-  - type: VehicleContainer
-    seats: 2
-    passengerWhitelist:
-      components:
-        - Body
   - type: ContainerContainer
     containers:
       key_slot: !type:ContainerSlot
@@ -396,8 +380,6 @@
   name: clown car
   description: What sort of horrors lie within...
   components:
-  - type: VehicleContainer
-    seats: 8
   - type: Sprite
     drawdepth: Mobs
     sprite: _FarHorizons/Objects/Vehicles/clowncar.rsi

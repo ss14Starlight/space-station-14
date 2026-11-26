@@ -1,6 +1,6 @@
 using Content.Shared.Actions;
 
-namespace Content.Shared.Mech;
+namespace Content.Shared._Starlight.Mech;
 
 public sealed partial class MechToggleInternalsEvent : InstantActionEvent
 {

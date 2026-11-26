@@ -38,7 +38,6 @@
       key_slot:
         name: vehicle-slot-component-slot-name-keys
   - type: !Remove Vehicle
-  - type: !Remove VehicleBuckle
   save: !Remove
 
 - type: !PartialOnly entity
@@ -67,7 +66,6 @@
       - ATVKeys
   - type: VehicleRide
     riderSpeedAffectsVehicle: true
-  - type: !Remove VehicleBuckle
   - type: FootprintOwner
     printState: Tire
     alternateStepOffset: 0.2
@@ -98,7 +96,6 @@
       - NTVKeys
   - type: VehicleRide
     riderSpeedAffectsVehicle: true
-  - type: !Remove VehicleBuckle
   - type: FootprintOwner
     printState: Tire
     alternateStepOffset: 0.2
@@ -139,7 +136,6 @@
       - MotorcycleKeys
   - type: VehicleRide
     riderSpeedAffectsVehicle: true
-  - type: !Remove VehicleBuckle
   - type: FootprintOwner
     printState: Tire
     alternateStepOffset: 0
@@ -198,7 +194,6 @@
     passengerWhitelist:
       components:
       - Body
-  - type: !Remove VehicleContainer
   save: !Remove
 
 - type: !PartialOnly entity
@@ -221,7 +216,6 @@
       tags:
       - VehicleKey
       - ClowncarKeys
-  - type: !Remove VehicleContainer
   - type: FootprintOwner
     printState: Tire
     alternateStepOffset: 0.2

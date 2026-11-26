@@ -79,7 +79,7 @@ public sealed partial class VehicleEquipmentMenu : FancyWindow
         if (!_entityManager.TryGetComponent<VehicleModsComponent>(target, out var vmComp) ||
             !_entityManager.TryGetComponent<MetaDataComponent>(target, out var metaData)) // Starlight
             return;
-        
+
         NameLabel.Text = metaData.EntityName;
         SpriteView.SetEntity(target);
         SpriteView.Visible = true;
@@ -186,7 +186,7 @@ public sealed partial class VehicleEquipmentMenu : FancyWindow
         row.CurrentMod = mod;
 
         var equipText = "Empty";
-        
+
         row.EquipmentNameButton.Text = type.ToString();
 
         if (mod != null &&
@@ -226,9 +226,9 @@ public sealed partial class VehicleEquipmentMenu : FancyWindow
         {
             if(ReagentDraw == null)
                 return 0;
-            if(!_solution.ResolveSolution(uid, ReagentDraw.SolutionContainer, ref ReagentDraw.Solution, out var solution)) 
+            if(!_solution.ResolveSolution(uid, ReagentDraw.SolutionContainer, ref ReagentDraw.Solution, out var solution))
                 return 0;
-            
+
             return (int)Math.Round(SharedSolutionContainerSystem.PercentFull(solution));
         }
     }
