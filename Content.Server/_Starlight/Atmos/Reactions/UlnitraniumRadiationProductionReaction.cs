@@ -8,6 +8,7 @@ using JetBrains.Annotations;
 using Robust.Shared.Timing;
 using Content.Server.Radiation.Systems;
 using Content.Server.Radiation.Components;
+using Robust.Shared.Map.Components;
 
 
 namespace Content.Server._Starlight.Atmos.Reactions;
@@ -25,6 +26,7 @@ public sealed partial class UlnitraniumRadiationProductionReaction : IGasReactio
     private static SharedMapSystem s_map => s_ent.System<SharedMapSystem>();
     private const float RadiationThreshold = 0.01f;
     private static readonly TimeSpan _timerDuration = TimeSpan.FromSeconds(5);
+    private readonly Dictionary<(EntityUid Grid, Vector2i Tile), EntityUid> _tileReceivers = new();
 
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem,
         float heatScale)
@@ -47,17 +49,30 @@ public sealed partial class UlnitraniumRadiationProductionReaction : IGasReactio
             case TileAtmosphere tile:
                 {
                     var tileRef = atmosphereSystem.GetTileRef(tile);
-
-                    // We use the center of the tile to ensure the Raycast actually hits the intended area
                     var coords = s_map.ToCenterCoordinates(tileRef);
-                    radiationLevel = s_rads.GetRadiationAtCoordinates(coords);
-
-                    // If we have no data, or data is too low, we MUST request a sample for the future
-                    if (radiationLevel < RadiationThreshold)
+                    var gridUid = tileRef.GridUid;
+                    var gridComp = s_ent.GetComponent<MapGridComponent>(gridUid);
+                    var tileIndices = s_map.TileIndicesFor((gridUid, gridComp), coords);
+                    var tileLookup = (tileRef.GridUid, tileIndices);
+                    // create a temporary entity to actaully be able to measure the radiation on the tile
+                    if (!_tileReceivers.TryGetValue(tileLookup, out var receiver) || s_ent.Deleted(receiver))
                     {
-                        s_rads.RequestTileRadiationSampling(coords);
+                        receiver = s_ent.SpawnAtPosition(null, coords);
+
+                        s_ent.EnsureComponent<RadiationReceiverComponent>(receiver);
+
+                        var timer = s_ent.EnsureComponent<RadiationReceiverTimerComponent>(receiver);
+                        timer.TimerExpiresAt = s_timing.CurTime + _timerDuration;
+                        timer.DeleteEntityOnExpire = true;
+
+                        _tileReceivers[tileLookup] = receiver;
+
                         return ReactionResult.Reacting;
                     }
+                    var receiverTimer = s_ent.EnsureComponent<RadiationReceiverTimerComponent>(receiver);
+
+                    receiverTimer.TimerExpiresAt = s_timing.CurTime + _timerDuration;
+                    radiationLevel = s_ent.GetComponent<RadiationReceiverComponent>(receiver).CurrentRadiation;
 
                     break;
                 }

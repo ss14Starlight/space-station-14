@@ -249,7 +249,7 @@ public sealed partial class HijackBeaconSystem : EntitySystem
         Dirty(beaconXForm.GridUid.Value, station);
 
         // Broadcast that the ATS has been hacked.
-        var ev = new HijackBeaconSuccessEvent(ent.Comp.Fine);
+        var ev = new HijackBeaconSuccessEvent(ent.Comp.Fine, ent.Comp.FinePercentage); // Starlight - include percentage
         RaiseLocalEvent(ref ev);
 
         //global announcement
@@ -285,10 +285,10 @@ public sealed partial class HijackBeaconSystem : EntitySystem
     ///     Check if the beacon is on the Trade Station and if the Trade Station has not been hijacked already.
     /// </summary>
     private bool CanActivate(Entity<HijackBeaconComponent> ent)
-    {
-        return TryComp(Transform(ent).GridUid, out TradeStationComponent? tradeStation) && !tradeStation.Hacked &&
-               _anchor.CanAnchorAt(ent.Owner);
-    }
+        => TryComp(Transform(ent).GridUid, out TradeStationComponent? tradeStation)
+            && !tradeStation.Hacked
+            && _anchor.CanAnchorAt(ent.Owner)
+            && SLCanActivate(ent); // Starlight
 
     /// <summary>
     ///     Anchoring helper
@@ -350,7 +350,8 @@ public sealed partial class HijackBeaconDeactivateDoAfterEvent : SimpleDoAfterEv
 ///     Event raised when the hijack beacon succeeds in hijacking the ATS.
 /// </summary>
 [ByRefEvent]
-public record struct HijackBeaconSuccessEvent(int Fine)
+// Starlight - added field for FinePercentage
+public record struct HijackBeaconSuccessEvent(int Fine, double FinePercentage)
 {
     public int Total = 0;
 };

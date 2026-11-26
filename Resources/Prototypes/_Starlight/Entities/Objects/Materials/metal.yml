@@ -41,6 +41,7 @@
   parent: [SheetMetalBase, BaseQuickConstructionMaterial]
   id: SheetChitin
   name: chitinous wax
+  description: A sheet of material created by the Xenos and Xen'Kara alike for use in construction. Slightly sticky.
   suffix: Full
   components:
   - type: Material

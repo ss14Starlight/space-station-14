@@ -60,6 +60,14 @@
               amount: 2
               doAfter: 3
 
+        # Starlight Start
+        - to: resinWindow
+          steps:
+            - material: Chitin
+              amount: 2
+              doAfter: 3
+        # Starlight End
+
     - node: window
       entity: Window
       edges:
@@ -136,6 +144,21 @@
             - material: ClockworkGlass
               amount: 2
               doAfter: 3
+
+    - node: resinWindow
+      entity: XenoResinWindow
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: SheetChitin1
+              amount: 2
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Screwing
+              doAfter: 1
+            - tool: Anchoring
+              doAfter: 2
 
         # Starlight End
 

@@ -93,9 +93,7 @@
   - Slimes may [bold]deal extra cellular or poison damage[/bold], based upon their color. Water hurts them just as it would hurt a Laspi. <!--Starlight-->
   - Spiders have a venomous bite and can [bold]create webs[/bold] that are hard to move through, but are easily destroyed with a blade. They can also pry open doors, windoors, and airlocks.
 
-<!--
-Starlight Minor Antagonists
--->
+<!-- Starlight-start -->
   # Scrappers
 
   <Box>
@@ -109,4 +107,5 @@ Starlight Minor Antagonists
   - Scrappers have few inherent abilities, but are typically in the vicinity of a Scrapper Exo Fabricator, which can produce tools and new scrapper units for them
   - Scrappers are capable of vent crawling to steal resources and equipment.
   - Scrappers are typically non-violent, and driven by production.
- </Document>
+<!-- Starlight-end -->
+</Document>
