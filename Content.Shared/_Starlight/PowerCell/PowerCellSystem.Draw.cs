@@ -1,6 +1,7 @@
 using Content.Shared.PowerCell.Components;
 using JetBrains.Annotations;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.PowerCell;
 
 public sealed partial class PowerCellSystem

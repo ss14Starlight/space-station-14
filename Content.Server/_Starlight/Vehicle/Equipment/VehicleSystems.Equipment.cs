@@ -109,7 +109,7 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
     private static bool CanInstall(Entity<VehicleModsComponent> vehicle, VehicleEquipmentComponent part)
     {
         return (vehicle.Comp.VehicleType & part.AllowedVehicles) != 0 &&
-               vehicle.Comp.Equipment.TryGetValue(part.Slot, out var existing) && existing == null;
+            vehicle.Comp.Equipment.TryGetValue(part.Slot, out var existing) && existing == null;
     }
 
     private bool TryInstall(Entity<VehicleModsComponent> ent, Entity<VehicleEquipmentComponent> part)
@@ -265,7 +265,7 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
     private EntityUid? WorkingPart(Entity<VehicleModsComponent> vehicle, EquipmentType slot)
     {
         return vehicle.Comp.Equipment.TryGetValue(slot, out var part) &&
-               TryComp<VehicleEquipmentComponent>(part, out var component) && !component.Broken ? part : null;
+            TryComp<VehicleEquipmentComponent>(part, out var component) && !component.Broken ? part : null;
     }
 
     [SubscribeLocalEvent]

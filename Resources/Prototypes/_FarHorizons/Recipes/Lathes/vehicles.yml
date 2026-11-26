@@ -59,7 +59,7 @@
   parent: AdvancedEngine
   id: ElectricTurboEngine
   result: ElectricTurboEngine
-  
+
 - type: latheRecipe
   parent: BaseVehiclePartsRecipe
   id: BasicArmorKit

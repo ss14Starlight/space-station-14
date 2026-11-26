@@ -1,4 +1,5 @@
 using Content.Shared._FarHorizons.Towing.Components;
+using Content.Shared._Starlight.Tools.Towing;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Coordinates;

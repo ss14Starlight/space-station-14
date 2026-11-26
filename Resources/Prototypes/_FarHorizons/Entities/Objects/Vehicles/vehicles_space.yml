@@ -23,11 +23,6 @@
         - CanPilot
     soundHit:
       collection: MetalThud
-  - type: VehicleContainer
-    seats: 2
-    passengerWhitelist:
-      components:
-        - Body
   - type: IntrinsicUI
     uis:
       enum.RadarConsoleUiKey.Key:
@@ -92,8 +87,6 @@
   name: transporter
   description: Basic space faring vehicle dedicated to the transport of good or exploration.
   components:
-  - type: VehicleContainer
-    seats: 1
   - type: Sprite
     drawdepth: OverMobs
     sprite: _FarHorizons/Objects/Vehicles/transporter.rsi

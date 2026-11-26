@@ -47,7 +47,6 @@
   - type: ContainerContainer
     containers:
       passenger_slot: !type:Container { showEnts: false }
-  - type: !Remove VehicleContainer
   - type: !Remove IntrinsicUI
 
 - type: !PartialOnly entity
@@ -70,4 +69,3 @@
       tags:
       - VehicleKey
       - ATVKeys
-  - type: !Remove VehicleContainer

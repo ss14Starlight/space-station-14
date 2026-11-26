@@ -102,11 +102,6 @@
         path: /Audio/Effects/Vehicle/bicyclebell.ogg
       soundHit:
         collection: MetalThud
-    - type: VehicleBuckle
-      unbuckleTime: 1
-      dismountOnStun: true
-      dismountOnKnockdown: true
-      armorAffectsVehicle: true
     - type: DirectionalOverride
       offsets:
         North: "0, -0.25"

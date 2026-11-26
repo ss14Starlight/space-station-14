@@ -9,8 +9,8 @@ public sealed partial class VehicleEquipmentComponent : Component
 {
     [DataField]
     public EntProtoId? ActionProto;
-    
-    [ViewVariables, AutoNetworkedField] 
+
+    [ViewVariables, AutoNetworkedField]
     public EntityUid? ActionEntity;
 
     [DataField(required: true)]

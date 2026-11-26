@@ -20,7 +20,7 @@
   name: Honk
   description: Honk!
   components:
-  - type: Action  
+  - type: Action
     useDelay: 4
     icon:
       sprite: Objects/Fun/bikehorn.rsi
@@ -48,7 +48,7 @@
   id: ActionToggleTrunk
   name: unlocks/lock trunk
   components:
-  - type: Action  
+  - type: Action
     useDelay: 1
     icon:
       sprite: Structures/Storage/Crates/generic.rsi

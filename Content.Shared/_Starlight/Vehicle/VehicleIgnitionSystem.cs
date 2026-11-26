@@ -145,7 +145,7 @@ public sealed partial class VehicleIgnitionSystem : EntitySystem
         if (TryComp<VehicleModsComponent>(ent, out var mods) &&
             mods.EquipmentSlots.HasFlag(EquipmentType.ENGINE) &&
             (!mods.Equipment.TryGetValue(EquipmentType.ENGINE, out var engine) ||
-             !TryComp<VehicleEquipmentComponent>(engine, out var part) || part.Broken))
+                !TryComp<VehicleEquipmentComponent>(engine, out var part) || part.Broken))
             return false;
 
         if (HasComp<PowerCellDrawComponent>(ent))
