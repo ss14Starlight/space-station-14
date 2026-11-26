@@ -5,6 +5,7 @@ using Content.Shared.Inventory;
 using Content.Shared.StatusIcon;
 using Content.Shared.VoiceMask;
 
+//ReSharper disable once CheckNamespace
 namespace Content.Server.VoiceMask;
 
 public sealed partial class VoiceMaskSystem

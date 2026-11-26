@@ -1,6 +1,7 @@
 using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 
+//ReSharper disable once CheckNamespace
 namespace Content.Shared.VoiceMask;
 
 public sealed partial class VoiceMaskComponent

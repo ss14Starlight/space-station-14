@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Starlight.Radio;
 using Content.Shared.StatusIcon;
 
+//ReSharper disable once CheckNamespace
 namespace Content.Server.Radio.EntitySystems;
 
 public sealed partial class RadioSystem

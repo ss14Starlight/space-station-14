@@ -6,6 +6,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Prototypes;
 
+//ReSharper disable once CheckNamespace
 namespace Content.Client.VoiceMask;
 
 public sealed partial class VoiceMaskNameChangeWindow
