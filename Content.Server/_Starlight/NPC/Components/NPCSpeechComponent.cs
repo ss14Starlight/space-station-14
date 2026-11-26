@@ -10,6 +10,8 @@ namespace Content.Server._Starlight.NPC.Components;
 public sealed partial class NPCSpeechComponent : Component
 {
     private const string SpeechSeparator = " | ";
+    private const string LocalizationPrefix = "loc:";
+    private const string LiteralPrefix = "literal:";
 
     private TimeSpan _minimumInterval = TimeSpan.FromSeconds(20);
     private TimeSpan _maximumInterval = TimeSpan.FromSeconds(60);
@@ -55,8 +57,8 @@ public sealed partial class NPCSpeechComponent : Component
     public float SpeechChance = 0.35f;
 
     /// <summary>
-    /// Dialogue entries resolved as Fluent message IDs. Unmatched entries are used as legacy literal text.
-    /// Prefix the resulting text with an asterisk to send it as an emote.
+    /// Dialogue entries may be Fluent IDs or legacy literal text. Use <c>loc:</c> for an explicit ID
+    /// and <c>literal:</c> for text that resembles an ID. Prefix the resulting text with an asterisk to emote.
     /// </summary>
     [DataField("speech"), ViewVariables(VVAccess.ReadOnly)]
     internal List<string> SpeechPool = ["npc-speech-default"];
@@ -79,14 +81,35 @@ public sealed partial class NPCSpeechComponent : Component
                 return string.Join(SpeechSeparator, literal);
 
             var loc = IoCManager.Resolve<ILocalizationManager>();
-            return string.Join(SpeechSeparator, SpeechPool.Select(line => ResolveLine(loc, line)));
+            return string.Join(SpeechSeparator, SpeechPool.Select(line => ResolveLine(loc, line)).OfType<string>());
         }
         set => LiteralSpeech = new List<string>(value.Split(SpeechSeparator,
             StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries));
     }
 
-    internal static string ResolveLine(ILocalizationManager loc, string line)
-        => loc.TryGetString(line, out var localized) ? localized : line;
+    internal static string? ResolveLine(ILocalizationManager loc, string line)
+    {
+        line = line.Trim();
+        if (line.Length == 0)
+            return line;
+
+        if (line.StartsWith(LiteralPrefix, StringComparison.Ordinal))
+            return line[LiteralPrefix.Length..].TrimStart();
+
+        if (line.StartsWith(LocalizationPrefix, StringComparison.Ordinal))
+        {
+            var key = line[LocalizationPrefix.Length..].Trim();
+            return key.Length != 0 && loc.TryGetString(key, out var explicitText) ? explicitText : null;
+        }
+
+        if (loc.TryGetString(line, out var localized))
+            return localized;
+
+        // Reserve bare kebab-case IDs while allowing older prose, one-word dialogue, and emotes.
+        var looksLikeKey = char.IsAsciiLetterLower(line[0]) && line.Contains('-') && !line.EndsWith('.') &&
+            line.All(character => char.IsAsciiLetterLower(character) || char.IsAsciiDigit(character) || character is '-' or '_' or '.');
+        return looksLikeKey ? null : line;
+    }
 
     [AutoPausedField]
     internal TimeSpan? LastAttemptTime;

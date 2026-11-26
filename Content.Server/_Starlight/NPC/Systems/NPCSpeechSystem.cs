@@ -18,6 +18,7 @@ public sealed partial class NPCSpeechSystem : EntitySystem
     [Dependency] private IViewVariablesManager _viewVariables = default!;
 
     private static readonly TimeSpan MinimumAttemptInterval = TimeSpan.FromSeconds(0.5);
+    private readonly HashSet<string> _missingDialogueKeys = new(StringComparer.Ordinal);
     private TimeSpan _nextCheck;
 
     /// <inheritdoc/>
@@ -85,12 +86,18 @@ public sealed partial class NPCSpeechSystem : EntitySystem
                 !_random.Prob(Math.Min(speech.SpeechChance, 1f)))
                 continue;
 
-            var line = _random.Pick(lines);
-            if (line == null)
+            var entry = _random.Pick(lines);
+            if (entry == null)
                 continue;
 
-            if (literal == null)
-                line = NPCSpeechComponent.ResolveLine(_loc, line);
+            var line = literal == null ? NPCSpeechComponent.ResolveLine(_loc, entry) : entry;
+            if (line == null)
+            {
+                if (_missingDialogueKeys.Add(entry.Trim()))
+                    Log.Warning($"Missing NPCSpeech localization for '{entry}' on {ToPrettyString(uid)}.");
+
+                continue;
+            }
 
             line = line.Trim();
             if (line.Length == 0)
