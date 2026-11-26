@@ -86,9 +86,3 @@
     ShipyardCircuitboardStealObjective: 1 # bridge/caps locker
     SpyglassCaptainStealObjective: 0.7 #Cappy
     SecureTechFabCircuitboardStealObjective: 1
-
-# Far Horizons
-- type: !PartialOnly weightedRandom
-  id: ThiefObjectiveGroupStructure
-  weights:
-    VehicleScooterElectricStealObjective: 1

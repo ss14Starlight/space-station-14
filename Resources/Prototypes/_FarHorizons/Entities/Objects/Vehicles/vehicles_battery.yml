@@ -146,8 +146,6 @@
     - state: vehicle
       map: ["enum.VehicleVisualLayers.Base"]
     noRot: true
-  - type: StealTarget
-    stealGroup: VehicleScooterElectricSteal
   - type: Tag
     tags:
     - SecurityElectricScooter
