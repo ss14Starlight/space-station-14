@@ -541,4 +541,5 @@ uplink-energycrossbow-desc = The go-to sidearm of any operative who prefers thei
 
 #Objective items
 uplink-hijack-beacon-name = Hijack Beacon
-uplink-hijack-beacon-desc = A syndicate-brand hijack beacon designed to get around the firewalls of Nanotrasen-brand Automated Trade Stations. They take 200 seconds to work and Trade Stations will announce they are being hacked, so prepare accordingly.
+# Starlight: 200 -> 360, add extra details
+uplink-hijack-beacon-desc = A syndicate-brand hijack beacon designed to get around the firewalls of ITG-brand Automated Trade Stations. They take 360 seconds to work, have to be placed on a buy or sell pallet, and Trade Stations will announce they are being hacked. Prepare accordingly.

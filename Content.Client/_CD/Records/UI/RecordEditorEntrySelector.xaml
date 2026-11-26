@@ -1,14 +1,19 @@
 <Control xmlns="https://spacestation14.io">
+    <!-- Starlight-start -->
     <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
         <ItemList Name="EntrySelector" HorizontalExpand="True" VerticalExpand="True" MinSize="300 200" />
-        <BoxContainer Orientation="Horizontal">
-            <Button Name="AddButton" StyleClasses="OpenBoth" Text="{Loc 'humanoid-profile-editor-cd-records-add-entry'}" />
-            <Button Name="EditButton" StyleClasses="OpenBoth" Text="{Loc 'humanoid-profile-editor-cd-records-edit-entry'}" />
-            <Button Name="ViewButton" StyleClasses="OpenBoth" Text="{Loc 'humanoid-profile-editor-cd-records-view-entry'}" />
-            <Button Name="RemoveButton" StyleClasses="OpenLeft" Text="{Loc 'humanoid-profile-editor-cd-records-remove-entry'}" />
-            <Control HorizontalExpand="True" />
-            <Button Name="UpButton" HorizontalAlignment="Right" StyleClasses="OpenRight" Text="{Loc 'humanoid-profile-editor-cd-records-up'}" />
-            <Button Name="DownButton" HorizontalAlignment="Right" StyleClasses="OpenBoth" Text="{Loc 'humanoid-profile-editor-cd-records-down'}" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="4">
+            <GridContainer Columns="2" HorizontalExpand="True">
+                <Button Name="AddButton" HorizontalExpand="True" ClipText="True" Text="{Loc 'humanoid-profile-editor-cd-records-add-entry'}" />
+                <Button Name="EditButton" HorizontalExpand="True" ClipText="True" Text="{Loc 'humanoid-profile-editor-cd-records-edit-entry'}" />
+                <Button Name="ViewButton" HorizontalExpand="True" ClipText="True" Text="{Loc 'humanoid-profile-editor-cd-records-view-entry'}" />
+                <Button Name="RemoveButton" HorizontalExpand="True" ClipText="True" Text="{Loc 'humanoid-profile-editor-cd-records-remove-entry'}" />
+            </GridContainer>
+            <GridContainer Columns="1">
+                <Button Name="UpButton" Text="{Loc 'humanoid-profile-editor-cd-records-up'}" />
+                <Button Name="DownButton" Text="{Loc 'humanoid-profile-editor-cd-records-down'}" />
+            </GridContainer>
         </BoxContainer>
     </BoxContainer>
+    <!-- Starlight-end -->
 </Control>

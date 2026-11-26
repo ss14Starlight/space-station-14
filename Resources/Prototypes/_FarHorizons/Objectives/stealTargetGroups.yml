@@ -6,10 +6,3 @@
   sprite:
     sprite: _FarHorizons/Objects/Power/FissionGenerator/reactor_parts.rsi
     state: default_rod
-
-- type: stealTargetGroup
-  id: VehicleScooterElectricSteal
-  name: steal-target-groups-electric-scooter
-  sprite:
-    sprite: _FarHorizons/Objects/Vehicles/electric_scooter_command.rsi
-    state: icon

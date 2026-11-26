@@ -1,5 +1,0 @@
-- type: !PartialOnly entity
-  id: VehicleScooterElectricStealObjective
-  parent: [BaseThiefSecurityStealObjective]
-  components:
-  - type: !Remove NotJobRequirement
