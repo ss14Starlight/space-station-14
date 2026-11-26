@@ -409,6 +409,14 @@ public sealed partial class RadioSystem : EntitySystem
             }
         }
 
+        // Starlight-start
+        if (TryGetRadioJobIconOverride(messageSource, out var maskIcon))
+        {
+            iconId = maskIcon.ID;
+            jobName = maskIcon.LocalizedJobName;
+        }
+        // Starlight-end
+
         if (TryComp<BorgChassisComponent>(messageSource, out var chassis) || HasComp<BorgBrainComponent>(messageSource)) // Starlight edit
         {
             iconId = chassis?.JobIconOverride ?? "JobIconBorg"; // Starlight edit
