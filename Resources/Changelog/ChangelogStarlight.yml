@@ -1,13 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Downpour) Comms maints are now engineering access, instead of command.
-    type: Fix
-  id: 410452
-  time: '2026-11-14T21:44:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7230
-- author: Makeshift
-  changes:
   - message: (Downpour) Removed some railings in the vault, so you can now walk around the nuke.
     type: Fix
   id: 410453
@@ -2799,4 +2792,11 @@ Entries:
   id: 410851
   time: '2026-11-26T13:04:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7438
+- author: Johnny
+  changes:
+  - message: Max limit of traits increased from 10 to 20.
+    type: Tweak
+  id: 410852
+  time: '2026-11-26T16:50:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7461
 Order: -1
