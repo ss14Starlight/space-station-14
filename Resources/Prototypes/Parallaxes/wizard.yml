@@ -1,6 +1,6 @@
 - type: parallax
   id: Wizard
-  starlightColor: "#844bb6" #SL Change
+  starlightColor: "#844bb6" #SL Edit
   layers:
     - texture:
         !type:ImageParallaxTextureSource

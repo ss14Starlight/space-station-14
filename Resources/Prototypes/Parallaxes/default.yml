@@ -3,7 +3,7 @@
 
 - type: parallax
   id: Default
-  starlightColor: "#6d6786" #SL Change.
+  starlightColor: "#6d6786" #SL Edit
   layers:
     - texture:
         !type:ImageParallaxTextureSource
