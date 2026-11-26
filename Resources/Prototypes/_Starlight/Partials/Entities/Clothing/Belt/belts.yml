@@ -18,3 +18,12 @@
   components:
   - type: Contraband
     tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingBeltCargo
+  components:
+  - type: Storage
+    whitelist:
+      components:
+        - BreadcrumbDropper
+        - GrapplingGun

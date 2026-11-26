@@ -284,3 +284,19 @@
         children:
         - id: WeaponPistolColdCase
         - id: MagazineBoxPistol40SP
+
+- type: entity
+  id: ClothingBeltCargoFilledMining
+  parent: ClothingBeltCargo
+  suffix: Mining
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Crowbar
+        - id: Wrench
+        - id: Screwdriver
+        - id: Wirecutter
+        - id: Welder
+        - id: AppraisalTool

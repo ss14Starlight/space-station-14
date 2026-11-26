@@ -25,11 +25,11 @@
 - type: startingGear
   id: MiningSpecialistGear
   equipment:
-    ears: ClothingHeadsetMining
+    ears: ClothingHeadsetCargo
     belt: OreBag
-    #storage:
-    #back:
-    #- Stuff
+  storage:
+    back:
+    - SalvageTicketStarting
 
 - type: chameleonOutfit
   id: MiningSpecialistChameleonOutfit
@@ -37,7 +37,7 @@
   equipment:
     head: ClothingHeadHatCargosoft
     eyes: ClothingEyesGlassesCheapSunglasses
-    mask: ClothingMaskGasExplorer
-    outerClothing: ClothingOuterWinterMiner
+    mask: ClothingMaskBreath
+    outerClothing: ClothingOuterWinterMiningSpecialist
     neck: ClothingNeckScarfStripedBrown
-    gloves: ClothingHandsGlovesColorBlack
+    gloves: ClothingHandsGlovesFingerless

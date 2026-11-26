@@ -135,3 +135,11 @@
   components:
   - type: Stack
     count: 100
+
+- type: entity
+  parent: SalvageTicket
+  id: SalvageTicketStarting
+  suffix: 300
+  components:
+  - type: Stack
+    count: 300

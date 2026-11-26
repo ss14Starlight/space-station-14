@@ -81,7 +81,7 @@
     - id: OxygenTankFilled
     - id: ClothingShoesBootsMag
     - id: ClothingOuterHardsuitSpaceHazard
-    - id: ClothingMaskGasExplorer
+    - id: ClothingMaskBreath
 
 - type: entity
   id: LockerMiningSpecialistFilledHardsuit
@@ -145,11 +145,14 @@
   id: LockerFillMiningSpecialist
   table: !type:AllSelector
     children:
-    - id: ClothingBeltUtilityFilled
-    - id: SurvivalKnife
+    - id: ClothingUniformJumpsuitMiningSpecialist
+    - id: ClothingUniformJumpskirtMiningSpecialist
+    - id: ClothingHandsGlovesFingerless
+    - id: ClothingBeltCargoFilledMining
     - id: HandheldGPSBasic
     - id: RadioHandheld
-    - id: AppraisalTool
+    - id: SurvivalKnife
+    - id: GeigerCounter
     - id: JetpackMiniFilled
     - id: Flare
       amount: 3
@@ -157,6 +160,12 @@
     - id: Shovel
     - id: OreBag
     - id: GlowstoneDropperFilled50
+    - id: WeaponProtoKineticAccelerator
+    - id: WeaponGrapplingGun
+    - id: ClothingMaskGasExplorer
+      prob: 0.05
+    - id: DrinkMREFlask
+      prob: 0.1
 
 # Cargo Techs and Mail Techs
 - type: entity

@@ -22,6 +22,12 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtMiningSpecialist
 
+# Outer Clothing
+- type: loadout
+  id: MiningSpecialistWintercoat
+  equipment:
+    outerClothing: ClothingOuterWinterMiningSpecialist
+
 # PDA
 - type: loadout
   id: MiningPDA

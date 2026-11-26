@@ -12,3 +12,8 @@
     crushDamage:
       types:
         Blunt: 15
+
+- type: !PartialOnly entity
+  id: VendingMachineSalvage
+  name: Expedition Vendor
+  description: Brought to you by the Interstellar Trade Guild.
