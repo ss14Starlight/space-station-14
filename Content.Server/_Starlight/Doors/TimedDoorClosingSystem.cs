@@ -60,7 +60,8 @@ public sealed partial class TimedDoorClosingSystem : EntitySystem
                 continue;
             }
 
-            _door.TryClose(uid, door);
+            if (!_door.TryClose(uid, door))
+                timed.NextClose = _timing.CurTime + timed.AutoCloseDelay;
         }
     }
 
