@@ -7,9 +7,6 @@
     - type: EncryptionKey
       channels:
         - NTNC
-        - Command
-        - Security
-        - Common
       defaultChannel: NTNC
     - type: Sprite
       layers:
