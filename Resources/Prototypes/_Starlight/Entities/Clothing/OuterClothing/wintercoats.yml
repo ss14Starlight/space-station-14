@@ -146,7 +146,7 @@
         Heat: 0.95
         Cold: 0.75
   - type: ExplosionResistance
-    damageCoefficient: 0
+    damageCoefficient: 1
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot { }
