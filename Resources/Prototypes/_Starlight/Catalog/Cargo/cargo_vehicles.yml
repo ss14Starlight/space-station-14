@@ -7,3 +7,13 @@
   cost: 1500
   category: cargoproduct-category-name-vehicles
   group: market
+
+- type: cargoProduct
+  id: CargoMotorcycle
+  icon:
+    sprite: _FarHorizons/Objects/Vehicles/motorbike.rsi
+    state: vehicle
+  product: CrateMotorcycle
+  cost: 6000
+  category: cargoproduct-category-name-vehicles
+  group: market

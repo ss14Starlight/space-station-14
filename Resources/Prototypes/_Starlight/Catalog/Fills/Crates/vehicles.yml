@@ -8,3 +8,14 @@
     containers:
       entity_storage:
       - VehicleScooterElectricFilled
+
+- type: entity
+  id: CrateMotorcycle
+  parent: CrateGenericSteel
+  name: motorcycle crate
+  description: Contains a fueled motorcycle with its key.
+  components:
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - VehicleMotorcycleFilled
