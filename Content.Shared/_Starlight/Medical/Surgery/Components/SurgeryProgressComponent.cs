@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 // https://github.com/RMC-14/RMC-14
 namespace Content.Shared._Starlight.Medical.Surgery.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(SharedSurgerySystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true), Access(typeof(SharedSurgerySystem))]
 public sealed partial class SurgeryProgressComponent : Component
 {
     [DataField, AutoNetworkedField]
