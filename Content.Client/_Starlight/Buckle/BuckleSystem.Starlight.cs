@@ -2,6 +2,7 @@ using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Robust.Client.GameObjects;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Client.Buckle;
 
 internal sealed partial class BuckleSystem

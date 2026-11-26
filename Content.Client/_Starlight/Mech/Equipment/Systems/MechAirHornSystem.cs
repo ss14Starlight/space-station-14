@@ -1,6 +1,6 @@
+using Content.Shared._Starlight.Mech;
 using Content.Shared._Starlight.Mech.Equipment.Components;
 using Content.Shared._Starlight.Mech.Equipment.EntitySystems;
-using Content.Shared.Mech;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Client._Starlight.Mech.Equipment.Systems;

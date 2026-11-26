@@ -80,7 +80,7 @@ public sealed partial class VehicleSystem
             return false;
 
         return CanEnterContainer(vehicle, toEnter) &&
-               (HasOperator(vehicle) || CanOperate(vehicle, toEnter));
+            (HasOperator(vehicle) || CanOperate(vehicle, toEnter));
     }
 
     /// <summary>
@@ -98,7 +98,7 @@ public sealed partial class VehicleSystem
             return false;
 
         return TryGetOperatorContainer(vehicle.Owner, out var container) &&
-               _container.CanInsert(toEnter, container);
+            _container.CanInsert(toEnter, container);
     }
 
     /// <summary>

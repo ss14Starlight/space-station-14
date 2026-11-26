@@ -326,7 +326,7 @@ public sealed partial class VehicleSystem : EntitySystem
         var blockedHands = GetBlockedHandCount(entity, uid); // Starlight, borg piloting
         if (blockedHands > 0 &&
             (!_handsQuery.TryComp(uid, out var hands) ||
-             _hands.GetHandCount((uid, hands)) < blockedHands))
+                _hands.GetHandCount((uid, hands)) < blockedHands))
             return false;
 
         return _actionBlocker.CanConsciouslyPerformAction(uid);

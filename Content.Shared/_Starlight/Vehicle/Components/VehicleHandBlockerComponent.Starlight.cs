@@ -1,6 +1,7 @@
 using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Vehicle.Components;
 
 public sealed partial class VehicleHandBlockerComponent
