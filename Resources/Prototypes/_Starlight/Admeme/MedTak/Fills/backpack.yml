@@ -113,3 +113,4 @@
         - id: ClothingMaskGasSecurity
         - id: MedtakATM
         - id: MedtakPortableCameraMonitor
+        - id: DoorRemoteMedTak
