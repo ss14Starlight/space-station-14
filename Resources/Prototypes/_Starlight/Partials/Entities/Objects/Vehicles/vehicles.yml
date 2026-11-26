@@ -4,6 +4,20 @@
   components:
   - type: Sprite
     drawdepth: OverMobs
+    layers:
+    - state: destroyed
+      map: ["broken"]
+      visible: false
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.VehicleHullVisuals.Broken:
+        movement:
+          True: { visible: false }
+          False: { visible: true }
+        broken:
+          True: { visible: true }
+          False: { visible: false }
   - type: Strap
     buckleOffset: "0, 0"
   - type: DirectionalOverride
@@ -14,8 +28,54 @@
       West: "-0.0625, -0.15625"
   - type: !Remove UnpoweredFlashlight
   - type: !Remove PointLight
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 360
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - TableLayer
+        - BulletImpassable
+  - type: Pierceable
+    level: HardenedMetal
   - type: Damageable
     damageContainer: StructuralInorganic
+  - type: VehicleHull
+  - type: Repairable
+    doAfterDelay: 20
+    qualityNeeded: Anchoring
+  - type: Destructible
+    thresholds: !Clear
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 450
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:ExplodeBehavior
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
   - type: VehicleIgnition
     startupSound:
       path: /Audio/Effects/Vehicle/vehiclestartup.ogg

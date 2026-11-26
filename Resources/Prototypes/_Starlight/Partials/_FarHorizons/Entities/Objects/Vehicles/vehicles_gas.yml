@@ -147,6 +147,14 @@
 - type: !PartialOnly entity
   id: VehicleContainerBase
   components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 900
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
   - type: VehicleIgnition
     startupSound:
       path: /Audio/Effects/Vehicle/vehiclestartup.ogg

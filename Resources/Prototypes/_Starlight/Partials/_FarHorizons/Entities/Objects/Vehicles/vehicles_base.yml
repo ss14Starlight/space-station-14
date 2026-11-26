@@ -21,6 +21,14 @@
   id: BaseVehicleRideableDamageable
   components:
   - type: VehicleHull
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 450
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
   - type: GenericVisualizer
     visuals:
       enum.VehicleHullVisuals.Broken:
