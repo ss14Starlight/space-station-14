@@ -7,6 +7,7 @@ using Content.Shared.Mech.Components;
 using Content.Shared.Mech.EntitySystems;
 using Content.Shared.Vehicle.Components;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Mech.Systems;
 
 public sealed partial class MechSystem

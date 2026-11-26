@@ -5,6 +5,7 @@ using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Vehicle.Components;
 using Content.Shared.Whitelist;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Vehicle.Systems;
 
 public sealed partial class VehicleSystem

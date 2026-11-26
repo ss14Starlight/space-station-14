@@ -1,5 +1,6 @@
 using Content.Shared.Mech.EntitySystems;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.MouseRotator;
 
 public abstract partial class SharedMouseRotatorSystem

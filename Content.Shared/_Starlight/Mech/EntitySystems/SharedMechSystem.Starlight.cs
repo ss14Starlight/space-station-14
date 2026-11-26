@@ -22,6 +22,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Mech.EntitySystems;
 
 public abstract partial class SharedMechSystem

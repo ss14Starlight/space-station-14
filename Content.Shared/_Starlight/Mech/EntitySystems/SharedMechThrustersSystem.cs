@@ -1,5 +1,4 @@
 using Content.Shared.Vehicle.Systems;
-using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
 using Content.Shared._Starlight.Mech.Components;
 using Content.Shared.Actions;
