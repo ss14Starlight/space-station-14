@@ -489,8 +489,8 @@ public sealed class LoadoutTab : BoxContainer
                 Pressed = group.ID == _group,
                 HorizontalExpand = true,
                 ClipText = true,
-                StyleClasses = { StyleClass.ButtonSmall },
             };
+            button.Label.RemoveStyleClass(Button.StyleClassButton);
             button.Label.Align = Label.AlignMode.Left;
             var id = group.ID;
             button.OnPressed += _ =>
