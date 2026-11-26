@@ -2,6 +2,7 @@
 using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
+using Content.Server._Starlight.Bed.Cryostorage;
 using Content.Server._Starlight.Objectives.Components;
 using Content.Shared.Destructible;
 using Content.Shared.Mind;
@@ -31,6 +32,7 @@ public sealed partial class TeachALessonConditionSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<TeachALessonTargetComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<TeachALessonTargetComponent, CryoStoredEvent>(OnCryoStored);
         SubscribeLocalEvent<TeachALessonConditionComponent, ObjectiveAfterAssignEvent>((ent, ref _) => OnAfterAssign(ent));
         SubscribeLocalEvent<TeachALessonConditionComponent, ObjectiveGetProgressEvent>(OnGetProgress);
 
@@ -71,10 +73,7 @@ public sealed partial class TeachALessonConditionSystem : EntitySystem
             targetObjective.Target is not { } targetMindUid)
             return false;
 
-        if (!TryComp(targetMindUid, out MindComponent? mind))
-            return true;
-
-        return _killPerson.IsTargetRemoved(mind);
+        return _killPerson.IsTargetRemoved(new Entity<MindComponent?>(targetMindUid, null));
     }
 
     private void OnAfterAssign(Entity<TeachALessonConditionComponent> ent)
@@ -107,6 +106,12 @@ public sealed partial class TeachALessonConditionSystem : EntitySystem
         if (args.NewMobState != MobState.Dead)
             return;
 
+        foreach (var teacher in ent.Comp.Teachers)
+            MarkTeacherComplete(teacher);
+    }
+
+    private void OnCryoStored(Entity<TeachALessonTargetComponent> ent, ref CryoStoredEvent args)
+    {
         foreach (var teacher in ent.Comp.Teachers)
             MarkTeacherComplete(teacher);
     }
