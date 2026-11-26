@@ -1,0 +1,12 @@
+- type: entity
+  parent: PhoneInstrument
+  id: PhoneInstrumentMedtak
+  name: MedTak phone
+  description: "Dont break it, it's got platinum coverage."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/MedTak/Objects/phone.rsi
+    state: icon
+  - type: Prayable
+    sentMessage: prayer-popup-notify-medtak-sent
+    notificationPrefix: prayer-chat-notify-medtak

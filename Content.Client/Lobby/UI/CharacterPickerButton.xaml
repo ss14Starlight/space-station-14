@@ -31,7 +31,7 @@
             <PanelContainer Name="EnabledCheckOutline">
                 <Button Name="EnabledCheck" ToggleMode="True" SetSize="28 28" StyleClasses="ButtonSquare">
                     <TextureRect Name="EnabledIcon" Stretch="KeepCentered" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                 TextureScale="0.5 0.5" StyleClasses="CharacterPickerIcon" />
+                                 TextureScale="1 1" StyleClasses="CharacterPickerIcon" />
                 </Button>
             </PanelContainer>
 			<!-- Starlight-end -->

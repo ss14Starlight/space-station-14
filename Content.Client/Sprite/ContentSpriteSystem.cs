@@ -25,6 +25,7 @@ public sealed partial class ContentSpriteSystem : EntitySystem
     [Dependency] private IResourceManager _resManager = default!;
     [Dependency] private IUserInterfaceManager _ui = default!;
     [Dependency] private IRuntimeLog _runtimeLog = default!;
+    [Dependency] private SpriteSystem _sprite = default!; // Starlight-edit
 
     private ContentSpriteControl _control = new();
 
@@ -86,20 +87,19 @@ public sealed partial class ContentSpriteSystem : EntitySystem
         if (!TryComp(entity, out SpriteComponent? spriteComp))
             return;
 
-        // Don't want to wait for engine pr
-        var size = Vector2i.Zero;
+        // Starlight-start
+        var bounds = _sprite.GetLocalBounds((entity, spriteComp)).Translated(spriteComp.Offset);
 
-        foreach (var layer in spriteComp.AllLayers)
-        {
-            if (!layer.Visible)
-                continue;
+        var halfExtents = Vector2.Max(Vector2.Abs(bounds.BottomLeft), Vector2.Abs(bounds.TopRight));
+        var pixelSize = halfExtents * 2f * EyeManager.PixelsPerMeter;
 
-            size = Vector2i.ComponentMax(size, layer.PixelSize);
-        }
+        var size = new Vector2i(
+            (int) MathF.Ceiling((pixelSize.X / 2f) - 0.001f) * 2,
+            (int) MathF.Ceiling((pixelSize.Y / 2f) - 0.001f) * 2);
 
-        // Stop asserts
-        if (size.Equals(Vector2i.Zero))
+        if (size.X <= 0 || size.Y <= 0)
             return;
+        // Starlight-end
 
         var texture = _clyde.CreateRenderTarget(new Vector2i(size.X, size.Y), new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb), name: "export");
         var tcs = new TaskCompletionSource(cancelToken);

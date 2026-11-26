@@ -204,6 +204,13 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("lighting.heat_haze_strength", 0.7f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
+    /// Whether space is drawn at its own brightness, ignoring the light map. Lamps and bounce light then never tint the
+    /// stars seen through lattice, glass floors or past the hull.
+    /// </summary>
+    public static readonly CVarDef<bool> UnlitSpace =
+        CVarDef.Create("lighting.unlit_space", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
     /// Whether puddles and polished floors catch the light of nearby lamps.
     /// </summary>
     public static readonly CVarDef<bool> FloorGloss =

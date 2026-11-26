@@ -810,10 +810,6 @@ public sealed partial class DantalionSystem : EntitySystem
             if (!thrallCoords.TryDistance(EntityManager, _transform, coords, out var distance) || distance > active.Range)
                 continue;
 
-            // Prevent bond beams working through walls
-            if (!_examine.InRangeUnOccluded(uid, thrall, active.Range))
-                continue;
-
             if (TryComp<MobStateComponent>(thrall, out var thrallMobState)
                 && thrallMobState.CurrentState != MobState.Dead)
             {

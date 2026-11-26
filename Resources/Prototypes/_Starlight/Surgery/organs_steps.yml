@@ -602,6 +602,25 @@
     state: retractor
   - type: SurgeryStepEmoteEffect
 
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepInsertSlimeCore
+  name: Insert Core
+  components:
+  - type: SurgeryStep
+    duration: 5
+    tools:
+    - type: Item
+    bodyRemove:
+    - type: Uncryoable
+  - type: SurgeryItemSizeCondition
+    size: Small
+  - type: SurgeryStepOrganInsert
+    slot: core
+  - type: Sprite
+    sprite: Mobs/Species/Slime/organs.rsi
+    state: brain
+
 # Implant
 # liver
 
@@ -1261,7 +1280,6 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/cautery.rsi
     state: cautery
-  - type: SurgeryClearProgress
 
 - type: entity
   parent: SurgeryStepBase

@@ -3,6 +3,7 @@ using Content.Client.Parallax.Managers;
 using Content.Client.Weather;
 using Content.Shared._Starlight.Weather;
 using Content.Shared.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.StatusEffectNew.Components;
@@ -11,6 +12,7 @@ using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -62,6 +64,10 @@ public sealed partial class ParallaxOverlay : Overlay
         var position = args.Viewport.Eye?.Position.Position ?? Vector2.Zero;
         var worldHandle = args.WorldHandle;
 
+        // Starlight-start
+        _unlit = _configurationManager.GetCVar(StarlightCCVars.UnlitSpace)
+            && !_entManager.HasComponent<MapLightComponent>(_mapSystem.GetMapOrInvalid(args.MapId));
+        // Starlight-end
         var layers = _parallax.GetParallaxLayers(args.MapId);
         var realTime = (float)_timing.RealTime.TotalSeconds;
 
@@ -85,6 +91,7 @@ public sealed partial class ParallaxOverlay : Overlay
     }
 
     // Starlight - Yeah this is his own private function now.
+    private bool _unlit;
     private void Render(Vector2 position, DrawingHandleWorld worldHandle, ParallaxLayerPrepared layer, float realTime, OverlayDrawArgs args, Color? modulate = null)
     {
         ShaderInstance? shader;
@@ -95,6 +102,13 @@ public sealed partial class ParallaxOverlay : Overlay
             shader = null;
 
         worldHandle.UseShader(shader);
+
+        // Starlight - Negative modulation tells the default shader to skip the light map.
+        if (_unlit && shader == null)
+        {
+            var color = modulate ?? Color.White;
+            modulate = new Color(-1f - color.R, -1f - color.G, -1f - color.B, -1f - color.A);
+        }
 
         // SL - Allow supporting Sprites to we can use Frames!
         Texture tex;
