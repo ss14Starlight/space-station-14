@@ -5,8 +5,11 @@ using Content.Server.Objectives.Systems;
 using Content.Server._Starlight.Bed.Cryostorage;
 using Content.Server._Starlight.Objectives.Components;
 using Content.Shared.Destructible;
+using Content.Shared.Ghost;
 using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared._Starlight.Railroading.Events;
@@ -33,6 +36,7 @@ public sealed partial class TeachALessonConditionSystem : EntitySystem
 
         SubscribeLocalEvent<TeachALessonTargetComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<TeachALessonTargetComponent, CryoStoredEvent>(OnCryoStored);
+        SubscribeLocalEvent<TeachALessonTargetComponent, MindRemovedMessage>(OnTargetMindRemoved);
         SubscribeLocalEvent<TeachALessonConditionComponent, ObjectiveAfterAssignEvent>((ent, ref _) => OnAfterAssign(ent));
         SubscribeLocalEvent<TeachALessonConditionComponent, ObjectiveGetProgressEvent>(OnGetProgress);
 
@@ -115,6 +119,25 @@ public sealed partial class TeachALessonConditionSystem : EntitySystem
         foreach (var teacher in ent.Comp.Teachers)
             MarkTeacherComplete(teacher);
     }
+
+    private void OnTargetMindRemoved(Entity<TeachALessonTargetComponent> ent, ref MindRemovedMessage args)
+    {
+        if (IsLiveBody(args.TransferEntity))
+            return;
+
+        foreach (var teacher in ent.Comp.Teachers)
+        {
+            if (TryComp(teacher, out TeachALessonConditionComponent? cond) && IsComplete((teacher, cond)))
+                MarkTeacherComplete(teacher);
+        }
+    }
+
+    private bool IsLiveBody(EntityUid? entity) =>
+        entity is { } body
+        && !TerminatingOrDeleted(body)
+        && !HasComp<GhostComponent>(body)
+        && TryComp<MobStateComponent>(body, out var mobState)
+        && mobState.CurrentState is not MobState.Dead;
     [SubscribeLocalEvent]
     private void OnDamageThresholdReached(
         EntityUid uid,
