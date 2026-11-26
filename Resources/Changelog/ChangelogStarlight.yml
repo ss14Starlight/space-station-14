@@ -1,13 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Downpour) Connected the Mime Hallway APC to LV.
-    type: Fix
-  id: 410454
-  time: '2026-11-14T21:44:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7230
-- author: Makeshift
-  changes:
   - message: (Downpour) Connected the left bridge blast doors to the blast door button.
     type: Fix
   id: 410455
@@ -2799,4 +2792,11 @@ Entries:
   id: 410853
   time: '2026-11-26T17:22:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7437
+- author: SirLutz
+  changes:
+  - message: Passive gate has recieved red dot on output sides, this time also for alternative layers.
+    type: Add
+  id: 410854
+  time: '2026-11-26T17:46:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7436
 Order: -1
