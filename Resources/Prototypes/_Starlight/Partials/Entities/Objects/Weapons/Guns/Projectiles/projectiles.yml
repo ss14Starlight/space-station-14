@@ -63,7 +63,7 @@
       types:
         Blunt: 15
   - type: StaminaDamageOnCollide
-    damage: 85
+    damage: 65
 
 - type: !PartialOnly entity
   id: BulletGrenadeBlast
