@@ -1,20 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Downpour) Removed the duplicate air alarm outside of library.
-    type: Fix
-  id: 410456
-  time: '2026-11-14T21:44:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7230
-- author: Makeshift
-  changes:
-  - message: (Downpour) Added missing vacuum markers to the outside of the station.
-    type: Fix
-  id: 410457
-  time: '2026-11-14T21:44:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7230
-- author: Makeshift
-  changes:
   - message: (Downpour) Added more missing tiles under doors.
     type: Fix
   id: 410458
@@ -2799,4 +2785,18 @@ Entries:
   id: 410855
   time: '2026-11-26T18:06:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7429
+- author: baltdev, Floximo
+  changes:
+  - message: Unidentified corpses now may be most species (excluding Vox, IPCs, Experiments, and Neocytes), with up to 3 markings.
+    type: Tweak
+  id: 410856
+  time: '2026-11-26T19:17:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7410
+- author: baltdev, Floximo
+  changes:
+  - message: Unidentified corpses are now unrevivable, after discussion with maintainers.
+    type: Tweak
+  id: 410857
+  time: '2026-11-26T19:17:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7410
 Order: -1
