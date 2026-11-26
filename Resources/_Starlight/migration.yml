@@ -550,3 +550,16 @@ SofaCornerBrown: ComfyChairBrown
 SofaEndLeftBrown: ComfyChairBrown
 SofaEndRightBrown: ComfyChairBrown
 SofaMiddleBrown: ComfyChairBrown
+
+# 2026-11-24 - NPC diversity
+
+SalvageHumanCorpseSpawner: SLSalvageHumanCorpseSpawner
+RandomServiceCorpseSpawner: SLRandomServiceCorpseSpawner
+RandomEngineerCorpseSpawner: SLRandomEngineerCorpseSpawner
+RandomCargoCorpseSpawner: SLRandomCargoCorpseSpawner
+RandomMedicCorpseSpawner: SLRandomMedicCorpseSpawner
+RandomScienceCorpseSpawner: SLRandomScienceCorpseSpawner
+RandomSecurityCorpseSpawner: SLRandomSecurityCorpseSpawner
+RandomCommandCorpseSpawner: SLRandomCommandCorpseSpawner
+SpawnMobSyndicateFootSoldier: SLSpawnMobSyndicateFootSoldier
+SpawnMobSyndicateFootsoldierPilot: SLSpawnMobSyndicateFootSoldierPilot
