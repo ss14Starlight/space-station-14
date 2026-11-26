@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Oasis) Added new radio host equipment.
-    type: Add
-  id: 410460
-  time: '2026-11-14T22:08:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7232
-- author: Cvlancer
-  changes:
   - message: (Oasis) Added a few lights to adjust to new lighting changes.
     type: Add
   id: 410461
@@ -2799,4 +2792,11 @@ Entries:
   id: 410859
   time: '2026-11-26T21:43:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7465
+- author: Rinary
+  changes:
+  - message: Fixed bug when you can't deconstruct comfortable benches.
+    type: Fix
+  id: 410860
+  time: '2026-11-26T21:43:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7466
 Order: -1
