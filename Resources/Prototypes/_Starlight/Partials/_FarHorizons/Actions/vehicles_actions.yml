@@ -10,6 +10,8 @@
   components:
   - type: Action
     icon:
-      sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi
+      sprite: _Starlight/Objects/Vehicles/siren.rsi
+      state: icon
+    itemIconStyle: NoItem
   - type: InstantAction
-    event: !type:VehicleSirenToggleEvent ''
+    event: !type:VehicleSirenToggleEvent

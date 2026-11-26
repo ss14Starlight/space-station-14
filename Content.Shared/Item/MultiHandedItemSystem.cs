@@ -24,6 +24,9 @@ public sealed partial class MultiHandedItemSystem : EntitySystem
 
     private void OnEquipped(Entity<MultiHandedItemComponent> ent, ref GotEquippedHandEvent args)
     {
+        if (_timing.ApplyingState) // Starlight
+            return; // Starlight
+
         for (var i = 0; i < ent.Comp.HandsNeeded - 1; i++)
         {
             _virtualItem.TrySpawnVirtualItemInHand(ent.Owner, args.User);
@@ -32,6 +35,9 @@ public sealed partial class MultiHandedItemSystem : EntitySystem
 
     private void OnUnequipped(Entity<MultiHandedItemComponent> ent, ref GotUnequippedHandEvent args)
     {
+        if (_timing.ApplyingState) // Starlight
+            return; // Starlight
+
         _virtualItem.DeleteInHandsMatching(args.User, ent.Owner);
     }
 
