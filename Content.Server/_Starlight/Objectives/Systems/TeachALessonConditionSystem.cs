@@ -12,6 +12,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Silicons.StationAi;
+using Content.Shared._Starlight.Mind.Events;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Objectives;
 using Content.Server._Starlight.Railroading;
@@ -37,6 +38,7 @@ public sealed partial class TeachALessonConditionSystem : EntitySystem
         SubscribeLocalEvent<TeachALessonTargetComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<TeachALessonTargetComponent, CryoStoredEvent>(OnCryoStored);
         SubscribeLocalEvent<TeachALessonTargetComponent, MindRemovedMessage>(OnTargetMindRemoved);
+        SubscribeLocalEvent<TeachALessonTargetComponent, MindUserIdChangedEvent>(OnTargetMindUserIdChanged);
         SubscribeLocalEvent<TeachALessonConditionComponent, ObjectiveAfterAssignEvent>((ent, ref _) => OnAfterAssign(ent));
         SubscribeLocalEvent<TeachALessonConditionComponent, ObjectiveGetProgressEvent>(OnGetProgress);
 
@@ -125,6 +127,16 @@ public sealed partial class TeachALessonConditionSystem : EntitySystem
         if (IsLiveBody(args.TransferEntity))
             return;
 
+        ReevaluateTeachers(ent);
+    }
+
+    private void OnTargetMindUserIdChanged(Entity<TeachALessonTargetComponent> ent, ref MindUserIdChangedEvent args)
+    {
+        ReevaluateTeachers(ent);
+    }
+
+    private void ReevaluateTeachers(Entity<TeachALessonTargetComponent> ent)
+    {
         foreach (var teacher in ent.Comp.Teachers)
         {
             if (TryComp(teacher, out TeachALessonConditionComponent? cond) && IsComplete((teacher, cond)))
