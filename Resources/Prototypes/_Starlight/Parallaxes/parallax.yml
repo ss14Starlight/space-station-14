@@ -1,6 +1,6 @@
 - type: parallax
   id: AstroParallax
-  starlightColor: "#62698a"
+  starlightColor: "#6e839b"
   layers:
     - texture:
         !type:ImageParallaxTextureSource
@@ -32,7 +32,7 @@
 
 - type: parallax
   id: AxiomaParallax
-  starlightColor: "#72628a"
+  starlightColor: "#84719e"
   layers:
     - texture:
         !type:ImageParallaxTextureSource
@@ -61,7 +61,7 @@
 
 - type: parallax
   id: DonutsStation
-  starlightColor: "#8b2727"
+  starlightColor: "#ac4646ef"
   layers:
     - texture:
         !type:ImageParallaxTextureSource
@@ -98,6 +98,7 @@
 
 - type: parallax
   id: EclipseParallax
+  starlightColor: "#525268"
   layers:
     - texture:
         !type:ImageParallaxTextureSource
@@ -230,7 +231,7 @@
 
 - type: parallax
   id: DeltaStation
-  starlightColor: "#121214"
+  starlightColor: "#51515a"
   layers:
     - texture:
         !type:ImageParallaxTextureSource
@@ -267,6 +268,7 @@
 
 - type: parallax
   id: Dark
+  starlightColor: "#000000"
   layers:
     - texture:
         !type:ImageParallaxTextureSource
@@ -292,7 +294,7 @@
 
 - type: parallax
   id: Colony
-  starlightColor: "#473f38"
+  starlightColor: "#7c6e62"
   layers:
     - texture:
         !type:ImageParallaxTextureSource
@@ -332,7 +334,7 @@
 
 - type: parallax
   id: CosmicParallax
-  starlightColor: "#6d5385"
+  starlightColor: "#a174ce"
   layers:
     - texture:
         !type:ImageParallaxTextureSource
@@ -370,7 +372,7 @@
 
 - type: parallax
   id: CosmicFinaleParallax
-  starlightColor: "#583d6e"
+  starlightColor: "#6b3f8f"
   layers:
     - texture:
         !type:ImageParallaxTextureSource
