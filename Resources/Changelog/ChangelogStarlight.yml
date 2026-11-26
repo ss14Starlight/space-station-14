@@ -1,25 +1,4 @@
 Entries:
-- author: CrazyPhantom
-  changes:
-  - message: The Photography Cartridge is now Command Contraband.
-    type: Tweak
-  id: 410442
-  time: '2026-11-14T08:10:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7223
-- author: redmushie
-  changes:
-  - message: Fixed hand-held artifacts spawning entities attached to the player holding it.
-    type: Fix
-  id: 410443
-  time: '2026-11-14T09:44:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7231
-- author: Makeshift
-  changes:
-  - message: (Downpour) Gunnery Sergeant.
-    type: Add
-  id: 410444
-  time: '2026-11-14T21:44:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7230
 - author: Makeshift
   changes:
   - message: (Downpour) New Radio machines to the Radio studio.
@@ -2799,4 +2778,25 @@ Entries:
   id: 410841
   time: '2026-11-26T07:53:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7431
+- author: Teddiousbear, Starverse.
+  changes:
+  - message: NTNC Encryption Key.
+    type: Add
+  id: 410842
+  time: '2026-11-26T10:51:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7434
+- author: Teddiousbear, Starverse.
+  changes:
+  - message: NTNC Encryption Key to NTNC and NTSF Headsets.
+    type: Add
+  id: 410843
+  time: '2026-11-26T10:51:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7434
+- author: Teddiousbear, Starverse.
+  changes:
+  - message: Adjusted NTNC Hardsuit Explo Resist to 65%.
+    type: Tweak
+  id: 410844
+  time: '2026-11-26T10:51:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7434
 Order: -1
