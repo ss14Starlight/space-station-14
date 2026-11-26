@@ -726,6 +726,8 @@
 - type: loadoutGroup
   id: MiningSpecialistShoes
   name: loadout-group-mining-specialist-shoes
+  minLimit: 0
+  defaultSelected: 1
   loadouts:
   - BlackShoes
   - WinterBoots

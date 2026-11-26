@@ -69,7 +69,7 @@
   id: VendorClothingEyesWeldingGoggles
   productEntity: ClothingEyesWeldingGoggles
   cost:
-    SalvageTicket: 40
+    MiningTicket: 40
   categories:
   - MiningEquipment
   conditions:
@@ -91,7 +91,7 @@
 #  id: VendorMiningMiningDrillDiamond # Mining and R&D work together, no magic tickets.
 #  productEntity: MiningDrillDiamond
 #  cost:
-#    SalvageTicket: 400
+#    MiningTicket: 400
 #  categories:
 #  - MiningEquipment
 #  conditions:
@@ -135,7 +135,7 @@
 #  id: VendorMiningSeismicCharge # Only practical for antags. Move to some random loot.
 #  productEntity: SeismicCharge
 #  cost:
-#    SalvageTicket: 300
+#    MiningTicket: 300
 #  categories:
 #    - MiningEquipment
 #  conditions:
@@ -206,7 +206,7 @@
 #  id: VendorMiningWeaponMechMelleDrillDiamond # Mining and R&D work together, no magic tickets.
 #  productEntity: WeaponMechMelleDrillDiamond
 #  cost:
-#    SalvageTicket: 800
+#    MiningTicket: 800
 #  categories:
 #  - MiningEquipment
 #  conditions:
