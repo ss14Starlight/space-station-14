@@ -95,7 +95,7 @@
   - type: StatusEffectContainer
   - type: VehicleMods
     vehicleType: Gas
-    equipmentSlots: [tires, engine, headlight]
+    equipmentSlots: [tires, engine, headlight, lightbar]
     startingEquipment:
     - BasicTires
     - BasicEngine
