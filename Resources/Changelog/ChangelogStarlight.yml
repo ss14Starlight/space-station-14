@@ -1,34 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Downpour) New Radio machines to the Radio studio.
-    type: Add
-  id: 410445
-  time: '2026-11-14T21:44:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7230
-- author: Makeshift
-  changes:
-  - message: (Downpour) Airlock Controller to Mining's dock.
-    type: Add
-  id: 410446
-  time: '2026-11-14T21:44:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7230
-- author: Makeshift
-  changes:
-  - message: (Downpour) YouTool to Engineering.
-    type: Add
-  id: 410447
-  time: '2026-11-14T21:44:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7230
-- author: Makeshift
-  changes:
-  - message: (Downpour) Desktop Crew Monitor to Security.
-    type: Add
-  id: 410448
-  time: '2026-11-14T21:44:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7230
-- author: Makeshift
-  changes:
   - message: (Downpour) Zones should be a little more accurate.
     type: Tweak
   id: 410449
@@ -2799,4 +2771,32 @@ Entries:
   id: 410844
   time: '2026-11-26T10:51:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7434
+- author: Rinary
+  changes:
+  - message: Fixed bug when you can see glow in regions that isn't in your FOV.
+    type: Fix
+  id: 410845
+  time: '2026-11-26T12:14:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7379
+- author: Rinary
+  changes:
+  - message: Fixed bug when non-square tiles had square starlight.
+    type: Fix
+  id: 410846
+  time: '2026-11-26T12:14:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7379
+- author: Rinary
+  changes:
+  - message: Fixed bug when reflection worked even when reflection tile was covered with carpet(glass for example).
+    type: Fix
+  id: 410847
+  time: '2026-11-26T12:14:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7379
+- author: Rinary
+  changes:
+  - message: Fixed bug with color grading(i.e. small color tint based on area or current alert level), when it makes game too much dark.
+    type: Fix
+  id: 410848
+  time: '2026-11-26T12:14:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7379
 Order: -1
