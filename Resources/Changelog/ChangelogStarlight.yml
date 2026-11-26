@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Oasis) Added a few lights to adjust to new lighting changes.
-    type: Add
-  id: 410461
-  time: '2026-11-14T22:08:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7232
-- author: Cvlancer
-  changes:
   - message: (Oasis) Added a hatchet to gen pop island.
     type: Add
   id: 410462
@@ -2799,4 +2792,11 @@ Entries:
   id: 410860
   time: '2026-11-26T21:43:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7466
+- author: baltdev
+  changes:
+  - message: Resprited the Abyssium Ingot, Core, and Ore sprites.
+    type: Tweak
+  id: 410861
+  time: '2026-11-26T21:43:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7469
 Order: -1
