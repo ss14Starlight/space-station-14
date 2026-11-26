@@ -123,36 +123,6 @@
       storagebase: !type:Container
         ents: [ ]
 
-- type: entity
-  parent: ClothingOuterWinterDutyOfficer
-  id: ClothingOuterWinterSecPlate
-  name: plated security winter coat
-  description: A plated winter coat designed to protect agaisnt ballistic weapons in cold temperature.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/WinterCoats/coatplatewinter.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/WinterCoats/coatplatewinter.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodWinterSecPlate
-  - type: Pierceable
-    level: Metal
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.85
-        Slash: 0.70
-        Piercing: 0.70
-        Heat: 0.95
-        Cold: 0.65 # Starlight
-  - type: ExplosionResistance
-    damageCoefficient: 0.85
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot { }
-      storagebase: !type:Container
-        ents: [ ]
-
 # Command
 
 - type: entity
