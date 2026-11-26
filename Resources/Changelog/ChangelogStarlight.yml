@@ -1,34 +1,6 @@
 Entries:
 - author: CrazyPhantom
   changes:
-  - message: PDA Cameras no longer flash.
-    type: Fix
-  id: 410438
-  time: '2026-11-14T08:10:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7223
-- author: CrazyPhantom
-  changes:
-  - message: PDA Cameras no longer Auto Recharge and instead require a Blank Photograph.
-    type: Fix
-  id: 410439
-  time: '2026-11-14T08:10:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7223
-- author: CrazyPhantom
-  changes:
-  - message: Cameras now capture Footprints.
-    type: Fix
-  id: 410440
-  time: '2026-11-14T08:10:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7223
-- author: CrazyPhantom
-  changes:
-  - message: Cameras now capture PDA lights.
-    type: Fix
-  id: 410441
-  time: '2026-11-14T08:10:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7223
-- author: CrazyPhantom
-  changes:
   - message: The Photography Cartridge is now Command Contraband.
     type: Tweak
   id: 410442
@@ -2799,4 +2771,32 @@ Entries:
   id: 410837
   time: '2026-11-25T20:52:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7424
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fix custom replicated cvars causing replays to fail to load on non-starlight launcher.
+    type: Fix
+  id: 410838
+  time: '2026-11-26T07:53:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7431
+- author: STARLIGHT TEAM
+  changes:
+  - message: (Toolshed commands) Tab completion for list/array parsing (Starlight launcher only).
+    type: Fix
+  id: 410839
+  time: '2026-11-26T07:53:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7431
+- author: STARLIGHT TEAM
+  changes:
+  - message: (Toolshed commands) Add nullable parsing.
+    type: Add
+  id: 410840
+  time: '2026-11-26T07:53:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7431
+- author: STARLIGHT TEAM
+  changes:
+  - message: Experimental fix to root cause of replay corruption.
+    type: Fix
+  id: 410841
+  time: '2026-11-26T07:53:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7431
 Order: -1
