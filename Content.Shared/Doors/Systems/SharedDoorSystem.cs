@@ -48,6 +48,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
     [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!;
 
     public static readonly ProtoId<TagPrototype> DoorBumpTag = "DoorBumpOpener";
+    public static readonly ProtoId<TagPrototype> DecorativeDoorTag = "DecorativeDoor";
 
     /// <summary>
     ///     A set of doors that are currently opening, closing, or just queued to open/close after some delay.
@@ -609,6 +610,10 @@ public abstract partial class SharedDoorSystem : EntitySystem
             // In order to make firelocks behave consistently between glass and non-glass airlocks, we
             // need to match upstream's exclusion of glass airlock collision from the following block.
             if (otherPhysics.Comp.CollisionLayer == (int) CollisionGroup.AirlockLayer)
+                continue;
+            
+            // Decorative doors (such as curtains) shouldn't block doors from closing
+            if (Tags.HasTag(otherPhysics.Owner, DecorativeDoorTag))
                 continue;
             // Starlight end
 
