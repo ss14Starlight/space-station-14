@@ -1,6 +1,6 @@
 - type: listing
   id: VendorVehicleScooterElectricCommand
-  productEntity: VehicleScooterElectricCommandFilled
+  productEntity: VehicleScooterElectricSecurityFilled
   cost:
     NTCredit: 1000
   categories:
