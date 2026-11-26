@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Manor) Added potential room. A new blank room with the potential to be whatever you want it to be.
-    type: Add
-  id: 410464
-  time: '2026-11-14T22:08:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7232
-- author: Cvlancer
-  changes:
   - message: (Manor) Added a few hardhats to roboticist.
     type: Add
   id: 410465
@@ -2799,4 +2792,11 @@ Entries:
   id: 410863
   time: '2026-11-26T22:40:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7458
+- author: RedSpeeds
+  changes:
+  - message: Added Xenoborg bodybags to store all non-brain items.
+    type: Add
+  id: 410864
+  time: '2026-11-26T23:04:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7197
 Order: -1
