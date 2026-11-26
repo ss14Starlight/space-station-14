@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.PowerCell.Components;
 using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
 using Content.Shared.Vehicle.Components;
@@ -37,10 +38,16 @@ public sealed partial class VehicleSystem
             return;
 
         var keySlotId = GetVehicleKeySlot(ent.Owner);
+        var cellSlotId = CompOrNull<PowerCellSlotComponent>(ent)?.CellSlotId;
         foreach (var slot in slots.Slots.Values.ToArray())
         {
-            if (slot.Item is { } item && slot.ContainerSlot is { } container && container.ID != keySlotId)
+            if (slot.Item is { } item &&
+                slot.ContainerSlot is { } container &&
+                container.ID != keySlotId &&
+                container.ID != cellSlotId)
+            {
                 _container.Remove(item, container, force: true);
+            }
         }
     }
 }
