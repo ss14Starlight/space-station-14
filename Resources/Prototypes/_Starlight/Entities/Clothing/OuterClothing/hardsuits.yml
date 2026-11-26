@@ -150,6 +150,49 @@
       damageCoefficient: 0.75
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitMercenary
+    - type: Tag
+      tags:
+        - Hardsuit
+        - CorgiWearable
+        - WhitelistChameleon
+        - HardsuitMercenary
+
+#Xeno Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseSalvageContraband]
+  id: ClothingOuterHardsuitXenoMerc
+  name: xeno hardsuit
+  description: A classic mercenary hardsuit, the tough chitin of a fallen empress adorns its exterior.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/xenomerc.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/xenomerc.rsi
+    - type: PressureProtection
+      highPressureMultiplier: 0.525
+      lowPressureMultiplier: 10000
+    - type: ClothingSpeedModifier
+      walkModifier: 0.9
+      sprintModifier: 0.9
+    - type: Pierceable
+      level: Metal
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.55
+          Slash: 0.55
+          Piercing: 0.75
+          Caustic: 0.3
+          Heat: 0.75
+          Radiation: 0.3
+      staminaModifier: 0.9
+    - type: ExplosionResistance
+      damageCoefficient: 0.75
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitXenoMerc
+    - type: Construction
+      graph: HardsuitXeno
+      node: hardsuitXeno
 
 #Space Hazard Suit
 - type: entity

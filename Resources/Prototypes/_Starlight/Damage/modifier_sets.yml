@@ -369,3 +369,12 @@
     Blunt: 0.9
     Slash: 0.9
     Cold: 1.3
+
+- type: damageModifierSet
+  id: HiveXenoResistances
+  coefficients:
+    Slash: 0.7
+    Blunt: 0.7
+    Heat: 1.5
+    Caustic: 0
+    Shock: 1.3

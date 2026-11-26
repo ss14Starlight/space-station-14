@@ -1,0 +1,23 @@
+﻿- type: constructionGraph
+  id: HardsuitXeno
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: hardsuitXeno
+      steps:
+      - tag: HardsuitMercenary
+        icon:
+          sprite: _Starlight/Clothing/OuterClothing/Hardsuits/mercenary.rsi
+          state: icon
+        name: construction-graph-tag-mercenary-hardsuit
+        doAfter: 10
+      - tag: EmpressChitin
+        icon:
+          sprite: _starlight/Objects/Misc/empress.rsi
+          state: base
+        name: construction-graph-tag-empress-chitin
+        amount: 1
+        doAfter: 10
+  - node: hardsuitXeno
+    entity: ClothingOuterHardsuitXenoMerc

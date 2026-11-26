@@ -553,3 +553,11 @@
   category: construction-category-weapons
   objectType: Item
   description: crafting-menu-text-molo
+
+- type: construction
+  id: HardsuitXeno
+  graph: HardsuitXeno
+  startNode: start
+  targetNode: hardsuitXeno
+  category: construction-category-clothing
+  objectType: Item

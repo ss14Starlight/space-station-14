@@ -1,0 +1,16 @@
+- type: entity
+  parent: BaseItem
+  id: EmpressChitin
+  name: empress chitin
+  description: It feels tough, almost alive still.
+  components:
+  - type: Sprite
+    sprite: _starlight/Objects/Misc/empress.rsi
+    state: base
+  - type: Item
+    size: large
+  - type: StaticPrice
+    price: 18000
+  - type: Tag
+    tags:
+      - EmpressChitin

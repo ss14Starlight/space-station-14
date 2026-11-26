@@ -62,6 +62,8 @@
     spawned:
     - id: FoodMeatXeno
       amount: 1
+  - type: Damageable
+    damageModifierSet: HiveXenoResistances
 
 - type: entity
   parent: HiveXeno
@@ -87,8 +89,6 @@
     rootTask:
       task: XenoRootCompound
     blackboard:
-      NavClimb: !type:Bool
-        true
       NavSmash: !type:Bool
         true
       NavInteract: !type:Bool
@@ -96,7 +96,7 @@
       NavPry: !type:Bool
         true
       VisionRadius: !type:Single
-        15
+        20
       AggroVisionRadius: !type:Single
         12
   - type: Sprite
@@ -119,9 +119,9 @@
           radius: 0.25
         density: 50
         mask:
-        - SmallMobMask
+        - MobMask
         layer:
-        - SmallMobLayer
+        - MobLayer
   - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
@@ -163,8 +163,6 @@
     rootTask:
       task: XenoRootCompound
     blackboard:
-      NavClimb: !type:Bool
-        true
       NavSmash: !type:Bool
         true
       NavInteract: !type:Bool
@@ -174,7 +172,7 @@
       VisionRadius: !type:Single
         20
       AggroVisionRadius: !type:Single
-        10
+        12
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -192,8 +190,8 @@
       Dead:
         Base: dead
   - type: MovementSpeedModifier
-    baseSprintSpeed : 3
-    baseWalkSpeed: 2.5
+    baseSprintSpeed : 3.5
+    baseWalkSpeed: 3
   - type: MeleeWeapon
     soundHit:
       path: /Audio/_RMC/Voice/Xeno/alien_bite1.ogg
@@ -242,12 +240,16 @@
       amount: 15
     - id: FoodEggXeno
       amount: 2
+    - id: EmpressChitin
   - type: Butcherable
     spawned:
     - id: FoodMeatXeno
       amount: 15
     - id: FoodEggXeno
       amount: 2
+    - id: EmpressChitin
+  - type: Damageable
+    damageModifierSet: HiveXenoResistances
 
 - type: entity
   parent: HiveXeno
@@ -259,12 +261,10 @@
     rootTask:
       task: LarvaRootCompound
     blackboard:
-      NavClimb: !type:Bool
-        true
       NavSmash: !type:Bool
         true
       VisionRadius: !type:Single
-        30
+        20
       AggroVisionRadius: !type:Single
         30
   - type: MobThresholds
