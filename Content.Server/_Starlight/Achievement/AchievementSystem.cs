@@ -77,7 +77,6 @@ namespace Content.Server._Starlight.Achievement;
 public sealed partial class AchievementSystem : SharedAchievementSystem
 {
     [Dependency] private INullLinkPlayerManager _nullLinkPlayers = default!;
-    [Dependency] private IAchievementRewardManager _achievementRewards = default!;
     [Dependency] private SharedJobSystem _jobs = default!;
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private ObjectivesSystem _objectives = default!;
@@ -182,7 +181,6 @@ public sealed partial class AchievementSystem : SharedAchievementSystem
         var result = await UnlockAchievement(session, achievementId, characterName);
         if (result)
         {
-            _achievementRewards.GrantRewards(session, achievementId);
             _nullLinkPlayers.SendAchievementNotification(session.UserId, achievementId);
             _nullLinkPlayers.SendAchievementList(session.UserId);
             await CheckPrerequisiteAchievementsAsync(session, characterName);

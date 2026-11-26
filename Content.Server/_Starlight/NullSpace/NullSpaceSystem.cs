@@ -22,6 +22,7 @@ using Content.Server._Starlight.CosmicCult;
 using Content.Shared._Starlight.NullSpace.Systems;
 using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared._Starlight.CosmicCult.Components;
+using Content.Shared._Starlight.Bluespace;
 
 namespace Content.Server._Starlight.NullSpace;
 

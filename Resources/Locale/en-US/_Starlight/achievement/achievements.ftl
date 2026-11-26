@@ -163,6 +163,9 @@ achievement-lightwalker-enforcement-description = As a Brighteye, be the target 
 achievement-jealousy-name = Jealousy
 achievement-jealousy-description = As a Black-Eye Shadekin, replace your core with a stolen Brighteye core.
 
+achievement-face-the-unknown-name = Face The Unknown
+achievement-face-the-unknown-description = Survive the Cosmic Cult's victory with the help of a NullSpace Protector/Anchor.
+
 achievement-window-title = Track your milestones, hidden trophies, and long-term progress
 achievement-window-categories = Categories
 achievement-window-category-all = All Achievements
@@ -177,14 +180,6 @@ achievement-notification-footer = New trophy added to your collection
 
 achievement-notification-body =  { $name }
 game-hud-open-achievement-menu-button-tooltip = Achievements
-
-role-achievement-reward-pass = Achievement unlocked: [color=limegreen]{$achievement}[/color]
-role-achievement-reward-fail = Requires achievement: [color=yellow]{$achievement}[/color]
-role-achievement-reward-fail-hidden = Requires a [color=yellow]hidden achievement[/color]
-
-loadouts-achievement-reward-pass = Achievement reward unlocked: {$achievement}
-loadouts-achievement-reward-fail = Requires achievement reward: {$achievement}
-loadouts-achievement-reward-fail-hidden = Requires a hidden achievement reward
 
 achievement-category-milestones = Milestones
 achievement-category-onboarding = Onboarding

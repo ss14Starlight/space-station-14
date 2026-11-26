@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Bluespace;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Stacks;
@@ -14,17 +15,12 @@ public sealed partial class BluespaceCrystalSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedStackSystem _sharedStackSystem = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
-    public EntProtoId BluespaceCrystalEffect = "EffectFlashBluespace"; //TODO: Change this?
+    public EntProtoId BluespaceCrystalEffect = "EffectFlashBluespace";
+    public EntProtoId BluespaceCrystalEffectSimple = "EffectFlashBluespaceSimple";
     private const int MaxRandomTeleportAttempts = 20;
-    public override void Initialize()
-    {
-        base.Initialize();
+    public override void Initialize() => base.Initialize();
 
-        SubscribeLocalEvent<BluespaceCrystalComponent, LandEvent>((u, c, a) => BluespaceEffect(u, c));
-        SubscribeLocalEvent<BluespaceCrystalComponent, ThrowDoHitEvent>(ThrowDoHit);
-        SubscribeLocalEvent<BluespaceCrystalComponent, UseInHandEvent>(UseInHand);
-    }
-
+    [SubscribeLocalEvent]
     private void UseInHand(EntityUid uid, BluespaceCrystalComponent component, UseInHandEvent args)
     {
         if (args.Handled)
@@ -38,6 +34,7 @@ public sealed partial class BluespaceCrystalSystem : EntitySystem
         args.Handled = true;
     }
 
+    [SubscribeLocalEvent]
     private void ThrowDoHit(EntityUid uid, BluespaceCrystalComponent component, ThrowDoHitEvent args)
     {
         BluespaceEffect(uid, component, args.Target);
@@ -45,26 +42,45 @@ public sealed partial class BluespaceCrystalSystem : EntitySystem
         QueueDel(uid);
     }
 
-    public void BluespaceEffect(EntityUid uid, BluespaceCrystalComponent component, EntityUid? target = null)
+    [SubscribeLocalEvent]
+    private void LandEvent(EntityUid uid, BluespaceCrystalComponent component, LandEvent args)
     {
-        var EffectLocation = _transform.GetMapCoordinates(uid);
+        BluespaceEffect(uid, component, effect: BluespaceCrystalEffectSimple);
 
-        Spawn(BluespaceCrystalEffect, EffectLocation);
+        QueueDel(uid);
+    }
 
-        if (component.Teleport && target is not null && HasComp<MobStateComponent>(target)) // TODO: Do something else? This is there so we dont TELEPORT WALLS/DOORS...
-        {
-            var newCoords = EffectLocation; // This is a comment... (newCoords is fetch later.)
-            for (var i = 0; i < MaxRandomTeleportAttempts; i++)
-            {
-                newCoords = EffectLocation.Offset(_random.NextVector2(component.Range));
-                if (!_lookup.AnyEntitiesIntersecting(newCoords, LookupFlags.Static))
-                    break;
-            }
-            _transform.SetCoordinates(target.Value, _transform.ToCoordinates(newCoords));
-        }
+    public void BluespaceEffect(
+        EntityUid uid,
+        BluespaceCrystalComponent component,
+        EntityUid? target = null,
+        EntProtoId? effect = null)
+    {
+        if (component.Used)
+            return;
+        else
+            component.Used = true;
+
+        var EffectLocation = _transform.ToCoordinates(_transform.GetMapCoordinates(uid));
+
+        SpawnAtPosition(effect ?? BluespaceCrystalEffect, EffectLocation);
 
         if (component.NullSpaceShunt)
-            DoNullSpaceShuntEffect(_transform.ToCoordinates(EffectLocation), component.NullSpaceShuntRange);
+            DoNullSpaceShuntEffect(EffectLocation, component.NullSpaceShuntRange);
+
+        if (component.Teleport && target is not null && HasComp<MobStateComponent>(target))
+        {
+            var newCoords = EffectLocation.Offset(_random.NextVector2(component.Range));
+            for (var i = 0; i < MaxRandomTeleportAttempts; i++)
+            {
+                var randVector = _random.NextVector2(component.Range);
+                newCoords = EffectLocation.Offset(randVector);
+                if (!_lookup.AnyEntitiesIntersecting(_transform.ToMapCoordinates(newCoords), LookupFlags.Static))
+                    break;
+            }
+
+            _transform.SetCoordinates(target.Value, newCoords);
+        }
     }
 
     private void DoNullSpaceShuntEffect(EntityCoordinates coordinates, float range)

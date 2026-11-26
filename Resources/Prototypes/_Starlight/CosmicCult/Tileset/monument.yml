@@ -329,6 +329,7 @@
       - CosmicCult
       - MindShield
       - BibleUser
+      - Brighteye
   - type: Physics
     bodyType: Static
   - type: Fixtures

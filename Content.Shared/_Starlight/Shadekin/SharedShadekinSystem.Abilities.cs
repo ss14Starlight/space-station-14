@@ -10,7 +10,7 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Shared._Starlight.Shadekin;
 
-public sealed partial class ShadekinSystem
+public abstract partial class SharedShadekinSystem
 {
     #region  Shadeskip
 

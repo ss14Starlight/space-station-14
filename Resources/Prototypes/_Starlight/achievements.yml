@@ -106,7 +106,6 @@
   icon:
     sprite: _Starlight/Interface/Achievements/icons.rsi
     state: mar
-  requirements: []
 
 - type: achievement
   id: mindshield_failure
@@ -117,7 +116,6 @@
   icon:
     sprite: _Starlight/Interface/Achievements/icons.rsi
     state: mar
-  requirements: []
 
 - type: achievement
   id: jealousy
@@ -128,7 +126,6 @@
   icon:
     sprite: _Starlight/Interface/Achievements/icons.rsi
     state: mar
-  requirements: []
 
 - type: achievement
   id: lightwalker_enforcement
@@ -139,7 +136,6 @@
   icon:
     sprite: _Starlight/Interface/Achievements/icons.rsi
     state: mar
-  requirements: []
 
 # manual-only, granted by admins via achievement_unlock command
 # Even though this achievement can be granted automatically checking nullink roles
@@ -678,3 +674,14 @@
   - first_kindred
   - enemy_unknown
   - blood_herald
+
+- type: achievement
+  id: face_the_unknown
+  name: achievement-face-the-unknown-name
+  description: achievement-face-the-unknown-description
+  category: milestones
+  hidden: true
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: heliosMedal

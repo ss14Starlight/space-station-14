@@ -26,7 +26,7 @@ public sealed partial class BluespaceCrystalComponent : Component
     /// </summary>
     [DataField]
     public float NullSpaceShuntRange = 8;
-}
 
-[ByRefEvent]
-public record struct NullSpaceShuntEvent;
+    // True if BluespaceEffect has already been triggered.
+    public bool Used = false;
+}

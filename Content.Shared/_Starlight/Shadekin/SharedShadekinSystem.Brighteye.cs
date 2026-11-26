@@ -19,10 +19,10 @@ using Content.Shared._Starlight.NullSpace.Components;
 
 namespace Content.Shared._Starlight.Shadekin;
 
-public sealed partial class ShadekinSystem
+public abstract partial class SharedShadekinSystem
 {
     private static readonly ProtoId<NpcFactionPrototype> _shieldedFaction = "Shielded";
-    private static readonly ProtoId<NpcFactionPrototype> _TheDarkFaction = "TheDark";
+    private static readonly ProtoId<NpcFactionPrototype> _theDarkFaction = "TheDark";
 
     [SubscribeLocalEvent]
     private void OnZombify(Entity<BrighteyeComponent> ent, ref EntityZombifiedEvent args)
@@ -45,7 +45,7 @@ public sealed partial class ShadekinSystem
         _npcFaction.RemoveFaction(ent.Owner, _shieldedFaction);
 
         // DarkFaction so Rift Walkers dont attack Brighteyes.
-        _npcFaction.AddFaction(ent.Owner, _TheDarkFaction);
+        _npcFaction.AddFaction(ent.Owner, _theDarkFaction);
 
         _language.AddLanguage(ent.Owner, "Empathy");
 
@@ -129,7 +129,7 @@ public sealed partial class ShadekinSystem
     private void OnShutdown(Entity<BrighteyeComponent> ent, ref ComponentShutdown _)
     {
         // Were no more Brighteye, no more Friendly to The Dark.
-        _npcFaction.RemoveFaction(ent.Owner, _TheDarkFaction);
+        _npcFaction.RemoveFaction(ent.Owner, _theDarkFaction);
 
         _language.RemoveLanguage(ent.Owner, "Empathy");
 

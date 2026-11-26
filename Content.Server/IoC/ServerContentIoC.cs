@@ -113,7 +113,6 @@ internal static class ServerContentIoC
         deps.Register<ITTSClient, TTSClient>();
         deps.Register<ItemPriceManager, ItemPriceManager>();
         deps.Register<IBugReportManager, BugReportManager>();
-        deps.Register<IAchievementRewardManager, NullLinkPlayerManager>();
         deps.Register<PreWrittenDocumentManager>();
         // 🌟Starlight🌟 end
         // nulllink start

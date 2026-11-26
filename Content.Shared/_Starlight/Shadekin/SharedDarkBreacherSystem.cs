@@ -8,7 +8,7 @@ public abstract partial class SharedDarkBreacherSystem : EntitySystem
 {
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private ShadekinSystem _shadekin = default!;
+    [Dependency] private SharedShadekinSystem _shadekin = default!;
 
     protected EntityUid? GeneratePortal(DarkBreacherComponent component)
     {

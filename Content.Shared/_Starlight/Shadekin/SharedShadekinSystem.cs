@@ -42,7 +42,7 @@ using Content.Shared._Starlight.Achievement;
 
 namespace Content.Shared._Starlight.Shadekin;
 
-public sealed partial class ShadekinSystem : EntitySystem
+public abstract partial class SharedShadekinSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private AlertsSystem _alerts = default!;
@@ -144,10 +144,7 @@ public sealed partial class ShadekinSystem : EntitySystem
         if (TryComp<BodyComponent>(ent.Owner, out var body)
             && _bodySystem.TryGetOrgansWithComponent<OrganShadekinCoreComponent>((ent.Owner, body), out _))
         {
-            // TODO STARLIGHT predict this properly, right now all callers are on server
-            // (PopupPredicted would skip the shadekin itself, since the server assumes they predicted it)
-            if (_net.IsServer)
-                _popup.PopupEntity(Loc.GetString("shadekin-shunt"), ent.Owner, ent.Owner, PopupType.LargeCaution);
+            _popup.PopupEntity(Loc.GetString("shadekin-shunt"), ent.Owner, ent.Owner, PopupType.LargeCaution);
 
             _stunSystem.TryKnockdown(ent.Owner, TimeSpan.FromSeconds(1), autoStand: false);
             ApplyCoreDamage(ent.Owner, 5);
@@ -314,7 +311,7 @@ public sealed partial class ShadekinSystem : EntitySystem
             return false;
 
         // Cheap when nothing changed, and brings the alert back if something cleared it.
-        UpdateAlert(uid, component, (short) newState);
+        UpdateAlert(uid, component, (short)newState);
 
         if (component.CurrentState == newState)
             return false;

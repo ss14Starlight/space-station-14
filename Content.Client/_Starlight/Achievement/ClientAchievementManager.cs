@@ -19,7 +19,7 @@ public interface IClientAchievementManager
     double GetProgress(string key);
 }
 
-public sealed partial class ClientAchievementManager : IClientAchievementManager, IAchievementRewardManager
+public sealed partial class ClientAchievementManager : IClientAchievementManager
 {
     [Dependency] private IClientNetManager _netMgr = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
@@ -54,40 +54,4 @@ public sealed partial class ClientAchievementManager : IClientAchievementManager
 
     public double GetProgress(string key)
         => Progress.TryGetValue(key, out var value) ? value : 0;
-
-    public bool HasReward(ICommonSession? session, AchievementRewardType rewardType, string rewardId)
-    {
-        if (session == null)
-            return false;
-
-        foreach (var achievementId in GetSourceAchievements(rewardType, rewardId))
-        {
-            if (IsUnlocked(achievementId))
-                return true;
-        }
-
-        return false;
-    }
-
-    public IReadOnlyList<string> GetSourceAchievements(AchievementRewardType rewardType, string rewardId)
-    {
-        var result = new List<string>();
-
-        foreach (var achievement in _prototype.EnumeratePrototypes<AchievementPrototype>())
-        {
-            if (achievement.Rewards.Any(reward => reward.Type == rewardType && reward.ID == rewardId))
-                result.Add(achievement.ID);
-        }
-
-        return result;
-    }
-
-    public IReadOnlyList<AchievementReward> GrantRewards(ICommonSession _, string achievementId)
-    {
-
-        if (!_prototype.TryIndex<AchievementPrototype>(achievementId, out var achievement))
-            return [];
-
-        return achievement.Rewards;
-    }
 }

@@ -17,7 +17,13 @@ public sealed partial class AchievementRequirement : BaseRequirement
 
         var names = new List<string>(Achievements.Count);
         foreach (var required in Achievements)
-            names.Add(Loc.GetString(_prototypes.Index<AchievementPrototype>(required).Name));
+        {
+            var requiredprototype = _prototypes.Index<AchievementPrototype>(required);
+            if (requiredprototype.Hidden)
+                names.Add(Loc.GetString("achievment-hidden"));
+            else
+                names.Add(Loc.GetString(requiredprototype.Name));
+        }
 
         return Loc.GetString("achievment-required", ("achivements", string.Join(", ", names)));
     }
