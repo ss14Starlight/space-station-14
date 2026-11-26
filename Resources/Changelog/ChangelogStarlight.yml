@@ -1,13 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Downpour) Connected the left bridge blast doors to the blast door button.
-    type: Fix
-  id: 410455
-  time: '2026-11-14T21:44:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7230
-- author: Makeshift
-  changes:
   - message: (Downpour) Removed the duplicate air alarm outside of library.
     type: Fix
   id: 410456
@@ -2799,4 +2792,11 @@ Entries:
   id: 410854
   time: '2026-11-26T17:46:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7436
+- author: Rinary
+  changes:
+  - message: Fixed bug when you can't bite anyone while cuffed.
+    type: Fix
+  id: 410855
+  time: '2026-11-26T18:06:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7429
 Order: -1
