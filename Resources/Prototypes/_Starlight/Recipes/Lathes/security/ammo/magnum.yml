@@ -101,7 +101,7 @@
   completetime: 5
   materials:
     Steel: 350
-    Plastic: 180
+    Plastic: 300
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
