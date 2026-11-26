@@ -40,8 +40,7 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, BoundUIOpenedEvent>(OnUIOpened);
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, CrewMonitoringWarpRequestMessage>(OnWarpRequest); // Starlight
-
-        SubscribeEvents(); //Starlight
+        SubscribeLocalEvent<CrewMonitoringConsoleComponent, CrewMonitoringUpdateFilterRequestMessage>(OnFilterRequest); //Starlight
     }
 
     /// <summary>
@@ -186,6 +185,7 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
         if (xform.GridUid != null)
             EnsureComp<NavMapComponent>(xform.GridUid.Value);
 
+        #region "Starlight"
         // Moving all crew monitor filtering serverside
         // Filter and update all sensors info
         var hasFilter = TryComp<CrewMonitoringFilterComponent>(uid, out var filter);
@@ -223,7 +223,6 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
         _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(_gameTiming.CurTime, component.LastSensorDataReceivedAt, filteredSensors)); // Starlight end
     }
 
-    #region "Starlight"
     private void OnWarpRequest(EntityUid uid, CrewMonitoringConsoleComponent component, ref CrewMonitoringWarpRequestMessage args)
     {
         if (args.Actor is not { Valid: true } actor)

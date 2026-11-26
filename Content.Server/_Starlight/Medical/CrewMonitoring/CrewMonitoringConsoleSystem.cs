@@ -1,24 +1,19 @@
-using Content.Server.Medical.CrewMonitoring;
+// ReSharper disable CheckNamespace
+
 using Content.Shared._Starlight.Medical.CrewMonitoring;
 using Content.Shared.Implants.Components;
 using Content.Shared.Medical.CrewMonitoring;
 using Content.Shared.Medical.SuitSensor;
-using NetCord;
 
 namespace Content.Server.Medical.CrewMonitoring;
 public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
 {
-    private void SubscribeEvents()
-    {
-        SubscribeLocalEvent<CrewMonitoringConsoleComponent, CrewMonitoringUpdateFilterRequestMessage>(OnFilterRequest);
-    }
-
     private bool IsSensorValid(CrewMonitoringFilterComponent filter, SuitSensorStatus sensor)
     {
         var ClientEntity = GetEntity(sensor.SuitSensorUid);
-        var TrackerPrototypeID = MetaData(GetEntity(sensor.OwnerUid)).EntityPrototype!.ID;
-        
-        if (!TryComp<SubdermalImplantComponent>(ClientEntity, out var suitSensor) && (filter.ShownFactions.Count == 0 || filter.ShownFactions.Contains(sensor.Faction)))
+        var TrackerPrototypeID = MetaData(ClientEntity).EntityPrototype!.ID;
+
+        if (!TryComp<SubdermalImplantComponent>(ClientEntity, out var suitSensor) && (filter.ShownFactions.Count != 0 || !filter.ShownFactions.Contains(sensor.Faction)))
             return false;
 
         if (filter.ShownTrackingImplant == default && filter.AllowedTrackingImplants.Count != 0)
