@@ -1,10 +1,9 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       MinSize="600 350"
-                      MaxSize="600 350"
                       Title="{Loc 'vehicle-equipment-popup-title'}">
     <BoxContainer Orientation="Vertical" HorizontalExpand="True">
-        <BoxContainer Orientation="Horizontal">
+        <BoxContainer Orientation="Horizontal" VerticalExpand="True">
 
             <PanelContainer StyleClasses="PanelDark" SetSize="220 300" Margin="10 10 0 0">
                 <BoxContainer Orientation="Vertical" VerticalAlignment="Center">
@@ -32,7 +31,7 @@
                 </BoxContainer>
             </PanelContainer>
 
-            <PanelContainer StyleClasses="PanelDark" SetWidth="350" Margin="10 10 0 0" VerticalExpand="True">
+            <PanelContainer StyleClasses="PanelDark" MinWidth="350" Margin="10 10 0 0" HorizontalExpand="True">
                 <ScrollContainer VerticalExpand="True" HorizontalExpand="True">
                     <BoxContainer Name="EquipmentPanel" Orientation="Vertical">
 
