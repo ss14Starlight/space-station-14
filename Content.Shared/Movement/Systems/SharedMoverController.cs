@@ -523,7 +523,8 @@ public abstract partial class SharedMoverController : VirtualController
                 !otherCollider.CanCollide ||
                 (collider.CollisionMask & otherCollider.CollisionLayer) == 0 &&
                 (otherCollider.CollisionMask & collider.CollisionLayer) == 0 ||
-                PullableQuery.TryComp(otherEntity, out var pullable) && pullable.BeingPulled)
+                PullableQuery.TryComp(otherEntity, out var pullable) && pullable.BeingPulled ||
+                IsEmbeddedProjectile(otherEntity)) // Starlight-edit
             {
                 continue;
             }
