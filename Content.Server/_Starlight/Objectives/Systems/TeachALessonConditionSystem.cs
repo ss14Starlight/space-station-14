@@ -1,6 +1,7 @@
 ﻿using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Server.Objectives.Components;
+using Content.Server.Objectives.Systems;
 using Content.Server._Starlight.Objectives.Components;
 using Content.Shared.Destructible;
 using Content.Shared.Mind;
@@ -23,6 +24,7 @@ public sealed partial class TeachALessonConditionSystem : EntitySystem
     [Dependency] private RailroadingSystem _railroad = default!;
     [Dependency] private SharedStationAiSystem _stationAi = default!;
     [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private KillPersonConditionSystem _killPerson = default!;
 
     public override void Initialize()
     {
@@ -46,7 +48,7 @@ public sealed partial class TeachALessonConditionSystem : EntitySystem
         {
             Title = target.Title,
             Icon = target.Icon,
-            Progress = ent.Comp.HasDied ? 1.0f : 0.0f,
+            Progress = IsComplete(ent) ? 1.0f : 0.0f,
         });
     }
 
@@ -54,11 +56,26 @@ public sealed partial class TeachALessonConditionSystem : EntitySystem
     {
         if (args.IsCompleted == false) return;
 
-        args.IsCompleted = ent.Comp.HasDied;
+        args.IsCompleted = IsComplete(ent);
     }
 
     private void OnGetProgress(Entity<TeachALessonConditionComponent> ent, ref ObjectiveGetProgressEvent args)
-        => args.Progress = ent.Comp.HasDied ? 1.0f : 0.0f;
+        => args.Progress = IsComplete(ent) ? 1.0f : 0.0f;
+
+    private bool IsComplete(Entity<TeachALessonConditionComponent> ent)
+    {
+        if (ent.Comp.HasDied)
+            return true;
+
+        if (!TryComp(ent.Owner, out TargetObjectiveComponent? targetObjective) ||
+            targetObjective.Target is not { } targetMindUid)
+            return false;
+
+        if (!TryComp(targetMindUid, out MindComponent? mind))
+            return true;
+
+        return _killPerson.IsTargetRemoved(mind);
+    }
 
     private void OnAfterAssign(Entity<TeachALessonConditionComponent> ent)
     {

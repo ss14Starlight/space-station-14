@@ -14,7 +14,7 @@ public sealed partial class KillPersonConditionSystem
     public float GetEliminationProgress(EntityUid target)
         => GetProgress(target, requireDead: false, requireMaroon: true);
 
-    private bool IsTargetRemoved(MindComponent mind)
+    public bool IsTargetRemoved(MindComponent mind)
     {
         if (mind.OwnedEntity is not { } body || TerminatingOrDeleted(body))
             return true;
