@@ -1,7 +1,7 @@
 - type: quickPhrase
   id: BaseHostileThreatPhrase
   parent: BaseThreatPhrase
-  group: Hostiles
+  group: aac-group-hostiles #Starlight: Make group names localization friendly
   styleClass: SecurityButton
   abstract: true
 

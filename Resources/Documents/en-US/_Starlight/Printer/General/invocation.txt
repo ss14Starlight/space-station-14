@@ -1,0 +1,18 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀                         [bold]NOTICE OF SUMMONS[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+⠀[form] is hereby asked by [signature] to appear at [form], without delay.
+
+Reason: [form]
+
+⠀[italic]This is an official notice. Penalties may apply for failure to appear.[/italic]
+
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+

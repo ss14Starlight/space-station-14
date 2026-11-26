@@ -1,0 +1,22 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀                           [bold]EMPLOYMENT CONTRACT[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+I, [signature], formally request to be appointed as an employee of the following department, in the position indicated below, for the remainder of the shift, or until resignation.
+
+Name of department: [form]
+
+Name of position: [form]
+
+⠀[check] I assert that I am qualified to hold the position which I am seeking, and acknowledge that my contract will be terminated if this is found not to be the case.
+
+⠀[check] I will surrender any current department work gear and equipment upon transfer.
+
+⠀[check] I agree to follow all applicable Standard Operating Procedures, and accept that my contract may be terminated if I fail to uphold them.
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]

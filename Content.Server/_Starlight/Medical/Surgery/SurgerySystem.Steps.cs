@@ -140,7 +140,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
         ResetOrganExtractionProgress(part, ent.Comp.Slot);
 
-        var ev = new SurgeryOrganImplantationCompleted(body, part, organId);
+        var ev = new SurgeryOrganImplantationCompleted(body, part, organId, args.User);
         RaiseLocalEvent(organId, ref ev);
     }
 
@@ -217,7 +217,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                     return;
                 }
 
-                var ev = new SurgeryOrganExtracted(args.Body, args.Part, organEntity);
+                var ev = new SurgeryOrganExtracted(args.Body, args.Part, organEntity, args.User);
                 RaiseLocalEvent(organEntity, ref ev);
             }
             else if (!_containers.Remove(organEntity, container))
@@ -235,7 +235,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         {
             if (!HasComp(organ.Id, type) || !_body.RemoveOrgan(organ.Id, organ.Component)) continue;
 
-            var ev = new SurgeryOrganExtracted(args.Body, args.Part, organ.Id);
+            var ev = new SurgeryOrganExtracted(args.Body, args.Part, organ.Id, args.User);
             RaiseLocalEvent(organ.Id, ref ev);
 
             return;

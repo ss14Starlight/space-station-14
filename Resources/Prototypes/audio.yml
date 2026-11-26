@@ -206,6 +206,7 @@
     - /Audio/Ambience/ambispace2.ogg
     - /Audio/Lobby/title2.ogg
     - /Audio/_Starlight/Lobby/HOME_Burn_Chamber_Starlight.ogg # Starlight
+    - /Audio/_Starlight/Lobby/HOME_Dusk_at_Novo_Lobster.ogg # Starlight
 
 - type: soundCollection
   id: AmbienceSpooky

@@ -1,0 +1,12 @@
+- type: listing
+  id: UplinkSyndicateCombatKitAlternative
+  name: uplink-combat-medkit-alt-name
+  description: uplink-combat-medkit-alt-desc
+  productEntity: MedkitCombatFilledAlternative
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 4
+  categories:
+    - UplinkChemicals

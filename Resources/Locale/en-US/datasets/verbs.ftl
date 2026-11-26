@@ -325,7 +325,8 @@ verbs-dataset-324 = milk
 verbs-dataset-325 = mine
 verbs-dataset-326 = miss
 verbs-dataset-327 = mix
-verbs-dataset-328 = moan
+# Starlight-edit
+verbs-dataset-328 = murmur
 verbs-dataset-329 = moor
 verbs-dataset-330 = mourn
 verbs-dataset-331 = move

@@ -356,7 +356,7 @@ public sealed partial class SurgeryBui : BoundUserInterface
         View(ViewType.Surgeries);
     }
 
-    private void RefreshUI()
+    internal void RefreshUI()
     {
         if (_window == null ||
             !_entities.HasComponent<SurgeryComponent>(_surgery?.Ent) ||

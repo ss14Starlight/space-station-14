@@ -37,7 +37,8 @@
           tags:
             - Ore
             - SalvageTicket
-    - item: RadioHandheldExpedition
+            - MiningTicket
+    - item: RadioHandheld
 
 - type: !PartialOnly entity
   id: BorgModuleAdvancedMining
@@ -49,7 +50,7 @@
   - type: ItemBorgModule
     hands:
     # Listed in reverse: appended partial list items are applied back-to-front.
-    - item: RadioHandheldExpedition
+    - item: RadioHandheld
     - hand:
         emptyRepresentative: GoldOre
         emptyLabel: borg-slot-ore-ticket-empty
@@ -57,6 +58,7 @@
           tags:
             - Ore
             - SalvageTicket
+            - MiningTicket
 
 - type: !PartialOnly entity
   id: BorgModuleTraversal

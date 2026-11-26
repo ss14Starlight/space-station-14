@@ -31,6 +31,14 @@
     washFootprints: true
     washAmount: 1
     washInterval: 0.5
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: ToolRefinable
+    qualityNeeded: Slicing
+    refineFuel: 0
+    refineResult:
+    - id: MaterialDurathread1
+      amount: 2
 
 - type: entity
   id: Doormat
@@ -39,6 +47,25 @@
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/doormats.rsi
     state: door_mat
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [Destruction]
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [Destruction]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          DoormatRoll:
+            min: 1
+            max: 1
 
 - type: entity
   id: DoormatWelcome
@@ -48,6 +75,25 @@
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/doormats.rsi
     state: welcome_mat
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [Destruction]
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [Destruction]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          DoormatRollWelcome:
+            min: 1
+            max: 1
 
 - type: entity
   id: DoormatBless
@@ -57,3 +103,22 @@
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/doormats.rsi
     state: bless_this_spess
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [Destruction]
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [Destruction]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          DoormatRollBless:
+            min: 1
+            max: 1

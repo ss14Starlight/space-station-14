@@ -215,8 +215,8 @@
   components:
   - type: PointLight
     radius: 12
-    energy: 4 #SL 4.5 -> 4
-    softness: 0.8 #SL 0.5 -> 0.8
+    energy: 4.5
+    softness: 0.5
     color: "#B4FCF0"
 
 #Sodium lights
@@ -524,15 +524,7 @@
   - type: PoweredLight
     hasLampOnSpawn: LightTubeCrystalCyan
   - type: PointLight
-    radius: 8
-    energy: 3
-    softness: 0.5
-    color: "#5ae8ed" #SL Edit
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
+    color: "#47f8ff"
 
 - type: entity
   id: AlwaysPoweredlightCyan
@@ -540,10 +532,7 @@
   parent: AlwaysPoweredWallLight
   components:
   - type: PointLight
-    radius: 8
-    energy: 3
-    softness: 0.5
-    color: "#5ae8ed" #SL Edit
+    color: "#47f8ff"
 
 - type: entity
   id: PoweredlightBlue
@@ -553,15 +542,7 @@
   - type: PoweredLight
     hasLampOnSpawn: LightTubeCrystalBlue
   - type: PointLight
-    radius: 8
-    energy: 3
-    softness: 0.5
-    color: "#4ca1eb" #SL Edit
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
+    color: "#39a1ff"
 
 - type: entity
   id: AlwaysPoweredlightBlue
@@ -569,10 +550,7 @@
   parent: AlwaysPoweredWallLight
   components:
   - type: PointLight
-    radius: 8
-    energy: 3
-    softness: 0.5
-    color: "#4ca1eb" #SL Edit
+    color: "#39a1ff"
 
 - type: entity
   id: PoweredlightYellow
@@ -582,15 +560,7 @@
   - type: PoweredLight
     hasLampOnSpawn: LightTubeCrystalYellow
   - type: PointLight
-    radius: 8
-    energy: 3
-    softness: 0.5
-    color: "#edd25a" #SL Edit
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
+    color: "#ffde46"
 
 - type: entity
   id: AlwaysPoweredlightYellow
@@ -598,10 +568,7 @@
   parent: AlwaysPoweredWallLight
   components:
   - type: PointLight
-    radius: 8
-    energy: 3
-    softness: 0.5
-    color: "#edd25a" #SL Edit
+    color: "#ffde46"
 
 - type: entity
   id: PoweredlightPink
@@ -611,15 +578,7 @@
   - type: PoweredLight
     hasLampOnSpawn: LightTubeCrystalPink
   - type: PointLight
-    radius: 8
-    energy: 3
-    softness: 0.5
-    color: "#f075c7" #SL Edit
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
+    color: "#ff66cc"
 
 - type: entity
   id: AlwaysPoweredlightPink
@@ -627,10 +586,7 @@
   parent: AlwaysPoweredWallLight
   components:
   - type: PointLight
-    radius: 8
-    energy: 3
-    softness: 0.5
-    color: "#f075c7" #SL Edit
+    color: "#ff66cc"
 
 - type: entity
   id: PoweredlightOrange
@@ -640,15 +596,7 @@
   - type: PoweredLight
     hasLampOnSpawn: LightTubeCrystalOrange
   - type: PointLight
-    radius: 8
-    energy: 3
-    softness: 0.5
-    color: "#ea863e" #SL Edit
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
+    color: "#ff8227"
 
 - type: entity
   id: AlwaysPoweredlightOrange
@@ -656,10 +604,7 @@
   parent: AlwaysPoweredWallLight
   components:
   - type: PointLight
-    radius: 8
-    energy: 3
-    softness: 0.5
-    color: "#ea863e" #SL Edit
+    color: "#ff8227"
 
 - type: entity
   id: PoweredlightBlack
@@ -670,15 +615,7 @@
   - type: PoweredLight
     hasLampOnSpawn: LightTubeCrystalBlack
   - type: PointLight
-    radius: 8
-    energy: 1
-    softness: 0.5
-    color: "#4d4d4d" #SL Edit
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
+    color: "#363636"
 
 - type: entity
   id: AlwaysPoweredlightBlack
@@ -686,10 +623,7 @@
   parent: AlwaysPoweredWallLight
   components:
   - type: PointLight
-    radius: 8
-    energy: 1
-    softness: 0.5
-    color: "#4d4d4d" #SL Edit
+    color: "#363636"
 
 - type: entity
   id: PoweredlightRed
@@ -699,15 +633,7 @@
   - type: PoweredLight
     hasLampOnSpawn: LightTubeCrystalRed
   - type: PointLight
-    radius: 8
-    energy: 3
-    softness: 0.5
-    color: "#ec5555" #SL Edit
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
+    color: "#fb4747"
 
 - type: entity
   id: AlwaysPoweredlightRed
@@ -715,10 +641,7 @@
   parent: AlwaysPoweredWallLight
   components:
   - type: PointLight
-    radius: 8
-    energy: 3
-    softness: 0.5
-    color: "#ec5555" #SL Edit
+    color: "#fb4747"
 
 - type: entity
   id: PoweredlightGreen
@@ -728,15 +651,7 @@
   - type: PoweredLight
     hasLampOnSpawn: LightTubeCrystalGreen
   - type: PointLight
-    radius: 8
-    energy: 3
-    softness: 0.5
-    color: "#7eeb4c" #SL Edit
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 2
-    popupText: powered-light-component-burn-hand
+    color: "#7eeb4c"
 
 - type: entity
   id: AlwaysPoweredlightGreen
@@ -744,7 +659,4 @@
   parent: AlwaysPoweredWallLight
   components:
   - type: PointLight
-    radius: 8
-    energy: 3
-    softness: 0.5
-    color: "#7eeb4c" #SL Edit
+    color: "#7eeb4c"

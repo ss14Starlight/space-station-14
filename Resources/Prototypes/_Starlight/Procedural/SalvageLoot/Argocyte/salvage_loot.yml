@@ -67,14 +67,7 @@
           cost: 5
           prob: 0.5
         - proto: PKAUpgradeDamageExp
-          cost: 5
-          prob: 0.5
-        - proto: PKAUpgradeRangeExp
-          cost: 5
-          prob: 0.5
-        - proto: PKAUpgradeFireRateExp
-          cost: 5
-          prob: 0.5
+          cost: 3
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
@@ -139,7 +132,6 @@
           cost: 2
         - proto: TechnologyDiskRare
           cost: 5
-          prob: 0.25
         - proto: SheetPlastic
           cost: 2
         - proto: SheetPlasteel10
@@ -152,14 +144,7 @@
         - proto: CloningConsoleComputerCircuitboard
           cost: 5
         - proto: PKAUpgradeDamageExp
-          cost: 5
-          prob: 0.75
-        - proto: PKAUpgradeRangeExp
-          cost: 5
-          prob: 0.75
-        - proto: PKAUpgradeFireRateExp
-          cost: 5
-          prob: 0.75
+          cost: 3
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
@@ -251,11 +236,24 @@
         - proto: CrateITGSurplus
           cost: 5
         - proto: PKAUpgradeDamageExp
-          cost: 5
+          cost: 3
+        - proto: Weaponpkashotgun
+          cost: 10
         - proto: PKAUpgradeRangeExp
           cost: 5
         - proto: PKAUpgradeFireRateExp
           cost: 5
+        - proto: CyberMantisBlade
+          cost: 25
+          prob: 0.25
+        - proto: MeleeWeaponCyberEmpFist
+          cost: 15
+          prob: 0.5
+        - proto: MeleeWeaponCyberStunFist
+          cost: 15
+          prob: 0.5
+        - proto: MeleeWeaponCyberHerakles
+          cost: 15
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity

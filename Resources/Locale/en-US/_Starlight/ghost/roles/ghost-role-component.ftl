@@ -171,3 +171,6 @@ ghost-role-information-spawn-point-ghost-cluwne-beast-rules = You are an antagon
 ghost-role-information-bombroach-name = Bombroach
 ghost-role-information-bombroach-description = You're the faithful trained pest of syndicate operatives with a picobomb. Serve your master to the death!
 ghost-role-information-bombroach-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with the agent who summoned you.
+
+ghost-role-information-syndicate-listening-op-name = Syndicate Listening Operative
+ghost-role-information-syndicate-listening-op-description = You're a trained operative in the art of deception and sabotage. Use your tools to listen in to the nearby station, and help any operatives within the station get the information and help they need.
