@@ -1,4 +1,5 @@
 comms-console-announcement-title-tsf = Trans-Solar Federation
+comms-console-announcement-title-medtak = MedTak
 
 comms-console-announcement-title-command = Command
 comms-console-announcement-title-eng = Engineering

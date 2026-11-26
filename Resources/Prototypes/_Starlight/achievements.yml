@@ -676,6 +676,53 @@
   - blood_herald
 
 - type: achievement
+  id: really_with_that
+  name: achievement-really-with-that-name
+  description: achievement-really-with-that-description
+  category: milestones
+  hidden: false
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: heliosMedal
+  requirements: []
+
+- type: achievement
+  id: failed_phoenix
+  name: achievement-failed-phoenix-name
+  description: achievement-failed-phoenix-description
+  category: milestones
+  hidden: false
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: heliosMedal
+  requirements: []
+
+- type: achievement
+  id: puny_god
+  name: achievement-puny-god-name
+  description: achievement-puny-god-description
+  category: milestones
+  hidden: false
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: heliosMedal
+  requirements: []
+
+- type: achievement
+  id: da_roolz
+  name: achievement-da-roolz-name
+  description: achievement-da-roolz-description
+  category: milestones
+  hidden: true
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: heliosMedal
+
+- type: achievement
   id: face_the_unknown
   name: achievement-face-the-unknown-name
   description: achievement-face-the-unknown-description

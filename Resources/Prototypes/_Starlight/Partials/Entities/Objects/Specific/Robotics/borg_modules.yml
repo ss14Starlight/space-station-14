@@ -37,6 +37,7 @@
           tags:
             - Ore
             - SalvageTicket
+            - MiningTicket
     - item: RadioHandheld
 
 - type: !PartialOnly entity
@@ -57,6 +58,7 @@
           tags:
             - Ore
             - SalvageTicket
+            - MiningTicket
 
 - type: !PartialOnly entity
   id: BorgModuleTraversal

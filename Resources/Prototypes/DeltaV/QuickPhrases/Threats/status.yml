@@ -1,7 +1,8 @@
 - type: quickPhrase
   id: BaseSafetyStatusPhrase
   parent: BaseThreatPhrase
-  group: '! Status'
+  group: aac-group-status #starlight
+  groupOrder: -1 #starlight - pin to the top of the tab
   abstract: true
 
 - type: quickPhrase

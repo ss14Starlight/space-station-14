@@ -44,6 +44,7 @@ namespace Content.Client.Examine
         private RemoteControlInterface _remoteControl = default!;
         private EntityUid _examiningEntity;
         private UIRoot? _examineTooltipRoot;
+        private PopupContainer? _examineTooltipPopupContainer; // Starlight
         #endregion
 
         private Popup? _examineTooltipOpen;
@@ -184,13 +185,14 @@ namespace Content.Client.Examine
             var entity = GetEntity(ev.EntityUid);
 
             OpenTooltip(player.Value, entity, out _, out _, ev.CenterAtCursor, ev.OpenAtOldTooltip, ev.KnowTarget,
-                _examiningEntity, _examineTooltipRoot); // Starlight
+                _examiningEntity, _examineTooltipRoot, _examineTooltipPopupContainer); // Starlight
             UpdateTooltipInfo(player.Value, entity, ev.Message, ev.Verbs, getVerbs: false);
         }
 
         public override void SendExamineTooltip(EntityUid player, EntityUid target, FormattedMessage message, bool getVerbs, bool centerAtCursor)
         {
-            OpenTooltip(player, target, out _, out _, centerAtCursor, examiner: _examiningEntity, uiRoot: _examineTooltipRoot); // Starlight
+            OpenTooltip(player, target, out _, out _, centerAtCursor, examiner: _examiningEntity,
+                uiRoot: _examineTooltipRoot, popupContainer: _examineTooltipPopupContainer); // Starlight
             UpdateTooltipInfo(player, target, message, getVerbs: getVerbs);
         }
 
@@ -201,13 +203,14 @@ namespace Content.Client.Examine
         /// </summary>
         public void OpenTooltip(EntityUid player, EntityUid target, out RichTextLabel? nameLabel, out string? name,
             bool centeredOnCursor = true, bool openAtOldTooltip = true, bool knowTarget = true,
-            EntityUid? examiner = null, UIRoot? uiRoot = null) // Starlight: optional examiner and uiRoot support
+            EntityUid? examiner = null, UIRoot? uiRoot = null, // Starlight: optional examiner and uiRoot support
+            PopupContainer? popupContainer = null) // Starlight: optional window-local popup container
         {
             // Close any examine tooltip that might already be opened
             // Before we do that, save its position. We'll prioritize opening any new popups there if
             // openAtOldTooltip is true.
             ScreenCoordinates? oldTooltipPos = _examineTooltipOpen != null ? _popupPos : null;
-            var oldTooltipRoot = _examineTooltipOpen?.Root?.ModalRoot;
+            var oldTooltipParent = _examineTooltipOpen?.Parent; // Starlight: compare the actual popup container.
             CloseTooltip();
 
             // cache entity for Update function
@@ -215,12 +218,13 @@ namespace Content.Client.Examine
             // Starlight start
             _examiningEntity = examiner ?? player;
             _examineTooltipRoot = uiRoot;
+            _examineTooltipPopupContainer = popupContainer;
             // Starlight end
 
             const float minWidth = 300;
 
-            var targetPopupRoot = uiRoot?.ModalRoot ?? _userInterfaceManager.ModalRoot;
-            if (openAtOldTooltip && oldTooltipPos != null && oldTooltipRoot == targetPopupRoot)
+            var targetPopupRoot = popupContainer ?? uiRoot?.ModalRoot ?? _userInterfaceManager.ModalRoot; // Starlight
+            if (openAtOldTooltip && oldTooltipPos != null && oldTooltipParent == targetPopupRoot) // Starlight
             {
                 _popupPos = oldTooltipPos.Value;
             }
@@ -294,7 +298,13 @@ namespace Content.Client.Examine
             panel.Measure(Vector2Helpers.Infinity);
             var size = Vector2.Max(new Vector2(minWidth, 0), panel.DesiredSize);
 
-            _examineTooltipOpen.Open(UIBox2.FromDimensions(_popupPos.Position, size));
+            // Starlight - start
+            var popupPosition = _popupPos.Position;
+            if (popupContainer != null)
+                popupPosition -= popupContainer.GlobalPosition;
+
+            _examineTooltipOpen.Open(UIBox2.FromDimensions(popupPosition, size));
+            // Starlight - end
         }
 
         /// <summary>
@@ -431,6 +441,23 @@ namespace Content.Client.Examine
         {
             if (obj.Button is ExamineButton button)
             {
+                // Starlight - start
+                if (_remoteControl.ControlledEntity is { } remoteUser && _examiningEntity == remoteUser)
+                {
+                    var remoteVerb = _verbSystem.GetLocalVerbs(_examinedEntity, remoteUser, typeof(ExamineVerb))
+                        .FirstOrDefault(localVerb => localVerb.CompareTo(button.Verb) == 0);
+                    if (remoteVerb is not null)
+                    {
+                        remoteVerb.ClientExclusive = true;
+                        _verbSystem.ExecuteVerb(_examinedEntity, remoteVerb);
+                        if (button.Verb.CloseMenu ?? button.Verb.CloseMenuDefault)
+                            CloseTooltip();
+
+                        return;
+                    }
+                }
+                // Starlight - end
+
                 _verbSystem.ExecuteVerb(_examinedEntity, button.Verb);
                 if (button.Verb.CloseMenu ?? button.Verb.CloseMenuDefault)
                     CloseTooltip();
@@ -438,16 +465,22 @@ namespace Content.Client.Examine
         }
 
         public void DoExamine(EntityUid entity, bool centeredOnCursor = true, EntityUid? userOverride = null,
-            UIRoot? uiRoot = null) // Starlight: uiRoot support
+            UIRoot? uiRoot = null, // Starlight: uiRoot support
+            PopupContainer? popupContainer = null) // Starlight: window-local popup support
         {
             var playerEnt = userOverride ?? _playerManager.LocalEntity;
             if (playerEnt == null)
                 return;
 
+            // Starlight - start
+            if (popupContainer is null && userOverride is { } examiner)
+                popupContainer = _remoteControl.GetExaminePopupContainer(examiner);
+            // Starlight - end
+
             FormattedMessage message;
 
             OpenTooltip(playerEnt.Value, entity, out var label, out var name, centeredOnCursor, false,
-                examiner: userOverride, uiRoot: uiRoot); // Starlight: optional examiner and uiRoot support
+                examiner: userOverride, uiRoot: uiRoot, popupContainer: popupContainer); // Starlight
 
             // Always update tooltip info from client first.
             // If we get it wrong, server will correct us later anyway.

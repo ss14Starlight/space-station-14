@@ -516,12 +516,40 @@ ClothingEyesGlassesCorpsman: null
 ClothingEyesHudCorpsman: null
 ClothingEyesHudBrigmedic: ClothingEyesHudMedSec
 
+# 2026-11-14 - Name doesn't match intended use
+HandheldRemoteControlExpedition: HandheldRemoteControlToy
 #2026-11-15 - Musician shades replaced with modular sunglasses
 ClothingEyesGlassesMusicianSunglasses: ClothingEyesModularHudSunglasses
 
 #2026-11-18
 PrintedDocumentEmploymentStatement: PrintedDocumentEmploymentContract
 PrintedDocumentSurgeryConsentPermit: PrintedDocumentSurgeryConsentForm
+
+# 2026-11-23
+SofaCorner: ComfyChair
+SofaEndLeft: ComfyChair
+SofaEndRight: ComfyChair
+SofaMiddle: ComfyChair
+SofaCornerWhite: ComfyChairWhite
+SofaEndLeftWhite: ComfyChairWhite
+SofaEndRightWhite: ComfyChairWhite
+SofaMiddleWhite: ComfyChairWhite
+SofaCornerBlue: ComfyChairBlue
+SofaEndLeftBlue: ComfyChairBlue
+SofaEndRightBlue: ComfyChairBlue
+SofaMiddleBlue: ComfyChairBlue
+SofaCornerRed: ComfyChairRed
+SofaEndLeftRed: ComfyChairRed
+SofaEndRightRed: ComfyChairRed
+SofaMiddleRed: ComfyChairRed
+SofaCornerGreen: ComfyChairGreen
+SofaEndLeftGreen: ComfyChairGreen
+SofaEndRightGreen: ComfyChairGreen
+SofaMiddleGreen: ComfyChairGreen
+SofaCornerBrown: ComfyChairBrown
+SofaEndLeftBrown: ComfyChairBrown
+SofaEndRightBrown: ComfyChairBrown
+SofaMiddleBrown: ComfyChairBrown
 
 #2026/11/19 - Dark Station Update
 DarkRandom: DarkTile

@@ -12,15 +12,7 @@ public abstract partial class BaseXATSystem<T> : EntitySystem where T : Componen
     [Dependency] protected IGameTiming Timing = default!;
     [Dependency] protected SharedXenoArtifactSystem XenoArtifact = default!;
 
-    private EntityQuery<XenoArtifactUnlockingComponent> _unlockingQuery;
-
-    /// <inheritdoc/>
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        _unlockingQuery = GetEntityQuery<XenoArtifactUnlockingComponent>();
-    }
+    [Dependency] private EntityQuery<XenoArtifactUnlockingComponent> _unlockingQuery = default!;
 
     /// <summary>
     /// Subscribes to event occurring on artifact (and by relaying - on node).
