@@ -127,7 +127,7 @@
   parent: ClothingOuterWinterDutyOfficer
   id: ClothingOuterWinterSecPlate
   name: plated security winter coat
-  description: A plated winter coat designed to protect agaisnt ballistic weapons in cold temperature.
+  description: A plated winter coat designed to protect against ballistic weapons in cold temperature.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/WinterCoats/coatplatewinter.rsi
