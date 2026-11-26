@@ -59,7 +59,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
                     }
                 }
                 if (TryComp<HandsComponent>(body, out var hands))
-                    _hands.AddHand((body, hands), BodySystem.GetPartSlotContainerId(slot), limb.Comp.Symmetry == BodyPartSymmetry.Left ? HandLocation.Left : HandLocation.Right);
+                    _hands.AddHand((body, hands), BodySystem.GetPartSlotContainerId(slot), GetHandLocation(limb));
                 break;
             case BodyPartType.Leg:
                 EnsureLimbChildSlots(limb);
@@ -84,6 +84,18 @@ public sealed partial class LimbSystem : SharedLimbSystem
                 break;
         }
         RaiseLimbAttachedEvent(body, limb);
+    }
+
+    private HandLocation GetHandLocation(Entity<BodyPartComponent> hand)
+    {
+        var symmetry = hand.Comp.Symmetry;
+
+        if (_body.GetParentPartAndSlotOrNull(hand) is { } parent
+            && TryComp<BodyPartComponent>(parent.Parent, out var parentPart)
+            && parentPart.Symmetry != BodyPartSymmetry.None)
+            symmetry = parentPart.Symmetry;
+
+        return symmetry == BodyPartSymmetry.Left ? HandLocation.Left : HandLocation.Right;
     }
 
     private void EnsureLimbChildSlots(Entity<BodyPartComponent> limb)
