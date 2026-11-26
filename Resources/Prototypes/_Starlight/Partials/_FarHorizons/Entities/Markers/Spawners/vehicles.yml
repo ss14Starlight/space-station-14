@@ -6,3 +6,7 @@
     - state: green
     - sprite: _FarHorizons/Objects/Vehicles/atv.rsi
       state: vehicle
+
+- type: !PartialOnly entity
+  id: SpawnVehicleScooterElectric
+  suffix: Basic
