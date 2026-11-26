@@ -203,7 +203,7 @@
 
 - type: parallax
   id: MoodySky
-  starlightColor: "#61523e"
+  starlightColor: "#6d5c46"
   layers:
     - texture:
         !type:ImageParallaxTextureSource
