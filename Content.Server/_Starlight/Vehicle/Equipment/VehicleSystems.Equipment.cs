@@ -222,6 +222,9 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
             return;
 
         _actions.AddAction(driver, ref part.Comp.ActionEntity, action, part.Owner);
+        if (part.Comp.Slot == EquipmentType.LIGHTBAR && part.Comp.ActionEntity is { } siren)
+            _actions.SetToggled(siren, _toggle.IsActivated(part.Owner));
+
         Dirty(part);
     }
 
@@ -350,6 +353,7 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
             _vehicles.GetOperatorOrNull(container.Owner) != args.Performer)
             return;
 
-        args.Handled = _toggle.Toggle(ent.Owner, args.Performer);
+        args.Handled = _toggle.Toggle(ent.Owner, args.Performer, predicted: false);
+        args.Toggle = args.Handled;
     }
 }

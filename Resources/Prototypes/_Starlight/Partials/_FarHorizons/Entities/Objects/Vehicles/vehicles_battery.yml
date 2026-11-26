@@ -74,12 +74,33 @@
       map: ["base"]
 
 - type: !PartialOnly entity
+  id: VehicleScooterElectricCommandFilled
+  components:
+  - type: VehicleMods
+    startingEquipment:
+    - !Remove SecSiren
+
+- type: !PartialOnly entity
+  id: VehicleScooterElectricCommandArmoredLight
+  components:
+  - type: VehicleMods
+    startingEquipment:
+    - !Remove SecSiren
+
+- type: !PartialOnly entity
   id: VehicleScooterElectricTurbo
   components:
   - type: Sprite
     layers: !Clear
     - state: vehicle
       map: ["base"]
+
+- type: !PartialOnly entity
+  id: VehicleScooterElectricTurboFilled
+  components:
+  - type: VehicleMods
+    startingEquipment:
+    - !Remove SecSiren
 
 - type: !PartialOnly entity
   id: VehicleScooterElectricSecurity
