@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Manor) Added a few maints locker to maints cargo.
-    type: Add
-  id: 410463
-  time: '2026-11-14T22:08:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7232
-- author: Cvlancer
-  changes:
   - message: (Manor) Added potential room. A new blank room with the potential to be whatever you want it to be.
     type: Add
   id: 410464
@@ -2799,4 +2792,11 @@ Entries:
   id: 410862
   time: '2026-11-26T22:19:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7476
+- author: Rinary
+  changes:
+  - message: Fixed bug when you're able to pickup hardsuit helmet from cryo storage.
+    type: Fix
+  id: 410863
+  time: '2026-11-26T22:40:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7458
 Order: -1
