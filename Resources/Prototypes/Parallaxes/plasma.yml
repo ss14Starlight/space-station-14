@@ -1,5 +1,6 @@
 - type: parallax
   id: PlasmaStation
+  starlightColor: "#9e5959" #SL Edit
   layers:
     - texture:
         !type:ImageParallaxTextureSource

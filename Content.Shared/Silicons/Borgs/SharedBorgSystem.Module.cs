@@ -109,6 +109,11 @@ public abstract partial class SharedBorgSystem
             return;
 
         UninstallModule((chassis, chassisComp), module.AsNullable());
+
+        // Starlight-start
+        if (module.Comp.DefaultModule && !TerminatingOrDeleted(module))
+            SetBorgModuleDefault(module, false);
+        // Starlight-end
     }
      #endregion
 

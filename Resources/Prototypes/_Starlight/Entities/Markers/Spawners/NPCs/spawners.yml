@@ -1,0 +1,188 @@
+- type: entity
+  name: random corpse spawner
+  id: SLSalvageHumanCorpseSpawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+    - type: RandomHumanoidSpawner
+      settings: SLSalvageHumanCorpse
+
+- type: entity
+  suffix: Service
+  id: SLRandomServiceCorpseSpawner
+  parent: SLSalvageHumanCorpseSpawner
+  components:
+    - type: Sprite
+      layers:
+        - state: botanist
+        - state: green
+    - type: RandomHumanoidSpawner
+      settings: SLMobRandomServiceCorpse
+
+- type: entity
+  suffix: Engineer
+  id: SLRandomEngineerCorpseSpawner
+  parent: SLSalvageHumanCorpseSpawner
+  components:
+    - type: Sprite
+      layers:
+        - state: engineer
+        - state: green
+    - type: RandomHumanoidSpawner
+      settings: SLMobRandomEngineerCorpse
+
+- type: entity
+  suffix: Cargo
+  id: SLRandomCargoCorpseSpawner
+  parent: SLSalvageHumanCorpseSpawner
+  components:
+    - type: Sprite
+      layers:
+        - state: cargo_tech
+        - state: green
+    - type: RandomHumanoidSpawner
+      settings: SLMobRandomCargoCorpse
+
+- type: entity
+  suffix: Medic
+  id: SLRandomMedicCorpseSpawner
+  parent: SLSalvageHumanCorpseSpawner
+  components:
+    - type: Sprite
+      layers:
+        - state: doctor
+        - state: green
+    - type: RandomHumanoidSpawner
+      settings: SLMobRandomMedicCorpse
+
+- type: entity
+  suffix: Science
+  id: SLRandomScienceCorpseSpawner
+  parent: SLSalvageHumanCorpseSpawner
+  components:
+    - type: Sprite
+      layers:
+        - state: scientist
+        - state: green
+    - type: RandomHumanoidSpawner
+      settings: SLMobRandomScienceCorpse
+
+- type: entity
+  suffix: Security
+  id: SLRandomSecurityCorpseSpawner
+  parent: SLSalvageHumanCorpseSpawner
+  components:
+    - type: Sprite
+      layers:
+        - state: security_officer
+        - state: green
+    - type: RandomHumanoidSpawner
+      settings: SLMobRandomSecurityCorpse
+
+- type: entity
+  suffix: Command
+  id: SLRandomCommandCorpseSpawner
+  parent: SLSalvageHumanCorpseSpawner
+  components:
+    - type: Sprite
+      layers:
+        - state: captain
+        - state: green
+    - type: RandomHumanoidSpawner
+      settings: SLMobRandomCommandCorpse
+
+- type: entity
+  suffix: Syndicate
+  id: RandomSyndicateCorpseSpawner
+  parent: SLSalvageHumanCorpseSpawner
+  components:
+    - type: Sprite
+      layers:
+        - state: captain
+        - state: green
+    - type: RandomHumanoidSpawner
+      settings: SLMobRandomSyndicateCorpse
+
+- type: entity
+  suffix: Nukie
+  id: RandomNukieCorpseSpawner
+  parent: SLSalvageHumanCorpseSpawner
+  components:
+    - type: Sprite
+      layers:
+        - state: captain
+        - state: green
+    - type: RandomHumanoidSpawner
+      settings: SLMobRandomNukieCorpse
+
+- type: entity
+  suffix: Soviet
+  id: RandomSovietCorpseSpawner
+  parent: SLSalvageHumanCorpseSpawner
+  components:
+    - type: Sprite
+      layers:
+        - state: captain
+        - state: green
+    - type: RandomHumanoidSpawner
+      settings: SLMobRandomSovietCorpse
+
+- type: entity
+  suffix: Mercenary
+  id: RandomMercenaryCorpseSpawner
+  parent: SLSalvageHumanCorpseSpawner
+  components:
+    - type: Sprite
+      layers:
+        - state: captain
+        - state: green
+    - type: RandomHumanoidSpawner
+      settings: SLMobRandomMercenaryCorpse
+
+- type: entity
+  suffix: Pirate
+  id: RandomPirateCorpseSpawner
+  parent: SLSalvageHumanCorpseSpawner
+  components:
+    - type: Sprite
+      layers:
+        - state: captain
+        - state: green
+    - type: RandomHumanoidSpawner
+      settings: SLMobRandomPirateCorpse
+
+- type: entity
+  name: syndicate footsoldier spawner
+  id: SLSpawnMobSyndicateFootSoldier
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: green
+        - sprite: Mobs/Species/Human/parts.rsi
+          state: full
+        - sprite: Clothing/Shoes/Boots/combatboots.rsi
+          state: equipped-FEET
+        - sprite: Clothing/Uniforms/Jumpsuit/operative.rsi
+          state: equipped-INNERCLOTHING
+        - sprite: Clothing/OuterClothing/Armor/security.rsi
+          state: equipped-OUTERCLOTHING
+        - sprite: Clothing/Hands/Gloves/Color/black.rsi
+          state: equipped-HAND
+        - sprite: Clothing/Mask/gas.rsi
+          state: equipped-MASK
+        - sprite: Clothing/Head/Helmets/swat_syndicate.rsi
+          state: equipped-HELMET
+    - type: RandomHumanoidSpawner
+      settings: SLMobSyndicateFootsoldier
+
+- type: entity
+  name: syndicate shuttle pilot spawner
+  id: SLSpawnMobSyndicateFootSoldierPilot
+  parent: SLSpawnMobSyndicateFootSoldier
+  components:
+    - type: RandomHumanoidSpawner
+      settings: SLMobSyndicateFootsoldierPilot

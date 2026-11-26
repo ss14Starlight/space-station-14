@@ -81,6 +81,8 @@ public sealed partial class ColorGradingSystem : EntitySystem
     {
         public static readonly Grade Identity = new(Vector3.One, Vector3.Zero, 1f, 1f);
 
+        private static readonly Vector3 Luma = new(0.2126f, 0.7152f, 0.0722f);
+
         public bool IsIdentity
             => Vector3.DistanceSquared(Tint, Vector3.One) < 1e-6f
             && Shadows.LengthSquared() < 1e-6f
@@ -91,7 +93,12 @@ public sealed partial class ColorGradingSystem : EntitySystem
         {
             var tint = Color.FromSrgb(proto.Tint);
             var shadows = Color.FromSrgb(proto.Shadows);
-            return new Grade(new Vector3(tint.R, tint.G, tint.B),
+            var tintRgb = new Vector3(tint.R, tint.G, tint.B);
+            var tintLuma = Vector3.Dot(tintRgb, Luma);
+            if (tintLuma > 0.001f)
+                tintRgb /= tintLuma;
+
+            return new Grade(tintRgb,
                 new Vector3(shadows.R, shadows.G, shadows.B),
                 proto.Saturation,
                 proto.Contrast);
