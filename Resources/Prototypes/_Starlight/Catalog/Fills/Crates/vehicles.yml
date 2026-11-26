@@ -13,9 +13,42 @@
   id: CrateMotorcycle
   parent: CrateGenericSteel
   name: motorcycle crate
-  description: Contains a fueled motorcycle with its key.
+  description: Contains a motorcycle.
   components:
   - type: ContainerFill
     containers:
       entity_storage:
       - VehicleMotorcycleFilled
+
+- type: entity
+  id: CrateJanicart
+  parent: CrateGenericSteel
+  name: janicart crate
+  description: Contains a janicart, to put an end to footprints once and for all.
+  components:
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - VehicleJanicartFilled
+
+- type: entity
+  id: CrateCommandScooterElectric
+  parent: [CrateCommandSecure, BaseCommandContraband]
+  name: command electric scooter crate
+  description: Contains a command electric scooter.
+  components:
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - VehicleScooterElectricCommandFilled
+
+- type: entity
+  id: CrateUnicycle
+  parent: CrateGenericSteel
+  name: unicycle crate
+  description: Contains a unicycle. Don't get too carried away.
+  components:
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - VehicleUnicycleFolded
