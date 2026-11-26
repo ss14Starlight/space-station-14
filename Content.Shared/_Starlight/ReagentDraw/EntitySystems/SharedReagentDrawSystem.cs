@@ -50,8 +50,8 @@ public sealed partial class SharedReagentDrawSystem : EntitySystem
     public bool HasDrawReagent(Entity<ReagentDrawComponent?> ent, FixedPoint2 additionalDrain = default)
     {
         return Resolve(ent, ref ent.Comp, false) &&
-               _solutions.ResolveSolution(ent.Owner, ent.Comp.SolutionContainer, ref ent.Comp.Solution, out var solution) &&
-               solution.Volume >= FixedPoint2.Max(FixedPoint2.Epsilon, ent.Comp.DrainRate + additionalDrain);
+            _solutions.ResolveSolution(ent.Owner, ent.Comp.SolutionContainer, ref ent.Comp.Solution, out var solution) &&
+            solution.Volume >= FixedPoint2.Max(FixedPoint2.Epsilon, ent.Comp.DrainRate + additionalDrain);
     }
 
     public override void Update(float frameTime)
