@@ -1,0 +1,101 @@
+- type: entity
+  name: wheelchair spawner
+  id: SpawnVehicleWheelchairBlue
+  parent: MarkerBase
+  suffix: Blue
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _FarHorizons/Objects/Vehicles/wheelchairblue.rsi
+        state: wheelchair
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleWheelchairBlue
+
+- type: entity
+  name: wheelchair spawner
+  id: SpawnVehicleWheelchairBlueFolded
+  parent: MarkerBase
+  suffix: Blue, Folded
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _FarHorizons/Objects/Vehicles/wheelchairblue.rsi
+        state: wheelchair_folded
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleWheelchairBlueFolded
+
+- type: entity
+  name: motorcycle spawner
+  id: SpawnVehicleMotorcycle
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _FarHorizons/Objects/Vehicles/motorbike.rsi
+        state: vehicle
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleMotorcycleFilled
+
+- type: entity
+  name: electric scooter spawner
+  id: SpawnVehicleScooterElectricSyndicate
+  parent: MarkerBase
+  suffix: Syndicate
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _FarHorizons/Objects/Vehicles/electric_scooter_syndicate.rsi
+        state: vehicle
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleScooterElectricSyndicateFilled
+
+- type: entity
+  name: clown car spawner
+  id: SpawnVehicleClownCar
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _FarHorizons/Objects/Vehicles/clowncar.rsi
+        state: vehicle
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleClownCarFilled
+
+- type: entity
+  name: unicycle spawner
+  id: SpawnVehicleUnicycle
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _FarHorizons/Objects/Vehicles/unicycle.rsi
+        state: vehicle
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleUnicycle
+
+- type: entity
+  name: unicycle spawner
+  id: SpawnVehicleUnicycleFolded
+  parent: MarkerBase
+  suffix: Folded
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _FarHorizons/Objects/Vehicles/unicycle.rsi
+        state: vehicle_folded
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleUnicycleFolded
