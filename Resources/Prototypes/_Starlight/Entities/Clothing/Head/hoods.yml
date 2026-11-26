@@ -68,3 +68,14 @@
     sprite: Clothing/Head/Hoods/Coat/hoodsec.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/Coat/hoodsec.rsi
+
+- type: entity
+  parent: ClothingHeadHatHoodWinterBase
+  id: ClothingHeadHatHoodWinterSecPlate
+  categories: [ HideSpawnMenu ]
+  name: winter coat's coat hood
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hoods/Coat/platehood.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hoods/Coat/platehood.rsi
