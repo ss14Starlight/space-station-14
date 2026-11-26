@@ -19,7 +19,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 
 namespace Content.Shared.Tools.Systems;
 
@@ -33,7 +32,6 @@ public sealed partial class ToolRefinableSystem : EntitySystem
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private SharedDestructibleSystem _destructible = default!;
-    [Dependency] private IGameTiming _gameTiming = default!;
 
     public override void Initialize()
     {
@@ -150,7 +148,7 @@ public sealed partial class ToolRefinableSystem : EntitySystem
         else
         {
             // TODO: Use RandomPredicted https://github.com/space-wizards/RobustToolbox/pull/5849
-            var rndSeed = SharedRandomExtensions.HashCodeCombine((int)_gameTiming.CurTick.Value, args.User.Id, uid.Id);
+            var rndSeed = SharedRandomExtensions.HashCodeCombine(GetNetEntity(args.User).Id, GetNetEntity(uid).Id); // Starlight: Desync fix
             var rng = new RobustRandom();
             rng.SetSeed(rndSeed);
             SpawnRefinement(component.RefineResult, uid, rng);

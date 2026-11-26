@@ -12,7 +12,7 @@
         - id: BodyBagMedTakFolded
         - id: MedTakHoverBedSpawnFolded
         - id: MagazineBoxPistol40SP
-        - id: SurgicalKitMedTak
+        - id: SurgicalKitMedTakFilled
         - id: PowerCellHigh
         - id: DrinkMREFlask
         - id: FoodSnackNutribrick
@@ -112,3 +112,5 @@
         - id: DoubleEmergencyOxygenTankFilled
         - id: ClothingMaskGasSecurity
         - id: MedtakATM
+        - id: MedtakPortableCameraMonitor
+        - id: DoorRemoteMedTak

@@ -23,6 +23,7 @@
     damage:
       types:
         Slash: 18
+    wideAnimationRotation: 180
   - type: VampiricClaws
     hitsRemaining: 15
     bloodPerHit: 5

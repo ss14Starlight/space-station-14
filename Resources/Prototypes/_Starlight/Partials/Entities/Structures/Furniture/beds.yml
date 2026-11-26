@@ -1,0 +1,39 @@
+- type: !PartialOnly entity
+  id: Bed
+  components:
+  - type: Strap
+    buckleOffset: "0,-0.1"
+
+- type: !PartialOnly entity
+  id: DogBed
+  components:
+  - type: PetBedSleepPose
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/pet_beds.rsi
+  - type: Strap
+    buckleOffset: "0,-0.15"
+    needsHands: false
+
+- type: !PartialOnly entity
+  id: WebBed
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 60
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 60
+  - type: Tag
+    tags:
+    - ClothMade
+  - type: BadFood
+  - type: Edible
+    delay: 3
+    requiresSpecialDigestion: true
+    solution: food
+  - type: FlavorProfile
+    flavors:
+      - cobwebs
+    ignoreReagents:
+      - Fiber

@@ -33,12 +33,13 @@ public static class HealthAnalyzerFormatting
     public static Color GetBloodLevelAccentColorUi(float ratio) => GetDamageSeverityColorUi(Math.Clamp((1 - ratio), 0f, 1f));
 
     /// <summary>
-    /// Returns green for Alive, yellow for critical, and red for dead.
+    /// Returns green for Alive, yellow for (soft)critical, and red for dead.
     /// </summary>
     public static Color GetStatusColor(MobState mobState) =>
         mobState switch
         {
             MobState.Alive => Color.FromHex("#5ABCAA"),
+            MobState.SoftCritical => Color.FromHex("#E19955"),
             MobState.Critical => Color.FromHex("#E19955"),
             MobState.Dead => Color.FromHex("#E56F79"),
             _ => Color.FromHex("#FFFFFF"),
@@ -151,6 +152,7 @@ public static class HealthAnalyzerFormatting
         return mobState switch
         {
             MobState.Alive => Loc.GetString("health-analyzer-window-entity-alive-text"),
+            MobState.SoftCritical => Loc.GetString("health-analyzer-window-entity-soft-critical-text"),
             MobState.Critical => Loc.GetString("health-analyzer-window-entity-critical-text"),
             MobState.Dead => Loc.GetString("health-analyzer-window-entity-dead-text"),
             _ => Loc.GetString("health-analyzer-window-entity-unknown-text"),

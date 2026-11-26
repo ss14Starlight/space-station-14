@@ -1,0 +1,24 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀                         [bold]ORDER OF MANDATORY PAROLE[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+Parolee: [form]
+
+Parole ordered by: [form]
+
+Upon granting of parole, the Parolee shall enter into a position in the Service Department.
+
+Failure to perform the duties of this position may result in re-imprisonment.
+
+Position: [form]
+
+Additional terms of parole: [form]
+
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+

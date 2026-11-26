@@ -1,3 +1,4 @@
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 
@@ -26,5 +27,5 @@ public sealed partial class PlumbingSmartDispenserComponent : Component
     /// Map from reagent prototype to custom label set with the labeller
     /// </summary>
     [DataField, AutoNetworkedField]
-    public Dictionary<string, string> ReagentLabels = [];
+    public Dictionary<ReagentId, string> ReagentLabels = [];
 }

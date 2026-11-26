@@ -2,6 +2,11 @@
   id: MaterialCloth
   components:
   - type: Healing
+    # Starlight Start
+    blacklist:
+      tags:
+      - Xeno
+    # Starlight End
     damageContainers:
       - Hybrid
   - type: Tag
@@ -14,6 +19,19 @@
   - type: Tag
     tags:
     - TiderAnvilParts
+  - type: ActivatableUI
+    inHandsOnly: true
+    singleUser: true
+    requireActiveHand: false
+    key: enum.QuickConstructionUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
+      enum.QuickConstructionUiKey.Key:
+        type: QuickConstructionBoundUserInterface
+  - type: QuickConstructable
+    category: Wood
 
 - type: !PartialOnly entity
   id: MaterialHideBear

@@ -206,3 +206,19 @@
         - id: PowerCellMicroreactor
           amount: 1
         - id: WelderIndustrialAdvanced
+
+- type: entity
+  id: MedkitCombatFilledAlternative
+  suffix: Filled, Alt
+  parent: MedkitCombat
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: PatchMedical
+          amount: 4
+        - id: PillCanisterDexalin
+          amount: 2
+        - id: PatchBrute
+        - id: PatchBurn

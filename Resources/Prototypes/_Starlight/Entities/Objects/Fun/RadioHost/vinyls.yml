@@ -592,6 +592,23 @@
 
 - type: entity
   parent: BaseVinylDisc
+  id: VinylLaw2OpenArmory
+  name: "vinyl: Law 2 Open Armory"
+  description: "A fast pace electronic tune. By: mrjajkes"
+  components:
+  - type: Sprite
+    state: default
+    layers:
+    - state: default
+    - state: label
+      color: "#8f2222"
+  - type: Vinyl
+    labelColor: "#8f2222"
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/mrjajkes/LAW2OPENARMORY.ogg
+
+- type: entity
+  parent: BaseVinylDisc
   id: VinylNukiesTrap
   name: "vinyl: Nukies Trap Remix"
   description: "A fast pace electronic tune. By: mrjajkes"
@@ -1707,3 +1724,20 @@
     labelColor: "#7eb389"
     song:
       path: /Audio/_Starlight/RadioStation/Vinyls/music/plasmaflare.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylWelcomeToSS14
+  name: "vinyl: Welcome To SS14"
+  description: "Music about video game. By: Alice"
+  components:
+  - type: Sprite
+    layers:
+    - state: base-light
+    - state: base-shine
+    - state: label
+      color: "#4d32ba"
+  - type: Vinyl
+    labelColor: "#4d32ba"
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/welcome_to_ss14.ogg

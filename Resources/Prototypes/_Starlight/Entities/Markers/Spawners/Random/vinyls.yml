@@ -1,0 +1,29 @@
+- type: entity
+  id: RandomVinylDiscSpawner
+  name: random vinyl disc spawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Starlight/Objects/Fun/RadioHost/vinyl.rsi
+      state: default
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: RandomVinylDisc
+
+- type: entity
+  id: RandomVinylSleeveSpawner
+  name: random vinyl sleeve spawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Starlight/Objects/Fun/RadioHost/covers.rsi
+      state: sleeve-base
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: RandomVinylSleeve

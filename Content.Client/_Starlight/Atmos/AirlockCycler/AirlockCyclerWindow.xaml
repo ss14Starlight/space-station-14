@@ -1,8 +1,8 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       Title="{Loc 'airlock-cycler-window-title'}"
-                      MinSize="440 380"
-                      SetSize="440 380">
+                      MinSize="440 410"
+                      SetSize="440 410">
     <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="8">
         <!-- Status -->
         <PanelContainer StyleClasses="InsetPanel">
@@ -36,6 +36,9 @@
         </BoxContainer>
 
         <Control VerticalExpand="True" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+            <CheckBox Name="BoltOpenCheck" Text="{Loc 'airlock-cycler-window-bolt-open'}" ToolTip="{Loc 'airlock-cycler-window-bolt-open-tooltip'}" HorizontalExpand="True" />
+        </BoxContainer>
         <BoxContainer Orientation="Horizontal" SeparationOverride="6">
             <Button Name="ForceButton" Text="{Loc 'airlock-cycler-window-force'}" StyleClasses="negative" HorizontalExpand="True" Visible="False" />
             <Button Name="LockdownButton" Text="{Loc 'airlock-cycler-window-lockdown'}" HorizontalExpand="True" Visible="False" />

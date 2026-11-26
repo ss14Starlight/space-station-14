@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "comfy_0",
+      "directions": 4,
+      "copyright": "Sprite by balt-dev"
+    },
+    {
+      "name": "comfy_1",
+      "directions": 4,
+      "copyright": "Sprite by balt-dev"
+    },
+    {
+      "name": "comfy_2",
+      "directions": 4,
+      "copyright": "Sprite by balt-dev"
+    },
+    {
+      "name": "comfy_3",
+      "directions": 4,
+      "copyright": "Sprite by balt-dev"
+    },
+    {
+      "name": "comfy_corner_left",
+      "directions": 4,
+      "copyright": "Sprite by balt-dev"
+    },
+    {
+      "name": "comfy_corner_right",
+      "directions": 4,
+      "copyright": "Sprite by balt-dev"
+    }
+  ]
+}

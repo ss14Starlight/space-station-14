@@ -29,3 +29,10 @@
   icon: { sprite: Objects/Materials/Sheets/metal.rsi, state: brass }
   color: "#407985"
   price: 2
+
+- type: material
+  id: Chitin
+  stackEntity: SheetChitin1
+  name: materials-chitin
+  icon: { sprite: _Starlight/Objects/Materials/chitin.rsi, state: chitin }
+  price: 0.2

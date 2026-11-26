@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.Chemistry.Components;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.ActionBlocker;
@@ -96,7 +97,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
             {
                 args.Handled = true;
 
-                TryDispenseReagent(ent, reagentId, args.Used, null, args.User, true);
+                TryDispenseReagentByProto(ent, reagentId, args.Used, null, args.User, true);
                 UpdateUi(ent);
                 return;
             }
@@ -122,17 +123,18 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
         if (args.Actor is not { Valid: true } actor)
             return;
 
-        if (GetBoundLabeler(actor, args.TargetEntity) is Entity<HandLabelerComponent> labeler)
+        var uiActor = GetUiInteractionActor(ent, actor, args.UiKey);
+        if (GetBoundLabeler(uiActor, args.TargetEntity) is Entity<HandLabelerComponent> labeler)
         {
-            SetReagentLabel(ent, args.ReagentId, labeler.Comp.AssignedLabel, actor);
+            SetReagentLabel(ent, args.ReagentId, labeler.Comp.AssignedLabel, uiActor);
             UpdateUi(ent);
             return;
         }
 
-        var outputContainer = GetBoundContainer(actor, args.TargetEntity);
+        var outputContainer = GetBoundContainer(uiActor, args.TargetEntity);
         if (outputContainer is not { } targetContainer)
         {
-            _popup.PopupPredicted(Loc.GetString("plumbing-smart-dispenser-no-container"), ent.Owner, actor);
+            _popup.PopupPredicted(Loc.GetString("plumbing-smart-dispenser-no-container"), ent.Owner, uiActor);
             UpdateUi(ent);
 
             return;
@@ -143,7 +145,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
             args.ReagentId,
             targetContainer,
             args.Amount,
-            actor,
+            uiActor,
             true);
 
         UpdateUi(ent);
@@ -154,10 +156,11 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
         if (args.Actor is not { Valid: true } actor)
             return;
 
-        if (!CanInteract(ent, actor))
+        var uiActor = GetUiInteractionActor(ent, actor, args.UiKey);
+        if (!CanInteract(ent, uiActor))
             return;
 
-        var outputContainer = GetBoundContainer(actor, args.TargetEntity);
+        var outputContainer = GetBoundContainer(uiActor, args.TargetEntity);
         if (outputContainer is not { } targetContainer)
             return;
 
@@ -170,6 +173,13 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
 
         _solutionSystem.RemoveAllSolution(targetEnt.Value);
         UpdateUi(ent);
+    }
+
+    private EntityUid GetUiInteractionActor(Entity<PlumbingSmartDispenserComponent> ent, EntityUid actor, Enum uiKey)
+    {
+        var ev = new RemoteControlUiInteractionActorEvent(actor, ent.Owner, uiKey, false);
+        RaiseLocalEvent(ref ev);
+        return ev.Actor ?? actor;
     }
 
     /// <summary>
@@ -353,7 +363,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
 
     private void SetReagentLabel(
         Entity<PlumbingSmartDispenserComponent> ent,
-        string reagentId,
+        ReagentId reagentId,
         string newLabel,
         EntityUid actor)
     {
@@ -369,7 +379,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
         bool hasReagent = false;
         foreach (var reagent in sourceSolution.Contents)
         {
-            if (reagent.Reagent.Prototype == reagentId)
+            if (reagent.Reagent == reagentId)
             {
                 hasReagent = true;
                 break;
@@ -383,9 +393,34 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
         }
     }
 
+    private bool TryDispenseReagentByProto(
+        Entity<PlumbingSmartDispenserComponent> ent,
+        string reagentProtoId,
+        EntityUid targetContainer,
+        FixedPoint2? requestedAmount,
+        EntityUid? user,
+        bool showPopup)
+    {
+        if (!_solutionSystem.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out var sourceEnt, out var sourceSolution))
+            return false;
+
+        ReagentId? sourceReagent = null;
+
+        foreach (var reagent in sourceSolution.Contents)
+        {
+            if (reagent.Reagent.Prototype.Id != reagentProtoId)
+                continue;
+
+            sourceReagent = reagent.Reagent;
+            break;
+        }
+
+        return TryDispenseReagent(ent, sourceReagent ?? new(reagentProtoId, null), targetContainer, requestedAmount, user, showPopup);
+    }
+
     private bool TryDispenseReagent(
         Entity<PlumbingSmartDispenserComponent> ent,
-        string reagentId,
+        ReagentId reagentId,
         EntityUid targetContainer,
         FixedPoint2? requestedAmount,
         EntityUid? user,
@@ -404,7 +439,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
 
         foreach (var reagent in sourceSolution.Contents)
         {
-            if (reagent.Reagent.Prototype != reagentId)
+            if (reagent.Reagent != reagentId)
                 continue;
 
             sourceReagent = reagent;
@@ -416,7 +451,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
         if (available <= FixedPoint2.Zero)
         {
             if (showPopup && user is { Valid: true } &&
-                _prototypeManager.TryIndex<ReagentPrototype>(reagentId, out var proto))
+                _prototypeManager.TryIndex(reagentId.Prototype, out var proto))
             {
                 _popup.PopupPredicted(
                     Loc.GetString("plumbing-smart-dispenser-not-in-stock",
@@ -432,7 +467,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
             return false;
 
         if (TryComp<RefillReagentFilterComponent>(targetContainer, out var filter)
-            && !filter.Reagents.Contains(reagentId))
+            && !filter.Reagents.Contains(reagentId.Prototype))
         {
             // Incorrect reagents being put into our lovely automenders (and anything with filters)!
             if (showPopup && user is { Valid: true })
@@ -469,7 +504,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
         _solutionSystem.TryAddReagent(targetEnt!.Value, sourceReagentValue.Reagent, removed, out var accepted);
 
         if (showPopup && accepted > FixedPoint2.Zero && user is { Valid: true } &&
-            _prototypeManager.TryIndex<ReagentPrototype>(reagentId, out var reagentProto))
+            _prototypeManager.TryIndex(reagentId.Prototype, out var reagentProto))
         {
             _popup.PopupPredicted(
                 Loc.GetString("plumbing-smart-dispenser-filled",

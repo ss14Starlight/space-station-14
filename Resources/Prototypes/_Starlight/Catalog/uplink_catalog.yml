@@ -71,3 +71,19 @@
     Telecrystal: 2
   categories:
     - UplinkAllies
+
+- type: listing
+  id: UplinkClothingEyesModularHudSyndicate
+  name: uplink-clothing-eyes-hud-syndicate-modular-name
+  description: uplink-clothing-eyes-hud-syndicate-modular-desc
+  icon: { sprite: _Starlight/Clothing/Eyes/Hud/syndicate.rsi, state: icon-frame }
+  productEntity: ClothingEyesModularHudSyndicate
+  cost:
+    Telecrystal: 1
+  categories:
+    - UplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+        - NukeOpsUplink

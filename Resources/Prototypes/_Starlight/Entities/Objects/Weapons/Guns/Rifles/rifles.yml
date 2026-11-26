@@ -447,7 +447,7 @@
       map:
       - "enum.GunVisualLayers.Mag"
   - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/Rifles/m16.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/impact_bolt_rifle.rsi
   - type: Item
     size: Huge
     shape:

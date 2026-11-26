@@ -1,7 +1,7 @@
 - type: quickPhrase
   id: BaseNumberPhrase
   parent: BaseCommonPhrase
-  group: Numbers
+  group: aac-group-numbers #Starlight: Make group names localization friendly
   abstract: true
 
 - type: quickPhrase

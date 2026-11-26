@@ -1,7 +1,8 @@
 <Control xmlns="https://spacestation14.io"
          xmlns:cdrecords="clr-namespace:Content.Client._CD.Records.UI">
+    <!-- Starlight-start -->
     <BoxContainer Orientation="Vertical">
-         <ScrollContainer VerticalExpand="True">
+         <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
              <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="10">
                  <!-- Height, Weight -->
                  <GridContainer Columns="2">
@@ -22,7 +23,7 @@
                  <BoxContainer Orientation="Horizontal">
                      <Label Text="{Loc 'humanoid-profile-editor-cd-records-contact-name'}" />
                      <Control HorizontalExpand="True" />
-                     <LineEdit Name="ContactNameEdit" HorizontalAlignment="Right" MinSize="350 0"/>
+                     <LineEdit Name="ContactNameEdit" HorizontalExpand="True" HorizontalAlignment="Right" MinSize="150 0" MaxWidth="350"/>
                  </BoxContainer>
                  <Control MinSize="0 20"/>
                  <!-- Employment stuff -->
@@ -36,24 +37,24 @@
                  <BoxContainer Orientation="Horizontal">
                      <Label Text="{Loc 'humanoid-profile-editor-cd-records-identifying-features'}" />
                      <Control HorizontalExpand="True" />
-                     <LineEdit Name="IdentifyingFeaturesEdit" HorizontalAlignment="Right" MinSize="350 0"/>
+                     <LineEdit Name="IdentifyingFeaturesEdit" HorizontalExpand="True" HorizontalAlignment="Right" MinSize="150 0" MaxWidth="350"/>
                  </BoxContainer>
                  <Control MinSize="0 20"/>
                  <!-- Medical stuff -->
                  <BoxContainer Orientation="Horizontal">
                      <Label Text="{Loc 'humanoid-profile-editor-cd-records-allergies'}" />
                      <Control HorizontalExpand="True" />
-                     <LineEdit Name="AllergiesEdit" HorizontalAlignment="Right" MinSize="350 0"/>
+                     <LineEdit Name="AllergiesEdit" HorizontalExpand="True" HorizontalAlignment="Right" MinSize="150 0" MaxWidth="350"/>
                  </BoxContainer>
                  <BoxContainer Orientation="Horizontal">
                      <Label Text="{Loc 'humanoid-profile-editor-cd-records-drug-allergies'}" />
                      <Control HorizontalExpand="True" />
-                     <LineEdit Name="DrugAllergiesEdit" HorizontalAlignment="Right" MinSize="350 0"/>
+                     <LineEdit Name="DrugAllergiesEdit" HorizontalExpand="True" HorizontalAlignment="Right" MinSize="150 0" MaxWidth="350"/>
                  </BoxContainer>
                  <BoxContainer Orientation="Horizontal">
                      <Label Text="{Loc 'humanoid-profile-editor-cd-records-postmortem'}" />
                      <Control HorizontalExpand="True" />
-                     <LineEdit Name="PostmortemEdit" HorizontalAlignment="Right" MinSize="350 0"/>
+                     <LineEdit Name="PostmortemEdit" HorizontalExpand="True" HorizontalAlignment="Right" MinSize="150 0" MaxWidth="350"/>
                  </BoxContainer>
                  <Control MinSize="0 20"/>
                  <!-- Entry editor -->
@@ -66,5 +67,6 @@
              </BoxContainer>
          </ScrollContainer>
     </BoxContainer>
+    <!-- Starlight-end -->
 </Control>
 

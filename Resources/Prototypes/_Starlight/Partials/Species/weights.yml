@@ -1,0 +1,26 @@
+# Weights taken statically from the database
+# TODO later: take these from the database dynamically
+
+# Tables kept to one line so editing is easier
+- { type: !PartialOnly species, id: Human, weight: 62 }
+- { type: !PartialOnly species, id: Vulpkanin, weight: 32 }
+- { type: !PartialOnly species, id: Shadekin, weight: 24 }
+- { type: !PartialOnly species, id: Moth, weight: 22 }
+- { type: !PartialOnly species, id: Reptilian, weight: 16 }
+- { type: !PartialOnly species, id: Doll, weight: 15 }
+- { type: !PartialOnly species, id: Avali, weight: 14 }
+- { type: !PartialOnly species, id: IPC, weight: 13 }
+- { type: !PartialOnly species, id: Elf, weight: 12 }
+- { type: !PartialOnly species, id: Experiment, weight: 11 }
+- { type: !PartialOnly species, id: Thaven, weight: 11 }
+- { type: !PartialOnly species, id: Resomi, weight: 9 }
+- { type: !PartialOnly species, id: Dwarf, weight: 8 }
+- { type: !PartialOnly species, id: Lagomorph, weight: 8 }
+- { type: !PartialOnly species, id: Felionoid, weight: 8 }
+- { type: !PartialOnly species, id: Cyclorite, weight: 7 }
+- { type: !PartialOnly species, id: Diona, weight: 6 }
+- { type: !PartialOnly species, id: Rodentia, weight: 6 }
+- { type: !PartialOnly species, id: SlimePerson, weight: 4 }
+- { type: !PartialOnly species, id: Xeno, weight: 4 }
+- { type: !PartialOnly species, id: Arachnid, weight: 2 }
+- { type: !PartialOnly species, id: Vox, weight: 2 }

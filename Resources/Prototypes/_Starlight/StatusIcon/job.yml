@@ -76,6 +76,7 @@
   isCrewJob: false
   tags:
   - JobIconCrew
+  - JobIconSalvage
 
 - type: jobIcon
   parent: JobIcon
@@ -87,6 +88,7 @@
   jobName: job-name-salvagemedic
   tags:
   - JobIconCrew
+  - JobIconSalvage
 
 - type: jobIcon
   parent: JobIcon
@@ -98,6 +100,7 @@
   isCrewJob: false
   tags:
   - JobIconCrew
+  - JobIconSalvage
 
 - type: jobIcon
   parent: JobIcon

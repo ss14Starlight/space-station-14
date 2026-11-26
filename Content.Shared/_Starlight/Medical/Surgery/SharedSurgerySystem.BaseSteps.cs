@@ -114,6 +114,8 @@ public abstract partial class SharedSurgerySystem
         }
         if (args.IsFinal)
             progress.CompletedSurgeries.Add(args.SurgeryProto);
+
+        Dirty(args.Part, progress);
     }
     private void OnStep(Entity<SurgeryStepComponent> ent, ref SurgeryStepEvent args)
     {

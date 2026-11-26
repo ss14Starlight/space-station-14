@@ -1,4 +1,5 @@
 health-analyzer-chat-message = Patient damage: {$damage}, Blood Level: {$blood}
+health-analyzer-window-entity-soft-critical-text = Soft-Critical
 
 ## Printable health reports
 health-analyzer-window-print-report = Print Report

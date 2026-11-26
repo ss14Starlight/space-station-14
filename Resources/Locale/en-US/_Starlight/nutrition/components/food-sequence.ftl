@@ -23,3 +23,4 @@ food-sequence-cotton-burger-content-plushie-sea-pancake = syrupy
 food-sequence-cotton-burger-content-plushie-seal = blubby
 food-sequence-cotton-burger-content-plushie-dumbo-octopus = takoyaki
 food-sequence-cotton-burger-content-plushie-sea-sheep = leafy
+food-sequence-cotton-burger-content-plushie-eeeplet = electric
