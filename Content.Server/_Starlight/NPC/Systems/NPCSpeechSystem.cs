@@ -11,6 +11,7 @@ namespace Content.Server._Starlight.NPC.Systems;
 public sealed partial class NPCSpeechSystem : EntitySystem
 {
     [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private MobStateSystem _mobState = default!;
@@ -19,6 +20,7 @@ public sealed partial class NPCSpeechSystem : EntitySystem
     private static readonly TimeSpan MinimumAttemptInterval = TimeSpan.FromSeconds(0.5);
     private TimeSpan _nextCheck;
 
+    /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
@@ -35,6 +37,7 @@ public sealed partial class NPCSpeechSystem : EntitySystem
             component => component.SpeechChance, (component, chance) => component.SpeechChance = chance);
     }
 
+    /// <inheritdoc/>
     public override void Shutdown()
     {
         var settings = _viewVariables.GetTypeHandler<NPCSpeechComponent>();
@@ -57,6 +60,7 @@ public sealed partial class NPCSpeechSystem : EntitySystem
             }));
     }
 
+    /// <inheritdoc/>
     public override void Update(float frameTime)
     {
         var now = _timing.CurTime;
@@ -68,7 +72,8 @@ public sealed partial class NPCSpeechSystem : EntitySystem
         var query = EntityQueryEnumerator<NPCSpeechComponent>();
         while (query.MoveNext(out var uid, out var speech))
         {
-            var lines = speech.SpeechPool;
+            var literal = speech.LiteralSpeech;
+            var lines = literal ?? speech.SpeechPool;
             if (lines.Count == 0 || !(speech.SpeechChance > 0f))
             {
                 speech.LastAttemptTime = null;
@@ -80,8 +85,15 @@ public sealed partial class NPCSpeechSystem : EntitySystem
                 !_random.Prob(Math.Min(speech.SpeechChance, 1f)))
                 continue;
 
-            var line = _random.Pick(lines)?.Trim();
-            if (string.IsNullOrEmpty(line))
+            var line = _random.Pick(lines);
+            if (line == null)
+                continue;
+
+            if (literal == null)
+                line = NPCSpeechComponent.ResolveLine(_loc, line);
+
+            line = line.Trim();
+            if (line.Length == 0)
                 continue;
 
             var chatType = InGameICChatType.Speak;

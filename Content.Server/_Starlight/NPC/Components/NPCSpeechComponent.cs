@@ -1,3 +1,4 @@
+using System.Linq;
 using Robust.Shared.GameStates;
 
 namespace Content.Server._Starlight.NPC.Components;
@@ -13,6 +14,9 @@ public sealed partial class NPCSpeechComponent : Component
     private TimeSpan _minimumInterval = TimeSpan.FromSeconds(20);
     private TimeSpan _maximumInterval = TimeSpan.FromSeconds(60);
 
+    /// <summary>
+    /// Minimum interval between attempts in seconds. The effective minimum is at least 0.5 seconds.
+    /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan MinimumInterval
     {
@@ -27,6 +31,9 @@ public sealed partial class NPCSpeechComponent : Component
         }
     }
 
+    /// <summary>
+    /// Maximum interval between attempts in seconds. Values below the effective minimum are raised to that minimum.
+    /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan MaximumInterval
     {
@@ -41,22 +48,45 @@ public sealed partial class NPCSpeechComponent : Component
         }
     }
 
+    /// <summary>
+    /// Probability from zero to one of choosing an entry on each attempt. Zero disables attempts.
+    /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float SpeechChance = 0.35f;
 
+    /// <summary>
+    /// Dialogue entries resolved as Fluent message IDs. Unmatched entries are used as legacy literal text.
+    /// Prefix the resulting text with an asterisk to send it as an emote.
+    /// </summary>
     [DataField("speech"), ViewVariables(VVAccess.ReadOnly)]
-    internal List<string> SpeechPool = ["Hello world!"]; //Placeholder
+    internal List<string> SpeechPool = ["npc-speech-default"];
 
     /// <summary>
-    /// Single-line text editor for the dialogue pool in View Variables.
+    /// Optional literal dialogue override. An empty list disables dialogue and null uses <see cref="SpeechPool"/>.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    internal List<string>? LiteralSpeech;
+
+    /// <summary>
+    /// Displays the active dialogue pool in View Variables. Edits replace it with literal lines separated by <c> | </c>.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     public string Speech
     {
-        get => string.Join(SpeechSeparator, SpeechPool);
-        set => SpeechPool = new List<string>(value.Split(SpeechSeparator,
+        get
+        {
+            if (LiteralSpeech is { } literal)
+                return string.Join(SpeechSeparator, literal);
+
+            var loc = IoCManager.Resolve<ILocalizationManager>();
+            return string.Join(SpeechSeparator, SpeechPool.Select(line => ResolveLine(loc, line)));
+        }
+        set => LiteralSpeech = new List<string>(value.Split(SpeechSeparator,
             StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries));
     }
+
+    internal static string ResolveLine(ILocalizationManager loc, string line)
+        => loc.TryGetString(line, out var localized) ? localized : line;
 
     [AutoPausedField]
     internal TimeSpan? LastAttemptTime;
