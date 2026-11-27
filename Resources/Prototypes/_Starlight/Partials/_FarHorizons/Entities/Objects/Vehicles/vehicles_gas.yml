@@ -1,6 +1,10 @@
 - type: !PartialOnly entity
   id: VehicleGasBuckleBase
   components:
+  - type: ContainerContainer
+    containers:
+      actions: !type:Container { showEnts: false }
+      status-effects: !type:Container { showEnts: true, occludes: false }
   - type: VehicleIgnition
     startupSound:
       path: /Audio/Effects/Vehicle/vehiclestartup.ogg
@@ -70,6 +74,10 @@
 - type: !PartialOnly entity
   id: VehicleATVNanoTrasen
   components:
+  - type: ContainerContainer
+    containers:
+      actions: !type:Container { showEnts: false }
+      status-effects: !type:Container { showEnts: true, occludes: false }
   - type: DirectionalOverride
     offsets:
       North: "0, -0.125"
@@ -100,6 +108,10 @@
 - type: !PartialOnly entity
   id: VehicleMotorcycle
   components:
+  - type: ContainerContainer
+    containers:
+      actions: !type:Container { showEnts: false }
+      status-effects: !type:Container { showEnts: true, occludes: false }
   - type: DirectionalOverride
     offsets:
       North: "0, -0.1875"
@@ -130,6 +142,10 @@
 - type: !PartialOnly entity
   id: VehicleContainerBase
   components:
+  - type: ContainerContainer
+    containers:
+      actions: !type:Container { showEnts: false }
+      status-effects: !type:Container { showEnts: true, occludes: false }
   - type: VehicleIgnition
     startupSound:
       path: /Audio/Effects/Vehicle/vehiclestartup.ogg

@@ -1,0 +1,3 @@
+- type: !PartialOnly entity
+  id: VehicleKeyJanicart
+  parent: !Clear [BaseContrabandTier2, BaseItem, BaseJanitorContraband]

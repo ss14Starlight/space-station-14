@@ -1,5 +1,7 @@
 using System.Linq;
+using Content.Shared.CardboardBox.Components;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Mobs.Components;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
@@ -27,7 +29,14 @@ public sealed partial class VehicleSystem
             return;
 
         if (TryGetOperatorContainer(ent.Owner, out var cabin))
+        {
+            // cardboard boxes don't always have people in em
+            if (HasComp<CardboardBoxComponent>(ent) &&
+                !cabin.ContainedEntities.Any(occupant => HasComp<MobStateComponent>(occupant)))
+                return;
+
             _container.EmptyContainer(cabin, force: true);
+        }
 
         if (TryComp<EntityStorageComponent>(ent, out var trunk) && trunk.Contents is { } contents)
             _container.EmptyContainer(contents, force: true);
