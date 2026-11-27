@@ -1,0 +1,8 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - MobRatKing
+    - MobRatServant
+  components:
+  - type: TemperatureProtection
+    coolingCoefficient: 0.3
