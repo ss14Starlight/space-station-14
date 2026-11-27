@@ -47,6 +47,7 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
     private readonly List<ICommonSession> _toRemove = [];
     private bool _processingResubscribe = false;
 
+    private ConcurrentDictionary<string, NLServer> _allServers = [];
     private ConcurrentDictionary<string, NullLink.Server> _serverData = [];
     private ConcurrentDictionary<string, NullLink.ServerInfo> _serverInfoData = [];
     private readonly ConcurrentQueue<NullLink.UpdateEvent> _updateEvents = [];
@@ -100,7 +101,8 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
         if (_lastResubscribe == null)
         {
             var serverData = await hub.GetAndSubscribe(serverObjectReference!);
-            _serverData = new(serverData.Select(x => KeyValuePair.Create(x.Key, Map(x.Value))));
+            _allServers = new(serverData);
+            RefilterServers();
 
             var serverInfoData = await hub.GetAndSubscribe(serverInfoObjectReference!);
             _serverInfoData = new(serverInfoData.Select(x => KeyValuePair.Create(x.Key, Map(x.Value))));
@@ -146,7 +148,9 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
         RaiseNetworkEvent(new NullLink.ServerData
         {
             Servers = _serverData.ToDictionary(x => x.Key, x => x.Value),
-            ServerInfo = _serverInfoData.ToDictionary(x => x.Key, x => x.Value)
+            ServerInfo = _serverInfoData
+                .Where(x => _serverData.ContainsKey(x.Key))
+                .ToDictionary(x => x.Key, x => x.Value)
         }, args.SenderSession);
         SendRequirements(args.SenderSession);
     }
@@ -161,20 +165,40 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
 
     public Task Updated(string key, NLServer value)
     {
-        if (!value.IsAdultOnly == _isAdultOnly)
-            return Task.CompletedTask;
+        _allServers[key] = value;
 
-        _serverData.AddOrUpdate(key, Map(value), (k, v) => Map(value));
+        if (!IsVisible(value))
+        {
+            if (_serverData.TryRemove(key, out _))
+                _updateEvents.Enqueue(new NullLink.RemoveServer { Key = key });
+            return Task.CompletedTask;
+        }
+
+        var wasVisible = _serverData.ContainsKey(key);
+        _serverData[key] = Map(value);
         _updateEvents.Enqueue(new NullLink.AddOrUpdateServer
         {
             Key = key,
             Server = Map(value)
         });
+
+        if (!wasVisible && _serverInfoData.TryGetValue(key, out var info))
+            _updateEvents.Enqueue(new NullLink.AddOrUpdateServerInfo { Key = key, ServerInfo = info });
+
         return Task.CompletedTask;
     }
 
+    private bool IsVisible(NLServer server)
+        => !server.IsAdultOnly || _isAdultOnly == true;
+
+    private void RefilterServers()
+        => _serverData = new(_allServers
+            .Where(x => IsVisible(x.Value))
+            .Select(x => KeyValuePair.Create(x.Key, Map(x.Value))));
+
     public Task Remove(string key)
     {
+        _allServers.TryRemove(key, out _);
         _serverData.TryRemove(key, out _);
         _serverInfoData.TryRemove(key, out _);
         _updateEvents.Enqueue(new NullLink.RemoveServer
@@ -187,6 +211,9 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
     public Task Updated(string key, NLServerInfo value)
     {
         _serverInfoData.AddOrUpdate(key, Map(value), (k, v) => Map(value));
+        if (!_serverData.ContainsKey(key))
+            return Task.CompletedTask;
+
         _updateEvents.Enqueue(new NullLink.AddOrUpdateServerInfo
         {
             Key = key,

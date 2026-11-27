@@ -44,6 +44,7 @@ public sealed partial class HubSystem : EntitySystem
     private void OnIsAdultOnlyChanged(bool isAdultOnly)
     {
         _isAdultOnly = isAdultOnly;
+        RefilterServers();
         TryUpdateServer();
     }
 
