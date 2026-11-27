@@ -36,6 +36,14 @@ public sealed partial class SalvageJobBoardConsoleComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan PrintDelay = TimeSpan.FromSeconds(5);
+
+    // Starlight start
+    /// <summary>
+    /// If labels should be placed in the user's hand.
+    /// </summary>
+    [DataField]
+    public bool PrintInHand = false;
+    // Starlight end
 }
 
 [Serializable, NetSerializable]

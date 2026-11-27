@@ -353,6 +353,7 @@
           - id: PaperITG
             amount: 10
     - type: SalvageJobBoardConsole
+      printInHand: true
     - type: ActivatableUI
       key: enum.SalvageJobBoardUiKey.Key
     - type: UserInterface
