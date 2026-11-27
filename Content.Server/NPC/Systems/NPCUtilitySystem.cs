@@ -425,6 +425,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
 
                     return temperature.CurrentTemperature <= con.MinTemp ? 1f : 0f;
                 }
+            // Starlight - start
             case TargetBlockingCon con:
             {
                 if (!blackboard.TryGetValue<EntityUid>("Target", out var goal, EntityManager) ||
@@ -450,7 +451,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
 
                 return Vector2.Dot(toObj / objLen, toGoal / goalLen) >= con.MinDot ? 1f : 0f;
             }
-            // Starlight - start
+
             case PDTargetIFFCon con:
                 {
                     if (TryComp<ProjectileComponent>(targetUid, out var projectile) && projectile.Shooter is not null)
