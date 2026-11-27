@@ -13,25 +13,22 @@ public sealed partial class NPCSpeechComponent : Component
     private const string LocalizationPrefix = "loc:";
     private const string LiteralPrefix = "literal:";
 
-    private TimeSpan _minimumInterval = TimeSpan.FromSeconds(20);
-    private TimeSpan _maximumInterval = TimeSpan.FromSeconds(60);
-
     /// <summary>
     /// Minimum interval between attempts in seconds. The effective minimum is at least 0.5 seconds.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan MinimumInterval
     {
-        get => _minimumInterval;
+        get;
         set
         {
-            if (_minimumInterval == value)
+            if (field == value)
                 return;
 
-            _minimumInterval = value;
+            field = value;
             AttemptInterval = null;
         }
-    }
+    } = TimeSpan.FromSeconds(20);
 
     /// <summary>
     /// Maximum interval between attempts in seconds. Values below the effective minimum are raised to that minimum.
@@ -39,16 +36,16 @@ public sealed partial class NPCSpeechComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan MaximumInterval
     {
-        get => _maximumInterval;
+        get;
         set
         {
-            if (_maximumInterval == value)
+            if (field == value)
                 return;
 
-            _maximumInterval = value;
+            field = value;
             AttemptInterval = null;
         }
-    }
+    } = TimeSpan.FromSeconds(60);
 
     /// <summary>
     /// Probability from zero to one of choosing an entry on each attempt. Zero disables attempts.

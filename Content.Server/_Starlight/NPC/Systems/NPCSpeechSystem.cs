@@ -52,14 +52,12 @@ public sealed partial class NPCSpeechSystem : EntitySystem
 
     private static void AddSettingPath<T>(ViewVariablesTypeHandler<NPCSpeechComponent> settings,
         string path, Func<NPCSpeechComponent, T> get, Action<NPCSpeechComponent, T> set)
-    {
-        settings.AddPath(path, component => ViewVariablesPath.FromGetter(() => get(component), typeof(T))
+        => settings.AddPath(path, component => ViewVariablesPath.FromGetter(() => get(component), typeof(T))
             .WithSetter(value =>
             {
                 if (value is T setting)
                     set(component, setting);
             }));
-    }
 
     /// <inheritdoc/>
     public override void Update(float frameTime)
