@@ -1,0 +1,166 @@
+- type: entity
+  name: yellow candle
+  parent: Candle
+  id: CandleYellow
+  components:
+  - type: Sprite
+    layers:
+      - state: candle-big
+        color: "#c9a227"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#c9a227"
+      right:
+      - state: inhand-right
+        color: "#c9a227"
+
+- type: entity
+  name: orange candle
+  parent: Candle
+  id: CandleOrange
+  components:
+  - type: Sprite
+    layers:
+      - state: candle-big
+        color: "#c46a2b"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#c46a2b"
+      right:
+      - state: inhand-right
+        color: "#c46a2b"
+
+- type: entity
+  name: light blue candle
+  parent: Candle
+  id: CandleLightBlue
+  components:
+  - type: Sprite
+    layers:
+      - state: candle-big
+        color: "#5ba3c9"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#5ba3c9"
+      right:
+      - state: inhand-right
+        color: "#5ba3c9"
+
+- type: entity
+  name: brown candle
+  parent: Candle
+  id: CandleBrown
+  components:
+  - type: Sprite
+    layers:
+      - state: candle-big
+        color: "#7a5a3a"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#7a5a3a"
+      right:
+      - state: inhand-right
+        color: "#7a5a3a"
+
+- type: entity
+  name: small yellow candle
+  parent: CandleSmall
+  id: CandleYellowSmall
+  components:
+  - type: Sprite
+    layers:
+      - state: candle-small
+        color: "#c9a227"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#c9a227"
+      right:
+      - state: inhand-right
+        color: "#c9a227"
+
+- type: entity
+  name: small orange candle
+  parent: CandleSmall
+  id: CandleOrangeSmall
+  components:
+  - type: Sprite
+    layers:
+      - state: candle-small
+        color: "#c46a2b"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#c46a2b"
+      right:
+      - state: inhand-right
+        color: "#c46a2b"
+
+- type: entity
+  name: small light blue candle
+  parent: CandleSmall
+  id: CandleLightBlueSmall
+  components:
+  - type: Sprite
+    layers:
+      - state: candle-small
+        color: "#5ba3c9"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#5ba3c9"
+      right:
+      - state: inhand-right
+        color: "#5ba3c9"
+
+- type: entity
+  name: small brown candle
+  parent: CandleSmall
+  id: CandleBrownSmall
+  components:
+  - type: Sprite
+    layers:
+      - state: candle-small
+        color: "#7a5a3a"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#7a5a3a"
+      right:
+      - state: inhand-right
+        color: "#7a5a3a"
+
+- type: entity
+  name: department candle box
+  parent: BoxCandle
+  id: BoxCandleDepartment
+  description: This box is specifically moulded to only carry candles. These ones come in department colors.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CandleYellow
+          amount: 2
+        - id: CandleOrange
+          amount: 2
+        - id: CandleLightBlue
+          amount: 2
+        - id: CandleBrown
+          amount: 2
+        - id: CandleYellowSmall
+        - id: CandleOrangeSmall
+        - id: CandleLightBlueSmall
+        - id: CandleBrownSmall
