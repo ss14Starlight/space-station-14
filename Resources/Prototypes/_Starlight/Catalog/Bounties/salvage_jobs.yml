@@ -247,3 +247,34 @@
         tags:
           - CommieAdvancedWeapon
 
+- type: cargoBounty
+  id: BountySalvageXeno
+  reward: 50
+  tickets: 2000
+  description: bounty-description-salvage-xenos
+  group: SalvageJobTier3
+  sprite:
+    sprite: _Starlight/Mobs/Aliens/Xenos/xenoempress.rsi
+    state: alive
+  entries:
+    - name: bounty-item-xenos
+      amount: 10
+      whitelist:
+        tags:
+          - HiveMember
+
+- type: cargoBounty
+  id: BountySalvageXenoOmelette
+  reward: 50
+  tickets: 2000
+  description: bounty-description-salvage-xeno-omelette
+  group: SalvageJobTier3
+  sprite:
+    sprite: _Starlight/Objects/Consumable/Food/crab_rangoons.rsi
+    state: alive
+  entries:
+    - name: bounty-item-xeno-omelette
+      amount: 10
+      whitelist:
+        tags:
+          - XenoOmelette

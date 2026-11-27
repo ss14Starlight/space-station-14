@@ -1,0 +1,168 @@
+- type: htnCompound
+  id: ConvergeOnWoundedXenoCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyXenosInFight
+            key: ConvergeTarget
+            keyCoordinates: ConvergeCoordinates
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            targetKey: ConvergeCoordinates
+            rangeKey: FollowCloseRange
+
+- type: htnCompound
+  id: FleeToHealerCompound
+  branches:
+    - preconditions:
+        - !type:HasComponentPrecondition
+          invert: true
+          components:
+            - type: NPCRecentlyInjected
+        - !type:TotalDamagePrecondition
+          damage: 120
+        - !type:TotalDamagePrecondition
+          damage: 140
+          invert: true
+        - !type:BuckledPrecondition
+          isBuckled: false
+        - !type:PulledPrecondition
+          isPulled: false
+      tasks:
+        # Let go of anyone mid-drag when the Xeno crosses threshold
+        - !type:HTNPrimitiveTask
+          operator: !type:StopPullingOperator
+        - !type:HTNPrimitiveTask
+          operator: !type:PathToXenoHealerOperator
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            targetKey: HealerCoordinates
+            pathfindInPlanning: false
+
+- type: htnCompound
+  id: DragCritSequenceCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyCritTargets
+            key: DragTarget
+            keyCoordinates: DragTargetCoordinates
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            targetKey: DragTargetCoordinates
+            rangeKey: InteractRange
+        - !type:HTNPrimitiveTask
+          operator: !type:PullTargetOperator
+            targetKey: DragTarget
+        - !type:HTNPrimitiveTask
+          operator: !type:PathToXenoHealerOperator
+            targetCoordinates: DragDestination
+            pathfindKey: DragPathfind
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            targetKey: DragDestination
+            pathfindKey: DragPathfind
+            pathfindInPlanning: false
+        - !type:HTNPrimitiveTask
+          operator: !type:StopPullingOperator
+
+- type: htnCompound
+  id: DragCritTargetIdleCompound
+  branches:
+    - preconditions:
+        - !type:HasComponentPrecondition
+          invert: true
+          components:
+            - type: NPCRecentlyInjected
+        - !type:BuckledPrecondition
+          isBuckled: false
+        - !type:PulledPrecondition
+          isPulled: false
+      tasks:
+        - !type:HTNCompoundTask
+          task: DragCritSequenceCompound
+
+- type: htnCompound
+  id: DragCritTargetCompound
+  branches:
+    - preconditions:
+        - !type:HasComponentPrecondition
+          invert: true
+          components:
+            - type: NPCRecentlyInjected
+        - !type:TotalDamagePrecondition
+          damage: 80
+        - !type:TotalDamagePrecondition
+          damage: 120
+          invert: true
+        - !type:BuckledPrecondition
+          isBuckled: false
+        - !type:PulledPrecondition
+          isPulled: false
+      tasks:
+        - !type:HTNCompoundTask
+          task: DragCritSequenceCompound
+
+- type: htnCompound
+  id: XenoHealerCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyInjectableXenos
+            returnType: EnumerableDescending
+        - !type:HTNPrimitiveTask
+          operator: !type:PickNearbyInjectableOperator
+            targetKey: Target
+            targetMoveKey: TargetCoordinates
+        - !type:HTNCompoundTask
+          task: MedibotInject
+
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
+
+#Larva
+- type: htnCompound
+  id: FleeToHealerLarvaCompound
+  branches:
+    - preconditions:
+        - !type:HasComponentPrecondition
+          invert: true
+          components:
+            - type: NPCRecentlyInjected
+        - !type:TotalDamagePrecondition
+          damage: 1
+        - !type:BuckledPrecondition
+          isBuckled: false
+        - !type:PulledPrecondition
+          isPulled: false
+      tasks:
+        # Let go of anyone mid-drag when the Xeno crosses threshold
+        - !type:HTNPrimitiveTask
+          operator: !type:StopPullingOperator
+        - !type:HTNPrimitiveTask
+          operator: !type:PathToXenoHealerOperator
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            targetKey: HealerCoordinates
+            pathfindInPlanning: false
+
+- type: htnCompound
+  id: LarvaFeedCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyCritTargets
+            key: FeedTarget
+            keyCoordinates: FeedTargetCoordinates
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            targetKey: FeedTargetCoordinates
+            rangeKey: InteractRange
+        - !type:HTNPrimitiveTask
+          operator: !type:LarvaFeedOperator
+            targetKey: FeedTarget

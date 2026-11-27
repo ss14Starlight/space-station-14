@@ -18,3 +18,6 @@ construction-graph-tag-remote-signaller = a basic remote signaler
 construction-graph-tag-remote-signaller-adv = an advanced remote signaler
 
 drone-construction-guide-string = Insert a left and right cyborg arm into the drone shell.
+
+construction-graph-tag-mercenary-hardsuit = Mercenary Hardsuit
+construction-graph-tag-empress-chitin = Empress Chitin

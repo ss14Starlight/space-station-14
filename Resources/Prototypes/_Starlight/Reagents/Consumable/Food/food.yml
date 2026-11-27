@@ -219,3 +219,13 @@
         reagent: Stellibinin
         amount: -0.05
         # Starlight-End
+
+- type: reagent
+  id: XenoEgg
+  name: reagent-name-xenoegg
+  group: Foods
+  desc: reagent-desc-xenoegg
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: xenoEgg
+  color: "#9d42d5"
+  recognizable: true

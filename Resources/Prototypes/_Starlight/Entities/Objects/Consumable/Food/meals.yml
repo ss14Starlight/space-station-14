@@ -398,3 +398,33 @@
       - !type:SpillBehavior { }
       - !type:DoActsBehavior
         acts: ["Destruction"]
+
+- type: entity
+  name: xeno omelette
+  parent: FoodMealBase
+  id: FoodXenoOmelette
+  description: Game over man!
+  components:
+    - type: FlavorProfile
+      flavors:
+        - xenoEgg
+    - type: Edible
+      transferAmount: 3
+    - type: Sprite
+      sprite: _Starlight/Objects/Consumable/Food/crab_rangoons.rsi
+      layers:
+        - state: crab_rangoons
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 50
+          - ReagentId: Protein
+            Quantity: 50
+    - type: StaticPrice
+      price: 20000
+    - type: Tag
+      tags:
+        - Meat
+        - XenoOmelette

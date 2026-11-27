@@ -1,0 +1,409 @@
+# Rooms
+
+# - 12x12
+
+- type: dungeonRoom
+  id: Hive12x12a
+  size: 12,12
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 6,24
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive12x12b
+  size: 12,12
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 19,24
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive12x12c
+  size: 12,12
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 32,24
+  tags:
+    - Hive
+
+# - 9x9
+
+- type: dungeonRoom
+  id: Hive9x9a
+  size: 9,9
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 16,37
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive9x9b
+  size: 9,9
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 26,37
+  tags:
+    - Hive
+
+# - 8x8
+
+- type: dungeonRoom
+  id: Hive8x8a
+  size: 8,8
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 0,15
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive8x8b
+  size: 8,8
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 9,15
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive8x8c
+  size: 8,8
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 18,15
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive8x8d
+  size: 8,8
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 27,15
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive8x8e
+  size: 8,8
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 36,15
+  tags:
+    - Hive
+
+# - 4x12
+
+- type: dungeonRoom
+  id: Hive4x12a
+  size: 4,12
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 45,0
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive4x12b
+  size: 4,12
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 45,13
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive4x12c
+  size: 4,12
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 45,26
+  tags:
+    - Hive
+
+# - 6x6
+
+- type: dungeonRoom
+  id: Hive6x6a
+  size: 6,6
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 36,37
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive6x6b
+  size: 6,6
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 43,39
+  tags:
+    - Hive
+
+# - 8x4
+
+- type: dungeonRoom
+  id: Hive8x4a
+  size: 8,4
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 27,0
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive8x4b
+  size: 8,4
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 36,0
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive8x4c
+  size: 8,4
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 27,5
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive8x4d
+  size: 8,4
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 36,5
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive8x4e
+  size: 8,4
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 27,10
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive8x4f
+  size: 8,4
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 36,10
+  tags:
+    - Hive
+
+# - 9x3
+
+- type: dungeonRoom
+  id: Hive9x3a
+  size: 9,3
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 6,37
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive9x3b
+  size: 9,3
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 6,41
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive9x3c
+  size: 9,3
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 6,45
+  tags:
+    - Hive
+
+# - 3x9
+
+- type: dungeonRoom
+  id: Hive3x9a
+  size: 3,9
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 2,39
+  tags:
+    - Hive
+
+# - 6x3
+
+- type: dungeonRoom
+  id: Hive6x3a
+  size: 6,3
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 36,44
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive6x3b
+  size: 6,3
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 43,46
+  tags:
+    - Hive
+
+# - 3x6
+
+- type: dungeonRoom
+  id: Hive3x6a
+  size: 3,6
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 0,4
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive3x6b
+  size: 3,6
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 4,4
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive3x6c
+  size: 3,6
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 8,4
+  tags:
+    - Hive
+
+# - 4x4
+
+- type: dungeonRoom
+  id: Hive4x4a
+  size: 4,4
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 12,0
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive4x4b
+  size: 4,4
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 17,0
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive4x4c
+  size: 4,4
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 22,0
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive4x4d
+  size: 4,4
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 12,5
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive4x4e
+  size: 4,4
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 17,5
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive4x4f
+  size: 4,4
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 22,5
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive4x4g
+  size: 4,4
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 12,10
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive4x4h
+  size: 4,4
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 17,10
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive4x4i
+  size: 4,4
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 22,10
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive4x4j
+  size: 4,4
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 1,24
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive4x4k
+  size: 4,4
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 1,29
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive4x4l
+  size: 4,4
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 1,34
+  tags:
+    - Hive
+
+# - 3x3
+
+- type: dungeonRoom
+  id: Hive3x3a
+  size: 3,3
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 0,0
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive3x3b
+  size: 3,3
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 4,0
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive3x3c
+  size: 3,3
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 8,0
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive3x3d
+  size: 3,3
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 0,11
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive3x3e
+  size: 3,3
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 4,11
+  tags:
+    - Hive
+
+- type: dungeonRoom
+  id: Hive3x3f
+  size: 3,3
+  atlas: /Maps/_Starlight/Dungeon/Hive.yml
+  offset: 8,11
+  tags:
+    - Hive

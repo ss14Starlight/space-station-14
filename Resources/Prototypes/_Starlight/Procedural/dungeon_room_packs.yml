@@ -24,3 +24,89 @@
   size: 17,17
   rooms:
     - 0,4,17,13
+
+#Hive
+
+# Hive room packs: 17x17 areas, 1 tile between rooms for the wall.
+# Slots are x1,y1,x2,y2. Rooms of the same size (in either rotation) can fill a slot.
+
+- type: dungeonRoomPack
+  id: HiveArea0
+  size: 17,17
+  rooms:
+# 12x12
+    - 0,0,12,12
+# 4x12
+    - 13,0,17,12
+# 8x4
+    - 0,13,8,17
+    - 9,13,17,17
+
+- type: dungeonRoomPack
+  id: HiveArea1
+  size: 17,17
+  rooms:
+# 9x9
+    - 0,0,9,9
+# 3x9
+    - 10,0,13,9
+    - 14,0,17,9
+# 6x6
+    - 0,10,6,16
+# 4x4
+    - 7,10,11,14
+    - 12,10,16,14
+
+- type: dungeonRoomPack
+  id: HiveArea2
+  size: 17,17
+  rooms:
+# 8x8
+    - 0,0,8,8
+    - 9,0,17,8
+# 8x4
+    - 0,9,8,13
+    - 9,9,17,13
+# 3x3
+    - 0,14,3,17
+    - 4,14,7,17
+    - 8,14,11,17
+    - 12,14,15,17
+
+- type: dungeonRoomPack
+  id: HiveArea3
+  size: 17,17
+  rooms:
+# 6x6
+    - 0,0,6,6
+    - 7,0,13,6
+# 3x6
+    - 14,0,17,6
+    - 0,7,6,10
+    - 7,7,13,10
+    - 14,7,17,13
+# 4x4
+    - 0,11,4,15
+    - 5,11,9,15
+# 3x3
+    - 10,11,13,14
+
+- type: dungeonRoomPack
+  id: HiveArea4
+  size: 17,17
+  rooms:
+# 4x4
+    - 0,0,4,4
+    - 5,0,9,4
+    - 10,0,14,4
+    - 0,5,4,9
+    - 5,5,9,9
+    - 10,5,14,9
+# 9x3
+    - 0,10,9,13
+# 6x3
+    - 10,10,16,13
+# 3x3
+    - 0,14,3,17
+    - 4,14,7,17
+    - 8,14,11,17

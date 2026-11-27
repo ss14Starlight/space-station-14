@@ -321,6 +321,9 @@
   id: EmergencyWelder
 
 - type: Tag
+  id: EmpressChitin
+
+- type: Tag
   id: ERTShuttle
 
 - type: Tag
@@ -412,6 +415,9 @@
 
 - type: Tag
   id: HandheldEngineeringMonitor #CE's handheld monitor
+
+- type: Tag
+  id: HardsuitMercenary
 
 - type: Tag
   id: Heart
@@ -927,7 +933,16 @@
   id: XenoEmotes
 
 - type: Tag
+  id: XenoHealer
+
+- type: Tag
   id: XenomoproachWearable # Allows xenomoproach to wear it, really only used for headsets. No system in place to use differing displacements for something with a given prefix/suffix, so this is needed for now.
+
+- type: Tag
+  id: XenoNest
+
+- type: Tag
+  id: XenoOmelette
 
 - type: Tag
   id: XenosDisasterSurvivorTraitBackground

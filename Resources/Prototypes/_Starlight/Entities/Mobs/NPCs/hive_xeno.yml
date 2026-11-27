@@ -1,0 +1,343 @@
+- type: entity
+  parent: [SimpleSpaceMobBase, BaseSlicingRefinable]
+  id: HiveXeno
+  description: Nuke it from orbit, its the only way to be sure.
+  abstract: true
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: MovementAlwaysTouching
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: VentCrawler
+  - type: Stamina
+    baseCritThreshold: 50
+    animationThreshold: 25
+  - type: SlowOnDamage
+    speedModifierThresholds: {}
+  - type: CombatMode
+  - type: Puller
+    needsHands: false
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: FluorosulfuricAcid
+        Quantity: 1300
+  - type: Insulated
+  - type: Prying
+    speedModifier: 2
+    pryPowered: true
+    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg
+    playSoundOnDoafter: true
+  - type: ReplacementAccent
+    accent: xeno
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        density: 50
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: Tag
+    tags:
+      - HiveMember
+      - DoorBumpOpener
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 4.5
+    baseWalkSpeed: 3.8
+  - type: Body
+    prototype: Animal
+  - type: !Append ToolRefinable #Starlight
+    refineResult:
+    - id: FoodMeatXeno
+      amount: 1
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatXeno
+      amount: 1
+  - type: Damageable
+    damageModifierSet: HiveXenoResistances
+
+- type: entity
+  parent: HiveXeno
+  id: MobXenoHunter
+  name: xeno hunter
+  components:
+  - type: MeleeWeapon
+    attackRate: 1.8
+    altDisarm: true
+    angle: 0
+    soundHit:
+      path: /Audio/_RMC/Voice/Xeno/alien_bite1.ogg
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 18
+        Structural: 25
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: HTN
+    rootTask:
+      task: XenoRootCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      VisionRadius: !type:Single
+        18
+      AggroVisionRadius: !type:Single
+        15
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Aliens/Xenos/xenohunter.rsi
+    layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: alive
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Dead:
+        Base: dead
+  - type: !Append ToolRefinable #Starlight
+    refineResult:
+    - id: FoodMeatXeno
+      amount: 5
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatXeno
+      amount: 5
+
+- type: entity
+  parent: MobXenoHunter
+  id: MobXenoStunner
+  name: xeno stunner
+  components:
+  - type: MeleeWeapon
+    attackRate: .7
+    altDisarm: true
+    angle: 0
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_spitacid.ogg
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 10
+        Structural: 25
+  - type: StaminaDamageOnHit
+    damage: 25
+  - type: Stealth
+    minVisibility: 0.1
+    lastVisibility: 0.1
+    shimmerFrequency: 0.05
+
+- type: entity
+  parent: MobXenoHunter
+  id: MobHiveXenoDrone
+  name: xenonid drone
+  components:
+  - type: MeleeWeapon
+    attackRate: 1
+    altDisarm: true
+    angle: 0
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_spitacid.ogg
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 8
+        Caustic: 5
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 3.5
+    baseWalkSpeed: 3
+
+- type: entity
+  parent: HiveXeno
+  id: MobXenoEmpress
+  name: xenonid empress
+  components:
+  - type: HTN
+    rootTask:
+      task: XenoRootCompound
+    blackboard:
+      NavSmash: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      VisionRadius: !type:Single
+        20
+      AggroVisionRadius: !type:Single
+        12
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Aliens/Xenos/xenoempress.rsi
+    layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: alive
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Dead:
+        Base: dead
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 3.5
+    baseWalkSpeed: 3
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/_RMC/Voice/Xeno/alien_bite1.ogg
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 55
+        Structural: 110
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        volume: 4
+        pitch: 0.3
+        variation: 0.025
+  - type: StaminaDamageOnHit
+    damage: 50
+  - type: MeleeThrowOnHit
+    speed: 25
+    distance: 5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: EggLayer
+    eggSpawn:
+    - id: MobXenoLarva
+      orGroup: larva
+      prob: 0.9
+    - id: MobXenoLarvaRoyal
+      orGroup: larva
+      prob: 0.05
+    - id: XenoHive
+      orGroup: larva
+      prob: 0.05
+  - type: !Append ToolRefinable
+    refineResult:
+    - id: FoodMeatXeno
+      amount: 15
+    - id: FoodEggXeno
+      amount: 2
+    - id: EmpressChitin
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatXeno
+      amount: 15
+    - id: FoodEggXeno
+      amount: 2
+    - id: EmpressChitin
+  - type: Damageable
+    damageModifierSet: HiveXenoResistances
+
+- type: entity
+  parent: HiveXeno
+  id: MobXenoLarvaRoyal
+  name: empress larva
+  description: A helpless creature, dont let it grow up...
+  components:
+  - type: HTN
+    rootTask:
+      task: LarvaRootCompound
+    blackboard:
+      NavSmash: !type:Bool
+        true
+      VisionRadius: !type:Single
+        20
+      AggroVisionRadius: !type:Single
+        10
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      20: Dead
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Aliens/Xenos/xenolarva.rsi
+    layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: alive
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Dead:
+        Base: dead
+  - type: DoAfter
+  - type: LarvaFeed
+    feedTime: 15
+    distanceThreshold: 2
+    breakOnDamage: true
+    breakOnMove: true
+    targetStates:
+      - Critical
+    rotAfter: 1200 #seconds
+    growInto: MobXenoEmpress
+    deleteSelf: true
+    startPopup: larva-feed-start
+    damage:
+      types:
+        Piercing: 50
+        Cellular: 50
+    damageIgnoreResistances: true
+
+- type: entity
+  parent: MobXenoLarvaRoyal
+  id: MobXenoLarva
+  name: xeno larva
+  description: A helpless creature, dont let it grow up...
+  components:
+  - type: LarvaFeed
+    feedTime: 10
+    distanceThreshold: 2
+    breakOnDamage: true
+    breakOnMove: true
+    targetStates:
+      - Critical
+    rotAfter: 1200 #seconds
+    growInto: MobXenoHunter
+    deleteSelf: true
+    startPopup: larva-feed-start
+    damage:
+      types:
+        Piercing: 50
+        Cellular: 50
+    damageIgnoreResistances: false
+  - type: TimedSpawner
+    intervalSeconds: 100
+    despawnWhenDone: true
+    requiredState: Alive
+    allowContainerPlacement: true
+    prototypes: 
+    - MobHiveXenoDrone

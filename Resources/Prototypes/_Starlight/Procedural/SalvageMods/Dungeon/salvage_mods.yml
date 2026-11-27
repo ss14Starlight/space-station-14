@@ -148,3 +148,12 @@
     - Carp-Easy
     - Carp-Medium
     - Carp-Hard
+
+- type: salvageDungeonMod
+  id: Hive
+  desc: salvage-dungeon-mod-hive
+  proto: Hive
+  biomes:
+    - Snow
+  difficulties:
+    - Hive

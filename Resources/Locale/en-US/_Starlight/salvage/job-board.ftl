@@ -14,6 +14,8 @@ salv-job-board-name-BountySalvageCloning = Cloning Circuitboard
 salv-job-board-name-BountySalvageDragon = Dragon Meat
 salv-job-board-name-BountySalvageReactor = Expedition Reactors
 salv-job-board-name-BountySalvageAKMS = AKMS
+salv-job-board-name-BountySalvageXeno = Hive Xeno Corpses
+salv-job-board-name-BountySalvageXenoOmelette = Xeno Egg
 
 bounty-description-salvage-raw-xeno-meat = A modern day Iron Chef has requested unique proteins to create a new star dish with. Let's send them some of the best we can find!
 bounty-description-salvage-abyssium-ore = We heard of the existance of some Abyssium ore in the sector. Our team wants you to retrieve some for testing.
@@ -30,4 +32,5 @@ bounty-description-salvage-keg = The Annual cost cutting meeting is soon, and th
 bounty-description-salvage-weapons = Research data on the Finka, Makarov, and Mosin recently were all mysteriously destroyed. Grab some samples so we can get that information back.
 bounty-description-salvage-mop = ITG's custodial team has been overwhelmed by the surge in messes on ATS's and shuttles, either stop being slobs or grab them a mop!
 bounty-description-salvage-protolathe = A local Vulcan production center is missing a core piece of tech to be able to produce more modkits. Help them help us!
-
+bounty-description-salvage-xenos = The ITG requires proof of kills from the hive. Larva, Hunters, just get the corpses.
+bounty-description-salvage-xeno-omelette = The local facility coordinator is starving, get them a meal they wont forget.

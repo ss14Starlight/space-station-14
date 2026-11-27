@@ -697,3 +697,71 @@
     - id: SpawnMobCockroach
       weight: .5
     - id: RandomSpawner
+
+- type: dungeonConfig
+  id: Hive
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - Hive
+    presets:
+    - HiveGrid
+
+  - !type:CorridorDunGen
+    width: 2
+    tile: FloorXeno
+
+  - !type:DungeonEntranceDunGen
+    count: 1
+    tile: FloorXeno
+    contents: HiveDungeonEntrance
+
+  - !type:RoomEntranceDunGen
+    tile: FloorXeno
+    contents: HiveDungeonEntrance
+
+  - !type:EntranceFlankDunGen
+    tile: FloorXeno
+    contents: XenoWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorXeno
+    contents: XenoWindow
+
+  # No wallmounts
+
+  - !type:BoundaryWallDunGen
+    tile: FloorXeno
+    wall: WallReinforcedChitin
+    cornerWall: WallSolidChitin
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorXeno
+    contents: HiveDungeonEntrance
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorXeno
+    contents: HiveDungeonEntrance
+
+- type: entityTable
+  id: HiveDungeonEntrance
+  table: !type:GroupSelector
+    children:
+    - id: AirlockXenoDoorBump
+
+- type: entityTable
+  id: XenoWall
+  table: !type:GroupSelector
+    children:
+    - id: AirlockXenoDoorBump
+    - id: WallSolidChitin
+
+- type: entityTable
+  id: XenoWindow
+  table: !type:GroupSelector
+    children:
+    - id: AirlockXenoDoorBump
+    - id: XenoResinWindow

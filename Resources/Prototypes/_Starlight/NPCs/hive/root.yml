@@ -1,0 +1,50 @@
+#Complex
+- type: htnCompound
+  id: XenoRootCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: FleeToHealerCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: DragCritTargetCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MoveBarricadeCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MeleeCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: ConvergeOnWoundedXenoCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: DragCritTargetIdleCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
+
+# Nest
+- type: htnCompound
+  id: XenoNestRootCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: XenoHealerCompound
+
+#Larva
+- type: htnCompound
+  id: LarvaRootCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: FleeToHealerLarvaCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: LarvaFeedCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MeleeAvoidanceTargetCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound

@@ -1,0 +1,26 @@
+- type: salvageLoot
+  id: SalvageLootHiveXeno
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: RandomCommandCorpseSpawner
+          cost: 1
+        - proto: RandomCommandCorpseSpawner
+          cost: 1
+        - proto: RandomCommandCorpseSpawner
+          cost: 1
+        - proto: WeaponTeslaGun
+          cost: 1
+          prob: 0.25
+        - proto: Stunbaton
+          cost: 1
+          prob: 0.25
+        - proto: C4Worn
+          cost: 1
+          prob: 0.75
+        - proto: ClothingOuterHardsuitMaxim
+          cost: 1
+          prob: 0.1
+        - proto: ClothingOuterHardsuitITGLossPrevention
+          cost: 1
+          prob: 0.05
