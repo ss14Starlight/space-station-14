@@ -38,7 +38,7 @@ public sealed partial class FloorBufferSystem : EntitySystem
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private VehicleSystem _vehicles = default!;
     [Dependency] private INetManager _net = default!;
-    private static readonly ProtoId<ReagentPrototype> Water = "Water";
+    private static readonly ProtoId<ReagentPrototype> _water = "Water";
 
     [SubscribeLocalEvent]
     private void OnGetActions(EntityUid owner, FloorBufferComponent component, GetItemActionsEvent args)
@@ -134,7 +134,7 @@ public sealed partial class FloorBufferSystem : EntitySystem
 
             var moving = GetMovingEntity(uid);
             if (!TryComp<PhysicsComponent>(moving, out var body) || body.BodyStatus == BodyStatus.InAir ||
-                body.LinearVelocity == Vector2.Zero && body.AngularVelocity == 0f)
+                (body.LinearVelocity == Vector2.Zero && body.AngularVelocity == 0f))
                 continue;
 
             var xform = Transform(moving);
@@ -163,9 +163,9 @@ public sealed partial class FloorBufferSystem : EntitySystem
                     !_solutions.TryGetSolution(target, comp.SolutionName, out var entity, out var solution))
                     continue;
 
-                var removed = _solutions.SplitSolutionWithout(entity.Value, solution.Volume * 0.05, Water);
+                var removed = _solutions.SplitSolutionWithout(entity.Value, solution.Volume * 0.05, _water);
                 if (removed.Volume > 0)
-                    _solutions.TryAddSolution(entity.Value, new Solution(Water, removed.Volume));
+                    _solutions.TryAddSolution(entity.Value, new Solution(_water, removed.Volume));
             }
         }
     }
