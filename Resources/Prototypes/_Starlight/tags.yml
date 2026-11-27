@@ -649,6 +649,9 @@
   id: MimeMask #used in the security mime mask crafting graph
 
 - type: Tag
+  id: MiningTicket
+
+- type: Tag
   id: ModularBarrel
 
 - type: Tag
@@ -772,6 +775,9 @@
 
 - type: Tag
   id: SalvageTicket
+
+- type: Tag
+  id: JobIconSalvage
 
 - type: Tag
   id: Sausage # MetamorphRecipe: FoodSausageBun
@@ -913,6 +919,9 @@
 
 - type: Tag
   id: Xeno
+
+- type: Tag
+  id: XenoBorgCrusher
 
 - type: Tag
   id: XenoEmotes

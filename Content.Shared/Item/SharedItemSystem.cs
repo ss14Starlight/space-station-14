@@ -228,22 +228,7 @@ public abstract partial class SharedItemSystem : EntitySystem
     }
 
     public void GetAdjustedItemShape(List<Box2i> adjustedShapes, Entity<ItemComponent?> entity, Angle rotation, Vector2i position)
-    {
-        var shapes = GetItemShape(entity);
-        var boundingShape = shapes.GetBoundingBox();
-        var boundingCenter = ((Box2) boundingShape).Center;
-        var matty = Matrix3Helpers.CreateTransform(boundingCenter, rotation);
-        var drift = boundingShape.BottomLeft - matty.TransformBox(boundingShape).BottomLeft;
-
-        foreach (var shape in shapes)
-        {
-            var transformed = matty.TransformBox(shape).Translated(drift);
-            var floored = new Box2i(transformed.BottomLeft.Floored(), transformed.TopRight.Floored());
-            var translated = floored.Translated(position);
-
-            adjustedShapes.Add(translated);
-        }
-    }
+        => GetAdjustedItemShape(adjustedShapes, GetItemShape(entity), rotation, position); // Starlight-edit: moved to an overload taking any shape
 
     /// <summary>
     /// Used to update the Item component on item toggle (specifically size).

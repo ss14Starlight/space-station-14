@@ -4,6 +4,7 @@ using Content.Server.Body.Components;
 using Content.Server.Chat.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
 using Content.Shared.Chat;
 using Content.Shared.Chemistry.Components;
@@ -48,6 +49,7 @@ public sealed partial class RespiratorSystem : EntitySystem
     [Dependency] private MetabolizerSystem _metabolizerSystem = default!;
 
     private static readonly ProtoId<MetabolismStagePrototype> RespirationStage = new("Respiration");
+    private const float SleepingBreathNeedMultiplier = 1f / 3f;
 
     public override void Initialize()
     {
@@ -71,6 +73,9 @@ public sealed partial class RespiratorSystem : EntitySystem
         ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.AdjustedUpdateInterval;
     }
 
+    private float GetBreathNeedMultiplier(EntityUid uid) =>
+        HasComp<SleepingComponent>(uid) ? SleepingBreathNeedMultiplier : 1f;
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -86,7 +91,8 @@ public sealed partial class RespiratorSystem : EntitySystem
             if (_mobState.IsDead(uid))
                 continue;
 
-            UpdateSaturation(uid, -(float)respirator.UpdateInterval.TotalSeconds, respirator);
+            var breathNeedMultiplier = GetBreathNeedMultiplier(uid);
+            UpdateSaturation(uid, -(float)respirator.UpdateInterval.TotalSeconds * breathNeedMultiplier, respirator);
 
             if (!(_mobState.IsIncapacitated(uid) || _mobState.IsSoftCritical(uid) // cannot breathe in crit.
                 || HasComp<HeldBreathComponent>(uid) // Starlight Edit - hold your breath
@@ -151,7 +157,7 @@ public sealed partial class RespiratorSystem : EntitySystem
         if (ev.Gas is null)
             return;
 
-        var gas = ev.Gas.RemoveVolume(entity.Comp.BreathVolume);
+        var gas = ev.Gas.RemoveVolume(entity.Comp.BreathVolume * GetBreathNeedMultiplier(entity.Owner));
 
         var inhaleEv = new InhaledGasEvent(gas);
         RaiseLocalEvent(entity, ref inhaleEv);

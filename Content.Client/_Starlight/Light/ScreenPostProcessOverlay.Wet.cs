@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Maps;
+using Content.Shared.Tag;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Map;
@@ -20,6 +21,9 @@ public sealed partial class ScreenPostProcessOverlay
 
     private ShaderInstance? _wetTileShaderInst;
     private ShaderInstance? _wetSpriteShaderInst;
+    private TagSystem? _tags;
+
+    private static readonly ProtoId<TagPrototype> _carpetTag = "Carpet";
 
     private List<Entity<MapGridComponent>> _wetGrids = [];
     private readonly HashSet<Entity<PuddleComponent>> _puddles = [];
@@ -111,7 +115,7 @@ public sealed partial class ScreenPostProcessOverlay
             while (tiles.MoveNext(out var tileRef))
             {
                 if (_tileDefs[tileRef.Tile.TypeId] is not ContentTileDefinition { Shine: > 0f } def
-                    || HasWall(grid, tileRef.GridIndices))
+                    || HidesFloor(grid, tileRef.GridIndices))
                     continue;
 
                 var bounds = _lookup.GetLocalBounds(tileRef, grid.Comp.TileSize);
@@ -139,14 +143,18 @@ public sealed partial class ScreenPostProcessOverlay
     }
 
     /// <summary>
-    /// Whether a wall or another solid occluder stands on the tile, so its floor can't be seen.
+    /// Whether a wall, another solid occluder or a carpet covers the tile, so its polished floor can't be seen.
     /// </summary>
-    private bool HasWall(Entity<MapGridComponent> grid, Vector2i indices)
+    private bool HidesFloor(Entity<MapGridComponent> grid, Vector2i indices)
     {
+        _tags ??= _entMan.System<TagSystem>();
         var anchored = _map.GetAnchoredEntities(grid.Owner, grid.Comp, indices);
         while (anchored.MoveNext(out var uid))
         {
             if (_entMan.TryGetComponent<OccluderComponent>(uid, out var occluder) && occluder.Enabled)
+                return true;
+
+            if (_tags.HasTag(uid.Value, _carpetTag))
                 return true;
         }
 

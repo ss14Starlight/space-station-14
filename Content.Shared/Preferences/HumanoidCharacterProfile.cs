@@ -249,13 +249,27 @@ namespace Content.Shared.Preferences
             var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
             var random = IoCManager.Resolve<IRobustRandom>();
 
-            var species = random.Pick(prototypeManager
+            // Starlight-begin: some species should be more common than others for randomness
+
+            var speciesList = prototypeManager
                 .EnumeratePrototypes<SpeciesPrototype>()
                 .Where(x => ignoredSpecies == null ? x.RoundStart : x.RoundStart && !ignoredSpecies.Contains(x.ID))
-                .ToArray()
-            ).ID;
+                .ToArray();
+            var totalWeight = speciesList.Sum(x => x.Weight);
+            var randomPick = random.NextDouble() * totalWeight;
+            var rollingWeight = 0d;
+            var speciesIndex = 0;
 
-            return RandomWithSpecies(species);
+            SpeciesPrototype species;
+            do
+            {
+                rollingWeight += speciesList[speciesIndex].Weight;
+                species = speciesList[speciesIndex++];
+            } while (randomPick >= rollingWeight && speciesIndex < speciesList.Length);
+
+            // Starlight-end
+
+            return RandomWithSpecies(species.ID);
         }
 
         public static HumanoidCharacterProfile RandomWithSpecies(string? species = null)

@@ -1,7 +1,7 @@
 - type: quickPhrase
   id: BaseQuestionPhrase
   parent: BaseCommonPhrase
-  group: Question
+  group: aac-group-question #Starlight: Make group names localization friendly
   abstract: true
 
 - type: quickPhrase

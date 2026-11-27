@@ -20,6 +20,16 @@
     - !type:BuyerAccessCondition
 
 - type: listing
+  id: VendorSalvageITGResourceReclaimer
+  productEntity: ITGResourceReclaimer
+  cost:
+    SalvageTicket: 400
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorSalvageMechClarke
   productEntity: MechClarke
   cost:
@@ -192,6 +202,30 @@
 - type: listing
   id: VendorSalvageSalvageEncryptionKey
   productEntity: EncryptionKeyExpedition
+  cost:
+    SalvageTicket: 25
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSalvageTracker
+  productEntity: ITGTrackerImplanter
+  cost:
+    SalvageTicket: 25
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSalvageMindShield
+  productEntity: ITGMindShieldImplanter
   cost:
     SalvageTicket: 25
   categories:

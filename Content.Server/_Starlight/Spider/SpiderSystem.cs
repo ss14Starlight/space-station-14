@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared._Starlight.Spider.Events;
+using Content.Shared.Maps;
 using Content.Shared.Spider;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Containers;
@@ -12,7 +13,7 @@ namespace Content.Server.Spider;
 public sealed partial class SpiderSystem
 {
 
-    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private TurfSystem _turf = default!;
     [Dependency] private SharedContainerSystem _container = default!;
 
     [SubscribeLocalEvent]
@@ -61,7 +62,7 @@ public sealed partial class SpiderSystem
     {
         web = null;
         _webs.Clear();
-        _webs.UnionWith(_lookup.GetEntitiesIntersecting(coords));
+        _turf.GetEntitiesInTile(coords, _webs, LookupFlags.StaticSundries);
         foreach (var entity in _webs)
         {
             if (TryComp<SpiderWebObjectComponent>(entity, out var webObj))

@@ -1,0 +1,72 @@
+# Lockable Buttons
+- type: entity
+  parent: LockableButton
+  id: LockableButtonSyndicateAgent
+  suffix: SyndicateAgent
+  components:
+  - type: AccessReader
+    access: [["SyndicateAgent"]]
+
+- type: entity
+  parent: LockableButton
+  id: LockableButtonNukeop
+  suffix: Nukeop
+  components:
+  - type: AccessReader
+    access: [["NuclearOperative"]]
+
+- type: entity
+  parent: LockableButton
+  id: LockableButtonXenoborg
+  suffix: Xenoborg
+  components:
+  - type: AccessReader
+    access: [["Xenoborg"]]
+
+- type: entity
+  parent: LockableButton
+  id: LockableButtonBlackstar
+  suffix: Blackstar
+  components:
+  - type: AccessReader
+    access: [["Blackstar"]]
+
+- type: entity
+  parent: LockableButton
+  id: LockableButtonVisitor
+  suffix: Visitor
+  components:
+  - type: AccessReader
+    access: [["Visitor"]]
+
+- type: entity
+  parent: LockableButton
+  id: LockableButtonCommunist
+  suffix: Communist
+  components:
+  - type: AccessReader
+    access: [["Communist"]]
+
+- type: entity
+  parent: LockableButton
+  id: LockableButtonSolgov
+  suffix: Solgov
+  components:
+  - type: AccessReader
+    access: [["Solgov"]]
+
+- type: entity
+  parent: LockableButton
+  id: LockableButtonFreelance
+  suffix: Freelance
+  components:
+  - type: AccessReader
+    access: [["Freelance"]]
+
+- type: entity
+  parent: LockableButton
+  id: LockableButtonWizard
+  suffix: Wizard
+  components:
+  - type: AccessReader
+    access: [["Wizard"]]
