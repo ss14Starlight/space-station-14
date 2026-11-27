@@ -39,6 +39,7 @@ using Content.Shared.Stunnable;
 using Robust.Shared.Network;
 using Content.Shared.NPC.Systems;
 using Content.Shared._Starlight.Achievement;
+using Content.Shared.Cloning.Events;
 
 namespace Content.Shared._Starlight.Shadekin;
 
@@ -105,6 +106,11 @@ public abstract partial class SharedShadekinSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnDamageChanged(Entity<ShadekinComponent> _, ref BeforeDamageChangedEvent args)
         => args.Damage.DamageDict["Asphyxiation"] = 0;
+
+    // Shadekins has no DNA, They cannot be cloned.
+    [SubscribeLocalEvent]
+    private void OnCloningAttempt(Entity<ShadekinComponent> ent, ref CloningAttemptEvent args)
+        => args.Cancelled = true;
 
     [SubscribeLocalEvent]
     private void OnShutdown(Entity<ShadekinComponent> ent, ref ComponentShutdown _)
