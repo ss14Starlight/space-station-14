@@ -86,18 +86,6 @@ public sealed partial class LimbSystem : SharedLimbSystem
         RaiseLimbAttachedEvent(body, limb);
     }
 
-    private HandLocation GetHandLocation(Entity<BodyPartComponent> hand)
-    {
-        var symmetry = hand.Comp.Symmetry;
-
-        if (_body.GetParentPartAndSlotOrNull(hand) is { } parent
-            && TryComp<BodyPartComponent>(parent.Parent, out var parentPart)
-            && parentPart.Symmetry != BodyPartSymmetry.None)
-            symmetry = parentPart.Symmetry;
-
-        return symmetry == BodyPartSymmetry.Left ? HandLocation.Left : HandLocation.Right;
-    }
-
     private void EnsureLimbChildSlots(Entity<BodyPartComponent> limb)
     {
         if (limb.Comp.Children.Keys.Count != 0)
@@ -149,7 +137,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
 
                     foreach (var containedEnt in child.ContainedEntities)
                     {
-                        if (TryComp(containedEnt, out OrganComponent? _))if (TryComp(containedEnt, out TransformComponent? transform) && TryComp(containedEnt, out MetaDataComponent? metaData))
+                        if (TryComp(containedEnt, out OrganComponent? _))if (TryComp(containedEnt, out TransformComponent? _) && TryComp(containedEnt, out MetaDataComponent? _))
                         {
                             var ev = new SurgeryOrganExtracted(body, limb, containedEnt, body);
                             RaiseLocalEvent(containedEnt, ref ev);

@@ -1,5 +1,7 @@
-﻿using Content.Shared.Body.Part;
+﻿using Content.Shared._Starlight.Medical.Body.Part;
+using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -9,15 +11,9 @@ public abstract partial class SharedLimbSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypes = default!;
     [Dependency] private SharedContainerSystem _containers = default!;
+    [Dependency] private SharedBodySystem _body = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<WithAttachedBodyPartsComponent, MapInitEvent>(OnWithAttachedBodyPartsMapInit);
-
-    }
-
+    [SubscribeLocalEvent]
     private void OnWithAttachedBodyPartsMapInit(Entity<WithAttachedBodyPartsComponent> ent, ref MapInitEvent args)
     {
         foreach (var partProtoId in ent.Comp.Parts)
@@ -28,6 +24,18 @@ public abstract partial class SharedLimbSystem : EntitySystem
             _containers.EnsureContainer<ContainerSlot>(ent, slotId);
             _ = SpawnInContainerOrDrop(prototype.ID, ent, slotId);
         }
+    }
+
+    protected HandLocation GetHandLocation(Entity<BodyPartComponent> hand)
+    {
+        var symmetry = hand.Comp.Symmetry;
+
+        if (_body.GetParentPartAndSlotOrNull(hand) is { } parent
+            && TryComp<BodyPartComponent>(parent.Parent, out var parentPart)
+            && parentPart.Symmetry != BodyPartSymmetry.None)
+            symmetry = parentPart.Symmetry;
+
+        return symmetry == BodyPartSymmetry.Left ? HandLocation.Left : HandLocation.Right;
     }
 
     public void RaiseLimbAttachedEvent(Entity<HumanoidAppearanceComponent> body, Entity<BodyPartComponent> limb)
