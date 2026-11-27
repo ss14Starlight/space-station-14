@@ -126,6 +126,15 @@
   - SecurityRedNeckTie
 
 - type: !PartialOnly loadoutGroup
+  id: SecurityOuterClothing
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+    - SecurityBomber
+    - WindbreakerSecurity
+    - WinterSecPlate
+
+- type: !PartialOnly loadoutGroup
   id: RoboticistNeck
   loadouts:
   - BlueTieGeneric

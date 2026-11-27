@@ -1562,8 +1562,6 @@
 - type: loadoutGroup
   id: SecurityOuterClothing
   name: loadout-group-security-outerclothing
-  minLimit: 0 # starlight
-  defaultSelected: 1 # starlight
   loadouts:
   - ArmorVest
   - ArmorVestSlim
@@ -1571,8 +1569,6 @@
   - ArmorVestStab
   - ArmorVestHeatAbsorb
   - SecurityOfficerWintercoat
-  - SecurityBomber #Starlight
-  - WindbreakerSecurity #Starlight
 
 - type: loadoutGroup
   id: SecurityShoes

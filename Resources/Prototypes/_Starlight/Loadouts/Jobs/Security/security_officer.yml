@@ -245,6 +245,11 @@
   equipment:
     outerClothing: ClothingOuterWindbreakerSecurity
 
+- type: loadout
+  id: WinterSecPlate
+  equipment:
+    outerClothing: ClothingOuterWinterSecPlate
+
 # Eyewear
 - type: loadout
   id: SecurityGlasses
