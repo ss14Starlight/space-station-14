@@ -48,11 +48,11 @@ station-goal-paper-rewards = [bold]Reward:[/bold] {$departmentReward} cr per dep
 ## Goals
 
 station-goal-food-supply-name = Rations for the NT division
-station-goal-food-supply-description = A Nanotrasen division is passing through the sector and needs proper food. Cook a varied menu and ship it through cargo.
+station-goal-food-supply-description = A NanoTrasen division is passing through the sector and needs proper food. Cook a varied menu and ship it through cargo.
 station-goal-food-supply-objective = Ship {$kinds} different dishes, {$amount} of each
 
 station-goal-exotic-harvest-name = Exotic harvest
-station-goal-exotic-harvest-description = Central Command is cataloguing plant species. Grow and mutate as many different plants as you can and ship them through cargo.
+station-goal-exotic-harvest-description = Central Command is cataloging plant species. Grow and mutate as many different plants as you can and ship them through cargo.
 station-goal-exotic-harvest-objective = Ship {$kinds} different kinds of produce, {$amount} of each
 
 station-goal-artifact-shipment-name = Artifact survey
@@ -64,12 +64,12 @@ station-goal-bsh-description = Central Command wants a large bluespace yield. Pu
 station-goal-bsh-objective-danger = Keep the bluespace harvester at level 7 or higher for {$target} seconds in total
 station-goal-bsh-objective-points = Harvest {$target} bluespace points
 
-station-goal-bsa-name = Bluespace Artillery
-station-goal-bsa-description = Build the bluespace artillery and prove it works on the Nanotrasen test range.
+station-goal-bsa-name = Bluespace artillery
+station-goal-bsa-description = Build bluespace artillery and prove it works on the NanoTrasen test range.
 station-goal-bsa-instructions = Research Bluespace Artillery, then print generator, fusor, bore and control console boards. Build three machines in one row with the generator at the back, fusor in the middle and bore at the front, inside a powered room at least 11 by 3 tiles. Point bore at space: the shot wrecks everything in front of it. Run a high voltage cable under the fusor. Link fusor to the generator, bore and control console with a multitool, then press Assemble on console. Pick test range as target, let cannon charge and fire.
 station-goal-bsa-objective = Destroy the Nanotrasen artillery test range
 
-station-goal-meteor-shield-name = Meteor Shield
+station-goal-meteor-shield-name = Meteor shield
 station-goal-meteor-shield-description = Central Command is tired of patching holes. Set up a ring of defence satellites that shoots down meteors before they reach the hull.
 station-goal-meteor-shield-instructions = Cargo can now order meteor shield satellites and control console board. Build console, drag satellites out into open space around the station and switch them on, by hand or from the console. Each satellite covers 14 tiles and needs a clear line of sight, so spread them out until the console shows enough hull coverage.
 station-goal-meteor-shield-objective = Reach {$target}% meteor shield coverage of the station hull
