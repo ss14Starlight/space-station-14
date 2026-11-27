@@ -1,8 +1,12 @@
+# Notice: All prototypes in this file are deprecated. Don't edit.
+
+
 # Antags
 - type: entity
   parent: SalvageHumanCorpse
   id: MobRandomSyndicateCorpse
   suffix: Dead, Syndicate
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -12,6 +16,7 @@
   parent: SalvageHumanCorpse
   id: MobRandomNukieCorpse
   suffix: Dead, Nukie
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -21,6 +26,7 @@
   parent: SalvageHumanCorpse
   id: MobRandomSovietCorpse
   suffix: Dead, Soviet
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -30,6 +36,7 @@
   parent: SalvageHumanCorpse
   id: MobRandomMercenaryCorpse
   suffix: Dead, Mercenary
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -39,6 +46,7 @@
   parent: SalvageHumanCorpse
   id: MobRandomPirateCorpse
   suffix: Dead, Pirate
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:

@@ -1,5 +1,6 @@
 - type: parallax
   id: Violet
+  starlightColor: "#615174"
   layers:
     - texture:
         !type:ImageParallaxTextureSource
