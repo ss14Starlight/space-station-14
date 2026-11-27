@@ -1,0 +1,38 @@
+﻿{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "copyright": "Made by DocMoth for https://github.com/ss14Starlight/space-station-14"
+    },
+    {
+      "name": "base",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ],
+      "copyright": "Made by DocMoth for https://github.com/ss14Starlight/space-station-14"
+    },
+    {
+      "name": "closed",
+      "copyright": "Made by DocMoth for https://github.com/ss14Starlight/space-station-14"
+    },
+    {
+      "name": "open",
+      "copyright": "Made by DocMoth for https://github.com/ss14Starlight/space-station-14"
+    }
+  ]
+}

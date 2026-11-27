@@ -6,9 +6,10 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyCommand
-      - EncryptionKeyCommon
-      - EncryptionKeySecurity
+        - EncryptionKeyNTNC
+        - EncryptionKeyCommand
+        - EncryptionKeyCommon
+        - EncryptionKeySecurity
   - type: Sprite
     sprite: _Starlight/Admeme/Clothing/Ears/Headsets/ntnc.rsi
   - type: Clothing

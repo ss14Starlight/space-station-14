@@ -2,83 +2,83 @@
 
 - type: colorGrade
   id: GradeMaintenance
-  tint: "#f2f4e8"
-  shadows: "#030500"
-  saturation: 0.8
+  tint: "#f8faf4"
+  shadows: "#020200"
+  saturation: 0.9
 
 - type: colorGrade
   id: GradeMedical
-  tint: "#e6f2ff"
-  shadows: "#00040a"
-  saturation: 0.85
+  tint: "#f2f8ff"
+  shadows: "#000205"
+  saturation: 0.925
 
 - type: colorGrade
   id: GradeVirology
-  tint: "#eaffee"
-  shadows: "#000600"
-  saturation: 0.85
+  tint: "#f4fff6"
+  shadows: "#000300"
+  saturation: 0.925
 
 - type: colorGrade
   id: GradeEngineering
-  tint: "#fff3e2"
-  shadows: "#060300"
-  contrast: 1.06
-
-- type: colorGrade
-  id: GradeScience
-  tint: "#f8f0ff"
-  shadows: "#040008"
-
-- type: colorGrade
-  id: GradeSecurity
-  tint: "#f6f2f4"
-  saturation: 0.85
+  tint: "#fff9f0"
+  shadows: "#030200"
   contrast: 1.03
 
 - type: colorGrade
+  id: GradeScience
+  tint: "#fcf8ff"
+  shadows: "#020004"
+
+- type: colorGrade
+  id: GradeSecurity
+  tint: "#faf8fa"
+  saturation: 0.925
+  contrast: 1.015
+
+- type: colorGrade
   id: GradeDetective
-  tint: "#f2eadc"
-  saturation: 0.6
-  contrast: 1.04
+  tint: "#f8f4ee"
+  saturation: 0.8
+  contrast: 1.02
 
 - type: colorGrade
   id: GradeCargo
-  tint: "#fff6e8"
-  saturation: 0.95
+  tint: "#fffaf4"
+  saturation: 0.975
 
 - type: colorGrade
   id: GradeWarm
-  tint: "#fff3e4"
-  saturation: 1.08
+  tint: "#fff9f2"
+  saturation: 1.04
 
 - type: colorGrade
   id: GradeBar
-  tint: "#ffeedd"
-  shadows: "#080300"
-  saturation: 1.12
+  tint: "#fff6ee"
+  shadows: "#040200"
+  saturation: 1.06
 
 - type: colorGrade
   id: GradeDormitory
-  tint: "#fff1e0"
-  saturation: 1.05
+  tint: "#fff8f0"
+  saturation: 1.025
 
 - type: colorGrade
   id: GradeChapel
-  tint: "#fff0dc"
-  shadows: "#050200"
-  saturation: 0.8
+  tint: "#fff8ee"
+  shadows: "#020100"
+  saturation: 0.9
 
 - type: colorGrade
   id: GradeSolars
-  tint: "#e8f0ff"
-  shadows: "#000208"
-  saturation: 0.7
+  tint: "#f4f8ff"
+  shadows: "#000104"
+  saturation: 0.85
 
 - type: colorGrade
   id: GradeCommand
-  tint: "#fffaf0"
-  saturation: 1.08
-  contrast: 1.04
+  tint: "#fffcf8"
+  saturation: 1.04
+  contrast: 1.02
 
 # Alert levels
 

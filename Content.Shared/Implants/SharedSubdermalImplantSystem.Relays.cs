@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Radio;
 using Content.Shared.Chat;
 using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Implants.Components;
@@ -17,6 +18,7 @@ public abstract partial class SharedSubdermalImplantSystem
         SubscribeLocalEvent<ImplantedComponent, TransformSpeakerNameEvent>(RelayToImplantEvent);
         SubscribeLocalEvent<ImplantedComponent, TransformSpeechEvent>(RelayToImplantEvent);
         SubscribeLocalEvent<ImplantedComponent, SeeIdentityAttemptEvent>(RelayToImplantEvent);
+        SubscribeLocalEvent<ImplantedComponent, GetRadioJobIconEvent>(RelayToImplantEvent); // Starlight-edit
 
         // Ref relays, so implants can write back into the event.
         SubscribeLocalEvent<ImplantedComponent, CurrencyInsertAttemptEvent>(RefRelayToImplantEvent);

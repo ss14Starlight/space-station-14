@@ -1,5 +1,6 @@
 - type: parallax
   id: PrismStation
+  starlightColor: "#b7faff"
   layers:
     - texture:
         !type:ImageParallaxTextureSource
