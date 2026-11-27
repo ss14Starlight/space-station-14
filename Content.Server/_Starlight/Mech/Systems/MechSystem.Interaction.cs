@@ -30,7 +30,7 @@ public sealed partial class MechSystem
     [Dependency] private SharedPopupSystem _mechPopup = default!;
     [Dependency] private SharedWiresSystem _mechWires = default!;
 
-    private static readonly ProtoId<ToolQualityPrototype> PryingQuality = "Prying";
+    private static readonly ProtoId<ToolQualityPrototype> _pryingQuality = "Prying";
 
     protected override void OperatorChanged(Entity<MechComponent> mech, ref VehicleOperatorSetEvent args)
     {
@@ -47,7 +47,7 @@ public sealed partial class MechSystem
     [SubscribeLocalEvent]
     private void OnInteractUsing(Entity<MechComponent> ent, ref InteractUsingEvent args)
     {
-        if (args.Handled || TryComp<WiresPanelComponent>(ent, out var panel) && !panel.Open)
+        if (args.Handled || (TryComp<WiresPanelComponent>(ent, out var panel) && !panel.Open))
             return;
 
         if (ent.Comp.BatterySlot.ContainedEntity == null && TryComp<BatteryComponent>(args.Used, out var battery) &&
@@ -63,7 +63,7 @@ public sealed partial class MechSystem
             args.Handled = ent.Comp.GasTankSlot.ContainedEntity == args.Used;
             return;
         }
-        if (!_toolSystem.HasQuality(args.Used, PryingQuality))
+        if (!_toolSystem.HasQuality(args.Used, _pryingQuality))
             return;
 
         SimpleDoAfterEvent removal;

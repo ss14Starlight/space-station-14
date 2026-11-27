@@ -98,17 +98,12 @@ public abstract partial class SharedMechSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnDestruction(EntityUid uid, MechComponent component, DestructionEventArgs args)
-    {
-        BreakMech(uid, component);
-    }
+    private void OnDestruction(EntityUid uid, MechComponent component, DestructionEventArgs args) => BreakMech(uid, component);
 
     [SubscribeLocalEvent]
-    private void OnEntityStorageDump(Entity<MechComponent> entity, ref EntityStorageIntoContainerAttemptEvent args)
-    {
+    private void OnEntityStorageDump(Entity<MechComponent> entity, ref EntityStorageIntoContainerAttemptEvent args) =>
         // There's no reason we should dump into /any/ of the mech's containers.
         args.Cancelled = true;
-    }
 
     private void SetupUser(EntityUid mech, EntityUid pilot, MechComponent? component = null)
     {
@@ -256,8 +251,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (component.CurrentSelectedEquipment == toRemove)
             CycleEquipment(uid, component);
 
-        if (equipmentComponent != null) // Starlight: clear ownership after module cleanup.
-            equipmentComponent.EquipmentOwner = null;
+        equipmentComponent?.EquipmentOwner = null;
 
         _container.Remove(toRemove, component.EquipmentContainer);
         UpdateUserInterface(uid, component);
