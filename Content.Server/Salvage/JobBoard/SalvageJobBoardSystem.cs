@@ -32,22 +32,20 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
     [Dependency] private RadioSystem _radio = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private UserInterfaceSystem _ui = default!;
-    // Starlight-start
+    #region Starlight
     [Dependency] private StackSystem _stack = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
-    // Starlight-end
 
-    /// <summary>
-    /// Radio channel that unlock messages are broadcast on.
-    /// </summary>
-    private static readonly ProtoId<RadioChannelPrototype> UnlockChannel = "Supply";
-
-    #region Starlight
     /// <summary>
     /// Prototype for the stack that is spawned when a salvage job is completed.
     /// </summary>
     private static readonly ProtoId<StackPrototype> TicketStackPrototype = "SalvageTicket";
     #endregion
+
+    /// <summary>
+    /// Radio channel that unlock messages are broadcast on.
+    /// </summary>
+    private static readonly ProtoId<RadioChannelPrototype> UnlockChannel = "Expedition"; // Starlight edit - Station/Salvage split
 
     /// <inheritdoc/>
     public override void Initialize()
