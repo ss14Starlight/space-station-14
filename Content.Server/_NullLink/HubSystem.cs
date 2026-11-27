@@ -47,8 +47,9 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
     private readonly List<ICommonSession> _toRemove = [];
     private bool _processingResubscribe = false;
 
+    private readonly object _filterLock = new();
     private ConcurrentDictionary<string, NLServer> _allServers = [];
-    private ConcurrentDictionary<string, NullLink.Server> _serverData = [];
+    private readonly ConcurrentDictionary<string, NullLink.Server> _serverData = [];
     private ConcurrentDictionary<string, NullLink.ServerInfo> _serverInfoData = [];
     private readonly ConcurrentQueue<NullLink.UpdateEvent> _updateEvents = [];
 
@@ -101,11 +102,14 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
         if (_lastResubscribe == null)
         {
             var serverData = await hub.GetAndSubscribe(serverObjectReference!);
-            _allServers = new(serverData);
-            RefilterServers();
-
             var serverInfoData = await hub.GetAndSubscribe(serverInfoObjectReference!);
-            _serverInfoData = new(serverInfoData.Select(x => KeyValuePair.Create(x.Key, Map(x.Value))));
+
+            lock (_filterLock)
+            {
+                _allServers = new(serverData);
+                _serverInfoData = new(serverInfoData.Select(x => KeyValuePair.Create(x.Key, Map(x.Value))));
+                RefilterServers();
+            }
         }
         else
         {
@@ -145,13 +149,19 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
     private void OnSubscribe(NullLink.Subscribe _, EntitySessionEventArgs args)
     {
         _subscriptions[args.SenderSession] = _timing.RealTime;
-        RaiseNetworkEvent(new NullLink.ServerData
+
+        NullLink.ServerData snapshot;
+        lock (_filterLock)
         {
-            Servers = _serverData.ToDictionary(x => x.Key, x => x.Value),
-            ServerInfo = _serverInfoData
-                .Where(x => _serverData.ContainsKey(x.Key))
-                .ToDictionary(x => x.Key, x => x.Value)
-        }, args.SenderSession);
+            snapshot = new NullLink.ServerData
+            {
+                Servers = _serverData.ToDictionary(x => x.Key, x => x.Value),
+                ServerInfo = _serverInfoData
+                    .Where(x => _serverData.ContainsKey(x.Key))
+                    .ToDictionary(x => x.Key, x => x.Value)
+            };
+        }
+        RaiseNetworkEvent(snapshot, args.SenderSession);
         SendRequirements(args.SenderSession);
     }
 
@@ -165,26 +175,18 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
 
     public Task Updated(string key, NLServer value)
     {
-        _allServers[key] = value;
-
-        if (!IsVisible(value))
+        lock (_filterLock)
         {
-            if (_serverData.TryRemove(key, out _))
-                _updateEvents.Enqueue(new NullLink.RemoveServer { Key = key });
-            return Task.CompletedTask;
+            _allServers[key] = value;
+
+            if (!IsVisible(value))
+            {
+                Hide(key);
+                return Task.CompletedTask;
+            }
+
+            Show(key, Map(value));
         }
-
-        var wasVisible = _serverData.ContainsKey(key);
-        _serverData[key] = Map(value);
-        _updateEvents.Enqueue(new NullLink.AddOrUpdateServer
-        {
-            Key = key,
-            Server = Map(value)
-        });
-
-        if (!wasVisible && _serverInfoData.TryGetValue(key, out var info))
-            _updateEvents.Enqueue(new NullLink.AddOrUpdateServerInfo { Key = key, ServerInfo = info });
-
         return Task.CompletedTask;
     }
 
@@ -192,33 +194,65 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
         => !server.IsAdultOnly || _isAdultOnly == true;
 
     private void RefilterServers()
-        => _serverData = new(_allServers
-            .Where(x => IsVisible(x.Value))
-            .Select(x => KeyValuePair.Create(x.Key, Map(x.Value))));
+    {
+        lock (_filterLock)
+        {
+            foreach (var key in _serverData.Keys)
+                if (!_allServers.TryGetValue(key, out var server) || !IsVisible(server))
+                    Hide(key);
+
+            foreach (var (key, server) in _allServers)
+                if (IsVisible(server))
+                    Show(key, Map(server));
+        }
+    }
+
+    private void Show(string key, NullLink.Server server)
+    {
+        var wasVisible = _serverData.TryGetValue(key, out var old);
+        if (wasVisible && old == server)
+            return;
+
+        _serverData[key] = server;
+        _updateEvents.Enqueue(new NullLink.AddOrUpdateServer { Key = key, Server = server });
+
+        if (!wasVisible && _serverInfoData.TryGetValue(key, out var info))
+            _updateEvents.Enqueue(new NullLink.AddOrUpdateServerInfo { Key = key, ServerInfo = info });
+    }
+
+    private void Hide(string key)
+    {
+        if (_serverData.TryRemove(key, out _))
+            _updateEvents.Enqueue(new NullLink.RemoveServer { Key = key });
+    }
 
     public Task Remove(string key)
     {
-        _allServers.TryRemove(key, out _);
-        _serverData.TryRemove(key, out _);
-        _serverInfoData.TryRemove(key, out _);
-        _updateEvents.Enqueue(new NullLink.RemoveServer
+        lock (_filterLock)
         {
-            Key = key
-        });
+            _allServers.TryRemove(key, out _);
+            _serverData.TryRemove(key, out _);
+            _serverInfoData.TryRemove(key, out _);
+            _updateEvents.Enqueue(new NullLink.RemoveServer
+            {
+                Key = key
+            });
+        }
         return Task.CompletedTask;
     }
 
     public Task Updated(string key, NLServerInfo value)
     {
-        _serverInfoData.AddOrUpdate(key, Map(value), (k, v) => Map(value));
-        if (!_serverData.ContainsKey(key))
-            return Task.CompletedTask;
-
-        _updateEvents.Enqueue(new NullLink.AddOrUpdateServerInfo
+        lock (_filterLock)
         {
-            Key = key,
-            ServerInfo = Map(value)
-        });
+            _serverInfoData[key] = Map(value);
+            if (_serverData.ContainsKey(key))
+                _updateEvents.Enqueue(new NullLink.AddOrUpdateServerInfo
+                {
+                    Key = key,
+                    ServerInfo = Map(value)
+                });
+        }
         return Task.CompletedTask;
     }
 
