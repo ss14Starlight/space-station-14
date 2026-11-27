@@ -94,6 +94,9 @@
       types:
         Blunt: 15
   - type: StatusEffectContainer
+  - type: ContainerContainer
+    containers:
+      status-effects: !type:Container { showEnts: true, occludes: false }
   - type: VehicleMods
     vehicleType: Gas
     equipmentSlots: [tires, engine, headlight, lightbar]
