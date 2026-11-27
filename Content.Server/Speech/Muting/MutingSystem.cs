@@ -26,9 +26,19 @@ namespace Content.Server.Speech.Muting
             // Starlight START
             // Remove when WizDen finally migrates mute status effect to StatusEffectNew
             SubscribeLocalEvent<MutedComponent, StatusEffectAppliedEvent>((_, _, ref args) => EnsureComp<MutedComponent>(args.Target));
-            SubscribeLocalEvent<MutedComponent, StatusEffectRemovedEvent>((_, _, ref args) => RemComp<MutedComponent>(args.Target));
+            SubscribeLocalEvent<MutedComponent, StatusEffectRemovedEvent>(OnStatusEffectRemoved);
             // Starlight END
         }
+
+        // Starlight START
+        private void OnStatusEffectRemoved(Entity<MutedComponent> ent, ref StatusEffectRemovedEvent args)
+        {
+            if (TryComp<MimePowersComponent>(args.Target, out var mime) && !mime.VowBroken)
+                return;
+
+            RemComp<MutedComponent>(args.Target);
+        }
+        // Starlight END
 
         private void OnEmote(EntityUid uid, MutedComponent component, ref EmoteEvent args)
         {
