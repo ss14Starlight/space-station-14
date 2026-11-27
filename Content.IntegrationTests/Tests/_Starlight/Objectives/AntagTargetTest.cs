@@ -22,39 +22,56 @@ public sealed class AntagTargetTest : GameTest
 {
     public override PoolSettings PoolSettings => new() { Connected = false, Dirty = true };
 
+    private static readonly string[] _sourceArray = new[]
+    {
+        "MobMonkeyPunpun", "MobKoboldKiki", "MobMonkeyStirStir", "MobCorgiSmart", "MobK9",
+        "MobCorgiSmartNoGalcom", // The marker is inherited by descendants.
+    };
+    private static readonly string[] _sourceArray2 = new[]
+    {
+        "KillRandomPersonObjective", "KillRandomHeadObjective", "TeachRandomPersonObjective",
+        "TeachRandomHeadObjective", "RandomTraitorAliveObjective", "RandomTraitorProgressObjective",
+    };
+    private static readonly string[] _assertion = new[]
+    {
+        "KillRandomPersonObjective", "KillRandomHeadObjective", "TeachRandomPersonObjective",
+        "TeachRandomHeadObjective", "RandomTraitorAliveObjective", "RandomTraitorProgressObjective",
+        "ChangelingKillRandomPersonObjective", "ChangelingTeachRandomPersonObjective",
+        "VampireKillRandomPersonObjective",
+    };
+
     [Test]
     public async Task ObjectivePoolsIncludeEligibleAnimalsButExcludeDeadUnoccupiedAndUnmarkedCritters()
-        => await Server.WaitAssertion(() =>
+        => await Server.WaitAssertion((Action)(() =>
         {
             var minds = Server.System<MindSystem>();
             var targetSys = Server.System<TargetSystem>();
             Entity<MindComponent> Character(string prototype)
             {
                 var mind = minds.CreateMind(null);
-                minds.TransferTo(mind, SEntMan.SpawnEntity(prototype, MapCoordinates.Nullspace));
+                minds.TransferTo(mind, SEntMan.Spawn(prototype, MapCoordinates.Nullspace));
                 return mind;
             }
 
-            var eligible = new[]
-            {
-                "MobMonkeyPunpun", "MobKoboldKiki", "MobMonkeyStirStir", "MobCorgiSmart", "MobK9",
-                "MobCorgiSmartNoGalcom", // The marker is inherited by descendants.
-            }.Select(Character).ToArray();
+            var eligible = Enumerable.Select(_sourceArray, Character).ToArray();
             foreach (var character in eligible)
                 Assert.That(SEntMan.HasComponent<AntagTargetComponent>(character.Comp.OwnedEntity), Is.True);
 
             var human = Character("MobHuman");
             var mouse = Character("MobMouse");
             var mothroach = Character("MobMothroach");
-            SEntMan.SpawnEntity("MobCorgiSmart", MapCoordinates.Nullspace); // No mind: not a player target.
+            SEntMan.Spawn("MobCorgiSmart", MapCoordinates.Nullspace); // No mind: not a player target.
 
-            foreach (MindPool source in new MindPool[] { new AliveHumansPool(), new WeightedAlivePool() })
+            foreach (var source in new MindPool[] { new AliveHumansPool(), new WeightedAlivePool() })
             {
                 var pool = new HashSet<Entity<MindComponent>>();
                 source.FindMinds(pool, null, SEntMan, targetSys);
-                Assert.That(pool.Select(mind => mind.Owner),
-                    Is.EquivalentTo(eligible.Select(mind => mind.Owner).Append(human.Owner)));
-                Assert.That(pool, Does.Not.Contain(mouse).And.Not.Contain(mothroach));
+                using (Assert.EnterMultipleScope())
+                {
+                    Assert.That(pool.Select(mind => mind.Owner),
+                                    Is.EquivalentTo(eligible.Select(mind => mind.Owner).Append(human.Owner)));
+                    Assert.That(pool, Does.Not.Contain(mouse).And.Not.Contain(mothroach));
+                }
 
                 pool.Clear();
                 source.FindMinds(pool, eligible[0], SEntMan, targetSys);
@@ -74,18 +91,18 @@ public sealed class AntagTargetTest : GameTest
             var living = new HashSet<Entity<MindComponent>>();
             new WeightedAlivePool().FindMinds(living, null, SEntMan, targetSys);
             Assert.That(living, Does.Not.Contain(eligible[0]), "Dead animals cannot become new targets.");
-        });
+        }));
 
     [Test]
     public async Task KillHelpAndLessonFiltersAllowEligibleAnimalsAndStillHonorTargetImmunity()
-        => await Server.WaitAssertion(() =>
+        => await Server.WaitAssertion((Action)(() =>
         {
             var minds = Server.System<MindSystem>();
             var targetSys = Server.System<TargetSystem>();
             Entity<MindComponent> Traitor(string prototype)
             {
                 var mind = minds.CreateMind(null);
-                minds.TransferTo(mind, SEntMan.SpawnEntity(prototype, MapCoordinates.Nullspace));
+                minds.TransferTo(mind, SEntMan.Spawn(prototype, MapCoordinates.Nullspace));
                 Server.System<RoleSystem>().MindAddRole(mind, "MindRoleTraitor", silent: true);
                 return mind;
             }
@@ -93,11 +110,7 @@ public sealed class AntagTargetTest : GameTest
             var chooser = Traitor("MobHuman");
             var target = Traitor("MobCorgiSmart");
             SEntMan.AddComponent<MarkedForDeathComponent>(target.Comp.OwnedEntity!.Value);
-            var goals = new[]
-            {
-                "KillRandomPersonObjective", "KillRandomHeadObjective", "TeachRandomPersonObjective",
-                "TeachRandomHeadObjective", "RandomTraitorAliveObjective", "RandomTraitorProgressObjective",
-            }.Select(prototype => SEntMan.SpawnEntity(prototype, MapCoordinates.Nullspace)).ToArray();
+            var goals = Enumerable.Select(_sourceArray2, prototype => SEntMan.Spawn(prototype, MapCoordinates.Nullspace)).ToArray();
             foreach (var objective in goals)
             {
                 var pick = SEntMan.GetComponent<PickRandomPersonComponent>(objective);
@@ -111,7 +124,7 @@ public sealed class AntagTargetTest : GameTest
                 Assert.That(targetSys.PickFromPool(pick.Pool, pick.Filters, chooser), Is.Null,
                     "Explicit eligibility must not bypass NoObjectiveTarget or the objective's filters.");
             }
-        });
+        }));
 
     [Test]
     public async Task DifferentTargetObjectivesCannotShareTarget()
@@ -123,7 +136,7 @@ public sealed class AntagTargetTest : GameTest
             Entity<MindComponent> Traitor(string prototype)
             {
                 var mind = minds.CreateMind(null);
-                minds.TransferTo(mind, SEntMan.SpawnEntity(prototype, MapCoordinates.Nullspace));
+                minds.TransferTo(mind, SEntMan.Spawn(prototype, MapCoordinates.Nullspace));
                 Server.System<RoleSystem>().MindAddRole(mind, "MindRoleTraitor", silent: true);
                 return mind;
             }
@@ -131,23 +144,17 @@ public sealed class AntagTargetTest : GameTest
             var chooser = Traitor("MobHuman");
             var target = Traitor("MobHuman");
             SEntMan.AddComponent<MarkedForDeathComponent>(target.Comp.OwnedEntity!.Value);
-            var prototypes = new[]
-            {
-                "KillRandomPersonObjective", "KillRandomHeadObjective", "TeachRandomPersonObjective",
-                "TeachRandomHeadObjective", "RandomTraitorAliveObjective", "RandomTraitorProgressObjective",
-                "ChangelingKillRandomPersonObjective", "ChangelingTeachRandomPersonObjective",
-                "VampireKillRandomPersonObjective",
-            };
+            var prototypes = _assertion;
 
             foreach (var assignedProto in prototypes)
             {
-                var assigned = SEntMan.SpawnEntity(assignedProto, MapCoordinates.Nullspace);
+                var assigned = SEntMan.Spawn(assignedProto, MapCoordinates.Nullspace);
                 objectiveTargets.SetTarget(assigned, target.Owner);
                 chooser.Comp.Objectives.Add(assigned);
 
                 foreach (var otherProto in prototypes)
                 {
-                    var other = SEntMan.SpawnEntity(otherProto, MapCoordinates.Nullspace);
+                    var other = SEntMan.Spawn(otherProto, MapCoordinates.Nullspace);
                     var pick = SEntMan.GetComponent<PickRandomPersonComponent>(other);
                     Assert.That(targetSys.PickFromPool(pick.Pool, pick.Filters, chooser), Is.Null,
                         $"{otherProto} must not target someone already targeted by {assignedProto}.");
