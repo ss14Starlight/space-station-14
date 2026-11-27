@@ -1228,6 +1228,9 @@
   name: bluespace artillery control
   description: A computer for managing life of nearest constructions.
   components:
+  - type: GuideHelp
+    guides:
+    - BluespaceArtillery
   - type: Sprite
     sprite: _Starlight/Structures/Machines/bluespace_artillery_parts.rsi
     layers:

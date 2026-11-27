@@ -1,0 +1,55 @@
+<Document>
+  # Bluespace Artillery
+
+  Bluespace artillery it's a huge cannon that strikes any active navigation beacon, on this station or on another map. It fires a bluespace shell out of its bore, and a few seconds later a large explosion goes off at the target.
+  It's also a target of the [color=#a4885c]Bluespace Artillery[/color] station goal, but it can be built and fired without one.
+
+  <Box>
+    <GuideEntityEmbed Entity="BluespaceArtilleryGenerator" Caption="generator"/>
+    <GuideEntityEmbed Entity="BluespaceArtilleryFusor" Caption="fusor"/>
+    <GuideEntityEmbed Entity="BluespaceArtilleryBore" Caption="bore"/>
+    <GuideEntityEmbed Entity="ComputerBluespaceArtillery" Caption="control console"/>
+  </Box>
+
+  ## Getting the boards
+
+  Research [color=#a4885c]Bluespace Artillery[/color] (Experimental, tier 3, needs Bluespace Manipulation). It unlocks four boards at the circuit imprinter:
+  - [color=#a4885c]Generator[/color]: 5 manipulators, 5 bluespace crystals, 10 HV cable.
+  - [color=#a4885c]Fusor[/color]: 10 bluespace crystals, 10 plasma.
+  - [color=#a4885c]Bore[/color]: 5 manipulators, 5 bluespace crystals, 10 plasteel.
+  - [color=#a4885c]Control console[/color]: a normal computer board.
+
+  ## Picking a spot
+
+  The finished cannon is [color=#a4885c]11 by 3 tiles[/color]. It lies horizontally and shoots east or west.
+  - Every tile of that area needs floor, with nothing solid anchored on it except the three parts. Clear out walls, tables and machines first.
+  - The bore end points the way the cannon fires. The shell flies about 5 tiles out of the bore and damages everything in its path, so aim the bore at space or an empty corridor without any humanoid in it(any humanoid or structure will be annihilated).
+  - Run an [color=orange]HV cable[/color] under the fusor. While charging, the cannon draws up to [color=orange]3 MW[/color] until it has stored 180 MJ, which takes about a minute on a strong grid.
+
+  ## Assembly
+
+  1. Build the three machines in [color=#a4885c]one horizontal row[/color] with the fusor in the middle: generator on one side, bore on the other. They do not need to touch, but they must share the same row and be anchored.
+  2. Build the control console anywhere nearby but not in 11x3 area because it will be counted as anchored machine.
+  3. With a [color=#a4885c]multitool[/color], link the fusor to the generator, the bore and the control console.
+  4. Open the console and press [color=#a4885c]Assemble artillery[/color]. The parts merge into the cannon.
+
+  A console that lost its link finds an assembled cannon within 15 tiles when opened.
+
+  ## Firing
+
+  1. Pick a target from the list on the left. Targets are grouped by grid or map. Every enabled navigation beacon shows up, and so does the test range while the goal is active.
+  2. Picking a target starts charging. You can also start and stop charging by hand.
+  3. When the bar is full, press [color=red]FIRE[/color], then [color=red]Confirm fire[/color].
+
+  After a shot the cannon needs [color=#a4885c]5 minutes[/color] to recalibrate before it can charge again.
+
+  ## Rules and limits
+
+  - Central Command cannot be targeted, and shells that land there do not explode.
+  - If the target moves before the shell lands, the explosion follows it, as long as the target still exists.
+
+  ## The station goal
+
+  When command picks the Bluespace Artillery goal, Central Command sets up a small test range on its own map. Ships cannot fly there, but it appears in the target list under [color=#a4885c]Test ranges[/color].
+  Destroy it with one shot to complete the goal.
+</Document>

@@ -5,6 +5,9 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: GuideHelp
+    guides:
+    - BluespaceArtillery
   - type: Sprite
     sprite: _Starlight/Structures/Machines/bluespace_artillery_parts.rsi
   - type: Damageable
@@ -78,6 +81,9 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: GuideHelp
+    guides:
+    - BluespaceArtillery
   - type: Transform
     anchored: true
   - type: Clickable

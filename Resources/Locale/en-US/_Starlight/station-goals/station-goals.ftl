@@ -49,7 +49,7 @@ station-goal-paper-rewards = [bold]Reward:[/bold] {$departmentReward} cr per dep
 
 station-goal-food-supply-name = Rations for the NT division
 station-goal-food-supply-description = A NanoTrasen division is passing through the sector and needs proper food. Cook a varied menu and ship it through cargo.
-station-goal-food-supply-objective = Ship {$kinds} different dishes, {$amount} of each
+station-goal-food-supply-objective = Ship {$kinds} different whole dishes, {$amount} of each. Slices do not count
 
 station-goal-exotic-harvest-name = Exotic harvest
 station-goal-exotic-harvest-description = Central Command is cataloging plant species. Grow and mutate as many different plants as you can and ship them through cargo.
