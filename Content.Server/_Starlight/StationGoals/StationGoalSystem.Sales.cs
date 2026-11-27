@@ -2,8 +2,10 @@ using System.Linq;
 using Content.Server.Cargo.Systems;
 using Content.Shared._Starlight.StationGoals;
 using Content.Shared.Stacks;
+using Content.Shared.Tools.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.StationGoals;
 
@@ -11,7 +13,44 @@ public sealed partial class StationGoalSystem
 {
     [Dependency] private EntityWhitelistSystem _whitelist = default!;
 
+    [Dependency] private IComponentFactory _factory = default!;
+
     private readonly List<EntityUid> _soldItems = new();
+
+    private HashSet<string>? _foodPieces;
+
+    [SubscribeLocalEvent]
+    private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
+    {
+        if (args.WasModified<EntityPrototype>())
+            _foodPieces = null;
+    }
+
+    private bool IsFoodPiece(EntityUid uid)
+    {
+        if (MetaData(uid).EntityPrototype?.ID is not { } id)
+            return false;
+
+        if (_foodPieces == null)
+        {
+            _foodPieces = new HashSet<string>();
+            foreach (var proto in _proto.EnumeratePrototypes<EntityPrototype>())
+            {
+                if (proto.Abstract
+                    || !proto.Components.ContainsKey("Edible")
+                    || !proto.TryGetComponent<ToolRefinableComponent>(out var refinable, _factory))
+                    continue;
+
+                foreach (var entry in refinable.RefineResult)
+                {
+                    if (entry.PrototypeId is { } piece)
+                        _foodPieces.Add(piece);
+                }
+            }
+        }
+
+        return _foodPieces.Contains(id);
+    }
 
     [SubscribeLocalEvent]
     private void OnEntitySold(ref EntitySoldEvent args)
@@ -59,7 +98,9 @@ public sealed partial class StationGoalSystem
         var changed = false;
         foreach (var item in _soldItems)
         {
-            if (!_whitelist.IsValid(sell.Whitelist, item) || _whitelist.IsWhitelistPass(sell.Blacklist, item))
+            if (!_whitelist.IsValid(sell.Whitelist, item)
+                || _whitelist.IsWhitelistPass(sell.Blacklist, item)
+                || IsFoodPiece(item))
                 continue;
 
             var units = TryComp<StackComponent>(item, out var stack) ? stack.Count : 1;

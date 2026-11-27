@@ -209,7 +209,7 @@
     prototype: RemoteControlConsole
 
 - type: entity
-  parent: BaseComputerCircuitboard
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
   id: StationGoalsComputerCircuitboard
   name: station goals console board
   description: A computer printed circuit board for a station goals console.

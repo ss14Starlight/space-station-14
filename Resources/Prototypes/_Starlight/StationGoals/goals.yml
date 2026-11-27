@@ -62,8 +62,8 @@
     sprite: _Starlight/Structures/Power/bluespace_harvester.rsi
     state: stage3
   departments: [ Engineering, Science, Security ]
-  departmentReward: 7500
-  personalReward: 400
+  departmentReward: 25000
+  personalReward: 1500
   timeLimit: 120m
   objectives:
   - !type:CounterGoalObjective
@@ -84,8 +84,8 @@
     sprite: _Starlight/Structures/Machines/bluespace_artillery_parts.rsi
     state: fusor
   departments: [ Cargo, Science, Engineering ]
-  departmentReward: 10000
-  personalReward: 500
+  departmentReward: 30000
+  personalReward: 2000
   timeLimit: 120m
   objectives:
   - !type:CounterGoalObjective
@@ -101,8 +101,8 @@
     sprite: _Starlight/Structures/Machines/meteor_shield_satellite.rsi
     state: active
   departments: [ Engineering, Cargo ]
-  departmentReward: 7500
-  personalReward: 400
+  departmentReward: 12500
+  personalReward: 750
   timeLimit: 120m
   cargoMarkets: [ StationGoalMeteorShield ]
   objectives:

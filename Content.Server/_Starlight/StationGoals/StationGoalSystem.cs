@@ -39,7 +39,7 @@ public sealed partial class StationGoalSystem : EntitySystem
     [Dependency] private SharedJobSystem _jobs = default!;
     [Dependency] private MobStateSystem _mobState = default!;
 
-    private static readonly Color _announcementColor = Color.FromHex("#4fb3ff");
+    private static readonly Color _announcementColor = Color.FromHex("#2ed15a");
 
     public override void Initialize()
     {
