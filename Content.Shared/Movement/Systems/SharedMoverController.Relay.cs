@@ -21,26 +21,15 @@ public abstract partial class SharedMoverController
         SubscribeLocalEvent<InputMoverComponent, CanMoveUpdatedEvent>(OnInputMoverCanMoveUpdated);
     }
 
-    private void OnAfterRelayTargetState(Entity<MovementRelayTargetComponent> entity, ref AfterAutoHandleStateEvent args)
-    {
-        PhysicsSystem.UpdateIsPredicted(entity.Owner);
-    }
+    private void OnAfterRelayTargetState(Entity<MovementRelayTargetComponent> entity, ref AfterAutoHandleStateEvent args) => PhysicsSystem.UpdateIsPredicted(entity.Owner);
 
-    private void OnAfterRelayState(Entity<RelayInputMoverComponent> entity, ref AfterAutoHandleStateEvent args)
-    {
-        PhysicsSystem.UpdateIsPredicted(entity.Owner);
-    }
+    private void OnAfterRelayState(Entity<RelayInputMoverComponent> entity, ref AfterAutoHandleStateEvent args) => PhysicsSystem.UpdateIsPredicted(entity.Owner);
 
-    private void OnRelayCanMoveUpdated(Entity<RelayInputMoverComponent> ent, ref CanMoveUpdatedEvent args)
-    {
+    private void OnRelayCanMoveUpdated(Entity<RelayInputMoverComponent> ent, ref CanMoveUpdatedEvent args) =>
         // Relay can-move state to the active mover target, not just the source
         RaiseLocalEvent(ent.Comp.RelayEntity, ref args);
-    }
 
-    protected virtual void OnInputMoverCanMoveUpdated(Entity<InputMoverComponent> ent, ref CanMoveUpdatedEvent args)
-    {
-        UpdateMoverStatus((ent, ent.Comp));
-    }
+    protected virtual void OnInputMoverCanMoveUpdated(Entity<InputMoverComponent> ent, ref CanMoveUpdatedEvent args) => UpdateMoverStatus((ent, ent.Comp));
 
     /// <summary>
     ///     Sets the relay entity and marks the component as dirty. This only exists because people have previously

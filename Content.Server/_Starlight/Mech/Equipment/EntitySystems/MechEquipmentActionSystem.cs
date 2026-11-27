@@ -9,7 +9,7 @@ namespace Content.Server._Starlight.Mech.Equipment.EntitySystems;
 /// <summary>
 /// System for handling of actions provided by MechEquipmentActionComponent
 /// </summary>
-public sealed class MechEquipmentActionSystem : SharedMechEquipmentActionSystem
+public sealed partial class MechEquipmentActionSystem : SharedMechEquipmentActionSystem
 {
     [Dependency] private VehicleSystem _vehicle = default!;
 

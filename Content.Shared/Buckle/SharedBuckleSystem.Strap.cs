@@ -45,10 +45,7 @@ public abstract partial class SharedBuckleSystem
     }
 
     [SubscribeLocalEvent]
-    private void OnStrapTerminating(Entity<StrapComponent> ent, ref EntityTerminatingEvent args)
-    {
-        StrapRemoveAll(ent);
-    }
+    private void OnStrapTerminating(Entity<StrapComponent> ent, ref EntityTerminatingEvent args) => StrapRemoveAll(ent);
 
     [SubscribeLocalEvent]
     private void OnStrapContainerGettingInsertedAttempt(Entity<StrapComponent> ent, ref ContainerGettingInsertedAttemptEvent args)

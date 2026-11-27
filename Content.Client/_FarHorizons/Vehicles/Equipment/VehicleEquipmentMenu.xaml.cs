@@ -21,7 +21,7 @@ namespace Content.Client._FarHorizons.Vehicles.Equipment;
 [GenerateTypedNameReferences]
 public sealed partial class VehicleEquipmentMenu : FancyWindow
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
     private readonly SharedSolutionContainerSystem _solution;
     private readonly SharedContainerSystem _container;
     private readonly SharedBatterySystem _battery;

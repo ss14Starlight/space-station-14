@@ -42,8 +42,8 @@ public sealed partial class FloorBufferSystem : EntitySystem
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private VehicleSystem _vehicles = default!;
     [Dependency] private INetManager _net = default!;
-    private static readonly ProtoId<ReagentPrototype> Water = "Water";
-    private static readonly FixedPoint2 BufferWaterDraw = 1;
+    private static readonly ProtoId<ReagentPrototype> _water = "Water";
+    private static readonly FixedPoint2 _bufferWaterDraw = 1;
 
     [SubscribeLocalEvent]
     private void OnGetActions(EntityUid owner, FloorBufferComponent component, GetItemActionsEvent args)
@@ -108,7 +108,7 @@ public sealed partial class FloorBufferSystem : EntitySystem
         if (!ent.Comp.Enabled || !HasComp<VehicleIgnitionComponent>(ent))
             return;
 
-        var combinedDrain = args.DrainAmount + BufferWaterDraw;
+        var combinedDrain = args.DrainAmount + _bufferWaterDraw;
         if (args.AvailableVolume < combinedDrain)
         {
             SetEnabled(ent, false, GetMovingEntity(ent));
@@ -123,7 +123,7 @@ public sealed partial class FloorBufferSystem : EntitySystem
         if (!TryComp<VehicleIgnitionComponent>(ent, out var ignition))
             return _reagents.HasDrawReagent(ent.Owner);
 
-        return ignition.Started && _reagents.HasDrawReagent(ent.Owner, BufferWaterDraw);
+        return ignition.Started && _reagents.HasDrawReagent(ent.Owner, _bufferWaterDraw);
     }
 
     private EntityUid GetMovingEntity(EntityUid buffer)
@@ -185,7 +185,7 @@ public sealed partial class FloorBufferSystem : EntitySystem
 
             var moving = GetMovingEntity(uid);
             if (!TryComp<PhysicsComponent>(moving, out var body) || body.BodyStatus == BodyStatus.InAir ||
-                body.LinearVelocity == Vector2.Zero && body.AngularVelocity == 0f)
+                (body.LinearVelocity == Vector2.Zero && body.AngularVelocity == 0f))
                 continue;
 
             var xform = Transform(moving);
@@ -214,9 +214,9 @@ public sealed partial class FloorBufferSystem : EntitySystem
                     !_solutions.TryGetSolution(target, comp.SolutionName, out var entity, out var solution))
                     continue;
 
-                var removed = _solutions.SplitSolutionWithout(entity.Value, solution.Volume * 0.05, Water);
+                var removed = _solutions.SplitSolutionWithout(entity.Value, solution.Volume * 0.05, _water);
                 if (removed.Volume > 0)
-                    _solutions.TryAddSolution(entity.Value, new Solution(Water, removed.Volume));
+                    _solutions.TryAddSolution(entity.Value, new Solution(_water, removed.Volume));
             }
         }
     }

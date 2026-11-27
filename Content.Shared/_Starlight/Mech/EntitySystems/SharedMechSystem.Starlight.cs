@@ -46,10 +46,7 @@ public abstract partial class SharedMechSystem
         return true;
     }
 
-    private void InitializeContainers(EntityUid uid, MechComponent comp)
-    {
-        comp.GasTankSlot = _container.EnsureContainer<ContainerSlot>(uid, MechComponent.GasTankSlotId);
-    }
+    private void InitializeContainers(EntityUid uid, MechComponent comp) => comp.GasTankSlot = _container.EnsureContainer<ContainerSlot>(uid, MechComponent.GasTankSlotId);
 
     private bool CanInstallEquipment(MechComponent comp, EntityUid equipment)
     {

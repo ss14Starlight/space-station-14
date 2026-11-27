@@ -5,8 +5,8 @@ using Robust.Client.GameObjects;
 namespace Content.Client._FarHorizons.Vehicles.Equipment;
 public sealed partial class VehicleEquipmentSystems : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<VehicleEquipmentComponent, AppearanceChangeEvent>(OnAppearanceChange);
