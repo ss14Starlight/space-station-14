@@ -78,16 +78,10 @@ public sealed partial class MechSystem : SharedMechSystem
     }
 
     [SubscribeLocalEvent]
-    private void RelayGrabberUiMessage(EntityUid uid, MechComponent component, ref MechGrabberEjectMessage args)
-    {
-        ReceiveEquipmentUiMesssages(component, args);
-    }
+    private void RelayGrabberUiMessage(EntityUid uid, MechComponent component, ref MechGrabberEjectMessage args) => ReceiveEquipmentUiMesssages(component, args);
 
     [SubscribeLocalEvent]
-    private void RelaySoundboardUiMessage(EntityUid uid, MechComponent component, ref MechSoundboardPlayMessage args)
-    {
-        ReceiveEquipmentUiMesssages(component, args);
-    }
+    private void RelaySoundboardUiMessage(EntityUid uid, MechComponent component, ref MechSoundboardPlayMessage args) => ReceiveEquipmentUiMesssages(component, args);
 
     private void ReceiveEquipmentUiMesssages<T>(MechComponent component, T args) where T : MechEquipmentUiMessage
     {
