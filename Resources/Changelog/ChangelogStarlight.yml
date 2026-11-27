@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Manor) Added a few hardhats to roboticist.
-    type: Add
-  id: 410465
-  time: '2026-11-14T22:08:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7232
-- author: Cvlancer
-  changes:
   - message: (Manor) Added a few lights around the map.
     type: Add
   id: 410466
@@ -2799,4 +2792,11 @@ Entries:
   id: 410864
   time: '2026-11-26T23:04:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7197
+- author: Rinary
+  changes:
+  - message: Added ability to change job icon in radio for voice masks.
+    type: Add
+  id: 410865
+  time: '2026-11-27T09:32:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7435
 Order: -1
