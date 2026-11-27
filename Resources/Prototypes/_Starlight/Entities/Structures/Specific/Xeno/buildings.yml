@@ -81,3 +81,5 @@
   - type: EggLayer
     eggSpawn:
     - id: MobXenoLarva
+    EggLayCooldownMin: 100
+    EggLayCooldownMax: 150

@@ -2,10 +2,10 @@
 
 - type: salvageDifficulty
   id: Hive
-  lootPrototype: "SalvageLootXenosEasy"
-  lootBudget: 15
+  lootPrototype: "SalvageLootHiveXeno"
+  lootBudget: 40
   mobBudget: 199
   modifierBudget: 3
-  color: "#9FED5896"
+  color: "#DE3A3A96"
   recommendedPlayers: 6
   probability: 20

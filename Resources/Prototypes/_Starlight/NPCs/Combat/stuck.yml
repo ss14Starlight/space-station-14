@@ -1,0 +1,84 @@
+# break barricade (non-anchored objects).
+- type: utilityQuery
+  id: NearbyBarricades
+  query:
+    - !type:ComponentQuery
+      components:
+        - type: Pullable
+        - type: Damageable
+        - type: Destructible
+    - !type:ComponentFilter
+      components:
+        - type: MobState
+      retainWithComp: false
+    - !type:RemoveAnchoredFilter
+  considerations:
+    - !type:TargetBlockingCon
+      range: 1.5
+      minDot: 0
+      curve: !type:BoolCurve
+    - !type:TargetAccessibleCon
+      curve: !type:BoolCurve
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+ 
+# Chasing a target but not getting anywhere, with a loose object in the way: hit the object.
+- type: htnCompound
+  id: BreakBarricadeCompound
+  branches:
+    - preconditions:
+        - !type:KeyExistsPrecondition
+          key: Target
+        - !type:SteeringStuckPrecondition
+          MaxSpeed: 1
+        - !type:BuckledPrecondition
+          isBuckled: false
+        - !type:PulledPrecondition
+          isPulled: false
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyBarricades
+            key: BarricadeTarget
+            keyCoordinates: BarricadeCoordinates
+        - !type:HTNPrimitiveTask
+          operator: !type:MeleeOperator
+            targetKey: BarricadeTarget
+
+# Chasing a target but not getting anywhere, with a loose object in the way: move the object.
+- type: htnCompound
+  id: MoveBarricadeCompound
+  branches:
+    - preconditions:
+        - !type:KeyExistsPrecondition
+          key: Target
+        - !type:SteeringStuckPrecondition
+        - !type:BuckledPrecondition
+          isBuckled: false
+        - !type:PulledPrecondition
+          isPulled: false
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyBarricades
+            key: BarricadeTarget
+            keyCoordinates: BarricadeCoordinates
+        - !type:HTNPrimitiveTask
+          operator: !type:PullTargetOperator
+            targetKey: BarricadeTarget
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            targetKey: TargetCoordinates
+            pathfindKey: TargetPathfind
+        - !type:HTNPrimitiveTask
+          operator: !type:StopPullingOperator
+ 
+# Add ABOVE MeleeCombatCompound:
+#
+#    - tasks:
+#        - !type:HTNCompoundTask
+#          task: BreakBarricadeCompound
+#    - tasks:
+#        - !type:HTNCompoundTask
+#          task: MeleeCombatCompound

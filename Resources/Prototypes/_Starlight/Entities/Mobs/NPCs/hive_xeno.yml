@@ -80,7 +80,7 @@
     damage:
       types:
         Slash: 18
-        Structural: 15
+        Structural: 25
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -89,6 +89,8 @@
     rootTask:
       task: XenoRootCompound
     blackboard:
+      NavClimb: !type:Bool
+        true
       NavSmash: !type:Bool
         true
       NavInteract: !type:Bool
@@ -96,7 +98,7 @@
       NavPry: !type:Bool
         true
       VisionRadius: !type:Single
-        20
+        18
       AggroVisionRadius: !type:Single
         12
   - type: Sprite
@@ -111,17 +113,6 @@
         Base: alive
       Dead:
         Base: dead
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.25
-        density: 50
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
   - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
@@ -146,13 +137,33 @@
     damage:
       types:
         Slash: 10
-        Structural: 15
+        Structural: 25
   - type: StaminaDamageOnHit
     damage: 25
   - type: Stealth
     minVisibility: 0.1
     lastVisibility: 0.1
     shimmerFrequency: 0.05
+
+- type: entity
+  parent: MobXenoHunter
+  id: MobHiveXenoDrone
+  name: xenonid drone
+  components:
+  - type: MeleeWeapon
+    attackRate: 1
+    altDisarm: true
+    angle: 0
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_spitacid.ogg
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 8
+        Caustic: 5
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 3.5
+    baseWalkSpeed: 3
 
 - type: entity
   parent: HiveXeno
@@ -253,8 +264,8 @@
 
 - type: entity
   parent: HiveXeno
-  id: MobXenoLarva
-  name: Xeno larva
+  id: MobXenoLarvaRoyal
+  name: empress larva
   description: A helpless creature, dont let it grow up...
   components:
   - type: HTN
@@ -285,7 +296,30 @@
         Base: dead
   - type: DoAfter
   - type: LarvaFeed
-    feedTime: 25
+    feedTime: 15
+    distanceThreshold: 2
+    breakOnDamage: true
+    breakOnMove: true
+    targetStates:
+      - Critical
+    rotAfter: 1200 #seconds
+    growInto: MobXenoEmpress
+    deleteSelf: true
+    startPopup: larva-feed-start
+    damage:
+      types:
+        Piercing: 50
+        Cellular: 50
+    damageIgnoreResistances: true
+
+- type: entity
+  parent: MobXenoLarvaRoyal
+  id: MobXenoLarva
+  name: xeno larva
+  description: A helpless creature, dont let it grow up...
+  components:
+  - type: LarvaFeed
+    feedTime: 10
     distanceThreshold: 2
     breakOnDamage: true
     breakOnMove: true
@@ -300,26 +334,10 @@
         Piercing: 50
         Cellular: 50
     damageIgnoreResistances: false
-
-- type: entity
-  parent: MobXenoLarva
-  id: MobXenoLarvaRoyal
-  name: royal xeno larva
-  description: A helpless creature, dont let it grow up...
-  components:
-  - type: LarvaFeed
-    feedTime: 35
-    distanceThreshold: 2
-    breakOnDamage: true
-    breakOnMove: true
-    targetStates:
-      - Critical
-    rotAfter: 1200 #seconds
-    growInto: MobXenoEmpress
-    deleteSelf: true
-    startPopup: larva-feed-start
-    damage:
-      types:
-        Piercing: 50
-        Cellular: 50
-    damageIgnoreResistances: false
+  - type: TimedSpawner
+    intervalSeconds: 100
+    despawnWhenDone: true
+    requiredState: Alive
+    allowContainerPlacement: true
+    prototypes: 
+    - MobHiveXenoDrone

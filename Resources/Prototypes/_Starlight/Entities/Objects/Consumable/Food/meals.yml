@@ -424,3 +424,7 @@
             Quantity: 50
     - type: StaticPrice
       price: 20000
+    - type: Tag
+      tags:
+        - Meat
+        - XenoOmelette

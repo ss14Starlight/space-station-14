@@ -24,3 +24,22 @@ public sealed partial class TargetInFactionCon : UtilityConsideration
 public sealed partial class TargetInCombatModeCon : UtilityConsideration
 {
 }
+
+/// <summary>
+/// 1 if the candidate lies close to the NPC and roughly between it and its current "Target",
+/// i.e. it could be what is blocking the way. Otherwise 0.
+/// Needs a "Target" entity on the blackboard, and scores 0 without one.
+/// </summary>
+public sealed partial class TargetBlockingCon : UtilityConsideration
+{
+    /// <summary>How close to the NPC the candidate has to be, in tiles.</summary>
+    [DataField("range")]
+    public float Range = 1.5f;
+ 
+    /// <summary>
+    /// How closely the candidate must lie in the direction of the target.
+    /// 1 = dead ahead only, 0 = anywhere in the front half, -1 = no restriction.
+    /// </summary>
+    [DataField("minDot")]
+    public float MinDot = 0.7f;
+}

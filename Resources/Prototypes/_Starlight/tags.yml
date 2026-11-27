@@ -933,6 +933,9 @@
   id: XenoNest
 
 - type: Tag
+  id: XenoOmelette
+
+- type: Tag
   id: XenosDisasterSurvivorTraitBackground
 
 - type: Tag

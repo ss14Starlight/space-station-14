@@ -40,6 +40,9 @@
           prob: 0.2
         - proto: PKAUpgradeFireRateExp
           cost: 3
+        - proto: ClothingOuterHardsuitMercenary
+          cost: 3
+          prob: 0.5
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
@@ -118,6 +121,9 @@
         - proto: WeaponPistolViperWorn
           cost: 6
           prob: 0.5
+        - proto: ClothingOuterHardsuitMercenary
+          cost: 3
+          prob: 0.75
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
@@ -223,6 +229,8 @@
           prob: 0.5
         - proto: CrateITGArmamentSurplus
           cost: 20
+        - proto: ClothingOuterHardsuitMercenary
+          cost: 3
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity

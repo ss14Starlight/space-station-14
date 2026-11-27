@@ -14,6 +14,7 @@ bounty-item-cloning = Cloning Circuit Board
 bounty-item-dragon = Dragon Meat
 bounty-item-reactor = Expedition Mech Reactors
 bounty-item-akms = AKMS
+bounty-item-xenos = Hive Xeno Corpses
 
 bounty-item-cotton-cake = Cotton cake
 bounty-item-cotton-bread = Cotton bread

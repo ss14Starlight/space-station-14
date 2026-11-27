@@ -1,0 +1,69 @@
+- type: utilityQuery
+  id: NearbyXenosInFight
+  query:
+    - !type:ComponentQuery
+      components:
+        - type: NpcFactionMember
+        - type: Damageable
+        - type: MobState
+  considerations:
+    - !type:TargetInFactionCon
+      faction: Xeno
+      curve: !type:BoolCurve
+    - !type:TargetIsAliveCon
+      curve: !type:BoolCurve
+    - !type:TargetInCombatModeCon
+      curve: !type:BoolCurve
+    - !type:TargetHealthCon
+      curve: !type:QuadraticCurve
+        slope: -1
+        exponent: 1
+        yOffset: 1
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+
+- type: utilityQuery
+  id: NearbyCritTargets
+  query:
+    - !type:NearbyHostilesQuery
+  considerations:
+    - !type:TargetIsCritCon
+      curve: !type:BoolCurve
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+    - !type:TargetAccessibleCon
+      curve: !type:BoolCurve
+
+#Healer
+- type: utilityQuery
+  id: NearbyInjectableXenos
+  query:
+    - !type:ComponentQuery
+      components:
+        - type: NpcFactionMember
+        - type: InjectableSolution
+        - type: Damageable
+        - type: MobState
+    - !type:ComponentFilter
+      components:
+        - type: NPCRecentlyInjected
+      retainWithComp: false
+  considerations:
+    - !type:TargetInFactionCon
+      faction: Xeno
+      curve: !type:BoolCurve
+    - !type:TargetIsAliveCon
+      curve: !type:BoolCurve
+    - !type:TargetHealthCon
+      curve: !type:QuadraticCurve
+        slope: -1000
+        exponent: 1
+        xOffset: 0.999
+        yOffset: 0
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+    - !type:TargetAccessibleCon
+      curve: !type:BoolCurve
