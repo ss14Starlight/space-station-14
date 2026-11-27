@@ -8,6 +8,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Rejuvenate;
 using Content.Shared._Starlight.Tiredness.Components;
 using Robust.Shared.Containers;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
 // ReSharper disable CheckNamespace
@@ -26,6 +27,7 @@ public abstract partial class SharedTirednessSystem : EntitySystem
     [Dependency] private AlertsSystem _alerts = default!;
     [Dependency] private ActionContainerSystem _actionContainers = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private INetManager _net = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private SharedContainerSystem _containers = default!;
@@ -205,6 +207,9 @@ public abstract partial class SharedTirednessSystem : EntitySystem
         {
             return;
         }
+
+        if (_net.IsClient && !IsClientSide(uid))
+            return;
 
         var oldAction = component.SleepAction;
         if (!_actions.AddAction(uid, ref component.SleepAction, SleepingSystem.SleepActionId, uid))

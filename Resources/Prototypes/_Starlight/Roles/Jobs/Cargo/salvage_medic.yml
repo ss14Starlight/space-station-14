@@ -32,6 +32,7 @@
   id: SalvageMedicGear
   equipment:
     ears: ClothingHeadsetSalvageLead
+    pocket1: ITGResourceReclaimer
 
 - type: chameleonOutfit
   id: SalvageMedicChameleonOutfit

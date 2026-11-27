@@ -87,6 +87,7 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
     private readonly List<Box2> _movingSpriteBounds = [];
     private readonly ShaderInstance _albedoShaderInst;
     private readonly GridStencilSystem.TileStencilPredicate _isStationTile;
+    private readonly GridStencilSystem.TileStencilPredicate _isSolidFloor;
 
     private readonly CVarSubscriptions _cvars;
     private float _brightness;
@@ -126,6 +127,7 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
         _maskShaderInst = _proto.Index(_maskShader).InstanceUnique();
         _albedoShaderInst = _proto.Index(_albedoShader).InstanceUnique();
         _isStationTile = IsStationTile;
+        _isSolidFloor = IsSolidFloor;
 
         _cvars = new CVarSubscriptions(_cfg);
         _cvars.Track(StarlightCCVars.ScreenBrightness, v => _brightness = Math.Clamp(v, MinBrightness, MaxBrightness));
@@ -228,6 +230,10 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
         _shaderInst.SetParameter("worldOrigin", bottomLeft);
         _shaderInst.SetParameter("worldAxisX", bottomRight - bottomLeft);
         _shaderInst.SetParameter("worldAxisY", topLeft - bottomLeft);
+        var fov = lit && eye.DrawFov && _lightManager.DrawHardFov;
+        _shaderInst.SetParameter("FOV_TEXTURE", args.Viewport.FovRenderTarget.Texture);
+        _shaderInst.SetParameter("fovEnabled", fov ? 1f : 0f);
+        _shaderInst.SetParameter("eyePosition", eye.Position.Position);
 
         var handle = args.WorldHandle;
         handle.SetTransform(Matrix3x2.Identity);
@@ -481,6 +487,14 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
         return _defaultStarlightColor;
     }
 
+    private bool IsSolidFloor(Entity<MapGridComponent> grid, TileRef tile)
+    {
+        if (tile.Tile.IsEmpty)
+            return false;
+
+        return _tileDefs[tile.Tile.TypeId] is ContentTileDefinition { MapAtmosphere: false, ShowsSpace: false };
+    }
+
     private void CutMovingSprites(DrawingHandleWorld handle)
     {
         handle.UseShader(_maskShaderInst);
@@ -516,6 +530,8 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
         _bloomShaderInst.SetParameter("LIGHT_TEXTURE", viewport.LightRenderTarget.Texture);
         _bloomShaderInst.SetParameter("targetSize", (Vector2) size);
         _bloomShaderInst.SetParameter("threshold", _bloomThreshold);
+        var solid = _gridStencil.GetTileStencil(args, "solid-floor", "solid-floor-stencil", _isSolidFloor);
+        _bloomShaderInst.SetParameter("STENCIL_TEXTURE", solid.Texture);
 
         handle.RenderInRenderTarget(target,
             (Action)(() =>

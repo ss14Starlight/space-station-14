@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: BenchComfy
+  components:
+  - type: Construction
+    graph: BenchSL
+    node: whiteComfBench

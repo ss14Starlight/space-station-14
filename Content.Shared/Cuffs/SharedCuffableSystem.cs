@@ -84,7 +84,7 @@ namespace Content.Shared.Cuffs
             SubscribeLocalEvent<CuffableComponent, PullStoppedMessage>(OnPull);
             SubscribeLocalEvent<CuffableComponent, DropAttemptEvent>(CheckAct);
             SubscribeLocalEvent<CuffableComponent, PickupAttemptEvent>(CheckAct);
-            SubscribeLocalEvent<CuffableComponent, AttackAttemptEvent>(CheckAct);
+            SubscribeLocalEvent<CuffableComponent, AttackAttemptEvent>(OnAttackAttempt); // Starlight-edit
             SubscribeLocalEvent<CuffableComponent, UseAttemptEvent>(CheckAct);
             SubscribeLocalEvent<CuffableComponent, InteractionAttemptEvent>(CheckInteract);
 

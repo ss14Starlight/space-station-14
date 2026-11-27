@@ -1,0 +1,16 @@
+- type: entity
+  parent: [DoorRemoteDefault, BaseMedTakContraband]
+  id: DoorRemoteMedTak
+  name: MedTak door remote
+  components:
+  - type: Sprite
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#cb0000"
+    - state: door_remotescreencolour
+      color: "#830000"
+  - type: Access
+    tags:
+    - MedTak
+  - type: DoorRemote

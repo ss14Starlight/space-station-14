@@ -1,9 +1,10 @@
 using Content.Shared.DisplacementMap;
 using Robust.Shared.Prototypes;
 
+// Resharper disable once CheckNamespace
 namespace Content.Shared.Humanoid.Prototypes;
 
-public sealed partial class SpeciesPrototype : IPrototype
+public sealed partial class SpeciesPrototype
 {
     /// <summary>
     /// Displacement applied to this species' base body sprites and compatible markings.
@@ -16,6 +17,12 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// </summary>
     [DataField]
     public SpeciesProfileMigration? ProfileMigration { get; private set; }
+
+    /// <summary>
+    /// The weight this species has for being picked randomly.
+    /// </summary>
+    [DataField("weight")]
+    public double Weight { get; private set; } = 0;
 }
 
 
