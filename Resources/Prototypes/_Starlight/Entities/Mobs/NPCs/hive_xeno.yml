@@ -100,7 +100,7 @@
       VisionRadius: !type:Single
         18
       AggroVisionRadius: !type:Single
-        12
+        15
   - type: Sprite
     drawdepth: Mobs
     sprite: _Starlight/Mobs/Aliens/Xenos/xenohunter.rsi
@@ -277,7 +277,7 @@
       VisionRadius: !type:Single
         20
       AggroVisionRadius: !type:Single
-        30
+        10
   - type: MobThresholds
     thresholds:
       0: Alive
