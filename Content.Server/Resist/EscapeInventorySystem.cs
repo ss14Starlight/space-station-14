@@ -111,6 +111,7 @@ public sealed partial class EscapeInventorySystem : EntitySystem
         else
         {
             _containerSystem.AttachParentToContainerOrGrid((uid, Transform(uid)));
+            DropIfTrapped(uid);
         }
         // Starlight edit end
         args.Handled = true;
