@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: CargoPalletBuy
+  components:
+  - type: HijackPoint
+
+- type: !PartialOnly entity
+  id: CargoPalletSell
+  components:
+    - type: HijackPoint

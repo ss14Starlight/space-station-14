@@ -1,4 +1,5 @@
 using Content.Shared.Alert;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
@@ -220,14 +221,15 @@ public sealed partial class ThirstSystem : EntitySystem
             thirst.NextUpdateTime += thirst.UpdateRate;
 
             //Starlight begin
+            var sleepingDrainMultiplier = HasComp<SleepingComponent>(uid) ? SleepingDecayMultiplier : 1f; // Starlight
             if (thirst.ThirstDrains.Count > 0)
             {
                 var totalDrain =
                     thirst.ThirstDrains.Aggregate<(EntityUid, float, TimeSpan?), float>(1,
                         (current, modifier) => current * modifier.Item2);
-                ModifyThirst(uid, thirst, -totalDrain * thirst.ActualDecayRate);
+                ModifyThirst(uid, thirst, -totalDrain * thirst.ActualDecayRate * sleepingDrainMultiplier); // Starlight
             }
-            else ModifyThirst(uid, thirst, -thirst.ActualDecayRate);
+            else ModifyThirst(uid, thirst, -thirst.ActualDecayRate * sleepingDrainMultiplier); // Starlight
             //Starlight end
             var calculatedThirstThreshold = GetThirstThreshold(thirst, thirst.CurrentThirst);
 

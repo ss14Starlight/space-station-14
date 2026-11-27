@@ -84,10 +84,10 @@ public abstract partial class SharedStorageSystem : EntitySystem
     [Dependency] private INetManager _net = default!;
     #endregion
 
-    private EntityQuery<ItemComponent> _itemQuery;
-    private EntityQuery<StackComponent> _stackQuery;
-    private EntityQuery<TransformComponent> _xformQuery;
-    private EntityQuery<UserInterfaceUserComponent> _userQuery;
+    [Dependency] private EntityQuery<ItemComponent> _itemQuery = default!;
+    [Dependency] private EntityQuery<StackComponent> _stackQuery = default!;
+    [Dependency] private EntityQuery<TransformComponent> _xformQuery = default!;
+    [Dependency] private EntityQuery<UserInterfaceUserComponent> _userQuery = default!;
 
     /// <summary>
     /// Whether we're allowed to go up-down storage via UI.
@@ -135,10 +135,6 @@ public abstract partial class SharedStorageSystem : EntitySystem
     {
         base.Initialize();
 
-        _itemQuery = GetEntityQuery<ItemComponent>();
-        _stackQuery = GetEntityQuery<StackComponent>();
-        _xformQuery = GetEntityQuery<TransformComponent>();
-        _userQuery = GetEntityQuery<UserInterfaceUserComponent>();
         _prototype.PrototypesReloaded += OnPrototypesReloaded;
 
         Subs.CVar(_cfg, CCVars.StorageLimit, OnStorageLimitChanged, true);
@@ -199,12 +195,7 @@ public abstract partial class SharedStorageSystem : EntitySystem
             return;
         }
 
-        UpdateOccupied((container.Owner, storage));
-
-        if (!ItemFitsInGridLocation((itemEnt.Owner, itemEnt.Comp), (container.Owner, storage), loc))
-        {
-            ContainerSystem.Remove(itemEnt.Owner, container, force: true);
-        }
+        RelocateResizedItem(itemEnt, container, storage, loc); // Starlight-edit
     }
 
     private void OnNestedStorageCvar(bool obj)

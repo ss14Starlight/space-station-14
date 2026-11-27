@@ -1,0 +1,22 @@
+                         [head=3]NT-CC Consortium Services[/head]
+
+                [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+────────────────────────────────────────
+⠀⠀                  [bold]SHUTTLE REGISTRATION FORM[/bold]
+────────────────────────────────────────
+    Date and Time: [datetime]
+Document Compiler: [signature]
+
+I hereby request that the following shuttle be registered in the NanoTrasen system for identification.
+
+Shuttle size: [form]
+
+Shuttle class: [form]
+
+Construction responsible: [form]
+
+Requested name: [form]
+
+────────────────────────────────────────
+⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+

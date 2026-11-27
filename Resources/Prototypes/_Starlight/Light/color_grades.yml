@@ -1,0 +1,147 @@
+# Departments
+
+- type: colorGrade
+  id: GradeMaintenance
+  tint: "#f2f4e8"
+  shadows: "#030500"
+  saturation: 0.8
+
+- type: colorGrade
+  id: GradeMedical
+  tint: "#e6f2ff"
+  shadows: "#00040a"
+  saturation: 0.85
+
+- type: colorGrade
+  id: GradeVirology
+  tint: "#eaffee"
+  shadows: "#000600"
+  saturation: 0.85
+
+- type: colorGrade
+  id: GradeEngineering
+  tint: "#fff3e2"
+  shadows: "#060300"
+  contrast: 1.06
+
+- type: colorGrade
+  id: GradeScience
+  tint: "#f8f0ff"
+  shadows: "#040008"
+
+- type: colorGrade
+  id: GradeSecurity
+  tint: "#f6f2f4"
+  saturation: 0.85
+  contrast: 1.03
+
+- type: colorGrade
+  id: GradeDetective
+  tint: "#f2eadc"
+  saturation: 0.6
+  contrast: 1.04
+
+- type: colorGrade
+  id: GradeCargo
+  tint: "#fff6e8"
+  saturation: 0.95
+
+- type: colorGrade
+  id: GradeWarm
+  tint: "#fff3e4"
+  saturation: 1.08
+
+- type: colorGrade
+  id: GradeBar
+  tint: "#ffeedd"
+  shadows: "#080300"
+  saturation: 1.12
+
+- type: colorGrade
+  id: GradeDormitory
+  tint: "#fff1e0"
+  saturation: 1.05
+
+- type: colorGrade
+  id: GradeChapel
+  tint: "#fff0dc"
+  shadows: "#050200"
+  saturation: 0.8
+
+- type: colorGrade
+  id: GradeSolars
+  tint: "#e8f0ff"
+  shadows: "#000208"
+  saturation: 0.7
+
+- type: colorGrade
+  id: GradeCommand
+  tint: "#fffaf0"
+  saturation: 1.08
+  contrast: 1.04
+
+# Alert levels
+
+- type: colorGrade
+  id: GradeAlertYellow
+  tint: "#fff8e0"
+  shadows: "#060400"
+
+- type: colorGrade
+  id: GradeAlertOrange
+  tint: "#fff0e0"
+  shadows: "#080300"
+
+- type: colorGrade
+  id: GradeAlertViolet
+  tint: "#f8f0ff"
+  shadows: "#050008"
+
+- type: colorGrade
+  id: GradeAlertRed
+  tint: "#fff4f4"
+  shadows: "#100000"
+  saturation: 0.9
+
+- type: colorGrade
+  id: GradeAlertGamma
+  tint: "#fff2f6"
+  shadows: "#100004"
+  saturation: 0.85
+
+- type: colorGrade
+  id: GradeAlertDelta
+  tint: "#fff0f0"
+  shadows: "#140000"
+  saturation: 0.8
+
+- type: colorGrade
+  id: GradeAlertEpsilon
+  tint: "#faf2ff"
+  shadows: "#0a0010"
+  saturation: 0.65
+
+- type: colorGrade
+  id: GradeAlertTheta
+  tint: "#fbeef4"
+  shadows: "#0c0006"
+  saturation: 0.85
+
+- type: colorGrade
+  id: GradeAlertOmega
+  tint: "#fff8e4"
+  shadows: "#0a0700"
+  saturation: 0.8
+
+- type: alertColorGrades
+  id: Default
+  levels:
+    yellow: GradeAlertYellow
+    orange: GradeAlertOrange
+    violet: GradeAlertViolet
+    red: GradeAlertRed
+    gamma: GradeAlertGamma
+    delta: GradeAlertDelta
+    epsilon: GradeAlertEpsilon
+    theta: GradeAlertTheta
+    omega: GradeAlertOmega

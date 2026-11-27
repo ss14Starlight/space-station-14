@@ -55,6 +55,11 @@ public sealed partial class QuickConstructionBoundUserInterface : BoundUserInter
         _menu = this.CreateWindow<SimpleRadialMenu>();
         _menu.SetButtons(models);
 
+        // Starlight - start
+        if (remote)
+            _menu.OnClose += OnRemoteMenuClosed;
+        // Starlight - end
+
         // Starlight start
         if (remote && EntMan.System<RemoteControlInterface>().OpenRemoteRadialMenu(_menu))
             return;
@@ -84,11 +89,17 @@ public sealed partial class QuickConstructionBoundUserInterface : BoundUserInter
                 || !_prototypeManager.TryIndex(recipePrototypeId, out var recipePrototype))
                 continue;
 
-            var topLevelActionOption = new RadialMenuActionOption<ConstructionPrototype>(HandlePlacement, prototype)
-                {
-                    IconSpecifier = RadialMenuIconSpecifier.With(recipePrototype),
-                    ToolTip = recipePrototype.Name,
-                };
+            // Starlight - start
+            var topLevelActionOption = new RadialMenuActionOption<ConstructionPrototype>(
+                HandlePlacement,
+                prototype,
+                alternative => HandleAlternativePlacement(alternative, recipePrototype.Name))
+            {
+                KeepOpenOnAlternativePress = prototype.Type == ConstructionType.Item,
+                IconSpecifier = RadialMenuIconSpecifier.With(recipePrototype),
+                ToolTip = recipePrototype.Name,
+            };
+            // Starlight - end
             constructionButtons.Add(topLevelActionOption);
         }
 
@@ -152,7 +163,7 @@ public sealed partial class QuickConstructionBoundUserInterface : BoundUserInter
                 IsTile = false,
                 PlacementOption = proto.PlacementMode,
             },
-            new ConstructionPlacementHijack(constructionSystem, proto));
+            new ConstructionPlacementHijack(constructionSystem, proto, isQuickConstruction: true)); // Starlight
 
         //_menu?.Close(); //SL - I think this was trying to keep the menu open when crafting items, but the radial system calls menu.close anyway and i dont wanna edit all that
     }

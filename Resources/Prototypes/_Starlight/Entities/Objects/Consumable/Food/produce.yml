@@ -14,7 +14,87 @@
       plantId: OrganTreePlants
     - type: ToolRefinable
       refineResult:
-        - id: EffectOrganTree
+        - id: OrganHumanBrain
+          orGroup: OrganPod
+        - id: OrganHumanEyes
+          orGroup: OrganPod
+        - id: OrganHumanTongue
+          orGroup: OrganPod
+        - id: OrganHumanAppendix
+          orGroup: OrganPod
+        - id: OrganHumanEars
+          orGroup: OrganPod
+        - id: OrganHumanLungs
+          orGroup: OrganPod
+        - id: OrganHumanHeart
+          orGroup: OrganPod
+        - id: OrganHumanStomach
+          orGroup: OrganPod
+        - id: OrganHumanLiver
+          orGroup: OrganPod
+        - id: OrganHumanKidneys
+          orGroup: OrganPod
+        - id: OrganArachnidStomach
+          orGroup: OrganPod
+        - id: OrganArachnidLungs
+          orGroup: OrganPod
+        - id: OrganArachnidHeart
+          orGroup: OrganPod
+        - id: OrganArachnidLiver
+          orGroup: OrganPod
+        - id: OrganArachnidKidneys
+          orGroup: OrganPod
+        - id: OrganArachnidEyes
+          orGroup: OrganPod
+        - id: OrganArachnidTongue
+          orGroup: OrganPod
+        - id: OrganDionaBrain
+          orGroup: OrganPod
+        - id: OrganDionaEyes
+          orGroup: OrganPod
+        - id: OrganDionaStomach
+          orGroup: OrganPod
+        - id: OrganDionaLungs
+          orGroup: OrganPod
+        - id: OrganDwarfHeart
+          orGroup: OrganPod
+        - id: OrganDwarfLiver
+          orGroup: OrganPod
+        - id: OrganDwarfStomach
+          orGroup: OrganPod
+        - id: OrganMothStomach
+          orGroup: OrganPod
+        - id: OrganRatLungs
+          orGroup: OrganPod
+        - id: OrganRatStomach
+          orGroup: OrganPod
+        - id: OrganReptilianStomach
+          orGroup: OrganPod
+        - id: OrganResomiEyes
+          orGroup: OrganPod
+        - id: OrganMothEyes
+          orGroup: OrganPod
+        - id: OrganRodentiaEyes
+          orGroup: OrganPod
+        - id: OrganRodentiaStomach
+          orGroup: OrganPod
+        - id: OrganSlimeLungs
+          orGroup: OrganPod
+        - id: OrganSlimeHeart
+          orGroup: OrganPod
+        - id: OrganVoxLungs
+          orGroup: OrganPod
+        - id: OrganAnimalLungs
+          orGroup: OrganPod
+        - id: OrganAnimalStomach
+          orGroup: OrganPod
+        - id: OrganAnimalLiver
+          orGroup: OrganPod
+        - id: OrganAnimalHeart
+          orGroup: OrganPod
+        - id: OrganAnimalKidneys
+          orGroup: OrganPod
+          prob: 0.10
     - type: Solution
       id: food
       solution:

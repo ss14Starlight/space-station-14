@@ -43,9 +43,13 @@
                     <BoxContainer Orientation="Vertical" Margin="10 6" SeparationOverride="4">
                         <sui:OptionSlider Name="ScreenBrightnessSlider" Title="{Loc 'ui-options-screen-brightness'}" Description="{Loc 'ui-options-screen-brightness-desc'}" />
                         <sui:OptionSlider Name="LightBoostSlider" Title="{Loc 'ui-options-light-boost'}" Description="{Loc 'ui-options-light-boost-desc'}" />
+                        <CheckBox Name="ColorGradingCheckBox" Text="{Loc 'ui-options-color-grading'}" ToolTip="{Loc 'ui-options-color-grading-tooltip'}" />
+                        <sui:OptionSlider Name="ColorGradingStrengthSlider" Title="{Loc 'ui-options-color-grading-strength'}" Margin="16 0 0 0" />
                         <CheckBox Name="LightTonemapCheckBox" Text="{Loc 'ui-options-light-tonemap'}" ToolTip="{Loc 'ui-options-light-tonemap-tooltip'}" />
                         <CheckBox Name="GlobalIlluminationCheckBox" Text="{Loc 'ui-options-gi'}" ToolTip="{Loc 'ui-options-gi-tooltip'}" />
                         <sui:OptionSlider Name="GlobalIlluminationRaysSlider" Title="{Loc 'ui-options-gi-rays'}" Description="{Loc 'ui-options-gi-rays-desc'}" Margin="16 0 0 0" />
+                        <CheckBox Name="GlobalIlluminationStarlightCheckBox" Text="{Loc 'ui-options-gi-starlight'}" ToolTip="{Loc 'ui-options-gi-starlight-tooltip'}" Margin="16 0 0 0" />
+                        <CheckBox Name="GlobalIlluminationSurfaceColorCheckBox" Text="{Loc 'ui-options-gi-surface-color'}" ToolTip="{Loc 'ui-options-gi-surface-color-tooltip'}" Margin="16 0 0 0" />
                         <CheckBox Name="NightVisionCheckBox" Text="{Loc 'ui-options-night-vision'}" ToolTip="{Loc 'ui-options-night-vision-tooltip'}" />
                         <sui:OptionSlider Name="NightVisionStrengthSlider" Title="{Loc 'ui-options-night-vision-strength'}" Margin="16 0 0 0" />
                         <CheckBox Name="VignetteCheckBox" Text="{Loc 'ui-options-vignette'}" ToolTip="{Loc 'ui-options-vignette-tooltip'}" />
@@ -58,6 +62,14 @@
                         </BoxContainer>
                         <CheckBox Name="FilmGrainCheckBox" Text="{Loc 'ui-options-film-grain'}" ToolTip="{Loc 'ui-options-film-grain-tooltip'}" />
                         <sui:OptionSlider Name="FilmGrainStrengthSlider" Title="{Loc 'ui-options-film-grain-strength'}" Margin="16 0 0 0" />
+                        <CheckBox Name="ImpactEffectsCheckBox" Text="{Loc 'ui-options-impact-effects'}" ToolTip="{Loc 'ui-options-impact-effects-tooltip'}" />
+                        <sui:OptionSlider Name="ImpactEffectsStrengthSlider" Title="{Loc 'ui-options-impact-effects-strength'}" Margin="16 0 0 0" />
+                        <CheckBox Name="DustMotesCheckBox" Text="{Loc 'ui-options-dust-motes'}" ToolTip="{Loc 'ui-options-dust-motes-tooltip'}" />
+                        <sui:OptionSlider Name="DustMotesStrengthSlider" Title="{Loc 'ui-options-dust-motes-strength'}" Margin="16 0 0 0" />
+                        <CheckBox Name="HeatHazeCheckBox" Text="{Loc 'ui-options-heat-haze'}" ToolTip="{Loc 'ui-options-heat-haze-tooltip'}" />
+                        <sui:OptionSlider Name="HeatHazeStrengthSlider" Title="{Loc 'ui-options-heat-haze-strength'}" Margin="16 0 0 0" />
+                        <CheckBox Name="FloorGlossCheckBox" Text="{Loc 'ui-options-floor-gloss'}" ToolTip="{Loc 'ui-options-floor-gloss-tooltip'}" />
+                        <sui:OptionSlider Name="FloorGlossStrengthSlider" Title="{Loc 'ui-options-floor-gloss-strength'}" Margin="16 0 0 0" />
                     </BoxContainer>
                 </PanelContainer>
 				<!-- Starlight-end -->

@@ -650,6 +650,17 @@
 
 - type: entity
   parent: [ ClothingNeckBase ]
+  id: ClothingNeckMantlewarden
+  name: Warden's Mantle
+  description: A rough mantle stained in the blood of prisoners.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Cloaks/wardenmantle.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Cloaks/wardenmantle.rsi
+
+- type: entity
+  parent: [ ClothingNeckBase ]
   id: ClothingNeckCloakGunnerySergeant
   name: gunnery sergeant's cloak
   description: A cloak that has seen many battles, and beatings.

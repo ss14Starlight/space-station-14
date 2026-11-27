@@ -1,7 +1,7 @@
 - type: quickPhrase
   id: BaseMannerPhrase
   parent: BaseCommonPhrase
-  group: Manners
+  group: aac-group-manners #Starlight: Make group names localization friendly
   abstract: true
 
 - type: quickPhrase

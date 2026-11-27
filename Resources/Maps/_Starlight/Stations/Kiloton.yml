@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 295.0.0
+  engineVersion: 295.0.3
   forkId: ""
   forkVersion: ""
-  time: 11/08/2026 06:20:30
+  time: 11/17/2026 08:17:26
   entityCount: 41975
 maps:
 - 1
@@ -91434,6 +91434,13 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 28.5,-0.5
+- proto: ComputerCommsBreakingNews
+  entities:
+  - uid: 40773
+    components:
+    - type: Transform
+      parent: 2
+      pos: -46.5,53.5
 - proto: ComputerCommsCargoFilled
   entities:
   - uid: 13984
@@ -93145,7 +93152,6 @@ entities:
     components:
     - type: Transform
       parent: 2
-      rot: -1.5707963267948966 rad
       pos: 21.5,14.5
 - proto: d20Dice
   entities:
@@ -165436,6 +165442,14 @@ entities:
       pos: -36.5,35.5
     - type: Fixtures
       fixtures: {}
+  - uid: 23265
+    components:
+    - type: Transform
+      parent: 2
+      rot: -1.5707963267948966 rad
+      pos: -15.5,-44.5
+    - type: Fixtures
+      fixtures: {}
 - proto: HeatExchanger
   entities:
   - uid: 22829
@@ -168755,16 +168769,16 @@ entities:
       pos: -10.5,-62.5
 - proto: LockerRoboticistFilled
   entities:
-  - uid: 23265
-    components:
-    - type: Transform
-      parent: 2
-      pos: -11.5,-38.5
   - uid: 23266
     components:
     - type: Transform
       parent: 2
-      pos: -11.5,-40.5
+      pos: -13.5,-44.5
+  - uid: 40772
+    components:
+    - type: Transform
+      parent: 2
+      pos: -14.5,-44.5
 - proto: LockerScienceFilled
   entities:
   - uid: 23267
@@ -176954,8 +176968,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 5.5,-38.5
-    - type: PointLight
-      energy: 0.6
   - uid: 24596
     components:
     - type: Transform
@@ -266045,18 +266057,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -53.5,-6.5
-- proto: WardrobeRoboticsFilled
-  entities:
-  - uid: 40772
-    components:
-    - type: Transform
-      parent: 2
-      pos: -13.5,-44.5
-  - uid: 40773
-    components:
-    - type: Transform
-      parent: 2
-      pos: -14.5,-44.5
 - proto: WardrobeScienceFilled
   entities:
   - uid: 40774

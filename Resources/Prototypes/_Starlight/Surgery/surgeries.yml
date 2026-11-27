@@ -1239,7 +1239,7 @@
     - SurgeryStepPrepareScalp
     - SurgeryStepMakeIncisionScalp
     - SurgeryStepRetractScalp
-    - SurgeryStepInsertBrain
+    - SurgeryStepInsertSlimeCore
     - SurgeryStepReplaceScalp
     - SurgeryStepSutureScalp
   - type: SurgerySpeciesCondition

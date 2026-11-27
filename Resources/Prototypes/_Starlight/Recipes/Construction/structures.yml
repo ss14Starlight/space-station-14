@@ -41,6 +41,20 @@
   objectType: Structure
   placementMode: SnapgridCenter
 
+- type: construction
+  id: XenoResinWindow
+  graph: Window
+  startNode: start
+  targetNode: resinWindow
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+    - !type:EmptyOrWindowValidInTile
+    - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+
 # Lighting
 - type: construction
   id: StreetLamp
@@ -81,6 +95,23 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
+
+- type: construction
+  id: GrateGray
+  graph: GrateGray
+  startNode: start
+  targetNode: GrateGray
+  category: construction-category-structures
+  conditions:
+    - !type:TileNotBlocked
+      failIfSpace: false
+    - !type:TileType
+      targets:
+        - Lattice
+        - Plating
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
 
 #region Wood
 - type: construction
@@ -427,3 +458,19 @@
   canBuildInImpassable: true
   conditions:
     - !type:WallmountCondition {}
+
+- type: construction
+  id: BarricadeBlock
+  graph: BarricadeCovering
+  startNode: start
+  targetNode: barricadecover
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+    - !type:NoEntityInTile
+      blacklist:
+        tags:
+        - Barricade
+      guideString: construction-step-condition-no-barricade-in-tile

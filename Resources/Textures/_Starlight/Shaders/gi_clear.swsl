@@ -1,0 +1,16 @@
+light_mode unshaded;
+blend_mode none;
+
+// Overwrites the covered pixels with transparent black. Used to cut moving sprites out of the bounce light sources.
+// Only station tiles are cut. Open space keeps its starlight, since sprites there never count as glowing anyway.
+
+uniform sampler2D STENCIL_TEXTURE;
+uniform highp vec2 targetSize;
+
+void fragment()
+{
+    if (texture2D(STENCIL_TEXTURE, FRAGCOORD.xy / targetSize).a < 0.5)
+        discard;
+
+    COLOR = vec4(0.0);
+}

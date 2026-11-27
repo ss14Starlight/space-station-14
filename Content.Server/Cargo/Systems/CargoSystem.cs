@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Achievement;
 using Content.Server.Cargo.Components;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.Popups;
@@ -42,6 +43,7 @@ public sealed partial class CargoSystem : SharedCargoSystem
     [Dependency] private UserInterfaceSystem _uiSystem = default!;
     [Dependency] private MetaDataSystem _metaSystem = default!;
     [Dependency] private RadioSystem _radio = default!;
+    [Dependency] private AchievementSystem _achievement = default!; //Starlight-edit
 
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<CargoSellBlacklistComponent> _blacklistQuery;

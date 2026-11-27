@@ -32,7 +32,7 @@ public sealed partial class PlumbingSmartDispenserWindow : DefaultWindow
     private readonly SolutionContainerSystem _solutionSystem;
     private readonly PlumbingSmartDispenserSystem _smartDispenserSystem;
     private readonly List<ReagentEntry> _reagentEntries = [];
-    private readonly Dictionary<string, ClickableBeakerBarChart> _bars = [];
+    private readonly Dictionary<ReagentId, ClickableBeakerBarChart> _bars = [];
 
     private bool _localStateDirty = true;
     private bool _showDispensePane;
@@ -44,7 +44,7 @@ public sealed partial class PlumbingSmartDispenserWindow : DefaultWindow
     private int _reagentsHash;
     private int _outputHash;
 
-    public event Action<string, FixedPoint2, NetEntity>? OnDispenseReagentPressed;
+    public event Action<ReagentId, FixedPoint2, NetEntity>? OnDispenseReagentPressed;
 
     public event Action<NetEntity>? OnClearPressed;
 
@@ -185,11 +185,11 @@ public sealed partial class PlumbingSmartDispenserWindow : DefaultWindow
             if (!_prototypeManager.TryIndex(reagent.Reagent.Prototype, out var proto))
                 continue;
 
-            if (!ent.Comp.ReagentLabels.TryGetValue(proto.ID, out var label) || string.IsNullOrWhiteSpace(label))
+            if (!ent.Comp.ReagentLabels.TryGetValue(reagent.Reagent, out var label) || string.IsNullOrWhiteSpace(label))
                 label = proto.LocalizedName;
 
             ReagentEntry entry = new(
-                proto.ID,
+                reagent.Reagent,
                 label,
                 reagent.Quantity,
                 proto.SubstanceColor);
@@ -250,7 +250,7 @@ public sealed partial class PlumbingSmartDispenserWindow : DefaultWindow
                 ("max", ent.Comp.MaxPerReagent));
 
             chart.SetDetails(
-                entry.ReagentId,
+                entry.ReagentId.Prototype.Id,
                 Loc.GetString("plumbing-smart-dispenser-reagent-entry",
                     ("reagent", entry.LocalizedName),
                     ("amount", entry.Quantity)),
@@ -267,7 +267,7 @@ public sealed partial class PlumbingSmartDispenserWindow : DefaultWindow
                 ("count", _reagentEntries.Count));
     }
 
-    private void OnDispenseClicked(string reagentId)
+    private void OnDispenseClicked(ReagentId reagentId)
     {
         if (!_entityManager.TryGetComponent<PlumbingSmartDispenserLocalStateComponent>(_owner, out var localState) ||
             !_entityManager.TryGetNetEntity(localState.OutputContainerEntity, out var targetEntity))
@@ -338,9 +338,9 @@ public sealed partial class PlumbingSmartDispenserWindow : DefaultWindow
         }
     }
 
-    private readonly struct ReagentEntry(string reagentId, string localizedName, FixedPoint2 quantity, Color color)
+    private readonly struct ReagentEntry(ReagentId reagentId, string localizedName, FixedPoint2 quantity, Color color)
     {
-        public readonly string ReagentId = reagentId;
+        public readonly ReagentId ReagentId = reagentId;
         public readonly string LocalizedName = localizedName;
         public readonly FixedPoint2 Quantity = quantity;
         public readonly Color Color = color;

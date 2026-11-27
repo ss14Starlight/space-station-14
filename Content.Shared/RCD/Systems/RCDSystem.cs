@@ -39,6 +39,7 @@ using Content.Shared.Prototypes;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Doors.Components;
 using Content.Shared.Conveyor;
+using Content.Shared.Wall;
 
 namespace Content.Shared.RCD.Systems;
 
@@ -73,7 +74,10 @@ public sealed partial class RCDSystem : EntitySystem
     private readonly ProtoId<RCDPrototype> _deconstructTileProto = "DeconstructTile";
     private readonly ProtoId<RCDPrototype> _deconstructLatticeProto = "DeconstructLattice";
     private static readonly ProtoId<TagPrototype> CatwalkTag = "Catwalk";
-    private static readonly ProtoId<TagPrototype> _unstackableTag = "Unstackable"; // Starlight edit
+    #region Starlight
+    private static readonly ProtoId<TagPrototype> _unstackableTag = "Unstackable";
+    private static readonly ProtoId<TagPrototype> _wallTag = "Wall";
+    #endregion
 
     private HashSet<EntityUid> _intersectingEntities = new();
 
@@ -594,7 +598,7 @@ public sealed partial class RCDSystem : EntitySystem
         {
             case RcdMode.ConstructTile:
             case RcdMode.ConstructObject:
-                return IsConstructionLocationValid(uid, component, gridUid, mapGrid, tile, position, direction, user, popMsgs);
+                return IsConstructionLocationValid(uid, component, gridUid, mapGrid, tile, position, direction, target, user, popMsgs); // Starlight
             case RcdMode.Deconstruct:
                 return IsDeconstructionStillValid(uid, component, tile, target, user, popMsgs); // Starlight Edit: Added ``component``
         }
@@ -602,7 +606,7 @@ public sealed partial class RCDSystem : EntitySystem
         return false;
     }
 
-    private bool IsConstructionLocationValid(EntityUid uid, RCDComponent component, EntityUid gridUid, MapGridComponent mapGrid, TileRef tile, Vector2i position, Direction direction, EntityUid user, bool popMsgs = true)
+    private bool IsConstructionLocationValid(EntityUid uid, RCDComponent component, EntityUid gridUid, MapGridComponent mapGrid, TileRef tile, Vector2i position, Direction direction, EntityUid? target, EntityUid user, bool popMsgs = true) // Starlight
     {
         UpdateCachedPrototype(uid, component); // Starlight
 
@@ -696,6 +700,9 @@ public sealed partial class RCDSystem : EntitySystem
         var isGrillePlacement = prototype.Prototype != null
             && _protoManager.TryIndex<EntityPrototype>(prototype.Prototype, out var grilleProto)
             && grilleProto.HasComponent<SharedCanBuildWindowOnTopComponent>(_entityManager.ComponentFactory);
+        var isWallMountPlacement = prototype.Prototype != null
+            && _protoManager.TryIndex<EntityPrototype>(prototype.Prototype, out var wallMountProto)
+            && wallMountProto.HasComponent<WallMountComponent>(_entityManager.ComponentFactory);
         // Starlight-end
         _intersectingEntities.Clear();
         _lookup.GetLocalEntitiesIntersecting(gridUid, position, _intersectingEntities, -0.05f, LookupFlags.Uncontained);
@@ -764,6 +771,12 @@ public sealed partial class RCDSystem : EntitySystem
                 return false;
             }
             // Starlight End: RPD
+
+            // Starlight - start
+            // Allow the clicked support wall, but keep checking every other fixture.
+            if (isWallMountPlacement && target == ent && _tags.HasTag(ent, _wallTag))
+                continue;
+            // Starlight - end
 
             if (prototype.CollisionMask != CollisionGroup.None && TryComp<FixturesComponent>(ent, out var fixtures))
             {

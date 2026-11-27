@@ -1,0 +1,28 @@
+light_mode unshaded;
+blend_mode none;
+
+// Surface colour of the last frame, for the bounce light. The screen divided by the light a pixel stands in leaves
+// the colour of the floor or wall itself. Alpha 0 marks pixels whose colour is unknown, such as space and dark spots.
+
+uniform sampler2D SCREEN_TEXTURE;
+uniform sampler2D LIGHT_TEXTURE;
+uniform sampler2D STENCIL_TEXTURE;
+uniform highp vec2 targetSize;
+
+void fragment()
+{
+    highp vec2 uv = FRAGCOORD.xy / targetSize;
+    highp vec3 screen = zTextureSpec(SCREEN_TEXTURE, uv).rgb;
+    highp vec3 light = texture2D(LIGHT_TEXTURE, uv).rgb;
+    highp float station = step(0.5, texture2D(STENCIL_TEXTURE, uv).a);
+    highp float peak = max(light.r, max(light.g, light.b));
+
+    // A colour channel the light barely has says nothing about the surface. Such channels take the average of the
+    // others, so a red lamp does not make every wall it lights look red.
+    highp vec3 known = step(vec3(peak * 0.1), light);
+    highp vec3 ratio = clamp(screen / max(light, vec3(0.001)), 0.0, 1.0);
+    highp float average = dot(ratio, known) / max(dot(known, vec3(1.0)), 1.0);
+    highp vec3 albedo = mix(vec3(average), ratio, known);
+
+    COLOR = vec4(albedo, station * step(0.02, peak));
+}
