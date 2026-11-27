@@ -21,3 +21,8 @@
   id: RoboticistDiagnosticsHud
   equipment:
     eyes: ClothingEyesHudDiagnostic
+
+- type: loadout
+  id: RoboticistDiagnosticGoggles
+  equipment:
+    eyes: ClothingEyesGlassesDiagnosticGoggles

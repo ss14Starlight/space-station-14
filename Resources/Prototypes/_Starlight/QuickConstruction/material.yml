@@ -1,0 +1,22 @@
+- type: quickConstructionCategory
+  id: Chitin
+  constructionEntries:
+    - WallChitin
+    - ReinforcedWallChitin
+    - XenoResinWindow
+    - AirlockXeno
+    - TableXeno
+    - ChairXeno
+    - ChairComfyXeno
+  categoryEntries:
+    - XenoTiles
+
+- type: quickConstructionCategory
+  id: XenoTiles
+  name: quickconstruction-category-tile
+  icon: { sprite: Objects/Tiles/tile.rsi, state: xeno-steel }
+  constructionEntries:
+    - TileXenoSteel
+    - TileXenoSteelCorner
+    - TileXenoTechmaint
+    - TileXeno

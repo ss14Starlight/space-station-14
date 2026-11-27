@@ -1,0 +1,6 @@
+﻿- type: !PartialOnly entity
+  id: MachineArtifactCrusherXenoborg
+  components:
+  - type: Tag
+    tags:
+      - XenoBorgCrusher

@@ -306,6 +306,7 @@
   description: This implant has a tracking device attached to the suit sensor network, as well as a condition monitor for the expedition channel.
   categories: [ HideSpawnMenu ]
   components:
+    - type: ItgTrackingImplant
     - type: RattleOnTrigger
       targetUser: true
       radioChannel:

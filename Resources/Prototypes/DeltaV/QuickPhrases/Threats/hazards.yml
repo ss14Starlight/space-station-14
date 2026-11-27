@@ -1,7 +1,7 @@
 - type: quickPhrase
   id: BaseHazardThreatPhrase
   parent: BaseThreatPhrase
-  group: Hazards
+  group: aac-group-hazards #Starlight: Make group names localization friendly
   styleClass: EngineeringButton
   abstract: true
 

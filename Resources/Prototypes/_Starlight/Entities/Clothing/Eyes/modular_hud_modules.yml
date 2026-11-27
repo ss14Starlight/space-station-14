@@ -69,3 +69,67 @@
         color: Goldenrod
         priority: 10
   - type: ShowAccess
+
+- type: entity
+  parent: [ ModularHudModuleBase, BaseSyndicateContraband ]
+  id: HudModuleShowSyndicateIcons
+  name: blood-red HUD module
+  description: A heads-up display module that simultaneously detects ID status, criminal records, mindshield status, and most importantly, affiliation with the Syndicate.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: '#363636'
+    - state: stripe
+      color: '#00ff1f'
+    - state: contacts
+    - state: synd_label
+  - type: ModularHudModule
+    visuals:
+      lens:
+        color: '#009a22'
+        priority: 70
+      Specular:
+        color: '#00ff1f'
+        priority: 150
+  - type: ShowSyndicateIcons
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowContrabandDetails
+  - type: Contraband
+    tier: Tier4
+
+- type: entity
+  parent: [ ModularHudModuleBase, BaseSyndicateContraband ]
+  id: HudModuleShowMedicalIconsSyndicate
+  name: suspicious health HUD module
+  description: Something wicked be with this health scanner...
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: '#363636'
+    - state: stripe
+      color: '#00fff1'
+    - state: contacts
+    - state: cmo_label
+  - type: ModularHudModule
+    visuals:
+      lens:
+        color: '#00a19b'
+        priority: 71
+        preventsOtherColors: true
+      Specular:
+        color: '#00fff1'
+        priority: 151
+        preventsOtherColors: true
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Hybrid
+    - MoffDemonBiological
+  - type: ShowHealthIcons
+  - type: SolutionScanner
+  - type: Contraband
+    tier: Tier2

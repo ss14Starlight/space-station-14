@@ -281,7 +281,8 @@ adjectives-dataset-280 = hushed
 adjectives-dataset-281 = husky
 adjectives-dataset-282 = loud
 adjectives-dataset-283 = melodic
-adjectives-dataset-284 = moaning
+# Starlight-edit
+adjectives-dataset-284 = murmuring
 adjectives-dataset-285 = mute
 adjectives-dataset-286 = noisy
 adjectives-dataset-287 = purring

@@ -32,6 +32,8 @@
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     Chest: MobLagomorphTorso
+    UndergarmentBottom: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
     Eyes: MobLagomorphEyes
     HeadTop: MobHumanoidAnyMarking
     LArm: MobLagomorphLArm
@@ -65,7 +67,7 @@
       points: 2
       required: false
     Head:
-      points: 1
+      points: 2
       required: false
     Special:
       points: 2

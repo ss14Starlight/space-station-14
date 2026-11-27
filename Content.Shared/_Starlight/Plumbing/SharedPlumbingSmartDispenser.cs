@@ -1,4 +1,5 @@
 using Content.Shared.Chemistry;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Serialization;
 
@@ -21,9 +22,9 @@ public sealed class PlumbingSmartDispenserSetDispenseAmountMessage : BoundUserIn
 }
 
 [Serializable, NetSerializable]
-public sealed class PlumbingSmartDispenserDispenseReagentMessage(string reagentId, FixedPoint2 amount, NetEntity targetEntity) : BoundUserInterfaceMessage
+public sealed class PlumbingSmartDispenserDispenseReagentMessage(ReagentId reagentId, FixedPoint2 amount, NetEntity targetEntity) : BoundUserInterfaceMessage
 {
-    public readonly string ReagentId = reagentId;
+    public readonly ReagentId ReagentId = reagentId;
 
     public readonly FixedPoint2 Amount = amount;
 

@@ -5,6 +5,8 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Whitelist;
 using Robust.Shared.Physics.Events;
+using Content.Shared._Starlight.Reptilian.Components;
+using Content.Shared._Starlight.Implants.Components;
 
 namespace Content.Shared._Starlight.Chemistry;
 
@@ -24,6 +26,10 @@ public sealed partial class SharedOnCollideSystem : EntitySystem
     {
         var target = args.OtherEntity;
         if (!_whitelistSystem.CheckBoth(target, component.Blacklist, component.Whitelist))
+            return;
+
+        // terror spider web compatability with thick scales
+        if (TryComp<ThickScalesComponent>(target, out _) && !(TryComp<InjectionPortComponent>(target, out var port) && port.BypassScales))
             return;
 
         if (_solutionContainers.TryGetInjectableSolution(target, out var targetSoln, out _))

@@ -20,6 +20,16 @@
     - !type:BuyerAccessCondition
 
 - type: listing
+  id: VendorSalvageITGResourceReclaimer
+  productEntity: ITGResourceReclaimer
+  cost:
+    SalvageTicket: 400
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorSalvageMechClarke
   productEntity: MechClarke
   cost:
@@ -98,39 +108,39 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvagePKAUpgradeDamage
-  productEntity: PKAUpgradeDamage
+  id: VendorSalvagePKAUpgradeDamageAdv
+  productEntity: PKAUpgradeDamageAdv
   cost:
     SalvageTicket: 250
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 8
+      stock: 3
     - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvagePKAUpgradeRange
-  productEntity: PKAUpgradeRange
+  id: VendorSalvagePKAUpgradeRangeAdv
+  productEntity: PKAUpgradeRangeAdv
   cost:
     SalvageTicket: 250
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 8
+      stock: 3
     - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvagePKAUpgradeFireRate
-  productEntity: PKAUpgradeFireRate
+  id: VendorSalvagePKAUpgradeFireRateAdv
+  productEntity: PKAUpgradeFireRateAdv
   cost:
     SalvageTicket: 250
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 8
+      stock: 3
     - !type:BuyerAccessCondition
 
 - type: listing
@@ -193,7 +203,31 @@
   id: VendorSalvageSalvageEncryptionKey
   productEntity: EncryptionKeyExpedition
   cost:
-    SalvageTicket: 100
+    SalvageTicket: 25
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSalvageTracker
+  productEntity: ITGTrackerImplanter
+  cost:
+    SalvageTicket: 25
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSalvageMindShield
+  productEntity: ITGMindShieldImplanter
+  cost:
+    SalvageTicket: 25
   categories:
     - SalvageEquipment
   conditions:
@@ -429,7 +463,7 @@
   id: VendorSalvageBlueprintBasicMedical
   productEntity: BlueprintBasicMedical
   cost:
-    SalvageTicket: 200
+    SalvageTicket: 500
   categories:
   - SalvageBlueprints
   conditions:
@@ -441,7 +475,7 @@
   id: VendorSalvageBlueprintFulton
   productEntity: BlueprintFulton
   cost:
-    SalvageTicket: 400
+    SalvageTicket: 300
   categories:
   - SalvageBlueprints
   conditions:
@@ -465,7 +499,7 @@
   id: VendorSalvageBlueprintPKAModkits
   productEntity: BlueprintPKAModkits
   cost:
-    SalvageTicket: 400
+    SalvageTicket: 300
   categories:
   - SalvageBlueprints
   conditions:
@@ -492,7 +526,9 @@
   categories:
     - SalvageSurplus
   conditions:
-    - !type:BuyerAccessCondition
+  - !type:BuyerAccessCondition
+  - !type:ListingLimitedStockCondition
+     stock: 1
 
 - type: listing
   id: VendorSalvageSurplusCrate

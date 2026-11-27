@@ -29,7 +29,9 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Content.Server._Starlight.Bed.Cryostorage;
+using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared.Anomaly.Components;
+using Content.Shared.Clothing.Components;
 
 namespace Content.Server.Bed.Cryostorage;
 
@@ -108,8 +110,10 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
                 entity = slot.ContainedEntity;
         }
 
-        if (entity == null)
+        // Starlight-start
+        if (entity == null || HasComp<AttachedClothingComponent>(entity))
             return;
+        // Starlight-end
 
         AdminLog.Add(LogType.Action, LogImpact.High,
             $"{ToPrettyString(attachedEntity):player} removed item {ToPrettyString(entity)} from cryostorage-contained player " +
@@ -242,6 +246,10 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
         UpdateCryostorageUIState((cryostorageEnt.Value, cryostorageComponent));
         AdminLog.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(ent):player} was entered into cryostorage inside of {ToPrettyString(cryostorageEnt.Value)}");
 
+        // Starlight-start
+        RemComp<VampireThrallComponent>(ent.Owner);
+        // Starlight-end
+
         if (!TryComp<StationRecordsComponent>(station, out var stationRecords))
             return;
 
@@ -341,6 +349,10 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
         var enumerator = _inventory.GetSlotEnumerator(uid);
         while (enumerator.NextItem(out var item, out var slotDef))
         {
+            // Starlight-start
+            if (HasComp<AttachedClothingComponent>(item))
+                continue;
+            // Starlight-end
             data.ItemSlots.Add(slotDef.Name, Name(item));
         }
 

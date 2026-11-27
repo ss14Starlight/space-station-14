@@ -140,9 +140,6 @@
       collection: GlassBreak
   - type: StealTarget
     stealGroup: FiringPinAdvancedLaser
-  - type: Explosive
-    explosionType: Default
-    totalIntensity: 100 # slightly more impressive than a welding tank explosion
   - type: Destructible
     thresholds:
     - trigger:
@@ -151,7 +148,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-      - !type:ExplodeBehavior
     - trigger:
         !type:DamageTrigger
         damage: 5
@@ -179,7 +175,6 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-      - !type:ExplodeBehavior
 
 # cool functionality ish pins
 - type: entity

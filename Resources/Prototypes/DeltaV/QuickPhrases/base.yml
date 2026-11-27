@@ -34,53 +34,53 @@
 
 - type: quickPhrase
   id: BaseCivilianPhrase
-  group: Civilian
+  group: aac-group-civilian #Starlight: Make group names localization friendly
   abstract: true
 
 - type: quickPhrase
   id: BaseCommandPhrase
-  group: Command
+  group: aac-group-command #Starlight: Make group names localization friendly
   styleClass: CommandButton
   abstract: true
 
 - type: quickPhrase
   id: BaseEngineeringPhrase
-  group: Engineering
+  group: aac-group-engineering #Starlight: Make group names localization friendly
   styleClass: EngineeringButton
   abstract: true
 
 - type: quickPhrase
   id: BaseEpistemicsPhrase
-  group: Epistemics
+  group: aac-group-epistemics #Starlight: Make group names localization friendly
   styleClass: EpistemicsButton
   abstract: true
 
 - type: quickPhrase
   id: BaseJusticePhrase
-  group: Justice
+  group: aac-group-justice #Starlight: Make group names localization friendly
   styleClass: JusticeButton
   abstract: true
 
 - type: quickPhrase
   id: BaseLogisticsPhrase
-  group: Logistics
+  group: aac-group-logistics #Starlight: Make group names localization friendly
   styleClass: LogisticsButton
   abstract: true
 
 - type: quickPhrase
   id: BaseMedicalPhrase
-  group: Medical
+  group: aac-group-medical #Starlight: Make group names localization friendly
   styleClass: MedicalButton
   abstract: true
 
 - type: quickPhrase
   id: BaseSecurityPhrase
-  group: Security
+  group: aac-group-security #Starlight: Make group names localization friendly
   styleClass: SecurityButton
   abstract: true
 
 - type: quickPhrase
   id: BaseServicePhrase
-  group: Service
+  group: aac-group-service #Starlight: Make group names localization friendly
   styleClass: ServiceButton
   abstract: true

@@ -4,3 +4,5 @@ ooc-notes-text-placeholder = Publicly Visible Out-Of-Character notes for rolepla
 character-info-ooc-header = Out-Of-Character Info:
 character-info-ooc-notes = OOC Notes:
 character-info-personal-notes = Personal Notes:
+character-info-ooc-hint = Notes about you as a player, not your character.
+character-info-length = {$count} characters

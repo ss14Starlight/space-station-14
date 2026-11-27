@@ -22,6 +22,9 @@
         density: 5
         layer:
         - DoorPassable
+  - type: Construction
+    graph: GrateGray
+    node: GrateGray
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic

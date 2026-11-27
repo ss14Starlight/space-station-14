@@ -13,7 +13,6 @@
     <!-- Rotation buttons -->
     <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 5">
         <Button Name="SpriteRotateLeft" Text="◀" StyleClasses="OpenRight" />
-        <customControls:VSeparator Margin="2 0 3 0" />
         <Button Name="SpriteRotateRight" Text="▶" StyleClasses="OpenLeft" />
     </BoxContainer>
 

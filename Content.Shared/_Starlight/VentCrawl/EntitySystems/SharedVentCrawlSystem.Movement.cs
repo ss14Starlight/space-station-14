@@ -28,11 +28,34 @@ public sealed partial class SharedVentCrawlSystem
         }
 
         var dir = args.Dir;
-        if (dir != Direction.Invalid && TryComp<InputMoverComponent>(holder.ContainedEntity, out var mover))
+
+        if (dir != Direction.Invalid)
         {
-            var cameraAngle = mover.TargetRelativeRotation;
-            if (cameraAngle != Angle.Zero)
-                dir = (dir.ToAngle() + cameraAngle).GetCardinalDir();
+            var tubeXform = Transform(holder.CurrentTube!.Value);
+
+            if (TryComp<InputMoverComponent>(holder.ContainedEntity, out var mover))
+            {
+                // camera-relative input to world-relative
+                var worldAngle = dir.ToAngle() + mover.TargetRelativeRotation;
+
+                // including the world rotation of the reference entity
+                if (mover.RelativeEntity is { } relativeEntity && Exists(relativeEntity))
+                    worldAngle += _xformSystem.GetWorldRotation(relativeEntity);
+
+                // world-relative to grid-relative
+                if (tubeXform.GridUid is { } gridUid)
+                {
+                    var gridRotation = _xformSystem.GetWorldRotation(gridUid);
+
+                    var gridLocalAngle = worldAngle - gridRotation;
+
+                    dir = gridLocalAngle.GetCardinalDir();
+                }
+                else
+                {
+                    dir = worldAngle.GetCardinalDir();
+                }
+            }
         }
 
         holder.IsMoving = args.HasDirectionalMovement;
@@ -167,7 +190,8 @@ public sealed partial class SharedVentCrawlSystem
         holder.ManifoldLayer ??= AtmosPipeLayer.Primary;
         DirtyField(uid, holder, nameof(VentCrawlHolderComponent.ManifoldLayer));
 
-        var rotation = _xformSystem.GetWorldRotation(manifoldUid);
+        // grid relative
+        var rotation = Transform(manifoldUid).LocalRotation;
 
         var right = rotation.RotateVec(Vector2.UnitX);
         var forward = rotation.RotateVec(Vector2.UnitY);

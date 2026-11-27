@@ -46,7 +46,12 @@ namespace Content.Client.Light
         private void OnComponentShutdown(EntityUid uid, RgbLightControllerComponent rgb, ComponentShutdown args)
         {
             if (LifeStage(uid) >= EntityLifeStage.Terminating)
+            // Starlight begin
+            {
+                rgb.AutoOriginalColors.Clear();
                 return;
+            }
+            // Starlight end
 
             ResetOriginalColors(uid, rgb);
 
@@ -125,21 +130,10 @@ namespace Content.Client.Light
 
             var layerCount = sprite.AllLayers.Count();
 
-            // if layers is null, get unshaded layers
+            // Starlight begin: using different method for this now
             if (rgb.Layers == null)
-            {
-                rgb.Layers = new();
-
-                for (var i = 0; i < layerCount; i++)
-                {
-                    if (sprite[i] is Layer layer && layer.ShaderPrototype == "unshaded")
-                    {
-                        rgb.Layers.Add(i);
-                        rgb.OriginalLayerColors[i] = layer.Color;
-                    }
-                }
                 return;
-            }
+            // Starlight end
 
             foreach (var index in rgb.Layers.ToArray())
             {
@@ -160,6 +154,14 @@ namespace Content.Client.Light
                 return;
 
             _lights.SetColor(uid, rgb.OriginalLightColor, light);
+
+            // Starlight begin
+            foreach (var (layer, color) in rgb.AutoOriginalColors)
+                // Skip layers that have since been removed from the sprite.
+                if (IsLayerOf(sprite, (Layer) layer))
+                    _sprite.LayerSetColor((Layer) layer, color);
+            rgb.AutoOriginalColors.Clear();
+            // Starlight end
 
             if (rgb.Layers == null || rgb.OriginalLayerColors == null)
                 return;
@@ -187,6 +189,30 @@ namespace Content.Client.Light
                             layer.Color = color;
                     }
                 }
+                // Starlight begin
+                else
+                {
+                    var originals = rgb.AutoOriginalColors;
+                    var modulated = 0;
+                    foreach (var layer in sprite.AllLayers)
+                    {
+                        if (layer is not Layer spriteLayer || spriteLayer.ShaderPrototype != "unshaded")
+                            continue;
+
+                        originals.TryAdd(spriteLayer, spriteLayer.Color);
+                        spriteLayer.Color = color;
+                        modulated++;
+                    }
+
+                    // Forget layers that have been removed (e.g. clothing re-rendered) so this doesn't grow forever.
+                    if (originals.Count > modulated)
+                        foreach (var layer in originals.Keys.Cast<Layer>().ToArray())
+                            if (!IsLayerOf(sprite, layer))
+                                originals.Remove(layer);
+                            else if (layer.ShaderPrototype != "unshaded" && originals.Remove(layer, out var original))
+                                _sprite.LayerSetColor(layer, original); // no longer unshaded, give it its color back
+                }
+                // Starlight end
 
                 // is the entity being held by someone?
                 if (rgb.HolderLayers == null || !TryComp(rgb.Holder, out SpriteComponent? holderSprite))

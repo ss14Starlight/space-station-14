@@ -8,14 +8,34 @@
   },
   "states": [
     {
-      "name": "base",
+      "name": "comfy_0",
       "directions": 4,
-  "copyright": "Originals Taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/chairs.dmi, edits by Conflee"
+      "copyright": "Originals taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/chairs.dmi, edits by Conflee"
     },
     {
-      "name": "overlay",
+      "name": "comfy_1",
       "directions": 4,
-  "copyright": "Originals Taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/chairs.dmi, edits by Conflee"
+      "copyright": "Originals taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/chairs_wide.dmi, edits by Conflee"
+    },
+    {
+      "name": "comfy_2",
+      "directions": 4,
+      "copyright": "Originals taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/chairs_wide.dmi, edits by Conflee"
+    },
+    {
+      "name": "comfy_3",
+      "directions": 4,
+      "copyright": "Originals taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/chairs_wide.dmi, edits by Conflee"
+    },
+    {
+      "name": "comfy_corner_left",
+      "directions": 4,
+      "copyright": "Originals taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/chairs_wide.dmi, edits by Conflee"
+    },
+    {
+      "name": "comfy_corner_right",
+      "directions": 4,
+      "copyright": "Originals taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/chairs_wide.dmi, edits by Conflee"
     }
   ]
 }

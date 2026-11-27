@@ -249,13 +249,27 @@ namespace Content.Shared.Preferences
             var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
             var random = IoCManager.Resolve<IRobustRandom>();
 
-            var species = random.Pick(prototypeManager
+            // Starlight-begin: some species should be more common than others for randomness
+
+            var speciesList = prototypeManager
                 .EnumeratePrototypes<SpeciesPrototype>()
                 .Where(x => ignoredSpecies == null ? x.RoundStart : x.RoundStart && !ignoredSpecies.Contains(x.ID))
-                .ToArray()
-            ).ID;
+                .ToArray();
+            var totalWeight = speciesList.Sum(x => x.Weight);
+            var randomPick = random.NextDouble() * totalWeight;
+            var rollingWeight = 0d;
+            var speciesIndex = 0;
 
-            return RandomWithSpecies(species);
+            SpeciesPrototype species;
+            do
+            {
+                rollingWeight += speciesList[speciesIndex].Weight;
+                species = speciesList[speciesIndex++];
+            } while (randomPick >= rollingWeight && speciesIndex < speciesList.Length);
+
+            // Starlight-end
+
+            return RandomWithSpecies(species.ID);
         }
 
         public static HumanoidCharacterProfile RandomWithSpecies(string? species = null)
@@ -771,10 +785,14 @@ namespace Content.Shared.Preferences
         {
             // Track points count for each group.
             var groups = new Dictionary<string, int>();
-            var result = new List<ProtoId<TraitPrototype>>();
+            // Starlight start
+            var traitList = traits.ToList();
+            var valid = new bool[traitList.Count];
 
-            foreach (var trait in traits)
+            foreach (var index in TraitOrdering.OrderForValidation(Enumerable.Range(0, traitList.Count), i => traitList[i], protoManager))
             {
+                var trait = traitList[index];
+                // Starlight end
                 if (!protoManager.TryIndex(trait, out var traitProto))
                     continue;
 
@@ -797,7 +815,16 @@ namespace Content.Shared.Preferences
                     continue;
 
                 groups[category.ID] = existing;
-                result.Add(trait);
+                valid[index] = true; // Starlight
+            }
+
+            // Starlight-start
+            var result = new List<ProtoId<TraitPrototype>>();
+            for (var i = 0; i < traitList.Count; i++)
+            {
+                if (valid[i])
+                    result.Add(traitList[i]);
+            // Starlight-end
             }
 
             return result;

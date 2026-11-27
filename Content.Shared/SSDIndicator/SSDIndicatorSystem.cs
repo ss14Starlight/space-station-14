@@ -5,7 +5,6 @@ using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Mind.Components;
 using Content.Shared.Movement.Events;
-using Content.Shared.NPC;
 using Content.Shared.StatusEffectNew;
 using Content.Shared._Starlight.CryoTeleportation;
 using Content.Shared._Starlight.SSDIndicator.Events;
@@ -93,7 +92,7 @@ public sealed partial class SSDIndicatorSystem : EntitySystem
         {
             // Forces the entity to sleep when the time has come
             if (!ssd.IsSSD
-                || HasComp<ActiveNPCComponent>(uid) // Starlight
+                || !TryComp<MindContainerComponent>(uid, out var mindContainer) || !mindContainer.HasMind // Starlight-edit
                 || ssd.NextUpdate > curTime
                 || ssd.FallAsleepTime > curTime
                 || TerminatingOrDeleted(uid))
