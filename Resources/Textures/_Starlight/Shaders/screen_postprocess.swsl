@@ -43,6 +43,9 @@ uniform highp float glossGlow;
 uniform highp vec2 worldOrigin;
 uniform highp vec2 worldAxisX;
 uniform highp vec2 worldAxisY;
+uniform sampler2D FOV_TEXTURE;
+uniform highp float fovEnabled;
+uniform highp vec2 eyePosition;
 
 const highp vec3 LUMA = vec3(0.2126, 0.7152, 0.0722);
 const highp vec3 SCOTOPIC = vec3(0.05, 0.55, 0.40);
@@ -84,9 +87,24 @@ highp float dustLayer(highp vec2 world, highp float time, highp float cellSize, 
     return 0.5 + 0.5 * sin(time * 1.7 + id * 60.0);
 }
 
+const highp float PI = 3.1415926535897932384626433;
+
+// How much of a point is visible from the eye, from 0 to 1. Same test as the engine's own field of view on lighting.
+highp float fovVisibility(highp vec2 diff)
+{
+    highp float angle = atan(diff.y, -diff.x) / PI;
+    highp vec2 moments = zClydeShadowDepthUnpack(texture2D(FOV_TEXTURE, vec2((angle + 1.0) / 2.0, 0.25)));
+    highp float dist = length(diff);
+    highp float lit = float(dist <= moments.x);
+    highp float variance = max(moments.y - moments.x * moments.x, 0.0);
+    highp float d = dist - moments.x;
+    return max(lit, variance / (variance + d * d));
+}
+
 void fragment()
 {
     highp vec2 world = worldOrigin + worldAxisX * Pos.x + worldAxisY * Pos.y;
+    highp float visible = fovEnabled > 0.5 ? fovVisibility(world - eyePosition) : 1.0;
     // Wraps once an hour, a single jump is not noticeable.
     highp float time = mod(TIME, 3600.0);
 
@@ -137,7 +155,7 @@ void fragment()
         {
             highp float mote = dustLayer(world, time, 0.55, 0.0, vec2(0.03, -0.045))
                 + 0.7 * dustLayer(world, time, 0.37, 91.0, vec2(-0.05, -0.02));
-            color += lightRgb / peak * mote * lit * dust * 0.35;
+            color += lightRgb / peak * mote * lit * dust * 0.35 * visible;
         }
     }
 
@@ -169,23 +187,23 @@ void fragment()
 
             // Slow ripples so the sheen does not look painted on.
             highp float ripple = 0.8 + 0.2 * sin(world.x * 5.0 + world.y * 2.0 + time * 0.8) * sin(world.y * 4.0 - time * 0.6);
-            color += reflected * ripple * wet;
+            color += reflected * ripple * wet * visible;
         }
     }
 
     if (bloom > 0.0)
     {
-        highp vec3 halo = texture2D(BLOOM_TEXTURE, Pos).rgb * bloom;
+        highp vec3 halo = texture2D(BLOOM_TEXTURE, Pos).rgb * bloom * visible;
         color = 1.0 - (1.0 - color) * (1.0 - clamp(halo, 0.0, 1.0));
     }
 
     // Grade before brightness, so the player's brightness setting works on the graded picture.
     {
         highp float luma = dot(color, LUMA);
-        color = mix(vec3(luma), color, gradeSaturation);
-        // Around middle grey as the eye sees it: 0.5 in sRGB is about 0.214 in linear light.
-        color = (color - 0.214) * gradeContrast + 0.214;
-        color = max(color, 0.0) * gradeTint;
+        color = max(mix(vec3(luma), color, gradeSaturation), 0.0);
+        if (gradeContrast != 1.0 && luma > 0.0001)
+            color *= 0.214 * pow(luma / 0.214, gradeContrast) / luma;
+        color *= gradeTint;
         color += gradeShadows * (1.0 - clamp(color, 0.0, 1.0));
     }
 

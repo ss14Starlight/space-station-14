@@ -39,6 +39,7 @@ using Content.Shared._Starlight.ScanGate;
 using Content.Shared._Starlight.Body.Events;
 using Content.Shared._Starlight.Weapons.Hitscan.Events;
 using Content.Shared._Starlight.Overlay.Components;
+using Content.Shared._Starlight.Radio;
 #endregion
 
 namespace Content.Shared.Inventory;
@@ -60,6 +61,7 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, RefreshNameModifiersEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, TransformSpeakerNameEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, TransformSpeechEvent>(RelayInventoryEvent);
+        SubscribeLocalEvent<InventoryComponent, GetRadioJobIconEvent>(RelayInventoryEvent); // Starlight-edit
         SubscribeLocalEvent<InventoryComponent, SelfBeforeInjectEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, BeforeInjectTargetEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, SelfBeforeGunShotEvent>(RelayInventoryEvent);

@@ -1,5 +1,6 @@
 - type: parallax
   id: ExoStation
+  starlightColor: "#625080" #SL Edit
   layers:
     - texture:
         !type:ImageParallaxTextureSource

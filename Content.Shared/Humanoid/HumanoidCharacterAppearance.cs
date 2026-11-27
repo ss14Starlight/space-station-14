@@ -212,8 +212,6 @@ public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCha
             .WithGreen(RandomizeColor(newHairColor.G))
             .WithBlue(RandomizeColor(newHairColor.B));
 
-        // TODO: Add random markings
-
         var eyeType = IoCManager.Resolve<IPrototypeManager>().Index<SpeciesPrototype>(species).EyeColoration; // Starlight
 
         var newEyeColor = random.Pick(_realisticEyeColors);
@@ -246,12 +244,44 @@ public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCha
             _ => strategy.ClosestSkinColor(new Color(random.NextFloat(1), random.NextFloat(1), random.NextFloat(1), 1)),
         };
 
+        // Starlight - start
+        var speciesMarkingPointsId = protoMan.Index<SpeciesPrototype>(species).MarkingPoints;
+        var speciesMarkingPoints = protoMan.Index(speciesMarkingPointsId);
+        var markingSet = new MarkingSet(speciesMarkingPointsId, markingManager, protoMan);
+        var availableMarkings = new List<(MarkingCategories Category, List<MarkingPrototype> Markings)>();
+
+        foreach (var (category, points) in speciesMarkingPoints.Points)
+        {
+            if (category is MarkingCategories.Hair or MarkingCategories.FacialHair || points.Points <= 0)
+                continue;
+
+            var candidates = markingManager.MarkingsByCategoryAndSpecies(category, species).Values
+                .Where(marking => markingManager.CanBeApplied(species, sex, marking, protoMan))
+                .ToList();
+
+            if (candidates.Count > 0)
+                availableMarkings.Add((category, candidates));
+        }
+
+        var markingCount = availableMarkings.Count == 0 ? 0 : random.Next(1, Math.Min(3, availableMarkings.Count) + 1);
+        for (var i = 0; i < markingCount; i++)
+        {
+            var categoryIndex = random.Next(availableMarkings.Count);
+            var (category, candidates) = availableMarkings[categoryIndex];
+            availableMarkings.RemoveAt(categoryIndex);
+
+            var marking = random.Pick(candidates);
+            var colors = MarkingColoring.GetMarkingLayerColors(marking, newSkinColor, newEyeColor, markingSet);
+            markingSet.AddBack(category, new Marking(marking.ID, colors, marking.ForcedGlowing));
+        }
+        // Starlight - end
+
         #region Starlight
         var speciesPrototype = IoCManager.Resolve<IPrototypeManager>().Index<SpeciesPrototype>(species);
         var newWidth = random.NextFloat(speciesPrototype.MinWidth, speciesPrototype.MaxWidth);
         var newHeight = random.NextFloat(speciesPrototype.MinHeight, speciesPrototype.MaxHeight);
 
-        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, false, newFacialHairStyle, newHairColor, false, newEyeColor, false, newSkinColor, new (), newWidth, newHeight); // glowing
+        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, false, newFacialHairStyle, newHairColor, false, newEyeColor, false, newSkinColor, markingSet.GetForwardEnumerator().ToList(), newWidth, newHeight); // Starlight
 
         // We still need randomize color since no visual nubody
         float RandomizeColor(float channel)
