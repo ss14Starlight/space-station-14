@@ -44,6 +44,7 @@ public sealed partial class AnomalySystem
 
     private void OnGeneratorMaterialAmountChanged(EntityUid uid, AnomalyGeneratorComponent component, ref MaterialAmountChangedEvent args)
     {
+        if (!_ui.IsUiOpen(uid, AnomalyGeneratorUiKey.Key)) return; // Starlight
         UpdateGeneratorUi(uid, component);
     }
 
