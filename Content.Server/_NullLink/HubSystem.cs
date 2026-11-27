@@ -100,7 +100,7 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
         if (_lastResubscribe == null)
         {
             var serverData = await hub.GetAndSubscribe(serverObjectReference!);
-            _serverData = new(serverData.Select(x => KeyValuePair.Create(x.Key, Map(x.Value))));
+            _serverData = new(serverData.Where(x => !Hidden(x.Value)).Select(x => KeyValuePair.Create(x.Key, Map(x.Value))));
 
             var serverInfoData = await hub.GetAndSubscribe(serverInfoObjectReference!);
             _serverInfoData = new(serverInfoData.Select(x => KeyValuePair.Create(x.Key, Map(x.Value))));
@@ -161,8 +161,12 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
 
     public Task Updated(string key, NLServer value)
     {
-        if (!value.IsAdultOnly == _isAdultOnly)
+        if (Hidden(value))
+        {
+            if (_serverData.TryRemove(key, out _))
+                _updateEvents.Enqueue(new NullLink.RemoveServer { Key = key });
             return Task.CompletedTask;
+        }
 
         _serverData.AddOrUpdate(key, Map(value), (k, v) => Map(value));
         _updateEvents.Enqueue(new NullLink.AddOrUpdateServer
@@ -194,6 +198,8 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
         });
         return Task.CompletedTask;
     }
+
+    private bool Hidden(NLServer server) => _isAdultOnly is { } own && server.IsAdultOnly != own;
 
     private static NullLink.Server Map(NLServer server)
         => new()
