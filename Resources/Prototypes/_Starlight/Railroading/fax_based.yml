@@ -23,6 +23,19 @@
   parent: CrewCondition
   categories: [ HideSpawnMenu ]
   components:
+  - type: Conditions
+    conditions:
+    - !type:SubjectSpeciesCondition
+      blacklist:
+      - Abductor
+      - Skeleton
+      - Terminator
+      - IPC
+    - !type:SubjectMindAntagCondition
+      blacklist:
+      - Brighteye
+    - !type:MinimumPlayersCondition
+      players: 20
   - type: RailroadCard
     title: rr-criminal
     icon: ""
