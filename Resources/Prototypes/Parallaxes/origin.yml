@@ -1,5 +1,6 @@
 - type: parallax
   id: OriginStation
+  starlightColor: "#9267b9" #SL Edit
   layers:
     - texture:
         !type:ImageParallaxTextureSource

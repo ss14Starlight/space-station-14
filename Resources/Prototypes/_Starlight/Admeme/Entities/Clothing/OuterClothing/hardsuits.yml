@@ -11,6 +11,8 @@
       sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/ntnc_hardsuit.rsi
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitNTNCConsortium
+    - type: ExplosionResistance
+      damageCoefficient: 0.35
     - type: Armor
       modifiers:
         coefficients:

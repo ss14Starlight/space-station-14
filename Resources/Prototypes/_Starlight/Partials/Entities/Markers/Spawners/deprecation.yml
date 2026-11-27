@@ -1,0 +1,14 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+      - SalvageHumanCorpseSpawner
+      - RandomServiceCorpseSpawner
+      - RandomEngineerCorpseSpawner
+      - RandomCargoCorpseSpawner
+      - RandomMedicCorpseSpawner
+      - RandomScienceCorpseSpawner
+      - RandomSecurityCorpseSpawner
+      - RandomCommandCorpseSpawner
+      - SpawnMobSyndicateFootSoldier
+      - SpawnMobSyndicateFootsoldierPilot
+  categories: [ HideSpawnMenu ]

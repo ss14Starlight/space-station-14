@@ -12,7 +12,6 @@
     - type: Sprite
       sprite: _Starlight/Objects/Materials/abyss.rsi
       state: abyss_core
-      scale: 0.5, 0.5
     - type: Item
       sprite: _Starlight/Objects/Materials/abyss.rsi
       size: Normal
