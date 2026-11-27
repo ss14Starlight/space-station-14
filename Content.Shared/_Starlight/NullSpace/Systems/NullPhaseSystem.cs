@@ -17,6 +17,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Network;
 using Content.Shared.Sprite;
 using System.Numerics;
+using Content.Shared.PAI;
 
 namespace Content.Shared._Starlight.NullSpace.Systems;
 
@@ -102,7 +103,7 @@ public sealed partial class NullSpacePhaseSystem : EntitySystem
             if (tileref != null
             && _physics.GetEntitiesIntersectingBody(uid, (int)CollisionGroup.Impassable).Count > 0)
             {
-                _popup.PopupEntity(Loc.GetString("revenant-in-solid"), uid, uid);
+                _popup.PopupPredicted(Loc.GetString("revenant-in-solid"), uid, uid);
                 return false;
             }
         }
@@ -111,7 +112,7 @@ public sealed partial class NullSpacePhaseSystem : EntitySystem
             // No phaising if were in a container.
             if (_container.IsEntityInContainer(uid))
             {
-                _popup.PopupEntity(Loc.GetString("phase-fail-generic"), uid, uid);
+                _popup.PopupPredicted(Loc.GetString("phase-fail-generic"), uid, uid);
                 return false;
             }
 
@@ -120,28 +121,29 @@ public sealed partial class NullSpacePhaseSystem : EntitySystem
             {
                 if (HasComp<NullSpaceBlockerComponent>(entity))
                 {
-                    _popup.PopupEntity(Loc.GetString("phase-fail-generic"), uid, uid);
+                    _popup.PopupPredicted(Loc.GetString("phase-fail-generic"), uid, uid);
                     return false;
                 }
             }
 
             // No phaising if were holding or have an entity with the MobStateComponent (including backpack)
+            // pAI has MobState but should be fine to be carried in Phasing.
             if (TryComp<InventoryComponent>(uid, out var inventoryComponent) && _inventorySystem.TryGetSlots(uid, out var slots))
                 foreach (var slot in slots)
                     if (_inventorySystem.TryGetSlotEntity(uid, slot.Name, out var slotEnt, inventoryComponent))
                     {
-                        if (HasComp<MobStateComponent>(slotEnt))
+                        if (HasComp<MobStateComponent>(slotEnt) && !HasComp<PAIComponent>(slotEnt))
                         {
-                            _popup.PopupEntity(Loc.GetString("phase-fail-generic"), uid, uid);
+                            _popup.PopupPredicted(Loc.GetString("phase-fail-generic"), uid, uid);
                             return false;
                         }
 
                         if (TryComp<ContainerManagerComponent>(slotEnt, out var containercomp))
                             foreach (var container in containercomp.Containers.Values)
                                 foreach (var contEnt in container.ContainedEntities)
-                                    if (HasComp<MobStateComponent>(contEnt))
+                                    if (HasComp<MobStateComponent>(contEnt) && !HasComp<PAIComponent>(contEnt))
                                     {
-                                        _popup.PopupEntity(Loc.GetString("phase-fail-generic"), uid, uid);
+                                        _popup.PopupPredicted(Loc.GetString("phase-fail-generic"), uid, uid);
                                         return false;
                                     }
                     }

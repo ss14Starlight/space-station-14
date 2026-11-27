@@ -30,7 +30,7 @@ public abstract partial class SharedShadekinSystem
 
     [SubscribeLocalEvent]
     private void OnGetVisMask(Entity<BrighteyeComponent> uid, ref GetVisMaskEvent args) =>
-        args.VisibilityMask |= (int)VisibilityFlags.NullSpace;
+        args.VisibilityMask |= (int)(VisibilityFlags.NullSpace | VisibilityFlags.NullSpaceNoGhost);
 
     [SubscribeLocalEvent]
     private void OnInit(Entity<BrighteyeComponent> ent, ref ComponentStartup _)
@@ -182,7 +182,7 @@ public abstract partial class SharedShadekinSystem
     [SubscribeLocalEvent]
     private void OnMobStateChanged(Entity<BrighteyeComponent> ent, ref MobStateChangedEvent args)
     {
-        if (args.NewMobState is MobState.Alive or MobState.SoftCritical or MobState.Critical)
+        if (args.NewMobState is MobState.Alive)
             return;
 
         // We hit Crit/Death we lose energy... EVERYTIME!
@@ -204,42 +204,44 @@ public abstract partial class SharedShadekinSystem
         if (ent.Comp.Portal is null && !AreWeInTheDark(ent.Owner))
             return;
 
-        // Get a valid Location to get TP at.
-        var spawns = new List<EntityUid>();
-        var query = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-        while (query.MoveNext(out var spawnUid, out _, out var xform))
-            if (_mapSystem.TryGetMap(xform.MapID, out var spawnmap))
-                if (_tag.HasTag(spawnmap.Value, _theDarkTag))
-                    spawns.Add(spawnUid);
-
-        // If no valid spawnpoint... we just... DIE!
-        if (spawns.Count <= 0)
-            return;
-
-        _random.Shuffle(spawns);
-
-        // First, Drop Everything we have.
-        if (TryComp<InventoryComponent>(ent.Owner, out var inventoryComponent) && _inventorySystem.TryGetSlots(ent.Owner, out var slots))
-            foreach (var slot in slots)
-                _inventorySystem.TryUnequip(ent.Owner, slot.Name, true, true, false, inventoryComponent);
-
-        // Spawn the Shadow.
-        PredictedSpawnAtPosition(ent.Comp.ShadekinShadow, Transform(ent.Owner).Coordinates);
-
-        // Teleport to "The Dark"
-        foreach (var spawnUid in spawns)
+        if (!AreWeInTheDark(ent.Owner))
         {
-            _transform.SetCoordinates(ent.Owner, Transform(spawnUid).Coordinates);
-            break;
-        }
+            // Get a valid Location to get TP at.
+            var spawns = new List<EntityUid>();
+            var query = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+            while (query.MoveNext(out var spawnUid, out _, out var xform))
+                if (_mapSystem.TryGetMap(xform.MapID, out var spawnmap))
+                    if (_tag.HasTag(spawnmap.Value, _theDarkTag))
+                        spawns.Add(spawnUid);
 
-        var effect = PredictedSpawnAtPosition(ent.Comp.ShadekinPhaseInEffect2, Transform(ent.Owner).Coordinates);
-        _transform.SetLocalRotation(effect, Transform(ent.Owner).LocalRotation);
+            // If no valid spawnpoint... we just... DIE!
+            if (spawns.Count <= 0)
+                return;
+
+            _random.Shuffle(spawns);
+
+            // First, Drop Everything we have.
+            if (TryComp<InventoryComponent>(ent.Owner, out var inventoryComponent) && _inventorySystem.TryGetSlots(ent.Owner, out var slots))
+                foreach (var slot in slots)
+                    _inventorySystem.TryUnequip(ent.Owner, slot.Name, true, true, false, inventoryComponent);
+
+            // Spawn the Shadow.
+            PredictedSpawnAtPosition(ent.Comp.ShadekinShadow, Transform(ent.Owner).Coordinates);
+
+            // Teleport to "The Dark"
+            foreach (var spawnUid in spawns)
+            {
+                _transform.SetCoordinates(ent.Owner, Transform(spawnUid).Coordinates);
+                break;
+            }
+
+            var effect = PredictedSpawnAtPosition(ent.Comp.ShadekinPhaseInEffect2, Transform(ent.Owner).Coordinates);
+            _transform.SetLocalRotation(effect, Transform(ent.Owner).LocalRotation);
+        }
 
         RaiseLocalEvent(ent.Owner, new RejuvenateEvent());
 
         ent.Comp.Energy = 0;
-        ent.Comp.Rejuvenating = true;
         _alerts.ShowAlert(ent.Owner, ent.Comp.RejuvenationAlert);
 
         // Now... We mimir for 30Secs...
@@ -295,14 +297,6 @@ public abstract partial class SharedShadekinSystem
 
     private void UpdateEnergy(EntityUid uid, ShadekinComponent component, BrighteyeComponent brighteye)
     {
-        if (brighteye.Rejuvenating && brighteye.Energy >= brighteye.MaxEnergy)
-        {
-            brighteye.Rejuvenating = false;
-            Dirty(uid, brighteye);
-            _popup.PopupClient(Loc.GetString("shadekin-rejuvenate-compleated"), uid, uid, PopupType.LargeCaution);
-            _alerts.ClearAlert(uid, brighteye.RejuvenationAlert);
-        }
-
         if (HasComp<NullSpaceComponent>(uid)) // We dont gain energy in nullspace.
             return;
 

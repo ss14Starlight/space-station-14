@@ -28,13 +28,6 @@ public sealed partial class DarkHubSystem : EntitySystem
 
     private void OnAttemptPortal(Entity<DarkHubComponent> ent, ref OnAttemptPortalEvent args)
     {
-        if (TryComp<BrighteyeComponent>(args.Subject, out var brighteye) && brighteye.Rejuvenating)
-        {
-            _popup.PopupClient(Loc.GetString("hubportal-rejuvenate"), args.Subject, args.Subject, PopupType.LargeCaution);
-            args.Cancel();
-            return;
-        }
-
         if (_netMan.IsClient) // Predict Randomness? NO THANK YOU!
         {
             args.Cancel();

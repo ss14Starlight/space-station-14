@@ -52,7 +52,7 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
     }
 
     private void OnGetVisMask(Entity<NullSpaceComponent> uid, ref GetVisMaskEvent args) =>
-        args.VisibilityMask |= (int)VisibilityFlags.NullSpace;
+        args.VisibilityMask |= (int)(VisibilityFlags.NullSpace | VisibilityFlags.NullSpaceNoGhost);
 
     public void OnStartup(EntityUid uid, NullSpaceComponent component, MapInitEvent args)
     {

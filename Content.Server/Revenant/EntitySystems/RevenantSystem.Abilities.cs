@@ -30,6 +30,7 @@ using Robust.Shared.Map.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 using Content.Shared.SSDIndicator;
+using Content.Shared._Starlight.NullSpace.Components;
 
 namespace Content.Server.Revenant.EntitySystems;
 
@@ -160,6 +161,13 @@ public sealed partial class RevenantSystem
             _popup.PopupEntity(Loc.GetString("revenant-in-solid"), uid, uid);
             return;
         }
+
+        foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
+            if (HasComp<NullSpaceBlockerComponent>(entity))
+            {
+                _popup.PopupEntity(Loc.GetString("revenant-in-nullspace"), uid, uid);
+                return;
+            }
 
         var doAfter = new DoAfterArgs(EntityManager, uid, revenant.HarvestDebuffs.X, new HarvestEvent(), uid, target: target)
         {
