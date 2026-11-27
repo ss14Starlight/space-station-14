@@ -140,13 +140,15 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.90
-        Slash: 0.70
+        Blunt: 0.70
+        Slash: 0.90
         Piercing: 0.65
         Heat: 0.95
         Cold: 0.75
   - type: ExplosionResistance
     damageCoefficient: 1
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.85
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot { }
