@@ -126,7 +126,7 @@ public sealed partial class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponen
         if (healthy.Count == 1) // Only one human left. spooky
             _popup.PopupEntity(Loc.GetString("zombie-alone"), healthy[0], healthy[0]);
 
-        if (GetInfectedFraction(false) > zombieRuleComponent.ZombieShuttleCallPercentage && !_roundEnd.IsRoundEndRequested())
+        if (GetInfectedFraction(false) > zombieRuleComponent.ZombieShuttleCallPercentage && !_roundEnd.IsRoundEndRequested() && _roundEnd.GetShuttleCallsEnabled()) // Starlight-edit
         {
             //Starlight start - achievement
             foreach (var commonSession in _initialInfected) _achievement.QueueUnlockAchievement(commonSession, "no_room_hell");

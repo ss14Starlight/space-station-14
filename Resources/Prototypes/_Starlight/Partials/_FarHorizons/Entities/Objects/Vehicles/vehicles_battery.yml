@@ -1,6 +1,10 @@
 - type: !PartialOnly entity
   id: VehicleBatteryBuckleBase
   components:
+  - type: ContainerContainer
+    containers:
+      actions: !type:Container { showEnts: false }
+      status-effects: !type:Container { showEnts: true, occludes: false }
   - type: StrapVehicle
   - type: Strap
     modifyBuckleDrawDepth: false
@@ -72,6 +76,12 @@
       map: ["base"]
 
 - type: !PartialOnly entity
+  id: VehicleScooterElectricCommand
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
   id: VehicleScooterElectricCommandFilled
   components:
   - type: VehicleMods
@@ -103,6 +113,8 @@
 - type: !PartialOnly entity
   id: VehicleScooterElectricSecurity
   components:
+  - type: Contraband
+    tier: Tier2
   - type: Sprite
     layers: !Clear
     - state: vehicle

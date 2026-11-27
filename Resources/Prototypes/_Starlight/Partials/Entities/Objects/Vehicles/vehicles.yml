@@ -1,6 +1,7 @@
 # Far Horizons
 - type: !PartialOnly entity
   id: VehicleJanicart
+  parent: !Clear [BaseContrabandTier2, BaseVehicleStrap, BaseJanitorContraband]
   components:
   - type: Sprite
     drawdepth: OverMobs

@@ -1,2 +1,2 @@
-trait-wheelchair-bound-name = Wheelchair Bound
-trait-wheelchair-bound-desc = You cannot stand without your wheelchair. Wheelchair included.
+trait-wheelchair-bound-name = Wheelchair User
+trait-wheelchair-bound-desc = You finding standing uncomfortable, impractical, or impossible. You use a wheelchair to get around instead.

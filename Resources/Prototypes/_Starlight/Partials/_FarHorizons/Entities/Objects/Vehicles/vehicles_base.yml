@@ -14,6 +14,10 @@
       tags:
       - CanPilot
   - type: StatusEffectContainer
+  - type: ContainerContainer
+    containers:
+      actions: !type:Container { showEnts: false }
+      status-effects: !type:Container { showEnts: true, occludes: false }
   - type: !Remove MobMover
   save: !Remove
 

@@ -1,5 +1,6 @@
 - type: parallax
   id: BagelStation
+  starlightColor: "#946f6f" #SL Edit
   layers:
     - texture:
         !type:ImageParallaxTextureSource

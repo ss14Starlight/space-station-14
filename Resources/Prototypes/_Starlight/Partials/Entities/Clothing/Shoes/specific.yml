@@ -1,6 +1,8 @@
 - type: !PartialOnly entity
   id: ClothingShoesGaloshes
   components:
+  - type: Contraband
+    tier: Tier2
   - type: FootstepTimbre
     pitch: 1.05
     volume: -3

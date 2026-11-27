@@ -555,3 +555,15 @@ SofaMiddleBrown: ComfyChairBrown
 #2026-11-23 - Legacy vehicle IDs, we probably won't ever run into a case where this matters since they're so old
 VehicleKeySkeleton: VehicleKeyMotorcycle
 VehicleKeySkeletonMotorcycle: VehicleKeyMotorcycle
+
+# 2026-11-24 - NPC diversity
+SalvageHumanCorpseSpawner: SLSalvageHumanCorpseSpawner
+RandomServiceCorpseSpawner: SLRandomServiceCorpseSpawner
+RandomEngineerCorpseSpawner: SLRandomEngineerCorpseSpawner
+RandomCargoCorpseSpawner: SLRandomCargoCorpseSpawner
+RandomMedicCorpseSpawner: SLRandomMedicCorpseSpawner
+RandomScienceCorpseSpawner: SLRandomScienceCorpseSpawner
+RandomSecurityCorpseSpawner: SLRandomSecurityCorpseSpawner
+RandomCommandCorpseSpawner: SLRandomCommandCorpseSpawner
+SpawnMobSyndicateFootSoldier: SLSpawnMobSyndicateFootSoldier
+SpawnMobSyndicateFootsoldierPilot: SLSpawnMobSyndicateFootSoldierPilot

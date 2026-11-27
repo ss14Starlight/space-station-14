@@ -5,11 +5,9 @@
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Materials/ingots.rsi
-    scale: 0.5, 0.5
   - type: Item
     sprite: _Starlight/Objects/Materials/ingots.rsi
     size: Normal
-    scale: 0.5, 0.5
 
 #stack
 - type: stack
