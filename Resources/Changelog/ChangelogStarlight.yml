@@ -1,46 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (Manor) Added a few lights around the map.
-    type: Add
-  id: 410466
-  time: '2026-11-14T22:08:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7232
-- author: Cvlancer
-  changes:
-  - message: (Manor) Added a few ushankas in arrivals maints.
-    type: Add
-  id: 410467
-  time: '2026-11-14T22:08:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7232
-- author: Cvlancer
-  changes:
-  - message: (Manor) Fixed a glass window blocking gravity rooms door.
-    type: Fix
-  id: 410468
-  time: '2026-11-14T22:08:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7232
-- author: Cvlancer
-  changes:
-  - message: (Manor) Fixed shuttle construction bay vendomat being empty.
-    type: Fix
-  id: 410469
-  time: '2026-11-14T22:08:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7232
-- author: wonderfulnewworld
-  changes:
-  - message: Moproach and cleanbot won't repetitively clean water puddles after footprints.
-    type: Fix
-  id: 410470
-  time: '2026-11-15T00:26:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7244
-- author: wonderfulnewworld
-  changes:
-  - message: Administrative HUDs no longer see access reader settings.
-    type: Remove
-  id: 410471
-  time: '2026-11-15T10:04:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7243
 - author: wonderfulnewworld
   changes:
   - message: Increase cost of most modular hud modules a little.
@@ -2799,4 +2757,46 @@ Entries:
   id: 410865
   time: '2026-11-27T09:32:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7435
+- author: Evgencheg
+  changes:
+  - message: Mimes stay silent after mute toxin wears off.
+    type: Fix
+  id: 410866
+  time: '2026-11-27T17:11:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7572
+- author: Evgencheg
+  changes:
+  - message: Bible now shows the right message on unholy creatures.
+    type: Fix
+  id: 410867
+  time: '2026-11-27T17:11:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7572
+- author: Evgencheg
+  changes:
+  - message: AI can use station radios.
+    type: Fix
+  id: 410868
+  time: '2026-11-27T17:11:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7572
+- author: Evgencheg
+  changes:
+  - message: AI camera lights work again.
+    type: Fix
+  id: 410869
+  time: '2026-11-27T17:11:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7572
+- author: Evgencheg
+  changes:
+  - message: Pulled objects can't be attached as limbs.
+    type: Fix
+  id: 410870
+  time: '2026-11-27T17:11:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7572
+- author: Evgencheg
+  changes:
+  - message: Solar panels no longer stack at round start.
+    type: Fix
+  id: 410871
+  time: '2026-11-27T17:11:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7572
 Order: -1
