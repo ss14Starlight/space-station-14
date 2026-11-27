@@ -38,7 +38,7 @@ public sealed partial class StationGoalSystem
             {
                 if (proto.Abstract
                     || !proto.Components.ContainsKey("Edible")
-                    || !proto.TryGetComponent<ToolRefinableComponent>(out var refinable, _factory))
+                    || !proto.TryComp<ToolRefinableComponent>(out var refinable, _factory))
                     continue;
 
                 foreach (var entry in refinable.RefineResult)

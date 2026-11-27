@@ -23,7 +23,7 @@
 
   The finished cannon is [color=#a4885c]11 by 3 tiles[/color]. It lies horizontally and shoots east or west.
   - Every tile of that area needs floor, with nothing solid anchored on it except the three parts. Clear out walls, tables and machines first.
-  - The bore end points the way the cannon fires. The shell flies about 5 tiles out of the bore and damages everything in its path, so aim the bore at space or an empty corridor without any humanoid in it(any humanoid or structure will be annihilated).
+  - The bore end points the way the cannon fires. The shell flies about 65 tiles out of the bore and damages everything in its path, so aim the bore at space without any humanoid on path(any humanoid or structure will be annihilated).
   - Run an [color=orange]HV cable[/color] under the fusor. While charging, the cannon draws up to [color=orange]3 MW[/color] until it has stored 180 MJ, which takes about a minute on a strong grid.
 
   ## Assembly
