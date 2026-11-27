@@ -240,33 +240,6 @@
     Chronexaline: 3
 
 - type: reaction
-  id: StypticPowder
-  requiredMixerCategories:
-  - Electrolysis
-  reactants:
-    Heparin:
-      amount: 2
-    Sugar:
-      amount: 1
-    SodiumHydroxide:
-      amount: 2
-  products:
-    StypticPowder: 4
-
-- type: reaction
-  id: SilverSulfadiazine
-  minTemp: 380
-  reactants:
-    SodiumCarbonate:
-      amount: 2
-    Silver:
-      amount: 1
-    Sulfur:
-      amount: 1
-  products:
-    SilverSulfadiazine: 4
-
-- type: reaction
   id: SalicylicAcid
   reactants:
     Acetone:
