@@ -53,6 +53,17 @@ public sealed class MarkingCard : ContainerButton
             remove.OnPressed += _ => OnRemove?.Invoke();
             AddChild(remove);
         }
+        else
+        {
+            var label = new RichTextLabel
+            {
+                Text = Loc.GetString($"marking-{markingId}"),
+                HorizontalAlignment = HAlignment.Left,
+                VerticalAlignment = VAlignment.Top,
+                Margin = new Thickness(2, 0)
+            };
+            AddChild(label);
+        }
     }
 
     public void SetDragState(bool dragged, bool dropTarget)
