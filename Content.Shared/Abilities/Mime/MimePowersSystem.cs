@@ -172,7 +172,7 @@ public sealed partial class MimePowersSystem : EntitySystem
         mimePowers.ReadyToRepent = false;
         mimePowers.VowBroken = false;
         Dirty(uid, mimePowers);
-        AddComp<MutedComponent>(uid);
+        EnsureComp<MutedComponent>(uid); // Starlight-edit
         if (mimePowers.PreventWriting)
         {
             EnsureComp<BlockWritingComponent>(uid, out var illiterateComponent);

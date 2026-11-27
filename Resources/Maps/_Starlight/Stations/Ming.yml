@@ -98,6 +98,8 @@ entities:
     - type: GridTree
     - type: Broadphase
     - type: OccluderTree
+    - type: Parallax
+      parallax: Default
     - type: ChunkContainer
       chunkEntities: []
     - type: LightTree
