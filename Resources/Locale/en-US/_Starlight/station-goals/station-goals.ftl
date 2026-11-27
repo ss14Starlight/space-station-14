@@ -23,6 +23,7 @@ station-goal-console-time-left = Time left
 station-goal-console-minutes = {$minutes} min
 station-goal-console-unavailable = Overlaps with an active goal, or no goal slot is free.
 station-goal-console-vote-unavailable = There is nothing to vote on right now.
+station-goal-console-not-eligible = Only command staff can vote.
 station-goal-console-access-denied = Access denied.
 
 ## Announcements and rewards

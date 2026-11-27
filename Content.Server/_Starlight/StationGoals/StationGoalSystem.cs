@@ -164,7 +164,7 @@ public sealed partial class StationGoalSystem : EntitySystem
     /// </summary>
     public bool TryVote(Entity<StationGoalsComponent> ent, ICommonSession voter, string name, ProtoId<StationGoalPrototype> goal)
     {
-        if (ent.Comp.Vote is not { } vote || !vote.Candidates.Contains(goal))
+        if (ent.Comp.Vote is not { } vote || !vote.Candidates.Contains(goal) || !IsEligibleVoter(ent.Comp, voter))
             return false;
 
         vote.Votes[voter.UserId] = (goal, name);
@@ -202,22 +202,27 @@ public sealed partial class StationGoalSystem : EntitySystem
 
     private IEnumerable<ICommonSession> EligibleVoters(StationGoalsComponent comp)
     {
-        if (!_proto.Resolve(comp.VoterDepartment, out var department))
-            yield break;
-
         foreach (var session in _players.Sessions)
         {
-            if (session.AttachedEntity is not { } mob || _mobState.IsDead(mob))
-                continue;
-
-            if (!_mind.TryGetMind(session, out var mindId, out _)
-                || !_jobs.MindTryGetJobId(mindId, out var job)
-                || job == null
-                || !department.Roles.Contains(job.Value))
-                continue;
-
-            yield return session;
+            if (IsEligibleVoter(comp, session))
+                yield return session;
         }
+    }
+
+    /// <summary>
+    /// True when the player is alive and works a job of the voter department. Access alone is not enough to vote.
+    /// </summary>
+    public bool IsEligibleVoter(StationGoalsComponent comp, ICommonSession session)
+    {
+        if (!_proto.Resolve(comp.VoterDepartment, out var department)
+            || session.AttachedEntity is not { } mob
+            || _mobState.IsDead(mob))
+            return false;
+
+        return _mind.TryGetMind(session, out var mindId, out _)
+            && _jobs.MindTryGetJobId(mindId, out var job)
+            && job != null
+            && department.Roles.Contains(job.Value);
     }
 
     private void FinishVote(Entity<StationGoalsComponent> ent)

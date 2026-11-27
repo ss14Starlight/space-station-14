@@ -53,6 +53,12 @@ public sealed partial class StationGoalSystem
             || !TryComp<ActorComponent>(args.Actor, out var actor))
             return;
 
+        if (!IsEligibleVoter(station.Comp, actor.PlayerSession))
+        {
+            _popup.PopupEntity(Loc.GetString("station-goal-console-not-eligible"), ent, args.Actor, PopupType.SmallCaution);
+            return;
+        }
+
         TryVote(station, actor.PlayerSession, Name(args.Actor), args.Goal);
     }
 
