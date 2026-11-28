@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Numerics;
-using Content.Client._Starlight.Access.UI; // Starlight-edit
+using Content.Client._Starlight.Access.UI;
 using Content.Client.Stylesheets;
 using Content.Shared.Access;
 using Content.Shared.Access.Systems;
@@ -138,10 +138,19 @@ namespace Content.Client.Access.UI
 
         private void SetAllAccess(bool enabled)
         {
-            _pendingPressedAccessLevels.Clear(); // Starlight-edit
-            foreach (var button in _accessButtons.ButtonsList.Values)
-                if (!button.Disabled && button.Pressed != enabled)
-                    button.Pressed = enabled;
+            // Starlight-start
+            foreach (var (id, button) in _accessButtons.ButtonsList)
+            {
+                if (button.Disabled)
+                    continue;
+
+                button.Pressed = enabled;
+                if (enabled)
+                    _pendingPressedAccessLevels.Add(id);
+                else
+                    _pendingPressedAccessLevels.Remove(id);
+            }
+            // Starlight-end
         }
 
         private void SelectJobPreset(OptionButton.ItemSelectedEventArgs args)
@@ -182,7 +191,8 @@ namespace Content.Client.Access.UI
             var allowedJobAccess = allJobAccess
                 .Where(x => _allowedAccessLevels.Contains(x) && allConsoleGroupTags.Contains(x))
                 .ToHashSet();
-            _pendingPressedAccessLevels = allowedJobAccess;
+            _pendingPressedAccessLevels.ExceptWith(_allowedAccessLevels.Where(allConsoleGroupTags.Contains));
+            _pendingPressedAccessLevels.UnionWith(allowedJobAccess);
 
             _pendingAccessOverride = true;
 
