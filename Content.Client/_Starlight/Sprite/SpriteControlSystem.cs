@@ -1,15 +1,11 @@
 using Content.Client._Starlight.Humanoid;
 using Content.Client.Items.Systems;
-using Content.Shared._Starlight.Administration.Components;
 using Content.Shared._Starlight.Sprite;
-using Content.Shared.Administration;
-using Content.Shared.Administration.Managers;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Robust.Client.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -26,7 +22,6 @@ public sealed partial class SpriteControlSystem : EntitySystem
     [Dependency] private HumanoidAppearanceSystem _humanoid = null!;
     [Dependency] private IGameTiming _timing = null!;
     [Dependency] private IPrototypeManager _proto = null!;
-    [Dependency] private ISharedAdminManager _admin = null!;
 
     private readonly HashSet<int> _clothingIndices = [];
     private readonly HashSet<int> _heldIndices = [];
@@ -83,7 +78,7 @@ public sealed partial class SpriteControlSystem : EntitySystem
 
     private static SpriteControlConfig GetConfig(SpriteControlComponent comp) => new(comp.SourceEntity,
         comp.SourceProto, comp.Sprite, comp.MirrorInterval, comp.KeepClothing, comp.KeepHeld, comp.HideOwnLayers,
-        comp.Offset, comp.Rotation, comp.Color, comp.DrawDepth, comp.NoRotation);
+        comp.Offset, comp.Rotation, comp.DrawDepth, comp.NoRotation);
 
     private void Apply(Entity<SpriteControlComponent, SpriteComponent> ent, SpriteControlConfig config)
     {
@@ -165,13 +160,6 @@ public sealed partial class SpriteControlSystem : EntitySystem
 
         if (comp.Sprite is not { } specifier) return false;
 
-        if (!IsSpecifierPermitted(ent))
-        {
-            comp.Sprite = null;
-            Log.Warning($"Entity {ToPrettyString(ent):entity} not permitted to use sprite specifier as ghost.");
-            return false;
-        }
-
         CopySpriteWideProperties(baseline, (uid, sprite));
 
         while (sprite.LayerData.Count > 0)
@@ -189,8 +177,6 @@ public sealed partial class SpriteControlSystem : EntitySystem
             _sprite.SetOffset((uid, sprite), offset);
         if (comp.Rotation is { } rotation)
             _sprite.SetRotation((uid, sprite), rotation);
-        if (comp.Color is { } color)
-            _sprite.SetColor((uid, sprite), color);
         if (comp.DrawDepth is { } depth)
             _sprite.SetDrawDepth((uid, sprite), depth);
         if (comp.NoRotation is { } noRot)
@@ -255,12 +241,5 @@ public sealed partial class SpriteControlSystem : EntitySystem
             if (hide)
                 _sprite.LayerSetVisible((uid, sprite), i, false);
         }
-    }
-
-    private bool IsSpecifierPermitted(EntityUid uid)
-    {
-        if (!HasComp<AdminGhostComponent>(uid)) return true;
-        return TryComp<ActorComponent>(uid, out var actor) &&
-            _admin.HasAdminFlag(actor.PlayerSession, AdminFlags.Bypass);
     }
 }

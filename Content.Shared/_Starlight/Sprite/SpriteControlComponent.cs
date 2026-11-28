@@ -15,21 +15,24 @@ public sealed partial class SpriteControlComponent : Component
 {
     /// <summary>
     /// Live entity to copy the sprite from.
+    /// Modify with the command.
     /// </summary>
-    [DataField, AutoNetworkedField] public EntityUid? SourceEntity;
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)] public EntityUid? SourceEntity;
 
     /// <summary>
     /// Prototype to copy the sprite from. Also used as a fallback if <see cref="SourceEntity"/> isn't available.
+    /// Modify with the command.
     /// </summary>
-    [DataField, AutoNetworkedField] public EntProtoId? SourceProto;
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)] public EntProtoId? SourceProto;
 
     /// <summary>
     /// Set entity to use specific sprite specifier.
+    /// Modify with the command.
     /// </summary>
     /// <remarks>
     /// Disabled if you are a ghost and don't have +Bypass.
     /// </remarks>
-    [DataField, AutoNetworkedField] public SpriteSpecifier? Sprite;
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)] public SpriteSpecifier? Sprite;
 
     /// <summary>
     /// If set, the sprite of <see cref="SourceEntity"/> is re-copied this often (in seconds), so the copy follows
@@ -57,8 +60,6 @@ public sealed partial class SpriteControlComponent : Component
 
     [DataField, AutoNetworkedField] public Angle? Rotation;
 
-    [DataField, AutoNetworkedField] public Color? Color;
-
     [DataField, AutoNetworkedField] public int? DrawDepth;
 
     [DataField, AutoNetworkedField] public bool? NoRotation;
@@ -74,6 +75,11 @@ public sealed partial class SpriteControlComponent : Component
     [ViewVariables] public TimeSpan NextMirror;
 
     [ViewVariables] public readonly HashSet<object> SourceLayers = new(ReferenceEqualityComparer.Instance);
+
+    /// <summary>
+    /// Set true when an admin with +Bypass sets this entity's sprite specifier override
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)] public bool BypassPermitted;
 }
 
 /// <summary>
@@ -89,6 +95,5 @@ public readonly record struct SpriteControlConfig(
     bool HideOwnLayers,
     Vector2? Offset,
     Angle? Rotation,
-    Color? Color,
     int? DrawDepth,
     bool? NoRotation);
