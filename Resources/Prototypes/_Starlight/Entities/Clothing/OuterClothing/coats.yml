@@ -614,7 +614,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/chef-centcomm.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWinter, AllowSuitStorageClothingGasTanks]
   id: ClothingOuterRockerHeartBomber
   name: rocker's heart bomber
   description: Been good to know ya...
@@ -632,7 +632,7 @@
             shader: unshaded
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWinter, AllowSuitStorageClothingGasTanks]
   id: ClothingOuterJohnnySamuraiJacket
   name: johnny's samurai jacket
   description: Never fade away...
@@ -650,7 +650,7 @@
             shader: unshaded
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWinter, AllowSuitStorageClothingGasTanks]
   id: ClothingOuterEdgerunnerJacket
   name: edgerunner's jacket
   description: I'm dead, just like disco

@@ -4,6 +4,7 @@ using Content.Server.Interaction;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Shared._Starlight.StationRadio.Components;
+using Content.Shared._Starlight.Speech;
 using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
@@ -118,7 +119,6 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
         SetMicrophoneEnabled(uid, null, false, true, component);
     }
 
-
     public override void SetMicrophoneEnabled(EntityUid uid, EntityUid? user, bool enabled, bool quiet = false, RadioMicrophoneComponent? component = null)
     {
         if (!Resolve(uid, ref component, false))
@@ -180,7 +180,7 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
         //Starlight begin
         if (_protoMan.TryIndex<RadioChannelPrototype>(component.BroadcastChannel, out var channel) &&
             _recentlySent.Add((args.Message, args.Source, channel.ID)))
-            _radio.SendRadioMessage(args.Source, args.Message, channel, uid);
+            _radio.SendRadioMessage(args.Source, new SpeechMessage { Text = args.Message, Tts = args.Tts ?? args.Message, OriginalText = args.OriginalMessage }, channel, uid);
         else if (_chat.TryGetCustomChannel(uid, component.BroadcastChannel, out var customChannel) &&
                  _recentlySent.Add((args.Message, args.Source, customChannel.Id)))
             _radio.SendCustomRadioMessage(args.Source, args.Message, customChannel, uid);
