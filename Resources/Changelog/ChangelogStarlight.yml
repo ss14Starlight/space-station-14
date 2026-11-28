@@ -1,13 +1,6 @@
 Entries:
 - author: Ohelig
   changes:
-  - message: (Cluster) Added a missing disposal unit to the Space Bar.
-    type: Add
-  id: 410492
-  time: '2026-11-16T04:32:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7246
-- author: Ohelig
-  changes:
   - message: (Cluster) Added another Chemistry locker.
     type: Add
   id: 410493
@@ -2799,4 +2792,11 @@ Entries:
   id: 410891
   time: '2026-11-28T10:12:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7440
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Curtains no longer prevent doors from automatically closing. The curtains must rise!
+    type: Fix
+  id: 410892
+  time: '2026-11-28T10:43:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7495
 Order: -1
