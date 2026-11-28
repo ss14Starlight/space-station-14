@@ -1,0 +1,10 @@
+marking-ScurretHeadWhiskers = Whiskers
+marking-ScurretHeadWhiskers-whiskers = Whiskers
+marking-ScurretHeadCheekFur = Cheek Fur
+marking-ScurretHeadCheekFur-cheekfur = Cheek Fur
+marking-ScurretHeadChubbyCheeks = Chubby Cheeks
+marking-ScurretHeadChubbyCheeks-chubbycheeks = Chubby Cheeks
+marking-ScurretChestUnderbelly = Underbelly
+marking-ScurretChestUnderbelly-underbelly = Underbelly
+marking-ScurretTailChubby = Chubby Tail
+marking-ScurretTailChubby-chubbytail = Chubby Tail

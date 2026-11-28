@@ -759,6 +759,64 @@
     sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
 
+# stomach pouch
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepLocateStomachPouch
+  name: Locate Stomach Pouch
+  components:
+  - type: SurgeryStep
+    duration: 3
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    state: stomach
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveStomachPouch
+  name: Remove Stomach Pouch
+  components:
+  - type: SurgeryStep
+    duration: 5
+    tools:
+    - type: Scalpel
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+  - type: SurgeryStepEmoteEffect
+  - type: SurgeryStepOrganExtract
+    organ:
+    - type: StomachPouch
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepPrepareImplantSiteStomachPouch
+  name: Prepare Implant Site
+  components:
+  - type: SurgeryStep
+    duration: 4
+    tools:
+    - type: Scalpel
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepInsertStomachPouch
+  name: Insert Stomach Pouch
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: StomachPouch
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    state: stomach
+  - type: SurgeryStepOrganInsert
+    slot: stomach_pouch
+
 # lungs
 
 - type: entity

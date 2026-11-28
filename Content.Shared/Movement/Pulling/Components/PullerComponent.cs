@@ -41,6 +41,12 @@ public sealed partial class PullerComponent : Component
     [DataField]
     public bool NeedsHands = true;
 
+    /// <summary>
+    ///  when pulling should the puller ignore slowdown
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool IgnorePullingSlowdown;
+
     [DataField]
     public ProtoId<AlertPrototype> PullingAlert = "Pulling";
 }

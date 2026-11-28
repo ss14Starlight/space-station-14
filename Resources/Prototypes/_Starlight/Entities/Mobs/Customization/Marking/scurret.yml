@@ -1,0 +1,45 @@
+# Scurret customization
+- type: marking
+  id: ScurretHeadWhiskers
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Scurret]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Scurret/head.rsi
+    state: whiskers
+
+- type: marking
+  id: ScurretHeadCheekFur
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Scurret]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Scurret/head.rsi
+    state: cheekfur
+
+- type: marking
+  id: ScurretHeadChubbyCheeks
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Scurret]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Scurret/head.rsi
+    state: chubbycheeks
+
+- type: marking
+  id: ScurretChestUnderbelly
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Scurret]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Scurret/chest.rsi
+    state: underbelly
+
+- type: marking
+  id: ScurretTailChubby
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Scurret]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Scurret/tail.rsi
+    state: chubbytail

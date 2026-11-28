@@ -451,6 +451,56 @@
 #
 - type: entity
   parent: SurgeryBase
+  id: SurgeryExtractStomachPouch
+  name: Extract Stomach Pouch
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenAbdomen
+    steps:
+    - SurgeryStepLocateStomachPouch
+    - SurgeryStepRemoveStomachPouch
+  - type: SurgerySpeciesCondition
+    speciesWhitelist:
+    - Scurret
+  - type: SurgeryPartCondition
+    parts:
+    - Torso
+  - type: SurgeryOrganExistCondition
+    organ:
+    - type: StomachPouch
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    state: stomach
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantStomachPouch
+  name: Implant Stomach Pouch
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenAbdomen
+    steps:
+    - SurgeryStepPrepareImplantSiteStomachPouch
+    - SurgeryStepInsertStomachPouch
+    - SurgeryStepRestoreAbdominalWalls
+    - SurgeryStepSutureMuscles
+  - type: SurgerySpeciesCondition
+    speciesWhitelist:
+    - Scurret
+  - type: SurgeryPartCondition
+    parts:
+    - Torso
+  - type: SurgeryOrganDontExistCondition
+    organ:
+    - type: StomachPouch
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    state: stomach
+
+- type: entity
+  parent: SurgeryBase
   id: SurgeryExtractLungs
   name: Extract Lungs
   components:

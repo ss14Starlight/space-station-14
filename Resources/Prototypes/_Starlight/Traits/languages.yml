@@ -161,6 +161,25 @@
 # Species Languages // Should cost: 2
 
 - type: trait
+  id: Exiled
+  name: trait-language-exiled-name
+  description: trait-language-exiled-desc
+  category: LanguageTraits
+  cost: 2
+  effects:
+    - !type:LanguageEffect
+      languagesSpoken:
+        - GalacticCommon
+      removeLanguagesSpoken:
+        - ScurretSign
+      removeLanguagesUnderstood:
+        - ScurretSign
+  requirements:
+    - !type:SpeciesRequirement
+      species:
+        - Scurret
+
+- type: trait
   id: Nekomimetic
   name: trait-language-nekomimetic-name
   description: trait-language-nekomimetic-desc
