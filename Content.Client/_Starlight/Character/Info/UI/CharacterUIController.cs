@@ -6,11 +6,13 @@ using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.MenuBar.Widgets;
 using Content.Client.UserInterface.Systems.Objectives.Controls;
 using Content.Client._Starlight.Character.Info;
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared.Input;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Client.UserInterface.Controllers;
+using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface;
 using Robust.Shared.Input.Binding;
@@ -27,6 +29,7 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
 
     [UISystemDependency] private readonly CharacterInfoSystem _characterInfo = default!;
     [UISystemDependency] private readonly SLCharacterWindowSystem _characterWindow = default!;
+    [UISystemDependency] private readonly RemoteControlInterface _remoteControl = default!;
     [UISystemDependency] private readonly SpriteSystem _sprite = default!;
 
     private const int DescriptionWordLimit = 40;
@@ -219,6 +222,24 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
 
     private void CloseWindow() => _window?.Close();
 
+    private void EmbedWindowInRemoteControl(BaseWindow window)
+    {
+        if (_remoteControl.ControlledEntity is { } remoteEntity)
+            _remoteControl.TryEmbedWindow(remoteEntity, window);
+    }
+
+    private void RestoreCharacterWindowToLocalRoot()
+    {
+        if (_window is not { } window || window.Parent == UIManager.WindowRoot)
+            return;
+
+        window.Orphan();
+        UIManager.WindowRoot.AddChild(window);
+        LayoutContainer.SetAnchorPreset(window, LayoutContainer.LayoutPreset.Center);
+        LayoutContainer.SetGrowHorizontal(window, LayoutContainer.GrowDirection.Both);
+        LayoutContainer.SetGrowVertical(window, LayoutContainer.GrowDirection.Both);
+    }
+
     public void OpenWindow()
     {
         if (_window == null)
@@ -227,10 +248,14 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
         _characterInfo.RequestCharacterInfo();
 
         if (_window.IsOpen)
+        {
+            EmbedWindowInRemoteControl(_window);
             return;
+        }
 
         _characterButton?.SetClickPressed(true);
         _window.Open();
+        EmbedWindowInRemoteControl(_window);
     }
 
     private void ToggleWindow()
@@ -247,6 +272,7 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
         else
         {
             _characterInfo.RequestCharacterInfo();
+            RestoreCharacterWindowToLocalRoot();
             _window.Open();
         }
     }
@@ -268,6 +294,7 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
         {
             window.SetCharacter(target, EntityManager, viewer);
             window.OpenCentered();
+            EmbedWindowInRemoteControl(window);
             return;
         }
 
@@ -279,6 +306,7 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
         window.OnClose += () => _openInspectionWindows.Remove(target);
         window.Title = Loc.GetString("character-info-window-title", ("player", target));
         window.OpenCentered();
+        EmbedWindowInRemoteControl(window);
     }
 
     /// <summary>

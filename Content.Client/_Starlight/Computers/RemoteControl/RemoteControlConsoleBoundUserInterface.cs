@@ -2,10 +2,12 @@ using Content.Client.Eye;
 using Content.Client.Construction;
 using Content.Client._DEN.QuickConstruction.UI;
 using Content.Client._Starlight.UserInterface;
+using Content.Shared.Alert;
 using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared._DEN.QuickConstruction.Events;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Actions.Components;
+using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.Laws.Components;
 using JetBrains.Annotations;
 using Robust.Client.Graphics;
@@ -14,6 +16,8 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Graphics;
 using Robust.Shared.IoC;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 using Robust.Client.Player;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +28,7 @@ namespace Content.Client._Starlight.Computers.RemoteControl;
 public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     private readonly IPlayerManager _playerManager = IoCManager.Resolve<IPlayerManager>();
+    private readonly IGameTiming _gameTiming = IoCManager.Resolve<IGameTiming>();
     private EyeLerpingSystem? _eyeLerpingSystem;
     private RemoteControlInterface _remoteControl = default!;
     private RemoteControlConsoleWindow? _window;
@@ -50,10 +55,10 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
         _window.RemoteToggleKnockdownPressed += RemoteToggleKnockdown;
         _window.RemoteReleasePulledObjectPressed += RemoteReleasePulledObject;
         _window.RemoteInteractionPressed += RemoteInteractionPressed;
-        _window.RemoteAttackHoldChanged += RemoteAttackHoldChanged;
         _window.RemoteDragDropPressed += RemoteDragDropPressed;
         _window.RemoteActionPressed += RemoteActionPressed;
         _window.RemoteTargetActionPressed += RemoteTargetActionPressed;
+        _window.RemoteAlertPressed += RemoteAlertPressed;
         _window.RemoteHandPressed += RemoteHandPressed;
         _window.RemoteInventoryPressed += RemoteInventoryPressed;
         _window.InitializeViewport();
@@ -104,6 +109,7 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
             window.SetRemoteEntity(null);
         }
 
+        window.SetRemoteAlerts(remoteState.Alerts);
         window.SetRemoteViewEnabled(remoteState.EnableRemoteView);
         window.SetConnected(remoteState.Connected);
         var controlling = remoteState.Controller is { } controller
@@ -146,12 +152,28 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
     {
         base.Update();
         RefreshActions();
+
+        if (_remoteEntity is { } remoteEntity && _window is { Disposed: false } window)
+            window.RefreshPredictedRemoteHands(remoteEntity);
     }
 
     private void RefreshActions()
     {
         if (_window == null)
             return;
+
+        _selectedAction = _remoteEntity switch
+        {
+            { } remoteEntity when EntMan.TryGetComponent<BorgChassisComponent>(remoteEntity, out var chassis)
+                => chassis.SelectedModule switch
+                {
+                    { } module when EntMan.TryGetComponent<SelectableBorgModuleComponent>(module, out var selectable)
+                        => selectable.ModuleSwapActionEntity,
+                    null => null,
+                    _ => _selectedAction
+                },
+            _ => _selectedAction
+        };
 
         var actions = new List<EntityUid>(_remoteActionEntities.Count);
         foreach (var action in _remoteActionEntities)
@@ -178,21 +200,38 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
     private void ToggleControl() => SendMessage(new RemoteControlToggleMessage());
 
     private void RemoteToggleKnockdown()
-        => SendMessage(new RemoteControlToggleKnockdownMessage());
+        => SendPredictedMessage(new RemoteControlToggleKnockdownMessage());
 
     private void RemoteReleasePulledObject()
-        => SendMessage(new RemoteControlReleasePulledObjectMessage());
+        => SendPredictedMessage(new RemoteControlReleasePulledObjectMessage());
 
     private void RemoteActionPressed(EntityUid action)
-        => SendMessage(new RemoteControlActionMessage { Action = EntMan.GetNetEntity(action) });
+    {
+        var message = new RemoteControlActionMessage { Action = EntMan.GetNetEntity(action) };
+        if (_remoteEntity is { } remoteEntity
+            && EntMan.HasComponent<BorgSwitchableTypeComponent>(remoteEntity)
+            && EntMan.TryGetComponent<InstantActionComponent>(action, out var instantAction)
+            && instantAction.Event is BorgToggleSelectTypeEvent)
+            SendMessage(message);
+        else
+            SendPredictedMessage(message);
+    }
 
     private void RemoteTargetActionPressed(EntityUid action, EntityUid? target, NetCoordinates coordinates)
-        => SendMessage(new RemoteControlTargetActionMessage
+        => SendPredictedMessage(new RemoteControlTargetActionMessage
         {
             Action = EntMan.GetNetEntity(action),
             Target = target is { } targetEntity ? EntMan.GetNetEntity(targetEntity) : null,
             Coordinates = coordinates,
         });
+
+    private void RemoteAlertPressed(ProtoId<AlertPrototype> alert)
+    {
+        if (_remoteControl.ControlledEntity is null)
+            return;
+
+        SendPredictedMessage(new RemoteControlAlertMessage { Alert = alert });
+    }
 
     private void OnRemoteItemConstruction(string prototypeName)
         => SendMessage(new RemoteControlBuildItemConstructionMessage { PrototypeName = prototypeName });
@@ -210,9 +249,10 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
         RemoteControlInteractionAction action, AtmosPipeLayer? pipeLayer)
     {
         var remotePlacement = EntMan.System<RemoteConstructionPlacementSystem>();
+        var remotePlacementActive = remotePlacement.IsActive;
         if (!altInteract
             && action == RemoteControlInteractionAction.Interact
-            && remotePlacement.IsActive
+            && remotePlacementActive
             && !remotePlacement.TryCommit(target))
             return;
 
@@ -233,45 +273,69 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
             return;
         }
 
-        SendMessage(new RemoteControlInteractionMessage
+        var predictInteraction = action switch
+        {
+            RemoteControlInteractionAction.Interact =>
+                !remotePlacementActive && pipeLayer is null && (!activateInWorld || target is not null),
+            RemoteControlInteractionAction.TryPull => target is not null,
+            RemoteControlInteractionAction.Drop or RemoteControlInteractionAction.Throw
+                or RemoteControlInteractionAction.Shoot or RemoteControlInteractionAction.HeavyAttack => true,
+            _ => false
+        };
+
+        var message = new RemoteControlInteractionMessage
         {
             Coordinates = coordinates,
             Target = target is { } entity ? EntMan.GetNetEntity(entity) : null,
             AltInteract = altInteract,
             ActivateInWorld = activateInWorld,
             Action = action,
+            Tick = _gameTiming.CurTick,
             PipeLayer = pipeLayer,
-        });
+        };
+
+        if (predictInteraction)
+            SendPredictedMessage(message);
+        else
+            SendMessage(message);
     }
 
-    private void RemoteAttackHoldChanged(bool held, RemoteControlAttackHoldType type, bool altInteract,
-        NetCoordinates? coordinates, EntityUid? target)
-        => SendMessage(new RemoteControlAttackHoldMessage
-        {
-            Held = held,
-            Type = type,
-            AltInteract = altInteract,
-            HasCoordinates = coordinates is not null,
-            Coordinates = coordinates.GetValueOrDefault(),
-            Target = target is { } entity ? EntMan.GetNetEntity(entity) : null,
-        });
-
-    private void OnRemoteMenuInteraction(EntityUid target, bool altInteract, RemoteControlInteractionAction action)
+    private void OnRemoteMenuInteraction(
+        EntityUid target,
+        bool altInteract,
+        bool activateInWorld,
+        RemoteControlInteractionAction action)
     {
         if (_remoteEntity is null)
             return;
 
-        SendMessage(new RemoteControlInteractionMessage
+        var message = new RemoteControlInteractionMessage
         {
             Coordinates = EntMan.GetNetCoordinates(EntMan.GetComponent<TransformComponent>(target).Coordinates),
             Target = EntMan.GetNetEntity(target),
             AltInteract = altInteract,
+            ActivateInWorld = activateInWorld,
             Action = action,
-        });
+            Tick = _gameTiming.CurTick,
+        };
+
+        var predictInteraction = action switch
+        {
+            RemoteControlInteractionAction.Interact => true,
+            RemoteControlInteractionAction.TryPull => true,
+            RemoteControlInteractionAction.Drop or RemoteControlInteractionAction.Throw
+                or RemoteControlInteractionAction.Shoot or RemoteControlInteractionAction.HeavyAttack => true,
+            _ => false
+        };
+
+        if (predictInteraction)
+            SendPredictedMessage(message);
+        else
+            SendMessage(message);
     }
 
     private void RemoteHandPressed(string hand, RemoteControlHandAction action)
-        => SendMessage(new RemoteControlHandMessage { Hand = hand, Action = action });
+        => SendPredictedMessage(new RemoteControlHandMessage { Hand = hand, Action = action });
 
     private void RemoteDragDropPressed(EntityUid dragged, EntityUid target)
         => SendMessage(new RemoteControlDragDropMessage
@@ -281,7 +345,15 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
         });
 
     private void RemoteInventoryPressed(string slot, RemoteControlInventoryAction action)
-        => SendMessage(new RemoteControlInventoryMessage { Slot = slot, Action = action });
+    {
+        var message = new RemoteControlInventoryMessage { Slot = slot, Action = action };
+        if (action is RemoteControlInventoryAction.UseSlot
+            or RemoteControlInventoryAction.ActivateSlot
+            or RemoteControlInventoryAction.AltActivateSlot)
+            SendPredictedMessage(message);
+        else
+            SendMessage(message);
+    }
 
     private void ClearRemoteQuickConstruction()
     {
@@ -323,9 +395,9 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
                 window.RemoteToggleKnockdownPressed -= RemoteToggleKnockdown;
                 window.RemoteReleasePulledObjectPressed -= RemoteReleasePulledObject;
                 window.RemoteInteractionPressed -= RemoteInteractionPressed;
-                window.RemoteAttackHoldChanged -= RemoteAttackHoldChanged;
                 window.RemoteDragDropPressed -= RemoteDragDropPressed;
                 window.RemoteActionPressed -= RemoteActionPressed;
+                window.RemoteAlertPressed -= RemoteAlertPressed;
                 window.RemoteHandPressed -= RemoteHandPressed;
                 window.RemoteInventoryPressed -= RemoteInventoryPressed;
                 window.SetRemoteEye(null);

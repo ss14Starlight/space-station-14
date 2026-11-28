@@ -4,6 +4,7 @@ using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Item.ItemToggle.Components;
@@ -144,7 +145,7 @@ public abstract partial class SharedToolSystem
             {
                 var drained = SolutionContainerSystem.Drain(target, targetSoln.Value, trans);
                 SolutionContainerSystem.TryAddSolution(solution.Value, drained);
-                _audioSystem.PlayPredicted(entity.Comp.WelderRefill, entity, user: args.User);
+                _audioSystem.PlayPredicted(entity.Comp.WelderRefill, entity, user: EntityManager.GetPredictedAudioUser(args.User)); // Starlight
                 _popup.PopupClient(Loc.GetString("welder-component-after-interact-refueled-message"), entity, args.User);
             }
             else if (welderSolution.AvailableVolume <= 0)

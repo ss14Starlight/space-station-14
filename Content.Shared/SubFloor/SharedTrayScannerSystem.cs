@@ -3,8 +3,8 @@ using Content.Shared.Eye;
 using Content.Shared.Hands;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory.Events;
-using Content.Shared.Timing;
 using Content.Shared.Verbs;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
@@ -17,7 +17,6 @@ public abstract partial class SharedTrayScannerSystem : EntitySystem
     [Dependency] private SharedAppearanceSystem _appearance = default!; // starlight edit: removed readonly
     [Dependency] private SharedAudioSystem _audio = default!; // starlight edit: removed readonly
     [Dependency] private SharedEyeSystem _eye = default!; // starlight edit: removed readonly
-    [Dependency] private UseDelaySystem _delay = default!; // starlight edit: removed readonly
     [Dependency] private INetManager _netMan = default!; // starlight edit: removed readonly
 
     public const float SubfloorRevealAlpha = 0.8f;
@@ -68,16 +67,14 @@ public abstract partial class SharedTrayScannerSystem : EntitySystem
         if (!userUid.HasValue)
             return;
 
-        // Prevents ping spam
-        if (!_delay.TryResetDelay(scanner, checkDelayed: true))
-            return;
-
+        // Starlight - start
         scanner.Comp.Mode = Next(scanner.Comp.Mode);
         Dirty(scanner);
+        // Starlight - end
 
         // Play a slightly different sound when we're back to All mode
         var pitch = scanner.Comp.Mode == TrayScannerMode.All ? 1 : 0.8f;
-        _audio.PlayPredicted(scanner.Comp.SoundSwitchMode, scanner, userUid, AudioParams.Default.WithVolume(1.5f).WithPitchScale(pitch));
+        _audio.PlayPredicted(scanner.Comp.SoundSwitchMode, scanner, EntityManager.GetPredictedAudioUser(userUid), AudioParams.Default.WithVolume(1.5f).WithPitchScale(pitch)); // Starlight
     }
 
     private void OnUserGetVis(Entity<TrayScannerUserComponent> scanner, ref GetVisMaskEvent args)

@@ -204,7 +204,8 @@ namespace Content.Client.Examine
         public void OpenTooltip(EntityUid player, EntityUid target, out RichTextLabel? nameLabel, out string? name,
             bool centeredOnCursor = true, bool openAtOldTooltip = true, bool knowTarget = true,
             EntityUid? examiner = null, UIRoot? uiRoot = null, // Starlight: optional examiner and uiRoot support
-            PopupContainer? popupContainer = null) // Starlight: optional window-local popup container
+            PopupContainer? popupContainer = null, // Starlight: optional window-local popup container
+            ScreenCoordinates? screenPosition = null) // Starlight: optional event position for popout windows
         {
             // Close any examine tooltip that might already be opened
             // Before we do that, save its position. We'll prioritize opening any new popups there if
@@ -228,6 +229,17 @@ namespace Content.Client.Examine
             {
                 _popupPos = oldTooltipPos.Value;
             }
+            // Starlight - start
+            else if (screenPosition is { } cursorPosition)
+            {
+                _popupPos = _userInterfaceManager.ScreenToUIPosition(cursorPosition);
+            }
+            else if (popupContainer != null
+                     && TryGetRemoteTooltipPosition(target, examiner, centeredOnCursor, out var remotePosition))
+            {
+                _popupPos = remotePosition;
+            }
+            // Starlight - end
             else if (centeredOnCursor)
             {
                 _popupPos = _userInterfaceManager.MousePositionScaled;
@@ -466,7 +478,8 @@ namespace Content.Client.Examine
 
         public void DoExamine(EntityUid entity, bool centeredOnCursor = true, EntityUid? userOverride = null,
             UIRoot? uiRoot = null, // Starlight: uiRoot support
-            PopupContainer? popupContainer = null) // Starlight: window-local popup support
+            PopupContainer? popupContainer = null, // Starlight: window-local popup support
+            ScreenCoordinates? screenPosition = null) // Starlight: event position for window-local popups
         {
             var playerEnt = userOverride ?? _playerManager.LocalEntity;
             if (playerEnt == null)
@@ -479,8 +492,11 @@ namespace Content.Client.Examine
 
             FormattedMessage message;
 
+            // Starlight - start
             OpenTooltip(playerEnt.Value, entity, out var label, out var name, centeredOnCursor, false,
-                examiner: userOverride, uiRoot: uiRoot, popupContainer: popupContainer); // Starlight
+                examiner: userOverride, uiRoot: uiRoot, popupContainer: popupContainer,
+                screenPosition: screenPosition);
+            // Starlight - end
 
             // Always update tooltip info from client first.
             // If we get it wrong, server will correct us later anyway.

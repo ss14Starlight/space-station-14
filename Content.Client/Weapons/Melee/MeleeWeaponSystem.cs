@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Client.Gameplay;
 using Content.Shared.CCVar;
 using Content.Shared.Effects;
@@ -77,6 +78,11 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
         if (!Timing.IsFirstTimePredicted)
             return;
+
+        // Starlight - start
+        // Render-frame UI updates are outside melee prediction, so run remote holds with the normal melee tick.
+        EntityManager.System<RemoteControlInterface>().UpdateRemoteMeleeAttackHolds();
+        // Starlight - end
 
         var entityNull = _player.LocalEntity;
 
@@ -299,7 +305,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     /// Raises a heavy attack event with the relevant attacked entities.
     /// This is to avoid lag effecting the client's perspective too much.
     /// </summary>
-    private void ClientHeavyAttack(EntityUid user, EntityCoordinates coordinates, EntityUid meleeUid, MeleeWeaponComponent component)
+    private void ClientHeavyAttack(EntityUid user, EntityCoordinates coordinates, EntityUid meleeUid, MeleeWeaponComponent component, EntityUid? remoteController = null) // Starlight
     {
         // Only run on first prediction to avoid the potential raycast entities changing.
         if (!Timing.IsFirstTimePredicted) // Starlight edit
@@ -324,7 +330,13 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         var entities = GetNetEntitySet(ArcRayCast(originPos, direction.ToWorldAngle(), component.Angle, distance, originXform.MapID, originUid)); // Starlight edit
         entities.Remove(GetNetEntity(user)); // Starlight edit
         entities = entities.Take(Math.Min(MaxTargets, entities.Count)).ToHashSet();
-        RaisePredictiveEvent(new HeavyAttackEvent(GetNetEntity(meleeUid), entities, GetNetCoordinates(coordinates)));
+        // Starlight - start
+        var attack = new HeavyAttackEvent(GetNetEntity(meleeUid), entities, GetNetCoordinates(coordinates));
+        if (remoteController is { } controller)
+            TryAttemptRemoteHeavyAttack(user, attack, null, controller);
+
+        RaisePredictiveEvent(attack);
+        // Starlight - end
     }
 
     private void ClientDisarm(EntityUid attacker, MapCoordinates mousePos, EntityCoordinates coordinates)

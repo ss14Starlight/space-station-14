@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.Weapons.Ranged.Components;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Ranged.Systems;
@@ -51,7 +52,7 @@ public sealed partial class GunJamSystem : EntitySystem
         ent.Comp.IsJammed = true;
         Dirty(ent, ent.Comp);
 
-        _audio.PlayPredicted(ent.Comp.SoundJamRack, ent.Owner, args.User);
+        _audio.PlayPredicted(ent.Comp.SoundJamRack, ent.Owner, EntityManager.GetPredictedAudioUser(args.User));
         _popup.PopupClient(Loc.GetString("gun-jam-jammed"), ent, args.User, PopupType.MediumCaution);
         ent.Comp.NextPopupTime = _timing.CurTime + ent.Comp.PopupCooldown;
     }

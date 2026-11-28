@@ -13,6 +13,7 @@ using Content.Shared.Random.Helpers;
 using Content.Shared.Storage;
 using Content.Shared.Tools.Components;
 using Content.Shared.Verbs;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -155,7 +156,7 @@ public sealed partial class ToolRefinableSystem : EntitySystem
         }
 
         if (component.Sound != null)
-            _audio.PlayPredicted(component.Sound, Transform(uid).Coordinates, args.User, AudioParams.Default.WithVolume(-2));
+            _audio.PlayPredicted(component.Sound, Transform(uid).Coordinates, EntityManager.GetPredictedAudioUser(args.User), AudioParams.Default.WithVolume(-2)); // Starlight
 
         _gib.Gib(uid);
         _destructible.DestroyEntity(uid);

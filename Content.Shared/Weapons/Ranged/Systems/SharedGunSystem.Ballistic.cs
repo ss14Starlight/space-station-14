@@ -143,7 +143,7 @@ public abstract partial class SharedGunSystem
             else
             {
                 // play sound to be cool
-                Audio.PlayPredicted(component.SoundInsert, uid, args.User);
+                PlayPredictedAudio(component.SoundInsert, uid, args.User); // Starlight
                 SimulateInsertAmmo(ent.Value, args.Target.Value, Transform(args.Target.Value).Coordinates);
             }
 
@@ -221,7 +221,7 @@ public abstract partial class SharedGunSystem
             DirtyField(ent, gunComp, nameof(GunComponent.NextFire));
         }
 
-        Audio.PlayPredicted(ent.Comp.SoundRack, ent, user);
+        PlayPredictedAudio(ent.Comp.SoundRack, ent, user); // Starlight
 
         var shots = GetBallisticShots(ent.Comp);
         Cycle(ent, coordinates);
@@ -387,7 +387,7 @@ public abstract partial class SharedGunSystem
         Containers.Insert(ammo, entity.Comp.Container);
         if (!suppressInsertionSound)
         {
-            Audio.PlayPredicted(entity.Comp.SoundInsert, entity, user);
+            PlayPredictedAudio(entity.Comp.SoundInsert, entity, user); // Starlight
         }
 
         UpdateBallisticAppearance(entity);

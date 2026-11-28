@@ -11,6 +11,7 @@ using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Hitscan.Events;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
@@ -125,7 +126,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     else
                     {
                         userImpulse = false;
-                        Audio.PlayPredicted(gun.Comp.SoundEmpty, gun, user);
+                        PlayPredictedAudio(gun.Comp.SoundEmpty, gun, user); // Starlight
                     }
 
                     // Something like ballistic might want to leave it in the container still
@@ -160,7 +161,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
                     Del(ent);
 
-                    Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
+                    PlayPredictedAudio(gun.Comp.SoundGunshotModified, gun, user); // Starlight
                     fired = true; // Starlight
                     break;
                 default:
@@ -234,7 +235,7 @@ public sealed partial class GunSystem : SharedGunSystem
             }
 
             MuzzleFlash(gun, ammoComp, mapDirection.ToAngle(), user);
-            Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
+            PlayPredictedAudio(gun.Comp.SoundGunshotModified, gun, user); // Starlight
         }
     }
 
@@ -290,8 +291,10 @@ public sealed partial class GunSystem : SharedGunSystem
     {
         var filter = Filter.Pvs(gunUid, entityManager: EntityManager);
 
-        if (TryComp<ActorComponent>(user, out var actor))
+        // Starlight - start
+        if (TryComp<ActorComponent>(EntityManager.GetPredictedAudioUser(user), out var actor))
             filter.RemovePlayer(actor.PlayerSession);
+        // Starlight - end
 
         RaiseNetworkEvent(message, filter);
     }
@@ -319,8 +322,11 @@ public sealed partial class GunSystem : SharedGunSystem
 
         var filter = Filter.Pvs(otherEntity, entityManager: EntityManager);
 
-        if (TryComp<ActorComponent>(shooter, out var actor) && PredictsHitscans(actor.PlayerSession))
+        // Starlight - start
+        if (TryComp<ActorComponent>(EntityManager.GetPredictedAudioUser(shooter), out var actor)
+            && PredictsHitscans(actor.PlayerSession))
             filter.RemovePlayer(actor.PlayerSession);
+        // Starlight - end
 
         Audio.PlayEntity(sound, filter, otherEntity, true,
             variation ? AudioParams.Default.WithVariation(DamagePitchVariation) : null);

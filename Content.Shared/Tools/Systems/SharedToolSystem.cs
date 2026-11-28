@@ -1,5 +1,6 @@
 using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
@@ -93,7 +94,7 @@ public abstract partial class SharedToolSystem : EntitySystem
         if (tool.UseSound == null)
             return;
 
-        _audioSystem.PlayPredicted(tool.UseSound, uid, user);
+        _audioSystem.PlayPredicted(tool.UseSound, uid, EntityManager.GetPredictedAudioUser(user)); // Starlight
     }
 
     /// <summary>

@@ -18,7 +18,7 @@ public sealed partial class MeleeWeaponSystem
     /// <summary>
     /// Does all of the melee effects for a player that are predicted, i.e. character lunge and weapon animation.
     /// </summary>
-    public override void DoLunge(EntityUid user, EntityUid weapon, Angle angle, Vector2 localPos, string? animation, bool predicted = true)
+    public override void DoLunge(EntityUid user, EntityUid weapon, Angle angle, Vector2 localPos, string? animation, bool predicted = true, EntityUid? remoteController = null) // Starlight
     {
         if (!Timing.IsFirstTimePredicted)
             return;

@@ -315,8 +315,11 @@ public abstract partial class SharedStorageSystem : EntitySystem
         if (!UI.IsUiOpen(uid, args.UiKey))
         {
             UpdateAppearance((uid, storageComp, null));
+            // Starlight - start
             if (!_tag.HasTag(args.Actor, storageComp.SilentStorageUserTag))
-                Audio.PlayPredicted(storageComp.StorageCloseSound, uid, args.Actor);
+                Audio.PlayPredicted(storageComp.StorageCloseSound, uid,
+                    _remoteControl.GetPredictedAudioUser(args.Actor));
+            // Starlight - end
         }
     }
 
@@ -474,7 +477,10 @@ public abstract partial class SharedStorageSystem : EntitySystem
 
         if (!silent && !_tag.HasTag(entity, storageComp.SilentStorageUserTag))
         {
-            Audio.PlayPredicted(storageComp.StorageOpenSound, uid, entity);
+            // Starlight - start
+            Audio.PlayPredicted(storageComp.StorageOpenSound, uid,
+                _remoteControl.GetPredictedAudioUser(entity));
+            // Starlight - end
 
             if (useDelay != null)
                 UseDelay.TryResetDelay((uid, useDelay), id: OpenUiUseDelayID);
@@ -761,8 +767,11 @@ public abstract partial class SharedStorageSystem : EntitySystem
         // If we picked up at least one thing, play a sound and do a cool animation!
         if (successfullyInserted.Count > 0)
         {
+            // Starlight - start
             if (!_tag.HasTag(args.User, component.SilentStorageUserTag))
-                Audio.PlayPredicted(component.StorageInsertSound, uid, args.User, _audioParams);
+                Audio.PlayPredicted(component.StorageInsertSound, uid,
+                    _remoteControl.GetPredictedAudioUser(args.User), _audioParams);
+            // Starlight - end
             EntityManager.RaiseSharedEvent(new AnimateInsertingEntitiesEvent(
                 GetNetEntity(uid),
                 GetNetEntityList(successfullyInserted),
@@ -808,7 +817,10 @@ public abstract partial class SharedStorageSystem : EntitySystem
                 && storage.Comp.StorageRemoveSound != null
                 && !_tag.HasTag(player, storage.Comp.SilentStorageUserTag))
             {
-                Audio.PlayPredicted(storage.Comp.StorageRemoveSound, storage, player, _audioParams);
+                // Starlight - start
+                Audio.PlayPredicted(storage.Comp.StorageRemoveSound, storage,
+                    _remoteControl.GetPredictedAudioUser(player), _audioParams);
+                // Starlight - end
             }
 
             return;
@@ -1094,10 +1106,13 @@ public abstract partial class SharedStorageSystem : EntitySystem
         {
             Insert(target, entity, out _, user: user, targetComp, playSound: false);
         }
+        // Starlight - start
         if (user != null
             && (!_tag.HasTag(user.Value, sourceComp.SilentStorageUserTag)
                 || !_tag.HasTag(user.Value, targetComp.SilentStorageUserTag)))
-            Audio.PlayPredicted(sourceComp.StorageInsertSound, target, user, _audioParams);
+            Audio.PlayPredicted(sourceComp.StorageInsertSound, target,
+                _remoteControl.GetPredictedAudioUser(user), _audioParams);
+        // Starlight - end
     }
 
     // Starlight-begin: transfer to material storage
@@ -1129,7 +1144,12 @@ public abstract partial class SharedStorageSystem : EntitySystem
         }
         if (user != null
             && !_tag.HasTag(user.Value, sourceComp.SilentStorageUserTag))
-            Audio.PlayPredicted(sourceComp.StorageInsertSound, target, user, _audioParams);
+        {
+            // Starlight - start
+            Audio.PlayPredicted(sourceComp.StorageInsertSound, target,
+                _remoteControl.GetPredictedAudioUser(user), _audioParams);
+            // Starlight - end
+        }
     }
     // Starlight-end: transfer to material storage
 
@@ -1314,8 +1334,11 @@ public abstract partial class SharedStorageSystem : EntitySystem
             if (!ContainerSystem.Insert(insertEnt, storageComp.Container))
                 return false;
 
+            // Starlight - start
             if (canPlaySound)
-                Audio.PlayPredicted(storageComp.StorageInsertSound, uid, user, _audioParams);
+                Audio.PlayPredicted(storageComp.StorageInsertSound, uid,
+                    _remoteControl.GetPredictedAudioUser(user), _audioParams);
+            // Starlight - end
 
             return true;
         }
@@ -1344,8 +1367,11 @@ public abstract partial class SharedStorageSystem : EntitySystem
             return false;
         }
 
+        // Starlight - start
         if (canPlaySound)
-            Audio.PlayPredicted(storageComp.StorageInsertSound, uid, user, _audioParams);
+            Audio.PlayPredicted(storageComp.StorageInsertSound, uid,
+                _remoteControl.GetPredictedAudioUser(user), _audioParams);
+        // Starlight - end
 
         return true;
     }

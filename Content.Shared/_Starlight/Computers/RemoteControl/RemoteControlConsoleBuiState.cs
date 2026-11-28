@@ -1,7 +1,9 @@
 using Robust.Shared.Serialization;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 using Content.Shared.Hands.Components;
+using Content.Shared.Alert;
 
 namespace Content.Shared._Starlight.Computers.RemoteControl;
 
@@ -17,6 +19,7 @@ public sealed class RemoteControlConsoleBuiState : BoundUserInterfaceState
     public NetEntity? QuickConstructionItem { get; init; }
     public RemoteControlHandState[] Hands { get; init; } = System.Array.Empty<RemoteControlHandState>();
     public RemoteControlInventorySlotState[] Inventory { get; init; } = System.Array.Empty<RemoteControlInventorySlotState>();
+    public Dictionary<AlertKey, AlertState> Alerts { get; init; } = new();
 }
 
 [Serializable, NetSerializable]
@@ -47,6 +50,7 @@ public sealed class RemoteControlInventorySlotState
     public required string Group { get; init; }
     public required string TextureName { get; init; }
     public required string FullTextureName { get; init; }
+    public required Vector2i ButtonOffset { get; init; }
     public NetEntity? Item { get; init; }
     public bool HasStorage { get; init; }
 }

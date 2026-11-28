@@ -161,7 +161,7 @@ public partial class SharedGunSystem
             UpdateAmmoCount(ent);
             Dirty(ent);
 
-            Audio.PlayPredicted(ent.Comp.SoundInsert, ent, user);
+            PlayPredictedAudio(ent.Comp.SoundInsert, ent, user); // Starlight
             Popup(Loc.GetString("gun-revolver-insert"), ent, user);
             return true;
         }
@@ -180,7 +180,7 @@ public partial class SharedGunSystem
             ent.Comp.AmmoSlots[index] = insertEnt;
             Containers.Insert(insertEnt, ent.Comp.AmmoContainer);
             SetChamber(ent, insertEnt, index);
-            Audio.PlayPredicted(ent.Comp.SoundInsert, ent, user);
+            PlayPredictedAudio(ent.Comp.SoundInsert, ent, user); // Starlight
             Popup(Loc.GetString("gun-revolver-insert"), ent, user);
             UpdateRevolverAppearance(ent);
             UpdateAmmoCount(ent);
@@ -324,7 +324,7 @@ public partial class SharedGunSystem
 
         if (anyEmpty)
         {
-            Audio.PlayPredicted(ent.Comp.SoundEject, ent, user);
+            PlayPredictedAudio(ent.Comp.SoundEject, ent, user); // Starlight
             UpdateAmmoCount(ent, prediction: false);
             UpdateRevolverAppearance(ent);
             Dirty(ent);
@@ -344,7 +344,7 @@ public partial class SharedGunSystem
 
     protected virtual void SpinRevolver(Entity<RevolverAmmoProviderComponent> ent, EntityUid? user = null)
     {
-        Audio.PlayPredicted(ent.Comp.SoundSpin, ent, user);
+        PlayPredictedAudio(ent.Comp.SoundSpin, ent, user); // Starlight
         Popup(Loc.GetString("gun-revolver-spun"), ent, user);
     }
 

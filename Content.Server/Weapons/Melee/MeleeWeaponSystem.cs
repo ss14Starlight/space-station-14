@@ -1,5 +1,6 @@
 using Content.Server.Chat.Systems;
 using Content.Server.Movement.Systems;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.Chat;
 using Content.Shared.Effects;
 using Content.Shared.Physics; // Starlight-edit™
@@ -124,11 +125,15 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
     protected override void DoDamageEffect(HashSet<EntityUid> targets, EntityUid? user, TransformComponent targetXform)
     {
-        var filter = Filter.Pvs(targetXform.Coordinates, entityMan: EntityManager).RemoveWhereAttachedEntity(o => o == user);
+        // Starlight - start
+        var predictedUser = EntityManager.GetPredictedAudioUser(user);
+        var filter = Filter.Pvs(targetXform.Coordinates, entityMan: EntityManager)
+            .RemoveWhereAttachedEntity(o => o == user || o == predictedUser);
+        // Starlight - end
         _color.RaiseEffect(Color.Red, targets.ToList(), filter);
     }
 
-    public override void DoLunge(EntityUid user, EntityUid weapon, Angle angle, Vector2 localPos, string? animation, bool predicted = true)
+    public override void DoLunge(EntityUid user, EntityUid weapon, Angle angle, Vector2 localPos, string? animation, bool predicted = true, EntityUid? remoteController = null) // Starlight
     {
         Filter filter;
 
@@ -140,6 +145,14 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         {
             filter = Filter.Pvs(user, entityManager: EntityManager);
         }
+
+        // Starlight - start
+        if (remoteController is { } controller)
+            filter.RemovePlayerByAttachedEntity(controller);
+        var predictedUser = EntityManager.GetPredictedAudioUser(user);
+        if (predictedUser is { } controllerUser && controllerUser != user)
+            filter.RemovePlayerByAttachedEntity(controllerUser);
+        // Starlight - end
 
         RaiseNetworkEvent(new MeleeLungeEvent(GetNetEntity(user), GetNetEntity(weapon), angle, localPos, animation), filter);
     }

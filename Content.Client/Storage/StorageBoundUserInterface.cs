@@ -44,12 +44,15 @@ public sealed class StorageBoundUserInterface : BoundUserInterface
 
     public void Reclaim()
     {
-        if (_window == null)
+        // Starlight - start
+        if (_window is not { } window)
             return;
 
-        _window.OnClose -= Close;
-        _window.Orphan();
+        window.OnClose -= Close;
+        if (!window.Disposed)
+            window.Orphan();
         _window = null;
+        // Starlight - end
     }
 
     protected override void Dispose(bool disposing)

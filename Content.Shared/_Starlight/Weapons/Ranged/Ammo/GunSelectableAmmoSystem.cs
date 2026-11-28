@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.Weapons.Hitscan.Components;
 using Content.Shared.Actions;
 using Content.Shared.Damage;
@@ -70,7 +71,7 @@ public sealed partial class GunSelectableAmmoSystem : EntitySystem
         var popup = Loc.GetString("setting-ammunition-selected", ("ammo", Loc.GetString(setting.Name)));
         _popup.PopupClient(popup, user, user, PopupType.Medium);
 
-        _audio.PlayPredicted(ent.Comp.SelectSound, ent, user);
+        _audio.PlayPredicted(ent.Comp.SelectSound, ent, EntityManager.GetPredictedAudioUser(user));
 
         if (ent.Comp.Action is { } action)
             _actions.SetIcon(action, setting.Icon);

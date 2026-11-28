@@ -127,7 +127,7 @@ public abstract partial class SharedGunSystem
 
         if (component.BoltClosed != false)
         {
-            Audio.PlayPredicted(component.RackSound, uid, user);
+            PlayPredictedAudio(component.RackSound, uid, user); // Starlight
         }
     }
 
@@ -173,7 +173,7 @@ public abstract partial class SharedGunSystem
                 _slots.SetLock(uid, ChamberSlot, true, slots);
             }
 
-            Audio.PlayPredicted(component.BoltClosedSound, uid, user);
+            PlayPredictedAudio(component.BoltClosedSound, uid, user); // Starlight
         }
         else
         {
@@ -203,7 +203,7 @@ public abstract partial class SharedGunSystem
                 _slots.SetLock(uid, ChamberSlot, false, slots);
             }
 
-            Audio.PlayPredicted(component.BoltOpenedSound, uid, user);
+            PlayPredictedAudio(component.BoltOpenedSound, uid, user); // Starlight
         }
 
         component.BoltClosed = value;

@@ -32,7 +32,16 @@ public sealed class BorgSelectTypeUserInterface : BoundUserInterface
         _remoteControl.ControlledEntityChanged += OnControlledEntityChanged; // Starlight
 
         _menu = this.CreateWindow<BorgSelectTypeMenu>();
-        _menu.ConfirmedBorgType += (prototype, subtypePrototype) => SendMessage(new BorgSelectSubtypeMessage(prototype, subtypePrototype?.ID)); // Afterlight - borg subtypes - Starlight
+        // Starlight - start
+        _menu.ConfirmedBorgType += (prototype, subtypePrototype) =>
+        {
+            var message = new BorgSelectSubtypeMessage(prototype, subtypePrototype?.ID);
+            if (_remoteControl.ControlledEntity == Owner)
+                SendPredictedMessage(message);
+            else
+                SendMessage(message);
+        }; // Afterlight - borg subtypes - Starlight
+        // Starlight - end
         _menu.SetupMenu(Owner); // Starlight-edit
     }
 

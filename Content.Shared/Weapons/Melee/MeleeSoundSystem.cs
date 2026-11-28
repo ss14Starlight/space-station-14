@@ -1,5 +1,6 @@
 using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 
@@ -21,7 +22,10 @@ public sealed partial class MeleeSoundSystem : EntitySystem
     /// </summary>
     public void PlaySwingSound(EntityUid userUid, EntityUid weaponUid, MeleeWeaponComponent weaponComponent)
     {
-        _audio.PlayPredicted(weaponComponent.SwingSound, weaponUid, userUid);
+        // Starlight - start
+        var audioUser = EntityManager.GetPredictedAudioUser(userUid) ?? userUid;
+        _audio.PlayPredicted(weaponComponent.SwingSound, weaponUid, audioUser);
+        // Starlight - end
     }
 
     /// <summary>
@@ -33,6 +37,9 @@ public sealed partial class MeleeSoundSystem : EntitySystem
     /// <param name="hitSoundOverride"> A sound can be supplied by the <see cref="MeleeHitEvent"/> itself to override everything else </param>
     public void PlayHitSound(EntityUid targetUid, EntityUid? userUid, string? damageType, SoundSpecifier? hitSoundOverride, MeleeWeaponComponent weaponComponent)
     {
+        // Starlight - start
+        userUid = EntityManager.GetPredictedAudioUser(userUid);
+        // Starlight - end
         var hitSound      = weaponComponent.HitSound;
         var noDamageSound = weaponComponent.NoDamageSound;
 

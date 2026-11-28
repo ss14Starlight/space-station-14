@@ -92,7 +92,7 @@ namespace Content.Client.ContextMenu.UI
         /// <summary>
         ///     Given a list of entities, sort them into groups and them to a new entity menu.
         /// </summary>
-        public void OpenRootMenu(List<EntityUid> entities, UIRoot? uiRoot = null) // Starlight
+        public void OpenRootMenu(List<EntityUid> entities, UIRoot? uiRoot = null, ScreenCoordinates? screenCoordinates = null) // Starlight
         {
             // close any old menus first.
             if (_context.RootMenu.Visible)
@@ -116,7 +116,12 @@ namespace Content.Client.ContextMenu.UI
             Elements.Clear();
             AddToUI(orderedStates);
 
-            var box = UIBox2.FromDimensions(_userInterfaceManager.MousePositionScaled.Position, new Vector2(1, 1));
+            // Starlight - start
+            var position = screenCoordinates is { } coordinates
+                ? _userInterfaceManager.ScreenToUIPosition(coordinates).Position
+                : _userInterfaceManager.MousePositionScaled.Position;
+            var box = UIBox2.FromDimensions(position, new Vector2(1, 1));
+            // Starlight - end
             _context.RootMenu.Open(box);
         }
 
@@ -136,8 +141,11 @@ namespace Content.Client.ContextMenu.UI
             // do examination?
             if (args.Function == ContentKeyFunctions.ExamineEntity)
             {
+                // Starlight - start
                 _systemManager.GetEntitySystem<ExamineSystem>().DoExamine(entity.Value,
-                    userOverride: _remoteControl.ControlledEntity); // Starlight: userOverride is the remote user if we're controlling a remote entity
+                    userOverride: _remoteControl.ControlledEntity,
+                    screenPosition: args.PointerLocation.IsValid ? args.PointerLocation : null);
+                // Starlight - end
                 args.Handle();
                 return;
             }
@@ -168,6 +176,7 @@ namespace Content.Client.ContextMenu.UI
                         action = RemoteControlInteractionAction.MovePulledObject;
                     _remoteControl.RequestInteraction(entity.Value,
                         args.Function == ContentKeyFunctions.AltActivateItemInWorld,
+                        args.Function == ContentKeyFunctions.ActivateItemInWorld,
                         action);
                     _context.Close();
                     args.Handle();

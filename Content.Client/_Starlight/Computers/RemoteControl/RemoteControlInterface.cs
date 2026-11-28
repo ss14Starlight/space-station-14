@@ -1,5 +1,6 @@
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared._Starlight.Computers.RemoteControl;
+using Robust.Client.Graphics;
 using Robust.Shared.Graphics;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
@@ -19,16 +20,18 @@ public sealed partial class RemoteControlInterface : EntitySystem
     private TimeSpan _nextRemoteAlertUpdate;
     private readonly List<PendingBuiWindowOpen> _pendingBuiWindowOpens = [];
     private readonly List<PendingRemoteBuiOpen> _pendingRemoteBuiOpens = [];
+    private EntityUid? _remoteUiOpenContext;
     private static readonly TimeSpan RemoteBuiOpenTimeout = TimeSpan.FromSeconds(5);
 
     public EntityUid? ControlledEntity { get; private set; }
     public IEye? ControlledEye { get; private set; }
     public IViewportControl? ControlledViewport { get; private set; }
     public IViewportControl? RemoteViewport { get; private set; }
+    public UIRoot? RemoteUIRoot => _window is { Disposed: false } window ? window.RemoteUIRoot : null;
     public IEye? RemoteViewportEye => _window is { Disposed: false } window ? window.RemoteEye : null;
     public MapCoordinates? RemoteMousePosition { get; private set; }
     public event Action<EntityUid?>? ControlledEntityChanged;
-    public event Action<EntityUid, bool, RemoteControlInteractionAction>? InteractionRequested;
+    public event Action<EntityUid, bool, bool, RemoteControlInteractionAction>? InteractionRequested;
     public event Action<string>? ItemConstructionRequested;
 
     public override void Initialize()
@@ -107,8 +110,13 @@ public sealed partial class RemoteControlInterface : EntitySystem
     private void OnBoundUiOpened(Entity<UserInterfaceComponent> entity, ref BoundUIOpenedEvent args)
     {
         if (ControlledEntity is not { } remoteEntity
-            || args.Actor != _playerManager.LocalEntity
             || _uiManager is not { } uiManager)
+            return;
+
+        var remoteUiContext = _remoteUiOpenContext == remoteEntity;
+        if (args.Actor != _playerManager.LocalEntity
+            && args.Actor != remoteEntity
+            && !remoteUiContext)
             return;
 
         var curTime = IoCManager.Resolve<IGameTiming>().CurTime;
@@ -116,7 +124,8 @@ public sealed partial class RemoteControlInterface : EntitySystem
         var uiKeyIdentifier = RemoteControlBuiOpenedByRemoteActorEvent.GetUiKeyIdentifier(args.UiKey);
         var ownerNetEntity = GetNetEntity(entity.Owner);
         var remoteActor = GetNetEntity(remoteEntity);
-        var remoteOriginConfirmed = TryConsumeRemoteBuiOpen(ownerNetEntity, uiKeyIdentifier, remoteActor);
+        var remoteOriginConfirmed = TryConsumeRemoteBuiOpen(ownerNetEntity, uiKeyIdentifier, remoteActor)
+                                    || remoteUiContext;
         var pendingOpen = new PendingBuiWindowOpen(
             entity.Owner,
             args.UiKey,
@@ -140,6 +149,28 @@ public sealed partial class RemoteControlInterface : EntitySystem
         RemoteViewport = window?.RemoteViewport;
     }
 
+    public bool TryGetViewportEntity(in OverlayDrawArgs args, out EntityUid entity)
+    {
+        if (ControlledEntity is { } remoteEntity
+            && ((ControlledViewport is { } remoteViewport && args.ViewportControl == remoteViewport)
+                || (ControlledEye is { } remoteEye && args.Viewport.Eye == remoteEye)))
+        {
+            entity = remoteEntity;
+            return true;
+        }
+
+        if (_playerManager.LocalSession?.AttachedEntity is { } localEntity
+            && TryComp(localEntity, out EyeComponent? eye)
+            && args.Viewport.Eye == eye.Eye)
+        {
+            entity = localEntity;
+            return true;
+        }
+
+        entity = default;
+        return false;
+    }
+
     public PopupContainer? GetExaminePopupContainer(EntityUid examiner)
         => ControlledEntity == examiner && _window is { Disposed: false } window
             ? window.RemoteExaminePopupContainer
@@ -155,13 +186,17 @@ public sealed partial class RemoteControlInterface : EntitySystem
         if (_window is not { Disposed: false } window)
             return;
 
-        window.UpdateRemoteEye();
-
         if (curTime < _nextRemoteAlertUpdate)
             return;
 
         _nextRemoteAlertUpdate = curTime + TimeSpan.FromSeconds(1);
         window.UpdateRemoteStatus();
+    }
+
+    public void UpdateRemoteMeleeAttackHolds()
+    {
+        if (_window is { Disposed: false } window)
+            window.UpdateRemoteMeleeAttackHolds();
     }
 
     public void SetControlledEntity(EntityUid? entity, IEye? eye = null, IViewportControl? viewport = null)
@@ -186,6 +221,26 @@ public sealed partial class RemoteControlInterface : EntitySystem
 
     public bool TryEmbedWindow(EntityUid owner, BaseWindow window)
         => ControlledEntity == owner && TryEmbedWindowInternal(window);
+
+    public void RunWithRemoteUiOpenContext(EntityUid remoteEntity, Action action)
+    {
+        if (ControlledEntity != remoteEntity)
+        {
+            action();
+            return;
+        }
+
+        var previousContext = _remoteUiOpenContext;
+        _remoteUiOpenContext = remoteEntity;
+        try
+        {
+            action();
+        }
+        finally
+        {
+            _remoteUiOpenContext = previousContext;
+        }
+    }
 
     public bool TryEmbedWindow(BoundUserInterface bui, BaseWindow window)
     {
@@ -287,8 +342,12 @@ public sealed partial class RemoteControlInterface : EntitySystem
                 ? localEntity ?? owner
                 : null;
 
-    public void RequestInteraction(EntityUid target, bool altInteract, RemoteControlInteractionAction action = RemoteControlInteractionAction.Interact)
-        => InteractionRequested?.Invoke(target, altInteract, action);
+    public void RequestInteraction(
+        EntityUid target,
+        bool altInteract,
+        bool activateInWorld,
+        RemoteControlInteractionAction action = RemoteControlInteractionAction.Interact)
+        => InteractionRequested?.Invoke(target, altInteract, activateInWorld, action);
 
     private sealed class PendingBuiWindowOpen
     {
