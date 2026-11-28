@@ -1,3 +1,4 @@
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Scent.Components;
 using Content.Shared.Storage.Components;
@@ -12,7 +13,7 @@ using System.Numerics;
 
 namespace Content.Client._Starlight.Scent.Systems;
 
-// Filters visible ScentMarker sprites to the local player's tracked scent, and plays each
+// Filters visible ScentMarker sprites to the current viewer's tracked scent, and plays each
 // marker's fade animation.
 public sealed partial class ScentTrackingSystem : EntitySystem
 {
@@ -22,6 +23,7 @@ public sealed partial class ScentTrackingSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedInternalsSystem _internals = default!;
 
+    private RemoteControlInterface _remoteControl = default!;
     private const string FadeAnimationKey = "scent-marker-fade";
 
     // MinScale corrects for the marker sprite's native size relative to a standard tile.
@@ -41,6 +43,8 @@ public sealed partial class ScentTrackingSystem : EntitySystem
     {
         base.Initialize();
 
+        _remoteControl = EntityManager.System<RemoteControlInterface>();
+        _remoteControl.ControlledEntityChanged += OnRemoteControlledEntityChanged;
         SubscribeLocalEvent<SmellerComponent, AfterAutoHandleStateEvent>(OnSmellerState);
         SubscribeLocalEvent<ScentMarkerComponent, ComponentStartup>(OnMarkerStartup);
         SubscribeLocalEvent<ScentMarkerComponent, AfterAutoHandleStateEvent>(OnMarkerState);
@@ -48,38 +52,54 @@ public sealed partial class ScentTrackingSystem : EntitySystem
         SubscribeLocalEvent<SmellerComponent, EntGotRemovedFromContainerMessage>(OnOwnEnclosureChanged);
     }
 
+    public override void Shutdown()
+    {
+        if (_remoteControl is { } remoteControl)
+            remoteControl.ControlledEntityChanged -= OnRemoteControlledEntityChanged;
+        base.Shutdown();
+    }
+
     private void OnOwnEnclosureChanged<T>(Entity<SmellerComponent> ent, ref T args)
     {
-        if (_player.LocalSession?.AttachedEntity == ent.Owner)
-            RefreshAllMarkers(ent.Comp);
+        if (IsCurrentViewer(ent.Owner))
+            RefreshAllMarkers();
     }
 
     private void OnSmellerState(EntityUid uid, SmellerComponent component, ref AfterAutoHandleStateEvent args)
     {
-        if (_player.LocalSession?.AttachedEntity != uid)
+        if (!IsCurrentViewer(uid))
             return;
 
-        RefreshAllMarkers(component);
+        RefreshAllMarkers();
+    }
+
+    public void RefreshAfterSmellerShutdown(EntityUid uid)
+    {
+        if (IsCurrentViewer(uid))
+            RefreshAllMarkers(uid);
     }
 
     private void OnMarkerStartup(Entity<ScentMarkerComponent> ent, ref ComponentStartup args)
     {
         PlayFadeAnimation(ent);
-        ApplyFilterForLocalPlayer(ent);
+        ApplyFilterForCurrentViewer(ent);
     }
 
     private void OnMarkerState(Entity<ScentMarkerComponent> ent, ref AfterAutoHandleStateEvent args)
     {
         PlayFadeAnimation(ent);
-        ApplyFilterForLocalPlayer(ent);
+        ApplyFilterForCurrentViewer(ent);
     }
+
+    private void OnRemoteControlledEntityChanged(EntityUid? entity)
+        => RefreshAllMarkers();
 
     // Re-checked on every networked update to this marker, not just the first. SpriteComponent's
     // own Visible field is itself part of its networked state, and a later resync of it alone can
     // silently undo our filter without re-firing ScentMarkerComponent's own ComponentStartup.
-    private void ApplyFilterForLocalPlayer(Entity<ScentMarkerComponent> ent)
+    private void ApplyFilterForCurrentViewer(Entity<ScentMarkerComponent> ent)
     {
-        if (!TryGetLocalSmeller(out var smeller))
+        if (!TryGetCurrentSmeller(out var viewer, out var smeller))
         {
             // No SmellerComponent: hide, since replay bypasses PVS and would otherwise leave
             // every recorded marker visible to a plain observer.
@@ -89,40 +109,69 @@ public sealed partial class ScentTrackingSystem : EntitySystem
             return;
         }
 
-        var enclosure = TryGetOwnEnclosure(out var own) ? own : (EntityUid?)null;
-        ApplyFilter(ent, smeller, enclosure);
+        var enclosure = TryGetOwnEnclosure(viewer, out var own) ? own : (EntityUid?)null;
+        ApplyFilter(ent, viewer, smeller, enclosure);
     }
 
-    // Resolves the local player's own SmellerComponent, if they have one attached.
-    private bool TryGetLocalSmeller(out SmellerComponent smeller)
+    private bool TryGetCurrentSmeller(out EntityUid viewer, out SmellerComponent smeller)
     {
-        if (_player.LocalSession?.AttachedEntity is { } local && TryComp(local, out SmellerComponent? comp))
+        if (_remoteControl.ControlledEntity is { } remote)
         {
-            smeller = comp;
+            if (TryComp(remote, out SmellerComponent? remoteSmeller))
+            {
+                viewer = remote;
+                smeller = remoteSmeller;
+                return true;
+            }
+
+            viewer = default;
+            smeller = default!;
+            return false;
+        }
+
+        if (_player.LocalSession?.AttachedEntity is { } local && TryComp(local, out SmellerComponent? localSmeller))
+        {
+            viewer = local;
+            smeller = localSmeller;
             return true;
         }
 
+        viewer = default;
         smeller = default!;
         return false;
     }
 
-    private void RefreshAllMarkers(SmellerComponent smeller)
+    private bool IsCurrentViewer(EntityUid uid)
+        => _remoteControl.ControlledEntity is { } remote
+            ? remote == uid
+            : _player.LocalSession?.AttachedEntity == uid;
+
+    private void RefreshAllMarkers(EntityUid? excludedViewer = null)
     {
-        var enclosure = TryGetOwnEnclosure(out var own) ? own : (EntityUid?)null;
+        var hasSmeller = TryGetCurrentSmeller(out var viewer, out var smeller)
+                         && viewer != excludedViewer;
+        var enclosure = hasSmeller && TryGetOwnEnclosure(viewer, out var own) ? own : (EntityUid?)null;
 
         var query = EntityQueryEnumerator<ScentMarkerComponent>();
         while (query.MoveNext(out var uid, out var marker))
         {
-            ApplyFilter((uid, marker), smeller, enclosure);
+            if (hasSmeller)
+                ApplyFilter((uid, marker), viewer, smeller, enclosure);
+            else if (TryComp<SpriteComponent>(uid, out var sprite))
+                _sprite.SetVisible((uid, sprite), false);
         }
     }
 
-    private void ApplyFilter(Entity<ScentMarkerComponent> ent, SmellerComponent smeller, EntityUid? enclosure)
+    private void ApplyFilter(
+        Entity<ScentMarkerComponent> ent,
+        EntityUid viewer,
+        SmellerComponent smeller,
+        EntityUid? enclosure)
     {
         if (!TryComp<SpriteComponent>(ent.Owner, out var sprite))
             return;
 
-        var visible = !IsPerceptionBlocked(smeller) &&
+        var visible = !IsPerceptionBlocked(viewer, smeller) &&
                         !(smeller.Perception == ScentPerception.Partial && ent.Comp.WasCloaked) &&
                         !(smeller.Perception == ScentPerception.Partial && ent.Comp.ContainedIn != null && !ent.Comp.WasDead) &&
                         !(smeller.Perception == ScentPerception.Partial && IsOutsideOwnEnclosure(ent, enclosure)) &&
@@ -140,28 +189,27 @@ public sealed partial class ScentTrackingSystem : EntitySystem
         return ent.Comp.ContainedIn != own;
     }
 
-    // Resolves the airtight container the local player is currently inside, if any.
-    private bool TryGetOwnEnclosure(out EntityUid enclosure)
+    private bool TryGetOwnEnclosure(EntityUid viewer, out EntityUid enclosure)
     {
         enclosure = default;
-        if (_player.LocalSession?.AttachedEntity is not { } local ||
-            !TryComp<EntityStorageComponent>(Transform(local).ParentUid, out var storage) ||
+        if (!TryComp(viewer, out TransformComponent? transform) ||
+            !TryComp<EntityStorageComponent>(transform.ParentUid, out var storage) ||
             !storage.Airtight)
         {
             return false;
         }
 
-        enclosure = Transform(local).ParentUid;
+        enclosure = transform.ParentUid;
         return true;
     }
 
     // A Partial perceiver loses all scent perception while breathing internals.
-    private bool IsPerceptionBlocked(SmellerComponent smeller)
+    private bool IsPerceptionBlocked(EntityUid viewer, SmellerComponent smeller)
     {
         if (smeller.Perception != ScentPerception.Partial)
             return false;
 
-        return _player.LocalSession?.AttachedEntity is { } local && _internals.AreInternalsWorking(local);
+        return _internals.AreInternalsWorking(viewer);
     }
 
     // ExpiresAt is an absolute timestamp. Re-running this on PVS re-entry or a merge picks up
@@ -210,7 +258,7 @@ public sealed partial class ScentTrackingSystem : EntitySystem
     // earlier.
     private TimeSpan GetPerceivedExpiry(Entity<ScentMarkerComponent> ent)
     {
-        if (!TryGetLocalSmeller(out var smeller) ||
+        if (!TryGetCurrentSmeller(out _, out var smeller) ||
             smeller.Perception != ScentPerception.Partial ||
             ent.Comp.TotalDuration <= TimeSpan.Zero)
         {

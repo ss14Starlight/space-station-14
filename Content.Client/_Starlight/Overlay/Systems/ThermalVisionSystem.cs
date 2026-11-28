@@ -1,9 +1,11 @@
+using System.Linq;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Client._Starlight.Overlay.Overlays;
 using Content.Shared._Starlight.Overlay.Systems;
@@ -20,21 +22,24 @@ public sealed partial class ThermalVisionSystem : SharedThermalVisionSystem
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private FlashImmunitySystem _flashImmunity = default!;
 
+    private RemoteControlInterface _remoteControl = default!;
     private ThermalVisionEntityHighlightOverlay _throughWallsOverlay = default!;
     private ThermalVisionOverlay _overlay = default!;
-    private ThermalVisionOverlay _altOverlay = default!;
 
     private const string ThermalVisionShader = "ThermalVisionScreenShader";
     private const string BrightnessShader = "BrightnessShader";
     private const string AlternativeThermalVisionShader = "ThermalVisionScreenShaderHalfAlpha";
 
-    [ViewVariables]
-    private EntityUid? _effect = null;
+    private readonly Dictionary<EntityUid, EntityUid> _effects = [];
+
     protected override bool IsPredict() => !_timing.IsFirstTimePredicted;
+
     public override void Initialize()
     {
         base.Initialize();
 
+        _remoteControl = EntityManager.System<RemoteControlInterface>();
+        _remoteControl.ControlledEntityChanged += OnRemoteControlledEntityChanged;
         //handled in base class
         //SubscribeLocalEvent<ThermalVisionComponent, ComponentInit>(OnVisionInit);
         //SubscribeLocalEvent<ThermalVisionComponent, ComponentShutdown>(OnVisionShutdown);
@@ -43,67 +48,103 @@ public sealed partial class ThermalVisionSystem : SharedThermalVisionSystem
         SubscribeLocalEvent<ThermalVisionComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
 
         SubscribeLocalEvent<ThermalVisionComponent, FlashImmunityCheckEvent>(OnFlashImmunityChanged);
+        SubscribeLocalEvent<ThermalVisionComponent, AfterAutoHandleStateEvent>(OnAutoHandleEvent);
 
         _throughWallsOverlay = new(_prototypeManager.Index<ShaderPrototype>(BrightnessShader));
-        _overlay = new(_prototypeManager.Index<ShaderPrototype>(ThermalVisionShader));
-        _altOverlay = new(_prototypeManager.Index<ShaderPrototype>(AlternativeThermalVisionShader));
+        _overlay = new(
+            _prototypeManager.Index<ShaderPrototype>(ThermalVisionShader),
+            _prototypeManager.Index<ShaderPrototype>(AlternativeThermalVisionShader));
+    }
+
+    public override void Shutdown()
+    {
+        if (_remoteControl is { } remoteControl)
+            remoteControl.ControlledEntityChanged -= OnRemoteControlledEntityChanged;
+        if (_throughWallsOverlay is { } throughWallsOverlay)
+            _overlayMan.RemoveOverlay(throughWallsOverlay);
+        if (_overlay is { } overlay)
+            _overlayMan.RemoveOverlay(overlay);
+
+        foreach (var effect in _effects.Values)
+        {
+            Del(effect);
+        }
+
+        _effects.Clear();
+        base.Shutdown();
     }
 
     private void OnFlashImmunityChanged(Entity<ThermalVisionComponent> ent, ref FlashImmunityCheckEvent args)
-    {
-        if (args.IsImmune)
-            AttemptRemoveVision(ent.Owner);
-        else
-            AttemptAddVision(ent.Owner);
-    }
+        => UpdateVision(immunityEntity: ent.Owner, immune: args.IsImmune);
+
+    private void OnAutoHandleEvent(Entity<ThermalVisionComponent> ent, ref AfterAutoHandleStateEvent args)
+        => UpdateVision();
 
     private void OnPlayerAttached(Entity<ThermalVisionComponent> ent, ref LocalPlayerAttachedEvent args)
-        => AttemptAddVision(ent.Owner);
+        => UpdateVision();
 
     private void OnPlayerDetached(Entity<ThermalVisionComponent> ent, ref LocalPlayerDetachedEvent args)
-        => AttemptRemoveVision(ent.Owner, true);
+        => UpdateVision(ent.Owner);
 
     protected override void ToggleOn(Entity<ThermalVisionComponent> ent)
-        => AttemptAddVision(ent.Owner);
+        => UpdateVision();
 
     protected override void ToggleOff(Entity<ThermalVisionComponent> ent)
-        => AttemptRemoveVision(ent.Owner);
+        => UpdateVision(ent.Owner);
 
-    private void AttemptAddVision(EntityUid uid)
+    private void OnRemoteControlledEntityChanged(EntityUid? entity)
+        => UpdateVision();
+
+    private void UpdateVision(
+        EntityUid? excludedEntity = null,
+        EntityUid? immunityEntity = null,
+        bool? immune = null)
     {
-        if (_player.LocalSession?.AttachedEntity != uid) return;
+        var viewers = new HashSet<EntityUid>();
 
-        //if they currently have flash immunity, dont add
-        if (_flashImmunity.HasFlashImmunityVisionBlockers(uid)) return;
+        if (_player.LocalSession?.AttachedEntity is { } local
+            && local != excludedEntity
+            && HasActiveVision(local, immunityEntity, immune))
+            viewers.Add(local);
 
-        //only add if its active
-        if (!TryComp<ThermalVisionComponent>(uid, out var thermalVision) || !thermalVision.Active) return;
+        if (_remoteControl.ControlledEntity is { } remote
+            && remote != excludedEntity
+            && HasActiveVision(remote, immunityEntity, immune))
+            viewers.Add(remote);
 
-        if (_effect != null) return;
+        _overlay.SetActiveViewers(viewers);
+        _throughWallsOverlay.SetActiveViewers(viewers);
 
-        _overlayMan.AddOverlay(_throughWallsOverlay);
-        if (thermalVision.UseAlternativeShader)
-            _overlayMan.AddOverlay(_altOverlay);
-        else
+        if (viewers.Count > 0)
+        {
+            _overlayMan.AddOverlay(_throughWallsOverlay);
             _overlayMan.AddOverlay(_overlay);
-        _effect = SpawnAttachedTo(thermalVision.EffectPrototype, Transform(uid).Coordinates);
-        _xformSys.SetParent(_effect.Value, uid);
+        }
+        else
+        {
+            _overlayMan.RemoveOverlay(_throughWallsOverlay);
+            _overlayMan.RemoveOverlay(_overlay);
+        }
+
+        foreach (var viewer in _effects.Keys.Where(viewer => !viewers.Contains(viewer)).ToArray())
+        {
+            Del(_effects[viewer]);
+            _effects.Remove(viewer);
+        }
+
+        foreach (var viewer in viewers)
+        {
+            if (_effects.ContainsKey(viewer) || !TryComp<ThermalVisionComponent>(viewer, out var thermalVision))
+                continue;
+
+            var effect = SpawnAttachedTo(thermalVision.EffectPrototype, Transform(viewer).Coordinates);
+            _xformSys.SetParent(effect, viewer);
+            _effects.Add(viewer, effect);
+        }
     }
 
-    /// <summary>
-    /// Attempt to remove the overlay from the local player.
-    /// </summary>
-    /// <param name="uid"></param>
-    /// <param name="force">Use if you need to forcefully remove the overlay no matter what. Only should be used with events that ONLY the local player can fire, like attach/detach</param>
-    private void AttemptRemoveVision(EntityUid uid, bool force = false)
-    {
-        //ENSURE this is the local player
-        if (_player.LocalSession?.AttachedEntity != uid && !force) return;
-
-        _overlayMan.RemoveOverlay(_throughWallsOverlay);
-        _overlayMan.RemoveOverlay(_overlay);
-        _overlayMan.RemoveOverlay(_altOverlay);
-        Del(_effect);
-        _effect = null;
-    }
+    private bool HasActiveVision(EntityUid uid, EntityUid? immunityEntity, bool? immune)
+        => TryComp<ThermalVisionComponent>(uid, out var vision)
+            && vision.Active
+            && (uid == immunityEntity ? immune != true : !_flashImmunity.HasFlashImmunityVisionBlockers(uid));
 }

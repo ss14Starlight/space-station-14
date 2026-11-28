@@ -1,6 +1,6 @@
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Client._Starlight.Overlay.Overlays;
 using Robust.Client.Graphics;
-using Robust.Client.Player;
 
 namespace Content.Client._Starlight.Overlay.Systems;
 
@@ -13,13 +13,11 @@ namespace Content.Client._Starlight.Overlay.Systems;
 public sealed partial class IntrinsicPinpointerSystem : EntitySystem
 {
     [Dependency] private IOverlayManager _overlayMan = default!;
-    [Dependency] private IPlayerManager _player = default!;
-    [Dependency] private IEyeManager _eye = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-        _overlayMan.AddOverlay(new IntrinsicPinpointerOverlay(EntityManager, _player, _eye));
+        _overlayMan.AddOverlay(new IntrinsicPinpointerOverlay(EntityManager, EntityManager.System<RemoteControlInterface>()));
     }
 
     public override void Shutdown()

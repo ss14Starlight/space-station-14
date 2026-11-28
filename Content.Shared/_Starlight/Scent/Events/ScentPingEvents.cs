@@ -1,4 +1,5 @@
 using System.Numerics;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 
@@ -8,8 +9,9 @@ namespace Content.Shared._Starlight.Scent.Events;
 /// Sent when a Full smeller starts tracking a scent. Only sent if the source still exists.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class ScentSourcePingEvent(string scentId, MapId mapId, Vector2 position) : EntityEventArgs
+public sealed class ScentSourcePingEvent(NetEntity smeller, string scentId, MapId mapId, Vector2 position) : EntityEventArgs
 {
+    public NetEntity Smeller = smeller;
     public string ScentId = scentId;
     public MapId MapId = mapId;
     public Vector2 Position = position;

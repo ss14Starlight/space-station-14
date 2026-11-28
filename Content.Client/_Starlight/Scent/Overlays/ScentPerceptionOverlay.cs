@@ -1,9 +1,9 @@
 using Content.Shared._Starlight.Eye;
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.Scent.Components;
 using Content.Shared.Eye.Blinding.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Client.Player;
 using Robust.Shared.Enums;
 
 namespace Content.Client._Starlight.Scent.Overlays;
@@ -14,8 +14,8 @@ namespace Content.Client._Starlight.Scent.Overlays;
 public sealed partial class ScentPerceptionOverlay : Robust.Client.Graphics.Overlay
 {
     [Dependency] private IEntityManager _entityManager = default!;
-    [Dependency] private IPlayerManager _playerManager = default!;
 
+    private readonly RemoteControlInterface _remoteControl;
     private readonly SpriteSystem _sprite;
     private readonly TransformSystem _transform;
     private readonly ContainerSystem _container;
@@ -26,6 +26,7 @@ public sealed partial class ScentPerceptionOverlay : Robust.Client.Graphics.Over
     public ScentPerceptionOverlay()
     {
         IoCManager.InjectDependencies(this);
+        _remoteControl = _entityManager.System<RemoteControlInterface>();
         _sprite = _entityManager.System<SpriteSystem>();
         _transform = _entityManager.System<TransformSystem>();
         _container = _entityManager.System<ContainerSystem>();
@@ -34,16 +35,10 @@ public sealed partial class ScentPerceptionOverlay : Robust.Client.Graphics.Over
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
-        if (!_entityManager.TryGetComponent(_playerManager.LocalSession?.AttachedEntity, out EyeComponent? eyeComp))
+        if (!_remoteControl.TryGetViewportEntity(args, out var viewer))
             return false;
 
-        if (args.Viewport.Eye != eyeComp.Eye)
-            return false;
-
-        if (_playerManager.LocalSession?.AttachedEntity is not { } player)
-            return false;
-
-        return IsVisionObscured(player);
+        return IsVisionObscured(viewer);
     }
 
     private bool IsVisionObscured(EntityUid player)

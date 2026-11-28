@@ -1,8 +1,10 @@
+using System.Linq;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.Overlay.Systems;
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared._Starlight.Overlay.Events;
@@ -18,15 +20,17 @@ public sealed partial class NightVisionSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private FlashImmunitySystem _flashImmunity = default!;
 
+    private RemoteControlInterface _remoteControl = default!;
     private NightVisionOverlay _overlay = default!;
-    [ViewVariables]
-    private EntityUid? _effect = null;
+    private readonly Dictionary<EntityUid, EntityUid> _effects = [];
     private const string ModernNightVisionShaderPrototype = "ModernNightVisionShader";
 
     public override void Initialize()
     {
         base.Initialize();
 
+        _remoteControl = EntityManager.System<RemoteControlInterface>();
+        _remoteControl.ControlledEntityChanged += OnRemoteControlledEntityChanged;
         SubscribeLocalEvent<NightVisionComponent, ComponentInit>(OnVisionInit);
         SubscribeLocalEvent<NightVisionComponent, ComponentShutdown>(OnVisionShutdown);
 
@@ -42,88 +46,92 @@ public sealed partial class NightVisionSystem : EntitySystem
         _overlay = new(_prototypeManager.Index<ShaderPrototype>(ModernNightVisionShaderPrototype));
     }
 
-    private void OnFlashImmunityChanged(Entity<NightVisionComponent> ent, ref FlashImmunityCheckEvent args)
+    public override void Shutdown()
     {
-        if (args.IsImmune)
+        if (_remoteControl is { } remoteControl)
+            remoteControl.ControlledEntityChanged -= OnRemoteControlledEntityChanged;
+        if (_overlay is { } overlay)
+            _overlayMan.RemoveOverlay(overlay);
+
+        foreach (var effect in _effects.Values)
         {
-            AttemptRemoveVision(ent.Owner);
+            Del(effect);
         }
-        else
-        {
-            AttemptAddVision(ent.Owner);
-        }
+
+        _effects.Clear();
+        base.Shutdown();
     }
+
+    private void OnFlashImmunityChanged(Entity<NightVisionComponent> ent, ref FlashImmunityCheckEvent args)
+        => UpdateVision(immunityEntity: ent.Owner, immune: args.IsImmune);
 
     private void OnAutoHandleEvent(Entity<NightVisionComponent> ent, ref AfterAutoHandleStateEvent args)
-    {
-        if (ent.Comp.Active)
-            AttemptAddVision(ent.Owner);
-        else
-            AttemptRemoveVision(ent.Owner);
-    }
+        => UpdateVision();
 
     private void OnPlayerAttached(Entity<NightVisionComponent> ent, ref LocalPlayerAttachedEvent args)
-        => AttemptAddVision(ent.Owner);
+        => UpdateVision();
 
     private void OnPlayerDetached(Entity<NightVisionComponent> ent, ref LocalPlayerDetachedEvent args)
-        => AttemptRemoveVision(ent.Owner, true);
+        => UpdateVision(ent.Owner);
 
     private void OnVisionInit(Entity<NightVisionComponent> ent, ref ComponentInit args)
-        => AttemptAddVision(ent.Owner);
+        => UpdateVision();
 
     private void OnVisionShutdown(Entity<NightVisionComponent> ent, ref ComponentShutdown args)
-        => AttemptRemoveVision(ent.Owner);
+        => UpdateVision(ent.Owner);
 
     private void OnBlockerChanged(Entity<NightVisionBlockerComponent> ent, ref ComponentInit args)
-        => AttemptRemoveVision(ent.Owner);
+        => UpdateVision();
 
     private void OnBlockerChanged(Entity<NightVisionBlockerComponent> ent, ref ComponentRemove args)
-        => AttemptAddVision(ent.Owner);
+        => UpdateVision();
 
-    /// <summary>
-    /// Attempt to add the nightvision overlay to the local player.
-    /// </summary>
-    /// <param name="uid">Entity to add nightvision to.</param>
-    private void AttemptAddVision(EntityUid uid)
+    private void OnRemoteControlledEntityChanged(EntityUid? entity)
+        => UpdateVision();
+
+    private void UpdateVision(
+        EntityUid? excludedEntity = null,
+        EntityUid? immunityEntity = null,
+        bool? immune = null)
     {
-        if (_player.LocalSession?.AttachedEntity != uid)
-            return;
+        var viewers = new HashSet<EntityUid>();
 
-        // if they currently have flash immunity, don't add night vision
-        if (_flashImmunity.HasFlashImmunityVisionBlockers(uid))
-            return;
+        if (_player.LocalSession?.AttachedEntity is { } local
+            && local != excludedEntity
+            && HasActiveVision(local, immunityEntity, immune))
+            viewers.Add(local);
 
-        // only add night vision if it's active
-        if (!TryComp<NightVisionComponent>(uid, out var nightVision) || !nightVision.Active)
-            return;
+        if (_remoteControl.ControlledEntity is { } remote
+            && remote != excludedEntity
+            && HasActiveVision(remote, immunityEntity, immune))
+            viewers.Add(remote);
 
-        // some disabilities (like Nightblind) block night vision
-        // some organs, like cyber eyes, can bypass disability - we'll check if the current organ ignores disabilities or not
-        if(HasComp<NightVisionBlockerComponent>(uid) && nightVision.DisabilityBlockable)
-            return;
+        _overlay.SetActiveViewers(viewers);
+        if (viewers.Count > 0)
+            _overlayMan.AddOverlay(_overlay);
+        else
+            _overlayMan.RemoveOverlay(_overlay);
 
-        // only add if effect isnt already used
-        if (_effect != null)
-            return;
+        foreach (var viewer in _effects.Keys.Where(viewer => !viewers.Contains(viewer)).ToArray())
+        {
+            Del(_effects[viewer]);
+            _effects.Remove(viewer);
+        }
 
-        _overlayMan.AddOverlay(_overlay);
+        foreach (var viewer in viewers)
+        {
+            if (_effects.ContainsKey(viewer) || !TryComp<NightVisionComponent>(viewer, out var nightVision))
+                continue;
 
-        _effect = SpawnAttachedTo(nightVision.EffectPrototype, Transform(uid).Coordinates);
-        _xformSys.SetParent(_effect.Value, uid);
+            var effect = SpawnAttachedTo(nightVision.EffectPrototype, Transform(viewer).Coordinates);
+            _xformSys.SetParent(effect, viewer);
+            _effects.Add(viewer, effect);
+        }
     }
 
-    /// <summary>
-    /// Attempt to remove the overlay from the local player.
-    /// </summary>
-    /// <param name="uid">Entity to remove nightvision from.</param>
-    /// <param name="force">Use if you need to forcefully remove the overlay no matter what. Only should be used with events that ONLY the local player can fire, like attach/detach</param>
-    private void AttemptRemoveVision(EntityUid uid, bool force = false)
-    {
-        //ENSURE this is the local player
-        if (_player.LocalSession?.AttachedEntity != uid && !force) return;
-
-        _overlayMan.RemoveOverlay(_overlay);
-        Del(_effect);
-        _effect = null;
-    }
+    private bool HasActiveVision(EntityUid uid, EntityUid? immunityEntity, bool? immune)
+        => TryComp<NightVisionComponent>(uid, out var vision)
+            && vision.Active
+            && (uid == immunityEntity ? immune != true : !_flashImmunity.HasFlashImmunityVisionBlockers(uid))
+            && (!HasComp<NightVisionBlockerComponent>(uid) || !vision.DisabilityBlockable);
 }

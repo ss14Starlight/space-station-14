@@ -1,9 +1,11 @@
+using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices;
+using Content.Client._Starlight.Computers.RemoteControl;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Client.Player;
 using Robust.Shared.Enums;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
@@ -15,7 +17,7 @@ namespace Content.Client._Starlight.Scent.Overlays;
 public sealed partial class ScentSourcePingOverlay : Robust.Client.Graphics.Overlay
 {
     private readonly IEntityManager _entMan;
-    private readonly IPlayerManager _player;
+    private readonly RemoteControlInterface _remoteControl;
     private readonly IEyeManager _eye;
     private readonly IGameTiming _timing;
 
@@ -29,43 +31,49 @@ public sealed partial class ScentSourcePingOverlay : Robust.Client.Graphics.Over
     private const float PeakAlpha = 0.55f;
     private const int Segments = 12;
 
-    private readonly record struct ActiveFlash(Color Color, MapId MapId, Vector2 WorldPos, TimeSpan StartTime);
+    private readonly record struct ActiveFlash(NetEntity Smeller, Color Color, MapId MapId, Vector2 WorldPos, TimeSpan StartTime);
 
     private readonly List<ActiveFlash> _flashes = [];
     private readonly List<DrawVertexUV2DColor> _verts = [];
 
-    public ScentSourcePingOverlay(IEntityManager entMan, IPlayerManager player, IEyeManager eye, IGameTiming timing)
+    public ScentSourcePingOverlay(
+        IEntityManager entMan,
+        RemoteControlInterface remoteControl,
+        IEyeManager eye,
+        IGameTiming timing)
     {
         _entMan = entMan;
-        _player = player;
+        _remoteControl = remoteControl;
         _eye = eye;
         _timing = timing;
     }
 
-    public void AddFlash(Color color, MapCoordinates target)
-        => _flashes.Add(new ActiveFlash(color, target.MapId, target.Position, _timing.CurTime));
+    public void AddFlash(NetEntity smeller, Color color, MapCoordinates target)
+        => _flashes.Add(new ActiveFlash(smeller, color, target.MapId, target.Position, _timing.CurTime));
 
     public void ClearFlashes() => _flashes.Clear();
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
         _flashes.RemoveAll(f => _timing.CurTime - f.StartTime > _duration);
-        return _flashes.Count > 0;
+        return _remoteControl.TryGetViewportEntity(args, out var viewer)
+               && _flashes.Any(f => f.Smeller == _entMan.GetNetEntity(viewer));
     }
 
     protected override void Draw(in OverlayDrawArgs args)
     {
-        var uid = _player.LocalEntity;
-        if (uid == null || !_entMan.TryGetComponent(uid.Value, out TransformComponent? xform))
+        if (!_remoteControl.TryGetViewportEntity(args, out var viewer)
+            || !_entMan.TryGetComponent(viewer, out TransformComponent? xform))
             return;
 
         var playerMap = xform.MapID;
+        var smeller = _entMan.GetNetEntity(viewer);
         var bounds = args.ViewportBounds;
         var center = bounds.Center;
 
         foreach (var flash in _flashes)
         {
-            if (flash.MapId != playerMap)
+            if (flash.Smeller != smeller || flash.MapId != playerMap)
                 continue;
 
             var elapsed = (float)(_timing.CurTime - flash.StartTime).TotalSeconds;
@@ -73,7 +81,13 @@ public sealed partial class ScentSourcePingOverlay : Robust.Client.Graphics.Over
             if (timeEnvelope <= 0f)
                 continue;
 
-            var screenDir = _eye.WorldToScreen(flash.WorldPos) - center;
+            var viewport = _remoteControl.ControlledEntity == viewer
+                ? _remoteControl.ControlledViewport
+                : args.ViewportControl;
+            var targetScreenPos = viewport is { } view
+                ? view.WorldToScreen(flash.WorldPos)
+                : _eye.WorldToScreen(flash.WorldPos);
+            var screenDir = targetScreenPos - center;
             if (screenDir.LengthSquared() < 0.01f)
                 continue;
 

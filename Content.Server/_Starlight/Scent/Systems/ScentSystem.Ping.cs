@@ -15,6 +15,6 @@ public sealed partial class ScentSystem
             return;
 
         var coords = _transform.ToMapCoordinates(Transform(owner).Coordinates);
-        RaiseNetworkEvent(new ScentSourcePingEvent(scentId, coords.MapId, coords.Position), actor.PlayerSession);
+        RaiseNetworkEvent(new ScentSourcePingEvent(GetNetEntity(smeller.Owner), scentId, coords.MapId, coords.Position), actor.PlayerSession);
     }
 }

@@ -1,6 +1,6 @@
 using Robust.Client.Graphics;
-using Robust.Client.Player;
 using Robust.Shared.Enums;
+using Content.Client._Starlight.Computers.RemoteControl;
 
 namespace Content.Client._Starlight.Overlay.Overlays;
 
@@ -15,44 +15,48 @@ type by inheriting from this and implementing nothing. Thanks Robust Toolbox tea
 public abstract partial class BaseVisionOverlay : Robust.Client.Graphics.Overlay
 {
     [Dependency] private IEntityManager _entityManager = default!;
-    [Dependency] private IPlayerManager _playerManager = default!;
+    private readonly HashSet<EntityUid> _activeViewers = [];
+    private readonly RemoteControlInterface _remoteControl;
 
     public override bool RequestScreenTexture => true;
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
     private protected readonly ShaderInstance _shader;
+    protected IEntityManager EntityManager => _entityManager;
+
     public BaseVisionOverlay(ShaderPrototype shader)
     {
         IoCManager.InjectDependencies(this);
+        _remoteControl = _entityManager.System<RemoteControlInterface>();
         _shader = shader.InstanceUnique();
     }
 
-    protected override bool BeforeDraw(in OverlayDrawArgs args)
+    public void SetActiveViewers(IEnumerable<EntityUid> viewers)
     {
-        if (!_entityManager.TryGetComponent(_playerManager.LocalSession?.AttachedEntity, out EyeComponent? eyeComp))
-            return false;
-
-        if (args.Viewport.Eye != eyeComp.Eye)
-            return false;
-
-        var playerEntity = _playerManager.LocalSession?.AttachedEntity;
-
-        if (playerEntity == null)
-            return false;
-
-        return true;
+        _activeViewers.Clear();
+        _activeViewers.UnionWith(viewers);
     }
+
+    protected bool TryGetActiveViewer(in OverlayDrawArgs args, out EntityUid viewer)
+        => _remoteControl.TryGetViewportEntity(args, out viewer) && _activeViewers.Contains(viewer);
+
+    protected virtual ShaderInstance GetShader(EntityUid viewer)
+        => _shader;
+
+    protected override bool BeforeDraw(in OverlayDrawArgs args)
+        => TryGetActiveViewer(args, out _);
 
     protected override void Draw(in OverlayDrawArgs args)
     {
-        if (ScreenTexture == null)
+        if (ScreenTexture == null || !TryGetActiveViewer(args, out var viewer))
             return;
 
         var worldHandle = args.WorldHandle;
         var viewport = args.WorldBounds;
 
-        _shader.SetParameter("SCREEN_TEXTURE", ScreenTexture);
+        var shader = GetShader(viewer);
+        shader.SetParameter("SCREEN_TEXTURE", ScreenTexture);
 
-        worldHandle.UseShader(_shader);
+        worldHandle.UseShader(shader);
         worldHandle.DrawRect(viewport, Color.White);
         worldHandle.UseShader(null);
     }

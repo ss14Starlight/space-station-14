@@ -36,7 +36,8 @@ public sealed partial class TrailSystem : EntitySystem
     public override void Shutdown()
     {
         base.Shutdown();
-        _overlayMan.RemoveOverlay(_overlay);
+        if (_overlay is { } overlay)
+            _overlayMan.RemoveOverlay(overlay);
     }
 
     public void OnMapInit(Entity<TrailComponent> ent, ref MapInitEvent args)

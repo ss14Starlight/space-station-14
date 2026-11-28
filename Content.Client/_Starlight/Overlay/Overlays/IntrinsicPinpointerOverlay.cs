@@ -1,8 +1,8 @@
 using System.Numerics;
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.Xenoborgs.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Client.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Utility;
 
@@ -17,8 +17,7 @@ namespace Content.Client._Starlight.Overlay.Overlays;
 public sealed class IntrinsicPinpointerOverlay : Robust.Client.Graphics.Overlay
 {
     private readonly IEntityManager _entMan;
-    private readonly IPlayerManager _player;
-    private readonly IEyeManager _eye;
+    private readonly RemoteControlInterface _remoteControl;
     private readonly SharedTransformSystem _xform;
 
     private readonly Texture _arrowDirect;   // pointing direction
@@ -29,11 +28,10 @@ public sealed class IntrinsicPinpointerOverlay : Robust.Client.Graphics.Overlay
 
     public override OverlaySpace Space => OverlaySpace.ScreenSpace;
 
-    public IntrinsicPinpointerOverlay(IEntityManager entMan, IPlayerManager player, IEyeManager eye)
+    public IntrinsicPinpointerOverlay(IEntityManager entMan, RemoteControlInterface remoteControl)
     {
         _entMan = entMan;
-        _player = player;
-        _eye = eye;
+        _remoteControl = remoteControl;
         _xform = entMan.EntitySysManager.GetEntitySystem<SharedTransformSystem>();
 
         var sprites = entMan.EntitySysManager.GetEntitySystem<SpriteSystem>();
@@ -51,12 +49,10 @@ public sealed class IntrinsicPinpointerOverlay : Robust.Client.Graphics.Overlay
 
     protected override void Draw(in OverlayDrawArgs args)
     {
-        // Only draw for the local player when they have the component.
-        var uid = _player.LocalEntity;
-        if (uid == null)
+        if (!_remoteControl.TryGetViewportEntity(args, out var uid))
             return;
 
-        if (!_entMan.TryGetComponent(uid.Value, out IntrinsicPinpointerComponent? comp))
+        if (!_entMan.TryGetComponent(uid, out IntrinsicPinpointerComponent? comp))
             return;
 
         var screen = args.ScreenHandle;
@@ -80,7 +76,7 @@ public sealed class IntrinsicPinpointerOverlay : Robust.Client.Graphics.Overlay
         }
 
         // Get the player's current world position for direction calculation.
-        if (!_entMan.TryGetComponent(uid.Value, out TransformComponent? xform))
+        if (!_entMan.TryGetComponent(uid, out TransformComponent? xform))
         {
             DrawArrow(screen, _arrowNull, center, Size, Angle.Zero);
             return;
@@ -104,7 +100,7 @@ public sealed class IntrinsicPinpointerOverlay : Robust.Client.Graphics.Overlay
         // Screen: want tip pointing toward target. Solving (-sin(θ),cos(θ))=(sin(A),-cos(A)) (world sprite formula)
         //   gives θ = -A. With camera: screenAngle = -worldAngle + eyeAngle.
         var worldAngle = dir.ToWorldAngle();
-        var eyeAngle   = _eye.CurrentEye?.Rotation ?? Angle.Zero;
+        var eyeAngle   = args.Viewport.Eye?.Rotation ?? Angle.Zero;
         var screenAngle = new Angle(-worldAngle.Theta + eyeAngle.Theta);
 
         DrawArrow(screen, PickTexture(dist, comp), center, Size, screenAngle);
