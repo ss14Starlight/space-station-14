@@ -1,11 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: Added Global Illumination, system which makes light bounce from walls and simulates lighting better (Can be called as DDGI in 3D games).
-    type: Add
-  id: 410484
-  time: '2026-11-15T15:30:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7238
 - author: CommanderAlex365
   changes:
   - message: Made it possible to tap aquarium glass, please don't disturb the fish.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410883
   time: '2026-11-28T08:27:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7581
+- author: Rinary
+  changes:
+  - message: Fixed bug when you can leave camera and still see abductor/AI eyes.
+    type: Fix
+  id: 410884
+  time: '2026-11-28T08:27:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7574
 Order: -1
