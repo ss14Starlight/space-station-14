@@ -1,13 +1,6 @@
 Entries:
 - author: Ohelig
   changes:
-  - message: (Cluster) Moved the Radio Host's shutters button to somewhere you can reach.
-    type: Fix
-  id: 410494
-  time: '2026-11-16T04:32:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7246
-- author: Ohelig
-  changes:
   - message: (Cluster) Added pipe docking standards to each dock and escape pod.
     type: Fix
   id: 410495
@@ -2799,4 +2792,11 @@ Entries:
   id: 410893
   time: '2026-11-28T10:43:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7584
+- author: Scarlet.
+  changes:
+  - message: Added NPCspeech component.
+    type: Add
+  id: 410894
+  time: '2026-11-28T11:07:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7472
 Order: -1
