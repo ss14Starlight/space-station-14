@@ -16,3 +16,4 @@
       crushPush: true
       keepClosed: true
       performCollisionCheck: false
+      crushDamage: !Remove
