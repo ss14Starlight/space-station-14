@@ -1,4 +1,4 @@
-﻿namespace Content.Server.Atmos.Components;
+﻿namespace Content.Shared._Starlight.Atmos.Components;
 
 [RegisterComponent]
 public sealed partial class PressureImmunityComponent : Component

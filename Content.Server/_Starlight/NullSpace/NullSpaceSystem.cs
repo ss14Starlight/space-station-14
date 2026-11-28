@@ -1,7 +1,7 @@
 using Content.Shared.Eye;
 using Content.Shared.Atmos;
 using Robust.Server.GameObjects;
-using Content.Server.Atmos.Components;
+using Content.Shared._Starlight.Atmos.Components;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using System.Linq;

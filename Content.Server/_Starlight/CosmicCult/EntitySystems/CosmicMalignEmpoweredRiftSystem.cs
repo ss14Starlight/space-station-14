@@ -8,7 +8,7 @@ using Content.Shared.Mobs.Components;
 using Robust.Shared.Containers;
 using Content.Server.Temperature.Systems;
 using Content.Shared.Temperature.Components;
-using Content.Server.Atmos.Components;
+using Content.Shared._Starlight.Atmos.Components;
 using Robust.Shared.Map;
 using Robust.Shared.GameStates;
 
