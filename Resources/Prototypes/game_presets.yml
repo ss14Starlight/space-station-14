@@ -21,6 +21,7 @@
   description: kessler-syndrome-description
   rules:
     - KesslerSyndromeScheduler
+    - ResonanceCascadeScheduler # Starlight
     - RampingStationEventScheduler
     - BasicRoundstartVariation
 
@@ -38,6 +39,7 @@
     - Zombie
     - Xenoborgs
     - KesslerSyndromeScheduler
+    - ResonanceCascadeScheduler # Starlight
     - RampingStationEventScheduler
     - BasicRoundstartVariation
 
