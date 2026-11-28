@@ -1,13 +1,6 @@
 Entries:
 - author: Ohelig
   changes:
-  - message: (Cluster) Added airlock controller to Mining dock. Enjoy!
-    type: Add
-  id: 410490
-  time: '2026-11-16T04:32:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7246
-- author: Ohelig
-  changes:
   - message: (Cluster) Added airlock controller to TEG. Enjoy!
     type: Add
   id: 410491
@@ -2799,4 +2792,11 @@ Entries:
   id: 410889
   time: '2026-11-28T09:37:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7569
+- author: Rinary
+  changes:
+  - message: Fixed bug when you can use embedded projectiles(such as flare gun) to use them as pushoff in space to have free jetpack.
+    type: Fix
+  id: 410890
+  time: '2026-11-28T10:12:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7503
 Order: -1
