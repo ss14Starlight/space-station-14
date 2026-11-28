@@ -38,7 +38,7 @@ public sealed partial class KillPersonConditionSystem : EntitySystem
         if (!TryComp<MindComponent>(target, out var mind) || mind.OwnedEntity == null)
             return 1f;
 
-        if (IsTargetRemoved(mind)) // Starlight, cryo, catatonic, or permanently lost character.
+        if (IsTargetRemoved((target, mind))) // Starlight, cryo, catatonic, or permanently lost character.
             return 1f;
 
         var targetDead = _mind.IsCharacterDeadIc(mind);
