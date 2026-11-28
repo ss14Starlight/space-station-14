@@ -32,3 +32,8 @@
   license: "CC-BY-SA-4.0"
   copyright: "Beptol Corporation Acoustics"
   source: "https://pastebin.com/5wk5SNM0"
+
+- files: [TerminatedContracts.ogg]
+  license: "CC-BY-4.0" # As confirmed in original description
+  copyright: "Q/\ntum"
+  source: "https://www.youtube.com/watch?v=BSoKxlBxHMw"

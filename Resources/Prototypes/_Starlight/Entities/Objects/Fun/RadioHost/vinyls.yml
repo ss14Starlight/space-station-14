@@ -1741,3 +1741,18 @@
     labelColor: "#4d32ba"
     song:
       path: /Audio/_Starlight/RadioStation/Vinyls/music/welcome_to_ss14.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylTerminatedContracts
+  name: "vinyl: Terminated Contracts"
+  description: "For when ERT won't cut it. By: Q/ntum" # Full artist name is Q/\ntum, but \ means something in yaml.
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: label
+      color: "#d700b3"
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/TerminatedContracts.ogg
