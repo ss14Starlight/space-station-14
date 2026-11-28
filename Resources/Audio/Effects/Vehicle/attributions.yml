@@ -1,3 +1,8 @@
+- files: ["vehiclestartup.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "InspectorJ (www.jshaw.co.uk) of Freesound.org"
+  source: "https://freesound.org/people/InspectorJ/sounds/338954/"
+
 - files: ["policesiren.ogg"]
   source: "https://freesound.org/people/blukotek/sounds/431651/"
   license: "CC0-1.0"

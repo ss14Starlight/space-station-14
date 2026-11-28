@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Client.Animations;
 using Content.Client.Gameplay;
 using Content.Client.Items;
@@ -421,9 +421,9 @@ public sealed partial class GunSystem : SharedGunSystem
         }
         // Starlight-end
 
-        if (TryComp<MechPilotComponent>(entity, out var mechPilot))
+        if (TryGetMechShooter(entity, out var pilotMech))
         {
-            entity = mechPilot.Mech;
+            entity = pilotMech; // Starlight
         }
 
         if (!TryGetGun(entity, out var gun))

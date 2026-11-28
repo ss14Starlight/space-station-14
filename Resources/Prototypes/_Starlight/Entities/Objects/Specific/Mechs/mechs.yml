@@ -107,9 +107,10 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0
       airtight: true
-      pilotWhitelist:
+    - type: Vehicle
+      transferDamage: false # Mechs are safe
+      operatorWhitelist:
         components:
           - HumanoidAppearance
     - type: MeleeWeapon
@@ -177,11 +178,12 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 250
       maxEquipmentAmount: 4
-      pilotWhitelist:
+    - type: Vehicle
+      transferDamage: false # Mechs are safe
+      operatorWhitelist:
         components:
           - HumanoidAppearance
     - type: MechSiren
@@ -247,9 +249,10 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0
       airtight: true
-      pilotWhitelist:
+    - type: Vehicle
+      transferDamage: false # Mechs are safe
+      operatorWhitelist:
         components:
           - HumanoidAppearance
     - type: MeleeWeapon
@@ -304,10 +307,11 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 325
-      pilotWhitelist:
+    - type: Vehicle
+      transferDamage: false # Mechs are safe
+      operatorWhitelist:
         components:
           - HumanoidAppearance
     - type: MeleeWeapon
@@ -368,10 +372,11 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 465
-      pilotWhitelist:
+    - type: Vehicle
+      transferDamage: false # Mechs are safe
+      operatorWhitelist:
         components:
           - HumanoidAppearance
     - type: MeleeWeapon
@@ -434,11 +439,12 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 575
       maxEquipmentAmount: 4
-      pilotWhitelist:
+    - type: Vehicle
+      transferDamage: false # Mechs are safe
+      operatorWhitelist:
         components:
           - HumanoidAppearance
     - type: MeleeWeapon
@@ -505,11 +511,12 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 700
       maxEquipmentAmount: 5
-      pilotWhitelist:
+    - type: Vehicle
+      transferDamage: false # Mechs are safe
+      operatorWhitelist:
         components:
           - HumanoidAppearance
     - type: MeleeWeapon
@@ -579,11 +586,12 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 375
       maxEquipmentAmount: 4
-      pilotWhitelist:
+    - type: Vehicle
+      transferDamage: false # Mechs are safe
+      operatorWhitelist:
         components:
           - HumanoidAppearance
     - type: MeleeWeapon
@@ -656,11 +664,12 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 550
       maxEquipmentAmount: 5
-      pilotWhitelist:
+    - type: Vehicle
+      transferDamage: false # Mechs are safe
+      operatorWhitelist:
         components:
           - HumanoidAppearance
     - type: MeleeWeapon
@@ -749,11 +758,12 @@
       baseState: dark
       openState: dark-open
       brokenState: dark-broken
-      mechToPilotDamageMultiplier: 0.0
       maxIntegrity: 550
       maxEquipmentAmount: 5
       airtight: true # Space Honks is real.
-      pilotWhitelist:
+    - type: Vehicle
+      transferDamage: false # Mechs are safe
+      operatorWhitelist:
         components:
           - HumanoidAppearance
     - type: Prying
@@ -806,11 +816,12 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 250
       maxEquipmentAmount: 4
-      pilotWhitelist:
+    - type: Vehicle
+      transferDamage: false # Mechs are safe
+      operatorWhitelist:
         components:
           - HumanoidAppearance
     - type: MeleeWeapon
@@ -894,10 +905,11 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 650
-      pilotWhitelist:
+    - type: Vehicle
+      transferDamage: false # Mechs are safe
+      operatorWhitelist:
         components:
           - HumanoidAppearance
     - type: MeleeWeapon

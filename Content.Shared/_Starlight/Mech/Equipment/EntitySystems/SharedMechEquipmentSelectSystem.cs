@@ -1,3 +1,4 @@
+using Content.Shared.Vehicle.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
@@ -8,6 +9,7 @@ namespace Content.Shared._Starlight.Mech.Equipment.EntitySystems;
 public sealed partial class SharedMechEquipmentSelectSystem : EntitySystem
 {
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private VehicleSystem _vehicle = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
@@ -32,6 +34,8 @@ public sealed partial class SharedMechEquipmentSelectSystem : EntitySystem
 
     private void OnRadialSelected(EntityUid uid, MechComponent comp, MechActiveEquipmentSelectMessage msg)
     {
+        if (_vehicle.GetOperatorOrNull(uid) != msg.Actor)
+            return;
         var equipment = GetEntity(msg.SelectedEquipment);
 
         if (equipment.HasValue)
@@ -48,7 +52,7 @@ public sealed partial class SharedMechEquipmentSelectSystem : EntitySystem
             ? Loc.GetString("mech-equipment-select-popup", ("item", comp.CurrentSelectedEquipment))
             : Loc.GetString("mech-equipment-select-none-popup");
 
-        _popup.PopupPredicted(popupString, uid, comp.PilotSlot.ContainedEntity);
+        _popup.PopupPredicted(popupString, uid, _vehicle.GetOperatorOrNull(uid));
 
         Dirty(uid, comp);
     }

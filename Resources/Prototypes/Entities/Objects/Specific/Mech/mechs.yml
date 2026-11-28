@@ -6,6 +6,38 @@
   - type: MobMover
   - type: Mech
   - type: MechAir
+  - type: Vehicle
+    canAttack: true
+  - type: ContainerVehicle
+    containerId: "mech-pilot-slot"
+  - type: ContainerVehicleEntry
+  - type: AirFilter
+    # everything except oxygen and nitrogen
+    gases:
+    - CarbonDioxide
+    - Plasma
+    - Tritium
+    - WaterVapor
+    - Ammonia
+    - NitrousOxide
+    - Frezon
+    #- Helium3 TODO: fusion
+    # remove everything except oxygen to maintain oxygen ratio
+    overflowGases:
+    - Nitrogen
+    - CarbonDioxide
+    - Plasma
+    - Tritium
+    - WaterVapor
+    - Ammonia
+    - NitrousOxide
+    - Frezon
+    #- Helium3 TODO: fusion
+  - type: AirIntake
+  # for intake and filter to work
+  - type: AtmosDevice
+    requireAnchored: false
+    joinSystem: true
   - type: DoAfter
   - type: Repairable
     fuelCost: 25
@@ -107,10 +139,20 @@
     baseState: base
     openState: base-open
     brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.75
-    pilotWhitelist:
+  - type: Vehicle
+    transferDamageModifier:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Cold: 0.75
+        Heat: 0.75
+        Shock: 0.75
+    operatorWhitelist:
       components:
         - HumanoidAppearance
+  - type: VehicleHandBlocker
+    blockedHands: 2
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -161,14 +203,23 @@
       params:
         variation: 0.17
   - type: Mech
-    baseState: base
-    openState: base-open
-    brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.5
-    airtight: true # Space Honks is real.
-    pilotWhitelist:
+    baseState: honker
+    openState: honker-open
+    brokenState: honker-broken
+  - type: Vehicle
+    transferDamageModifier:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Cold: 0.5
+        Heat: 0.5
+        Shock: 0.5
+    operatorWhitelist:
       components:
       - HumanoidAppearance
+  - type: VehicleHandBlocker
+    blockedHands: 2
 
 - type: entity
   parent: MechHonker
@@ -201,10 +252,19 @@
     baseState: base
     openState: base-open
     brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.2
     maxEquipmentAmount: 2
     airtight: true
-    pilotWhitelist:
+  - type: Vehicle
+    requiresHands: false
+    transferDamageModifier:
+      coefficients:
+        Blunt: 0.2
+        Slash: 0.2
+        Piercing: 0.2
+        Cold: 0.2
+        Heat: 0.2
+        Shock: 0.2
+    operatorWhitelist:
       tags:
       - Hamster
   - type: MeleeWeapon
@@ -266,10 +326,18 @@
     openState: base-open
     brokenState: base-broken
     maxEquipmentAmount: 0
-    # keep mouse safe
-    mechToPilotDamageMultiplier: 0.1
     airtight: true
-    pilotWhitelist:
+  - type: Vehicle
+    requiresHands: false
+    transferDamageModifier:
+      coefficients:
+        Blunt: 0.1
+        Slash: 0.1
+        Piercing: 0.1
+        Cold: 0.1
+        Heat: 0.1
+        Shock: 0.1
+    operatorWhitelist:
       tags:
       - VimPilot
   - type: MeleeWeapon

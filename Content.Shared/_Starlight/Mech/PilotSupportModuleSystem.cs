@@ -1,68 +1,59 @@
+using System.Linq;
 using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
-using System.Linq;
-using Content.Shared.Mech.EntitySystems;
-using Content.Shared.Whitelist;
+using Content.Shared.Vehicle.Components;
+using Content.Shared.Vehicle.Systems;
+using Robust.Shared.Serialization.Manager;
 
 namespace Content.Shared._Starlight.Mech;
 
 public sealed partial class PilotSupportModuleSystem : EntitySystem
 {
-    [Dependency] private SharedMechSystem _mech = default!;
-    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private VehicleSystem _vehicle = default!;
+    [Dependency] private ISerializationManager _serialization = default!;
 
-    /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
-
-        SubscribeLocalEvent<PilotSupportModuleComponent, MechEquipmentRemovedEvent>(OnModuleRemoved);
         SubscribeLocalEvent<PilotSupportModuleComponent, MechEquipmentInsertedEvent>(OnModuleInserted);
+        SubscribeLocalEvent<PilotSupportModuleComponent, MechEquipmentRemovedEvent>(OnModuleRemoved);
     }
 
-    private void OnModuleInserted(Entity<PilotSupportModuleComponent> entity, ref MechEquipmentInsertedEvent args)
+    private void OnModuleInserted(Entity<PilotSupportModuleComponent> ent, ref MechEquipmentInsertedEvent args)
+        => RebuildWhitelist(args.Mech);
+
+    private void OnModuleRemoved(Entity<PilotSupportModuleComponent> ent, ref MechEquipmentRemovedEvent args)
     {
-        if (TryComp<MechComponent>(args.Mech, out var mech) && TryComp<PilotSupportModuleComponent>(entity, out var module))
-        {
-            if (mech.PilotWhitelist != null && module.PilotWhitelist != null)
-            {
-                if (mech.PilotWhitelist.Components != null && module.PilotWhitelist.Components != null)
-                {
-                    mech.PilotWhitelist.Components = mech.PilotWhitelist.Components.Concat(module.PilotWhitelist.Components).ToArray();
-                    _whitelist.ClearRegistrations(mech.PilotWhitelist);
-                }
-
-                if (mech.PilotWhitelist.Tags != null && module.PilotWhitelist.Tags != null)
-                {
-                    mech.PilotWhitelist.Tags.AddRange(module.PilotWhitelist.Tags);
-                }
-            }
-
-            Dirty(args.Mech, mech);
-        }
+        _vehicle.TryExit(args.Mech);
+        RebuildWhitelist(args.Mech, ent);
     }
 
-    private void OnModuleRemoved(Entity<PilotSupportModuleComponent> entity, ref MechEquipmentRemovedEvent args)
+    private void RebuildWhitelist(EntityUid uid, EntityUid? removed = null)
     {
-        if (TryComp<MechComponent>(args.Mech, out var mech) && TryComp<PilotSupportModuleComponent>(entity, out var module))
+        if (!TryComp<MechComponent>(uid, out var mech) || !TryComp<VehicleComponent>(uid, out var vehicle))
+            return;
+
+        if (!mech.PilotSupportWhitelistInitialized)
         {
-            _mech.TryEject(args.Mech, mech);
-
-            if (mech.PilotWhitelist != null && module.PilotWhitelist != null)
-            {
-                if (mech.PilotWhitelist.Components != null && module.PilotWhitelist.Components != null)
-                {
-                    mech.PilotWhitelist.Components = mech.PilotWhitelist.Components.Except(module.PilotWhitelist.Components).ToArray();
-                    _whitelist.ClearRegistrations(mech.PilotWhitelist);
-                }
-
-                if (mech.PilotWhitelist.Tags != null && module.PilotWhitelist.Tags != null)
-                {
-                    mech.PilotWhitelist.Tags.RemoveAll(whitelist => module.PilotWhitelist.Tags.Contains(whitelist));
-                }
-            }
-
-            Dirty(args.Mech, mech);
+            mech.PilotSupportBaseWhitelist = vehicle.OperatorWhitelist;
+            mech.PilotSupportWhitelistInitialized = true;
         }
+
+        if (mech.PilotSupportBaseWhitelist == null)
+            return;
+
+        var whitelist = _serialization.CreateCopy(mech.PilotSupportBaseWhitelist, notNullableOverride: true);
+        foreach (var equipment in mech.EquipmentContainer.ContainedEntities)
+        {
+            if (equipment == removed || !TryComp<PilotSupportModuleComponent>(equipment, out var module) ||
+                module.PilotWhitelist is not { } addition)
+                continue;
+            if (addition.Components != null)
+                whitelist.Components = (whitelist.Components ?? []).Concat(addition.Components).Distinct().ToArray();
+            if (addition.Tags != null)
+                whitelist.Tags = (whitelist.Tags ?? []).Concat(addition.Tags).Distinct().ToList();
+        }
+
+        _vehicle.SetOperatorWhitelist((uid, vehicle), whitelist);
     }
 }

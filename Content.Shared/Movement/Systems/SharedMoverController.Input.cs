@@ -10,7 +10,6 @@ using Content.Shared.Movement.Events;
 using Robust.Shared.GameStates;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
@@ -341,15 +340,18 @@ namespace Content.Shared.Movement.Systems
             PhysicsSystem.TrySetBodyType(entity, BodyType.KinematicController); // Starlight: we use try instead of set because sometimes its not available yet and causes exceptions
         }
 
-        private void HandleDirChange(EntityUid entity, Direction dir, ushort subTick, bool state)
+        private void HandleDirChange(Entity<InputMoverComponent?> entity, Direction dir, ushort subTick, bool state)
         {
             // Relayed movement just uses the same keybinds given we're moving the relayed entity
-            // the same as us.
+            // the same as us. InputMoverComponent may not exist for entities which can't move
+            // (e.g. a brain in an mmi), so early-out and don't generate a missing log.
+            if (!MoverQuery.Resolve(entity, ref entity.Comp, logMissing: false))
+                return;
 
             // TODO: Should move this into HandleMobMovement itself.
-            if (TryComp<RelayInputMoverComponent>(entity, out var relayMover))
+            if (entity.Comp.CanMove && RelayQuery.TryComp(entity, out var relayMover) && relayMover.Running)
             {
-                DebugTools.Assert(relayMover.RelayEntity != entity);
+                DebugTools.Assert(relayMover.RelayEntity != entity.Owner);
                 DebugTools.AssertNotNull(relayMover.RelayEntity);
 
                 if (MoverQuery.TryGetComponent(entity, out var mover))
@@ -365,14 +367,11 @@ namespace Content.Shared.Movement.Systems
                 return;
             }
 
-            if (!MoverQuery.TryGetComponent(entity, out var moverComp))
-                return;
-
-            var moverEntity = new Entity<InputMoverComponent>(entity, moverComp);
+            var moverEntity = new Entity<InputMoverComponent>(entity.Owner, entity.Comp); // Starlight
 
             // Relay the fact we had any movement event.
             // TODO: Ideally we'd do these in a tick instead of out of sim.
-            var moveEvent = new MoveInputEvent(moverEntity, moverComp.HeldMoveButtons, dir, state);
+            var moveEvent = new MoveInputEvent(moverEntity, moverEntity.Comp.HeldMoveButtons, dir, state); // Starlight
             RaiseLocalEvent(entity, ref moveEvent);
 
             // For stuff like "Moving out of locker" or the likes
@@ -386,7 +385,7 @@ namespace Content.Shared.Movement.Systems
                 RaiseLocalEvent(xform.ParentUid, ref relayMoveEvent);
             }
 
-            SetVelocityDirection((entity, moverComp), dir, subTick, state);
+            SetVelocityDirection((entity, entity.Comp), dir, subTick, state);
         }
 
         private void OnInputInit(Entity<InputMoverComponent> entity, ref ComponentInit args)

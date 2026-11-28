@@ -1,3 +1,4 @@
+using Content.Shared.Mech.EntitySystems;
 using System.Linq;
 using System.Numerics;
 using Content.Shared._Starlight.NullSpace.Components;
@@ -20,6 +21,7 @@ namespace Content.Shared.Weapons.Hitscan.Systems;
 public sealed partial class HitscanBasicRaycastSystem
 {
     [Dependency] private PierceSystem _pierce = default!;
+    [Dependency] private SharedMechSystem _mech = default!;
 
     private RayCastResults? SelectHit(
         Entity<HitscanBasicRaycastComponent> hitscan,
@@ -130,8 +132,8 @@ public sealed partial class HitscanBasicRaycastSystem
         EntityUid? target,
         int seed)
     {
-        if (TryComp<MechPilotComponent>(shooter, out var pilot))
-            shooter = pilot.Mech;
+        if (_mech.TryGetPilotMech(shooter, out var pilot))
+            shooter = pilot.Owner;
 
         var traces = new List<HitscanTrace>();
         int? legSeed = seed;

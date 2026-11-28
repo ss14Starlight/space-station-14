@@ -53,8 +53,8 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
     {
         var shooter = args.Shooter ?? args.Gun;
         // Starlight start - handle the shooter being the mech, not the pilot
-        if (TryComp<MechPilotComponent>(shooter, out var pilotA))
-            shooter = pilotA.Mech;
+        if (_mech.TryGetPilotMech(shooter, out var pilotA))
+            shooter = pilotA.Owner;
         // Starlight end
 
         var mapCords = _transform.ToMapCoordinates(args.FromCoordinates);
