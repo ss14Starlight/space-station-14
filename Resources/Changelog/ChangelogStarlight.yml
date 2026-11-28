@@ -1,13 +1,6 @@
 Entries:
 - author: Ohelig
   changes:
-  - message: (Cluster) Fixed Evac Shuttle being 300kpa overpressure.
-    type: Fix
-  id: 410488
-  time: '2026-11-16T04:32:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7246
-- author: Ohelig
-  changes:
   - message: (Cluster) Renamed Salvage Bay APC and Air Alarm to Mining Bay.
     type: Fix
   id: 410489
@@ -2799,4 +2792,11 @@ Entries:
   id: 410887
   time: '2026-11-28T09:01:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7587
+- author: Rinary
+  changes:
+  - message: Added 70% cold resistance for red king and his rats.
+    type: Add
+  id: 410888
+  time: '2026-11-28T09:37:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7577
 Order: -1
