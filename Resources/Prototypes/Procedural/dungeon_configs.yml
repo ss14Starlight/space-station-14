@@ -303,14 +303,14 @@
 
 - type: entityTable
   id: BaseAirlock
-  table: !type:GroupSelector
+  table: !type:AllSelector # Starlight - Partial doesn't work on this
     children:
     - id: CableApcExtension
     - id: AirlockGlass
 
 - type: entityTable
   id: BaseWindow
-  table: !type:GroupSelector
+  table: !type:AllSelector # Starlight - Partial doesn't work on this
     children:
     - id: Grille
     - id: Window

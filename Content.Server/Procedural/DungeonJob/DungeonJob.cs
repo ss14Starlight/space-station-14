@@ -247,6 +247,11 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
             case CorridorClutterDunGen corClutter:
                 await PostGen(corClutter, dungeons[^1], reservedTiles, random);
                 break;
+            // Starlight start
+            case CorridorFlavorDunGen corridorFlavor:
+                await PostGen(corridorFlavor, dungeons, reservedTiles, random);
+                break;
+            // Starlight end
             case CorridorDunGen cordor:
                 await PostGen(cordor, dungeons[^1], reservedTiles, random);
                 break;
