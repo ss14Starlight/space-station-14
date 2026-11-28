@@ -1,11 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: Fixed exploit when you can latejoin and bypass any role checks(including playime, whitelist, role ban).
-    type: Fix
-  id: 410477
-  time: '2026-11-15T13:14:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7255
 - author: to01
   changes:
   - message: Added more weh plushies to the trinkets menu
@@ -2799,4 +2792,11 @@ Entries:
   id: 410876
   time: '2026-11-28T07:05:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7564
+- author: Rinary
+  changes:
+  - message: Fixed bug when you can insert markup in cargo slip.
+    type: Fix
+  id: 410877
+  time: '2026-11-28T07:05:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7534
 Order: -1
