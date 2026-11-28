@@ -1,11 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: Disabled remote cyborg control pending some bugfixes. Coming soon!
-    type: Remove
-  id: 410476
-  time: '2026-11-15T10:59:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7252
 - author: Rinary
   changes:
   - message: Fixed exploit when you can latejoin and bypass any role checks(including playime, whitelist, role ban).
@@ -2799,4 +2792,11 @@ Entries:
   id: 410875
   time: '2026-11-28T06:38:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7404
+- author: Rinary
+  changes:
+  - message: Fixed criminal card too frequent.
+    type: Fix
+  id: 410876
+  time: '2026-11-28T07:05:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7564
 Order: -1
