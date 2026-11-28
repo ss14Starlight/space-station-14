@@ -553,3 +553,7 @@
       gun_chamber: !type:ContainerSlot ""
       firing_pin: !type:Container
   - type: Appearance
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true

@@ -63,3 +63,7 @@
       - Back
       - suitStorage
     sprite: _Starlight/Objects/Weapons/Melee/ballistic_shield.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/ballistic_shield.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Melee/ballistic_shield.rsi

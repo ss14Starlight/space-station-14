@@ -91,7 +91,7 @@
     clothingPrototype: ClothingHeadHatHoodWinterRoboAlt
 
 # Security
-## Duty Officer
+
 - type: entity
   parent: [ BaseContrabandTier2, ClothingOuterWinterCoatToggleable, BaseSecurityContraband, AllowSuitStorageClothing ] # Blimpuf
   id: ClothingOuterWinterDutyOfficer
