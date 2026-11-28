@@ -29,6 +29,36 @@
       - VehicleWheelchairBlueFolded
 
 - type: entity
+  name: wheelchair spawner
+  id: SpawnVehicleWheelchairRed
+  parent: MarkerBase
+  suffix: Red
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Starlight/Objects/Vehicles/wheelchairred.rsi
+        state: wheelchair
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleWheelchairRed
+
+- type: entity
+  name: wheelchair spawner
+  id: SpawnVehicleWheelchairRedFolded
+  parent: MarkerBase
+  suffix: Red, Folded
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Starlight/Objects/Vehicles/wheelchairred.rsi
+        state: wheelchair_folded
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleWheelchairRedFolded
+
+- type: entity
   name: motorcycle spawner
   id: SpawnVehicleMotorcycle
   parent: MarkerBase

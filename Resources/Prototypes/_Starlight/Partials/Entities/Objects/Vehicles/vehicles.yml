@@ -39,7 +39,12 @@
   components:
   - type: Strap
     position: Stand
+  - type: Sprite
+    sprite: _Starlight/Objects/Vehicles/wheelchairgray.rsi
 
 - type: !PartialOnly entity
   id: VehicleWheelchairFolded
   suffix: Folded
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Vehicles/wheelchairgray.rsi

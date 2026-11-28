@@ -7,6 +7,6 @@
   - !type:AddCompsEffect
     components:
     - type: BuckleOnTraitsApplied
-      prototype: VehicleWheelchairBlue
+      prototype: VehicleWheelchair
     - type: LegsParalyzed
       allowCrawling: true
