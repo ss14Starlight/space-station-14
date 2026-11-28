@@ -1,3 +1,4 @@
+using Content.Shared.Materials;
 using Content.Shared.Research.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -13,10 +14,15 @@ public sealed class LatheUpdateState : BoundUserInterfaceState
 
     public ProtoId<LatheRecipePrototype>? CurrentlyProducing;
 
-    public LatheUpdateState(List<ProtoId<LatheRecipePrototype>> recipes, LatheRecipeBatch[] queue, ProtoId<LatheRecipePrototype>? currentlyProducing = null)
+    // Starlight start
+    public Dictionary<ProtoId<MaterialPrototype>, int> Materials;
+
+    public LatheUpdateState(List<ProtoId<LatheRecipePrototype>> recipes, LatheRecipeBatch[] queue, Dictionary<ProtoId<MaterialPrototype>, int> materials, ProtoId<LatheRecipePrototype>? currentlyProducing = null)
+    // Starlight end
     {
         Recipes = recipes;
         Queue = queue;
+        Materials = materials; // Starlight
         CurrentlyProducing = currentlyProducing;
     }
 }

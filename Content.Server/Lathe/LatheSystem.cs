@@ -292,7 +292,7 @@ namespace Content.Server.Lathe
             if (producing == null && component.Queue.First is { } node)
                 producing = node.Value.Recipe;
 
-            var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue.ToArray(), producing);
+            var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue.ToArray(), _materialStorage.GetStoredMaterials(uid), producing); // Starlight
             _uiSys.SetUiState(uid, LatheUiKey.Key, state);
         }
 
@@ -339,6 +339,7 @@ namespace Content.Server.Lathe
 
         private void OnMaterialAmountChanged(EntityUid uid, LatheComponent component, ref MaterialAmountChangedEvent args)
         {
+            if (!_uiSys.IsUiOpen(uid, LatheUiKey.Key)) return; // Starlight
             UpdateUserInterfaceState(uid, component);
         }
 

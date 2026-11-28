@@ -138,7 +138,7 @@ public sealed partial class LatheMenu : FancyWindow
         int idx = 0;
         foreach (var prototype in sortedRecipesToShow)
         {
-            var canProduce = _lathe.CanProduce(Entity, prototype, quantity, component: lathe);
+            var canProduce = CanProduceFromState(prototype, quantity, lathe); // Starlight
             var tooltipFunction = () => GenerateTooltipText(prototype);
 
             if (idx >= oldChildCount)
@@ -193,7 +193,7 @@ public sealed partial class LatheMenu : FancyWindow
             var unit = Loc.GetString(proto.Unit);
             var sheets = adjustedAmount / (float) sheetVolume;
 
-            var availableAmount = _materialStorage.GetMaterialAmount(Entity, id);
+            var availableAmount = Materials.GetValueOrDefault(id); // Starlight
             var missingAmount = Math.Max(0, adjustedAmount - availableAmount);
             var missingSheets = missingAmount / (float) sheetVolume;
 

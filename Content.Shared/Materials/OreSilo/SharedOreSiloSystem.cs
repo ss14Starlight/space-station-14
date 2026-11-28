@@ -66,6 +66,11 @@ public abstract partial class SharedOreSiloSystem : EntitySystem
 
             UpdateOreSiloUi(ent);
         }
+
+        // Starlight start
+        var ev = new MaterialAmountChangedEvent();
+        RaiseLocalEvent(client, ref ev);
+        // Starlight end
     }
 
     private void OnBoundUIOpened(Entity<OreSiloComponent> ent, ref BoundUIOpenedEvent args)
@@ -75,6 +80,7 @@ public abstract partial class SharedOreSiloSystem : EntitySystem
 
     private void OnSiloShutdown(Entity<OreSiloComponent> ent, ref ComponentShutdown args)
     {
+        var ev = new MaterialAmountChangedEvent(); // Starlight
         foreach (var client in ent.Comp.Clients)
         {
             if (!_clientQuery.TryComp(client, out var comp))
@@ -82,6 +88,7 @@ public abstract partial class SharedOreSiloSystem : EntitySystem
 
             comp.Silo = null;
             Dirty(client, comp);
+            RaiseLocalEvent(client, ref ev); // Starlight
         }
     }
 
