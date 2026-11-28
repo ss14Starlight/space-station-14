@@ -1,11 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: Fixed new latejoin bug caused by exploit fix. You should be able to latejoin with character on job even if it's not in priority list.
-    type: Fix
-  id: 410486
-  time: '2026-11-15T17:44:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7260
 - author: Ohelig
   changes:
   - message: Signal buttons and airlock buttons will always have an outline when hovering instead of being blocked by the button frame.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410885
   time: '2026-11-28T08:27:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7573
+- author: RedSpeeds
+  changes:
+  - message: Added pillows to the firelock closing mechanisms since CMD has noticed a concerning increase in firelock related deaths.
+    type: Tweak
+  id: 410886
+  time: '2026-11-28T09:01:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7585
 Order: -1
