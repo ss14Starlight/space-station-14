@@ -718,6 +718,34 @@
     - MiningSpecialistJumpskirt
 
 - type: loadoutGroup
+  id: MiningSpecialistOuterClothing
+  name: loadout-group-mining-specialist-outerclothing
+  loadouts:
+  - MiningSpecialistWintercoat
+
+- type: loadoutGroup
+  id: MiningSpecialistShoes
+  name: loadout-group-mining-specialist-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - BlackShoes
+  - WinterBoots
+  - WorkBoots
+
+- type: loadoutGroup
+  id: MiningSpecialistBackpack
+  name: loadout-group-mining-specialist-backpack
+  loadouts:
+  - CargoTechnicianBackpack
+  - CargoTechnicianSatchel
+  - CargoTechnicianDuffel
+  - CommonBackpack
+  - CommonSatchel
+  - CommonDuffel
+  - LeatherSatchel
+
+- type: loadoutGroup
   id: MiningSpecialistPDA
   name: loadout-group-mining-id
   loadouts:

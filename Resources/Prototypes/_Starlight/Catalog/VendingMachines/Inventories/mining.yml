@@ -23,15 +23,15 @@
     stock: 3
   - !type:BuyerAccessCondition
 
-- type: listing
-  id: VendorMiningGClothingMaskGasExplorer
-  productEntity: ClothingMaskGasExplorer
-  cost:
-    MiningTicket: 100
-  categories:
-  - MiningEquipment
-  conditions:
-  - !type:BuyerAccessCondition
+#- type: listing
+#  id: VendorMiningGClothingMaskGasExplorer # Moved to salvage only
+#  productEntity: ClothingMaskGasExplorer
+#  cost:
+#    SalvageTicket: 100
+#  categories:
+#  - MiningEquipment
+#  conditions:
+#  - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorMiningClothingOuterHardsuitAdvancedMining
@@ -66,6 +66,16 @@
   - !type:BuyerAccessCondition
 
 - type: listing
+  id: VendorClothingEyesWeldingGoggles
+  productEntity: ClothingEyesWeldingGoggles
+  cost:
+    MiningTicket: 40
+  categories:
+  - MiningEquipment
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorMiningMiningDrill
   productEntity: MiningDrill
   cost:
@@ -77,17 +87,17 @@
     stock: 3
   - !type:BuyerAccessCondition
 
-- type: listing
-  id: VendorMiningMiningDrillDiamond
-  productEntity: MiningDrillDiamond
-  cost:
-    MiningTicket: 400
-  categories:
-  - MiningEquipment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 2
-  - !type:BuyerAccessCondition
+#- type: listing
+#  id: VendorMiningMiningDrillDiamond # Mining and R&D work together, no magic tickets.
+#  productEntity: MiningDrillDiamond
+#  cost:
+#    MiningTicket: 400
+#  categories:
+#  - MiningEquipment
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 2
+#  - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorMiningPickaxeDiamond
@@ -121,17 +131,17 @@
   conditions:
     - !type:BuyerAccessCondition
 
-- type: listing
-  id: VendorMiningSeismicCharge
-  productEntity: SeismicCharge
-  cost:
-    MiningTicket: 300
-  categories:
-    - MiningEquipment
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 10
-    - !type:BuyerAccessCondition
+#- type: listing
+#  id: VendorMiningSeismicCharge # Only practical for antags. Move to some random loot.
+#  productEntity: SeismicCharge
+#  cost:
+#    MiningTicket: 300
+#  categories:
+#    - MiningEquipment
+#  conditions:
+#    - !type:ListingLimitedStockCondition
+#      stock: 10
+#    - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorMiningPKAUpgradeDamage
@@ -170,6 +180,18 @@
     - !type:BuyerAccessCondition
 
 - type: listing
+  id: VendorMiningWeaponMechIndustrialKineticAccelerator
+  productEntity: WeaponMechIndustrialKineticAccelerator
+  cost:
+    SalvageTicket: 400
+  categories:
+  - MiningEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorMiningWeaponMechMelleDrill
   productEntity: WeaponMechMelleDrill
   cost:
@@ -180,24 +202,23 @@
   - !type:ListingLimitedStockCondition
     stock: 1
   - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorMiningWeaponMechMelleDrillDiamond
-  productEntity: WeaponMechMelleDrillDiamond
-  cost:
-    MiningTicket: 800
-  categories:
-  - MiningEquipment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerAccessCondition
+#- type: listing
+#  id: VendorMiningWeaponMechMelleDrillDiamond # Mining and R&D work together, no magic tickets.
+#  productEntity: WeaponMechMelleDrillDiamond
+#  cost:
+#    MiningTicket: 800
+#  categories:
+#  - MiningEquipment
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+#  - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorMiningFloodlight
   productEntity: Floodlight
   cost:
-    MiningTicket: 250
+    MiningTicket: 75
   categories:
   - MiningEquipment
   conditions:
@@ -250,7 +271,7 @@
   id: VendorMiningMedkitCombatFilled
   productEntity: MedkitCombatFilled
   cost:
-    MiningTicket: 400
+    MiningTicket: 350
   categories:
   - MiningConsumeables
   conditions:
