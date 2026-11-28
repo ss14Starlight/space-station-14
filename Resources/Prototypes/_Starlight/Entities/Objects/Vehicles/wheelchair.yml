@@ -15,3 +15,21 @@
     folded: true
   - type: Strap
     enabled: false
+
+- type: entity
+  parent: VehicleWheelchair
+  id: VehicleWheelchairRed
+  name: red wheelchair
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Vehicles/wheelchairred.rsi
+
+- type: entity
+  parent: VehicleWheelchairRed
+  id: VehicleWheelchairRedFolded
+  suffix: Folded
+  components:
+  - type: Foldable
+    folded: true
+  - type: Strap
+    enabled: false
