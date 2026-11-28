@@ -1,11 +1,4 @@
 Entries:
-- author: Ohelig
-  changes:
-  - message: (Cluster) Added pipe docking standards to each dock and escape pod.
-    type: Fix
-  id: 410495
-  time: '2026-11-16T04:32:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7246
 - author: neomoth
   changes:
   - message: You can now pin basically every window in the game. This will prevent it from being closed with the escape key until unpinned.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410894
   time: '2026-11-28T11:07:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7472
+- author: Rinary
+  changes:
+  - message: Fixed bug when mousetrap instantly kills any light-weight mob. However it still kills mouses properly.
+    type: Fix
+  id: 410895
+  time: '2026-11-28T11:32:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7502
 Order: -1
