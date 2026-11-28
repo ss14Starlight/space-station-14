@@ -1,11 +1,4 @@
 Entries:
-- author: SevenShades
-  changes:
-  - message: Added admin logging for supermatter deleting entities.
-    type: Add
-  id: 410479
-  time: '2026-11-15T14:37:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7251
 - author: Teddiousbear
   changes:
   - message: NTNC Marine Hardsuit Armor values.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410878
   time: '2026-11-28T07:05:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7563
+- author: Rinary
+  changes:
+  - message: Added colors to AAC tablet buttons that related to some departments like job names.
+    type: Add
+  id: 410879
+  time: '2026-11-28T07:36:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7565
 Order: -1
