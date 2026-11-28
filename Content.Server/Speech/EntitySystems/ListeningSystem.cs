@@ -41,7 +41,7 @@ public sealed partial class ListeningSystem : EntitySystem
 
         // starlight start
         var attemptEv = new ListenAttemptEvent(source);
-        var ev = new ListenEvent(message.Text, source, language, message.OriginalText);
+        var ev = new ListenEvent(message.Text, source, language, message.OriginalText) { Tts = message.Tts };
         var obfuscatedText = _chat.ObfuscateMessageReadability(message.Text);
         var obfuscatedEv = !isWhisper ? null : new ListenEvent(obfuscatedText, source, language, obfuscatedText);
         // starlight end
