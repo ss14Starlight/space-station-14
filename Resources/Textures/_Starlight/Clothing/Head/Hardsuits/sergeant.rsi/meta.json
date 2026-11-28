@@ -35,6 +35,16 @@
       "directions": 4,
       "copyright": "Romero/Littlemen"
     },
+  {
+      "name": "off-equipped-HELMET-vox",
+      "directions": 4,
+      "copyright": "Pastres"
+    },
+  {
+      "name": "on-equipped-HELMET-vox",
+      "directions": 4,
+      "copyright": "Pastres"
+    },
 	{
       "name": "off-equipped-HELMET-avali",
       "directions": 4,
