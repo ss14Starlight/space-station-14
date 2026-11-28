@@ -1,6 +1,9 @@
 using Robust.Shared.Serialization;
 using Robust.Shared.Map;
+using Robust.Shared.Timing;
 using Content.Shared.Atmos.Components;
+using Content.Shared.Alert;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Computers.RemoteControl;
 
@@ -46,14 +49,7 @@ public enum RemoteControlInteractionAction : byte
     Shoot,
     Drop,
     Throw,
-}
-
-[Serializable, NetSerializable]
-public enum RemoteControlAttackHoldType : byte
-{
-    Shoot,
-    MeleeLight,
-    MeleeHeavy,
+    HeavyAttack,
 }
 
 [Serializable, NetSerializable]
@@ -64,18 +60,8 @@ public sealed class RemoteControlInteractionMessage : BoundUserInterfaceMessage
     public bool AltInteract { get; init; }
     public bool ActivateInWorld { get; init; }
     public RemoteControlInteractionAction Action { get; init; }
+    public GameTick Tick { get; init; }
     public AtmosPipeLayer? PipeLayer { get; init; }
-}
-
-[Serializable, NetSerializable]
-public sealed class RemoteControlAttackHoldMessage : BoundUserInterfaceMessage
-{
-    public bool Held { get; init; }
-    public bool AltInteract { get; init; }
-    public RemoteControlAttackHoldType Type { get; init; }
-    public bool HasCoordinates { get; init; }
-    public NetCoordinates Coordinates { get; init; }
-    public NetEntity? Target { get; init; }
 }
 
 [Serializable, NetSerializable]
@@ -146,6 +132,8 @@ public enum RemoteControlInventoryAction : byte
 {
     UseSlot,
     OpenStorage,
+    ActivateSlot,
+    AltActivateSlot,
 }
 
 [Serializable, NetSerializable]
@@ -153,6 +141,12 @@ public sealed class RemoteControlInventoryMessage : BoundUserInterfaceMessage
 {
     public required string Slot { get; init; }
     public required RemoteControlInventoryAction Action { get; init; }
+}
+
+[Serializable, NetSerializable]
+public sealed class RemoteControlAlertMessage : BoundUserInterfaceMessage
+{
+    public required ProtoId<AlertPrototype> Alert { get; init; }
 }
 
 [Serializable, NetSerializable]

@@ -373,7 +373,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
     /// Called when a windup is finished and an attack is tried.
     /// </summary>
     /// <returns>True if attack successful</returns>
-    private bool AttemptAttack(EntityUid user, EntityUid weaponUid, MeleeWeaponComponent weapon, AttackEvent attack, ICommonSession? session, bool predicted = true)
+    private bool AttemptAttack(EntityUid user, EntityUid weaponUid, MeleeWeaponComponent weapon, AttackEvent attack, ICommonSession? session, bool predicted = true, EntityUid? remoteController = null) // Starlight
     {
         var curTime = Timing.CurTime;
 
@@ -486,7 +486,9 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
                     throw new NotImplementedException();
             }
 
-            DoLungeAnimation(user, weaponUid, weapon.Angle, TransformSystem.ToMapCoordinates(GetCoordinates(attack.Coordinates)), weapon.Range, animation, predicted);
+            // Starlight - start
+            DoLungeAnimation(user, weaponUid, weapon.Angle, TransformSystem.ToMapCoordinates(GetCoordinates(attack.Coordinates)), weapon.Range, animation, predicted, remoteController);
+            // Starlight - end
         }
 
         var attackEv = new MeleeAttackEvent(weaponUid);
@@ -990,7 +992,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         return true;
     }
 
-    private void DoLungeAnimation(EntityUid user, EntityUid weapon, Angle angle, MapCoordinates coordinates, float length, string? animation, bool predicted = true)
+    private void DoLungeAnimation(EntityUid user, EntityUid weapon, Angle angle, MapCoordinates coordinates, float length, string? animation, bool predicted = true, EntityUid? remoteController = null) // Starlight
     {
         // Starlight Begin - mech wideswing handling
         var originEntity = GetOriginEntity(user);
@@ -1015,10 +1017,12 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         if (localPos.Length() > visualLength)
             localPos = localPos.Normalized() * visualLength;
 
-        DoLunge(user, weapon, angle, localPos, animation, predicted);
+        // Starlight - start
+        DoLunge(user, weapon, angle, localPos, animation, predicted, remoteController);
+        // Starlight - end
     }
 
-    public abstract void DoLunge(EntityUid user, EntityUid weapon, Angle angle, Vector2 localPos, string? animation, bool predicted = true);
+    public abstract void DoLunge(EntityUid user, EntityUid weapon, Angle angle, Vector2 localPos, string? animation, bool predicted = true, EntityUid? remoteController = null); // Starlight
 
     /// <summary>
     /// Used to update the MeleeWeapon component on item toggle.

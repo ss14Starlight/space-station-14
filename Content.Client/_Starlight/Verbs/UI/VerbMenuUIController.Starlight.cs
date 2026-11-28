@@ -1,9 +1,12 @@
 // ReSharper disable CheckNamespace
+using System.Numerics;
 using Content.Client._Starlight.Verbs.UI;
 using Content.Client.ContextMenu.UI;
 using Content.Shared.Input;
 using Content.Shared.Verbs;
+using Robust.Client.Input;
 using Robust.Client.UserInterface;
+using Robust.Shared.Map;
 using Robust.Shared.Input;
 using Robust.Shared.Timing;
 
@@ -11,6 +14,8 @@ namespace Content.Client.Verbs.UI;
 
 public sealed partial class VerbMenuUIController
 {
+    [Dependency] private IInputManager _inputManager = default!;
+
     private static readonly int _interactionPriority = new InteractionVerb().TypePriority;
 
     private bool _closeOnMouseOut;
@@ -72,6 +77,36 @@ public sealed partial class VerbMenuUIController
 
         _closeOnMouseOut = true;
         _mouseOutTime = TimeSpan.Zero;
+    }
+
+    private Vector2 GetVerbMenuPosition(ContextMenuPopup menu)
+    {
+        if (_remoteControl.ControlledEntity != null && _remoteControl.RemoteUIRoot is { } remoteRoot)
+        {
+            if (menu.Parent != remoteRoot.ModalRoot)
+            {
+                menu.Orphan();
+                remoteRoot.ModalRoot.AddChild(menu);
+            }
+
+            if (_remoteControl.ControlledViewport is { } viewport
+                && viewport.Window is { } window)
+            {
+                var mousePosition = _inputManager.MouseScreenPosition;
+                if (mousePosition.Window == window.Id)
+                    return UIManager.ScreenToUIPosition(mousePosition).Position;
+
+                if (_remoteControl.ControlledEye is { } eye
+                    && _remoteControl.RemoteMousePosition is { } remotePosition
+                    && remotePosition.MapId == eye.Position.MapId)
+                {
+                    var remotePointer = new ScreenCoordinates(viewport.WorldToScreen(remotePosition.Position), window.Id);
+                    return UIManager.ScreenToUIPosition(remotePointer).Position;
+                }
+            }
+        }
+
+        return UIManager.MousePositionScaled.Position;
     }
 
     // A menu kept open by an entry closes once the mouse has left every open context menu.

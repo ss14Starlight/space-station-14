@@ -4,6 +4,7 @@ using Content.Shared.Projectiles;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
+using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -40,6 +41,22 @@ public abstract partial class SharedGunSystem
 
         var maxLag = (uint) Math.Ceiling(MaxShotTickLag.TotalSeconds * Timing.TickRate);
         return now.Value - tick.Value <= maxLag ? tick : null;
+    }
+
+    public bool AttemptShoot(EntityUid user, Entity<GunComponent> gun, EntityCoordinates toCoordinates,
+        EntityUid? target, GameTick tick)
+    {
+        var previousShotTick = _shotTick;
+        _shotTick = GetBurstShotTick(gun.Comp) ?? GetRequestTick(tick);
+
+        try
+        {
+            return AttemptShoot(user, gun, toCoordinates, target);
+        }
+        finally
+        {
+            _shotTick = previousShotTick;
+        }
     }
 
     public int GetHitscanSeed(EntityUid gun, int ammoIndex, int pelletIndex)

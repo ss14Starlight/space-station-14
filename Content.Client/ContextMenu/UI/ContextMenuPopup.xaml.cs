@@ -51,7 +51,10 @@ namespace Content.Client.ContextMenu.UI
             var styleSize = (box?.MinimumSize ?? Vector2.Zero) / UIScale;
             MenuPanel.MaxHeight = MaxItemsBeforeScroll * (ContextMenuElement.ElementHeight + 2 * ContextMenuElement.ElementMargin) + styleSize.Y;
 
-            (uiRoot?.ModalRoot ?? UserInterfaceManager.ModalRoot).AddChild(this);
+            // Starlight - start
+            var parentRoot = ParentElement?.ParentMenu?.Root;
+            (uiRoot?.ModalRoot ?? parentRoot?.ModalRoot ?? UserInterfaceManager.ModalRoot).AddChild(this);
+            // Starlight - end
             MenuBody.OnChildRemoved += ctrl => _uiController.OnRemoveElement(this, ctrl);
             MenuBody.VSeparationOverride = 0;
             MenuBody.HSeparationOverride = 0;

@@ -4,6 +4,7 @@ using System.Numerics;
 using Content.IntegrationTests.Tests.Movement;
 using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Server._Starlight.Computers.RemoteControl;
+using RemoteControlConsoleSystem = Content.Server._Starlight.Computers.RemoteControl.RemoteControlConsoleSystem;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Silicons.Borgs;
 using Content.Shared._Starlight.Computers.RemoteControl;

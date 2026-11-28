@@ -145,7 +145,9 @@ public sealed partial class InteractionPopupSystem : EntitySystem
 
         if (component.SoundPerceivedByOthers)
         {
-            _audio.PlayPredicted(sfx, target, user);
+            // Starlight - start
+            _audio.PlayPredicted(sfx, target, _remoteControl.GetPredictedAudioUser(user));
+            // Starlight - end
             return;
         }
 

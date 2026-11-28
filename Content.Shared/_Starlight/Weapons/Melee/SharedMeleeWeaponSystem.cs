@@ -17,12 +17,19 @@ public abstract partial class SharedMeleeWeaponSystem
     /// A successful remote attack clears <see cref="MeleeWeaponComponent.Attacking"/> without resetting
     /// <see cref="MeleeWeaponComponent.NextAttack"/>.
     /// </remarks>
-    public bool TryAttemptRemoteLightAttack(EntityUid user, Entity<MeleeWeaponComponent?> weapon, EntityUid target)
+    public bool TryAttemptRemoteLightAttack(EntityUid user, Entity<MeleeWeaponComponent?> weapon, EntityUid target, EntityUid remoteController)
     {
         var weaponUid = weapon.Owner;
         if (!Resolve(weaponUid, ref weapon.Comp)
             || weapon.Comp is not { } weaponComponent
-            || !AttemptLightAttack(user, weaponUid, weaponComponent, target))
+            || !TryComp(target, out TransformComponent? targetXform))
+            return false;
+
+        var attack = new LightAttackEvent(
+            GetNetEntity(target),
+            GetNetEntity(weaponUid),
+            GetNetCoordinates(targetXform.Coordinates));
+        if (!AttemptAttack(user, weaponUid, weaponComponent, attack, null, remoteController: remoteController))
             return false;
 
         weaponComponent.Attacking = false;
@@ -33,12 +40,12 @@ public abstract partial class SharedMeleeWeaponSystem
     /// <summary>
     /// Attempts to execute a heavy attack for the remotely controlled entity.
     /// </summary>
-    public bool TryAttemptRemoteHeavyAttack(EntityUid user, HeavyAttackEvent attack, ICommonSession? session)
+    public bool TryAttemptRemoteHeavyAttack(EntityUid user, HeavyAttackEvent attack, ICommonSession? session, EntityUid? remoteController = null)
     {
         if (!TryGetWeapon(user, out var weaponUid, out var weapon)
             || weaponUid != GetEntity(attack.Weapon)
             || !CanUseRemoteHeavyAttackWeapon(user, weaponUid, weapon)
-            || !AttemptAttack(user, weaponUid, weapon, attack, session))
+            || !AttemptAttack(user, weaponUid, weapon, attack, session, remoteController: remoteController ?? session?.AttachedEntity))
             return false;
 
         weapon.Attacking = false;
@@ -56,7 +63,11 @@ public abstract partial class SharedMeleeWeaponSystem
     /// entity must have a transform, and the target position must be on the same map. The method then raycasts toward
     /// the position and submits the resulting attack to the normal heavy-attack attempt.
     /// </remarks>
-    public bool TryAttemptRemoteHeavyAttackAt(EntityUid user, EntityCoordinates coordinates, ICommonSession? session)
+    public bool TryAttemptRemoteHeavyAttackAt(
+        EntityUid user,
+        EntityCoordinates coordinates,
+        ICommonSession? session,
+        EntityUid? remoteController = null)
     {
         if (!CombatMode.IsInCombatMode(user)
             || !TryGetWeapon(user, out var weaponUid, out var weapon))
@@ -95,7 +106,7 @@ public abstract partial class SharedMeleeWeaponSystem
             GetNetEntity(weaponUid),
             entities,
             GetNetCoordinates(coordinates));
-        return TryAttemptRemoteHeavyAttack(user, attack, session);
+        return TryAttemptRemoteHeavyAttack(user, attack, session, remoteController);
     }
 
     protected bool CanUseRemoteHeavyAttackWeapon(EntityUid user, EntityUid weaponUid, MeleeWeaponComponent weapon) =>

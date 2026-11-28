@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Shared.CCVar;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
@@ -110,6 +111,11 @@ namespace Content.Server.NPC.Systems
         /// </summary>
         public void WakeNPC(EntityUid uid, HTNComponent? component = null)
         {
+            // Starlight - start
+            if (HasComp<RemoteControlControlledComponent>(uid))
+                return;
+            // Starlight - end
+
             if (!Resolve(uid, ref component, false))
             {
                 return;

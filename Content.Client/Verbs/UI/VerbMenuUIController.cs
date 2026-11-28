@@ -134,7 +134,9 @@ namespace Content.Client.Verbs.UI
 
             // Show the menu at mouse pos
             menu.SetPositionLast();
-            var box = UIBox2.FromDimensions(UIManager.MousePositionScaled.Position, new Vector2(1, 1));
+            // Starlight - start
+            var box = UIBox2.FromDimensions(GetVerbMenuPosition(menu), new Vector2(1, 1));
+            // Starlight - end
             menu.Open(box);
         }
 
@@ -312,7 +314,17 @@ namespace Content.Client.Verbs.UI
         private void ExecuteVerb(Verb verb)
         {
             UIManager.ClickSound();
-            _verbSystem.ExecuteVerb(CurrentTarget, verb);
+            // Starlight - start
+            if (_remoteControl.ControlledEntity is { } remoteEntity)
+            {
+                _remoteControl.RunWithRemoteUiOpenContext(remoteEntity,
+                    () => _verbSystem.ExecuteVerb(CurrentTarget, verb));
+            }
+            else
+            {
+                _verbSystem.ExecuteVerb(CurrentTarget, verb);
+            }
+            // Starlight - end
 
             if (verb.CloseMenu ?? verb.CloseMenuDefault)
                 _context.Close();

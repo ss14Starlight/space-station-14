@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.Polymorph.Components;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
@@ -22,6 +23,7 @@ public sealed partial class StationAIShuntSystem : EntitySystem
 {
 
     [Dependency] private SharedMindSystem _mindSystem = default!;
+    [Dependency] private SharedRemoteControlConsoleSystem _remoteControl = default!;
     [Dependency] private SharedActionsSystem _actionSystem = default!;
     [Dependency] private ActionContainerSystem _actionContainer = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
@@ -153,7 +155,8 @@ public sealed partial class StationAIShuntSystem : EntitySystem
             return;
 
         // We check first if this is already "posessed" for one or another reason. This is a remote, not a ghost maker.
-        if (_mindSystem.TryGetMind(target, out _, out _))
+        if (_mindSystem.TryGetMind(target, out _, out _)
+            || _remoteControl.TryGetControllerForRemoteEntity(target, out _))
         {
             if (_net.IsServer)
                 _popup.PopupEntity(Loc.GetString("shunt-target-occupied"), target, uid, PopupType.Large);

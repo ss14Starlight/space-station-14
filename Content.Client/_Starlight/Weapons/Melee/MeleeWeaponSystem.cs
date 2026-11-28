@@ -5,6 +5,11 @@ namespace Content.Client.Weapons.Melee;
 
 public sealed partial class MeleeWeaponSystem
 {
+    public bool CanHandleRemoteHeavyAttack(EntityUid user)
+        => CombatMode.IsInCombatMode(user)
+            && TryGetWeapon(user, out var weaponUid, out var weapon)
+            && CanUseRemoteHeavyAttackWeapon(user, weaponUid, weapon);
+
     /// <summary>
     /// Handles the remote heavy-attack input at the requested map position.
     /// </summary>
