@@ -238,3 +238,43 @@
     - !type:SpeciesRequirement
       species:
         - Xeno
+
+- type: trait
+  id: HeatSensitive
+  name: trait-heat-sensitive-name
+  description: trait-heat-sensitive-desc
+  category: Disabilities
+  cost: 0
+  effects:
+    - !type:AddCompsEffect
+      components:
+        - type: TemperatureSensitive
+          modifiers:
+            coefficients:
+              Heat: 1.15
+          heatTemperatureMultiplier: 1.15
+  whitelist:
+    components:
+      - Damageable
+  conflicts:
+    - ColdSensitive
+
+- type: trait
+  id: ColdSensitive
+  name: trait-cold-sensitive-name
+  description: trait-cold-sensitive-desc
+  category: Disabilities
+  cost: 0
+  effects:
+    - !type:AddCompsEffect
+      components:
+        - type: TemperatureSensitive
+          modifiers:
+            coefficients:
+              Cold: 1.15
+          coldTemperatureMultiplier: 1.15
+  whitelist:
+    components:
+      - Damageable
+  conflicts:
+    - HeatSensitive
