@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Romero/Littlemen",
+  "size": {
+    "x": 128,
+    "y": 128
+  },
+  "states": [
+    {
+      "name": "annihilationsmite"
+    },
+    {
+      "name": "annihilation",
+      "delays": [
+       [
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.4,
+        0.4,
+        0.4,
+        11
+       ]
+            ]
+
+    }
+  ]
+}
