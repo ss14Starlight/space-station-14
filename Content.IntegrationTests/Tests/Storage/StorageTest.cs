@@ -22,6 +22,7 @@ public sealed class StorageTest : GameTest
     {
         // lost property bag: deliberately holds a whole cryo'd crew member's belongings
         "ClothingBackpackDuffelCryostorageBelongings",
+        "BluespacePocketBelongings", // Starlight: tiny, read-only storage holding gear left behind by budget bluespace implants
         "XenoborgStorageBag" // Exclude the XenoborgStorageBag as it holds a whole crew member inside of it.
     };
 

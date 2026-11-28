@@ -172,6 +172,45 @@
 
 ## NTSf
 
+- type: randomHumanoidSettings
+  id: EventHumanoidNTSF
+  parent: EventHumanoidMindShielded
+  speciesBlacklist:
+    - Rodentia
+    - IPC
+    - Diona
+    - Resomi
+    - Vox
+    - Avali
+    - Shadekin
+    - Felionoid
+    - Thaven
+    - NeoArachnid
+    - NeoAvali
+    - NeoCyclorite
+    - NeoDwarf
+    - NeoDiona
+    - NeoFelionoid
+    - NeoHuman
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoSlimePerson
+    - NeoThaven
+    - NeoVox
+    - NeoVulpkanin
+    - NeoKin
+    - NeoElf
+    - NeoLagomorph
+  components:
+    - type: AutoImplant # Note: Decimusoperative overrides this list, update it too if making changes here
+      implants:
+        - DeathRattleImplantCentcomm
+        - RadioImplantCentcomm
+        - BluespaceImplant
+        - FreedomImplant
+        - MindShieldImplant
+
 - type: entity
   id: RandomHumanoidSpawnerNTSF
   name: NTSF Operative
@@ -190,7 +229,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-name
@@ -230,7 +269,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFPrimusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-primus
@@ -270,7 +309,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFSecundusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-secundus
@@ -310,7 +349,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFTertiusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-tertius
@@ -351,7 +390,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFQuartusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-quartus
@@ -391,7 +430,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFQuintusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-quintus
@@ -431,7 +470,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFSextusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-sextus
@@ -475,7 +514,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFSeptimusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-septimus
@@ -516,7 +555,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFOctaviusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-octavius
@@ -556,7 +595,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFNonusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-nonus
@@ -597,8 +636,15 @@
 
 - type: randomHumanoidSettings
   id: Decimusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
+    - type: AutoImplant
+      implants:
+        - DeathRattleImplantCentcomm
+        - RadioImplantCentcomm
+        - RedspaceImplant
+        - FreedomImplant
+        - MindShieldImplant
     - type: GhostRole
       name: ghost-role-information-decimus-name
       description: ghost-role-information-decimus-description
@@ -971,6 +1017,11 @@
   parent: EventHumanoidCentcomm
   randomizeName: false
   components:
+    - type: AutoImplant
+      implants:
+        - MindShieldImplant
+        - DeathRattleImplantCentcomm
+        - BluespaceImplant
     - type: GhostRole
       name: ghost-role-information-green-shield-officer-name
       description: ghost-role-information-green-shield-officer-description
@@ -1147,3 +1198,4 @@
     - NeoKin
     - NeoElf
     - NeoLagomorph
+
