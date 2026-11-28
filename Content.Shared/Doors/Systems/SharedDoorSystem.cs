@@ -48,7 +48,6 @@ public abstract partial class SharedDoorSystem : EntitySystem
     [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!;
 
     public static readonly ProtoId<TagPrototype> DoorBumpTag = "DoorBumpOpener";
-    public static readonly ProtoId<TagPrototype> DecorativeDoorTag = "DecorativeDoor"; // Starlight
 
     /// <summary>
     ///     A set of doors that are currently opening, closing, or just queued to open/close after some delay.
