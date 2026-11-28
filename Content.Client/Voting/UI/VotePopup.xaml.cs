@@ -31,7 +31,7 @@ namespace Content.Client.Voting.UI
             if (_vote.TargetEntity != null && _vote.TargetEntity != 0)
             {
                 _targetEntity = new NetEntity(_vote.TargetEntity.Value);
-                FollowVoteTarget.Visible = true;
+                FollowVoteTarget.Visible = IsGhost(); // Starlight edit
                 FollowVoteTarget.OnPressed += _ => AttemptFollowVoteEntity();
             }
 
@@ -100,6 +100,11 @@ namespace Content.Client.Voting.UI
                                                      (_vote.EndTime.TotalSeconds - _vote.StartTime.TotalSeconds)));
 
             TimeLeftText.Text = $"{timeLeft:m\\:ss}";
+
+            // Starlight begin
+            if (_targetEntity is not null)
+                FollowVoteTarget.Visible = IsGhost();
+            // Starlight end
         }
     }
 }

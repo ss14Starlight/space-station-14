@@ -1,6 +1,4 @@
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.InteropServices;
+﻿using System.Linq;
 using Content.Shared._Starlight.Commands;
 using Content.Server._Starlight.Toolshed;
 using Content.Server.Administration;
@@ -19,7 +17,6 @@ using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Maps;
-using Content.Shared.Random.Helpers;
 using Content.Server._Starlight.Statistics;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
@@ -83,7 +80,6 @@ public sealed partial class VoteCommand : ToolshedCommand
         ctx.WriteLine("Cancelled all active votes.");
     }
 
-    // TODO: PR RobustToolbox with the ability to parse nullable things and then implement the targeting feature.
     private (IVoteHandle handle, VoteWebhooks.WebhookState? webhookState) CreateVote(IInvocationContext ctx, string title,
         [ListLength(MinLength = 2, MaxLength = 9)] List<(string, object)> options, List<ICommonSession>? voters,
         bool showVotes = true, float duration = 30, EntityUid? target = null)
@@ -120,6 +116,12 @@ public sealed partial class VoteCommand : ToolshedCommand
         [ListLength(MinLength = 2, MaxLength = 9)] List<string> options, List<ICommonSession>? voters,
         bool showVotes = true, float duration = 30, EntityUid? target = null)
     {
+        if (target is { } targetUid && !EntityManager.EntityExists(targetUid))
+        {
+            CommandMarkup.Error(ctx, $"Vote target {targetUid} does not exist.");
+            return;
+        }
+
         var chatFilter = Filter.Empty();
         List<(string, object)> voteOptions = [.. options.Select((t, i) => (t, i))];
         var (handle, webhookState) = CreateVote(ctx, title, voteOptions, voters, showVotes, duration, target);
@@ -167,36 +169,30 @@ public sealed partial class VoteCommand : ToolshedCommand
 
     [CommandImplementation("custom")]
     public IEnumerable<ICommonSession> CreateCustomVote(IInvocationContext ctx,
-        [PipedArgument] IEnumerable<ICommonSession> sessions,
-        string title, [ListLength(MinLength = 1, MaxLength = 9)] List<string> options,
-        [Optional] [DefaultParameterValue(true)]
-        bool showVotes,
-        [Optional] [DefaultParameterValue(30f)]
-        float duration)
+        [PipedArgument] IEnumerable<ICommonSession> sessions, string title,
+        [ListLength(MinLength = 1, MaxLength = 9)] List<string> options, bool showVotes = true, float duration = 30f,
+        EntityUid? target = null)
     {
         var voters = sessions.ToList();
-        CreateCustomVote(ctx, title, options, voters, showVotes, duration);
+        CreateCustomVote(ctx, title, options, voters, showVotes, duration, target);
         return voters;
     }
 
     [CommandImplementation("custom")]
-    public IEnumerable<EntityUid> CreateCustomVote(IInvocationContext ctx,
-        [PipedArgument] IEnumerable<EntityUid> uids,
-        string title, [ListLength(MinLength = 1, MaxLength = 9)] List<string> options,
-        [Optional] [DefaultParameterValue(true)]
-        bool showVotes, [Optional] [DefaultParameterValue(30f)] float duration)
+    public IEnumerable<EntityUid> CreateCustomVote(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uids,
+        string title, [ListLength(MinLength = 1, MaxLength = 9)] List<string> options, bool showVotes = true,
+        float duration = 30f, EntityUid? target = null)
     {
         var voters = uids.ToList();
-        CreateCustomVote(ctx, title, options, GetSessionsFromEntities(ctx, voters), showVotes, duration);
+        CreateCustomVote(ctx, title, options, GetSessionsFromEntities(ctx, voters), showVotes, duration, target);
         return voters;
     }
 
     [CommandImplementation("custom")]
     public void CreateCustomVote(IInvocationContext ctx, string title,
-        [ListLength(MinLength = 1, MaxLength = 9)] List<string> options,
-        [Optional] [DefaultParameterValue(true)] bool showVotes,
-        [Optional] [DefaultParameterValue(30f)] float duration) =>
-        CreateCustomVote(ctx, title, options, null, showVotes, duration);
+        [ListLength(MinLength = 1, MaxLength = 9)] List<string> options, bool showVotes = true, float duration = 30f,
+        EntityUid? target = null) =>
+        CreateCustomVote(ctx, title, options, null, showVotes, duration, target);
 
     private void SendWinnerMessage(string message, string wrappedMessage, Filter filter) =>
         _chat.ChatMessageToManyFiltered(filter, ChatChannel.Server, message, wrappedMessage, EntityUid.Invalid, false,
@@ -320,36 +316,35 @@ public sealed partial class VoteCommand : ToolshedCommand
 
     [CommandImplementation("map")]
     public IEnumerable<ICommonSession> CreateMapVote(IInvocationContext ctx,
-        [PipedArgument] IEnumerable<ICommonSession> sessions, List<ProtoId<GameMapPrototype>> options,
-        [Optional] [DefaultParameterValue(false)]
-        bool includeSecret,
-        [Optional] [DefaultParameterValue(0f)] float duration,
-        [Optional] [DefaultParameterValue("")] string title)
+        [PipedArgument] IEnumerable<ICommonSession> sessions, List<ProtoId<GameMapPrototype>>? options = null,
+        bool includeSecret = false, float duration = 0f, string title = "")
     {
         var voters = sessions.ToList();
+        options ??= [];
+        if (options.Count == 0) includeSecret = true;
         CreateMapVote(ctx, options, voters, includeSecret, duration, title);
         return voters;
     }
 
     [CommandImplementation("map")]
-    public IEnumerable<EntityUid> CreateMapVote(IInvocationContext ctx,
-        [PipedArgument] IEnumerable<EntityUid> uids, List<ProtoId<GameMapPrototype>> options,
-        [Optional] [DefaultParameterValue(false)]
-        bool includeSecret,
-        [Optional] [DefaultParameterValue(0f)] float duration,
-        [Optional] [DefaultParameterValue("")] string title)
+    public IEnumerable<EntityUid> CreateMapVote(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uids,
+        List<ProtoId<GameMapPrototype>>? options = null, bool includeSecret = false, float duration = 0f, string title = "")
     {
         var voters = uids.ToList();
+        options ??= [];
+        if (options.Count == 0) includeSecret = true;
         CreateMapVote(ctx, options, GetSessionsFromEntities(ctx, voters), includeSecret, duration, title);
         return voters;
     }
 
     [CommandImplementation("map")]
-    public void CreateMapVote(IInvocationContext ctx, List<ProtoId<GameMapPrototype>> options,
-        [Optional] [DefaultParameterValue(false)]
-        bool includeSecret, [Optional] [DefaultParameterValue(0f)] float duration,
-        [Optional] [DefaultParameterValue("")] string title) =>
+    public void CreateMapVote(IInvocationContext ctx, List<ProtoId<GameMapPrototype>>? options = null,
+        bool includeSecret = false, float duration = 0f, string title = "")
+    {
+        options ??= [];
+        if (options.Count == 0) includeSecret = true;
         CreateMapVote(ctx, options, null, includeSecret, duration, title);
+    }
 
     private void CreatePresetVote(IInvocationContext ctx, List<ProtoId<GamePresetPrototype>> options,
         List<ICommonSession>? voters, bool includeSecret = false, float duration = 0, string title = "")
@@ -433,34 +428,34 @@ public sealed partial class VoteCommand : ToolshedCommand
 
     [CommandImplementation("preset")]
     public IEnumerable<ICommonSession> CreatePresetVote(IInvocationContext ctx,
-        [PipedArgument] IEnumerable<ICommonSession> sessions, List<ProtoId<GamePresetPrototype>> options,
-        [Optional] [DefaultParameterValue(false)]
-        bool includeSecret,
-        [Optional] [DefaultParameterValue(0f)] float duration,
-        [Optional] [DefaultParameterValue("")] string title)
+        [PipedArgument] IEnumerable<ICommonSession> sessions, List<ProtoId<GamePresetPrototype>>? options = null,
+        bool includeSecret = false, float duration = 0f, string title = "")
     {
         var voters = sessions.ToList();
+        options ??= [];
+        if (options.Count == 0) includeSecret = true;
         CreatePresetVote(ctx, options, voters, includeSecret, duration, title);
         return voters;
     }
 
     [CommandImplementation("preset")]
-    public IEnumerable<EntityUid> CreatePresetVote(IInvocationContext ctx,
-        [PipedArgument] IEnumerable<EntityUid> uids, List<ProtoId<GamePresetPrototype>> options,
-        [Optional] [DefaultParameterValue(false)]
-        bool includeSecret,
-        [Optional] [DefaultParameterValue(0f)] float duration,
-        [Optional] [DefaultParameterValue("")] string title)
+    public IEnumerable<EntityUid> CreatePresetVote(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uids,
+        List<ProtoId<GamePresetPrototype>>? options = null, bool includeSecret = false, float duration = 0f,
+        string title = "")
     {
         var voters = uids.ToList();
+        options ??= [];
+        if (options.Count == 0) includeSecret = true;
         CreatePresetVote(ctx, options, GetSessionsFromEntities(ctx, voters), includeSecret, duration, title);
         return voters;
     }
 
     [CommandImplementation("preset")]
-    public void CreatePresetVote(IInvocationContext ctx, List<ProtoId<GamePresetPrototype>> options,
-        [Optional] [DefaultParameterValue(false)]
-        bool includeSecret, [Optional] [DefaultParameterValue(0f)] float duration,
-        [Optional] [DefaultParameterValue("")] string title) =>
+    public void CreatePresetVote(IInvocationContext ctx, List<ProtoId<GamePresetPrototype>>? options = null,
+        bool includeSecret = false, float duration = 0f, string title = "")
+    {
+        options ??= [];
+        if (options.Count == 0) includeSecret = true;
         CreatePresetVote(ctx, options, null, includeSecret, duration, title);
+    }
 }

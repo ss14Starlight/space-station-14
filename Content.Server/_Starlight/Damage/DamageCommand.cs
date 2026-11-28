@@ -17,7 +17,6 @@ using Robust.Shared.Toolshed;
 
 namespace Content.Server._Starlight.Damage;
 
-// TODO: Support setting source uid when nullable parsing is added
 [ToolshedCommand]
 [AdminCommand(AdminFlags.Fun)]
 public sealed partial class DamageCommand : ToolshedCommand
@@ -29,87 +28,73 @@ public sealed partial class DamageCommand : ToolshedCommand
 
     [CommandImplementation("type")]
     public EntityUid DamageByType(IInvocationContext ctx, [PipedArgument] EntityUid uid,
-        ProtoId<DamageTypePrototype> type, float quantity, [Optional] [DefaultParameterValue(true)] bool canHeal,
-        [Optional] [DefaultParameterValue(0f)] float armorPenetration,
-        [Optional] [DefaultParameterValue(false)] bool ignoreResistances,
-        [Optional] [DefaultParameterValue(false)] bool ignoreGlobalModifiers,
-        [Optional] [DefaultParameterValue(true)] bool interruptDoAfters)
+        ProtoId<DamageTypePrototype> type, float quantity, bool canHeal = true, float armorPenetration = 0f,
+        bool ignoreResistances = false, bool ignoreGlobalModifiers = false, bool interruptDoAfters = true,
+        EntityUid? source = null)
     {
         var damage = new DamageSpecifier { DamageDict = { [type] = quantity } };
         DoDamage(ctx, damage, uid, armorPenetration, ignoreResistances, ignoreGlobalModifiers, interruptDoAfters,
-            canHeal);
+            canHeal, source);
         return uid;
     }
 
     [CommandImplementation("group")]
     public EntityUid DamageByGroup(IInvocationContext ctx, [PipedArgument] EntityUid uid,
-        ProtoId<DamageGroupPrototype> group, float quantity, [Optional] [DefaultParameterValue(true)] bool canHeal,
-        [Optional] [DefaultParameterValue(0f)] float armorPenetration,
-        [Optional] [DefaultParameterValue(false)] bool ignoreResistances,
-        [Optional] [DefaultParameterValue(false)] bool ignoreGlobalModifiers,
-        [Optional] [DefaultParameterValue(true)] bool interruptDoAfters)
+        ProtoId<DamageGroupPrototype> group, float quantity, bool canHeal = true, float armorPenetration = 0f,
+        bool ignoreResistances = false, bool ignoreGlobalModifiers = false, bool interruptDoAfters = true,
+        EntityUid? source = null)
     {
         var damage = new DamageSpecifier { DamageGroupDict = { [group] = quantity } };
         DoDamage(ctx, damage, uid, armorPenetration, ignoreResistances, ignoreGlobalModifiers, interruptDoAfters,
-            canHeal);
+            canHeal, source);
         return uid;
     }
 
     [CommandImplementation("specifier")]
     public EntityUid DamageBySpecifier(IInvocationContext ctx, [PipedArgument] EntityUid uid, string yaml,
-        [Optional] [DefaultParameterValue(true)] bool canHeal,
-        [Optional] [DefaultParameterValue(0f)] float armorPenetration,
-        [Optional] [DefaultParameterValue(false)] bool ignoreResistances,
-        [Optional] [DefaultParameterValue(false)] bool ignoreGlobalModifiers,
-        [Optional] [DefaultParameterValue(true)] bool interruptDoAfters)
+        bool canHeal = true, float armorPenetration = 0f, bool ignoreResistances = false,
+        bool ignoreGlobalModifiers = false, bool interruptDoAfters = true, EntityUid? source = null)
     {
         if (!TryParseDamageSpecifier(ctx, yaml, out var damage)) return uid;
         DoDamage(ctx, damage, uid, armorPenetration, ignoreResistances, ignoreGlobalModifiers, interruptDoAfters,
-            canHeal);
+            canHeal, source);
         return uid;
     }
 
     [CommandImplementation("type")]
     public IEnumerable<EntityUid> DamageByType(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid,
-        ProtoId<DamageTypePrototype> type, float quantity, [Optional] [DefaultParameterValue(true)] bool canHeal,
-        [Optional] [DefaultParameterValue(0f)] float armorPenetration,
-        [Optional] [DefaultParameterValue(false)] bool ignoreResistances,
-        [Optional] [DefaultParameterValue(false)] bool ignoreGlobalModifiers,
-        [Optional] [DefaultParameterValue(true)] bool interruptDoAfters) =>
+        ProtoId<DamageTypePrototype> type, float quantity, bool canHeal = true, float armorPenetration = 0f,
+        bool ignoreResistances = false, bool ignoreGlobalModifiers = false, bool interruptDoAfters = true,
+        EntityUid? source = null) =>
         uid.Select(x => DamageByType(ctx, x, type, quantity, canHeal, armorPenetration, ignoreResistances,
-            ignoreGlobalModifiers, interruptDoAfters));
+            ignoreGlobalModifiers, interruptDoAfters, source));
 
     [CommandImplementation("group")]
     public IEnumerable<EntityUid> DamageByGroup(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid,
-        ProtoId<DamageGroupPrototype> group, float quantity, [Optional] [DefaultParameterValue(true)] bool canHeal,
-        [Optional] [DefaultParameterValue(0f)] float armorPenetration,
-        [Optional] [DefaultParameterValue(false)] bool ignoreResistances,
-        [Optional] [DefaultParameterValue(false)] bool ignoreGlobalModifiers,
-        [Optional] [DefaultParameterValue(true)] bool interruptDoAfters) =>
+        ProtoId<DamageGroupPrototype> group, float quantity, bool canHeal = true, float armorPenetration = 0f,
+        bool ignoreResistances = false, bool ignoreGlobalModifiers = false, bool interruptDoAfters = true,
+        EntityUid? source = null) =>
         uid.Select(x => DamageByGroup(ctx, x, group, quantity, canHeal, armorPenetration, ignoreResistances,
-            ignoreGlobalModifiers, interruptDoAfters));
+            ignoreGlobalModifiers, interruptDoAfters, source));
 
     [CommandImplementation("specifier")]
     public IEnumerable<EntityUid> DamageBySpecifier(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uids,
-        string yaml, [Optional] [DefaultParameterValue(true)] bool canHeal,
-        [Optional] [DefaultParameterValue(0f)] float armorPenetration,
-        [Optional] [DefaultParameterValue(false)] bool ignoreResistances,
-        [Optional] [DefaultParameterValue(false)] bool ignoreGlobalModifiers,
-        [Optional] [DefaultParameterValue(true)] bool interruptDoAfters)
+        string yaml, bool canHeal = true, float armorPenetration = 0f, bool ignoreResistances = false,
+        bool ignoreGlobalModifiers = false, bool interruptDoAfters = true, EntityUid? source = null)
     {
         if (!TryParseDamageSpecifier(ctx, yaml, out var damage)) return uids;
         var targets = uids.ToList();
         foreach (var uid in targets)
             DoDamage(ctx, damage, uid, armorPenetration, ignoreResistances, ignoreGlobalModifiers, interruptDoAfters,
-                canHeal);
+                canHeal, source);
         return targets;
     }
 
     private void DoDamage(IInvocationContext ctx, DamageSpecifier damage, EntityUid uid, float armorPenetration,
-        bool ignoreResistances, bool ignoreGlobalModifiers, bool interruptDoAfters, bool canHeal)
+        bool ignoreResistances, bool ignoreGlobalModifiers, bool interruptDoAfters, bool canHeal, EntityUid? source)
     {
         _damage ??= GetSys<DamageableSystem>();
-        var received = _damage.ChangeDamage(uid, damage, ignoreResistances, interruptDoAfters, null,
+        var received = _damage.ChangeDamage(uid, damage, ignoreResistances, interruptDoAfters, source,
             ignoreGlobalModifiers, armorPenetration, canHeal);
 
         _log.Add(LogType.AdminCommands, LogImpact.Medium,
