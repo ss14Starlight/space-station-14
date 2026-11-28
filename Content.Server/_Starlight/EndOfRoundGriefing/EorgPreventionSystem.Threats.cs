@@ -4,11 +4,14 @@ using Content.Server._Starlight.Station;
 using Content.Server.AlertLevel;
 using Content.Server.Chat.Systems;
 using Content.Server.Cuffs;
+using Content.Server.GameTicking;
 using Content.Server.Implants;
 using Content.Server.Nuke;
+using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
@@ -21,6 +24,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Nuke;
 using Content.Shared.NukeOps;
 using Content.Shared.Zombies;
+using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -33,20 +37,27 @@ namespace Content.Server._Starlight.EndOfRoundGriefing;
 /// </summary>
 public sealed partial class EorgPreventionSystem
 {
+    [Dependency] private NukeSystem _nuke = null!;
     [Dependency] private ChatSystem _cSys = null!;
+    [Dependency] private GameTicker _ticker = null!;
     [Dependency] private StationSystem _station = null!;
     [Dependency] private MobStateSystem _state = null!;
+    [Dependency] private RoundEndSystem _end = null!;
     [Dependency] private CuffableSystem _cuffable = null!;
+    [Dependency] private SharedMapSystem _map = null!;
     [Dependency] private AlertLevelSystem _alertLevel = null!;
+    [Dependency] private EntityLookupSystem _lookup = null!;
+    [Dependency] private SharedAirlockSystem _airlock = null!;
+    [Dependency] private SharedChargesSystem _charges = null!;
     [Dependency] private SharedTransformSystem _xform = null!;
     [Dependency] private SubdermalImplantSystem _implant = null!;
     [Dependency] private EmergencyShuttleSystem _shuttle = null!;
-    [Dependency] private SharedAirlockSystem _airlock = null!;
-    [Dependency] private SharedChargesSystem _charges = null!;
 
-    private static readonly EntProtoId FreedomActionProtoId = "ActionActivateFreedomImplant";
+    private static readonly EntProtoId _freedomActionProtoId = "ActionActivateFreedomImplant";
+    private static readonly EntProtoId _nukeProtoId = "NuclearBombSafe";
+    private static readonly EntProtoId _bluespaceImplantEffectProtoId = "BluespaceImplantEffect";
 
-    private static readonly TimeSpan NukeCheckInterval = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan _nukeCheckInterval = TimeSpan.FromSeconds(1);
     private TimeSpan _nukeCheckAccumulator;
     private CancellationTokenSource? _cts;
 
@@ -64,8 +75,6 @@ public sealed partial class EorgPreventionSystem
     private const float ZombieMaxDriftDistance = 32f;
 
     private readonly record struct ThreatArea(List<EntityUid?> EndGrids, EntityUid? CcMap, Box2? CcBounds);
-
-    private static readonly TimeSpan DeltaDelay = TimeSpan.FromSeconds(3);
 
     private readonly HashSet<EntityUid> _emergencyAccessAirlocks = [];
 
@@ -241,7 +250,7 @@ public sealed partial class EorgPreventionSystem
 
         return implants.Any(implantUid =>
             TryComp<SubdermalImplantComponent>(implantUid, out var implant)
-            && implant.ImplantAction == FreedomActionProtoId
+            && implant.ImplantAction == _freedomActionProtoId
             && implant.Action is { } action
             && _charges.HasCharges(action, 1));
     }
@@ -289,10 +298,10 @@ public sealed partial class EorgPreventionSystem
             return;
 
         _nukeCheckAccumulator += TimeSpan.FromSeconds(frameTime);
-        if (_nukeCheckAccumulator < NukeCheckInterval)
+        if (_nukeCheckAccumulator < _nukeCheckInterval)
             return;
 
-        _nukeCheckAccumulator -= NukeCheckInterval;
+        _nukeCheckAccumulator -= _nukeCheckInterval;
         var area = GetThreatArea();
         RefreshNukieThreats(area);
         RefreshZombieThreats(area);
@@ -308,10 +317,16 @@ public sealed partial class EorgPreventionSystem
         if (EnsureCentCommStation() is not { } cc)
             return;
 
+        if (_end.IsRestartTimerActive())
+        {
+            _end.CancelRoundRestartTimer();
+            _end.StartRestartTimer(TimeSpan.FromSeconds(_cfg.GetCVar(StarlightCCVars.ZedTakeoverRestartSeconds)));
+        }
         _cSys.DispatchStationAnnouncement(cc, Loc.GetString("eor-zed-takeover"),
             Loc.GetString("eor-cassie"), colorOverride: Color.Red);
         _cts = new CancellationTokenSource();
-        Timer.Spawn(DeltaDelay, () => _alertLevel.SetLevel(cc, "delta", true, true, true, true), _cts.Token);
+        Timer.Spawn(TimeSpan.FromSeconds(_cfg.GetCVar(StarlightCCVars.ZedTakeoverNukeDelaySeconds)),
+            () => SetupNuke(_cts), _cts.Token);
     }
 
     private EntityUid? EnsureCentCommStation()
@@ -417,6 +432,56 @@ public sealed partial class EorgPreventionSystem
     {
         var query = AllEntityQuery<StationCentcommComponent>();
         return query.MoveNext(out var centcomm) ? centcomm.Entity : null;
+    }
+
+    private void SetupNuke(CancellationTokenSource cts)
+    {
+        var coords = CentCommGetSafeCenterTile();
+        if (coords is null)
+        {
+            Log.Warning("Could not find valid spot to place the nuke, so just restarting round now. :/");
+            _ticker.RestartRound();
+            return;
+        }
+
+        var uid = SpawnAtPosition(_nukeProtoId, coords.Value);
+        var nuke = Comp<NukeComponent>(uid);
+        _nuke.SetNukeTimer(uid, _cfg.GetCVar(StarlightCCVars.ZedTakeoverNukeCountdownSeconds), nuke);
+        SpawnAtPosition(_bluespaceImplantEffectProtoId, coords.Value);
+        Timer.Spawn(TimeSpan.FromSeconds(_cfg.GetCVar(StarlightCCVars.ZedTakeoverNukeArmSeconds)),
+            () => _nuke.ArmBomb(uid, nuke), cts.Token);
+    }
+
+    private EntityCoordinates? CentCommGetSafeCenterTile()
+    {
+        if (GetCentCommGrid() is not { } grid || !TryComp<MapGridComponent>(grid, out var mapGrid))
+            return null;
+
+        var center = mapGrid.LocalAABB.Center;
+        EntityCoordinates? closest = null;
+        var closestDistance = float.MaxValue;
+
+        var tiles = _map.GetAllTiles(grid, mapGrid);
+        while (tiles.MoveNext(out var tile))
+        {
+            var coords = _map.GridTileToLocal(grid, mapGrid, tile.Value.GridIndices);
+            var distance = (coords.Position - center).LengthSquared();
+            if (distance >= closestDistance)
+                continue;
+
+            var tileBox = new Box2(tile.Value.GridIndices * mapGrid.TileSize,
+                    (tile.Value.GridIndices + Vector2i.One) * mapGrid.TileSize)
+                .Enlarged(EntityLookupSystem.TileEnlargementRadius);
+
+            if (_lookup.AnyLocalEntitiesIntersecting(grid, tileBox,
+                    LookupFlags.Dynamic | LookupFlags.Static | LookupFlags.Sundries))
+                continue;
+
+            closestDistance = distance;
+            closest = coords;
+        }
+
+        return closest;
     }
 
     private ThreatArea GetThreatArea()
