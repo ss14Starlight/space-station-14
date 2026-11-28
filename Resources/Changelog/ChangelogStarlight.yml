@@ -1,11 +1,4 @@
 Entries:
-- author: Teddiousbear
-  changes:
-  - message: NTNC Marine Hardsuit Armor values.
-    type: Tweak
-  id: 410480
-  time: '2026-11-15T14:57:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7227
 - author: AnyTap
   changes:
   - message: Added CSD Mantle.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410879
   time: '2026-11-28T07:36:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7565
+- author: Rinary
+  changes:
+  - message: Fixed bug when radiohost TTS had message with accent, while normal one doesn't use accent message.
+    type: Fix
+  id: 410880
+  time: '2026-11-28T08:02:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7567
 Order: -1
