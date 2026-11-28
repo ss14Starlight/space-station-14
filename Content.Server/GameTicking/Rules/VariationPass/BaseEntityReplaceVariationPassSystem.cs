@@ -47,6 +47,11 @@ public abstract class BaseEntityReplaceVariationPassSystem<TEntComp, TGameRuleCo
             if (!IsMemberOfStation((uid, xform), ref args))
                 continue;
 
+            // Starlight-start
+            if (EntityManager.IsQueuedForDeletion(uid))
+                continue;
+            // Starlight-end
+
             if (RobustRandom.Prob(prob))
                 QueueReplace((uid, xform), pass.Replacements);
         }

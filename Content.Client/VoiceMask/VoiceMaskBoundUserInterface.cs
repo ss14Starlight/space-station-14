@@ -1,4 +1,5 @@
 using Content.Shared.VoiceMask;
+using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
 
@@ -27,6 +28,11 @@ public sealed partial class VoiceMaskBoundUserInterface : BoundUserInterface
         _window.OnVerbChange += verb => SendMessage(new VoiceMaskChangeVerbMessage(verb));
         _window.OnToggle += OnToggle;
         _window.OnAccentToggle += OnAccentToggle;
+
+        // Starlight-start
+        _window.LoadRadioIcons(_protomanager, EntMan.System<SpriteSystem>());
+        _window.OnRadioIconChange += icon => SendMessage(new VoiceMaskChangeRadioIconMessage(icon));
+        // Starlight-end
     }
 
     private void OnNameSelected(string name)
@@ -52,6 +58,7 @@ public sealed partial class VoiceMaskBoundUserInterface : BoundUserInterface
         }
 
         _window.UpdateState(cast.Name, cast.Verb, cast.Active, cast.AccentHide);
+        _window.UpdateRadioIcon(cast.RadioJobIcon); // Starlight-edit
     }
 
     protected override void Dispose(bool disposing)

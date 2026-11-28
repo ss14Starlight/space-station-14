@@ -6,6 +6,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
+using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
@@ -16,6 +17,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Reflection;
 using Robust.Shared.Serialization.Manager;
+using System.Linq;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared._Starlight.Medical.Surgery.Components;
 
@@ -89,7 +91,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         return !ev.Cancelled;
     }
 
-    protected List<EntityUid> GetTools(EntityUid surgeon) => [.. _hands.EnumerateHeld(surgeon)];
+    protected List<EntityUid> GetTools(EntityUid surgeon) => [.. _hands.EnumerateHeld(surgeon).Where(held => !HasComp<VirtualItemComponent>(held))];
 
     public bool IsLyingDown(EntityUid entity)
     {
