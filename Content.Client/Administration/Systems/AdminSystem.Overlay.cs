@@ -63,13 +63,5 @@ namespace Content.Client.Administration.Systems
             _overlayManager.RemoveOverlay<AdminNameOverlay>();
             OverlayDisabled?.Invoke();
         }
-
-        public void ToggleAdminOverlay() // Starlight, so one button on Aghost can toggle the thing
-        {
-            if (_overlayManager.HasOverlay<AdminNameOverlay>())
-                AdminOverlayOff();
-            else
-                AdminOverlayOn();
-        }
     }
 }

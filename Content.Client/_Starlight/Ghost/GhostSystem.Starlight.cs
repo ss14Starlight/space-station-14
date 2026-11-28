@@ -1,15 +1,19 @@
 // ReSharper disable CheckNamespace
 using Content.Client._Starlight.Light;
+using Content.Client.Administration.Systems;
+using Content.Shared._Starlight.Administration.Components;
+using Content.Shared._Starlight.Administration.Events;
 using Content.Shared.Ghost;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
+
 
 namespace Content.Client.Ghost;
 
 public sealed partial class GhostSystem
 {
     [Dependency] private IOverlayManager _overlayManager = default!;
-
+    [Dependency] private AdminSystem _adminSystem = default!;
     /// <summary>
     /// Whether Half Bright is on, the lighting step between personal light and fullbright.
     /// </summary>
@@ -62,5 +66,21 @@ public sealed partial class GhostSystem
 
         args.Handled = true;
         return true;
+    }
+    partial void InitializeStarlight()
+    {
+        SubscribeLocalEvent<ToggleAGhostAdminOverlayEvent>(OnToggleAGhostAdminOverlay);
+    }
+
+    private void OnToggleAGhostAdminOverlay(ToggleAGhostAdminOverlayEvent args) // Toggles admin hud as a aghost action.
+    {
+        if (args.Handled ||
+            args.Performer != _playerManager.LocalEntity ||
+            !HasComp<AdminGhostComponent>(args.Performer))
+        {
+            return;
+        }
+        _adminSystem.ToggleAdminOverlay();
+        args.Handled = true;
     }
 }

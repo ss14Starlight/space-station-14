@@ -8,8 +8,6 @@ using Robust.Shared.Player;
 #region Starlight
 using Robust.Shared.Configuration;
 using Content.Shared._Starlight.Administration.Events;
-using Content.Shared._Starlight.Administration.Components;
-using Content.Client.Administration.Systems;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.Ghost;
 #endregion
@@ -25,7 +23,6 @@ namespace Content.Client.Ghost
         [Dependency] private ContentEyeSystem _contentEye = default!;
         [Dependency] private SpriteSystem _sprite = default!;
         [Dependency] private IConfigurationManager _cfg = default!; // Starlight
-        [Dependency] private AdminSystem _adminSystem = default!; // Starlight
 
         public int AvailableGhostRoleCount { get; private set; }
 
@@ -64,6 +61,7 @@ namespace Content.Client.Ghost
         public event Action<GhostWarpsResponseEvent>? GhostWarpsResponse;
         public event Action<GhostUpdateGhostRoleCountEvent>? GhostRoleCountUpdated;
 
+        partial void InitializeStarlight(); // Starlight
         public override void Initialize()
         {
             base.Initialize();
@@ -83,7 +81,7 @@ namespace Content.Client.Ghost
             SubscribeLocalEvent<GhostComponent, ToggleGhostsActionEvent>(OnToggleGhosts);
             SubscribeNetworkEvent<GhostCorporealEvent>(OnCorporeal); // Starlight
             SubscribeNetworkEvent<AdminGhostEvent>(OnAdminGhost); // Starlight
-            SubscribeLocalEvent<ToggleAGhostAdminOverlayEvent>(OnToggleAGhostAdminOverlay);//Starlight
+            InitializeStarlight(); // Starlight
         }
 
         private void OnStartup(EntityUid uid, GhostComponent component, ComponentStartup args)
@@ -230,17 +228,6 @@ namespace Content.Client.Ghost
         public void ToggleGhostVisibility(bool? visibility = null)
         {
             GhostVisibility = visibility ?? !GhostVisibility;
-        }
-        private void OnToggleAGhostAdminOverlay(ToggleAGhostAdminOverlayEvent args) // Starlight
-        {
-            if (args.Handled ||
-                args.Performer != _playerManager.LocalEntity ||
-                !HasComp<AdminGhostComponent>(args.Performer))
-            {
-                return;
-            }
-            _adminSystem.ToggleAdminOverlay();
-            args.Handled = true;
         }
         #region Starlight
 

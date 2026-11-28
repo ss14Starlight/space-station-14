@@ -26,4 +26,14 @@ public sealed partial class AdminSystem
         _playerList = players.ToDictionary(x => x.SessionId, x => x);
         PlayerListChanged?.Invoke(_playerList.Values.ToList());
     }
+    /// <summary>
+    /// For Admin Hud Toggle as aghost.
+    /// </summary>
+    public void ToggleAdminOverlay()
+    {
+        if (_overlayManager.HasOverlay<AdminNameOverlay>())
+            AdminOverlayOff();
+        else
+            AdminOverlayOn();
+    }
 }
