@@ -91,7 +91,7 @@
     clothingPrototype: ClothingHeadHatHoodWinterRoboAlt
 
 # Security
-## Duty Officer
+
 - type: entity
   parent: [ BaseContrabandTier2, ClothingOuterWinterCoatToggleable, BaseSecurityContraband, AllowSuitStorageClothing ] # Blimpuf
   id: ClothingOuterWinterDutyOfficer
@@ -117,6 +117,38 @@
         Caustic: 0.95
   - type: ExplosionResistance
     damageCoefficient: 0.85
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot { }
+      storagebase: !type:Container
+        ents: [ ]
+
+- type: entity
+  parent: ClothingOuterWinterDutyOfficer
+  id: ClothingOuterWinterSecPlate
+  name: plated security winter coat
+  description: A plated winter coat designed to protect against ballistic weapons in cold temperature.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/WinterCoats/coatplatewinter.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/WinterCoats/coatplatewinter.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodWinterSecPlate
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.90
+        Piercing: 0.65
+        Heat: 0.95
+        Cold: 0.75
+  - type: ExplosionResistance
+    damageCoefficient: 1
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.85
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot { }
