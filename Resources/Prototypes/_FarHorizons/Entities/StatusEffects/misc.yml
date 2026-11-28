@@ -1,0 +1,14 @@
+- type: entity
+  parent: StatusEffectSlowdown
+  id: StatusEffectSlowdownNoMobState
+  name: slowdown
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MovementSpeedModifier
+      requireAll: true
+    blacklist:
+      tags:
+      - SlowImmune
+  - type: MovementModStatusEffect

@@ -1,0 +1,7 @@
+- type: latheRecipe
+  id: TowingRope
+  result: TowingRope
+  completetime: 2
+  materials:
+    Cloth: 300
+    Steel: 50

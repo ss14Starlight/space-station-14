@@ -4,3 +4,6 @@
     - type: CustomSignature
       config: !type:SignatureConfig
         fontPath: "/Fonts/_Starlight/WireOne-Regular.ttf"
+    - type: FootprintOwner
+      printState: Tire
+      alternateStepOffset: 0.15

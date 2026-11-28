@@ -1,4 +1,11 @@
 - type: !PartialOnly entity
+  id: OfficeChairVehicleBase
+  components:
+  - type: FootprintOwner
+    printState: Tire
+    alternateStepOffset: 0.2
+
+- type: !PartialOnly entity
   id: ChairXeno
   components:
   - type: Construction

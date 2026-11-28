@@ -1,0 +1,29 @@
+- type: entity
+  id: CrateSecurityScooterElectric
+  parent: CrateSecgear
+  name: security electric scooter crate
+  description: A standard-issue electric scooter for apprehending criminals, or a poor substitute for exercise. Probably both.
+  components:
+  - type: StorageFill
+    contents:
+      - id: VehicleScooterElectricSecurityFilled
+
+- type: entity
+  id: CrateCommandScooterElectricTurbo
+  parent: [CrateCommandSecure, BaseCommandContraband]
+  name: turbo electric scooter crate
+  description: Contains a turbo electric scooter with an upgraded motor.
+  components:
+  - type: StorageFill
+    contents:
+      - id: VehicleScooterElectricTurboFilled
+
+- type: entity
+  id: CrateSecurityNTV
+  parent: CrateSecgear
+  name: ntv crate
+  description: Contains a luxurious ATV.
+  components:
+  - type: StorageFill
+    contents:
+      - id: VehicleATVNanoTrasenFilled

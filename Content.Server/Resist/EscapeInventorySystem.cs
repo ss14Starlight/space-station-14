@@ -8,9 +8,10 @@ using Content.Shared.Inventory;
 using Content.Shared.Movement.Events;
 using Content.Shared.Resist;
 using Content.Shared.Storage;
-using Content.Shared.Tag; // Starlight Edit
-using Robust.Server.GameObjects; // Starlight Edit
-using Robust.Shared.Prototypes; // Starlight
+using Content.Shared.Tag;
+using Content.Shared.Vehicle.Systems;
+using Robust.Server.GameObjects;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Resist;
@@ -21,6 +22,7 @@ public sealed partial class EscapeInventorySystem : EntitySystem
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private SharedContainerSystem _containerSystem = default!;
     [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
+    [Dependency] private VehicleSystem _vehicles = default!; // Starlight
     [Dependency] private SharedHandsSystem _handsSystem = default!;
     [Dependency] private TagSystem _tagSystem = default!; // Starlight Edit
     [Dependency] private TransformSystem _transformSystem = default!; // Starlight Edit
@@ -43,6 +45,9 @@ public sealed partial class EscapeInventorySystem : EntitySystem
 
         if (!_containerSystem.TryGetContainingContainer((uid, null, null), out var container) || !_actionBlockerSystem.CanInteract(uid, container.Owner))
             return;
+
+        if (_vehicles.GetRideVehicle(uid) == container.Owner) // Starlight
+            return; // Starlight
 
         // Make sure there's nothing stopped the removal (like being glued)
         if (!_containerSystem.CanRemove(uid, container))

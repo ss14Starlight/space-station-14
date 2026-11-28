@@ -1,0 +1,27 @@
+- type: listing
+  id: UplinkSyndicateElectricScooter
+  name: uplink-syndicate-electric-scooter-name
+  description: uplink-syndicate-electric-scooter-description
+  icon: { sprite: /Textures/_FarHorizons/Objects/Vehicles/electric_scooter_syndicate.rsi, state: icon}
+  productEntity: VehicleScooterElectricSyndicateFilled
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkVehicles
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3 # Fun for the whole family
+
+- type: listing
+  id: UplinkSyndicateElectricScooterArmoredLight
+  name: uplink-syndicate-electric-scooter-armored-light-name
+  description: uplink-syndicate-electric-scooter-armored-light-description
+  icon: { sprite: /Textures/_FarHorizons/Objects/Vehicles/Armored/electric_scooter_syndicate_light_armored.rsi, state: icon}
+  productEntity: VehicleScooterElectricSyndicateArmoredLight
+  cost:
+    Telecrystal: 4 # May I introduce you to it's slightly less useless cousin?
+  categories:
+    - UplinkVehicles
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2 # It's not THAT strong.

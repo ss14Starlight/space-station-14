@@ -1,0 +1,49 @@
+- type: cargoProduct
+  id: CargoElectricScooter
+  icon:
+    sprite: _FarHorizons/Objects/Vehicles/electric_scooter.rsi
+    state: icon
+  product: CrateElectricScooter
+  cost: 1500
+  category: cargoproduct-category-name-vehicles
+  group: market
+
+- type: cargoProduct
+  id: CargoMotorcycle
+  icon:
+    sprite: _FarHorizons/Objects/Vehicles/motorbike.rsi
+    state: vehicle
+  product: CrateMotorcycle
+  cost: 6000
+  category: cargoproduct-category-name-vehicles
+  group: market
+
+- type: cargoProduct
+  id: CargoJanicart
+  icon:
+    sprite: Objects/Vehicles/janicart.rsi
+    state: vehicle
+  product: CrateJanicart
+  cost: 5000
+  category: cargoproduct-category-name-vehicles
+  group: market
+
+- type: cargoProduct
+  id: CargoCommandScooterElectric
+  icon:
+    sprite: _FarHorizons/Objects/Vehicles/electric_scooter_command.rsi
+    state: icon
+  product: CrateCommandScooterElectric
+  cost: 3000
+  category: cargoproduct-category-name-vehicles
+  group: market
+
+- type: cargoProduct
+  id: CargoUnicycle
+  icon:
+    sprite: _FarHorizons/Objects/Vehicles/unicycle.rsi
+    state: vehicle
+  product: CrateUnicycle
+  cost: 500
+  category: cargoproduct-category-name-vehicles
+  group: market

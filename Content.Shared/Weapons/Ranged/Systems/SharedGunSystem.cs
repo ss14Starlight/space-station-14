@@ -1,3 +1,4 @@
+using Content.Shared.Vehicle.Systems;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared.ActionBlocker;
@@ -48,6 +49,7 @@ namespace Content.Shared.Weapons.Ranged.Systems;
 
 public abstract partial class SharedGunSystem : EntitySystem
 {
+    [Dependency] protected VehicleSystem RideVehicles = default!; // Starlight
     [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private INetManager _netManager = default!;
@@ -257,8 +259,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
 
         // Starlight-edit: start
-        if (TryComp<MechPilotComponent>(entity, out var pilot) &&
-            TryComp(pilot.Mech, out MechComponent? mechFromPilot) &&
+        if (TryGetMechShooter(entity, out var pilotMech) &&
+            TryComp(pilotMech, out MechComponent? mechFromPilot) &&
             mechFromPilot.CurrentSelectedEquipment is { } equipFromPilot &&
             TryComp(equipFromPilot, out gunComp))
         {
@@ -506,14 +508,18 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
         // Starlight-end
 
-        if (!userImpulse || !TryComp<PhysicsComponent>(user, out var userPhysics))
+        if (!userImpulse) // Starlight
             return true;
 
         var shooterEv = new ShooterImpulseEvent();
         RaiseLocalEvent(user, ref shooterEv);
 
         if (shooterEv.Push)
-            CauseImpulse(fromCoordinates, toCoordinates.Value, (user, userPhysics));
+        {
+            var recoilTarget = RideVehicles.GetRideVehicle(user) ?? user; // Starlight
+            if (TryComp<PhysicsComponent>(recoilTarget, out var recoilBody)) // Starlight
+                CauseImpulse(fromCoordinates, toCoordinates.Value, (recoilTarget, recoilBody)); // Starlight
+        }
         return true;
     }
 
@@ -556,13 +562,13 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         // Starlight-edit: start
         EntityUid? shooter = null;
-        if (user != null && TryComp<MechPilotComponent>(user.Value, out var pilotComp))
+        if (TryGetMechShooter(user, out var pilotMech))
         {
-            shooter = pilotComp.Mech;
+            shooter = pilotMech;
         }
         else
         {
-            shooter = user ?? gunUid;
+            shooter = RideVehicles.GetRideVehicle(user) ?? user ?? gunUid; // Starlight
         }
         // Starlight-edit: end
 
@@ -738,8 +744,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         var coordinates = xform.Coordinates.Offset(offsetPos);
         // Starlight-edit: end
 
-        TransformSystem.SetLocalRotation(entity, Random.NextAngle(), xform);
-        TransformSystem.SetCoordinates(entity, xform, coordinates);
+        TransformSystem.SetCoordinates(entity, xform, coordinates, rotation: Random.NextAngle());
+        TransformSystem.AttachToGridOrMap(entity, xform);
 
         // decides direction the casing ejects and only when not cycling
         if (angle != null)

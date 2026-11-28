@@ -16,3 +16,8 @@
       - Borg
       - BorgEngineering
       - ChiefEngineer
+
+- type: !PartialOnly borgType
+  id: janitor
+  addComponents:
+  - type: NoFootprints

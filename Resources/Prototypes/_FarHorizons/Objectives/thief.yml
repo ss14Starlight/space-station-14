@@ -6,6 +6,7 @@
     jobs: [StationEngineer, AtmosphericTechnician]
   - type: StealCondition
     stealGroup: ReactorFuelRodSteal
+    verifyMapExistence: false
     minCollectionSize: 1
     maxCollectionSize: 3
   - type: Objective

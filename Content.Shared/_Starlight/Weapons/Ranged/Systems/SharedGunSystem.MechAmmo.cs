@@ -14,6 +14,15 @@ public abstract partial class SharedGunSystem
 {
     [Dependency] private SharedBatterySystem _battery = default!;
     [Dependency] private SharedMechSystem _mech = default!;
+    protected bool TryGetMechShooter(EntityUid? pilot, out EntityUid mech)
+    {
+        mech = default;
+        if (pilot is not { } uid || !_mech.TryGetPilotMech(uid, out var piloted))
+            return false;
+        mech = piloted.Owner;
+        return true;
+    }
+
     protected virtual void InitializeMech()
     {
         SubscribeLocalEvent<MechAmmoProviderComponent, EntGotInsertedIntoContainerMessage>(OnGunInstalled);
@@ -49,7 +58,7 @@ public abstract partial class SharedGunSystem
 
             for (var i = 0; i < shots; i++)
             {
-                if(!_mech.TryChangeEnergy(ent.Comp.Mech.Value, ent.Comp.FireCost))
+                if(!_mech.TryChangeEnergy(ent.Comp.Mech.Value, -ent.Comp.FireCost))
                     break;
 
                 args.Ammo.Add(GetShootable(ent, args.Coordinates));

@@ -72,6 +72,9 @@ public abstract partial class SharedBuckleSystem
             return false;
         }
 
+        if (!strapComp.Enabled) // Far Horizons
+            return false;
+
         bool Ignored(EntityUid entity) => entity == userUid || entity == buckleUid || entity == targetUid;
 
         return _interaction.InRangeUnobstructed(targetUid, buckleUid, buckleComp.Range, predicate: Ignored);

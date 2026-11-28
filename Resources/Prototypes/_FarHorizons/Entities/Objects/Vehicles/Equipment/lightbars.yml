@@ -1,0 +1,34 @@
+- type: entity
+  id: SecSiren
+  parent: VehicleEquipmentBase
+  name: security siren
+  description: Turn this thing on and those tiders will scatter like roaches, or they will jump you... Who knows?
+  components:
+    - type: UnpoweredFlashlight
+    - type: ItemToggle
+      onUse: false
+      soundActivate:
+        path: /Audio/Items/flashlight_on.ogg
+      soundDeactivate:
+        path: /Audio/Items/flashlight_off.ogg
+    - type: ItemTogglePointLight
+    - type: PointLight
+      enabled: false
+      radius: 5
+      color: red
+      lightMask: ConeDouble
+    - type: RotatingLight
+      speed: 360
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi
+      state: siren
+    - type: ItemToggleActiveSound
+      activeSound:
+        path: /Audio/Effects/Vehicle/policesiren.ogg
+        params:
+          volume: -4
+    - type: VehicleEquipment
+      actionProto: ActionVehicleToggleSecuritySiren
+      slot: lightbar
+      allowedVehicles: [Electric, Gas, Spaceship]
+    - type: Appearance

@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: BasicHeadlight
+  components:
+  - type: PointLight
+    containerOccluded: false
+
+- type: !PartialOnly entity
+  id: HeadlightLED
+  components:
+  - type: PointLight
+    containerOccluded: false

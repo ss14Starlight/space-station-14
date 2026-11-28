@@ -1,0 +1,7 @@
+# Far Horizons
+- type: !PartialOnly entity
+  id: StorePresetUplink
+  components:
+  - type: Store
+    categories:
+    - UplinkVehicles

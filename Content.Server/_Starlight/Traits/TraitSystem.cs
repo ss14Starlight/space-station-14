@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._FarHorizons.Traits;
 using Content.Shared._Starlight.Traits;
 using Content.Shared._Starlight.Traits.Effects;
 using Content.Shared.GameTicking;
@@ -50,21 +51,11 @@ public sealed partial class TraitSystem : EntitySystem
             !jobProto.ApplyTraits)
             return;
 
-        // Validate and collect valid traits
-        var validTraits = ValidateTraits(args.Mob, args.Profile.TraitPreferences, args.Player, args.Profile);
-
-        // Apply valid traits
-        foreach (var traitId in validTraits)
-        {
-            if (!_prototype.TryIndex(traitId, out var trait))
-                continue;
-
-            ApplyTrait(args.Mob, trait);
-        }
+        ApplyTraits(args.Mob, args.Profile, args.Player);
     }
 
     /// <summary>
-    /// Applies a traits to an entity.
+    /// Applies traits to an entity.
     /// </summary>
     public void ApplyTraits(EntityUid Mob, HumanoidCharacterProfile profile, ICommonSession session)
     {
@@ -77,6 +68,9 @@ public sealed partial class TraitSystem : EntitySystem
 
             ApplyTrait(Mob, trait);
         }
+
+        var ev = new TraitsApplied();
+        RaiseLocalEvent(Mob, ref ev);
     }
 
     /// <summary>

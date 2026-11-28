@@ -1,0 +1,75 @@
+- type: !PartialOnly entity
+  id: BaseVehicle
+  components:
+  - type: AmbientSound
+    sound: "/Audio/_FarHorizons/Vehicles/vehicleengineidle.ogg"
+  save: !Remove
+
+- type: !PartialOnly entity
+  id: BaseVehicleRideable
+  components:
+  - type: Vehicle
+    canAttack: true
+    operatorWhitelist:
+      tags:
+      - CanPilot
+  - type: StatusEffectContainer
+  - type: ContainerContainer
+    containers:
+      actions: !type:Container { showEnts: false }
+      status-effects: !type:Container { showEnts: true, occludes: false }
+  - type: !Remove MobMover
+  save: !Remove
+
+- type: !PartialOnly entity
+  id: BaseVehicleRideableDamageable
+  components:
+  - type: VehicleHull
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 450
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: GenericVisualizer
+    visuals:
+      enum.VehicleHullVisuals.Broken:
+        base:
+          True: {state: vehicle_broken}
+          False: {state: vehicle}
+  save: !Remove
+
+- type: !PartialOnly entity
+  id: VehicleUnicycle
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/unicycle.rsi
+    layers: !Clear
+    - state: vehicle
+      map: ["unfoldedLayer"]
+    - state: vehicle_folded
+      map: ["foldedLayer"]
+      visible: false
+  - type: StrapVehicle
+  - type: Vehicle
+    requiresHands: false
+    requireIgnition: !Remove
+    baseState: !Remove
+    handsNeeded: !Remove
+    riderWhitelist: !Remove
+    hornSound: !Remove
+    soundHit: !Remove
+  - type: VehicleRide
+    unbuckleDelay: 1
+    dismountOnStun: true
+    dismountOnKnockdown: true
+    riderSpeedAffectsVehicle: true
+    hornSound:
+      path: /Audio/_FarHorizons/Vehicles/bicyclebell.ogg
+  - type: Strap
+    modifyBuckleDrawDepth: false
+  - type: FootprintOwner
+    printState: Tire
+    alternateStepOffset: 0

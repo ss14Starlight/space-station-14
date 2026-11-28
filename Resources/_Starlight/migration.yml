@@ -518,6 +518,7 @@ ClothingEyesHudBrigmedic: ClothingEyesHudMedSec
 
 # 2026-11-14 - Name doesn't match intended use
 HandheldRemoteControlExpedition: HandheldRemoteControlToy
+
 #2026-11-15 - Musician shades replaced with modular sunglasses
 ClothingEyesGlassesMusicianSunglasses: ClothingEyesModularHudSunglasses
 
@@ -551,8 +552,11 @@ SofaEndLeftBrown: ComfyChairBrown
 SofaEndRightBrown: ComfyChairBrown
 SofaMiddleBrown: ComfyChairBrown
 
-# 2026-11-24 - NPC diversity
+#2026-11-23 - Legacy vehicle IDs, we probably won't ever run into a case where this matters since they're so old
+VehicleKeySkeleton: VehicleKeyMotorcycle
+VehicleKeySkeletonMotorcycle: VehicleKeyMotorcycle
 
+# 2026-11-24 - NPC diversity
 SalvageHumanCorpseSpawner: SLSalvageHumanCorpseSpawner
 RandomServiceCorpseSpawner: SLRandomServiceCorpseSpawner
 RandomEngineerCorpseSpawner: SLRandomEngineerCorpseSpawner

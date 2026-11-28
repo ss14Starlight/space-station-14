@@ -1,0 +1,32 @@
+#Base Prototypes
+
+- type: latheRecipe
+  abstract: true
+  id: BaseVehiclePartsRecipe
+  completetime: 6
+  categories:
+  - LatheVehicleParts
+
+#region Vehicles
+
+- type: latheRecipe
+  parent: BaseVehiclePartsRecipe
+  id: LightArmorKit
+  result: LightArmorKit
+  categories:
+  - LatheVehicleParts
+  materials:
+    ReinforcedGlass: 1000
+    Steel: 500
+    Plastic: 500
+
+- type: latheRecipe
+  parent: BaseVehiclePartsRecipe
+  id: SecSiren
+  result: SecSiren
+  categories:
+  - LatheVehicleParts
+  materials:
+    Glass: 500
+    Steel: 250
+    Plastic: 1000

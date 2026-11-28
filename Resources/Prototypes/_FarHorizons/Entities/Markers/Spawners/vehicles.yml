@@ -1,0 +1,114 @@
+- type: entity
+  name: electric scooter spawner
+  id: SpawnVehicleScooterElectricCommand
+  parent: MarkerBase
+  suffix: Command
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _FarHorizons/Objects/Vehicles/electric_scooter_command.rsi
+        state: vehicle
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleScooterElectricCommandFilled
+
+- type: entity
+  name: electric scooter spawner
+  id: SpawnVehicleScooterElectricSecurity
+  parent: MarkerBase
+  suffix: Security
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _FarHorizons/Objects/Vehicles/electric_scooter_security.rsi
+        state: vehicle
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleScooterElectricSecurityFilled
+
+- type: entity
+  name: electric scooter spawner
+  id: SpawnVehicleScooterElectric
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _FarHorizons/Objects/Vehicles/electric_scooter.rsi
+        state: vehicle
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleScooterElectricFilled
+
+- type: entity
+  name: atv spawner
+  id: SpawnVehicleATV
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Vehicles/atv.rsi
+        state: vehicle
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleATVFilled
+
+- type: entity
+  name: ntv spawner
+  id: SpawnVehicleATVNanoTrasen
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _FarHorizons/Objects/Vehicles/sectv.rsi
+        state: vehicle
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleATVNanoTrasenFilled
+
+- type: entity
+  name: wheelchair spawner
+  id: SpawnVehicleWheelchair
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Starlight/Objects/Vehicles/wheelchairgray.rsi
+        state: wheelchair
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleWheelchair
+
+- type: entity
+  name: wheelchair spawner
+  suffix: Folded
+  id: SpawnVehicleWheelchairFolded
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Starlight/Objects/Vehicles/wheelchairgray.rsi
+        state: wheelchair_folded
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleWheelchairFolded
+
+- type: entity
+  name: janicart spawner
+  id: SpawnVehicleJanicart
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Vehicles/janicart.rsi
+        state: vehicle
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleJanicartFilled

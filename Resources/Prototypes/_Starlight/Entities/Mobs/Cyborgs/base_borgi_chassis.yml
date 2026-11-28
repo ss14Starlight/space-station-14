@@ -168,6 +168,9 @@
     - type: LockedWiresPanel
     - type: Pullable
     - type: StandingState
+    - type: FootprintOwner
+      printState: Tire
+      alternateStepOffset: 0.15
     - type: Emoting
     - type: GuideHelp
       guides:

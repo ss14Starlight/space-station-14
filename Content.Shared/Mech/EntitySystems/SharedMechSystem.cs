@@ -1,42 +1,24 @@
-using Content.Shared.Access.Components;
-using Content.Shared.ActionBlocker;
+using System.Linq;
 using Content.Shared.Actions;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
-using Content.Shared.DragDrop;
-using Content.Shared.Emag.Systems;
 using Content.Shared.FixedPoint;
-using Content.Shared.Interaction.Components;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Interaction;
+using Content.Shared.Interaction.Components;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.Equipment.Components;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
+using Content.Shared.Vehicle;
+using Content.Shared.Vehicle.Systems;
+using Content.Shared.Vehicle.Components;
+using Content.Shared.Verbs;
 using Content.Shared.Weapons.Melee;
-using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Whitelist;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
-using System.Linq;
-
-#region Starlight
-using Content.Shared.Movement.Events;
-using Content.Shared.Repairable;
-using Content.Shared.Stunnable;
-using Content.Shared.Movement.Pulling.Events;
-using Content.Shared.Power.Components;
-using Content.Shared.Power.EntitySystems;
-using Content.Shared.Wires;
-using Content.Shared.Electrocution;
-using Content.Shared._Starlight.Mech;
-using Content.Shared._Starlight.Weapons.Melee.Events;
-#endregion
 
 namespace Content.Shared.Mech.EntitySystems;
 
@@ -47,164 +29,53 @@ public abstract partial class SharedMechSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private INetManager _net = default!;
-    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
-    [Dependency] private SharedMoverController _mover = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedUserInterfaceSystem _userInterface = default!;
+    [Dependency] protected VehicleSystem Vehicle = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private SharedAudioSystem _audioSystem = default!;
-    [Dependency] private SharedPointLightSystem _light = default!;
-    [Dependency] private SharedBatterySystem _battery = default!; //Starlight
 
-    /// <inheritdoc/>
-    public override void Initialize()
-    {
-        // SubscribeLocalEvent<MechComponent, MechToggleEquipmentEvent>(OnToggleEquipmentAction); Starlight - moved to SharedMechEquipmentSelectSystem
-        SubscribeLocalEvent<MechComponent, MechToggleInternalsEvent>(OnMechToggleInternals);
-        SubscribeLocalEvent<MechComponent, MechEjectPilotEvent>(OnEjectPilotEvent);
-        SubscribeLocalEvent<MechComponent, UserActivateInWorldEvent>(RelayInteractionEvent);
-        SubscribeLocalEvent<MechComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<MechComponent, DestructionEventArgs>(OnDestruction);
-        SubscribeLocalEvent<MechComponent, EntityStorageIntoContainerAttemptEvent>(OnEntityStorageDump);
-        SubscribeLocalEvent<MechComponent, GetAdditionalAccessEvent>(OnGetAdditionalAccess);
-        SubscribeLocalEvent<MechComponent, DragDropTargetEvent>(OnDragDrop);
-        SubscribeLocalEvent<MechComponent, CanDropTargetEvent>(OnCanDragDrop);
-        SubscribeLocalEvent<MechComponent, GotEmaggedEvent>(OnEmagged);
-
-        SubscribeLocalEvent<MechPilotComponent, GetMeleeOriginEvent>(OnGetMeleeOrigin); // Starlight
-        SubscribeLocalEvent<MechPilotComponent, GetMeleeWeaponEvent>(OnGetMeleeWeapon);
-        SubscribeLocalEvent<MechPilotComponent, CanAttackFromContainerEvent>(OnCanAttackFromContainer);
-        SubscribeLocalEvent<MechPilotComponent, AttackAttemptEvent>(OnAttackAttempt);
-
-        #region Starlight
-        SubscribeLocalEvent<MechPilotComponent, EntGotRemovedFromContainerMessage>(OnPilotRemoved); // Starlight-edit
-
-        SubscribeLocalEvent<MechComponent, PullAttemptEvent>(OnMechPullAttempt); // Can't pull mech if in maintenance mode or pilot exists
-        SubscribeLocalEvent<MechPilotComponent, UpdateCanMoveEvent>(OnPilotMoveEvent);
-        SubscribeLocalEvent<MechComponent, ChangeDirectionAttemptEvent>(OnMechMoveEvent);
-        SubscribeLocalEvent<MechComponent, UpdateCanMoveEvent>(OnMechMoveEvent); // Moved from server side, broken
-        SubscribeLocalEvent<MechComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
-        SubscribeLocalEvent<MechComponent, ShotAttemptedEvent>(OnShootAttempt); // Moved from server side, broken
-        SubscribeLocalEvent<MechComponent, CanRepairEvent>(OnRepairAttempt); //  Moved from server side, broken
-        SubscribeLocalEvent<MechComponent, AttemptChangePanelEvent>(OnAttemptPanelChanged);
-        SubscribeLocalEvent<MechPilotComponent, KnockDownAttemptEvent>(OnKnockdownAttempt);
-        SubscribeLocalEvent<MechPilotComponent, ElectrocutionAttemptEvent>(OnMechPilotElectrocutionAttempt);
-        #endregion
-
-        InitializeRelay();
-    }
-
-    // Starlight-start: Attempt events
-
-    private void OnPilotMoveEvent(EntityUid uid, MechPilotComponent component, UpdateCanMoveEvent args)
-    {
-        if (component.LifeStage > ComponentLifeStage.Running || !TryComp<MechComponent>(component.Mech, out var mech))
-            return;
-
-        if (mech.Broken || mech.Integrity <= 0 || mech.MaxEnergy == 0 || (int) (mech.Energy / mech.MaxEnergy * 100) == 0 || mech.MaintenanceMode) //Starlight Edit: Mechs stop moving at 0% power, rather than *fully* empty battery
-            args.Cancel();
-    }
-
-    private void OnMechMoveEvent(EntityUid uid, MechComponent component, CancellableEntityEventArgs args)
-    {
-        if (component.LifeStage > ComponentLifeStage.Running)
-            return;
-
-        if (component.Broken || component.Integrity <= 0 || component.MaxEnergy == 0 || (int) (component.Energy / component.MaxEnergy * 100) == 0 || component.MaintenanceMode) //Starlight Edit: Mechs stop moving at 0% power, rather than *fully* empty battery
-            args.Cancel();
-    }
-
-    //Starlight Start
-    private void OnRefreshMovespeed(EntityUid uid, MechComponent component, RefreshMovementSpeedModifiersEvent args)
-    {
-        var battery = component.BatterySlot.ContainedEntity;
-        if (!battery.HasValue)
-            return;
-
-        if(TryComp(battery, out MechSpeedModifierComponent? speedMod))
-            args.ModifySpeed(speedMod.WalkModifier, speedMod.SprintModifier);
-    }
-    //Starlight End
-
-    private void OnMechPullAttempt(EntityUid uid, MechComponent component, PullAttemptEvent args)
-    {
-        if (!args.Cancelled && (component.MaintenanceMode || component.PilotSlot.ContainedEntity != null))
-            args.Cancelled = true;
-    }
-
-    private void OnShootAttempt(EntityUid uid, MechComponent component, ref ShotAttemptedEvent args)
-    {
-        if (!component.MaintenanceMode)
-            return;
-
-        _popup.PopupCursor(Loc.GetString("mech-turn-off-maintenance"), args.User, PopupType.MediumCaution);
-        args.Cancel();
-    }
-
-    private void OnRepairAttempt(EntityUid uid, MechComponent component, ref CanRepairEvent args)
-    {
-        if (!component.MaintenanceMode)
-        {
-            args.Cancel();
-            args.Message = Loc.GetString("mech-maintenance-mode-required");
-        }
-    }
-
-    private void OnKnockdownAttempt(EntityUid uid, MechPilotComponent component, ref KnockDownAttemptEvent args)
-    {
-        args.Cancelled = true;
-        _popup.PopupCursor(Loc.GetString("mech-cant-lie-down"), uid, PopupType.SmallCaution);
-    }
-    // Starlight-end
-
-    private void OnToggleEquipmentAction(EntityUid uid, MechComponent component, MechToggleEquipmentEvent args)
-    {
-        if (args.Handled)
-            return;
-        args.Handled = true;
-        CycleEquipment(uid);
-    }
-
-    private void OnMechToggleInternals(EntityUid uid, MechComponent component, MechToggleInternalsEvent args)
-    {
-        if (args.Handled)
-            return;
-        args.Handled = true;
-
-        // STARLIGHT - check for gas tank presence.
-        if (component.GasTankSlot.ContainedEntity == null)
-        {
-            if(_net.IsServer && component.PilotSlot.ContainedEntity != null)
-            {
-                _popup.PopupEntity(
-                    Loc.GetString("mech-no-tank"),
-                    uid,
-                    component.PilotSlot.ContainedEntity.Value);
-            }
-            return;
-        }
-
-        component.Internals = !component.Internals;
-
-        _actions.SetToggled(component.MechToggleInternalsActionEntity, component.Internals);
-    }
-
+    [SubscribeLocalEvent]
     private void OnEjectPilotEvent(EntityUid uid, MechComponent component, MechEjectPilotEvent args)
     {
         if (args.Handled)
             return;
         args.Handled = true;
-        TryEject(uid, component);
+        Vehicle.TryExit(uid);
     }
 
+    [SubscribeLocalEvent]
+    private void OnOpenUi(EntityUid uid, MechComponent component, MechOpenUiEvent args)
+    {
+        args.Handled = true;
+        ToggleMechUi(uid, component);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnAlternativeVerb(EntityUid uid, MechComponent component, GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanAccess ||
+            !args.CanInteract ||
+            component.Broken ||
+            Vehicle.HasOperator(uid))
+            return;
+
+        var openUiVerb = new AlternativeVerb
+        {
+            Act = () => ToggleMechUi(uid, component, args.User),
+            Text = Loc.GetString("mech-ui-open-verb")
+        };
+
+        args.Verbs.Add(openUiVerb);
+    }
+
+    [SubscribeLocalEvent]
     private void RelayInteractionEvent(EntityUid uid, MechComponent component, UserActivateInWorldEvent args)
     {
-        var pilot = component.PilotSlot.ContainedEntity;
-        if (pilot == null)
+        if (!Vehicle.HasOperator(uid))
             return;
 
         // TODO why is this being blocked?
@@ -217,70 +88,31 @@ public abstract partial class SharedMechSystem : EntitySystem
         }
     }
 
+    [SubscribeLocalEvent]
     private void OnStartup(EntityUid uid, MechComponent component, ComponentStartup args)
     {
-        component.PilotSlot = _container.EnsureContainer<ContainerSlot>(uid, component.PilotSlotId);
-        component.PilotSlot.OccludesLight = false; //starlight
         component.EquipmentContainer = _container.EnsureContainer<Container>(uid, component.EquipmentContainerId);
         component.BatterySlot = _container.EnsureContainer<ContainerSlot>(uid, component.BatterySlotId);
-        component.GasTankSlot = _container.EnsureContainer<ContainerSlot>(uid, component.GasTankSlotId);
+        InitializeContainers(uid, component); // Starlight
         UpdateAppearance(uid, component);
     }
 
-    private void OnDestruction(EntityUid uid, MechComponent component, DestructionEventArgs args)
-    {
-        BreakMech(uid, component);
-    }
+    [SubscribeLocalEvent]
+    private void OnDestruction(EntityUid uid, MechComponent component, DestructionEventArgs args) => BreakMech(uid, component);
 
-    private void OnEntityStorageDump(Entity<MechComponent> entity, ref EntityStorageIntoContainerAttemptEvent args)
-    {
+    [SubscribeLocalEvent]
+    private void OnEntityStorageDump(Entity<MechComponent> entity, ref EntityStorageIntoContainerAttemptEvent args) =>
         // There's no reason we should dump into /any/ of the mech's containers.
         args.Cancelled = true;
-    }
-
-    private void OnGetAdditionalAccess(EntityUid uid, MechComponent component, ref GetAdditionalAccessEvent args)
-    {
-        var pilot = component.PilotSlot.ContainedEntity;
-        if (pilot == null)
-            return;
-
-        args.Entities.Add(pilot.Value);
-    }
 
     private void SetupUser(EntityUid mech, EntityUid pilot, MechComponent? component = null)
     {
         if (!Resolve(mech, ref component))
             return;
 
-        var rider = EnsureComp<MechPilotComponent>(pilot);
-
         // Warning: this bypasses most normal interaction blocking components on the user, like drone laws and the like.
         var irelay = EnsureComp<InteractionRelayComponent>(pilot);
-
-        _mover.SetRelay(pilot, mech);
         _interaction.SetRelay(pilot, mech, irelay);
-        rider.Mech = mech;
-        Dirty(pilot, rider);
-
-        if ((component.Integrity / component.MaxIntegrity) * 100 >= 50)
-            if (component.FirstStart)
-            {
-                _audioSystem.PlayPredicted(component.NominalLongSound, mech, mech); //Starlight Edit: Play Predicted
-                component.FirstStart = false;
-                Dirty(mech, component);
-            }
-            else
-                _audioSystem.PlayPredicted(component.NominalSound, mech, mech); //Starlight Edit: Play Predicted
-        else
-            _audioSystem.PlayPredicted(component.CriticalDamageSound, mech, mech); //Starlight Edit: Play Predicted
-
-        UpdateActions(mech, pilot, component);
-    }
-
-    private void UpdateActions(EntityUid mech, EntityUid pilot, MechComponent? component = null)
-    {
-        if (!Resolve(mech, ref component))
-            return;
 
         if (_net.IsClient)
             return;
@@ -288,19 +120,11 @@ public abstract partial class SharedMechSystem : EntitySystem
         _actions.AddAction(pilot, ref component.MechCycleActionEntity, component.MechCycleAction, mech);
         _actions.AddAction(pilot, ref component.MechUiActionEntity, component.MechUiAction, mech);
         _actions.AddAction(pilot, ref component.MechEjectActionEntity, component.MechEjectAction, mech);
-        if (component.Airtight)
-            _actions.AddAction(pilot, ref component.MechToggleInternalsActionEntity, component.MechToggleInternalsAction, mech);
-        if (_light.TryGetLight(mech, out var light))
-            _actions.AddAction(pilot, ref component.MechToggleLightActionEntity, component.MechToggleLightAction, mech);
     }
 
     private void RemoveUser(EntityUid mech, EntityUid pilot)
     {
-        if (!RemComp<MechPilotComponent>(pilot))
-            return;
-        RemComp<RelayInputMoverComponent>(pilot);
         RemComp<InteractionRelayComponent>(pilot);
-
         _actions.RemoveProvidedActions(pilot, mech);
     }
 
@@ -314,7 +138,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
-        TryEject(uid, component);
+        Vehicle.TryExit(uid);
         var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
         foreach (var ent in equipment)
         {
@@ -362,10 +186,10 @@ public abstract partial class SharedMechSystem : EntitySystem
     /// <summary>
     /// Inserts an equipment item into the mech.
     /// </summary>
-    /// <param name="uid"> Mech </param>
-    /// <param name="toInsert"> Equipment what inserted </param>
-    /// <param name="component"> Mech Component </param>
-    /// <param name="equipmentComponent"> Equipment Component </param>
+    /// <param name="uid"></param>
+    /// <param name="toInsert"></param>
+    /// <param name="component"></param>
+    /// <param name="equipmentComponent"></param>
     public void InsertEquipment(EntityUid uid, EntityUid toInsert, MechComponent? component = null,
         MechEquipmentComponent? equipmentComponent = null)
     {
@@ -381,25 +205,14 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (_whitelistSystem.IsWhitelistFail(component.EquipmentWhitelist, toInsert))
             return;
 
-        // Starlight start
-        var toInsertMeta = MetaData(toInsert);
-
-        var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
-        foreach (var ent in equipment)
-        {
-            var entMeta = MetaData(ent);
-            if (entMeta.EntityPrototype == toInsertMeta.EntityPrototype)
-                return;
-        }
-        // Starlight end
+        if (!CanInstallEquipment(component, toInsert)) // Starlight
+            return;
 
         equipmentComponent.EquipmentOwner = uid;
         _container.Insert(toInsert, component.EquipmentContainer);
         var ev = new MechEquipmentInsertedEvent(uid);
         RaiseLocalEvent(toInsert, ref ev);
-        // Starlight-edit: UpdateUserInterface moved on server side
-        if (component.PilotSlot.ContainedEntity != null)
-            UpdateActions(uid, component.PilotSlot.ContainedEntity.Value, component);
+        UpdateUserInterface(uid, component);
     }
 
     /// <summary>
@@ -410,7 +223,7 @@ public abstract partial class SharedMechSystem : EntitySystem
     /// <param name="component"></param>
     /// <param name="equipmentComponent"></param>
     /// <param name="forced">
-    ///     Whether or not the removal can be cancelled, and if non-mech equipment should be ejected.
+    /// Whether or not the removal can be cancelled, and if non-mech equipment should be ejected.
     /// </param>
     public void RemoveEquipment(EntityUid uid, EntityUid toRemove, MechComponent? component = null,
         MechEquipmentComponent? equipmentComponent = null, bool forced = false)
@@ -438,11 +251,10 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (component.CurrentSelectedEquipment == toRemove)
             CycleEquipment(uid, component);
 
-        if (forced && equipmentComponent != null)
-            equipmentComponent.EquipmentOwner = null;
+        equipmentComponent?.EquipmentOwner = null;
 
         _container.Remove(toRemove, component.EquipmentContainer);
-        // Starlight-edit: UpdateUserInterface moved on server side.
+        UpdateUserInterface(uid, component);
     }
 
     /// <summary>
@@ -461,22 +273,8 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (component.Energy + delta < 0)
             return false;
 
-        //Starlight Start - play sounds dependent on *battery*
-        if (component.BatterySlot.ContainedEntity != null && TryComp(component.BatterySlot.ContainedEntity, out BatteryComponent? battery))
-        {
-            if ((int)(_battery.GetCharge((component.BatterySlot.ContainedEntity.Value, battery)) / battery.MaxCharge * 100) <= 33 //Starlight Edit: Earlier low power warning, and we run it off of the % power readout
-                && component.PlayPowerSound
-                && component.PilotSlot.ContainedEntity != null)
-            {
-                _audioSystem.PlayPredicted(component.LowPowerSound, uid, component.PilotSlot.ContainedEntity.Value); //Starlight: Play Predicted
-
-                component.PlayPowerSound = false;
-            }
-            else if ((int)(_battery.GetCharge((component.BatterySlot.ContainedEntity.Value, battery)) / battery.MaxCharge * 100) > 33) //Starlight Edit: Earlier low power warning, and we run it off of the % power readout
-                component.PlayPowerSound = true;
-        }
-        //Starlight End
         component.Energy = FixedPoint2.Clamp(component.Energy + delta, 0, component.MaxEnergy);
+        UpdatePowerWarning(uid, component); // Starlight
         Dirty(uid, component);
         UpdateUserInterface(uid, component);
         return true;
@@ -510,31 +308,6 @@ public abstract partial class SharedMechSystem : EntitySystem
     }
 
     /// <summary>
-    /// Checks if the pilot is present
-    /// </summary>
-    /// <param name="component"></param>
-    /// <returns>Whether or not the pilot is present</returns>
-    public bool IsEmpty(MechComponent component)
-    {
-        return component.PilotSlot.ContainedEntity == null;
-    }
-
-    /// <summary>
-    /// Checks if an entity can be inserted into the mech.
-    /// </summary>
-    /// <param name="uid"></param>
-    /// <param name="toInsert"></param>
-    /// <param name="component"></param>
-    /// <returns></returns>
-    public bool CanInsert(EntityUid uid, EntityUid toInsert, MechComponent? component = null)
-    {
-        if (!Resolve(uid, ref component))
-            return false;
-
-        return IsEmpty(component) && _actionBlocker.CanMove(toInsert);
-    }
-
-    /// <summary>
     /// Updates the user interface
     /// </summary>
     /// <remarks>
@@ -544,210 +317,86 @@ public abstract partial class SharedMechSystem : EntitySystem
     {
     }
 
-    /// <summary>
-    /// Attempts to insert a pilot into the mech.
-    /// </summary>
-    /// <param name="uid"></param>
-    /// <param name="toInsert"></param>
-    /// <param name="component"></param>
-    /// <returns>Whether or not the entity was inserted</returns>
-    public bool TryInsert(EntityUid uid, EntityUid? toInsert, MechComponent? component = null)
+    private void ToggleMechUi(EntityUid uid, MechComponent? component = null, EntityUid? user = null)
     {
         if (!Resolve(uid, ref component))
-            return false;
+            return;
 
-        if (toInsert == null || component.PilotSlot.ContainedEntity == toInsert)
-            return false;
+        user ??= Vehicle.GetOperatorOrNull(uid);
+        if (user == null)
+            return;
 
-        if (!CanInsert(uid, toInsert.Value, component))
-            return false;
-
-        SetupUser(uid, toInsert.Value);
-
-        // Starlight Begin - Pilot Events
-        var ev = new BeforePilotInsertEvent(uid, toInsert.Value);
-        RaiseLocalEvent(uid, ref ev);
-        var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
-        foreach (var ent in equipment)
-        {
-            RaiseLocalEvent(ent, ref ev);
-        }
-
-        RaiseLocalEvent(toInsert.Value, ref ev);
-        // Starlight End
-
-        _container.Insert(toInsert.Value, component.PilotSlot);
-        UpdateAppearance(uid, component);
-        return true;
+        _userInterface.TryToggleUi(uid, MechUiKey.Key, user.Value);
+        UpdateUserInterface(uid, component);
     }
 
-    /// <summary>
-    /// Attempts to eject the current pilot from the mech
-    /// </summary>
-    /// <param name="uid"> mech </param>
-    /// <param name="component"> mech component </param>
-    /// <returns>Whether or not the pilot was ejected.</returns>
-    public bool TryEject(EntityUid uid, MechComponent? component = null)
-    {
-        if (!Resolve(uid, ref component))
-            return false;
-
-        if (component.PilotSlot.ContainedEntity == null)
-            return false;
-
-        if (HasComp<NoRotateOnMoveComponent>(uid))
-            RemComp<NoRotateOnMoveComponent>(uid);
-
-        var pilot = component.PilotSlot.ContainedEntity.Value;
-
-        // Starlight Begin - Pilot Events
-        var ev = new BeforePilotEjectEvent(uid, pilot);
-        RaiseLocalEvent(uid, ref ev);
-        var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
-        foreach (var ent in equipment)
-        {
-            RaiseLocalEvent(ent, ref ev);
-        }
-        RaiseLocalEvent(pilot, ref ev);
-        // Starlight End
-
-        _container.RemoveEntity(uid, pilot);
-        return true;
-    }
-
-    private void OnPilotRemoved(EntityUid uid, MechPilotComponent component, EntGotRemovedFromContainerMessage args)
-    {
-        RemoveUser(component.Mech, uid);
-
-        if (TryComp<MechComponent>(component.Mech, out var mechComp))
-            UpdateAppearance(component.Mech, mechComp);
-    }
-
-    #region Starlight
-    private void OnGetMeleeOrigin(EntityUid uid, MechPilotComponent component, GetMeleeOriginEvent args)
+    [SubscribeLocalEvent]
+    private void OnGetMeleeWeapon(Entity<VehicleOperatorComponent> ent, ref GetMeleeWeaponEvent args)
     {
         if (args.Handled)
             return;
 
-        if (!HasComp<MechComponent>(component.Mech))
+        if (ent.Comp.Vehicle is not { } vehicle)
             return;
 
-        args.OriginEntity = component.Mech;
-        args.Handled = true;
-    }
-    #endregion
-
-    private void OnGetMeleeWeapon(EntityUid uid, MechPilotComponent component, GetMeleeWeaponEvent args)
-    {
-        if (args.Handled)
+        if (!TryComp<MechComponent>(vehicle, out var mech))
             return;
 
-        if (!TryComp<MechComponent>(component.Mech, out var mech))
-            return;
-
-        var weapon = mech.CurrentSelectedEquipment ?? component.Mech;
+        var weapon = mech.CurrentSelectedEquipment ?? vehicle;
         args.Weapon = weapon;
         args.Handled = true;
     }
 
-    private void OnCanAttackFromContainer(EntityUid uid, MechPilotComponent component, CanAttackFromContainerEvent args)
-    {
-        args.CanAttack = true;
-    }
-
-    private void OnAttackAttempt(EntityUid uid, MechPilotComponent component, AttackAttemptEvent args)
-    {
-        if (args.Target == component.Mech)
-            args.Cancel();
-    }
-
-    public void UpdateAppearance(EntityUid uid, MechComponent? component = null,
+    public void UpdateAppearance(EntityUid uid, MechComponent? component = null, // Starlight: used by mech modules.
         AppearanceComponent? appearance = null)
     {
         if (!Resolve(uid, ref component, ref appearance, false))
             return;
 
-        _appearance.SetData(uid, MechVisuals.Open, IsEmpty(component), appearance);
+        _appearance.SetData(uid, MechVisuals.Open, !Vehicle.HasOperator(uid), appearance);
         _appearance.SetData(uid, MechVisuals.Broken, component.Broken, appearance);
-        _appearance.SetData(uid, MechVisuals.Light, component.Light, appearance);
+        _appearance.SetData(uid, MechVisuals.Light, component.Light, appearance); // Starlight
     }
 
-    private void OnDragDrop(EntityUid uid, MechComponent component, ref DragDropTargetEvent args)
+    [SubscribeLocalEvent]
+    private void OnMechEntryAttempt(Entity<MechComponent> ent, ref ContainerVehicleEntryAttemptEvent args)
     {
-        if (args.Handled)
-            return;
+        if (ent.Comp.Broken)
+            args.Cancelled = true;
+    }
 
-        args.Handled = true;
+    [SubscribeLocalEvent]
+    private void OnMechExitAttempt(Entity<MechComponent> ent, ref ContainerVehicleExitAttemptEvent args)
+    {
+        if (ent.Comp.Broken)
+            args.Cancelled = true;
+    }
 
-        var doAfterEventArgs = new DoAfterArgs(EntityManager, args.Dragged, component.EntryDelay, new MechEntryEvent(), uid, target: uid)
+    [SubscribeLocalEvent]
+    private void OnOperatorSet(Entity<MechComponent> ent, ref VehicleOperatorSetEvent args)
+    {
+        if (args.OldOperator is { } oldOperator)
         {
-            BreakOnMove = true,
-        };
+            RemoveUser(ent, oldOperator);
+        }
 
-        _doAfter.TryStartDoAfter(doAfterEventArgs);
+        if (args.NewOperator is { } newOperator)
+        {
+            SetupUser(ent, newOperator, ent);
+        }
+
+        OperatorChanged(ent, ref args); // Starlight
+        UpdateAppearance(ent);
+        UpdateUserInterface(ent, ent);
+
+        if (args.NewOperator is null && args.OldOperator is not null)
+            _userInterface.CloseUi(ent.Owner, MechUiKey.Key);
     }
-
-    private void OnCanDragDrop(EntityUid uid, MechComponent component, ref CanDropTargetEvent args)
-    {
-        args.Handled = true;
-
-        args.CanDrop |= !component.Broken && CanInsert(uid, args.Dragged, component);
-    }
-
-    private void OnEmagged(EntityUid uid, MechComponent component, ref GotEmaggedEvent args)
-    {
-        if (!component.BreakOnEmag)
-            return;
-        if (component.EquipmentWhitelist == null) // Starlight
-            return;
-        args.Handled = true;
-        component.EquipmentWhitelist = null;
-        Dirty(uid, component);
-    }
-
-    #region Starlight
-    // Blocks any modification of the wires panel, except by the mech itself
-    private void OnAttemptPanelChanged(EntityUid uid, MechComponent component, ref AttemptChangePanelEvent args)
-    {
-        args.Cancelled = args.User != uid;
-    }
-
-    private void OnMechPilotElectrocutionAttempt(EntityUid uid, MechPilotComponent comp, ElectrocutionAttemptEvent args)
-        => args.SiemensCoefficient *= 0f; // Fully insulate the pilot
-    #endregion
 }
 
 /// <summary>
-///     Event raised when the battery is successfully removed from the mech,
-///     on both success and failure
+/// Event raised when the battery is successfully removed from the mech,
+/// on both success and failure
 /// </summary>
 [Serializable, NetSerializable]
-public sealed partial class RemoveBatteryEvent : SimpleDoAfterEvent
-{
-}
-
-/// <summary>
-///     Event raised when the gas tank is successfully removed from the mech,
-///     on both success and failure
-/// </summary>
-[Serializable, NetSerializable]
-public sealed partial class RemoveGasTankEvent : SimpleDoAfterEvent
-{
-}
-
-/// <summary>
-///     Event raised when a person removes someone from a mech,
-///     on both success and failure
-/// </summary>
-[Serializable, NetSerializable]
-public sealed partial class MechExitEvent : SimpleDoAfterEvent
-{
-}
-
-/// <summary>
-///     Event raised when a person enters a mech, on both success and failure
-/// </summary>
-[Serializable, NetSerializable]
-public sealed partial class MechEntryEvent : SimpleDoAfterEvent
-{
-}
+public sealed partial class RemoveBatteryEvent : SimpleDoAfterEvent;

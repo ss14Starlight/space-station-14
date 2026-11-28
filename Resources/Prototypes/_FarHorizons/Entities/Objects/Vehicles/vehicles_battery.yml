@@ -1,0 +1,345 @@
+- type: entity
+  id: VehicleBatteryBuckleBase
+  abstract: true
+  save: false
+  parent: BaseVehicleRideableDamageable
+  components:
+    - type: Strap
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 100
+          restitution: 0.0
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+    - type: ContainerContainer
+      containers:
+        key_slot: !type:ContainerSlot
+        cell_slot: !type:ContainerSlot
+        vehicle_mods_container: !type:Container
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+      fitsInCharger: false
+    - type: PowerCellDraw
+      enabled: false
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Effects/Footsteps/borgwalk4.ogg
+        params:
+          pitch: 1.15
+          variation: 0.05
+    - type: Vehicle
+      requireIgnition: true
+      baseState: vehicle
+      brokenState: vehicle_broken
+      startupTime: 2
+      handsNeeded: 1
+      riderWhitelist:
+        tags:
+          - CanPilot
+      disallowWielding: true
+      allowGunKnockback: true
+      soundHit:
+        collection: MetalThud
+    - type: DirectionalOverride
+      offsets:
+        North: "0, -0.12"
+        South: "0, -0.12"
+        East: "0, -0.2"
+        West: "0, -0.2"
+      drawDepths:
+        North: BelowMobs
+        South: OverMobs
+        East: OverMobs
+        West: OverMobs
+    - type: VehicleMods
+      vehicleType: Electric
+      equipmentSlots: [tires, engine, armor, headlight]
+
+- type: entity
+  id: VehicleScooterElectric
+  parent: VehicleBatteryBuckleBase
+  name: electric scooter
+  components:
+    - type: Sprite
+      drawdepth: OverMobs
+      sprite: _FarHorizons/Objects/Vehicles/electric_scooter.rsi
+      layers:
+      - state: vehicle
+        map: ["enum.VehicleVisualLayers.Base"]
+      noRot: true
+    - type: ItemSlots
+      slots:
+        key_slot:
+          name: Keys
+          whitelist:
+            requireAll: true
+            tags:
+            - VehicleKey
+            - ScooterElectricKeys
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          disableEject: true
+          swap: true
+    - type: VehicleMods
+      vehicleType: Electric
+      equipmentSlots: [tires, engine, armor, headlight, lightbar]
+    - type: ItemMapper
+      mapLayers:
+        lightarmor:
+          whitelist:
+            tags:
+              - VehicleLightArmor
+
+- type: entity
+  id: VehicleScooterElectricFilled
+  parent: VehicleScooterElectric
+  suffix: Filled
+  components:
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeyScooterElectric
+    - type: VehicleMods
+      startingEquipment:
+        - BasicTires
+        - ElectricEngine
+        - BasicHeadlight
+
+- type: entity
+  id: VehicleScooterElectricRestrictedBase
+  parent: VehicleScooterElectric
+  abstract: true
+  name: electric scooter
+  description: The future of transportation. Popularized by St. James, the patron saint of internet forum moderators.
+  components:
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: Keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - ScooterElectricSecurityKeys
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        disableEject: true
+        swap: true
+  - type: Sprite
+    drawdepth: OverMobs
+    sprite: _FarHorizons/Objects/Vehicles/electric_scooter_command.rsi
+    layers:
+    - state: vehicle
+      map: ["enum.VehicleVisualLayers.Base"]
+    noRot: true
+  - type: Tag
+    tags:
+    - SecurityElectricScooter
+    - DoorBumpOpener
+    - FootstepSound
+
+- type: entity
+  id: VehicleScooterElectricCommand
+  parent: [VehicleScooterElectricRestrictedBase, BaseCommandContraband]
+  suffix: Command
+
+- type: entity
+  id: VehicleScooterElectricCommandFilled
+  parent: VehicleScooterElectricCommand
+  suffix: Command, Filled
+  components:
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeyScooterElectricCommand
+    - type: VehicleMods
+      startingEquipment:
+        - BasicTires
+        - ElectricEngine
+        - BasicArmorKit
+        - BasicHeadlight
+        - SecSiren
+
+- type: entity
+  id: VehicleScooterElectricCommandArmoredLight
+  parent: VehicleScooterElectricCommand
+  suffix: Command, Filled, Armored
+  components:
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeyScooterElectricCommand
+    - type: VehicleMods
+      startingEquipment:
+        - BasicTires
+        - ElectricEngine
+        - LightArmorKit
+        - BasicHeadlight
+        - SecSiren
+
+- type: entity
+  id: VehicleScooterElectricTurbo
+  parent: VehicleScooterElectricCommand
+  name: turbo electric scooter
+  description: An upgraded electric scooter, better in every single aspect.
+  suffix: Command
+  components:
+    - type: Sprite
+      drawdepth: OverMobs
+      sprite: _FarHorizons/Objects/Vehicles/electric_scooter_turbo.rsi
+      layers:
+      - state: vehicle
+        map: ["enum.VehicleVisualLayers.Base"]
+      noRot: true
+
+- type: entity
+  id: VehicleScooterElectricTurboFilled
+  parent: VehicleScooterElectricTurbo
+  suffix: Command, Filled
+  components:
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeyScooterElectricCommand
+    - type: VehicleMods
+      startingEquipment:
+        - BasicTires
+        - ElectricTurboEngine
+        - BasicArmorKit
+        - HeadlightLED
+        - SecSiren
+
+- type: entity
+  id: VehicleScooterElectricSecurity
+  parent: [VehicleScooterElectricRestrictedBase, BaseSecurityContraband]
+  suffix: Security
+  components:
+    - type: Sprite
+      drawdepth: OverMobs
+      sprite: _FarHorizons/Objects/Vehicles/electric_scooter_security.rsi
+      layers:
+      - state: vehicle
+        map: ["enum.VehicleVisualLayers.Base"]
+      noRot: true
+
+- type: entity
+  id: VehicleScooterElectricSecurityFilled
+  parent: VehicleScooterElectricSecurity
+  suffix: Security, Filled
+  components:
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeyScooterElectricSecurity
+    - type: VehicleMods
+      startingEquipment:
+        - BasicTires
+        - ElectricEngine
+        - BasicArmorKit
+        - BasicHeadlight
+        - SecSiren
+
+- type: entity
+  id: VehicleScooterElectricSyndicate
+  parent: [VehicleScooterElectric, BaseSyndicateContraband]
+  suffix: Syndicate
+  name: electric scooter
+  description: An electric scooter painted red with the Syndicate's symbol stamped on it.
+  components:
+    - type: Sprite
+      drawdepth: OverMobs
+      sprite: _FarHorizons/Objects/Vehicles/electric_scooter_syndicate.rsi
+      layers:
+      - state: vehicle
+        map: ["enum.VehicleVisualLayers.Base"]
+      noRot: true
+    - type: ItemSlots
+      slots:
+        key_slot:
+          name: Keys
+          whitelist:
+            requireAll: true
+            tags:
+            - VehicleKey
+            - ScooterElectricSyndicateKeys
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          disableEject: true
+          swap: true
+
+- type: entity
+  id: VehicleScooterElectricSyndicateFilled
+  parent: VehicleScooterElectricSyndicate
+  suffix: Syndicate, Filled
+  components:
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeyElectronicSyndicate
+    - type: VehicleMods
+      startingEquipment:
+        - BasicTires
+        - ElectricEngine
+        - BasicArmorKit
+        - HeadlightLED
+
+- type: entity
+  id: VehicleScooterElectricSyndicateArmoredLight
+  parent: VehicleScooterElectricSyndicate
+  suffix: Syndicate, Filled, Armored
+  components:
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeyElectronicSyndicate
+    - type: VehicleMods
+      startingEquipment:
+        - BasicTires
+        - ElectricEngine
+        - LightArmorKit
+        - HeadlightLED
+
+- type: entity
+  id: VehicleJanicartFilled
+  parent: VehicleJanicart
+  suffix: Filled
+  components:
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: Water
+          Quantity: 120
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeyJanicart
+    - type: VehicleMods
+      vehicleType: Electric
+      startingEquipment:
+        - BasicTires
+        - ElectricEngine
+        - BasicHeadlight
+
+# if there were any lmao

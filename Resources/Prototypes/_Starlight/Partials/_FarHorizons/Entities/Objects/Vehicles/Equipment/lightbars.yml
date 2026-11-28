@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: SecSiren
+  components:
+  - type: !Remove UnpoweredFlashlight
+  - type: Sprite
+    sprite: _Starlight/Objects/Vehicles/siren.rsi
+    state: icon

@@ -1,0 +1,29 @@
+- type: cargoProduct
+  id: SecurityScooterElectric
+  icon:
+    sprite: _FarHorizons/Objects/Vehicles/electric_scooter_security.rsi
+    state: icon
+  product: CrateSecurityScooterElectric
+  cost: 3000
+  category: cargoproduct-category-name-vehicles
+  group: market
+
+- type: cargoProduct
+  id: CommandScooterElectricTurbo
+  icon:
+    sprite: _FarHorizons/Objects/Vehicles/electric_scooter_turbo.rsi
+    state: icon
+  product: CrateCommandScooterElectricTurbo
+  cost: 8500 #Very strong tool in the right hands
+  category: cargoproduct-category-name-vehicles
+  group: market
+
+- type: cargoProduct
+  id: SecurityNTV
+  icon:
+    sprite: _FarHorizons/Objects/Vehicles/sectv.rsi
+    state: icon
+  product: CrateSecurityNTV
+  cost: 7000
+  category: cargoproduct-category-name-vehicles
+  group: market

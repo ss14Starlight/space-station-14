@@ -1,0 +1,12 @@
+- type: !PartialOnly trait
+  id: WheelchairBound
+  blacklist:
+    components:
+    - BorgChassis
+  effects: !Clear
+  - !type:AddCompsEffect
+    components:
+    - type: BuckleOnTraitsApplied
+      prototype: VehicleWheelchair
+    - type: LegsParalyzed
+      allowCrawling: true

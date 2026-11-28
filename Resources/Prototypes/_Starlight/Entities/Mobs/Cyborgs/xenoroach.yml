@@ -23,6 +23,8 @@
   # Small mob physics - passes under doors and hides under tables
   - type: Physics
     bodyType: KinematicController
+  - type: FootprintOwner
+    printState: Tire
   - type: Fixtures
     fixtures:
       fix1:

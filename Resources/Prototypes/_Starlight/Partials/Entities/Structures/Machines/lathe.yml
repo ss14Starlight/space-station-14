@@ -75,6 +75,7 @@
     - ScienceModularHudModules
     - ServiceModularHudModules
     - SecurityModularHudModules
+    - FarHorizonsSecurityVehiclePartsDynamic
     - CommandModularHudModules
     - MedicalModularHudModules
     emagStaticPacks:
@@ -126,6 +127,8 @@
     - StarlightMechEquipment
     - StarlightSecurityMechs
     - StarlightMechParts
+    - FarHorizonsVehicleBasicPartsDynamic # Far Horizons
+    - FarHorizonsVehicleBasicAdvancedDynamic # Far Horizons
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSyndicateModules
@@ -176,6 +179,7 @@
     - !Remove SecurityWeapons
     - SecurityModularHudFrames
     - SecurityModularHudModules
+    - FarHorizonsSecurityVehiclePartsDynamic # Far Horizons
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSyndicateModulesSecfab

@@ -121,7 +121,7 @@ public sealed partial class GunSystem
 
     private MapCoordinates MuzzleFrom(MapCoordinates from, Vector2 direction, EntityUid? user)
     {
-        if (!HasComp<MechPilotComponent>(user))
+        if (!TryGetMechShooter(user, out _))
             return from;
 
         return from.Offset(direction.Normalized() * MechMuzzleOffset);

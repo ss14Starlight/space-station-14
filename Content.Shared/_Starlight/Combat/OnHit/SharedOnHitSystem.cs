@@ -1,3 +1,4 @@
+using Content.Shared.Vehicle.Systems;
 using System.Linq;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
@@ -16,6 +17,7 @@ namespace Content.Shared._Starlight.Combat.OnHit;
 
 public abstract partial class SharedOnHitSystem : EntitySystem
 {
+    [Dependency] private VehicleSystem _rideVehicles = default!; // Starlight
     [Dependency] protected INetManager _net = default!;
     [Dependency] protected SharedDoAfterSystem _doAfter = default!;
     [Dependency] protected SharedAudioSystem _audio = default!;
@@ -72,8 +74,9 @@ public abstract partial class SharedOnHitSystem : EntitySystem
         if (ev.Cancelled)
             return;
 
-        foreach (var target in args.HitEntities)
+        foreach (var hit in args.HitEntities)
         {
+            var target = _rideVehicles.GetExposedOperatorOrSelf(hit); // Starlight
             // Check for target-specific immunity (like hardsuit immunity)
             var targetAttempt = new InjectOnHitAttemptEvent(false, args.User, ent.Owner);
             RaiseLocalEvent(target, ref targetAttempt, true);

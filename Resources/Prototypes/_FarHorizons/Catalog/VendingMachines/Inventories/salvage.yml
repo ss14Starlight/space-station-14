@@ -1,0 +1,13 @@
+#Equipment
+
+- type: listing
+  id: VendorVehicleMotorcycle
+  productEntity: VehicleMotorcycleFilled
+  cost:
+    SalvageTicket: 800
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:BuyerAccessCondition

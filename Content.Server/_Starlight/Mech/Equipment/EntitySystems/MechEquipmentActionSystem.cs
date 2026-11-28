@@ -1,3 +1,4 @@
+using Content.Shared.Vehicle.Systems;
 using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
 using Content.Shared._Starlight.Mech.Equipment.Components;
@@ -8,8 +9,9 @@ namespace Content.Server._Starlight.Mech.Equipment.EntitySystems;
 /// <summary>
 /// System for handling of actions provided by MechEquipmentActionComponent
 /// </summary>
-public sealed class MechEquipmentActionSystem : SharedMechEquipmentActionSystem
+public sealed partial class MechEquipmentActionSystem : SharedMechEquipmentActionSystem
 {
+    [Dependency] private VehicleSystem _vehicle = default!;
 
     public override void Initialize()
     {
@@ -26,11 +28,10 @@ public sealed class MechEquipmentActionSystem : SharedMechEquipmentActionSystem
     /// <param name="args"></param>
     private void OnEquipmentInserted(EntityUid ent, MechEquipmentActionComponent comp, ref MechEquipmentInsertedEvent args)
     {
-        if (!TryComp<MechComponent>(args.Mech, out var mechComp)
-            || !mechComp.PilotSlot.ContainedEntity.HasValue)
+        if (_vehicle.GetOperatorOrNull(args.Mech) is not { } pilot)
             return;
 
-        GrantActions(ent, comp, mechComp.PilotSlot.ContainedEntity.Value);
+        GrantActions(ent, comp, pilot);
     }
 
     /// <summary>
@@ -41,10 +42,9 @@ public sealed class MechEquipmentActionSystem : SharedMechEquipmentActionSystem
     /// <param name="args"></param>
     private void OnEquipmentRemoved(EntityUid ent, MechEquipmentActionComponent comp, ref MechEquipmentRemovedEvent args)
     {
-        if (!TryComp<MechComponent>(args.Mech, out var mechComp)
-            || !mechComp.PilotSlot.ContainedEntity.HasValue)
+        if (_vehicle.GetOperatorOrNull(args.Mech) is not { } pilot)
             return;
 
-        RemoveActions(ent, comp, mechComp.PilotSlot.ContainedEntity.Value);
+        RemoveActions(ent, comp, pilot);
     }
 }

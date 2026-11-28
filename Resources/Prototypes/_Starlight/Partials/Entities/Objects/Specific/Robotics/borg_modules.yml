@@ -196,3 +196,11 @@
   - type: ItemBorgModule
     hands:
     - item: LicoxideHypo # It's not that good. They can have it.
+
+# Far Horizons
+- type: !PartialOnly entity
+  id: BorgModuleAdvancedCleaning
+  components:
+  - type: ItemBorgModule
+    hands:
+    - item: FloorCleaner

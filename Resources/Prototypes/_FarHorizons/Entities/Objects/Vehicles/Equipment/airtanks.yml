@@ -1,0 +1,39 @@
+- type: entity
+  id: VehicleAirTank
+  parent: VehicleEquipmentBase
+  name: vehicle air tank
+  description: A special air canister capable of holding a large amount of air.
+  components:
+    - type: Item
+      storedRotation: 0
+    - type: Sprite
+      sprite: Objects/Specific/Mech/mecha_equipment.rsi
+      state: mecha_air_tank
+    - type: ActivatableUI
+      key: enum.SharedGasTankUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.SharedGasTankUiKey.Key:
+          type: GasTankBoundUserInterface
+    - type: GasTank
+      outputPressure: 21.3
+      air:
+        volume: 3000
+        temperature: 293.15
+      tankLowPressure: 30.0
+    - type: VehicleEquipment
+      slot: [AIRTANK]
+      allowedVehicles: Spaceship
+
+- type: entity
+  id: VehicleAirTankFilled
+  parent: VehicleAirTank
+  suffix: Filled
+  components:
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 3000
+      moles:
+        Oxygen: 50.051379050
+      temperature: 293.15

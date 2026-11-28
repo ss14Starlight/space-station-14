@@ -1,4 +1,4 @@
-using Content.Shared.Mech;
+using Content.Shared.Vehicle.Systems;
 using Content.Shared.Mech.Components;
 using Content.Shared._Starlight.Mech.Components;
 using Content.Shared.Actions;
@@ -15,6 +15,7 @@ namespace Content.Shared._Starlight.Mech.EntitySystems;
 public sealed partial class SharedMechThrustersSystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private VehicleSystem _vehicle = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
@@ -64,7 +65,7 @@ public sealed partial class SharedMechThrustersSystem : EntitySystem
         if (xform.GridUid.HasValue && HasComp<GravityComponent>(xform.GridUid))
         {
             var msg = Loc.GetString("mech-thrusters-on-grid");
-            var pilot = mechComp.PilotSlot.ContainedEntity;
+            var pilot = _vehicle.GetOperatorOrNull(uid);
             _popup.PopupClient(msg, uid, pilot, PopupType.SmallCaution);
             return;
         }
@@ -79,15 +80,12 @@ public sealed partial class SharedMechThrustersSystem : EntitySystem
     /// </summary>
     private void SetThrustersEnabled(EntityUid uid, MechThrustersComponent comp, bool enabled, MechComponent? mechComp = null)
     {
-        // PilotSlot is not marked as nullable, but it totally can be bc EnsureContainer is called
-        // on ComponentStartup and not ComponentInit
-        // Usage of pattern sidesteps any warnings thankfully
         if (Resolve(uid, ref mechComp, false)
-            && mechComp.PilotSlot is { ContainedEntity: not null }
+            && _vehicle.GetOperatorOrNull(uid) is { } pilot
             && comp.ThrustersEnabled != enabled)
         {
             var msg = enabled ? "mech-thrusters-enabled" : "mech-thrusters-disabled";
-            _popup.PopupClient(Loc.GetString(msg), uid, mechComp.PilotSlot.ContainedEntity.Value);
+            _popup.PopupClient(Loc.GetString(msg), uid, pilot);
         }
 
         comp.ThrustersEnabled = enabled;
@@ -116,7 +114,7 @@ public sealed partial class SharedMechThrustersSystem : EntitySystem
 
     private void OnChargeChanged(EntityUid uid, MechThrustersComponent comp, ref ChargeChangedEvent args)
     {
-        if ((int)(args.CurrentCharge / args.MaxCharge * 100) == 0)
+        if (args.MaxCharge <= 0 || args.CurrentCharge / args.MaxCharge < 0.01f)
             SetThrustersEnabled(uid, comp, false);
     }
 }

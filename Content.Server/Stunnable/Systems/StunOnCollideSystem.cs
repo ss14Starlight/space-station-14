@@ -6,12 +6,14 @@ using JetBrains.Annotations;
 using Content.Shared.Throwing;
 using Robust.Shared.Physics.Events;
 using Content.Shared.Projectiles;
+using Content.Shared.Vehicle.Systems;
 
 namespace Content.Server.Stunnable.Systems;
 
 [UsedImplicitly]
 internal sealed partial class StunOnCollideSystem : EntitySystem
 {
+    [Dependency] private VehicleSystem _rideVehicles = default!; // Starlight
     [Dependency] private IAdminLogManager _adminLogger = default!; // Starlight- adding admin logging
     [Dependency] private StunSystem _stunSystem = default!;
     [Dependency] private MovementModStatusSystem _movementMod = default!;
@@ -26,6 +28,7 @@ internal sealed partial class StunOnCollideSystem : EntitySystem
 
     private void TryDoCollideStun(Entity<StunOnCollideComponent> ent, EntityUid target)
     {
+        target = _rideVehicles.GetExposedOperatorOrSelf(target); // Starlight
         var knockedDown = _stunSystem.TryKnockdown(target, ent.Comp.KnockdownAmount, ent.Comp.Refresh, ent.Comp.AutoStand, ent.Comp.Drop, ent.Comp.Forced); // Starlight start - adding admin logging for taser knockdown effect
 
         if (knockedDown)

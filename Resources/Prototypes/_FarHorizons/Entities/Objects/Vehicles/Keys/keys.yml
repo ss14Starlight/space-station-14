@@ -1,0 +1,123 @@
+- type: entity
+  parent: BaseItem
+  id: VehicleKeyBase
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Vehicles/atv.rsi
+    state: keys
+
+- type: entity
+  parent: VehicleKeyBase
+  id: VehicleKeyScooterElectric
+  name: electric scooter key
+  description: The USB to the present.
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - ScooterElectricKeys
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/electric_scooter.rsi
+    state: keys
+
+- type: entity
+  parent: [VehicleKeyBase, BaseCommandContraband]
+  id: VehicleKeyScooterElectricCommand
+  name: electric scooter key
+  description: The USB to the future.
+  suffix: Command
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - ScooterElectricSecurityKeys
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/electric_scooter_command.rsi
+    state: keys
+
+- type: entity
+  parent: [VehicleKeyBase, BaseSecurityContraband]
+  id: VehicleKeyScooterElectricSecurity
+  name: electric scooter key
+  description: The EVIL USB to the future.
+  suffix: Security
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - ScooterElectricSecurityKeys
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/electric_scooter_security.rsi
+    state: keys
+
+- type: entity
+  parent: [VehicleKeyBase, BaseSyndicateContraband]
+  id: VehicleKeyElectronicSyndicate
+  name: universal electronic key
+  description: The EVILER USB to the future. It fits both standard and security-issued electric scooters.
+  suffix: Syndicate
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - ScooterElectricSecurityKeys
+    - ScooterElectricSyndicateKeys
+    - ScooterElectricKeys
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/electric_scooter_syndicate.rsi
+    state: keys
+
+- type: entity
+  parent: VehicleKeyBase
+  id: VehicleKeyATV
+  name: atv key
+  description: Think this looks like just one key? ATV keys means "actually two vehicle keys."
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - ATVKeys
+
+- type: entity
+  parent: VehicleKeyBase
+  id: VehicleKeyNTV
+  name: ntv key
+  description: A key for the NTV.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/sectv.rsi
+    state: keys
+  - type: Tag
+    tags:
+    - VehicleKey
+    - NTVKeys
+
+- type: entity
+  parent: VehicleKeyBase
+  id: VehicleKeyClowncar
+  name: clowncar key
+  description: The keys to an incomprehensible evil...
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - ClowncarKeys
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/clowncar.rsi
+    state: keys
+
+- type: entity
+  parent: VehicleKeyBase
+  id: VehicleKeyMotorcycle
+  name: motorcycle key
+  description: The keys to a bad ass vehicle.
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - MotorcycleKeys
+  - type: Sprite
+    sprite: Objects/Vehicles/motorbike.rsi
+    state: keys

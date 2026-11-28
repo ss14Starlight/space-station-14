@@ -445,9 +445,6 @@ uplink-stimpack-desc = The legendary chemical produced by Donk Co. for the Syndi
 uplink-stimkit-name = Hyperzine Injector Kit
 uplink-stimkit-desc = A medkit containing 6 hyperzine microinjectors, which each inject you with enough hyperzine to last for 30 seconds.
 
-uplink-syndicate-segway-crate-name = Syndicate Segway
-uplink-syndicate-segway-crate-desc = Be an enemy of the corporation, in style!
-
 uplink-syndicate-sponge-box-name = Syndicate Sponge Box
 uplink-syndicate-sponge-box-desc = A box containing 6 syndicate sponges disguised as monkey cubes, these cubes turn into a variety of angry wildlife after coming into contact with water.
 

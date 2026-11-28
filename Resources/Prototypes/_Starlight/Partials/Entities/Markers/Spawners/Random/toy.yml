@@ -9,3 +9,4 @@
   table:
     children:
       - id: TwistyCube
+      - id: VehicleUnicycleFolded # Far Horizons

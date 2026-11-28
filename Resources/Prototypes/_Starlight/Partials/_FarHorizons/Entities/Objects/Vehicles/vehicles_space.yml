@@ -1,0 +1,73 @@
+- type: !PartialOnly entity
+  id: VehicleSpaceshipBase
+  components:
+  - type: VehicleIgnition
+    startupSound:
+      path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+      params:
+        volume: -3
+  - type: VehicleHandBlocker
+    blockedHands: 2
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      tags:
+      - VehicleKey
+  - type: VehicleRide
+    hornSound:
+      path: /Audio/_FarHorizons/Vehicles/carhorn.ogg
+      params:
+        volume: -3
+    impactSound:
+      collection: MetalThud
+    gunSpreadPenalty: 30
+  - type: Vehicle
+    transferDamage: false
+    cellPowered: !Remove
+    requireIgnition: !Remove
+    allowCrashing: !Remove
+    baseState: !Remove
+    brokenState: !Remove
+    startupTime: !Remove
+    startUp: !Remove
+    hornSound: !Remove
+    riderWhitelist: !Remove
+    soundHit: !Remove
+  - type: ContainerVehicle
+    containerId: passenger_slot
+  - type: ContainerVehicleEntry
+    entryDelay: 1.5
+    exitDelay: 1.5
+  - type: VehiclePassengerSeats
+    seats: 2
+    passengerWhitelist:
+      components:
+      - Body
+  - type: VehicleRadar
+  - type: ContainerContainer
+    containers:
+      passenger_slot: !type:Container { showEnts: false }
+      actions: !type:Container { showEnts: false }
+      status-effects: !type:Container { showEnts: true, occludes: false }
+  - type: !Remove IntrinsicUI
+
+- type: !PartialOnly entity
+  id: VehicleTransport
+  components:
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+  - type: VehiclePassengerSeats
+    seats: 1
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - ATVKeys
