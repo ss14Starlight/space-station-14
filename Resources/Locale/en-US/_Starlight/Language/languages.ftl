@@ -168,3 +168,6 @@ language-Penguin-description = Squawk!
 
 language-Spore-name = Spores
 language-Spore-description = Communication over fungal spores.
+
+language-Jil-name = Jil
+language-Jil-description = Merp!

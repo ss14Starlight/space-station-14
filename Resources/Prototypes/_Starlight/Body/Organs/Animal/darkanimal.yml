@@ -1,0 +1,51 @@
+- type: entity
+  id: OrganDarkAnimalStomach
+  parent: OrganAnimalStomach
+  name: dark animal stomach
+  categories: [HideSpawnMenu]
+  components:
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
+      state: stomach
+
+- type: entity
+  id: OrganDarkAnimalLiver
+  parent: OrganAnimalLiver
+  name: dark animal liver
+  categories: [HideSpawnMenu]
+  components:
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
+      state: liver
+
+- type: entity
+  id: OrganDarkAnimalHeart
+  parent: OrganAnimalHeart
+  name: dark animal heart
+  categories: [HideSpawnMenu]
+  components:
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
+      state: heart
+
+- type: entity
+  id: OrganDarkAnimalKidneys
+  parent: OrganAnimalKidneys
+  name: dark animal kidneys
+  categories: [HideSpawnMenu]
+  components:
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
+      layers:
+        - state: kidneys
+
+- type: entity
+  id: OrganDarkAnimalEyes
+  parent: OrganAnimalEyes
+  name: dark animal eyes
+  categories: [HideSpawnMenu]
+  components:
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
+      layers:
+        - state: eyes

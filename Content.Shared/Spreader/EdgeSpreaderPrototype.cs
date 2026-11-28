@@ -16,4 +16,11 @@ public sealed partial class EdgeSpreaderPrototype : IPrototype
     /// </summary>
     [DataField]
     public bool PreventSpreadOnSpaced = true;
+
+    /// <summary>
+    /// Starlight
+    /// If true, this spreader will ingore doors and will spread under doors.
+    /// </summary>
+    [DataField]
+    public bool IngoreDoors = false;
 }

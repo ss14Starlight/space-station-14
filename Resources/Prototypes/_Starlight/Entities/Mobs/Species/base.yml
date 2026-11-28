@@ -164,7 +164,6 @@
   - type: SSDIndicator
   - type: StandingState
   - type: Crawler
-  - type: Dna
   - type: MindContainer
   - type: MindExaminable
   - type: CanEnterCryostorage
@@ -284,6 +283,7 @@
         Piercing: -0.05
         Slash: -0.05
   - type: Fingerprint
+  - type: Dna
   - type: Blindable
   - type: DarkenedVision
   # Other

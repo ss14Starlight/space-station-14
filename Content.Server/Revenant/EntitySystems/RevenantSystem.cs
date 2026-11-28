@@ -3,6 +3,7 @@ using Content.Server.Actions;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.GameTicking;
 using Content.Server.Store.Systems;
+using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared.Alert;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
@@ -64,7 +65,7 @@ public sealed partial class RevenantSystem : EntitySystem
 
     private void OnRevenantGetVis(Entity<RevenantComponent> ent, ref GetVisMaskEvent args)
     {
-        args.VisibilityMask |= (int)VisibilityFlags.NullSpace;
+        args.VisibilityMask |= (int)(VisibilityFlags.NullSpace | VisibilityFlags.NullSpaceNoGhost);
     }
 
     private void OnStartup(EntityUid uid, RevenantComponent component, ComponentStartup args)
@@ -79,7 +80,7 @@ public sealed partial class RevenantSystem : EntitySystem
 
         if (_ticker.RunLevel == GameRunLevel.PostRound && TryComp<VisibilityComponent>(uid, out var visibility))
         {
-            _visibility.AddLayer((uid, visibility), (int) VisibilityFlags.NullSpace, false);
+            _visibility.AddLayer((uid, visibility), (int)VisibilityFlags.NullSpace, false);
             _visibility.RemoveLayer((uid, visibility), (int) VisibilityFlags.Normal, false);
             _visibility.RefreshVisibility(uid, visibility);
         }
@@ -162,6 +163,13 @@ public sealed partial class RevenantSystem : EntitySystem
                 return false;
             }
         }
+
+        foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
+            if (HasComp<NullSpaceBlockerComponent>(entity))
+            {
+                _popup.PopupEntity(Loc.GetString("revenant-in-nullspace"), uid, uid);
+                return false;
+            }
 
         ChangeEssenceAmount(uid, -abilityCost, component, false);
 

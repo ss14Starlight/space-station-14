@@ -109,6 +109,17 @@
 
 # Chest
 - type: marking
+  id: ChestNeckfur
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Shadekin, NeoKin, Neocyte, Vulpkanin, NeoVulpkanin]
+  forcedColoring: false
+  followSkinColor: false
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Generic/chest.rsi
+      state: chest_neckfur
+
+- type: marking
   id: ChestNecklace
   bodyPart: Chest
   markingCategory: Chest

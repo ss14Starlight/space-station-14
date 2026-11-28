@@ -1,0 +1,49 @@
+- type: !PartialOnly entity
+  id: AnomalyShadow
+  suffix: Dark
+  components:
+  - type: !Remove Portal
+  - type: PointLight
+    color: "#793a80dd"
+  - type: DarkLight
+  - type: Shadegen
+    range: 5
+    destroyLights: true
+  - type: Anomaly
+    minPulseLength: 30
+  - type: BreakLightAnomaly
+  - type: BrighteyeEnergyAnomaly
+    brighteyeSpawn: true
+  - type: EntitySpawnAnomaly
+    entries: !Clear
+    - settings:
+        spawnOnPulse: true
+        spawnOnSuperCritical: true
+        minAmount: 1
+        maxAmount: 2
+        maxRange: 3
+      spawns:
+      - DarkAnomalyLootSpawner
+    - settings:
+        spawnOnSuperCritical: true
+        minAmount: 30
+        maxAmount: 50
+        maxRange: 100
+      spawns:
+      - DarkTile
+    - settings:
+        spawnOnSuperCritical: true
+        minAmount: 1
+        maxAmount: 4
+        maxRange: 3
+      spawns:
+      - MobRiftWalker
+  - type: Tag
+    tags:
+      - TheDark
+  - type: ParticleEmitter
+    effect: ShadowMist
+  - type: RandomSpawner
+    deleteSpawnerAfterSpawn: false
+    prototypes:
+      - DarkTile

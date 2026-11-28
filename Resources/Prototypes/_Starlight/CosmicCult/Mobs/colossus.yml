@@ -108,6 +108,7 @@
     speechSounds: ColossusSpeech
     speechVerb: Robotic
     allowedEmotes: []
+  - type: ShowNullSpace
   - type: TypingIndicator
     proto: CosmicTyping
   - type: Grammar

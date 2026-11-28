@@ -88,11 +88,10 @@
   categories: [HideSpawnMenu]
   components:
   - type: Shadegen
-    destroyLights: true
   - type: Physics
     canCollide: false
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/_Starlight/Effects/Shadekin/nullphase.ogg
   - type: TimedDespawn
-    lifetime: 20
+    lifetime: 30

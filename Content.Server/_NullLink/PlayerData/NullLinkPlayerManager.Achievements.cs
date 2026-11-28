@@ -18,7 +18,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         try
         {
             var achievements = await serverGrain.GetUnlockedAchievements(userId);
-            HashSet<Achievement> mergedAchievements = new (achievements);
+            HashSet<Achievement> mergedAchievements = new(achievements);
 
             if (_playerById.TryGetValue(userId, out var playerData))
             {
@@ -68,6 +68,10 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
 
     public async ValueTask<bool> UnlockAchievement(Guid userId, string achievementId, string characterName)
     {
+#if DEBUG
+        return true;
+#endif
+
         if (!_actors.TryGetServerGrain(out var serverGrain))
         {
             if (!_cfg.GetCVar(NullLinkCCVars.Enabled))

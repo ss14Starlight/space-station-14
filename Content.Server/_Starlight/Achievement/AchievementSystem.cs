@@ -85,10 +85,9 @@ using Content.Shared.Strip.Components;
 
 namespace Content.Server._Starlight.Achievement;
 
-public sealed partial class AchievementSystem : EntitySystem
+public sealed partial class AchievementSystem : SharedAchievementSystem
 {
     [Dependency] private INullLinkPlayerManager _nullLinkPlayers = default!;
-    [Dependency] private IAchievementRewardManager _achievementRewards = default!;
     [Dependency] private SharedJobSystem _jobs = default!;
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private ObjectivesSystem _objectives = default!;
@@ -178,7 +177,7 @@ public sealed partial class AchievementSystem : EntitySystem
     private bool HasAchievementUnlocked(ICommonSession session, string achievementId)
         => _nullLinkPlayers.HasAchievementUnlocked(session.UserId, achievementId);
 
-    public ValueTask<bool> HasAchievementUnlockedAsync(ICommonSession session, string achievementId)
+    public override ValueTask<bool> HasAchievementUnlockedAsync(ICommonSession session, string achievementId)
         => _nullLinkPlayers.HasAchievementUnlockedAsync(session.UserId, achievementId);
 
     private ValueTask<bool> UnlockAchievement(ICommonSession session, string achievementId, string? characterName = null)
@@ -204,7 +203,6 @@ public sealed partial class AchievementSystem : EntitySystem
         var result = await UnlockAchievement(session, achievementId, characterName);
         if (result)
         {
-            _achievementRewards.GrantRewards(session, achievementId);
             _nullLinkPlayers.SendAchievementNotification(session.UserId, achievementId);
             _nullLinkPlayers.SendAchievementList(session.UserId);
             await CheckPrerequisiteAchievementsAsync(session, characterName);
@@ -853,7 +851,7 @@ public sealed partial class AchievementSystem : EntitySystem
             .FireAndForget();
     }
 
-    public void QueueUnlockAchievement(EntityUid uid, string achievementId)
+    public override void QueueUnlockAchievement(EntityUid uid, string achievementId)
     {
         if (!_playerManager.TryGetSessionByEntity(uid, out var session))
             return;

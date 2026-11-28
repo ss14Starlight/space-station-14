@@ -17,6 +17,7 @@ using Robust.Shared.Prototypes;
 using Content.Shared._Starlight.Implants.Components;
 using Content.Shared.Popups;
 using Content.Server._Starlight.Achievement;
+using Content.Shared._Starlight.Shadekin.Components;
 #endregion
 
 
@@ -52,8 +53,17 @@ public sealed partial class MindShieldSystem : EntitySystem
     // Starlight-edit start
     private void OnAttemptImplant(EntityUid uid, MindShieldImplantComponent comp, AddImplantAttemptEvent args)
     {
-        if (HasComp<HeadRevolutionaryComponent>(args.Target))
-            _achievements.QueueUnlockAchievement(args.User, "beyond_reasonable_doubt");
+        if (args.User != args.Target) // Prevent that we just Implant ourself for Achivements
+        {
+            if (HasComp<HeadRevolutionaryComponent>(args.Target))
+                _achievements.QueueUnlockAchievement(args.User, "beyond_reasonable_doubt");
+
+            if (HasComp<BrighteyeComponent>(args.Target))
+            {
+                _achievements.QueueUnlockAchievement(args.User, "mindshield_failure");
+                _achievements.QueueUnlockAchievement(args.Target, "lightwalker_enforcement");
+            }
+        }
 
         if (HasComp<MindControlComponent>(args.Target)) // this SHOULD just be a yml blacklist on the implanter, but it refuses to work T-T
         {
@@ -66,9 +76,10 @@ public sealed partial class MindShieldSystem : EntitySystem
     private void OnImplantImplanted(Entity<MindShieldImplantComponent> ent, ref ImplantImplantedEvent ev)
     {
         // Starlight start
-        if (!HasComp<HeadRevolutionaryComponent>(ev.Implanted))
+        if (!HasComp<HeadRevolutionaryComponent>(ev.Implanted) && !HasComp<BrighteyeComponent>(ev.Implanted))
             _npcFaction.AddFaction(ev.Implanted, ShieldedFaction);
         // Starlight end
+
         var mindshield = EnsureComp<MindShieldComponent>(ev.Implanted);
         mindshield.MindShieldStatusIcon = ent.Comp.MindShieldStatusIcon;
         MindShieldRemovalCheck(ev.Implanted, ev.Implant);
@@ -80,7 +91,7 @@ public sealed partial class MindShieldSystem : EntitySystem
     /// </summary>
     private void MindShieldRemovalCheck(EntityUid implanted, EntityUid implant)
     {
-        if (HasComp<HeadRevolutionaryComponent>(implanted))
+        if (HasComp<HeadRevolutionaryComponent>(implanted) || HasComp<BrighteyeComponent>(implanted))
         {
             _popupSystem.PopupEntity(Loc.GetString("head-rev-break-mindshield"), implanted);
             QueueDel(implant);

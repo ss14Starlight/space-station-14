@@ -21,7 +21,7 @@ public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
     }
 
     private void OnGetVisMask(Entity<ShowNullSpaceComponent> uid, ref GetVisMaskEvent args) =>
-        args.VisibilityMask |= (int)VisibilityFlags.NullSpace;
+        args.VisibilityMask |= (int)(VisibilityFlags.NullSpace | VisibilityFlags.NullSpaceNoGhost);
 
     private void OnInit(EntityUid uid, ShowNullSpaceComponent component, MapInitEvent args) =>
         _eye.RefreshVisibilityMask(uid);

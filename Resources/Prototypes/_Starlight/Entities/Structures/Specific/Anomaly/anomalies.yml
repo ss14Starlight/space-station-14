@@ -153,7 +153,7 @@
 
 - type: entity
   id: PortalShadekin
-  suffix: Dark
+  suffix: Brighteye
   description: The portal to the dark...
   parent: AnomalyShadow
   components:
@@ -163,34 +163,57 @@
       canTeleportToOtherMaps: true
       randomTeleport: false
     - type: DarkPortal
+    - type: BreakLightAnomaly
+    - type: BrighteyeEnergyAnomaly
+      pulseRange: 8
     - type: Anomaly
+      initialSeverityRange:
+        0.05: 0.05
       corePrototype: null
-      coreInertPrototype: BluespaceCrystal3
+      coreInertPrototype: null
       minPointsPerSecond: 0
       maxPointsPerSecond: 0
       animationTime: 5
       minPulseLength: 60
       maxPulseLength: 120
       decayhreshold: 0
+      supercriticalDuration: 0
+      canBePunched: false
       deleteEntity: false
       scannerContainmentParticleReadout: anomaly-particles-nullspace-stabilization
+      useNormalDangerParticle: false
+      useNormalUnstableParticle: false
       useNormalContainmentParticle: false
+      useNormalTransformationParticle: false
+      pulseSound: null
+      shuffleParticlesOnMapInit: false
+      randomBehaviorOnMapInit: false
+      supercriticalSoundAtAnimationStart: null
       particleInteractions:
-      - interactionKey: NullspaceStabilizer
-        effect: EndAnomaly
-        delay: 60
-        distanceThreshold: 10
-        spawnCore: true
-        deleteEntityAfterEnd: true
-        visualEffect: CleanseEffectVFX
+        - interactionKey: NullspaceStabilizer
+          effect: EndAnomaly
+          delay: 60
+          distanceThreshold: 10
+          spawnCore: true
+          deleteEntityAfterEnd: true
+          visualEffect: CleanseEffectVFX
     - type: SecretDataAnomaly
-      randomStartSecretMin: 2
-      randomStartSecretMax: 5
+      randomStartSecretMin: 0
+      randomStartSecretMax: 0
+      secret:
+        - Severity
+        - Stability
+        - OutputPoint
+        - Behavior
+        - ParticleDanger
+        - ParticleUnstable
+        - ParticleTransformation
     - type: Sprite
       sprite: _Starlight/Structures/Specific/Anomalies/dark.rsi
       layers:
         - state: portal
           map: ["enum.AnomalyVisualLayers.Base"]
+          shader: unshaded
     - type: Fixtures
       fixtures:
         fix1:
@@ -232,26 +255,15 @@
     - type: EntitySpawnAnomaly
       entries:
         - settings:
-            spawnOnPulse: true
-            minAmount: 3
-            maxAmount: 7
-            maxRange: 5
-          spawns:
-            - DarkRandom
-            - ShadekinShadow
-        - settings:
-            spawnOnSuperCritical: true
-            minAmount: 100
-            maxAmount: 200
-            maxRange: 10
-          spawns:
-            - DarkRandom
-        - settings:
             spawnOnShutdown: true
             maxAmount: 1
             maxRange: 1
           spawns:
             - AdminInstantEffectFlash
+    - type: RandomSpawner
+      deleteSpawnerAfterSpawn: false
+      prototypes:
+        - DarkTile
 
 - type: entity
   id: PortalShadekinHub
@@ -267,6 +279,7 @@
       sprite: _Starlight/Structures/Specific/Anomalies/dark.rsi
       layers:
         - state: hub_portal
+          shader: unshaded
     - type: PointLight
       color: "#793a80dd"
       radius: 3
@@ -427,102 +440,101 @@
   placement:
     mode: SnapgridCenter
   components:
-  - type: InteractionOutline
-  - type: Physics
-    bodyType: Static
-    bodyStatus: InAir
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        density: 50
-        mask:
-        - FlyingMobMask
-        layer:
-        - FlyingMobLayer
-  - type: Transform
-    anchored: true
-  - type: Sprite
-    sprite: _Starlight/CosmicCult/Tileset/malignrift.rsi
-    drawdepth: Mobs
-    snapCardinals: true
-    offset: 0,0.27
-    layers:
-    - state: rift-unshaded
-      shader: unshaded
-  - type: Anomaly
-    initialSeverityRange:
-      0.05: 0.05
-    minPulseLength: 120
-    maxPulseLength: 180
-    pulseSound: null
-    shuffleParticlesOnMapInit: false
-    randomBehaviorOnMapInit: false
-    supercriticalDuration: 0
-    supercriticalSound:
-      path: /Audio/_Starlight/CosmicCult/effigy_pulse.ogg
-    supercriticalSoundAtAnimationStart: null
-    corePrototype: null
-    coreInertPrototype: null
-    growthThreshold: 0.20
-    scannerContainmentParticleReadout: anomaly-particles-nullspace-stabilization
-    useNormalDangerParticle: false
-    useNormalUnstableParticle: false
-    useNormalContainmentParticle: false
-    useNormalTransformationParticle: false
-    canBePunched: false
-    particleInteractions:
-    - interactionKey: NullspaceStabilizer
-      effect: EndAnomaly
-      delay: 60
-      distanceThreshold: 10
-      spawnCore: false
-      visualEffect: CleanseEffectVFX
-  - type: SecretDataAnomaly
-    secret:
-    - Severity
-    - OutputPoint
-    - Behavior
-    - ParticleDanger
-    - ParticleUnstable
-    - ParticleTransformation
-  - type: Clickable
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    castShadows: false
-    color: "#42a4ae"
-  - type: CosmicCultExamine
-    cultistText: cosmic-examine-text-forthecult
-  - type: CosmicMalignRift
-  - type: CosmicRiftPurge
-  - type: CosmicCorrupting
-    corruptionMaxTicks: 6
-    corruptionSpeed: 8
-    corruptionChance: 1
-    corruptionReduction: 0.16
-  - type: Damageable
-  - type: DamageOnAttacked
-    damage:
-      types:
-        Cold: 10
-  - type: EntitySpawnAnomaly
-    entries:
-    - settings:
-        spawnOnSuperCritical: true
-        minAmount: 2
-        maxAmount: 4
-        maxRange: 3
-      spawns:
-      - MobCosmicCustodianHostile
-      - MobCosmicOracleHostile
-      - MobCosmicLodestarHostile
-  - type: GuideHelp
-    guides:
-    - AnomalousResearch
-    - CosmicCultMalignRifts
+    - type: InteractionOutline
+    - type: Physics
+      bodyType: Static
+      bodyStatus: InAir
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeCircle
+            radius: 0.35
+          density: 50
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+    - type: Transform
+      anchored: true
+    - type: Sprite
+      sprite: _Starlight/CosmicCult/Tileset/malignrift.rsi
+      drawdepth: Mobs
+      snapCardinals: true
+      offset: 0,0.27
+      layers:
+        - state: rift-unshaded
+          shader: unshaded
+    - type: Anomaly
+      initialSeverityRange:
+        0.05: 0.05
+      minPulseLength: 120
+      maxPulseLength: 180
+      pulseSound: null
+      shuffleParticlesOnMapInit: false
+      randomBehaviorOnMapInit: false
+      supercriticalDuration: 0
+      supercriticalSound:
+        path: /Audio/_Starlight/CosmicCult/effigy_pulse.ogg
+      supercriticalSoundAtAnimationStart: null
+      corePrototype: null
+      coreInertPrototype: null
+      growthThreshold: 0.20
+      scannerContainmentParticleReadout: anomaly-particles-nullspace-stabilization
+      useNormalDangerParticle: false
+      useNormalUnstableParticle: false
+      useNormalContainmentParticle: false
+      useNormalTransformationParticle: false
+      canBePunched: false
+      particleInteractions:
+        - interactionKey: NullspaceStabilizer
+          effect: EndAnomaly
+          delay: 60
+          distanceThreshold: 10
+          spawnCore: false
+          visualEffect: CleanseEffectVFX
+    - type: SecretDataAnomaly
+      secret:
+        - Severity
+        - OutputPoint
+        - Behavior
+        - ParticleDanger
+        - ParticleUnstable
+        - ParticleTransformation
+    - type: Clickable
+    - type: PointLight
+      radius: 1.5
+      energy: 1.6
+      castShadows: false
+      color: "#42a4ae"
+    - type: CosmicCultExamine
+      cultistText: cosmic-examine-text-forthecult
+    - type: CosmicMalignRift
+    - type: CosmicRiftPurge
+    - type: CosmicCorrupting
+      corruptionMaxTicks: 6
+      corruptionSpeed: 8
+      corruptionChance: 1
+      corruptionReduction: 0.16
+    - type: Damageable
+    - type: DamageOnAttacked
+      damage:
+        types:
+          Cold: 10
+    - type: EntitySpawnAnomaly
+      entries:
+        - settings:
+            spawnOnSuperCritical: true
+            minAmount: 2
+            maxAmount: 4
+            maxRange: 3
+          spawns:
+            - MobCosmicCustodianHostile
+            - MobCosmicOracleHostile
+            - MobCosmicLodestarHostile
+    - type: GuideHelp
+      guides:
+        - AnomalousResearch
+        - CosmicCultMalignRifts
 
 - type: entity
   id: CosmicMalignEmpoweredRift
@@ -532,103 +544,103 @@
   placement:
     mode: SnapgridCenter
   components:
-  - type: InteractionOutline
-  - type: AntiRottingContainer
-  - type: ContainerContainer
-    containers:
-      cosmic-empowered-rift-corpse: !type:Container
-  - type: Physics
-    bodyType: Static
-    bodyStatus: InAir
-  - type: Transform
-    anchored: true
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape: !type:PhysShapeCircle
-          radius: 0.35
-        density: 50
-        mask:
-        - FlyingMobMask
-        layer:
-        - FlyingMobLayer
-  - type: Sprite
-    sprite: _Starlight/CosmicCult/Tileset/malignrift.rsi
-    drawdepth: Mobs
-    snapCardinals: true
-    offset: 0,0.27
-    layers:
-      - state: empowered-rift
-        shader: unshaded
-  - type: Anomaly
-    initialStabilityRange:
-      0.5: 0.5
-    initialSeverityRange:
-      0.5: 0.5
-    growthThreshold: 0.25
-    minPulseLength: 9999
-    maxPulseLength: 10000
-    pulseSound: null
-    supercriticalSound: null
-    supercriticalSoundAtAnimationStart: null
-    supercriticalDuration: 0
-    corePrototype: null
-    coreInertPrototype: null
-    deleteEntity: true
-    minPointsPerSecond: 5
-    maxPointsPerSecond: 5
-    decayhreshold: -1
-    severityGrowthCoefficient: 0
-    healthChangePerSecond: 0
-    shuffleParticlesOnMapInit: false
-    randomBehaviorOnMapInit: false
-    scannerContainmentParticleReadout: anomaly-particles-nullspace-stabilization
-    useNormalDangerParticle: false
-    useNormalUnstableParticle: false
-    useNormalContainmentParticle: false
-    useNormalTransformationParticle: false
-    canPulse: false
-    canBePunched: false
-    particleInteractions:
-    - interactionKey: NullspaceStabilizer
-      effect: EndAnomaly
-      delay: 12
-      distanceThreshold: 10
-      spawnCore: false
-      visualEffect: CleanseEffectVFX
-  - type: SecretDataAnomaly
-    secret:
-    - Severity
-    - OutputPoint
-    - Behavior
-    - ParticleDanger
-    - ParticleUnstable
-    - ParticleTransformation
-  - type: Clickable
-  - type: PointLight
-    radius: 1.9
-    energy: 1.6
-    castShadows: false
-    color: "#6A4CFF"
-  - type: CosmicCultExamine
-    cultistText: cosmic-examine-text-forthecult
-  - type: CosmicRiftPurge
-  - type: CosmicMalignEmpoweredRift
-    coolingCoefficient: 0.2
-  - type: CosmicCorrupting
-    corruptionMaxTicks: 6
-    corruptionSpeed: 8
-    corruptionChance: 1
-    corruptionReduction: 0.16
-  - type: Damageable
-  - type: DamageOnAttacked
-    damage:
-      types:
-        Cold: 20
-  - type: GuideHelp
-    guides:
-    - AnomalousResearch
-    - CosmicCultMalignRifts
+    - type: InteractionOutline
+    - type: AntiRottingContainer
+    - type: ContainerContainer
+      containers:
+        cosmic-empowered-rift-corpse: !type:Container
+    - type: Physics
+      bodyType: Static
+      bodyStatus: InAir
+    - type: Transform
+      anchored: true
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeCircle
+            radius: 0.35
+          density: 50
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+    - type: Sprite
+      sprite: _Starlight/CosmicCult/Tileset/malignrift.rsi
+      drawdepth: Mobs
+      snapCardinals: true
+      offset: 0,0.27
+      layers:
+        - state: empowered-rift
+          shader: unshaded
+    - type: Anomaly
+      initialStabilityRange:
+        0.5: 0.5
+      initialSeverityRange:
+        0.5: 0.5
+      growthThreshold: 0.25
+      minPulseLength: 9999
+      maxPulseLength: 10000
+      pulseSound: null
+      supercriticalSound: null
+      supercriticalSoundAtAnimationStart: null
+      supercriticalDuration: 0
+      corePrototype: null
+      coreInertPrototype: null
+      deleteEntity: true
+      minPointsPerSecond: 5
+      maxPointsPerSecond: 5
+      decayhreshold: -1
+      severityGrowthCoefficient: 0
+      healthChangePerSecond: 0
+      shuffleParticlesOnMapInit: false
+      randomBehaviorOnMapInit: false
+      scannerContainmentParticleReadout: anomaly-particles-nullspace-stabilization
+      useNormalDangerParticle: false
+      useNormalUnstableParticle: false
+      useNormalContainmentParticle: false
+      useNormalTransformationParticle: false
+      canPulse: false
+      canBePunched: false
+      particleInteractions:
+        - interactionKey: NullspaceStabilizer
+          effect: EndAnomaly
+          delay: 12
+          distanceThreshold: 10
+          spawnCore: false
+          visualEffect: CleanseEffectVFX
+    - type: SecretDataAnomaly
+      secret:
+        - Severity
+        - OutputPoint
+        - Behavior
+        - ParticleDanger
+        - ParticleUnstable
+        - ParticleTransformation
+    - type: Clickable
+    - type: PointLight
+      radius: 1.9
+      energy: 1.6
+      castShadows: false
+      color: "#6A4CFF"
+    - type: CosmicCultExamine
+      cultistText: cosmic-examine-text-forthecult
+    - type: CosmicRiftPurge
+    - type: CosmicMalignEmpoweredRift
+      coolingCoefficient: 0.2
+    - type: CosmicCorrupting
+      corruptionMaxTicks: 6
+      corruptionSpeed: 8
+      corruptionChance: 1
+      corruptionReduction: 0.16
+    - type: Damageable
+    - type: DamageOnAttacked
+      damage:
+        types:
+          Cold: 20
+    - type: GuideHelp
+      guides:
+        - AnomalousResearch
+        - CosmicCultMalignRifts
 
 - type: entity
   parent: HellPortal
@@ -636,84 +648,83 @@
   name: anomaly
   suffix: Hellportal
   components:
-  - type: Physics
-    bodyType: Static
-    bodyStatus: InAir
-    canCollide: true
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        density: 50
-        mask:
-        - FlyingMobMask
-        layer:
-        - FlyingMobLayer
-  - type: Appearance
-  - type: AnimationPlayer
-  - type: Anomaly
-    initialSeverityRange:
-      0.05: 0.05
-    minPulseLength: 120
-    maxPulseLength: 180
-    pulseSound: null
-    shuffleParticlesOnMapInit: false
-    randomBehaviorOnMapInit: false
-    supercriticalDuration: 10
-    supercriticalSound:
-      collection: RadiationPulse
-    corePrototype: null
-    coreInertPrototype: null
-    growthThreshold: 0.20
-    scannerContainmentParticleReadout: anomaly-particles-nullspace-stabilization
-    useNormalDangerParticle: false
-    useNormalUnstableParticle: false
-    useNormalContainmentParticle: false
-    useNormalTransformationParticle: false
-    canBePunched: false
-    particleInteractions:
-    - interactionKey: NullspaceStabilizer
-      effect: EndAnomaly
-      delay: 60
-      distanceThreshold: 10
-      spawnCore: false
-      visualEffect: CleanseEffectVFX
-  - type: SecretDataAnomaly
-    secret:
-    - Severity
-    - OutputPoint
-    - Behavior
-    - ParticleDanger
-    - ParticleUnstable
-    - ParticleTransformation
-  - type: EntitySpawnAnomaly
-    entries:
-    - settings:
-        spawnOnSuperCritical: true
-        minAmount: 6
-        maxAmount: 15
-        minRange: 1
-        maxRange: 6
-      spawns:
-      - MoffMobDemonNarsieFleshClamp
-      - MoffMobDemonNarsieFleshGolem
-      - MoffMobDemonNarsieFleshJared
-      - MoffMobDemonNarsieFleshLover
-      - MobGooseNarsie
-    - settings:
-        spawnOnSuperCritical: true
-        minAmount: 3
-        maxAmount: 6
-        minRange: 1
-        maxRange: 6
-      spawns:
-      - MoffMobDemonNarsieArtificer
-      - MoffMobDemonNarsieHarvester
-      - MoffMobDemonNarsieJuggernaut
-      - MoffMobDemonNarsieShade
-      - MoffMobDemonNarsieWraith
-  - type: GuideHelp
-    guides:
-    - AnomalousResearch
+    - type: Physics
+      bodyType: Static
+      bodyStatus: InAir
+      canCollide: true
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeCircle
+            radius: 0.35
+          density: 50
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+    - type: Appearance
+    - type: AnimationPlayer
+    - type: Anomaly
+      initialSeverityRange:
+        0.05: 0.05
+      minPulseLength: 120
+      maxPulseLength: 180
+      pulseSound: null
+      shuffleParticlesOnMapInit: false
+      randomBehaviorOnMapInit: false
+      supercriticalDuration: 10
+      supercriticalSound:
+        collection: RadiationPulse
+      corePrototype: null
+      coreInertPrototype: null
+      growthThreshold: 0.20
+      scannerContainmentParticleReadout: anomaly-particles-nullspace-stabilization
+      useNormalDangerParticle: false
+      useNormalUnstableParticle: false
+      useNormalContainmentParticle: false
+      useNormalTransformationParticle: false
+      canBePunched: false
+      particleInteractions:
+        - interactionKey: NullspaceStabilizer
+          effect: EndAnomaly
+          delay: 60
+          distanceThreshold: 10
+          spawnCore: false
+          visualEffect: CleanseEffectVFX
+    - type: SecretDataAnomaly
+      secret:
+        - Severity
+        - OutputPoint
+        - Behavior
+        - ParticleDanger
+        - ParticleUnstable
+        - ParticleTransformation
+    - type: EntitySpawnAnomaly
+      entries:
+        - settings:
+            spawnOnSuperCritical: true
+            minAmount: 6
+            maxAmount: 15
+            minRange: 1
+            maxRange: 6
+          spawns:
+            - MoffMobDemonNarsieFleshClamp
+            - MoffMobDemonNarsieFleshGolem
+            - MoffMobDemonNarsieFleshJared
+            - MoffMobDemonNarsieFleshLover
+            - MobGooseNarsie
+        - settings:
+            spawnOnSuperCritical: true
+            minAmount: 3
+            maxAmount: 6
+            minRange: 1
+            maxRange: 6
+          spawns:
+            - MoffMobDemonNarsieArtificer
+            - MoffMobDemonNarsieHarvester
+            - MoffMobDemonNarsieJuggernaut
+            - MoffMobDemonNarsieShade
+            - MoffMobDemonNarsieWraith
+    - type: GuideHelp
+      guides:
+        - AnomalousResearch

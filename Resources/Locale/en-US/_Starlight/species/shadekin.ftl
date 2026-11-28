@@ -5,8 +5,6 @@ alerts-shadekin-energy-name = Energy
 alerts-shadekin-energy-desc = Your energy level.
 alerts-shadekin-noportal-name = Missing Portal
 alerts-shadekin-noportal-desc = [color=red]You have no portal, you will be unable to rejuvenate![/color]
-alerts-shadekin-rejuvenate-name = Rejuvenating
-alerts-shadekin-rejuvenate-desc = You are currently rejuvenating. You wont be able to leave the Dark until you are at full energy.
 
 roles-antag-brighteye-name = Bright-eye
 roles-antag-brighteye-description = A visitor and interloper from the Dark. Interfering and observing from where the light does not reach.
@@ -17,18 +15,12 @@ brighteye-role-greeting =
     Explore and exert your influence over where the light does not reach, breach the spaces between this one and the dark with your portal and learn of this world.
 
 shadekin-portal-owner = This is your portal.
-shadekin-portal-stability-stable = Current state: [color=forestgreen]Stable[/color]
-shadekin-portal-stability-unstable = Current state: [color=crimson]Growing[/color]
 shadekin-portal-health-percentage = Current health: [color=red]{$percent}[/color]
 shadekin-portal-destroy = [color=red]Destroy Portal[/color]
-shadekin-portal-stabilize = Stabilize Portal
-shadekin-portal-stabilize-info = Stabilize and heal your portal using your energy. (Costs 50 energy)
 
 shadekin-noenergy = Not enough energy to perform that action.
 shadekin-fail-generic = You cant use your energy!
 phase-fail-generic = You can't phase!
-hubportal-rejuvenate = You can't use this so soon after an emergency warp!
-shadekin-rejuvenate-compleated = You feel like you can leave the Dark again.
 shadekin-shunt = Something resonates with your core and brings you to your knees.
 shadekin-too-bright = The light is too intense here!
 

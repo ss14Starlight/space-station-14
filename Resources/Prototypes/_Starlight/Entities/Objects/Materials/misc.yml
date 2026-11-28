@@ -184,25 +184,6 @@
             - ItemMask
           restitution: 0.3
           friction: 0.2
-    - type: Damageable
-      damageContainer: Inorganic
-      damageModifierSet: null
-    - type: DamageOnLand
-      damage:
-        types:
-          Blunt: 5
-    - type: Destructible
-      thresholds:
-        - trigger: !type:DamageTrigger
-            damage: 5
-          behaviors:
-            - !type:PlaySoundBehavior
-              sound:
-                collection: GlassBreak
-                params:
-                  volume: -8
-            - !type:DoActsBehavior
-              acts: ["Destruction"]
 
 - type: entity
   parent: BluespaceCrystal

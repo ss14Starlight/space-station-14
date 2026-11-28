@@ -1,5 +1,5 @@
 using Content.IntegrationTests.Fixtures;
-using Content.Shared._Starlight.Shadekin;
+using Content.Server._Starlight.Shadekin;
 using Content.Shared._Starlight.Shadekin.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;

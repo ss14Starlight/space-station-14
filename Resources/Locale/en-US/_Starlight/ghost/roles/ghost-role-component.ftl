@@ -174,3 +174,6 @@ ghost-role-information-bombroach-rules = You are a [color={role-type-team-antago
 
 ghost-role-information-syndicate-listening-op-name = Syndicate Listening Operative
 ghost-role-information-syndicate-listening-op-description = You're a trained operative in the art of deception and sabotage. Use your tools to listen in to the nearby station, and help any operatives within the station get the information and help they need.
+
+ghost-role-information-jil-name = Jil
+ghost-role-information-jil-description = A thieving and mischievous creature.

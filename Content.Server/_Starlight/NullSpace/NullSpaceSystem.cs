@@ -22,6 +22,7 @@ using Content.Server._Starlight.CosmicCult;
 using Content.Shared._Starlight.NullSpace.Systems;
 using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared._Starlight.CosmicCult.Components;
+using Content.Shared._Starlight.Bluespace;
 
 namespace Content.Server._Starlight.NullSpace;
 
@@ -51,7 +52,7 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
     }
 
     private void OnGetVisMask(Entity<NullSpaceComponent> uid, ref GetVisMaskEvent args) =>
-        args.VisibilityMask |= (int)VisibilityFlags.NullSpace;
+        args.VisibilityMask |= (int)(VisibilityFlags.NullSpace | VisibilityFlags.NullSpaceNoGhost);
 
     public void OnStartup(EntityUid uid, NullSpaceComponent component, MapInitEvent args)
     {

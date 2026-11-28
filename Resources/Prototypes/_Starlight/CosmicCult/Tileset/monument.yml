@@ -23,7 +23,7 @@
         density: 1000
         hard: false
   - type: Visibility
-    layer: 32
+    layer: 128
   # - type: SpriteFade
   - type: Sprite
     sprite: _Starlight/CosmicCult/Tileset/monument.rsi
@@ -124,7 +124,7 @@
   suffix: Spawn, DO NOT MAP
   components:
   - type: Visibility
-    layer: 32
+    layer: 128
   - type: Sprite
     sprite: _Starlight/CosmicCult/Tileset/monument.rsi
     layers:
@@ -182,7 +182,7 @@
   suffix: Spawn, DO NOT MAP
   components:
   - type: Visibility
-    layer: 32
+    layer: 128
   - type: Sprite
     sprite: _Starlight/CosmicCult/Tileset/monument.rsi
     layers:
@@ -237,7 +237,7 @@
   suffix: Spawn, DO NOT MAP
   components:
   - type: Visibility
-    layer: 32
+    layer: 128
   - type: Sprite
     sprite: _Starlight/CosmicCult/Tileset/monument.rsi
     layers:
@@ -329,6 +329,7 @@
       - CosmicCult
       - MindShield
       - BibleUser
+      - Brighteye
   - type: Physics
     bodyType: Static
   - type: Fixtures

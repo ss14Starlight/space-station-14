@@ -153,8 +153,8 @@
       components:
         - type: Shadekin
           thresholds:
-            0.7: Low
-            0.8: Annoying
+            0.5: Low
+            0.6: Annoying
             5: High
             10: Extreme
   requirements:
@@ -176,9 +176,9 @@
       components:
         - type: Shadekin
           thresholds:
-            0.6: Low
-            0.7: Annoying
-            0.8: High
+            0.5: Low
+            0.6: Annoying
+            0.7: High
             5: Extreme
   requirements:
     - !type:SpeciesRequirement

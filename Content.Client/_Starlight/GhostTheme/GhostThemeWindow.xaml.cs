@@ -7,6 +7,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 using Content.Client.GameTicking.Managers;
 using Content.Shared._Starlight.CCVar;
 using Robust.Client.UserInterface;
@@ -174,9 +175,11 @@ public sealed partial class GhostThemeWindow : DefaultWindow
             themeBox.AddChild(ghostPicker);
             filterThemeBox.AddChild(ghostPickerFilter);
 
-            var tooltip = string.Join(", ", theme.Requirements.Select(x => x.GetRequirementDescription()));
-            ghostPicker.ToolTip = tooltip;
-            ghostPickerFilter.ToolTip = tooltip;
+            var tooltip = new Tooltip();
+            tooltip.SetMessage(FormattedMessage.FromMarkupPermissive(
+                string.Join(", ", theme.Requirements.Select(x => x.GetRequirementDescription()))));
+            ghostPicker.TooltipSupplier = _ => tooltip;
+            ghostPickerFilter.TooltipSupplier = _ => tooltip;
 
             if (_availableThemes.Contains(theme.ID))
             {

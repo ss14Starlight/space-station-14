@@ -94,6 +94,7 @@
     follow: true
     location: The Unknown
   - type: CosmicGod
+  - type: ShowNullSpace
   - type: CosmicCultExamine
     cultistText: cosmic-examine-text-god
   - type: AmbientSound

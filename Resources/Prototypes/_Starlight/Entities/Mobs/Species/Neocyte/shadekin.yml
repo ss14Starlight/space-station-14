@@ -17,7 +17,6 @@
       - GalacticCommon
       - Machine
       - Marish
-      - Empathy
     - type: Repairable # So welder is just a special little snowflake in the code. I tried making healing with welder work through ConditionalHealing component, but it would require too many changes in too many places. So we will keep on the trend and have brute healing defined here. /shrug
       doAfterDelay: 1 # Faster than normal so using welding to heal isn't absolute ass for Neocytes
       selfRepairPenalty: 1.3 # It's not much, but it makes it a little slower.
@@ -30,7 +29,7 @@
           Slash: -8
     - type: Shadekin
       thresholds:
-        0.8: Low
+        0.6: Low
         5: Annoying
         10: High
         15: Extreme

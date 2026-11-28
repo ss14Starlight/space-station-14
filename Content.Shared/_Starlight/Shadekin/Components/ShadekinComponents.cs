@@ -93,13 +93,7 @@ public sealed partial class BrighteyeComponent : Component
     /// The Max Energy the brighteye can have.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public int MaxEnergy = 200;
-
-    /// <summary>
-    /// Shadekin Rejuvenating Bool
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool Rejuvenating = false;
+    public int MaxEnergy = 100;
 
     /// <summary>
     /// Shadekin Portal, if null then the portal does not exist.
@@ -138,16 +132,28 @@ public sealed partial class BrighteyeComponent : Component
     public EntProtoId BrighteyeCreateShadeAction = "BrighteyeCreateShadeAction";
 
     [DataField]
-    public int PortalCost = 150;
+    public int PortalCost = 100;
 
+    /// <summary>
+    /// PhaseCost Ability.
+    /// Unsable in Extreme or High | Use MaxEnergy on Annoying or Low.
+    /// </summary>
     [DataField]
-    public int PhaseCost = 50; // Scales with CurrentState.
+    public int PhaseCost = 50;
 
+    /// <summary>
+    /// DarkTrapCost Ability.
+    /// Does not scale; just unable to be put down if there any lights.
+    /// </summary>
     [DataField]
-    public int DarkTrapCost = 80;
+    public int DarkTrapCost = 50;
 
+    /// <summary>
+    /// ShadeSkipCost Ability.
+    /// Unsable in Extreme or High | Use MaxEnergy on Annoying or Low.
+    /// </summary>
     [DataField]
-    public int ShadeSkipCost = 50; // Scales with CurrentState.
+    public int ShadeSkipCost = 50;
 
     [DataField]
     public TimeSpan ShadeSkipStunAmount =  TimeSpan.FromSeconds(10);

@@ -88,7 +88,6 @@ namespace Content.Client.IoC
             // NullLink end
 
             collection.Register<IClientAchievementManager, ClientAchievementManager>(); // Starlight
-            collection.Register<IAchievementRewardManager, ClientAchievementManager>(); // Starlight
             collection.Register<PreWrittenDocumentManager>(); // Starlight
             collection.Register<IStarlightShaderManager, StarlightShaderManager>(); // Starlight
         }

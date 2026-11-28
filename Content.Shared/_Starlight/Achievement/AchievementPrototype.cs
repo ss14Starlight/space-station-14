@@ -43,9 +43,6 @@ public sealed partial class AchievementPrototype : IPrototype
     [DataField]
     public DifficultyAntagAchievementRequirement? DifficultyAntag { get; private set; }
 
-    [DataField]
-    public List<AchievementReward> Rewards { get; private set; } = [];
-
     // few helpers that idk where else to put, maybe they should be in a system,
     // but they rely on the prototype data so here we are
     public bool IsRelevantForProgress(string progressType)
@@ -68,22 +65,6 @@ public sealed partial class DifficultyAntagAchievementRequirement
 
     [DataField(required: true)]
     public float RequiredDifficulty { get; private set; }
-}
-
-[DataDefinition]
-public sealed partial class AchievementReward
-{
-    [DataField("type", required: true)]
-    public AchievementRewardType Type { get; private set; }
-
-    [DataField("id", required: true)]
-    public string ID { get; private set; } = string.Empty;
-
-    [DataField]
-    public LocId? Name { get; private set; }
-
-    [DataField]
-    public string? Text { get; private set; }
 }
 
 [DataDefinition]

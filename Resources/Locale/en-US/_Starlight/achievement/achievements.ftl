@@ -151,19 +151,6 @@ achievement-blood-herald-description = Complete at least 10 Difficulty as a Bloo
 achievement-theory-of-objectivity-name = Theory of Objectivity
 achievement-theory-of-objectivity-description = Obtain Elite Contractor, Phantom Thief, First Kindred, Enemy Unknown, and Herald of Blood.
 
-achievement-really-with-that-name = Really? With that?
-achievement-really-with-that-description = Attempt to suicide with a non-lethal.
-
-achievement-failed-phoenix-name = Failed Phoenix
-achievement-failed-phoenix-description = You failed to rise from the ashes.
-
-achievement-puny-god-name = Puny God
-achievement-puny-god-description = You killed a god, their riches are now yours.
-
-achievement-da-roolz-name = Thats against da roolz
-achievement-da-roolz-description = Teach an admin mouse a lesson
-
-achievement-gorilla-punch-name = Gorilla punch
 achievement-gorilla-punch-description = OOK! OOK!
 
 achievement-osha-name = OSHA Certified
@@ -226,6 +213,21 @@ achievement-broken-media-description = You surgically removed a nexus implant yo
 achievement-breaking-good-name = Breaking Good
 achievement-breaking-good-description = We have to cook
 
+achievement-dark-vacation-name = Dark Vacation
+achievement-dark-vacation-description = Step into The Dark without being a Brighteye.
+
+achievement-mindshield-failure-name = MindShield™ Failure
+achievement-mindshield-failure-description = Attempt to mindshield a Brighteye.
+
+achievement-lightwalker-enforcement-name = Lightwalker Enforcement
+achievement-lightwalker-enforcement-description = As a Brighteye, be the target of a mindshield attempt.
+
+achievement-jealousy-name = Jealousy
+achievement-jealousy-description = As a Black-Eye Shadekin, replace your core with a stolen Brighteye core.
+
+achievement-face-the-unknown-name = Face The Unknown
+achievement-face-the-unknown-description = Survive the Cosmic Cult's victory with the help of a NullSpace Protector/Anchor.
+
 achievement-window-title = Track your milestones, hidden trophies, and long-term progress
 achievement-window-categories = Categories
 achievement-window-category-all = All Achievements
@@ -237,17 +239,8 @@ achievement-window-status-locked = Locked
 achievement-window-progress = Progress {$current} / {$required}
 achievement-notification-title = Achievements accomplished!
 achievement-notification-footer = New trophy added to your collection
-
 achievement-notification-body =  { $name }
 game-hud-open-achievement-menu-button-tooltip = Achievements
-
-role-achievement-reward-pass = Achievement unlocked: [color=limegreen]{$achievement}[/color]
-role-achievement-reward-fail = Requires achievement: [color=yellow]{$achievement}[/color]
-role-achievement-reward-fail-hidden = Requires a [color=yellow]hidden achievement[/color]
-
-loadouts-achievement-reward-pass = Achievement reward unlocked: {$achievement}
-loadouts-achievement-reward-fail = Requires achievement reward: {$achievement}
-loadouts-achievement-reward-fail-hidden = Requires a hidden achievement reward
 
 achievement-category-milestones = Milestones
 achievement-category-onboarding = Onboarding
@@ -259,3 +252,4 @@ achievement-category-changeling = Changeling
 achievement-category-bloodbound = Blood Bound
 achievement-category-revolutionary = Revolutionary
 achievement-category-nukeops = Nuclear Operative
+achievement-category-brighteye = Brighteye

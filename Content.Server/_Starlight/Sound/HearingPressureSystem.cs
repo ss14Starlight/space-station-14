@@ -47,6 +47,10 @@ public sealed partial class HearingPressureSystem : EntitySystem
             pressure = MathF.Min(MathF.Round(pressure / HearingPressureComponent.Step) * HearingPressureComponent.Step,
                 Atmospherics.OneAtmosphere);
 
+            // So maps that are Pressure Immune (Like The Dark) dont always get muffled.
+            if (HasComp<PressureImmunityComponent>(xform.MapUid))
+                pressure = Atmospherics.OneAtmosphere;
+
             var sealedHelmet = _inventory.TryGetSlotEntity(uid, "head", out var helmet)
                 && HasComp<PressureProtectionComponent>(helmet);
 

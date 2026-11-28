@@ -65,6 +65,8 @@ using Content.Shared.Radio.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared._Starlight.Shadekin.Components;
 using Content.Server._Starlight.Statistics;
+using Content.Shared._Starlight.NullSpace.Components;
+using Content.Server._Starlight.Achievement;
 
 namespace Content.Server._Starlight.CosmicCult;
 
@@ -109,6 +111,8 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     [Dependency] private WeatherSystem _weather = default!;
     [Dependency] private NpcFactionSystem _faction = default!;
     [Dependency] private RoundStatisticsSystem _roundStatistics = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private AchievementSystem _achievements = default!;
 
     private ISawmill _sawmill = default!;
     private TimeSpan _t3RevealDelay = default!;
@@ -389,7 +393,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     private void OnGodSpawn(Entity<CosmicGodComponent> uid, ref ComponentInit args)
     {
         if (!uid.Comp.TriggerRoundEnd) return;
-        _sound.DispatchStationEventMusic(uid, _victoryMusic, StationEventMusicType.CosmicCult );
+        _sound.DispatchStationEventMusic(uid, _victoryMusic, StationEventMusicType.CosmicCult);
         var query = QueryActiveRules();
         while (query.MoveNext(out var ruleUid, out _, out var cultRule, out _))
         {
@@ -415,7 +419,19 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
                 if (cultRule.Cultists.Contains(player))
                     Timer.Spawn(TimeSpan.FromSeconds(30), () => EndRoundVoid(player, spawnTgt, cultRule, null));
                 else
-                    Timer.Spawn(_rand.Next(TimeSpan.FromSeconds(8), TimeSpan.FromSeconds(30)), () => EndRoundVoid(player, spawnTgt, cultRule, monumentMap));
+                {
+                    // If the Player is in a NullSpaceBlocker Space (Protect/Anchor), We dont gib them and give them a hidden achivement.
+                    var protectedplayer = false;
+                    foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
+                        if (HasComp<NullSpaceBlockerComponent>(entity))
+                        {
+                            protectedplayer = true;
+                            _achievements.QueueUnlockAchievement(player, "face_the_unknown");
+                        }
+
+                    if (!protectedplayer)
+                        Timer.Spawn(_rand.Next(TimeSpan.FromSeconds(8), TimeSpan.FromSeconds(30)), () => EndRoundVoid(player, spawnTgt, cultRule, monumentMap));
+                }
             }
         }
     }
@@ -425,23 +441,24 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         if (_mobStateSystem.IsDead(player) || !_mind.TryGetMind(player, out var mind, out _))
             return;
 
+        // First we only gib peoples from the same map where the Monument is.
         if (monumentMap is not null && Transform(player).MapUid != monumentMap)
             return;
 
         if (cultRule.Cultists.Contains(player))
         {
-            var mob = Spawn(cultRule.CosmicAscended, spawnTgt);
+            var mob = SpawnAtPosition(cultRule.CosmicAscended, spawnTgt);
             _mind.TransferTo(mind, mob);
             _metaData.SetEntityName(mob, Loc.GetString("cosmiccult-astral-ascendant", ("name", player))); //Renames cultists' ascendant forms to "[CharacterName], Ascendant"
         }
         else
         {
-            var mob = Spawn(_rand.Pick(cultRule.CosmicMobs), spawnTgt);
+            var mob = SpawnAtPosition(_rand.Pick(cultRule.CosmicMobs), spawnTgt);
             _mind.TransferTo(mind, mob);
             _metaData.SetEntityName(mob, Loc.GetString("cosmiccult-astral-minion", ("name", player))); //Renames non-cultists to "[CharacterName], Malign"
         }
-        Spawn(cultRule.WarpVFX, spawnTgt);
-        Spawn(cultRule.WarpVFX, Transform(player).Coordinates);
+        SpawnAtPosition(cultRule.WarpVFX, spawnTgt);
+        SpawnAtPosition(cultRule.WarpVFX, Transform(player).Coordinates);
         _audio.PlayPvs(cultRule.WarpSFX, spawnTgt, AudioParams.Default.WithVolume(3f));
         _gibbing.Gib(player); // you don't need that body anymore
     }

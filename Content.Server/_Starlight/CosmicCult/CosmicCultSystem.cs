@@ -145,7 +145,7 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
     }
 
     private void OnGetVisMask(Entity<CosmicCultComponent> uid, ref GetVisMaskEvent args)
-        => args.VisibilityMask |= (int)VisibilityFlags.NullSpace;
+        => args.VisibilityMask |= (int)(VisibilityFlags.NullSpace | VisibilityFlags.NullSpaceNoGhost | VisibilityFlags.MonumentCosmicCult);
 
     /// <summary>
     /// Called by Cosmic Siphon. Increments the Cult's global objective tracker.

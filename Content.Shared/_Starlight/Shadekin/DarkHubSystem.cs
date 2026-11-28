@@ -16,7 +16,7 @@ public sealed partial class DarkHubSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private INetManager _netMan = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private DarkPortalSystem _portal = default!;
+    [Dependency] private SharedDarkPortalSystem _portal = default!;
 
     public override void Initialize()
     {
@@ -28,13 +28,6 @@ public sealed partial class DarkHubSystem : EntitySystem
 
     private void OnAttemptPortal(Entity<DarkHubComponent> ent, ref OnAttemptPortalEvent args)
     {
-        if (TryComp<BrighteyeComponent>(args.Subject, out var brighteye) && brighteye.Rejuvenating)
-        {
-            _popup.PopupClient(Loc.GetString("hubportal-rejuvenate"), args.Subject, args.Subject, PopupType.LargeCaution);
-            args.Cancel();
-            return;
-        }
-
         if (_netMan.IsClient) // Predict Randomness? NO THANK YOU!
         {
             args.Cancel();
@@ -46,6 +39,9 @@ public sealed partial class DarkHubSystem : EntitySystem
             if (link.LinkedEntities.Count != 0)
                 return;
         }
+
+        // No Brighteye Portals? Lets look for "Dark Anomalies" to come out of! (On Station Grid)
+        // TODO: That code above, im lazy to do atm and if this todo is still when reviewing... yell at me.
 
         // No Links? No Portals? Lets return to a random safe warp point on station!
 
@@ -66,7 +62,6 @@ public sealed partial class DarkHubSystem : EntitySystem
         SpawnAtPosition(ent.Comp.ShadekinShadow, coords);
         _transform.SetCoordinates(args.Subject, coords);
 
-
         args.Cancel(); // Duh, we need to handle the teleport ourself!
     }
 
@@ -82,8 +77,12 @@ public sealed partial class DarkHubSystem : EntitySystem
             Act = () =>
             {
                 PredictedSpawnAtPosition(ent.Comp.ShadekinShadow, Transform(brighteye.Portal.Value).Coordinates);
-                PredictedQueueDel(brighteye.Portal);
-                _portal.OnPortalShutdown((user, brighteye));
+
+                if (_netMan.IsServer)
+                {
+                    QueueDel(brighteye.Portal);
+                    _portal.OnPortalShutdown((user, brighteye));
+                }
             },
             Text = Loc.GetString("shadekin-portal-destroy"),
         });

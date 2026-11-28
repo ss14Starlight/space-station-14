@@ -22,6 +22,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared._Starlight.NullSpace.Components;
+using Content.Shared._Starlight.Bluespace;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 

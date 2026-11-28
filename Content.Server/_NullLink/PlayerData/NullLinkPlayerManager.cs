@@ -19,7 +19,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._NullLink.PlayerData;
 
-public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager, IAchievementRewardManager
+public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
 {
     [Dependency] private IActorRouter _actors = default!;
     [Dependency] private IPlayerManager _playerManager = default!;

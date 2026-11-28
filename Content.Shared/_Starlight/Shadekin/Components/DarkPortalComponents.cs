@@ -17,9 +17,6 @@ public sealed partial class DarkPortalComponent : Component
 
     [DataField]
     public EntProtoId ShadekinShadow = "ShadekinShadow";
-
-    [DataField]
-    public int StabilizeCost = 50;
 }
 
 /// <summary>

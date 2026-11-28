@@ -158,12 +158,13 @@
         layer:
         - MidImpassable
   - type: Sprite
-    drawdepth: LowFloors
+    drawdepth: WallTops
     sprite: Effects/EnergyDome/energydome_big.rsi
     scale: 2.5, 2.5
     layers:
     - state: big
       color: "#6c15ae"
+      shader: unshaded
   - type: Stealth
     minVisibility: 0.8
     maxVisibility: 0.8
@@ -179,7 +180,7 @@
   parent: EnergyDomeNullspace
   components:
   - type: Visibility
-    layer: 32
+    layer: 256
 
 - type: entity
   id: EnergyDomeDirected

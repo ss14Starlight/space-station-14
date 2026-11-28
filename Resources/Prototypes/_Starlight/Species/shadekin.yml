@@ -25,7 +25,8 @@
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
     Snout: MobShadekinAnyMarkingFollowSkin
-    Hair: MobHumanoidAnyMarking
+    Hair: MobShadekinAnyMarking
+    FacialHair: MobShadekinAnyMarking
     Chest: MobShadekinTorso
     HeadTop: MobShadekinAnyMarking
     HeadSide: MobShadekinAnyMarkingFollowSkin
@@ -42,6 +43,7 @@
 
 - type: markingPoints
   id: MobShadekinMarkingLimits
+  onlyWhitelisted: true
   points:
     Hair:
       points: 1

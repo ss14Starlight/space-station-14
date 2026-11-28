@@ -42,10 +42,10 @@
     - CantBecomeRevolutionary
   components:
   - type: Brighteye
-    energy: 200 # THIS IS HARDCODED BULLSHIT... i wish i could set this auto to MaxEnergy.
+    energy: 100 # THIS IS HARDCODED BULLSHIT... i wish i could set this auto to MaxEnergy.
   - type: NpcFactionMember
     factions:
-    - SimpleHostile
+    - TheDark
   - type: CombatMode
     disarmFailChance: 0.5
     canDisarm: true

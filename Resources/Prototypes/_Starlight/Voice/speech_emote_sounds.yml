@@ -1232,3 +1232,10 @@
       collection: XenoDrool
       params:
         variation: 0.125
+
+- type: emoteSounds
+  id: Jil
+  sound:
+    path: /Audio/_Starlight/Animals/merp.ogg
+    params:
+      variation: 0.125

@@ -551,8 +551,6 @@ SofaEndLeftBrown: ComfyChairBrown
 SofaEndRightBrown: ComfyChairBrown
 SofaMiddleBrown: ComfyChairBrown
 
-# 2026-11-24 - NPC diversity
-
 SalvageHumanCorpseSpawner: SLSalvageHumanCorpseSpawner
 RandomServiceCorpseSpawner: SLRandomServiceCorpseSpawner
 RandomEngineerCorpseSpawner: SLRandomEngineerCorpseSpawner
@@ -563,3 +561,7 @@ RandomSecurityCorpseSpawner: SLRandomSecurityCorpseSpawner
 RandomCommandCorpseSpawner: SLRandomCommandCorpseSpawner
 SpawnMobSyndicateFootSoldier: SLSpawnMobSyndicateFootSoldier
 SpawnMobSyndicateFootsoldierPilot: SLSpawnMobSyndicateFootSoldierPilot
+
+#2026/11/27 - Dark Station Update
+DarkRandom: DarkTile
+DarkGenerator: GeneratorBasic

@@ -26,6 +26,8 @@ marking-HeadEarringsWeights-head_earrings_weights2 = Left Earring
 marking-HeadEarringsWeights = Earrings (Weights)
 
 # Chest
+marking-ChestNeckfur = Neckfur
+
 marking-ChestNecklace-chest_necklace = Necklace
 marking-ChestNecklace = Necklace
 

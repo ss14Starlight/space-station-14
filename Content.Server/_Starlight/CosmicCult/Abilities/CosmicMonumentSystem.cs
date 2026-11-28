@@ -45,13 +45,6 @@ public sealed partial class CosmicMonumentSystem : EntitySystem
     //guess I should ask for specific feedback for this one tiny feature?
     private void OnCosmicPlaceMonument(Entity<CosmicCultLeadComponent> uid, ref EventCosmicPlaceMonument args)
     {
-        foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
-            if (HasComp<NullSpaceBlockerComponent>(entity))
-            {
-                _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, uid);
-                return;
-            }
-
         if (!VerifyPlacement(uid, out var pos))
             return;
 
@@ -143,6 +136,14 @@ public sealed partial class CosmicMonumentSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("cosmicability-monument-spawn-error-intersection"), uid, uid);
             return false;
         }
+
+        // Check for NullSpace Blockers.
+        foreach (var entity in _lookup.GetEntitiesIntersecting(outPos))
+            if (HasComp<NullSpaceBlockerComponent>(entity))
+            {
+                _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, uid);
+                return false;
+            }
 
         return true;
     }
