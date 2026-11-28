@@ -385,3 +385,53 @@
       slowness: 0.998046875
       scale: "1.7, 1.7"
       tiled: false
+
+# Cosmic Cult End
+
+- type: parallax
+  id: RedStarTest
+  starlightColor: "#ffcc89"
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Parallaxes/AxiomaBackground_space.png"
+      scale: "1, 1"
+      slowness: 0.9929
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars.toml"
+      slowness: 0.9929
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars_dim"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars_dim.toml"
+      slowness: 0.9929
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars_faster"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars-2.toml"
+      slowness: 0.9929
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: "hq_wizard_stars_dim_faster"
+        configPath: "/Prototypes/Parallaxes/parallax_config_stars_dim-2.toml"
+      slowness: 0.9929
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Parallaxes/DeltaParallaxNeb.png"
+      scale: "1, 1"
+      tiled: false
+      slowness: 0.9929
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Parallaxes/star01.png"
+      slowness: 0.9929
+      scale: "0.8, 0.8"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Parallaxes/Asteroids.png"
+      slowness: 0.95046875
+      scale: "0.8, 0.8"
+      scrolling: "0.05, 0.02"
