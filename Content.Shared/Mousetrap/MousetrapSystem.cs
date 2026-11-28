@@ -41,6 +41,7 @@ public sealed class MousetrapSystem : EntitySystem
             // Large - small damage
             // yes i punched numbers into a calculator until the graph looked right
             var scaledDamage = -50 * Math.Atan(physics.Mass - ent.Comp.MassBalance) + 25 * Math.PI;
+            scaledDamage = Math.Min(scaledDamage, ent.Comp.MaxDamageMultiplier); // Starlight-edit
             args.Damage *= scaledDamage;
         }
     }
