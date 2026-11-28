@@ -44,10 +44,12 @@ namespace Content.Client.Lathe.UI
             {
                 case LatheUpdateState msg:
                     if (_menu != null)
+                    // Starlight start
                     {
                         _menu.Recipes = msg.Recipes;
-                        _menu.Materials = msg.Materials; // Starlight
+                        _menu.Materials = msg.Materials;
                     }
+                    // Starlight end
                     _menu?.PopulateRecipes();
                     _menu?.UpdateCategories();
                     _menu?.PopulateQueueList(msg.Queue);
