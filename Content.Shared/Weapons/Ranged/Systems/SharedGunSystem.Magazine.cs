@@ -150,7 +150,7 @@ public abstract partial class SharedGunSystem
         if (ejectMag)
         {
             EjectMagazine(uid, component);
-            Audio.PlayPredicted(component.SoundAutoEject, uid, user);
+            PlayPredictedAudio(component.SoundAutoEject, uid, user); // Starlight
         }
 
         UpdateMagazineAppearance(uid, appearance, !ejectMag, count, capacity);

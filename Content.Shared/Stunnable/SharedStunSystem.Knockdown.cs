@@ -1,6 +1,7 @@
 using Content.Shared.Alert;
 using Content.Shared.Buckle.Components;
 using Content.Shared.CCVar;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
@@ -464,7 +465,7 @@ public abstract partial class SharedStunSystem
         }
 
         _popup.PopupClient(Loc.GetString("knockdown-component-pushup-success"), entity, entity);
-        _audio.PlayPredicted(entity.Comp.ForceStandSuccessSound, entity.Owner, entity.Owner, AudioParams.Default.WithVariation(0.025f).WithVolume(5f));
+        _audio.PlayPredicted(entity.Comp.ForceStandSuccessSound, entity.Owner, EntityManager.GetPredictedAudioUser(entity.Owner), AudioParams.Default.WithVariation(0.025f).WithVolume(5f)); // Starlight
 
         return true;
     }

@@ -1,4 +1,5 @@
 using Content.Shared.Climbing.Events;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Events;
@@ -127,7 +128,7 @@ public sealed partial class StandingStateSystem : EntitySystem
 
         if (playSound)
         {
-            _audio.PlayPredicted(standingState.DownSound, uid, uid);
+            _audio.PlayPredicted(standingState.DownSound, uid, EntityManager.GetPredictedAudioUser(uid)); // Starlight
         }
 
         return true;

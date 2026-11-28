@@ -15,6 +15,7 @@ using Content.Shared.Strip;
 using Content.Shared.Strip.Components;
 using Content.Shared.Whitelist;
 using Content.Shared._Starlight.Inventory; // starlight
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -210,7 +211,9 @@ public abstract partial class InventorySystem
 
         if (!silent && clothing != null)
         {
-            _audio.PlayPredicted(clothing.EquipSound, target, actor);
+            // Starlight - start
+            _audio.PlayPredicted(clothing.EquipSound, target, EntityManager.GetPredictedAudioUser(actor));
+            // Starlight - end
         }
 
         // If new gloves are equipped, trigger OnContactInteraction for held items
@@ -525,7 +528,9 @@ public abstract partial class InventorySystem
 
         if (!silent && Resolve(removedItem.Value, ref clothing, false) && clothing.UnequipSound != null)
         {
-            _audio.PlayPredicted(clothing.UnequipSound, target, actor);
+            // Starlight - start
+            _audio.PlayPredicted(clothing.UnequipSound, target, EntityManager.GetPredictedAudioUser(actor));
+            // Starlight - end
         }
 
         // If gloves are unequipped, OnContactInteraction should trigger for held items

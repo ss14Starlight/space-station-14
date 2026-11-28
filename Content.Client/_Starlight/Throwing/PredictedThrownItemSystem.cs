@@ -1,3 +1,4 @@
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.Throwing;
 using Content.Shared.Throwing;
 using Robust.Client.Physics;
@@ -11,6 +12,7 @@ public sealed partial class PredictedThrownItemSystem : EntitySystem
 {
     [Dependency] private SharedPhysicsSystem _phys = default!;
     [Dependency] private IPlayerManager _plr = default!;
+    [Dependency] private RemoteControlInterface _remoteControl = default!;
 
     public override void Initialize()
     {
@@ -24,8 +26,7 @@ public sealed partial class PredictedThrownItemSystem : EntitySystem
     private void OnStartup(Entity<PredictedThrownItemComponent> ent, ref ComponentStartup args)
     {
         if (!TryComp<ThrownItemComponent>(ent, out var thrown)) return;
-        if (_plr.LocalEntity is null) return;
-        if (thrown.Thrower != _plr.LocalEntity.Value) return; // This always ends up being 0 on other clients and 0 on the last frame of prediction... SURELY NOT AN ISSUE...
+        if (!IsLocallyControlledThrower(thrown.Thrower)) return;
         _phys.UpdateIsPredicted(ent.Owner);
     }
 
@@ -38,8 +39,11 @@ public sealed partial class PredictedThrownItemSystem : EntitySystem
     private void OnUpdatePredicted(Entity<PredictedThrownItemComponent> ent, ref UpdateIsPredictedEvent args)
     {
         if (!TryComp<ThrownItemComponent>(ent, out var thrown)) return;
-        if (_plr.LocalEntity is null) return;
-        if (thrown.Thrower != _plr.LocalEntity.Value) return;
+        if (!IsLocallyControlledThrower(thrown.Thrower)) return;
         args.IsPredicted = true;
     }
+
+    private bool IsLocallyControlledThrower(EntityUid? thrower)
+        => thrower is { } entity
+            && (entity == _plr.LocalEntity || entity == _remoteControl.ControlledEntity);
 }

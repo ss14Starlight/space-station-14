@@ -455,7 +455,7 @@ public abstract partial class SharedGunSystem : EntitySystem
                 // Don't spam safety sounds at gun fire rate, play it at a reduced rate.
                 // May cause prediction issues? Needs more tweaking
                 gun.Comp.NextFire = TimeSpan.FromSeconds(Math.Max(lastFire.TotalSeconds + SafetyNextFire, gun.Comp.NextFire.TotalSeconds));
-                Audio.PlayPredicted(gun.Comp.SoundEmpty, gun, user);
+                PlayPredictedAudio(gun.Comp.SoundEmpty, gun, user); // Starlight
                 return false;
             }
 
@@ -752,7 +752,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         {
             // Starlight-edit: start
             if (user != null)
-                Audio.PlayPredicted(cartridge.EjectSound, entity, user, EjectSoundParams);
+                PlayPredictedAudio(cartridge.EjectSound, entity, user, EjectSoundParams); // Starlight
             else
                 Audio.PlayPvs(cartridge.EjectSound, entity, EjectSoundParams);
             // Starlight-edit: end

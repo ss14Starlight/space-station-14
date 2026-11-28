@@ -27,6 +27,7 @@ using Content.Shared._ES.Sparks;
 using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Atmos.Components;
 using Content.Shared._Starlight.Atmos.EntitySystems;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.Hands.Components;
 using System.Numerics;
 using Content.Shared.Verbs;
@@ -464,7 +465,7 @@ public sealed partial class RCDSystem : EntitySystem
         FinalizeRCDOperation(uid, component, gridUid, mapGrid, tile, position, args.Direction, args.PipeLayer, args.Target, args.User); // Starlight edit: Use the layer captured by the do-after event.
 
         // Play audio and consume charges
-        _audio.PlayPredicted(component.SuccessSound, uid, args.User);
+        _audio.PlayPredicted(component.SuccessSound, uid, EntityManager.GetPredictedAudioUser(args.User)); // Starlight
         _sharedCharges.AddCharges(uid, -args.Cost);
     }
 
@@ -546,7 +547,7 @@ public sealed partial class RCDSystem : EntitySystem
         Dirty(uid, component);
 
         if (user != null)
-            _audio.PlayPredicted(component.SoundSwitchMode, uid, user.Value);
+            _audio.PlayPredicted(component.SoundSwitchMode, uid, EntityManager.GetPredictedAudioUser(user.Value)); // Starlight
         // Starlight End: RPD
     }
 

@@ -3,6 +3,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Mech.Components; // Starlight Edit
 using Content.Shared.Popups;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.Temperature;
 using Content.Shared.Toggleable;
 using Content.Shared.Verbs;
@@ -173,7 +174,7 @@ public sealed partial class ItemToggleSystem : EntitySystem
                 return false;
 
             if (predicted)
-                _audio.PlayPredicted(comp.SoundFailToActivate, uid, user);
+                _audio.PlayPredicted(comp.SoundFailToActivate, uid, EntityManager.GetPredictedAudioUser(user)); // Starlight
             else
                 _audio.PlayPvs(comp.SoundFailToActivate, uid);
 
@@ -240,7 +241,7 @@ public sealed partial class ItemToggleSystem : EntitySystem
         var soundToPlay = comp.SoundActivate;
         if (predicted)
         {
-            _audio.PlayPredicted(soundToPlay, uid, user);
+            _audio.PlayPredicted(soundToPlay, uid, EntityManager.GetPredictedAudioUser(user)); // Starlight
             if (showPopup && ent.Comp.PopupActivate != null && user != null)
                 _popup.PopupClient(Loc.GetString(ent.Comp.PopupActivate), user.Value, user.Value);
         }
@@ -268,7 +269,7 @@ public sealed partial class ItemToggleSystem : EntitySystem
         var soundToPlay = comp.SoundDeactivate;
         if (predicted)
         {
-            _audio.PlayPredicted(soundToPlay, uid, user);
+            _audio.PlayPredicted(soundToPlay, uid, EntityManager.GetPredictedAudioUser(user)); // Starlight
             if (showPopup && ent.Comp.PopupDeactivate != null && user != null)
                 _popup.PopupClient(Loc.GetString(ent.Comp.PopupDeactivate), user.Value, user.Value);
         }
@@ -367,7 +368,7 @@ public sealed partial class ItemToggleSystem : EntitySystem
         {
             var loop = comp.ActiveSound.Params.WithLoop(true);
             var stream = args.Predicted
-                ? _audio.PlayPredicted(comp.ActiveSound, uid, args.User, loop)
+                ? _audio.PlayPredicted(comp.ActiveSound, uid, EntityManager.GetPredictedAudioUser(args.User), loop) // Starlight
                 : _audio.PlayPvs(comp.ActiveSound, uid, loop);
             if (stream?.Entity is {} entity)
                 comp.PlayingStream = entity;

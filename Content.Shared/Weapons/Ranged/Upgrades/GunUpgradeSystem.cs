@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Examine;
@@ -87,7 +88,7 @@ public sealed partial class GunUpgradeSystem : EntitySystem
             return;
         }
 
-        _audio.PlayPredicted(ent.Comp.InsertSound, ent, args.User);
+        _audio.PlayPredicted(ent.Comp.InsertSound, ent, EntityManager.GetPredictedAudioUser(args.User)); // Starlight
         _popup.PopupClient(Loc.GetString("gun-upgrade-popup-insert", ("upgrade", args.Used),("gun", ent.Owner)), args.User);
         _gun.RefreshModifiers(ent.Owner);
         args.Handled = _container.Insert(args.Used, _container.GetContainer(ent, ent.Comp.UpgradesContainerId));

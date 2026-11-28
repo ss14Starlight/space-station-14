@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.Weapons.Ranged.Components;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.Examine;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
@@ -54,7 +55,7 @@ public abstract partial class SharedGunHeatSystem : EntitySystem
             if (random.NextDouble() < GetJamChance(ent.Comp, ent.Comp.Temperature))
             {
                 ent.Comp.Jammed = true;
-                Audio.PlayPredicted(ent.Comp.JamSound, ent, args.User);
+                Audio.PlayPredicted(ent.Comp.JamSound, ent, EntityManager.GetPredictedAudioUser(args.User));
                 Popup.PopupClient(Loc.GetString("gun-heat-jammed"), ent, args.User, PopupType.MediumCaution);
                 ent.Comp.NextPopupTime = Timing.CurTime + ent.Comp.PopupCooldown;
             }
@@ -93,7 +94,7 @@ public abstract partial class SharedGunHeatSystem : EntitySystem
         ent.Comp.Jammed = false;
         Dirty(ent);
 
-        Audio.PlayPredicted(ent.Comp.UnjamSound, ent, args.User);
+        Audio.PlayPredicted(ent.Comp.UnjamSound, ent, EntityManager.GetPredictedAudioUser(args.User));
         Popup.PopupClient(Loc.GetString("gun-heat-unjammed"), ent, args.User);
     }
 

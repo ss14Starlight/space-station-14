@@ -15,6 +15,7 @@ using Content.Shared.Mind;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared._Starlight.Antags.Abductor;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
@@ -633,7 +634,10 @@ public abstract partial class SharedActionsSystem : EntitySystem
         if (ev.Toggle)
             SetToggled((action, action), !action.Comp.Toggled);
 
-        _audio.PlayPredicted(action.Comp.Sound, performer, predicted ? performer : null);
+        // Starlight - start
+        _audio.PlayPredicted(action.Comp.Sound, performer,
+            predicted ? EntityManager.GetPredictedAudioUser(performer.Owner) : null);
+        // Starlight - end
 
         // Starlight-start: Add support to rewrite UseDelay
 

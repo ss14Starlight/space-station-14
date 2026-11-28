@@ -1,4 +1,5 @@
 using Content.Shared.Administration.Logs;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Database;
@@ -99,7 +100,7 @@ public abstract partial class SharedSprayPainterSystem : EntitySystem
             return;
 
         Appearance.SetData(target, PaintableVisuals.Prototype, args.Prototype);
-        Audio.PlayPredicted(ent.Comp.SpraySound, ent, args.Args.User);
+        Audio.PlayPredicted(ent.Comp.SpraySound, ent, EntityManager.GetPredictedAudioUser(args.Args.User)); // Starlight
         Charges.TryUseCharges((ent, EnsureComp<LimitedChargesComponent>(ent)), args.Cost); // Starlight-edit
 
         var paintedComponent = EnsureComp<PaintedComponent>(target);
@@ -142,9 +143,7 @@ public abstract partial class SharedSprayPainterSystem : EntitySystem
     /// </summary>
     private void TogglePaintDecals(Entity<SprayPainterComponent> ent, EntityUid user)
     {
-        if (!_timing.IsFirstTimePredicted)
-            return;
-
+        // Starlight: State changes must replay during prediction; PlayPredicted gates the sound separately.
         var pitch = 1.0f;
         switch (ent.Comp.DecalMode)
         {
@@ -165,7 +164,7 @@ public abstract partial class SharedSprayPainterSystem : EntitySystem
         Dirty(ent);
 
         // Make the machine beep.
-        Audio.PlayPredicted(ent.Comp.SoundSwitchDecalMode, ent, user, ent.Comp.SoundSwitchDecalMode.Params.WithPitchScale(pitch));
+        Audio.PlayPredicted(ent.Comp.SoundSwitchDecalMode, ent, EntityManager.GetPredictedAudioUser(user), ent.Comp.SoundSwitchDecalMode.Params.WithPitchScale(pitch)); // Starlight
     }
 
     /// <summary>

@@ -61,13 +61,17 @@ public sealed partial class MoverController : SharedMoverController
 
     private void OnUpdatePullablePredicted(Entity<PullableComponent> entity, ref UpdateIsPredictedEvent args)
     {
-        // Enable prediction if an entity is being pulled by the player.
-        // Disable prediction if an entity is being pulled by some non-player entity.
-
-        if (entity.Comp.Puller == _playerManager.LocalEntity)
+        // Starlight - start
+        // Predict pulled entities alongside the local player, including through RemoteControl's relay target.
+        var puller = entity.Comp.Puller;
+        if (puller is { } pullerUid
+            && (pullerUid == _playerManager.LocalEntity
+                || (TryComp<MovementRelayTargetComponent>(pullerUid, out var relayTarget)
+                    && relayTarget.Source == _playerManager.LocalEntity)))
             args.IsPredicted = true;
-        else if (entity.Comp.Puller != null)
+        else if (puller != null)
             args.BlockPrediction = true;
+        // Starlight - end
 
         // TODO recursive pulling checks?
         // What if the entity is being pulled by a vehicle controlled by the player?

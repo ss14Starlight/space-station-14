@@ -1,4 +1,5 @@
 using Content.Shared.Audio;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.Hands;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -161,6 +162,9 @@ public abstract partial class SharedEmitSoundSystem : EntitySystem
             return;
         }
         #endregion Starlight
+        if (predict) // Starlight
+            user = EntityManager.GetPredictedAudioUser(user); // Starlight
+
         if (component.Positional)
         {
             var coords = Transform(uid).Coordinates;
