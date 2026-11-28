@@ -96,6 +96,8 @@ entities:
     - type: GridTree
     - type: Broadphase
     - type: OccluderTree
+    - type: Parallax
+      parallax: RedStar
     - type: ChunkContainer
       chunkEntities: []
     - type: LightTree
