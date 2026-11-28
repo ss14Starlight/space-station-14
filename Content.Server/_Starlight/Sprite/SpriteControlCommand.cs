@@ -71,6 +71,13 @@ public sealed partial class SpriteControlCommand : ToolshedCommand
             sprite.NoRotation = noRotation;
         }, ensure: false);
 
+    [CommandImplementation("reset")]
+    public EntityUid Reset([PipedArgument] EntityUid uid)
+    {
+        RemComp<SpriteControlComponent>(uid);
+        return uid;
+    }
+
     [CommandImplementation("setsource")]
     public IEnumerable<EntityUid> SetBySourceEntity([PipedArgument] IEnumerable<EntityUid> uid, EntityUid sourceUid) =>
         uid.Select(x => SetBySourceEntity(x, sourceUid));
@@ -104,6 +111,9 @@ public sealed partial class SpriteControlCommand : ToolshedCommand
     public IEnumerable<EntityUid> ConfigureTransformProperties([PipedArgument] IEnumerable<EntityUid> uid,
         Vector2? offset = null, Angle? rotation = null, int? drawDepth = null, bool? noRotation = null) =>
         uid.Select(x => ConfigureTransformProperties(x, offset, rotation, drawDepth, noRotation));
+
+    [CommandImplementation("reset")]
+    public IEnumerable<EntityUid> Reset([PipedArgument] IEnumerable<EntityUid> uid) => uid.Select(Reset);
 
     private EntityUid Modify(EntityUid uid, Action<SpriteControlComponent> modify, bool ensure = true)
     {
