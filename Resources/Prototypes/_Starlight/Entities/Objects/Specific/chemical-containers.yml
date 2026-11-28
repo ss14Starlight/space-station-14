@@ -447,3 +447,18 @@
     tags:
     - CentrifugeCompatible
 # Funky end
+
+- type: entity
+  parent: Jug
+  suffix: chlorine trifluoride bomb
+  id: JugCTFBomb
+  components:
+  - type: Solution
+    id: drink
+    solution:
+      temperature: 400
+      reagents:
+      - ReagentId: Chlorine
+        Quantity: 60
+      - ReagentId: Fluorine
+        Quantity: 180

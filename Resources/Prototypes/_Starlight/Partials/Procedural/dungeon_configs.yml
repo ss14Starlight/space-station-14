@@ -1,0 +1,12 @@
+- type: !PartialOnly dungeonConfig
+  id: Experiment
+  layers:
+  - !CombineIndex:2
+    tile: Plating
+    contents: BaseAirlockFan
+
+- type: !PartialOnly entityTable
+  id: BaseAirlock
+  table: !type:AllSelector
+    children:
+    - id: FirelockGlass

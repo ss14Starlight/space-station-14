@@ -697,3 +697,47 @@
     - id: SpawnMobCockroach
       weight: .5
     - id: RandomSpawner
+
+#========================================================================
+- type: entityTable
+  id: BaseAirlockFan
+  table: !type:AllSelector
+    children:
+    - id: AirlockExternalGlass
+    - id: AtmosDeviceFanTiny
+
+- type: entityTable
+  id: BaseCorridorSide
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 3
+      children:
+      - id: RandomVending
+        weight: 6
+      - id: RandomVendingMedicalCivilian
+        weight: 1
+      - id: MachineFrameDestroyed
+        weight: 2
+    - !type:GroupSelector
+      weight: 5
+      children:
+      - id: TableGlass
+        weight: 5
+      - id: TableGlassFlipped
+        weight: 2
+      - id: TableFrame
+        weight: 1
+      - id: BenchComfy
+        weight: 4
+    - !type:GroupSelector
+      weight: 4
+      children:
+      - id: ClosetFireFilled
+        weight: 8
+      - id: ClosetEmergencyFilledRandom
+        weight: 8
+      - id: ClosetEmergencyN2FilledRandom
+        weight: 4
+      - id: ClosetL3ScienceFilled
+        weight: 2

@@ -1,0 +1,15 @@
+- type: !PartialOnly dungeonConfig
+  id: VGRoidExteriorDungeons
+  layers:
+  - !type:CorridorFlavorDunGen
+    length: 3
+    prob: 0.2
+    ignoreReserved: true
+    contents: BaseCorridorSide
+  - !type:EntityTableDunGen
+    minCount: 0
+    maxCount: 5
+    perDungeon: true
+    ignoreReserved: true
+    table: !type:NestedSelector
+      tableId: SalvageCTFBombSpawner

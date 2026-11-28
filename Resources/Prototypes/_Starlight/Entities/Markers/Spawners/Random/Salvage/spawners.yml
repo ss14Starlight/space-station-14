@@ -1,0 +1,5 @@
+- type: entityTable
+  id: SalvageCTFBombSpawner # For making VGRoid look bombed
+  table: !type:GroupSelector
+    children:
+    - id: JugCTFBomb
