@@ -1,11 +1,4 @@
 Entries:
-- author: CommanderAlex365
-  changes:
-  - message: Made it possible to tap aquarium glass, please don't disturb the fish.
-    type: Add
-  id: 410485
-  time: '2026-11-15T17:21:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7250
 - author: Rinary
   changes:
   - message: Fixed new latejoin bug caused by exploit fix. You should be able to latejoin with character on job even if it's not in priority list.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410884
   time: '2026-11-28T08:27:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7574
+- author: Rinary
+  changes:
+  - message: Fixed bug with negative code length which makes game get exception and make it so UI will refreshing forever.
+    type: Fix
+  id: 410885
+  time: '2026-11-28T08:27:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7573
 Order: -1
