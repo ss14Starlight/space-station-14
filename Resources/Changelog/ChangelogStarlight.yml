@@ -1,13 +1,6 @@
 Entries:
 - author: Ohelig
   changes:
-  - message: (Cluster) Added another Chemistry locker.
-    type: Add
-  id: 410493
-  time: '2026-11-16T04:32:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7246
-- author: Ohelig
-  changes:
   - message: (Cluster) Moved the Radio Host's shutters button to somewhere you can reach.
     type: Fix
   id: 410494
@@ -2799,4 +2792,11 @@ Entries:
   id: 410892
   time: '2026-11-28T10:43:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7495
+- author: neomoth
+  changes:
+  - message: The CC zombie takeover condition now spawns and detonates a nuke on Central Command should it be overrun by zombies and all CBURN and CC staff fall and get zombified.
+    type: Tweak
+  id: 410893
+  time: '2026-11-28T10:43:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7584
 Order: -1
