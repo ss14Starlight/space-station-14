@@ -357,8 +357,10 @@ namespace Content.Server.Cargo.Systems
                 ("unit", product.Cost),
                 ("amount", args.Amount),
                 ("cost", product.Cost * args.Amount),
-                ("orderer", args.Requester),
-                ("reason", args.Reason)));
+                // Starlight-start
+                ("orderer", FormattedMessage.EscapeText(args.Requester)),
+                ("reason", FormattedMessage.EscapeText(args.Reason))));
+                // Starlight-end
             _paperSystem.SetContent((label, paper), msg.ToMarkup());
 
             var slip = EnsureComp<CargoSlipComponent>(label);
