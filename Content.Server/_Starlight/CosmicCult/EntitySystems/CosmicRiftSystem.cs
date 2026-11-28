@@ -1,6 +1,6 @@
 using Content.Server.Actions;
 using Content.Server.Antag;
-using Content.Server.Atmos.Components;
+using Content.Shared._Starlight.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Popups;
 using Content.Shared._Starlight.CosmicCult;

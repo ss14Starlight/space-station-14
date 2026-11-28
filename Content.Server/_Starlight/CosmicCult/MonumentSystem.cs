@@ -2,7 +2,7 @@ using System.Linq;
 using Content.Server._Starlight.CosmicCult.Components;
 using Content.Server._Starlight.CosmicCult.EntitySystems;
 using Content.Server.Actions;
-using Content.Server.Atmos.Components;
+using Content.Shared._Starlight.Atmos.Components;
 using Content.Server.Audio;
 using Content.Server.Chat.Systems;
 using Content.Server._Starlight.Shuttles;
