@@ -1741,3 +1741,19 @@
     labelColor: "#4d32ba"
     song:
       path: /Audio/_Starlight/RadioStation/Vinyls/music/welcome_to_ss14.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylTerminatedContracts
+  name: "vinyl: Terminated Contracts"
+  description: "For when ERT won't cut it. By: 'Qntum31'"
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: label
+      color: "#d700b3"
+  - type: Vinyl
+    labelColor: "#d700b3"
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/TerminatedContracts.ogg
