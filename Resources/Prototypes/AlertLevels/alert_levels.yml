@@ -67,7 +67,7 @@
       sound:
         path: /Audio/_Starlight/StationEvents/TerminatedContracts.ogg # Starlight, seperate from the radio version as this one is stereo and higher quality.
         params:
-          volume: -1
+          volume: -1 # Starlight
       disableSelection: true
       color: DarkViolet
       emergencyLightColor: "#938aff" #Starlight
