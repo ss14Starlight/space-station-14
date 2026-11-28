@@ -195,12 +195,7 @@ public abstract partial class SharedStorageSystem : EntitySystem
             return;
         }
 
-        UpdateOccupied((container.Owner, storage));
-
-        if (!ItemFitsInGridLocation((itemEnt.Owner, itemEnt.Comp), (container.Owner, storage), loc))
-        {
-            ContainerSystem.Remove(itemEnt.Owner, container, force: true);
-        }
+        RelocateResizedItem(itemEnt, container, storage, loc); // Starlight-edit
     }
 
     private void OnNestedStorageCvar(bool obj)

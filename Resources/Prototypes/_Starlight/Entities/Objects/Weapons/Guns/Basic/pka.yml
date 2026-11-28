@@ -228,7 +228,7 @@
         Structural: 15
     animation: WeaponArcThrust
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 3
+    rechargeCooldown: 3.75
     rechargeSound:
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
       params:
@@ -250,3 +250,9 @@
   - type: Prying
     useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg
     playSoundOnDoafter: true
+  - type: GunRequiresWield
+  - type: UseDelay
+    delay: 1
+  - type: GunWieldBonus
+    minAngle: -20
+    maxAngle: -25

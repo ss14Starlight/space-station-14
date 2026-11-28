@@ -67,7 +67,11 @@ public sealed partial class LobbyUIController
             _characterSetupPoppedOut = false;
         };
 
-        window.OnPopout += () => _characterSetupPoppedOut = true;
+        window.OnPopout += () =>
+        {
+            _characterSetupPoppedOut = true;
+            characterGui.ReloadCharacterPickers();
+        };
 
         _characterSetupWindow = window;
         window.OpenCentered();

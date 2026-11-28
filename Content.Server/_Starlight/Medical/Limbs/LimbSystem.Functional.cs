@@ -59,7 +59,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
                     }
                 }
                 if (TryComp<HandsComponent>(body, out var hands))
-                    _hands.AddHand((body, hands), BodySystem.GetPartSlotContainerId(slot), limb.Comp.Symmetry == BodyPartSymmetry.Left ? HandLocation.Left : HandLocation.Right);
+                    _hands.AddHand((body, hands), BodySystem.GetPartSlotContainerId(slot), GetHandLocation(limb));
                 break;
             case BodyPartType.Leg:
                 EnsureLimbChildSlots(limb);
@@ -137,7 +137,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
 
                     foreach (var containedEnt in child.ContainedEntities)
                     {
-                        if (TryComp(containedEnt, out OrganComponent? _))if (TryComp(containedEnt, out TransformComponent? transform) && TryComp(containedEnt, out MetaDataComponent? metaData))
+                        if (TryComp(containedEnt, out OrganComponent? _))if (TryComp(containedEnt, out TransformComponent? _) && TryComp(containedEnt, out MetaDataComponent? _))
                         {
                             var ev = new SurgeryOrganExtracted(body, limb, containedEnt, body);
                             RaiseLocalEvent(containedEnt, ref ev);

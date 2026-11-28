@@ -9,7 +9,7 @@ public enum VoiceMaskUIKey : byte
 }
 
 [Serializable, NetSerializable]
-public sealed class VoiceMaskBuiState : BoundUserInterfaceState
+public sealed partial class VoiceMaskBuiState : BoundUserInterfaceState // Starlight-edit
 {
     public readonly string Name;
     public readonly string? Verb;

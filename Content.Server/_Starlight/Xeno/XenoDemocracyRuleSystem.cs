@@ -110,7 +110,8 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
             if(!TryComp(selectedVoice.Value, out XenoDemocracyComponent? comp) || !_mind.TryGetMind(selectedVoice.Value, out _, out _) || (exclude != null && selectedVoice.Value == exclude))
                 continue;
             _languageSystem.AddLanguage(selectedVoice.Value, comp.VoiceLanguage);
-            _languageSystem.RemoveLanguage(selectedVoice.Value, comp.NonVoiceLanguage, removeUnderstood: false);
+            _languageSystem.AddLanguage(selectedVoice.Value, comp.NonVoiceLanguage, addSpoken: false, addUnderstood: true); //Ensure that they actually understand congress now
+            _languageSystem.RemoveLanguage(selectedVoice.Value, comp.NonVoiceLanguage,removeSpoken: true, removeUnderstood: false);
             comp.IsVoice = true;
             rule?.HasVoice = true;
 
@@ -152,7 +153,8 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
             rule.HasVoice = false;
         }
         _languageSystem.AddLanguage(ent.Owner, ent.Comp.NonVoiceLanguage);
-        _languageSystem.RemoveLanguage(ent.Owner, ent.Comp.VoiceLanguage, removeUnderstood: false);
+        _languageSystem.AddLanguage(ent.Owner, ent.Comp.VoiceLanguage, addSpoken: false, addUnderstood: true); //Ensure that they actually understand queen again, if that got deleted somehow
+        _languageSystem.RemoveLanguage(ent.Owner, ent.Comp.VoiceLanguage, removeSpoken: true, removeUnderstood: false);
         ent.Comp.IsVoice = true;
 
         VoiceVote(ent.Owner); //Get the next in line!

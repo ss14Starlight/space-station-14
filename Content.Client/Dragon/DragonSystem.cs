@@ -21,6 +21,8 @@ public sealed partial class DragonSystem : EntitySystem
         if (args.Current is not DragonRiftComponentState state)
             return;
 
+        component.ProgressPercentage = state.Percentage; // Starlight
+
         if (component.State == state.State) return;
 
         component.State = state.State;

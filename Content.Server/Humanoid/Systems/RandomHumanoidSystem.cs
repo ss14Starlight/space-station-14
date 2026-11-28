@@ -1,9 +1,11 @@
 using Content.Server.Humanoid.Components;
 using Content.Server.RandomMetadata;
+using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Serialization.Manager;
 
 namespace Content.Server.Humanoid.Systems;
@@ -39,10 +41,22 @@ public sealed partial class RandomHumanoidSystem : EntitySystem
             throw new ArgumentException("Could not get random humanoid settings");
 
         var profile = HumanoidCharacterProfile.Random(prototype.SpeciesBlacklist);
+        // Starlight - ensure the appearance is valid
+        profile.Appearance = HumanoidCharacterAppearance.EnsureValid(profile.Appearance, profile.Species, profile.Sex);
+
         var speciesProto = _prototypeManager.Index<SpeciesPrototype>(profile.Species);
         var humanoid = EntityManager.CreateEntityUninitialized(speciesProto.Prototype, coordinates);
 
-        _metaData.SetEntityName(humanoid, prototype.RandomizeName ? profile.Name : name);
+        // Starlight-begin
+
+        // Move this before loading profile
+        EntityManager.InitializeAndStartEntity(humanoid);
+
+        // Custom name/description, randomize appearance
+        _metaData.SetEntityName(humanoid, prototype.Name ?? (prototype.RandomizeName ? profile.Name : name));
+        if (prototype.Description is {} entDesc)
+            _metaData.SetEntityDescription(humanoid, entDesc);
+        // Starlight-end
 
         _humanoid.LoadProfile(humanoid, profile);
 
@@ -55,8 +69,6 @@ public sealed partial class RandomHumanoidSystem : EntitySystem
                 AddComp(humanoid, comp);
             }
         }
-
-        EntityManager.InitializeAndStartEntity(humanoid);
 
         return humanoid;
     }

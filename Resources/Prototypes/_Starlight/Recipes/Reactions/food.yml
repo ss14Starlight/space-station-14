@@ -24,3 +24,27 @@
       amount: 1
   products:
     StellibininSyrup: 1
+
+- type: reaction
+  id: Menthol
+  requiredMixerCategories:
+  - Centrifuge
+  reactants:
+    Ethanol:
+      amount: 1
+    Phenol:
+      amount: 2
+  products:
+    Menthol: 1
+    Oxygen: 2
+
+- type: reaction
+  id: MentholAlt
+  minTemp: 340
+  reactants:
+    MintExtract:
+      amount: 1
+    Ethanol:
+      amount: 1
+  products:
+    Menthol: 1

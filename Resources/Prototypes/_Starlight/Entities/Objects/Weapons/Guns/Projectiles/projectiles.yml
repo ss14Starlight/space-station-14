@@ -513,8 +513,8 @@
   components:
   - type: ProjectileSpread
     proto: BulletKineticSub
-    count: 5
-    spread: 18
+    count: 3
+    spread: 20
 
 - type: entity
   id: BulletGrenadeBola

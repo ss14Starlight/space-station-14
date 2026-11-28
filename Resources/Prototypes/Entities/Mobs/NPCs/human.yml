@@ -1,3 +1,5 @@
+# Starlight notice: All prototypes in this file are deprecated. Don't edit.
+
 - type: entity
   name: civilian
   parent: BaseMobHuman # Starlight Edit: MobHuman -> BaseMobHuman

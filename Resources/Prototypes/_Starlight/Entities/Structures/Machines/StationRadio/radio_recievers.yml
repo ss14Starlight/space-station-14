@@ -59,6 +59,7 @@
     - RadioShow
   - type: StationRadioReceiver
     toggleOnActivate: false
+  - type: StationAiWhitelist
   - type: ActivatableUI
     key: enum.StationRadioReceiverUiKey.Key
   - type: UserInterface

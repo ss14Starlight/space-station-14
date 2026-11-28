@@ -145,8 +145,11 @@ public sealed partial class AlignAtmosPipeLayers : SnapgridCenter
     private void UpdateHijackedPlacer(AtmosPipeLayer layer, ScreenCoordinates mouseScreen)
     {
         // Try to get alternative prototypes from the construction prototype
-        var constructionSystem = (pManager.Hijack as ConstructionPlacementHijack)?.CurrentConstructionSystem;
-        var altPrototypes = (pManager.Hijack as ConstructionPlacementHijack)?.CurrentPrototype?.AlternativePrototypes;
+        // Starlight - start
+        var hijack = pManager.Hijack as ConstructionPlacementHijack;
+        var constructionSystem = hijack?.CurrentConstructionSystem;
+        var altPrototypes = hijack?.CurrentPrototype?.AlternativePrototypes;
+        // Starlight - end
 
         if (constructionSystem == null || altPrototypes == null || (int)layer >= altPrototypes.Length)
             return;
@@ -170,7 +173,7 @@ public sealed partial class AlignAtmosPipeLayers : SnapgridCenter
         {
             IsTile = false,
             PlacementOption = newProto.PlacementMode,
-        }, new ConstructionPlacementHijack(constructionSystem, newProto));
+        }, new ConstructionPlacementHijack(constructionSystem, newProto, hijack?.IsQuickConstruction ?? false)); // Starlight
 
         if (pManager.CurrentMode is AlignAtmosPipeLayers { } newMode)
             newMode.RefreshGrid(mouseScreen);

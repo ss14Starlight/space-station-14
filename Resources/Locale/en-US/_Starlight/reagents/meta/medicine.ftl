@@ -38,3 +38,9 @@ reagent-desc-phytovitalin = A complex compound, unique in origin to a select few
 
 reagent-name-mycophylin = mycophylin
 reagent-desc-mycophylin = A strange fungal compound produced by Diona biology. What the body makes of it seems to depend entirely on what the body is made of.
+
+reagent-name-salicylic-acid = salicylic acid
+reagent-desc-salicylic-acid = An advanced brute medication that doubles as a painkiller. Only works when digested and can cause chemical burns when overdosed.
+
+reagent-name-synthol = synthol
+reagent-desc-synthol = A chewable treatment that improves the body's response to burns and extreme temperature. Overdose can cause irritation in the throat.
