@@ -17,6 +17,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Stacks;
 using Content.Server.Stack;
+using Content.Shared.Hands.EntitySystems;
 
 namespace Content.Server.Salvage.JobBoard;
 
@@ -31,21 +32,6 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
     [Dependency] private RadioSystem _radio = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private UserInterfaceSystem _ui = default!;
-    // Starlight-start
-    [Dependency] private StackSystem _stack = default!;
-    // Starlight-end
-
-    /// <summary>
-    /// Radio channel that unlock messages are broadcast on.
-    /// </summary>
-    private static readonly ProtoId<RadioChannelPrototype> UnlockChannel = "Supply";
-
-    #region Starlight
-    /// <summary>
-    /// Prototype for the stack that is spawned when a salvage job is completed.
-    /// </summary>
-    private static readonly ProtoId<StackPrototype> TicketStackPrototype = "SalvageTicket";
-    #endregion
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -288,6 +274,11 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
 
         _audio.PlayPvs(ent.Comp.PrintSound, ent);
         var label = SpawnAtPosition(ent.Comp.LabelEntity, Transform(ent).Coordinates);
+        // Starlight start
+        // let the digi-board place labels in the user's hand
+        if (ent.Comp.PrintInHand)
+            _hands.TryPickupAnyHand(args.Actor, label);
+        // Starlight end
         EnsureComp<JobBoardLabelComponent>(label).JobId = job.ID;
 
         var target = new List<string>();
