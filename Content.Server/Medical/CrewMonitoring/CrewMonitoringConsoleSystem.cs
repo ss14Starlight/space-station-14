@@ -40,6 +40,7 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, BoundUIOpenedEvent>(OnUIOpened);
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, CrewMonitoringWarpRequestMessage>(OnWarpRequest); // Starlight
+        SubscribeLocalEvent<CrewMonitoringConsoleComponent, CrewMonitoringUpdateFilterRequestMessage>(OnFilterRequest); //Starlight
     }
 
     /// <summary>
@@ -184,7 +185,7 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
         if (xform.GridUid != null)
             EnsureComp<NavMapComponent>(xform.GridUid.Value);
 
-        #region Starlight
+        #region "Starlight"
         // Moving all crew monitor filtering serverside
         // Filter and update all sensors info
         var hasFilter = TryComp<CrewMonitoringFilterComponent>(uid, out var filter);
@@ -198,20 +199,30 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
                     (filter.ShownDepartments.Count == 0 || filter.ShownDepartments.Any(dept => sensor.JobDepartments.Contains(dept)))
                     && (!filter.OnlyShowWoundedOrDead || !sensor.IsAlive || sensor.DamagePercentage is not null && sensor.DamagePercentage > 0.5)
                     && (filter.ShownFactions.Count == 0 || filter.ShownFactions.Contains(sensor.Faction))).ToList();
+
         if (filter is not null && filter.AlwaysShowTrackingImplants)
         {
             foreach (var sensor in allSensors)
             {
-                var clientEntity = GetEntity(sensor.SuitSensorUid);
-                if (TryComp<SubdermalImplantComponent>(clientEntity, out var suitSensor) && (filter.ShownFactions.Count == 0 || filter.ShownFactions.Contains(sensor.Faction)))
-                {
+                //Starlight
+
+                //var clientEntity = GetEntity(sensor.SuitSensorUid);
+
+                //if (TryComp<SubdermalImplantComponent>(clientEntity, out var suitSensor) && (filter.ShownFactions.Count == 0 || filter.ShownFactions.Contains(sensor.Faction)))
+                //{
+                //    filteredSensors.Add(sensor);
+                //}
+
+                if (IsSensorValid(filter, sensor))
                     filteredSensors.Add(sensor);
-                }
+
+                //Starlight End
             }
         }
         filteredSensors = filteredSensors.Distinct().ToList();
         _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(_gameTiming.CurTime, component.LastSensorDataReceivedAt, filteredSensors)); // Starlight end
     }
+
     private void OnWarpRequest(EntityUid uid, CrewMonitoringConsoleComponent component, ref CrewMonitoringWarpRequestMessage args)
     {
         if (args.Actor is not { Valid: true } actor)

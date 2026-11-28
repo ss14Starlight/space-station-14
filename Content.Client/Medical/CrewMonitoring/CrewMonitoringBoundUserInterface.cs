@@ -7,6 +7,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Client._Starlight.UserInterface;
+using Content.Shared._Starlight.Medical.CrewMonitoring;
 #endregion
 
 namespace Content.Client.Medical.CrewMonitoring;
@@ -40,9 +41,14 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
             gridUid = xform.GridUid;
         }
 
-        _menu = this.CreatePopOutableWindow<CrewMonitoringWindow>(EntMan); // Starlight
-        _menu.Set(gridUid, Owner); // Starlight
-        _menu.MapClicked += OnMapClicked; // Starlight
+        //Starlight Start
+        _menu = this.CreatePopOutableWindow<CrewMonitoringWindow>(EntMan);
+        _menu.Set(gridUid, Owner);
+        _menu.MapClicked += OnMapClicked;
+        _menu.FilterSelected += OnFilterSelected;
+
+        UpdateFilter();
+        //Starlight End
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -62,7 +68,7 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
         }
     }
 
-    // Starlight-start
+    #region "Starlight"
     private void OnMapClicked(EntityCoordinates coordinates)
     {
         var local = _playerManager.LocalEntity;
@@ -81,6 +87,7 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
             if (_menu != null)
             {
                 _menu.MapClicked -= OnMapClicked;
+                _menu.FilterSelected -= OnFilterSelected;
                 _menu.DisposePopOut(); // Starlight: close the popout
                 _menu = null;
             }
@@ -88,5 +95,5 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
 
         base.Dispose(disposing);
     }
-    // Starlight-end
+    #endregion
 }

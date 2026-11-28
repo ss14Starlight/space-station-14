@@ -48,6 +48,7 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
 
         NavMap.TrackedEntitySelectedAction += SetTrackedEntityFromNavMap;
         NavMap.MapClicked += OnNavMapClicked;  // Starlight
+        TrackingFilter.OnItemSelected += OnFilterSelected; //Starlight
     }
 
     public void Set(EntityUid? mapUid, EntityUid owner) // Starlight
@@ -397,7 +398,7 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
         UpdateSensorsTable(_trackedEntity, prevTrackedEntity);
     }
 
-    // Starlight-start
+    //Starlight Start
     private void OnNavMapClicked(EntityCoordinates coordinates)
     {
         MapClicked?.Invoke(coordinates);
@@ -413,7 +414,7 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
 
         base.Dispose(disposing);
     }
-    // Starlight-end
+    //Starlight End
 
     private void UpdateSensorsTable(NetEntity? currTrackedEntity, NetEntity? prevTrackedEntity)
     {

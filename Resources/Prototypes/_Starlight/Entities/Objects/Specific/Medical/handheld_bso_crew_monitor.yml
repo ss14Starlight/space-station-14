@@ -49,6 +49,14 @@
     shownDepartments:
     - Command
     alwaysShowTrackingImplants: true
+    shownTrackingImplant: CommandTrackingImplant
+    allowedTrackingImplants:
+      - - CommandTrackingImplant
+        - tracking-implant-filter-label-command
+      - - TrackingImplant
+        - tracking-implant-filter-label-security
+      - - ITGTrackingImplant
+        - tracking-implant-filter-label-itg
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor

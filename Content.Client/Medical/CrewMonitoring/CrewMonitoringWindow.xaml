@@ -20,6 +20,10 @@
                 <LineEdit Name="SearchLineEdit" HorizontalExpand="True"
                           PlaceHolder="{Loc crew-monitoring-ui-filter-line-placeholder}" />
 
+				<!-- Starlight Begin -->
+				<OptionButton Name="TrackingFilter" Visible="False"/>
+				<!-- Starlight End -->
+
                 <ScrollContainer Name="SensorScroller"
                                  VerticalExpand="True"
                                  SetWidth="520"
