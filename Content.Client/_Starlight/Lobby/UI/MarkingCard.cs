@@ -58,7 +58,7 @@ public sealed class MarkingCard : ContainerButton
             var label = new RichTextLabel
             {
                 Text = Loc.GetString($"marking-{markingId}"),
-                HorizontalAlignment = HAlignment.Left,
+                HorizontalAlignment = HAlignment.Center,
                 VerticalAlignment = VAlignment.Top,
                 Margin = new Thickness(2, 0)
             };
