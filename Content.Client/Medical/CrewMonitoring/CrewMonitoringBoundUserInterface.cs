@@ -47,10 +47,7 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
         _menu.MapClicked += OnMapClicked;
         _menu.FilterSelected += OnFilterSelected;
 
-        if (EntMan.TryGetComponent<CrewMonitoringFilterComponent>(Owner, out var component))
-        {
-            _menu!.PopulateTrackingFilters(component.AllowedTrackingImplants, component.ShownTrackingImplant);
-        }
+        UpdateFilter();
         //Starlight End
     }
 
@@ -72,11 +69,6 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
     }
 
     #region "Starlight"
-    private void OnFilterSelected(string trackingImplant)
-    {
-        SendMessage(new CrewMonitoringUpdateFilterRequestMessage(trackingImplant));
-    }
-
     private void OnMapClicked(EntityCoordinates coordinates)
     {
         var local = _playerManager.LocalEntity;
