@@ -8,7 +8,7 @@ public sealed partial class StarlightCCVars
     /// Whether light from illuminated walls bounces onto the surrounding floor. Uses a few GPU passes per frame.
     /// </summary>
     public static readonly CVarDef<bool> GlobalIllumination =
-        CVarDef.Create("lighting.gi", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("lighting.gi", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
     /// Number of rays cast by each pixel, from 4 to 32. More rays reduce noise.
