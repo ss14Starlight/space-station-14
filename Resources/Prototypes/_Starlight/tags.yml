@@ -243,6 +243,9 @@
   id: DamagedShadekinCore
 
 - type: Tag
+  id: DecorativeDoor # Doors with this tag don't prevent other doors on the same tile from closing (such as curtains)
+
+- type: Tag
   id: DeificEncounterTraitBackground
 
 - type: Tag

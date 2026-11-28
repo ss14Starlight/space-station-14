@@ -11,6 +11,7 @@
   - type: Tag
     tags:
     - ClothMade
+    - DecorativeDoor
   - type: BadFood
   - type: Edible
     delay: 3

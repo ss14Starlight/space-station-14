@@ -2,6 +2,8 @@ using Content.Server.Doors.Systems;
 using Content.Shared._Starlight.Door;
 using Content.Shared.Doors;
 using Content.Shared.Doors.Components;
+using Content.Shared.Doors.Systems;
+using Content.Shared.Tag;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
@@ -13,6 +15,7 @@ public sealed partial class TimedDoorClosingSystem : EntitySystem
     [Dependency] private DoorSystem _door = default!;
     [Dependency] private EntityLookupSystem _entityLookup = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private TagSystem _tags = default!;
     [Dependency] private IGameTiming _timing = default!;
 
     private readonly HashSet<Entity<PhysicsComponent>> _intersecting = new();
@@ -57,7 +60,8 @@ public sealed partial class TimedDoorClosingSystem : EntitySystem
                 continue;
             }
 
-            _door.TryClose(uid, door);
+            if (!_door.TryClose(uid, door))
+                timed.NextClose = _timing.CurTime + timed.AutoCloseDelay;
         }
     }
 
@@ -85,6 +89,9 @@ public sealed partial class TimedDoorClosingSystem : EntitySystem
                 continue;
 
             if (!entity.Comp.CanCollide)
+                continue;
+
+            if (_tags.HasTag(entity.Owner, SharedDoorSystem.DecorativeDoorTag))
                 continue;
 
             return true;
