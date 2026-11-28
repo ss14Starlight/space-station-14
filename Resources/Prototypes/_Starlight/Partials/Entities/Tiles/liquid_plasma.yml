@@ -1,0 +1,6 @@
+# Glass transit pods heat up riding over liquid plasma.
+- type: !PartialOnly entity
+  id: FloorLiquidPlasmaEntity
+  components:
+  - type: RadiantHeat
+    temperature: 1000

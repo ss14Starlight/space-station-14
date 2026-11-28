@@ -40,3 +40,12 @@ signal-port-name-airlock-cycler-button = Airlock Controller
 signal-port-description-airlock-cycler-button = Asks the airlock controller to cycle towards this button's side.
 signal-port-name-airlock-cycler-device = Airlock Controller
 signal-port-description-airlock-cycler-device = Lets an airlock controller fill or empty the chamber with this vent, scrubber or pump.
+
+signal-port-name-transit-switch-left = Switch left
+signal-port-description-transit-switch-left = Sends pods leaving the trunk down the left branch.
+signal-port-name-transit-switch-right = Switch right
+signal-port-description-transit-switch-right = Sends pods leaving the trunk down the right branch.
+signal-port-name-transit-depart = Depart
+signal-port-description-transit-depart = Sends the docked pod off now and stops holding pods here.
+signal-port-name-transit-hold = Hold
+signal-port-description-transit-hold = Keeps pods docked here until Depart is signalled.

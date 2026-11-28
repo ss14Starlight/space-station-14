@@ -1,0 +1,6 @@
+# Glass transit pods heat up riding over lava.
+- type: !PartialOnly entity
+  id: FloorLavaEntity
+  components:
+  - type: RadiantHeat
+    temperature: 1500

@@ -25,7 +25,7 @@ public sealed partial class DisposalHolderComponent : Component, IGasMixtureHold
     /// <summary>
     /// Sets how fast the holder moves (~ number of tiles per second).
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField] // Starlight-edit: transit pods change speed on the way
     public float TraversalSpeed { get; set; } = 5f;
 
     /// <summary>
@@ -80,7 +80,7 @@ public sealed partial class DisposalHolderComponent : Component, IGasMixtureHold
     /// Sound played when the holder changes direction.
     /// </summary>
     [DataField]
-    public SoundSpecifier ClangSound = new SoundPathSpecifier("/Audio/Effects/clang.ogg", AudioParams.Default.WithVolume(-5f));
+    public SoundSpecifier? ClangSound = new SoundPathSpecifier("/Audio/Effects/clang.ogg", AudioParams.Default.WithVolume(-5f)); // Starlight-edit: nullable
 
     /// <summary>
     /// Damage dealt to contained entities when the holder changes direction.

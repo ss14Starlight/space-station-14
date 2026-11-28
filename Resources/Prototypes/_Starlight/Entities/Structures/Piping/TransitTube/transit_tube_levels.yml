@@ -1,0 +1,266 @@
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeRampDown
+  name: transit tube ramp down
+  description: Takes pods from the floor down under it and back up. The arrows point at the buried end. Pods going too fast for the slope slam into it.
+  components:
+  - type: Sprite
+    layers:
+    - state: straight
+      map: [ "glass" ]
+    - state: ramp_down
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+    exitNetworks:
+      North: TransitUnder
+  - type: TransitTubeRamp
+
+- type: entity
+  parent: TransitTubeRampDown
+  id: TransitTubeRampUp
+  name: transit tube ramp up
+  description: Takes pods from the floor up over it and back down. The arrows point at the raised end. Pods going too fast for the slope slam into it.
+  components:
+  - type: Sprite
+    layers:
+    - state: straight
+      map: [ "glass" ]
+    - state: ramp_up
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+    exitNetworks:
+      North: TransitOver
+
+- type: entity
+  id: TransitTubeLevelBase
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Piping/TransitTube/tube.rsi
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - Structure
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Glass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: TransitTubeGlass
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 1
+    fx: EffectRCDDeconstruct2
+    rpd: true
+  - type: StaticPrice
+    price: 40
+
+- type: entity
+  parent: TransitTubeLevelBase
+  id: TransitTubeUnderBase
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: ThickPipe
+    color: "#8e949e"
+  - type: Appearance
+  - type: SubFloorHide
+  - type: DisposalTube
+    network: TransitUnder
+  - type: TransitTube
+    level: Under
+
+- type: entity
+  parent: TransitTubeLevelBase
+  id: TransitTubeOverBase
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Overdoors
+    color: "#ffffffd8"
+  - type: DisposalTube
+    network: TransitOver
+  - type: TransitTube
+    level: Over
+
+- type: entity
+  parent: TransitTubeUnderBase
+  id: TransitTubeUnder
+  name: buried transit tube
+  description: "It runs in a trench under the floor and can be tiled over, but only within a few tubes of a ramp. Further out the ground will not hold a floor."
+  components:
+  - type: Sprite
+    layers:
+    - state: straight
+      map: [ "glass" ]
+    - state: straight_details
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+
+- type: entity
+  parent: TransitTubeUnderBase
+  id: TransitTubeUnderDiagonal
+  name: buried diagonal transit tube
+  description: It runs in a trench under the floor and can be tiled over, but only within a few tubes of a ramp. Further out the ground will not hold a floor.
+  components:
+  - type: Sprite
+    layers:
+    - state: diagonal
+      map: [ "glass" ]
+    - state: diagonal_details
+  - type: DisposalTube
+    exits:
+    - NorthEast
+    - SouthWest
+
+- type: entity
+  parent: TransitTubeUnderBase
+  id: TransitTubeUnderCurved
+  name: buried curved transit tube
+  description: It runs in a trench under the floor and can be tiled over, but only within a few tubes of a ramp. Further out the ground will not hold a floor.
+  components:
+  - type: Sprite
+    layers:
+    - state: curved
+      map: [ "glass" ]
+    - state: curved_details
+  - type: DisposalTube
+    exits:
+    - South
+    - NorthEast
+
+- type: entity
+  parent: TransitTubeUnderBase
+  id: TransitTubeUnderCurvedFlipped
+  name: buried curved transit tube
+  description: It runs in a trench under the floor and can be tiled over, but only within a few tubes of a ramp. Further out the ground will not hold a floor.
+  suffix: Flipped
+  components:
+  - type: Sprite
+    layers:
+    - state: curved_flipped
+      map: [ "glass" ]
+    - state: curved_flipped_details
+  - type: DisposalTube
+    exits:
+    - South
+    - NorthWest
+
+- type: entity
+  parent: TransitTubeOverBase
+  id: TransitTubeOver
+  name: raised transit tube
+  description: It hangs over the floor, clear of everyone walking under it. It needs a ramp or a support within a few tubes, or it comes down.
+  components:
+  - type: Sprite
+    layers:
+    - state: straight
+      map: [ "glass" ]
+    - state: straight_details
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+
+- type: entity
+  parent: TransitTubeOverBase
+  id: TransitTubeOverDiagonal
+  name: raised diagonal transit tube
+  description: It hangs over the floor, clear of everyone walking under it. It needs a ramp or a support within a few tubes, or it comes down.
+  components:
+  - type: Sprite
+    layers:
+    - state: diagonal
+      map: [ "glass" ]
+    - state: diagonal_details
+  - type: DisposalTube
+    exits:
+    - NorthEast
+    - SouthWest
+
+- type: entity
+  parent: TransitTubeOverBase
+  id: TransitTubeOverCurved
+  name: raised curved transit tube
+  description: It hangs over the floor, clear of everyone walking under it. It needs a ramp or a support within a few tubes, or it comes down.
+  components:
+  - type: Sprite
+    layers:
+    - state: curved
+      map: [ "glass" ]
+    - state: curved_details
+  - type: DisposalTube
+    exits:
+    - South
+    - NorthEast
+
+- type: entity
+  parent: TransitTubeOverBase
+  id: TransitTubeOverCurvedFlipped
+  name: raised curved transit tube
+  description: It hangs over the floor, clear of everyone walking under it. It needs a ramp or a support within a few tubes, or it comes down.
+  suffix: Flipped
+  components:
+  - type: Sprite
+    layers:
+    - state: curved_flipped
+      map: [ "glass" ]
+    - state: curved_flipped_details
+  - type: DisposalTube
+    exits:
+    - South
+    - NorthWest
+
+- type: entity
+  parent: TransitTubeOver
+  id: TransitTubeOverSupport
+  name: raised transit tube support
+  description: A raised tube standing on a pair of legs. It holds up the tubes within a few tubes of it, and blocks the way under it.
+  components:
+  - type: Sprite
+    layers:
+    - state: straight
+      map: [ "glass" ]
+    - state: support
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 100
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Climbable
+  - type: TransitTube
+    level: Over
+    support: true

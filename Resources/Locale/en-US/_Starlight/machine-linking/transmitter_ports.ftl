@@ -61,3 +61,12 @@ signal-port-name-airlock-cycler-inlets = Inlets
 signal-port-description-airlock-cycler-inlets = Air vents that fill the chamber.
 signal-port-name-airlock-cycler-outlets = Outlets
 signal-port-description-airlock-cycler-outlets = Air vents, scrubbers or pumps that empty the chamber. A small chamber can use one air vent on both ports.
+
+signal-port-name-transit-pod-arrived = Pod arrived
+signal-port-description-transit-pod-arrived = Fires when a pod docks at this station.
+signal-port-name-transit-pod-departed = Pod departed
+signal-port-description-transit-pod-departed = Fires when a pod leaves this station.
+signal-port-name-transit-pod-occupied = Pod occupied
+signal-port-description-transit-pod-occupied = Fires when a pod with someone or something inside goes through.
+signal-port-name-transit-pod-empty = Pod empty
+signal-port-description-transit-pod-empty = Fires when an empty pod goes through.
