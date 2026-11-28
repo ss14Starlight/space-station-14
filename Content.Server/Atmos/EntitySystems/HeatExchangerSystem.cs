@@ -104,7 +104,7 @@ public sealed partial class HeatExchangerSystem : EntitySystem
         // ΔT' = -kΔT^4, k = -ΔT'/ΔT^4
         float kR = comp.alpha * a0 * TdivQ;
         // Based on the fact that ((3t)^(-1/3))' = -(3t)^(-4/3) = -((3t)^(-1/3))^4, and ΔT' = -kΔT^4.
-        float dT2R = dTR * MathF.Pow((1f + 3f * kR * dt * dTRA * dTRA * dTRA), -1f/3f);
+        float dT2R = dTR * MathF.Pow((1f + (3f * kR * dt * dTRA * dTRA * dTRA)), -1f / 3f); // Starlight-edit
         float dER = (dTR - dT2R) / TdivQ;
         _atmosphereSystem.AddHeat(xfer, -dER);
         if (hasEnv && environment != null)

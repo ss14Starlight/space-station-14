@@ -144,6 +144,18 @@
         amount: 2
         doAfter: 1
 
+    - to: inlineradiator
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: inlinebendradiator
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
   - node: ventpumpAlt1
     entity: GasVentPumpAlt1
     edges:
@@ -546,4 +558,38 @@
       - tool: Welding
         doAfter: 1
 
+  - node: inlineradiator
+    entity: InlineHeatExchanger
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Screwing
+        doAfter: 1
+      - tool: Welding
+        doAfter: 1
 
+  - node: inlinebendradiator
+    entity: InlineHeatExchangerBend
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Screwing
+        doAfter: 1
+      - tool: Welding
+        doAfter: 1

@@ -236,6 +236,26 @@
     - !type:NoUnstackableInTile
   alternativePrototypes: *GasInletSiphonAltProtos
 
+- type: construction
+  id: InlineHeatExchanger
+  name: construction-recipe-inline-heat-exchanger
+  graph: GasUnaryStarlight
+  startNode: start
+  targetNode: inlineradiator
+  category: construction-category-atmospherics
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: InlineHeatExchangerBend
+  name: construction-recipe-inline-heat-exchanger-bend
+  graph: GasUnaryStarlight
+  startNode: start
+  targetNode: inlinebendradiator
+  category: construction-category-atmospherics
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
 # region binary
 
 - type: construction

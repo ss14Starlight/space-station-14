@@ -378,3 +378,26 @@
   rotation: User
   hasLayers: true
   fx: EffectRCDConstruct0
+
+- type: rcd
+  id: InlineRadiator
+  category: AtmosphericUtility
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/inline_radiator.png
+  mode: ConstructObject
+  prototype: InlineHeatExchanger
+  cost: 3
+  delay: 0
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: InlineRadiatorBend
+  category: AtmosphericUtility
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/inline_radiator_bend.png
+  mode: ConstructObject
+  prototype: InlineHeatExchangerBend
+  cost: 4
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0

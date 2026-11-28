@@ -1,0 +1,19 @@
+{
+   "version":1,
+   "size":{
+      "x":32,
+      "y":32
+   },
+   "license":"CC-BY-SA-3.0",
+   "copyright":"Taken from GoobStation at commit 17f6d4a677c9ce12e398b53dbb7ae65b92b25158, inline sprites modified from original tgstation sprites by Ilya246",
+   "states":[
+      {
+         "name":"iheStraight",
+         "directions":4
+      },
+      {
+         "name":"iheBend",
+         "directions":4
+      }
+   ]
+}
