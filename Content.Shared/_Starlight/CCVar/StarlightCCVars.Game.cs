@@ -5,6 +5,30 @@ namespace Content.Shared._Starlight.CCVar;
 public sealed partial class StarlightCCVars
 {
     /// <summary>
+    /// Seconds until the nuke warps in after zeds take over CC.
+    /// </summary>
+    public static readonly CVarDef<float> ZedTakeoverNukeDelaySeconds =
+        CVarDef.Create("game.zed_takeover_nuke_delay_seconds", 3f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Seconds until central command is set to Delta and the nuke is armed after zeds take over CC.
+    /// </summary>
+    public static readonly CVarDef<float> ZedTakeoverNukeArmSeconds =
+        CVarDef.Create("game.zed_takeover_nuke_arm_seconds", 2f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Seconds until the nuke detonates after zombies take over CC.
+    /// </summary>
+    public static readonly CVarDef<int> ZedTakeoverNukeCountdownSeconds =
+        CVarDef.Create("game.zed_takeover_nuke_countdown_seconds", 15, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Seconds until the round restarts after zombies take over central command.
+    /// </summary>
+    public static readonly CVarDef<float> ZedTakeoverRestartSeconds =
+        CVarDef.Create("game.zed_takeover_restart_seconds", 30f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
     /// Making everyone a pacifist at the end of a round.
     /// </summary>
     public static readonly CVarDef<bool> PeacefulRoundEnd =
