@@ -14,6 +14,7 @@ using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.Body.Components;
 using Content.Shared.Mech.Components;
+using Content.Shared.Vehicle.Systems;
 using Content.Shared.Weapons.Reflect;
 using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
@@ -32,6 +33,7 @@ namespace Content.Shared.Weapons.Hitscan.Systems;
 
 public sealed partial class HitscanBasicRaycastSystem : EntitySystem
 {
+    [Dependency] private VehicleSystem _rideVehicles = default!; // Starlight
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private ISharedAdminLogManager _log = default!;
@@ -53,8 +55,8 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
     {
         var shooter = args.Shooter ?? args.Gun;
         // Starlight start - handle the shooter being the mech, not the pilot
-        if (TryComp<MechPilotComponent>(shooter, out var pilotA))
-            shooter = pilotA.Mech;
+        if (_mech.TryGetPilotMech(shooter, out var pilotA))
+            shooter = pilotA.Owner;
         // Starlight end
 
         var mapCords = _transform.ToMapCoordinates(args.FromCoordinates);
@@ -73,6 +75,9 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
         var lagEv = new HitscanLagCompensationEvent(args.Shooter, shooter, mapCords.MapId, mapCords.Position,
             args.ShotDirection, ent.Comp.MaxDistance, (int) ent.Comp.CollisionMask, rayCastResults);
         RaiseLocalEvent(ref lagEv);
+
+        if (_rideVehicles.GetRideVehicle(shooter) is { } vehicle && args.OutputTrace == null) // Starlight
+            rayCastResults.RemoveAll(hit => hit.HitEntity == vehicle); // Starlight
 
         var result = SelectHit(ent, shooter, mapCords, args.ShotDirection, pointer, args.Target, rayCastResults, args.PredictionSeed);
 

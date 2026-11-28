@@ -1,0 +1,420 @@
+#region Buckled Vehicles
+- type: entity
+  id: VehicleGasBuckleBase
+  abstract: true
+  save: false
+  parent: BaseVehicleRideableDamageable
+  components:
+  - type: Vehicle
+    cellPowered: false
+    requireIgnition: true
+    allowCrashing: true
+    baseState: vehicle
+    brokenState: vehicle_broken
+    startupTime: 2
+    startUp:
+      path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+      params:
+        volume: -3
+    hornSound:
+      path: /Audio/Effects/Vehicle/carhorn.ogg
+      params:
+        volume: -3
+    riderWhitelist:
+      tags:
+        - CanPilot
+    soundHit:
+      collection: MetalThud
+  - type: DirectionalOverride
+    offsets:
+      North: "0, -0.12"
+      South: "0, -0.12"
+      East: "0, -0.2"
+      West: "0, -0.2"
+    drawDepths:
+      North: OverMobs
+      South: OverMobs
+      East: BelowMobs
+      West: BelowMobs
+  - type: Strap
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 360
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: Keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - ATVKeys
+  - type: ContainerContainer
+    containers:
+      key_slot: !type:ContainerSlot
+      vehicle_mods_container: !type:Container
+  - type: Solution
+    id: fueltank
+    solution:
+      maxVol: 150
+  - type: RefillableSolution
+    solution: fueltank
+  - type: ExaminableSolution
+    solution: fueltank
+    exactVolume: true
+  - type: ReagentDraw
+    enabled: false
+    solutionContainer: fueltank
+    whitelistedReagents:
+    - WeldingFuel
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_FarHorizons/Vehicles/atvwalk.ogg
+      params:
+        volume: -11
+        pitch: 1.15
+        variation: 0.10
+  - type: VehicleMods
+    vehicleType: Gas
+    equipmentSlots: [tires, engine, armor, headlight]
+
+- type: entity
+  id: VehicleATV
+  parent: VehicleGasBuckleBase
+  name: atv
+  description: All-Tile Vehicle.
+  components:
+  - type: RandomMetadata
+    descriptionSegments: [DescriptionsATV]
+  - type: Sprite
+    drawdepth: OverMobs
+    sprite: _FarHorizons/Objects/Vehicles/atv.rsi
+    layers:
+    - state: vehicle
+      map: ["enum.VehicleVisualLayers.Base"]
+    noRot: true
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: Keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - ATVKeys
+  - type: Hitch
+  - type: VehicleMods
+    vehicleType: Gas
+    equipmentSlots: [tires, engine, armor, headlight]
+
+- type: entity
+  id: VehicleATVFilled
+  parent: VehicleATV
+  suffix: Filled
+  components:
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 150
+    - type: ContainerFill
+      containers:
+        key_slot:
+        - VehicleKeyATV
+    - type: VehicleMods
+      startingEquipment:
+        - BasicTires
+        - BasicEngine
+        - BasicHeadlight
+
+- type: entity
+  id: VehicleATVNanoTrasen
+  parent: VehicleGasBuckleBase
+  name: ntv
+  description: A luxurious variant of the ATV.
+  components:
+    - type: Sprite
+      drawdepth: OverMobs
+      sprite: _FarHorizons/Objects/Vehicles/sectv.rsi
+      layers:
+      - state: vehicle
+        map: ["enum.VehicleVisualLayers.Base"]
+      noRot: true
+    - type: ContainerContainer
+      containers:
+        key_slot: !type:ContainerSlot
+        storagebase: !type:Container
+        vehicle_mods_container: !type:Container
+    - type: Storage
+      grid:
+      - 0,0,10,9
+      maxItemSize: Huge
+      openOnActivate: false
+      clickInsert: false
+    - type: UseDelay
+      delay: 0.5
+    - type: LockedStorage
+    - type: Lock
+      locked: true
+      showLockVerbs: false
+      unlockOnClick: false
+      popupMessage: false
+      showExamine: false
+    - type: ItemSlots
+      slots:
+        key_slot:
+          name: Keys
+          whitelist:
+            requireAll: true
+            tags:
+            - VehicleKey
+            - NTVKeys
+    - type: Hitch
+    - type: VehicleMods
+      vehicleType: Gas
+      equipmentSlots: [tires, engine, armor, headlight, lightbar]
+
+- type: entity
+  id: VehicleATVNanoTrasenFilled
+  parent: VehicleATVNanoTrasen
+  suffix: Filled
+  components:
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 150
+    - type: ContainerFill
+      containers:
+        key_slot:
+        - VehicleKeyNTV
+    - type: VehicleMods
+      startingEquipment:
+        - BasicTires
+        - BasicEngine
+        - BasicArmorKit
+        - BasicHeadlight
+
+- type: entity
+  id: VehicleMotorcycle
+  parent: VehicleGasBuckleBase
+  name: motorcycle
+  description: Bad to the bone.
+  components:
+  - type: Sprite
+    drawdepth: OverMobs
+    sprite: _FarHorizons/Objects/Vehicles/motorbike.rsi
+    layers:
+    - state: vehicle
+      map: ["enum.VehicleVisualLayers.Base"]
+    noRot: true
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: Keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - MotorcycleKeys
+  - type: ContainerContainer
+    containers:
+      key_slot: !type:ContainerSlot
+      storagebase: !type:Container
+      vehicle_mods_container: !type:Container
+  - type: Hitch
+  - type: Storage
+    grid:
+    - 0,0,1,5
+    - 3,0,6,5
+    - 8,0,9,5
+    maxItemSize: Huge
+    openOnActivate: false
+    clickInsert: false
+  - type: VehicleMods
+    vehicleType: Gas
+
+- type: entity
+  id: VehicleMotorcycleFilled
+  parent: VehicleMotorcycle
+  suffix: Filled
+  components:
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 150
+    - type: ContainerFill
+      containers:
+        key_slot:
+        - VehicleKeyMotorcycle
+    - type: VehicleMods
+      vehicleType: Gas
+      startingEquipment:
+        - BasicTires
+        - BasicEngine
+        - BasicArmorKit
+        - BasicHeadlight
+
+#region Container Vehicles
+- type: entity
+  id: VehicleContainerBase
+  abstract: true
+  save: false
+  parent: BaseVehicleRideableDamageable
+  components:
+  - type: Vehicle
+    cellPowered: false
+    requireIgnition: true
+    allowCrashing: true
+    baseState: vehicle
+    brokenState: vehicle_broken
+    startupTime: 2
+    startUp:
+      path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+      params:
+        volume: -3
+    hornSound:
+      path: /Audio/Items/Toys/pushHornHonk.ogg
+      params:
+        volume: -3
+    riderWhitelist:
+      tags:
+        - CanPilot
+    soundHit:
+      collection: MetalThud
+  - type: ContainerContainer
+    containers:
+      key_slot: !type:ContainerSlot
+      passenger_slot: !type:Container
+      storagebase: !type:Container
+      vehicle_mods_container: !type:Container
+  - type: Solution
+    id: fueltank
+    solution:
+      maxVol: 150
+  - type: RefillableSolution
+    solution: fueltank
+  - type: ExaminableSolution
+    solution: fueltank
+    exactVolume: true
+  - type: ReagentDraw
+    enabled: false
+    solutionContainer: fueltank
+    whitelistedReagents:
+    - WeldingFuel
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_FarHorizons/Vehicles/atvwalk.ogg
+      params:
+        volume: -11
+        pitch: 1.15
+        variation: 0.10
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 1000
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 300
+    intensitySlope: 5
+    maxIntensity: 8
+    canCreateVacuum: false
+    deleteAfterExplosion: false
+  - type: Storage
+    grid:
+    - 0,0,9,4
+    maxItemSize: Huge
+    openOnActivate: false
+    clickInsert: false
+  - type: UseDelay
+    delay: 0.5
+  - type: LockedStorage
+  - type: Lock
+    locked: true
+    showLockVerbs: false
+    unlockOnClick: false
+    popupMessage: false
+    showExamine: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
+      - !type:SolutionExplosionBehavior
+        solution: fueltank
+      - !type:EmptyContainersBehaviour
+        containers:
+        - passenger_slot
+        - storagebase
+  - type: VehicleMods
+    vehicleType: Gas
+    equipmentSlots: [tires, engine, armor, headlight]
+
+- type: entity
+  id: VehicleClownCar
+  parent: VehicleContainerBase
+  name: clown car
+  description: What sort of horrors lie within...
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _FarHorizons/Objects/Vehicles/clowncar.rsi
+    scale: 0.75, 0.75
+    layers:
+    - state: vehicle
+      map: ["enum.VehicleVisualLayers.Base"]
+    noRot: true
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: Keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - ClowncarKeys
+
+- type: entity
+  id: VehicleClownCarFilled
+  parent: VehicleClownCar
+  suffix: Filled
+  components:
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 150
+    - type: ContainerFill
+      containers:
+        key_slot:
+        - VehicleKeyClowncar
+    - type: VehicleMods
+      startingEquipment:
+        - BasicTires
+        - BasicEngine
+        - BasicArmorKit
+        - BasicHeadlight

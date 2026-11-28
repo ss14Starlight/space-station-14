@@ -1,0 +1,1 @@
+vehicle-equipment-popup-title = Vehicle Maintenance Window

@@ -1,0 +1,18 @@
+- type: entity
+  id: VentFan
+  parent: VehicleEquipmentBase
+  name: vent fan
+  description: A special fan that pumps gas in and out of the vehicle cabin.
+  components:
+    - type: Item
+      storedRotation: 0
+    - type: Sprite
+      sprite: Objects/Specific/Mech/mecha_equipment.rsi
+      state: mecha_air_tank
+    - type: VehicleEquipment
+      actionProto: ActionVehicleFanToggle
+      slot: VENTFAN
+      allowedVehicles: Spaceship
+    - type: VehicleFanMod
+      gasProcessingRate: 100
+      filterGases: [ Plasma, CarbonDioxide, NitrousOxide ]

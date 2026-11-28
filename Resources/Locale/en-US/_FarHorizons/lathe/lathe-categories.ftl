@@ -1,0 +1,1 @@
+lathe-category-vehicle-parts = Vehicle Parts

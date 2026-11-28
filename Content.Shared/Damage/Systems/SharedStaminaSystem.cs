@@ -1,3 +1,4 @@
+using Content.Shared.Vehicle.Systems;
 using System.Linq;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
@@ -34,6 +35,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 {
     public static readonly EntProtoId StaminaLow = "StatusEffectStaminaLow";
 
+    [Dependency] private VehicleSystem _rideVehicles = default!; // Starlight
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] protected IGameTiming Timing = default!;
     [Dependency] private INetManager _net = default!;
@@ -168,12 +170,14 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         var toHit = new List<(EntityUid Entity, StaminaComponent Component)>();
 
         // Split stamina damage between all eligible targets.
-        foreach (var ent in args.HitEntities)
+        foreach (var hit in args.HitEntities)
         {
+            var ent = _rideVehicles.GetExposedOperatorOrSelf(hit); // Starlight
             if (!_stamQuery.TryGetComponent(ent, out var stam))
                 continue;
 
-            toHit.Add((ent, stam));
+            if (!toHit.Contains((ent, stam))) // Starlight
+                toHit.Add((ent, stam));
         }
 
         var hitEvent = new StaminaMeleeHitEvent(toHit);
@@ -196,7 +200,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 
     private void OnProjectileHit(EntityUid uid, StaminaDamageOnCollideComponent component, ref ProjectileHitEvent args)
     {
-        OnCollide(uid, component, args.Target);
+        OnCollide(uid, component, _rideVehicles.GetExposedOperatorOrSelf(args.Target)); // Starlight
     }
 
     private void OnProjectileEmbed(EntityUid uid, StaminaDamageOnEmbedComponent component, ref EmbedEvent args)

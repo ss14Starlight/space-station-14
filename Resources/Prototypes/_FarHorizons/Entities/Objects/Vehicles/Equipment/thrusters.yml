@@ -1,0 +1,16 @@
+- type: entity
+  id: BasicThrusters
+  parent: VehicleEquipmentBaseBig
+  name: basic thrusters
+  description: A a mass produced thruster with spaceflight capabilities but no FTL.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi
+      state: gas_engine
+    - type: VehicleEquipment
+      slot: THURSTERS
+      allowedVehicles: Spaceship
+    - type: MovementSpeedModifier
+      baseWeightlessAcceleration: 2
+      baseWeightlessFriction: 3
+      baseWeightlessModifier: 3

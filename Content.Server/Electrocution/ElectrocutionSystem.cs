@@ -22,6 +22,7 @@ using Content.Shared.Speech.EntitySystems;
 using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
+using Content.Shared.Vehicle.Systems;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -37,6 +38,7 @@ namespace Content.Server.Electrocution;
 
 public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
 {
+    [Dependency] private VehicleSystem _rideVehicles = default!; // Starlight
     [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -218,6 +220,7 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
         EnsureComp<ActivatedElectrifiedComponent>(uid);
         _appearance.SetData(uid, ElectrifiedVisuals.ShowSparks, true);
 
+        targetUid = _rideVehicles.GetExposedOperatorOrSelf(targetUid); // Starlight
         siemens *= electrified.SiemensCoefficient;
         if (!DoCommonElectrocutionAttempt(targetUid, uid, ref siemens) || siemens <= 0)
             return false; // If electrocution would fail, do nothing.

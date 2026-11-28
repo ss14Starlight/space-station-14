@@ -2,6 +2,15 @@
 # Starlight, Neocyte tags moved to _Starlight/Species/Neocyte/tags.yml because they were all renamed.
 
 - type: Tag
+  id: ATVKeys
+
+- type: Tag
+  id: ClowncarKeys
+
+- type: Tag
+  id: ElectricScooter
+
+- type: Tag
   id: GasTurbineBlade
 
 - type: Tag
@@ -20,7 +29,31 @@
   id: OilPack
 
 - type: Tag
+  id: MotorcycleKeys
+
+- type: Tag
+  id: NTVKeys
+
+- type: Tag
   id: RamChip
 
 - type: Tag
+  id: ScooterElectricKeys
+
+- type: Tag
+  id: ScooterElectricSecurityKeys
+
+- type: Tag
+  id: ScooterElectricSyndicateKeys
+
+- type: Tag
+  id: SecurityElectricScooter
+
+- type: Tag
   id: SiliconEmotesFH
+
+- type: Tag
+  id: VehicleLightArmor
+
+- type: Tag
+  id: VehicleKey

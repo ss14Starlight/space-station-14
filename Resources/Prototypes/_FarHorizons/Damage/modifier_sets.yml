@@ -1,4 +1,5 @@
 # Starlight, Neocyte damage modifiers moved to _Starlight/Damage/neocyte_modifier_sets.yml because they are heavily modified.
+
 - type: damageModifierSet
   id: IPC
   coefficients:
@@ -7,6 +8,25 @@
     Slash: 0.9
     Caustic: 0.9
 
+#region Vehicles
+
+- type: damageModifierSet
+  id: VehicleBasicArmor
+  coefficients:
+    Blunt: 0.85
+    Slash: 0.85
+    Piercing: 0.85
+    Heat: 0.90
+
+- type: damageModifierSet
+  id: VehicleLightArmor
+  coefficients:
+    Blunt: 0.70
+    Slash: 0.70
+    Piercing: 0.70
+    Heat: 0.80
+
+#region Structures
 - type: damageModifierSet
   id: StructuralReactorCasing # StructuralMetallicStrong(er), it's going to take more than a mere baseball bat to do any real damage
   coefficients:

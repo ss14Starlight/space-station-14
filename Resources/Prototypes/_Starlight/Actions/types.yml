@@ -13,7 +13,7 @@
       state: eshield-on
     useDelay: 1
   - type: InstantAction
-    event: !type:ToggleActionEvent
+    event: !type:ToggleEnergyDomeEvent
 
 - type: entity
   parent: [BaseSuicideAction, BaseImplantAction]

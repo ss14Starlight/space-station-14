@@ -1,0 +1,17 @@
+- type: !PartialOnly entity
+  id: ActionTurnKeys
+  components:
+  - type: Action
+    icon:
+      sprite: _FarHorizons/Objects/Vehicles/atv.rsi
+
+- type: !PartialOnly entity
+  id: ActionVehicleToggleSecuritySiren
+  components:
+  - type: Action
+    icon:
+      sprite: _Starlight/Objects/Vehicles/siren.rsi
+      state: icon
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:VehicleSirenToggleEvent

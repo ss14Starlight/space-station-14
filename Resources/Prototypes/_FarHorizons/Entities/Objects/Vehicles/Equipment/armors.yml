@@ -1,0 +1,32 @@
+- type: entity
+  id: BasicArmorKit
+  parent: VehicleEquipmentBaseBig
+  name: basic armor kit
+  description: This kit allows you to upgrade most vehicle's armor to tier I.
+  components:
+    - type: Item
+      size: Normal
+      heldPrefix: light
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Misc/Upgrade_Kits/electric_scooter_armor.rsi
+      state: light
+    - type: VehicleEquipment
+      slot: ARMOR
+      allowedVehicles: [Electric, Gas, Spaceship]
+    - type: Damageable
+      damageModifierSet: VehicleBasicArmor
+
+- type: entity
+  id: LightArmorKit
+  parent: BasicArmorKit
+  name: light armor kit
+  description: This kit allows you to upgrade most vehicle's armor to tier II.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Misc/Upgrade_Kits/electric_scooter_armor.rsi
+      state: light
+    - type: Damageable
+      damageModifierSet: VehicleLightArmor
+    - type: Tag
+      tags:
+      - VehicleLightArmor

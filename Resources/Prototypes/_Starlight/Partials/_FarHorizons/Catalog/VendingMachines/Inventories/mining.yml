@@ -1,0 +1,11 @@
+- type: !PartialOnly listing
+  id: VendorVehicleMotorcycleMining
+  cost:
+    SalvageTicket: !Remove
+    MiningTicket: 800
+
+- type: !PartialOnly listing
+  id: VendorVehicleATV
+  cost:
+    SalvageTicket: !Remove
+    MiningTicket: 300

@@ -102,7 +102,7 @@ public abstract partial class SharedDeconversionJailSystem : EntitySystem
     }
 
     private void OnConstruction(Entity<DeconversionOublietteComponent> ent, ref ConstructionInteractDoAfterEvent args) =>
-        _storage.OpenStorage(ent); // EJECT PLAYER BEFORE THEY GET DELETED
+        _storage.OpenStorage(ent.Owner); // EJECT PLAYER BEFORE THEY GET DELETED
 
     private void OnEntityInserted(Entity<DeconversionOublietteComponent> ent, ref EntInsertedIntoContainerMessage args)
     {
@@ -191,7 +191,7 @@ public abstract partial class SharedDeconversionJailSystem : EntitySystem
         ent.Comp.CooldownTime = Timing.CurTime + ent.Comp.CooldownWait;
 
         Dirty(ent);
-        _storage.OpenStorage(ent);
+        _storage.OpenStorage(ent.Owner);
         _ambientAudio.SetAmbience(ent, false);
         _appearance.SetData(ent, OublietteVisuals.Contents, OublietteStates.Cooldown);
 

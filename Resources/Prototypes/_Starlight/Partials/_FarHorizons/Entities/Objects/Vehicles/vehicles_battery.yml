@@ -1,0 +1,148 @@
+- type: !PartialOnly entity
+  id: VehicleBatteryBuckleBase
+  components:
+  - type: ContainerContainer
+    containers:
+      actions: !type:Container { showEnts: false }
+      status-effects: !type:Container { showEnts: true, occludes: false }
+  - type: StrapVehicle
+  - type: Strap
+    modifyBuckleDrawDepth: false
+  - type: DirectionalOverride
+    offsets:
+      North: "0, -0.0625"
+      South: "0, -0.0625"
+      East: "0.03125, -0.0625"
+      West: "-0.03125, -0.0625"
+  - type: VehicleIgnition
+  - type: VehicleHandBlocker
+    blockedHands: 1
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      tags:
+      - VehicleKey
+  - type: VehicleRide
+    unbuckleDelay: 2
+    dismountOnStun: true
+    dismountOnKnockdown: true
+    disallowWielding: true
+    gunStaminaRecoil: true
+    gunSpreadPenalty: 20
+  - type: !Remove Vehicle
+  save: !Remove
+
+- type: !PartialOnly entity
+  id: VehicleScooterElectric
+  components:
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - ScooterElectricKeys
+  - type: VehicleRide
+    riderSpeedAffectsVehicle: true
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+  - type: FootprintOwner
+    printState: Tire
+    alternateStepOffset: 0.15
+
+- type: !PartialOnly entity
+  id: VehicleScooterElectricRestrictedBase
+  components:
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - ScooterElectricSecurityKeys
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+
+- type: !PartialOnly entity
+  id: VehicleScooterElectricCommand
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: VehicleScooterElectricCommandFilled
+  components:
+  - type: VehicleMods
+    startingEquipment:
+    - !Remove SecSiren
+
+- type: !PartialOnly entity
+  id: VehicleScooterElectricCommandArmoredLight
+  components:
+  - type: VehicleMods
+    startingEquipment:
+    - !Remove SecSiren
+
+- type: !PartialOnly entity
+  id: VehicleScooterElectricTurbo
+  components:
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+
+- type: !PartialOnly entity
+  id: VehicleScooterElectricTurboFilled
+  components:
+  - type: VehicleMods
+    startingEquipment:
+    - !Remove SecSiren
+
+- type: !PartialOnly entity
+  id: VehicleScooterElectricSecurity
+  components:
+  - type: Contraband
+    tier: Tier2
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+
+- type: !PartialOnly entity
+  id: VehicleScooterElectricSyndicate
+  components:
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - ScooterElectricSyndicateKeys
+
+- type: !PartialOnly entity
+  id: VehicleJanicartFilled
+  components:
+  - type: ContainerFill
+    containers:
+      cell_slot: !Remove
+  - type: !Remove VehicleMods

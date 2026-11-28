@@ -1,0 +1,12 @@
+- type: !PartialOnly entity
+  id: SpawnVehicleATV
+  components:
+  - type: Sprite
+    layers: !Clear
+    - state: green
+    - sprite: _FarHorizons/Objects/Vehicles/atv.rsi
+      state: vehicle
+
+- type: !PartialOnly entity
+  id: SpawnVehicleScooterElectric
+  suffix: Basic

@@ -1,4 +1,4 @@
-﻿// ReSharper disable once CheckNamespace
+// ReSharper disable once CheckNamespace
 using Content.Shared.Mech.Components;
 using Content.Shared.Weapons.Ranged.Components;
 
@@ -22,8 +22,8 @@ public abstract partial class SharedGunSystem
         }
 
         // guns in the mech (you are piloting the mech)
-        if (TryComp<MechPilotComponent>(entity, out var pilot) &&
-            TryComp(pilot.Mech, out MechComponent? mechFromPilot) &&
+        if (TryGetMechShooter(entity, out var pilotMech) &&
+            TryComp(pilotMech, out MechComponent? mechFromPilot) &&
             mechFromPilot.CurrentSelectedEquipment is { } equipFromPilot &&
             TryComp(equipFromPilot, out gunComp))
             yield return (equipFromPilot, gunComp);

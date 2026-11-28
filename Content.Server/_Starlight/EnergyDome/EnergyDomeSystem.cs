@@ -1,6 +1,7 @@
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Shared._Starlight.EnergyDome;
 using Content.Shared.Actions;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DeviceLinking.Events;
@@ -12,7 +13,6 @@ using Content.Shared.Power.Components;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.Timing;
-using Content.Shared.Toggleable;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -42,7 +42,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
         SubscribeLocalEvent<EnergyDomeGeneratorComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<EnergyDomeGeneratorComponent, SignalReceivedEvent>(OnSignalReceived);
         SubscribeLocalEvent<EnergyDomeGeneratorComponent, GetItemActionsEvent>(OnGetActions);
-        SubscribeLocalEvent<EnergyDomeGeneratorComponent, ToggleActionEvent>(OnToggleAction);
+        SubscribeLocalEvent<EnergyDomeGeneratorComponent, ToggleEnergyDomeEvent>(OnToggleAction);
 
         SubscribeLocalEvent<EnergyDomeGeneratorComponent, PowerCellChangedEvent>(OnPowerCellChanged);
         SubscribeLocalEvent<EnergyDomeGeneratorComponent, PowerCellSlotEmptyEvent>(OnPowerCellSlotEmpty);
@@ -125,7 +125,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
             args.AddAction(ref generator.Comp.ToggleActionEntity, generator.Comp.ToggleAction);
     }
 
-    private void OnToggleAction(Entity<EnergyDomeGeneratorComponent> generator, ref ToggleActionEvent args)
+    private void OnToggleAction(Entity<EnergyDomeGeneratorComponent> generator, ref ToggleEnergyDomeEvent args)
     {
         if (args.Handled)
             return;

@@ -1,0 +1,216 @@
+- type: !PartialOnly entity
+  id: VehicleGasBuckleBase
+  components:
+  - type: ContainerContainer
+    containers:
+      actions: !type:Container { showEnts: false }
+      status-effects: !type:Container { showEnts: true, occludes: false }
+  - type: VehicleIgnition
+    startupSound:
+      path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+      params:
+        volume: -3
+  - type: VehicleHandBlocker
+    blockedHands: 2
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - ATVKeys
+  - type: VehicleRide
+    hornSound:
+      path: /Audio/_FarHorizons/Vehicles/carhorn.ogg
+      params:
+        volume: -3
+    impactSound:
+      collection: MetalThud
+    gunSpreadPenalty: 20
+    ejectOnCrash: true
+    unbuckleDelay: 2
+    dismountOnStun: true
+    dismountOnKnockdown: true
+  - type: StrapVehicle
+  - type: Strap
+    modifyBuckleDrawDepth: false
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+  - type: !Remove Vehicle
+  save: !Remove
+
+- type: !PartialOnly entity
+  id: VehicleATV
+  components:
+  - type: DirectionalOverride
+    offsets:
+      North: "0, -0.125"
+      South: "0, -0.125"
+      East: "0.0625, -0.125"
+      West: "-0.0625, -0.125"
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - ATVKeys
+  - type: VehicleRide
+    riderSpeedAffectsVehicle: true
+  - type: FootprintOwner
+    printState: Tire
+    alternateStepOffset: 0.2
+
+- type: !PartialOnly entity
+  id: VehicleATVNanoTrasen
+  components:
+  - type: ContainerContainer
+    containers:
+      actions: !type:Container { showEnts: false }
+      status-effects: !type:Container { showEnts: true, occludes: false }
+  - type: DirectionalOverride
+    offsets:
+      North: "0, -0.125"
+      South: "0, -0.125"
+      East: "0.0625, -0.0625"
+      West: "-0.0625, -0.0625"
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - NTVKeys
+  - type: VehicleRide
+    riderSpeedAffectsVehicle: true
+  - type: FootprintOwner
+    printState: Tire
+    alternateStepOffset: 0.2
+
+- type: !PartialOnly entity
+  id: VehicleMotorcycle
+  components:
+  - type: ContainerContainer
+    containers:
+      actions: !type:Container { showEnts: false }
+      status-effects: !type:Container { showEnts: true, occludes: false }
+  - type: DirectionalOverride
+    offsets:
+      North: "0, -0.1875"
+      South: "0, -0.1875"
+      East: "0.09375, -0.15625"
+      West: "-0.09375, -0.15625"
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - MotorcycleKeys
+  - type: VehicleRide
+    riderSpeedAffectsVehicle: true
+  - type: FootprintOwner
+    printState: Tire
+    alternateStepOffset: 0
+
+- type: !PartialOnly entity
+  id: VehicleContainerBase
+  components:
+  - type: ContainerContainer
+    containers:
+      actions: !type:Container { showEnts: false }
+      status-effects: !type:Container { showEnts: true, occludes: false }
+  - type: VehicleIgnition
+    startupSound:
+      path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+      params:
+        volume: -3
+  - type: VehicleHandBlocker
+    blockedHands: 2
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      tags:
+      - VehicleKey
+  - type: VehicleRide
+    hornSound:
+      path: /Audio/_FarHorizons/Vehicles/carhorn.ogg
+      params:
+        volume: -3
+    impactSound:
+      collection: MetalThud
+    gunSpreadPenalty: 30
+    trunkAction: ActionToggleTrunk
+  - type: Vehicle
+    transferDamage: false
+    cellPowered: !Remove
+    requireIgnition: !Remove
+    allowCrashing: !Remove
+    baseState: !Remove
+    brokenState: !Remove
+    startupTime: !Remove
+    startUp: !Remove
+    hornSound: !Remove
+    riderWhitelist: !Remove
+    soundHit: !Remove
+  - type: ContainerVehicle
+    containerId: passenger_slot
+  - type: ContainerVehicleEntry
+    entryDelay: 1.5
+    exitDelay: 1.5
+  - type: VehiclePassengerSeats
+    seats: 2
+    passengerWhitelist:
+      components:
+      - Body
+  save: !Remove
+
+- type: !PartialOnly entity
+  id: VehicleClownCar
+  components:
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+  - type: VehiclePassengerSeats
+    seats: 8
+  - type: Sprite
+    layers: !Clear
+    - state: vehicle
+      map: ["base"]
+  - type: GenericKeyedVehicle
+    containerId: key_slot
+    keyWhitelist:
+      requireAll: true
+      tags:
+      - VehicleKey
+      - ClowncarKeys
+  - type: FootprintOwner
+    printState: Tire
+    alternateStepOffset: 0.2

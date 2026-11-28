@@ -1,0 +1,24 @@
+- type: !PartialOnly entity
+  id: VehicleKeyBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/atv.rsi
+
+- type: !PartialOnly entity
+  id: VehicleKeyMotorcycle
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/motorbike.rsi
+
+- type: !PartialOnly entity
+  id: VehicleKeyScooterElectricCommand
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: VehicleKeyScooterElectricSecurity
+  components:
+  - type: Contraband
+    tier: Tier2

@@ -10,7 +10,7 @@
   id: BaseThiefSecurityStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ]
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet, GunnerySergeant, K9 ]
 
 - type: entity
   abstract: true

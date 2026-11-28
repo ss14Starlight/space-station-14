@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseAction
+  id: ActionVehicleRadar
+  name: vehicle radar
+  description: View this vehicle's radar.
+  components:
+  - type: Action
+    icon: { sprite: Interface/Actions/actions_ai.rsi, state: mass_scanner }
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:ToggleVehicleRadarEvent

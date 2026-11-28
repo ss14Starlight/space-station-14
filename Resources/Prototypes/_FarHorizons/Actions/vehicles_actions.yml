@@ -1,0 +1,76 @@
+- type: entity
+  parent: BaseAction
+  id: ActionTurnKeys
+  name: turn keys
+  description: Turn the keys to start or stop the vehicle
+  components:
+  - type: Action
+    icon:
+      sprite: Objects/Vehicles/atv.rsi
+      state: keys
+    priority: -1
+    checkCanInteract: false
+    itemIconStyle: BigAction
+  - type: InstantAction
+    event: !type:TurnKeysEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionVehicleHorn
+  name: Honk
+  description: Honk!
+  components:
+  - type: Action
+    useDelay: 4
+    icon:
+      sprite: Objects/Fun/bikehorn.rsi
+      state: icon
+    checkCanInteract: false
+    itemIconStyle: BigAction
+  - type: InstantAction
+    event: !type:HornActionEvent
+
+- type: entity
+  parent: BaseToggleAction
+  id: ActionVehicleToggleSecuritySiren
+  name: Toggle Security Siren
+  description: Toggles the security siren on and off.
+  components:
+  - type: Action
+    icon:
+      sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security.rsi
+      state: siren
+    useDelay: 1
+    itemIconStyle: BigAction
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleTrunk
+  name: unlocks/lock trunk
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: Structures/Storage/Crates/generic.rsi
+      state: icon
+    checkCanInteract: false
+    itemIconStyle: BigAction
+  - type: InstantAction
+    event: !type:ToggleTrunkActionEvent
+
+- type: entity
+  id: ActionVehicleFanToggle
+  name: toggle life support
+  description: Start ventilating air from the external atmosphere with a gas tank back up.
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_internals_off
+    iconOn:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_internals_on
+  - type: InstantAction
+    event: !type:VehicleFanToggle

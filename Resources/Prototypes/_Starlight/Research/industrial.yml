@@ -40,6 +40,19 @@
   radioChannels:
   - Engineering
 
+- type: technology
+  id: VehicleBasicParts
+  name: research-technology-vehicle-basic-parts
+  icon: { entity: BasicEngine }
+  discipline: Industrial
+  tier: 1
+  cost: 8000
+  recipeUnlocks:
+  - BasicHeadlight
+  - BasicTires
+  - BasicEngine
+  - ElectricEngine
+
 # Tier 2
 
 - type: technology
@@ -155,6 +168,21 @@
   - HudModuleThermalSight
   radioChannels:
   - Engineering
+
+- type: technology
+  id: VehicleAdvancedParts
+  name: research-technology-vehicle-advanced-parts
+  icon: { entity: AdvancedEngine }
+  discipline: Industrial
+  tier: 2
+  cost: 10000
+  technologyPrerequisites:
+  - VehicleBasicParts
+  recipeUnlocks:
+  - HeadlightLED
+  - AdvancedEngine
+  - ElectricTurboEngine
+  - BasicArmorKit
 
 # Tier 3
 

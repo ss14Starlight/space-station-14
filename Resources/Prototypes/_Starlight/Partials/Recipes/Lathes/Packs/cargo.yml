@@ -1,0 +1,5 @@
+# Far Horizons
+- type: !PartialOnly latheRecipePack
+  id: CargoStatic
+  recipes:
+  - TowingRope

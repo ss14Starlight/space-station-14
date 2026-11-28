@@ -1,4 +1,4 @@
-using Content.Shared.Mech;
+using Content.Shared._Starlight.Mech;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Slippery;
 using Content.Shared._Starlight.Mech.Equipment.Components;

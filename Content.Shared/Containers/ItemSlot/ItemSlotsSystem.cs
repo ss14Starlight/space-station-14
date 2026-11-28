@@ -290,8 +290,8 @@ namespace Content.Shared.Containers.ItemSlots
             ItemSlot slot,
             EntityUid item,
             EntityUid? user,
-            bool excludeUserAudio = false, // Starlight-edit - extend argument list
-            bool suppressSound = false) // Starlight - add suppressSound parameter
+            bool excludeUserAudio = false, // Starlight
+            bool suppressSound = false) // Starlight
         {
             bool? inserted = slot.ContainerSlot != null ? _containers.Insert(item, slot.ContainerSlot) : null;
             // ContainerSlot automatically raises a directed EntInsertedIntoContainerMessage

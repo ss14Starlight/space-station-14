@@ -1,0 +1,33 @@
+- type: entity
+  parent: BaseItem
+  id: TowingRope
+  name: towing rope
+  description: A handy dandy rope to tie things together.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Tools/Towing/rope.rsi
+      state: rope
+    - type: Icon
+      sprite: _FarHorizons/Tools/Towing/rope.rsi
+      state: rope
+    - type: TowingRope
+    - type: LimitedCharges
+      maxCharges: 5
+
+- type: entity
+  parent: BaseItem
+  id: HitchHook
+  name: hitch hook
+  description: Attach this to something in order to move it with a tow line!
+  components:
+    - type: Sprite
+      noRot: false
+      sprite: _FarHorizons/Tools/Towing/rope.rsi
+      state: hook
+    - type: Icon
+      sprite: _FarHorizons/Tools/Towing/rope.rsi
+      state: hook
+    - type: Hitch
+    - type: TowingRope
+    - type: LimitedCharges
+      maxCharges: 1

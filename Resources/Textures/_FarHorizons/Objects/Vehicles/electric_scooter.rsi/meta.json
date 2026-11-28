@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "states": [
+    {
+      "name": "vehicle",
+      "directions": 4,
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ],
+	  "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a, then heavily retrofitted (and Key entirely remade) by Killer Tamashi (Discord)"
+    },
+    {
+      "name": "keys",
+	  "copyright": "Killer Tamashi, wonderfulnewworld (GitHub)"
+    },
+    {
+      "name": "icon",
+	  "copyright": "TG Station, Killer Tamashi"
+    },
+    {
+      "name": "vehicle_broken",
+	  "copyright": "TG Station, Killer Tamashi, Broken Sprites by ScorchFollower"
+    },
+    {
+      "name": "lightarmor",
+      "directions": 4,
+	  "copyright": "TG Station, Killer Tamashi"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+using Content.Shared.Vehicle.Systems;
 using System.Numerics;
 using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared.Administration.Logs;
@@ -34,6 +35,7 @@ public sealed partial class ThrowingSystem : EntitySystem
     private float _frictionModifier;
     private float _airDamping;
 
+    [Dependency] private VehicleSystem _rideVehicles = default!; // Starlight
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
@@ -259,10 +261,11 @@ public sealed partial class ThrowingSystem : EntitySystem
         if (recoil && _gameTiming.IsFirstTimePredicted && (_net.IsClient || !predicted)) // Starlight edit
             _recoil.KickCamera(user.Value, -direction * 0.04f);
 
-        // Give thrower an impulse in the other direction
+        // Give thrower an impulse in the other direction.
+        var recoilTarget = _rideVehicles.GetRideVehicle(user) ?? user.Value; // Starlight
         if (pushbackRatio == 0.0f ||
             physics.Mass == 0f ||
-            !TryComp(user.Value, out PhysicsComponent? userPhysics))
+            !TryComp(recoilTarget, out PhysicsComponent? userPhysics)) // Starlight
             return true; // Starlight
         var msg = new ThrowPushbackAttemptEvent();
         RaiseLocalEvent(uid, msg);
@@ -275,7 +278,7 @@ public sealed partial class ThrowingSystem : EntitySystem
         const float massLimit = 5f;
 
         if (pushEv.Push)
-            _physics.ApplyLinearImpulse(user.Value, -impulseVector / physics.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: userPhysics);
+            _physics.ApplyLinearImpulse(recoilTarget, -impulseVector / physics.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: userPhysics); // Starlight
 
         return true; // Starlight
     }

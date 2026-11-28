@@ -1,0 +1,11 @@
+- type: listing
+  id: VendorVehicleScooterElectricCommand
+  productEntity: VehicleScooterElectricSecurityFilled
+  cost:
+    NTCredit: 1000
+  categories:
+  - SLSecurity
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+  - !type:BuyerAccessCondition

@@ -8,6 +8,7 @@ using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.Equipment.Components;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Vehicle.Systems;
 using Content.Shared.Whitelist;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
@@ -29,6 +30,7 @@ public sealed partial class MechGrabberSystem : EntitySystem
     [Dependency] private InteractionSystem _interaction = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private VehicleSystem _vehicle = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!; // Starlight
 
     /// <inheritdoc/>
@@ -142,7 +144,10 @@ public sealed partial class MechGrabberSystem : EntitySystem
         if (component.ItemContainer.ContainedEntities.Count >= component.MaxContents)
             return;
 
-        if (!TryComp<MechComponent>(args.User, out var mech) || mech.PilotSlot.ContainedEntity == target)
+        if (_vehicle.GetOperatorOrNull(args.User) == target)
+            return;
+
+        if (!TryComp<MechComponent>(args.User, out var mech))
             return;
 
         if (mech.Energy + component.GrabEnergyDelta < 0)

@@ -297,6 +297,7 @@
       categories:
         - MiningEquipment
         - MiningConsumeables
+        - MiningVehicles
         - SLSecret
       currencyWhitelist:
         - MiningTicket # Different currency as salvage vendor to discourage salvage spending all round on vgroid
