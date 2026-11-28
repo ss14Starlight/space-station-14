@@ -5,12 +5,15 @@ using Content.Server.Changeling.Systems;
 using Content.Server.Ensnaring;
 using Content.Shared._Starlight.Actions.Components;
 using Content.Shared._Starlight.Changeling;
+using Content.Shared._Starlight.Medical.Body.Components;
+using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared.Actions.Components;
 using Content.Shared.Actions.Events;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Organ;
 using Content.Shared.Body.Systems;
 using Content.Shared.Changeling.Components;
 using Content.Shared.Changeling.Systems;
@@ -173,6 +176,17 @@ public sealed partial class ChangelingSystem : EntitySystem
             _blood.ChangeBloodReagents(target, blood);
         }
         // Starlight edit end
+
+        foreach (var (torso, torsoComp) in _body.GetBodyChildrenOfType(args.Consumed, BodyPartType.Torso))
+        {
+            // Remove their organs, we just ate them!
+            foreach (var (organId, _) in _body.GetPartOrgans(torso, torsoComp))
+            {
+                if (HasComp<BrainComponent>(organId)) continue; // We don't want to RR Laspi!
+                _body.RemoveOrgan(organId);
+                QueueDel(organId);
+            }
+        }
 
         EnsureComp<AbsorbedComponent>(target);
         if (TryComp<PerishableComponent>(target, out var perishable))
