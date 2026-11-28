@@ -25,7 +25,7 @@
   id: CombustionTurbineComputerCircuitboard
   result: CombustionTurbineComputerCircuitboard
 
-#- type: latheRecipe # Disabled until fully cooked
-#  parent: [ BaseCircuitboardRecipe, BaseResearchComputerRecipeCategory ]
-#  id: RemoteControlConsoleCircuitboard
-#  result: RemoteControlConsoleCircuitboard
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchComputerRecipeCategory ]
+  id: RemoteControlConsoleCircuitboard
+  result: RemoteControlConsoleCircuitboard
