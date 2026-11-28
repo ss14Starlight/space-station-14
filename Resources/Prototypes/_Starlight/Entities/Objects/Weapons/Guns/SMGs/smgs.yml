@@ -38,9 +38,10 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Gun
-    fireRate: 13
-    selectedMode: Burst
+    fireRate: 8
+    burstFireRate: 8
     shotsPerBurst: 5
+    selectedMode: Burst
     availableModes:
       - Burst
     soundGunshot:
