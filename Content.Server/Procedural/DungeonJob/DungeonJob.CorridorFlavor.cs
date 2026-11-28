@@ -87,11 +87,16 @@ public sealed partial class DungeonJob
             }
 
             var corridorTiles = dungeon.CorridorTiles.OrderBy(tile => tile.Y).ThenBy(tile => tile.X);
+            var claimedTilesByWallDirection = wallDirections.ToDictionary(
+                direction => direction,
+                _ => new HashSet<Vector2i>());
+
             foreach (var start in corridorTiles)
             {
                 foreach (var wallDirection in wallDirections)
                 {
-                    if (!IsValidCorridorTile(start, wallDirection))
+                    var claimedTiles = claimedTilesByWallDirection[wallDirection];
+                    if (claimedTiles.Contains(start) || !IsValidCorridorTile(start, wallDirection))
                         continue;
 
                     var wallVector = wallDirection.ToIntVec();
@@ -106,6 +111,8 @@ public sealed partial class DungeonJob
                     {
                         run.Add(tile);
                     }
+
+                    claimedTiles.UnionWith(run);
 
                     // Split lines into sized sections
                     for (var offset = 0; offset + gen.Length <= run.Count; offset += gen.Length)
