@@ -1,13 +1,6 @@
 Entries:
 - author: Ohelig
   changes:
-  - message: Signal buttons and airlock buttons will always have an outline when hovering instead of being blocked by the button frame.
-    type: Fix
-  id: 410487
-  time: '2026-11-16T04:32:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7248
-- author: Ohelig
-  changes:
   - message: (Cluster) Fixed Evac Shuttle being 300kpa overpressure.
     type: Fix
   id: 410488
@@ -2799,4 +2792,11 @@ Entries:
   id: 410886
   time: '2026-11-28T09:01:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7585
+- author: HartLys
+  changes:
+  - message: Corrected plural forms of cloth material stacks.
+    type: Fix
+  id: 410887
+  time: '2026-11-28T09:01:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7587
 Order: -1
