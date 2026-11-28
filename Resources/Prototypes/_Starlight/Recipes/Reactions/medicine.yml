@@ -238,3 +238,32 @@
       amount: 1
   products:
     Chronexaline: 3
+
+- type: reaction
+  id: SalicylicAcid
+  reactants:
+    Acetone:
+      amount: 1
+    SulfuricAcid:
+      amount: 1
+    SodiumCarbonate:
+      amount: 2
+    Carbon:
+      amount: 1
+  products:
+    SalicylicAcid: 3
+
+- type: reaction
+  id: Synthol
+  minTemp: 400
+  reactants:
+    Menthol:
+      amount: 1
+    Hydroxide:
+      amount: 2
+    Fluorine:
+      amount: 1
+    Kelotane:
+      amount: 2
+  products:
+    Synthol: 5

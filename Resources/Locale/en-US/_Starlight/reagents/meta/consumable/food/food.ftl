@@ -24,3 +24,6 @@ reagent-physical-desc-cinnamon = cinnamony
 
 reagent-name-stellibininsyrup = stellibinin syrup
 reagent-desc-stellibininsyrup = Worse as a medicine, but when added to food, can prevent theobromine and allicin poisoning. Metabolizes slowly.
+
+reagent-name-menthol = menthol
+reagent-desc-menthol = A cool substance derived from mint. They say mixing this with capsaicin will cancel both out.
