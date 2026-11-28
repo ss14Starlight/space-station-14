@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Increase cost of most modular hud modules a little.
-    type: Tweak
-  id: 410472
-  time: '2026-11-15T10:04:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7243
-- author: wonderfulnewworld
-  changes:
   - message: Moved mindshield module to t2.
     type: Tweak
   id: 410473
@@ -2799,4 +2792,11 @@ Entries:
   id: 410871
   time: '2026-11-27T17:11:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7572
+- author: Rinary
+  changes:
+  - message: Fixed bug when you can see item info in incorrect info panel.
+    type: Fix
+  id: 410872
+  time: '2026-11-28T06:38:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7463
 Order: -1
