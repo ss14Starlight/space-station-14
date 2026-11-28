@@ -1,11 +1,4 @@
 Entries:
-- author: AnyTap
-  changes:
-  - message: Added CSD Mantle.
-    type: Add
-  id: 410481
-  time: '2026-11-15T14:57:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7126
 - author: Rinary
   changes:
   - message: Added ability to change game brightness(all world view) in settings.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410880
   time: '2026-11-28T08:02:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7567
+- author: Rinary
+  changes:
+  - message: Fixed bug when MMI can get control on person which held it in hands after taking suggestion to take control under MMI.
+    type: Fix
+  id: 410881
+  time: '2026-11-28T08:02:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7570
 Order: -1
