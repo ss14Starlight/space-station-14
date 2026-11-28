@@ -1,20 +1,6 @@
 Entries:
 - author: Rinary
   changes:
-  - message: Added ability to change game brightness(all world view) in settings.
-    type: Add
-  id: 410482
-  time: '2026-11-15T15:30:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7238
-- author: Rinary
-  changes:
-  - message: Added ability to change light sources brightness(only in-game sources like lamps) in settings.
-    type: Add
-  id: 410483
-  time: '2026-11-15T15:30:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7238
-- author: Rinary
-  changes:
   - message: Added Global Illumination, system which makes light bounce from walls and simulates lighting better (Can be called as DDGI in 3D games).
     type: Add
   id: 410484
@@ -2799,4 +2785,18 @@ Entries:
   id: 410881
   time: '2026-11-28T08:02:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7570
+- author: Teddiousbear
+  changes:
+  - message: added temperature protection to nightcity jackets.
+    type: Tweak
+  id: 410882
+  time: '2026-11-28T08:27:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7581
+- author: Teddiousbear
+  changes:
+  - message: added gas tank support to nightcity jackets.
+    type: Tweak
+  id: 410883
+  time: '2026-11-28T08:27:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7581
 Order: -1
