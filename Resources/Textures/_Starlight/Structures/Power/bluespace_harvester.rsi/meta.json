@@ -1,35 +1,227 @@
 {
-  "version": 1,
-  "license": "CC-BY-SA-4.0",
-  "copyright": "State based copyright",
-  "size": {
-    "x": 96,
-    "y": 96
-  },
-  "states": [
-    {
-      "name": "bluespace_tap",
-      "copyright": "Taken from Paradise Station 13 RU link: https://github.com/ss220-space/Paradise/blob/HEAD/icons/obj/machines/bluespace_tap.dmi",
-      "delays": [
-        [
-          0.1,
-          0.1,
-          0.1,
-          0.1
-        ]
-      ]
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 96,
+        "y": 96
     },
-    {
-      "name": "bluespace_monitor",
-      "copyright": "Taken from Paradise Station 13 RU link: https://github.com/ss220-space/Paradise/blob/HEAD/icons/obj/machines/bluespace_tap.dmi",
-      "delays": [
-        [
-          0.1,
-          0.1,
-          0.1,
-          0.1
-        ]
-      ]
-    }
-  ]
+    "states": [
+        {
+            "name": "off",
+            "copyright": "Taken from Paradise Station at commit 1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6 (https://github.com/ParadiseSS13/Paradise/blob/1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6/icons/obj/machines/bluespace_tap.dmi), renamed and split for SS14."
+        },
+        {
+            "name": "stage0",
+            "copyright": "Taken from Paradise Station at commit 1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6 (https://github.com/ParadiseSS13/Paradise/blob/1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6/icons/obj/machines/bluespace_tap.dmi), renamed and split for SS14.",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "stage0_glow",
+            "copyright": "Taken from Paradise Station at commit 1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6 (https://github.com/ParadiseSS13/Paradise/blob/1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6/icons/obj/machines/bluespace_tap.dmi), renamed and split for SS14.",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "stage1",
+            "copyright": "Taken from Paradise Station at commit 1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6 (https://github.com/ParadiseSS13/Paradise/blob/1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6/icons/obj/machines/bluespace_tap.dmi), renamed and split for SS14.",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "stage1_glow",
+            "copyright": "Taken from Paradise Station at commit 1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6 (https://github.com/ParadiseSS13/Paradise/blob/1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6/icons/obj/machines/bluespace_tap.dmi), renamed and split for SS14.",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "stage2",
+            "copyright": "Taken from Paradise Station at commit 1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6 (https://github.com/ParadiseSS13/Paradise/blob/1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6/icons/obj/machines/bluespace_tap.dmi), renamed and split for SS14.",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "stage2_glow",
+            "copyright": "Taken from Paradise Station at commit 1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6 (https://github.com/ParadiseSS13/Paradise/blob/1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6/icons/obj/machines/bluespace_tap.dmi), renamed and split for SS14.",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "stage3",
+            "copyright": "Taken from Paradise Station at commit 1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6 (https://github.com/ParadiseSS13/Paradise/blob/1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6/icons/obj/machines/bluespace_tap.dmi), renamed and split for SS14.",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "stage3_glow",
+            "copyright": "Taken from Paradise Station at commit 1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6 (https://github.com/ParadiseSS13/Paradise/blob/1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6/icons/obj/machines/bluespace_tap.dmi), renamed and split for SS14.",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "stage4",
+            "copyright": "Taken from Paradise Station at commit 1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6 (https://github.com/ParadiseSS13/Paradise/blob/1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6/icons/obj/machines/bluespace_tap.dmi), renamed and split for SS14.",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "stage4_glow",
+            "copyright": "Taken from Paradise Station at commit 1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6 (https://github.com/ParadiseSS13/Paradise/blob/1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6/icons/obj/machines/bluespace_tap.dmi), renamed and split for SS14.",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "stage5",
+            "copyright": "Taken from Paradise Station at commit 1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6 (https://github.com/ParadiseSS13/Paradise/blob/1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6/icons/obj/machines/bluespace_tap.dmi), renamed and split for SS14.",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "stage5_glow",
+            "copyright": "Taken from Paradise Station at commit 1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6 (https://github.com/ParadiseSS13/Paradise/blob/1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6/icons/obj/machines/bluespace_tap.dmi), renamed and split for SS14.",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "cascade",
+            "copyright": "Taken from Paradise Station at commit 1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6 (https://github.com/ParadiseSS13/Paradise/blob/1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6/icons/obj/machines/bluespace_tap.dmi), renamed and split for SS14.",
+            "delays": [
+                [
+                    1.5,
+                    0.1,
+                    0.3,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "cascade_glow",
+            "copyright": "Taken from Paradise Station at commit 1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6 (https://github.com/ParadiseSS13/Paradise/blob/1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6/icons/obj/machines/bluespace_tap.dmi), renamed and split for SS14.",
+            "delays": [
+                [
+                    1.5,
+                    0.1,
+                    0.3,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "screen",
+            "copyright": "Taken from Paradise Station at commit 1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6 (https://github.com/ParadiseSS13/Paradise/blob/1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6/icons/obj/machines/bluespace_tap.dmi), renamed and split for SS14.",
+            "delays": [
+                [
+                    0.1,
+                    0.3,
+                    0.8,
+                    0.1,
+                    0.02,
+                    0.5,
+                    0.01
+                ]
+            ]
+        },
+        {
+            "name": "cascade_overlay",
+            "copyright": "Taken from Paradise Station at commit 1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6 (https://github.com/ParadiseSS13/Paradise/blob/1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6/icons/obj/machines/bluespace_tap.dmi), renamed and split for SS14.",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "flash",
+            "copyright": "Taken from Paradise Station at commit 1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6 (https://github.com/ParadiseSS13/Paradise/blob/1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6/icons/obj/machines/bluespace_tap.dmi), renamed and split for SS14.",
+            "delays": [
+                [
+                    0.1,
+                    0.05,
+                    0.01,
+                    0.01,
+                    0.1,
+                    0.04
+                ]
+            ]
+        },
+        {
+            "name": "monitor",
+            "copyright": "Taken from Paradise Station at commit 1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6 (https://github.com/ParadiseSS13/Paradise/blob/1c1eb2d3f78b6cbb03b0c158dbb076d5f48107b6/icons/obj/machines/bluespace_tap.dmi), the idle frame used as the power monitor icon."
+        }
+    ]
 }

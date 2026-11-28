@@ -1,0 +1,36 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:goals="clr-namespace:Content.Client._Starlight.StationGoals"
+    x:Class="Content.Client._Starlight.StationGoals.StationGoalConsoleWindow"
+    Title="{Loc 'station-goal-console-title'}"
+    MinSize="820 560"
+    SetSize="980 760">
+
+    <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="8">
+        <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+            <BoxContainer Orientation="Vertical" SeparationOverride="6">
+                <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                    <Label Text="{Loc 'station-goal-console-active-header'}" StyleClasses="LabelHeading" />
+                    <Label Name="ActiveCountLabel" StyleClasses="LabelWeak" VAlign="Center" />
+                </BoxContainer>
+                <goals:EqualColumnsContainer Name="ActiveContainer" MinHeight="120" />
+
+                <BoxContainer Orientation="Horizontal" Margin="0 10 0 0">
+                    <Label Text="{Loc 'station-goal-console-offers'}" StyleClasses="LabelHeading" HorizontalExpand="True" />
+                    <Label Name="RefreshLabel" StyleClasses="LabelWeak" VAlign="Center" />
+                </BoxContainer>
+                <goals:EqualColumnsContainer Name="OffersContainer" />
+                <Label Name="NoOffersLabel" Text="{Loc 'station-goal-console-no-offers'}" StyleClasses="LabelWeak" Visible="False" />
+            </BoxContainer>
+        </ScrollContainer>
+
+        <PanelContainer StyleClasses="InsetPanel">
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8" Margin="8 6">
+                <Label Name="VoteLabel" HorizontalExpand="True" VAlign="Center" ClipText="True" />
+                <Button Name="StartVoteButton" Text="{Loc 'station-goal-console-start-vote'}" StyleClasses="positive" MinWidth="160" />
+                <Button Name="PrintButton" Text="{Loc 'station-goal-console-print'}" MinWidth="120" />
+            </BoxContainer>
+        </PanelContainer>
+    </BoxContainer>
+</controls:FancyWindow>

@@ -1,0 +1,4 @@
+- type: !PartialOnly guideEntry
+  id: Science
+  children:
+  - BluespaceArtillery

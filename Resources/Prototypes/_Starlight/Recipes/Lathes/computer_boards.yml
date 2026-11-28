@@ -29,3 +29,8 @@
 #  parent: [ BaseCircuitboardRecipe, BaseResearchComputerRecipeCategory ]
 #  id: RemoteControlConsoleCircuitboard
 #  result: RemoteControlConsoleCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchComputerRecipeCategory ]
+  id: BluespaceArtilleryComputerCircuitboard
+  result: BluespaceArtilleryComputerCircuitboard

@@ -1,0 +1,22 @@
+- type: cargoMarket
+  id: StationGoalMeteorShield
+
+- type: cargoProduct
+  id: MeteorShieldSatellitesPurchase
+  icon:
+    sprite: _Starlight/Structures/Machines/meteor_shield_satellite.rsi
+    state: inactive
+  product: CrateMeteorShieldSatellites
+  cost: 3000
+  category: cargoproduct-category-name-engineering
+  group: StationGoalMeteorShield
+
+- type: cargoProduct
+  id: MeteorShieldConsolePurchase
+  icon:
+    sprite: Objects/Misc/module.rsi
+    state: cpu_engineering
+  product: CrateMeteorShieldConsole
+  cost: 1000
+  category: cargoproduct-category-name-engineering
+  group: StationGoalMeteorShield

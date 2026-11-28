@@ -4,15 +4,17 @@ using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Station.Systems;
+using Content.Server._Starlight.StationGoals;
 using Content.Shared._Starlight.Power.BluespaceHarvester;
 using Content.Shared.Random.Helpers;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
-namespace Content.Server._Starlight.Power.EntitySystems;
+namespace Content.Server._Starlight.Power.BluespaceHarvester;
 
 /// <summary>
 /// Manages Bluespace Harvester machines that convert electrical power into OWN research points.
@@ -29,6 +31,13 @@ public sealed partial class BluespaceHarvesterSystem : EntitySystem
     [Dependency] private PowerNetSystem _powerNet = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private StationSystem _station = default!;
+    [Dependency] private StationGoalSystem _goals = default!;
+    [Dependency] private AppearanceSystem _appearance = default!;
+    [Dependency] private PointLightSystem _light = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+
+    public const string GoalPointsKey = "BluespaceHarvesterPoints";
+    public const string GoalDangerSecondsKey = "BluespaceHarvesterDangerSeconds";
 
     public override void Initialize()
     {
@@ -49,6 +58,7 @@ public sealed partial class BluespaceHarvesterSystem : EntitySystem
         component.DesiredLevel = ClampDesiredLevel(component, component.DesiredLevel);
         UpdateDrawRate(component, powerConsumer);
         UpdateUi(uid, component, powerConsumer);
+        UpdateVisuals(uid, component, powerConsumer);
     }
 
     private void OnBeforeUiOpen(EntityUid uid, BluespaceHarvesterComponent component, BeforeActivatableUIOpenEvent args)
@@ -99,7 +109,9 @@ public sealed partial class BluespaceHarvesterSystem : EntitySystem
         // TODO: Consider making spawn offset configurable or finding empty tile
         var xform = Transform(uid);
         var spawnCoords = xform.Coordinates.Offset(new Vector2(0f, -0.75f));
-        Spawn(spawned, spawnCoords);
+        SpawnAttachedTo(spawned, spawnCoords);
+        SpawnAttachedTo(component.PurchaseEffect, xform.Coordinates);
+        _audio.PlayPvs(component.PurchaseSound, uid);
 
         UpdateUi(uid, component, powerConsumer, true);
     }
@@ -139,6 +151,7 @@ public sealed partial class BluespaceHarvesterSystem : EntitySystem
             if (component.IsBlocked)
             {
                 UpdateUi(uid, component, powerConsumer);
+                UpdateVisuals(uid, component, powerConsumer);
                 continue;
             }
 
@@ -164,6 +177,8 @@ public sealed partial class BluespaceHarvesterSystem : EntitySystem
                     component.PointAccumulator -= added;
                     component.Points += added;
                     component.TotalPoints += added;
+                    if (_station.GetOwningStation(uid) is { } station)
+                        _goals.ReportProgress(_station.GetOwningStation(uid), GoalPointsKey, added);
                 }
             }
 
@@ -171,10 +186,58 @@ public sealed partial class BluespaceHarvesterSystem : EntitySystem
             if (component.CurrentLevel >= component.DangerousLevelThreshold)
             {
                 TrySpawnPortal(uid, component, deltaTime);
+                if (_station.GetOwningStation(uid) is { } station)
+                    _goals.ReportProgress(_station.GetOwningStation(uid), GoalDangerSecondsKey, deltaTime);
             }
 
             UpdateUi(uid, component, powerConsumer);
+            UpdateVisuals(uid, component, powerConsumer);
         }
+    }
+
+    private void UpdateVisuals(EntityUid uid, BluespaceHarvesterComponent component, PowerConsumerComponent powerConsumer)
+    {
+        var state = GetVisualState(component, GetNetworkSupply(powerConsumer));
+        _appearance.SetData(uid, BluespaceHarvesterVisuals.State, state);
+
+        if (!TryComp<PointLightComponent>(uid, out var light))
+            return;
+
+        _light.SetEnabled(uid, state != BluespaceHarvesterVisualState.Off, light);
+        if (state == BluespaceHarvesterVisualState.Cascade)
+        {
+            _light.SetColor(uid, component.CascadeLightColor, light);
+            _light.SetRadius(uid, 6f, light);
+            return;
+        }
+
+        var stage = Math.Max(0, (int) state - (int) BluespaceHarvesterVisualState.Stage0);
+        if (component.StageLightColors.Count > 0)
+            _light.SetColor(uid, component.StageLightColors[Math.Min(stage, component.StageLightColors.Count - 1)], light);
+        _light.SetRadius(uid, 2f + (stage * 0.5f), light);
+    }
+
+    private static BluespaceHarvesterVisualState GetVisualState(BluespaceHarvesterComponent component, float networkSupply)
+    {
+        if (component.IsBlocked)
+            return BluespaceHarvesterVisualState.Cascade;
+
+        if (networkSupply <= 0f)
+            return BluespaceHarvesterVisualState.Off;
+
+        if (component.CurrentLevel <= 0 || component.LevelPowerDraw.Count == 0)
+            return BluespaceHarvesterVisualState.Stage0;
+
+        var stage = 1 + ((component.CurrentLevel - 1) * 5 / component.LevelPowerDraw.Count);
+        return (BluespaceHarvesterVisualState) ((int) BluespaceHarvesterVisualState.Stage0 + Math.Clamp(stage, 1, 5));
+    }
+
+    private float GetNetworkSupply(PowerConsumerComponent powerConsumer)
+    {
+        if (powerConsumer.Net?.NetworkNode is not { } networkNode)
+            return 0f;
+
+        return _powerNet.GetNetworkStatistics(networkNode).SupplyTheoretical;
     }
 
     private void TrySpawnPortal(EntityUid uid, BluespaceHarvesterComponent component, float frameTime)
@@ -206,7 +269,7 @@ public sealed partial class BluespaceHarvesterSystem : EntitySystem
         var offset = angle.ToVec() * distance;
         var portalCoords = xform.Coordinates.Offset(offset);
 
-        var portalUid = Spawn(component.PortalPrototype, portalCoords);
+        var portalUid = SpawnAttachedTo(component.PortalPrototype, portalCoords);
 
         if (TryComp<BluespaceHarvesterPortalComponent>(portalUid, out var portalComp))
             portalComp.SourceHarvester = uid;
@@ -222,7 +285,7 @@ public sealed partial class BluespaceHarvesterSystem : EntitySystem
             var mobAngle = _random.NextAngle();
             var mobOffset = mobAngle.ToVec() * _random.NextFloat(0.5f, 1.5f);
             var mobCoords = portalCoords.Offset(mobOffset);
-            Spawn(mobProto, mobCoords);
+            SpawnAttachedTo(mobProto, mobCoords);
         }
         var msg = Loc.GetString("bluespace-harvester-portal-warning");
         var station = _station.GetOwningStation(portalUid);
@@ -288,13 +351,7 @@ public sealed partial class BluespaceHarvesterSystem : EntitySystem
         var currentPower = powerConsumer.ReceivedPower;
         var powerForNext = GetPowerForNextLevel(component, component.CurrentLevel);
 
-        // Get theoretical network supply from power network
-        var networkSupply = 0f;
-        if (powerConsumer.Net?.NetworkNode is { } networkNode)
-        {
-            var stats = _powerNet.GetNetworkStatistics(networkNode);
-            networkSupply = stats.SupplyTheoretical;
-        }
+        var networkSupply = GetNetworkSupply(powerConsumer);
 
         var pools = _prototype.EnumeratePrototypes<BluespaceHarvesterPoolPrototype>()
             .Where(pool => pool.Enabled)

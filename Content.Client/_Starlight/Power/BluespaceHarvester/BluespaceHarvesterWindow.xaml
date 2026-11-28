@@ -1,0 +1,69 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    x:Class="Content.Client._Starlight.Power.BluespaceHarvester.BluespaceHarvesterWindow"
+    Title="{Loc bluespace-harvester-window-title}"
+    MinSize="480 480"
+    SetSize="520 600">
+
+    <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="8">
+        <BoxContainer Orientation="Vertical" SeparationOverride="4">
+            <Label Text="{Loc bluespace-harvester-input-management}" StyleClasses="LabelKeyText" />
+            <PanelContainer StyleClasses="InsetPanel">
+                <BoxContainer Orientation="Vertical" Margin="10 8" SeparationOverride="2">
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc bluespace-harvester-input-level}" StyleClasses="LabelWeak" HorizontalExpand="True" />
+                        <Label Name="InputLevelValue" />
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc bluespace-harvester-desired-level}" StyleClasses="LabelWeak" HorizontalExpand="True" />
+                        <Label Name="DesiredLevelValue" />
+                    </BoxContainer>
+
+                    <BoxContainer Orientation="Horizontal" Margin="0 6">
+                        <Button Name="DesiredMinButton" Text="{Loc 'bluespace-harvester-min'}" StyleClasses="OpenRight" MinWidth="48" />
+                        <Button Name="DesiredDecrementButton" Text="-" StyleClasses="OpenBoth" MinWidth="32" />
+                        <Slider Name="DesiredLevelSlider" HorizontalExpand="True" Margin="6 0" MouseFilter="Ignore" />
+                        <Button Name="DesiredIncrementButton" Text="+" StyleClasses="OpenBoth" MinWidth="32" />
+                        <Button Name="DesiredMaxButton" Text="{Loc 'bluespace-harvester-max'}" StyleClasses="OpenLeft" MinWidth="48" />
+                    </BoxContainer>
+
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc bluespace-harvester-current-power-use}" StyleClasses="LabelWeak" HorizontalExpand="True" />
+                        <Label Name="CurrentPowerValue" />
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc bluespace-harvester-power-for-next-level}" StyleClasses="LabelWeak" HorizontalExpand="True" />
+                        <Label Name="NextLevelPowerValue" />
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc bluespace-harvester-network-supply}" StyleClasses="LabelWeak" HorizontalExpand="True" />
+                        <Label Name="NetworkSupplyValue" />
+                    </BoxContainer>
+                </BoxContainer>
+            </PanelContainer>
+        </BoxContainer>
+
+        <PanelContainer Name="DangerWarningPanel" StyleClasses="negative" Visible="False">
+            <RichTextLabel Name="DangerWarningLabel" Margin="8 4" />
+        </PanelContainer>
+        <PanelContainer Name="BlockedWarningPanel" StyleClasses="negative" Visible="False">
+            <RichTextLabel Name="BlockedWarningLabel" Margin="8 4" />
+        </PanelContainer>
+
+        <BoxContainer Orientation="Vertical" VerticalExpand="True" SeparationOverride="4">
+            <BoxContainer Orientation="Horizontal" SeparationOverride="12">
+                <Label Text="{Loc bluespace-harvester-output}" StyleClasses="LabelKeyText" HorizontalExpand="True" />
+                <Label Text="{Loc bluespace-harvester-available-points}" StyleClasses="LabelWeak" />
+                <Label Name="AvailablePointsValue" StyleClasses="LabelKeyText" />
+                <Label Text="{Loc bluespace-harvester-total-points}" StyleClasses="LabelWeak" />
+                <Label Name="TotalPointsValue" />
+            </BoxContainer>
+            <PanelContainer StyleClasses="InsetPanel" VerticalExpand="True">
+                <ScrollContainer VerticalExpand="True" MinHeight="120" HScrollEnabled="False">
+                    <BoxContainer Name="PoolsContainer" Orientation="Vertical" Margin="8" SeparationOverride="4" />
+                </ScrollContainer>
+            </PanelContainer>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

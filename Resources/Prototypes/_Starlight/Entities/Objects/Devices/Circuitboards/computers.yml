@@ -207,3 +207,36 @@
     state: cpu_science
   - type: ComputerBoard
     prototype: RemoteControlConsole
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: StationGoalsComputerCircuitboard
+  name: station goals console board
+  description: A computer printed circuit board for a station goals console.
+  components:
+    - type: Sprite
+      state: cpu_command
+    - type: ComputerBoard
+      prototype: ComputerStationGoals
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: BluespaceArtilleryComputerCircuitboard
+  name: bluespace artillery control board
+  description: A computer printed circuit board for the bluespace artillery control console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: ComputerBluespaceArtillery
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: MeteorShieldComputerCircuitboard
+  name: meteor shield control board
+  description: A computer printed circuit board for the meteor shield control console.
+  components:
+    - type: Sprite
+      state: cpu_engineering
+    - type: ComputerBoard
+      prototype: ComputerMeteorShield

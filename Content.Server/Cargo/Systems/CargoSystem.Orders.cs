@@ -85,6 +85,11 @@ namespace Content.Server.Cargo.Systems
             if (!ent.Comp.AllowedGroups.Contains(product.Group))
                 return;
 
+            // Starlight-start
+            if (!orderDatabase.Markets.Contains(product.Group))
+                return;
+            // Starlight-end
+
             var orderId = GenerateOrderId(orderDatabase);
             var data = new CargoOrderData(orderId, product, slip.OrderQuantity, slip.Requester, slip.Reason, slip.Account, GetNetEntity(stationUid.Value)); // Starlight, keep gas and tamper-seal stuff
 

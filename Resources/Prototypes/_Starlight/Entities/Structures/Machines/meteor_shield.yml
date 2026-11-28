@@ -1,0 +1,90 @@
+- type: entity
+  id: MeteorShieldSatellite
+  name: meteor shield satellite
+  description: A small defence satellite that shoots down meteors near it. It only works floating in open space, so drag it out past the hull and switch it on.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: false
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/meteor_shield_satellite.rsi
+    noRot: true
+    layers:
+    - state: inactive
+      map: [ "enum.MeteorShieldSatelliteVisuals.Active" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.MeteorShieldSatelliteVisuals.Active:
+        enum.MeteorShieldSatelliteVisuals.Active:
+          True: { state: active }
+          False: { state: inactive }
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Pullable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 3
+  - type: MeteorShieldSatellite
+  - type: Tag
+    tags:
+    - Structure
+
+- type: entity
+  id: MeteorShieldBeam
+  name: meteor shield beam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Effects/bluespace_beams.rsi
+    drawdepth: Effects
+    layers:
+    - state: sat_beam
+      shader: unshaded
+  - type: Physics
+    canCollide: false
+  - type: PointLight
+    enabled: true
+    color: "#ff5a5a"
+    radius: 2
+    softness: 1
+    castShadows: false
+  - type: Beam
+    sound: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: TimedDespawn
+    lifetime: 0.6
+  - type: Tag
+    tags:
+    - HideContextMenu

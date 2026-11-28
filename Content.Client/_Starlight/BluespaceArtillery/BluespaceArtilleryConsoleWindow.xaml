@@ -1,0 +1,59 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    x:Class="Content.Client._Starlight.BluespaceArtillery.BluespaceArtilleryConsoleWindow"
+    Title="{Loc 'bsa-console-title'}"
+    MinSize="640 440"
+    SetSize="720 500">
+
+    <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="8">
+        <PanelContainer Name="BuildPanel" StyleClasses="InsetPanel" VerticalExpand="True">
+            <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="8">
+                <Label Text="{Loc 'bsa-console-not-built'}" StyleClasses="LabelHeading" />
+                <RichTextLabel Name="BuildHelp" />
+                <Control VerticalExpand="True" />
+                <Button Name="BuildButton" Text="{Loc 'bsa-console-build'}" HorizontalAlignment="Right" MinWidth="200" />
+            </BoxContainer>
+        </PanelContainer>
+
+        <BoxContainer Name="CannonPanel" Orientation="Horizontal" VerticalExpand="True" SeparationOverride="10">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" SeparationOverride="4">
+                <Label Text="{Loc 'bsa-console-targets'}" StyleClasses="LabelKeyText" />
+                <PanelContainer StyleClasses="InsetPanel" VerticalExpand="True">
+                    <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                        <BoxContainer Name="TargetList" Orientation="Vertical" Margin="6" SeparationOverride="2" />
+                    </ScrollContainer>
+                </PanelContainer>
+            </BoxContainer>
+
+            <BoxContainer Orientation="Vertical" MinWidth="300" SeparationOverride="4">
+                <Label Text="{Loc 'bsa-console-status'}" StyleClasses="LabelKeyText" />
+                <PanelContainer StyleClasses="InsetPanel" VerticalExpand="True">
+                    <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="6">
+                        <BoxContainer Orientation="Horizontal">
+                            <Label Text="{Loc 'bsa-console-target'}" StyleClasses="LabelWeak" MinWidth="80" />
+                            <Label Name="TargetLabel" HorizontalExpand="True" ClipText="True" />
+                        </BoxContainer>
+
+                        <Label Text="{Loc 'bsa-console-charge'}" StyleClasses="LabelWeak" Margin="0 6 0 0" />
+                        <ProgressBar Name="ChargeBar" MinValue="0" MaxValue="1" MinHeight="22">
+                            <Label Name="ChargePercentLabel" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </ProgressBar>
+                        <Label Name="PowerLabel" StyleClasses="LabelWeak" HorizontalAlignment="Right" />
+
+                        <Label Name="CooldownLabel" StyleClasses="LabelWeak" />
+
+                        <Control VerticalExpand="True" />
+
+                        <Button Name="ChargeButton" />
+                        <Button Name="FireButton" Text="{Loc 'bsa-console-fire'}" StyleClasses="negative" MinHeight="40" />
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+        </BoxContainer>
+
+        <PanelContainer Name="NoticePanel" StyleClasses="InsetPanel" Visible="False">
+            <RichTextLabel Name="NoticeLabel" Margin="8 4" />
+        </PanelContainer>
+    </BoxContainer>
+</controls:FancyWindow>

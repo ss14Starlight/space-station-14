@@ -12,6 +12,7 @@ bluespace-harvester-output = Output
 bluespace-harvester-available-points = Available points:
 bluespace-harvester-total-points = Total points:
 bluespace-harvester-buy = Buy
+bluespace-harvester-cost = {$cost} pts
 
 # Portal announcement
 bluespace-harvester-portal-warning = WARNING: A bluespace rift has been detected! Hostile entities are emerging from the rift. Bluespace Harvester operations suspended until rift closure.

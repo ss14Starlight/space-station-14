@@ -93,3 +93,23 @@
     - AdvancedAnomalyResearch
   radioChannels:
   - Command
+
+- type: technology
+  id: BluespaceArtillery
+  name: research-technology-bluespace-artillery
+  icon:
+    sprite: _Starlight/Structures/Machines/bluespace_artillery_parts.rsi
+    state: fusor
+  discipline: Experimental
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - BluespaceArtilleryComputerCircuitboard
+  - BluespaceArtilleryGeneratorMachineCircuitboard
+  - BluespaceArtilleryFusorMachineCircuitboard
+  - BluespaceArtilleryBoreMachineCircuitboard
+  technologyPrerequisites:
+  - BluespaceManipulation
+  radioChannels:
+  - Science
+  - Command

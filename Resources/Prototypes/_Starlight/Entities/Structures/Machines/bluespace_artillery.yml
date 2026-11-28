@@ -1,0 +1,286 @@
+- type: entity
+  abstract: true
+  parent: [ BaseMachine, ConstructibleMachine ]
+  id: BaseBluespaceArtilleryPart
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: GuideHelp
+    guides:
+    - BluespaceArtillery
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/bluespace_artillery_parts.rsi
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+
+- type: entity
+  parent: BaseBluespaceArtilleryPart
+  id: BluespaceArtilleryGenerator
+  name: artillery generator
+  description: Back section of the bluespace artillery. It turns raw power into a bluespace charge.
+  components:
+  - type: Sprite
+    state: generator
+  - type: BluespaceArtilleryPart
+    part: Generator
+  - type: DeviceLinkSink
+    ports:
+    - ArtilleryLink
+  - type: Machine
+    board: BluespaceArtilleryGeneratorMachineCircuitboard
+
+- type: entity
+  parent: BaseBluespaceArtilleryPart
+  id: BluespaceArtilleryFusor
+  name: artillery fusor
+  description: Middle section of the bluespace artillery.
+  components:
+  - type: Sprite
+    state: fusor
+  - type: BluespaceArtilleryPart
+    part: Fusor
+  - type: DeviceLinkSource
+    ports:
+    - ArtilleryFusor
+  - type: Machine
+    board: BluespaceArtilleryFusorMachineCircuitboard
+
+- type: entity
+  parent: BaseBluespaceArtilleryPart
+  id: BluespaceArtilleryBore
+  name: artillery bore
+  description: Front section of the bluespace artillery. Whatever stands in front of it when it fires will not stand for long.
+  components:
+  - type: Sprite
+    state: bore
+  - type: BluespaceArtilleryPart
+    part: Bore
+  - type: DeviceLinkSink
+    ports:
+    - ArtilleryLink
+  - type: Machine
+    board: BluespaceArtilleryBoreMachineCircuitboard
+
+- type: entity
+  abstract: true
+  id: BaseBluespaceArtillery
+  name: bluespace artillery
+  description: Long range bluespace artillery. It can strike any beacon, even on another map. Do not stand in front of it.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: GuideHelp
+    guides:
+    - BluespaceArtillery
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/bluespace_artillery.rsi
+    offset: -0.953,-0.3125
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-6.45,-1.45,4.45,1.45"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: PowerConsumer
+    voltage: High
+    drawRate: 0
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: PowerMonitoringDevice
+    group: Consumer
+    sourceNode: input
+  - type: Appearance
+  - type: PointLight
+    enabled: false
+    radius: 3
+    energy: 1.5
+    color: "#7fe7ff"
+    offset: 0,0.3
+
+- type: entity
+  parent: BaseBluespaceArtillery
+  id: BluespaceArtilleryEast
+  suffix: East
+  components:
+  - type: Sprite
+    layers:
+    - state: cannon_east
+    - state: east_idle
+      map: [ "lights" ]
+      shader: unshaded
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.BluespaceArtilleryVisuals.State:
+        lights:
+          Unpowered: { visible: false }
+          Idle: { visible: true, state: east_idle }
+          Charging: { visible: true, state: east_charging }
+          Ready: { visible: true, state: east_ready }
+          Cooldown: { visible: true, state: east_cooldown }
+  - type: BluespaceArtillery
+    facing: East
+    muzzleDistance: 5
+
+- type: entity
+  parent: BaseBluespaceArtillery
+  id: BluespaceArtilleryWest
+  suffix: West
+  components:
+  - type: Sprite
+    layers:
+    - state: cannon_west
+    - state: west_idle
+      map: [ "lights" ]
+      shader: unshaded
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.BluespaceArtilleryVisuals.State:
+        lights:
+          Unpowered: { visible: false }
+          Idle: { visible: true, state: west_idle }
+          Charging: { visible: true, state: west_charging }
+          Ready: { visible: true, state: west_ready }
+          Cooldown: { visible: true, state: west_cooldown }
+  - type: BluespaceArtillery
+    facing: West
+    muzzleDistance: 7
+
+- type: entity
+  id: BluespaceArtilleryMuzzleFlash
+  categories: [ HideSpawnMenu ]
+  name: bluespace discharge
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: _Starlight/Effects/bsa_muzzle.rsi
+    drawdepth: Effects
+    noRot: true
+    scale: 2,2
+    layers:
+    - state: flash
+      shader: unshaded
+  - type: PointLight
+    radius: 8
+    energy: 6
+    color: "#7fe7ff"
+  - type: TimedDespawn
+    lifetime: 0.45
+
+- type: entity
+  id: BluespaceArtilleryShell
+  categories: [ HideSpawnMenu ]
+  name: bluespace artillery shell
+  description: Run.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Effects/bluespace_beams.rsi
+    noRot: false
+    scale: 2,2
+    layers:
+    - state: bsa_beam
+      shader: unshaded
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: true
+    linearDamping: 0
+    angularDamping: 0
+  - type: TileFrictionModifier
+    modifier: 0
+  - type: Fixtures
+    fixtures:
+      shell:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.9
+        hard: false
+        mask:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        - BulletImpassable
+        - Opaque
+  - type: PointLight
+    radius: 5
+    energy: 4
+    color: "#7fe7ff"
+  - type: BluespaceArtilleryShell
+    damage:
+      types:
+        Structural: 3000
+        Heat: 400
+        Blunt: 200
+  - type: TimedDespawn
+    lifetime: 10
+
+- type: entity
+  id: BluespaceArtilleryTestSite
+  categories: [ HideSpawnMenu ]
+  name: NT artillery test target
+  description: A hardened target that Central Command wants to see vaporised.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Objects/Devices/station_beacon.rsi
+    layers:
+    - state: icon
+    - state: blink
+      shader: unshaded
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: BluespaceArtilleryTestSite

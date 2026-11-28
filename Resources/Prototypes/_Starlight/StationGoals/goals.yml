@@ -1,0 +1,112 @@
+- type: stationGoal
+  id: FoodSupply
+  name: station-goal-food-supply-name
+  description: station-goal-food-supply-description
+  icon:
+    sprite: Objects/Consumable/Food/burger.rsi
+    state: cheese
+  departments: [ Civilian, Cargo ]
+  timeLimit: 90m
+  objectives:
+  - !type:SellGoalObjective
+    description: station-goal-food-supply-objective
+    whitelist:
+      components:
+      - Edible
+    blacklist:
+      components:
+      - Produce
+    amount: 5
+    kinds: 6
+
+- type: stationGoal
+  id: ExoticHarvest
+  name: station-goal-exotic-harvest-name
+  description: station-goal-exotic-harvest-description
+  icon:
+    sprite: Objects/Specific/Hydroponics/tomato.rsi
+    state: produce
+  departments: [ Civilian, Medical ]
+  timeLimit: 90m
+  objectives:
+  - !type:SellGoalObjective
+    description: station-goal-exotic-harvest-objective
+    whitelist:
+      components:
+      - Produce
+    amount: 3
+    kinds: 10
+
+- type: stationGoal
+  id: ArtifactShipment
+  name: station-goal-artifact-shipment-name
+  description: station-goal-artifact-shipment-description
+  icon:
+    sprite: Objects/Specific/Xenoarchaeology/item_artifacts.rsi
+    state: ano01
+  departments: [ Science, Cargo ]
+  timeLimit: 90m
+  objectives:
+  - !type:SellGoalObjective
+    description: station-goal-artifact-shipment-objective
+    whitelist:
+      components:
+      - XenoArtifact
+    amount: 4
+
+- type: stationGoal
+  id: BluespaceHarvester
+  name: station-goal-bsh-name
+  description: station-goal-bsh-description
+  icon:
+    sprite: _Starlight/Structures/Power/bluespace_harvester.rsi
+    state: stage3
+  departments: [ Engineering, Science, Security ]
+  departmentReward: 25000
+  personalReward: 1500
+  timeLimit: 120m
+  objectives:
+  - !type:CounterGoalObjective
+    description: station-goal-bsh-objective-danger
+    key: BluespaceHarvesterDangerSeconds
+    target: 600
+  - !type:CounterGoalObjective
+    description: station-goal-bsh-objective-points
+    key: BluespaceHarvesterPoints
+    target: 15000
+
+- type: stationGoal
+  id: BluespaceArtillery
+  name: station-goal-bsa-name
+  description: station-goal-bsa-description
+  instructions: station-goal-bsa-instructions
+  icon:
+    sprite: _Starlight/Structures/Machines/bluespace_artillery_parts.rsi
+    state: fusor
+  departments: [ Cargo, Science, Engineering ]
+  departmentReward: 30000
+  personalReward: 2000
+  timeLimit: 120m
+  objectives:
+  - !type:CounterGoalObjective
+    description: station-goal-bsa-objective
+    key: BluespaceArtilleryTestSiteDestroyed
+
+- type: stationGoal
+  id: MeteorShield
+  name: station-goal-meteor-shield-name
+  description: station-goal-meteor-shield-description
+  instructions: station-goal-meteor-shield-instructions
+  icon:
+    sprite: _Starlight/Structures/Machines/meteor_shield_satellite.rsi
+    state: active
+  departments: [ Engineering, Cargo ]
+  departmentReward: 12500
+  personalReward: 750
+  timeLimit: 120m
+  cargoMarkets: [ StationGoalMeteorShield ]
+  objectives:
+  - !type:RecordGoalObjective
+    description: station-goal-meteor-shield-objective
+    key: MeteorShieldCoverage
+    target: 70

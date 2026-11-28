@@ -1184,3 +1184,118 @@
       - Shuttle
       requiredTags:
       - JobIconSalvage
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerStationGoals
+  name: station goals console
+  description: A computer for managing station goals offered by Central Command.
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: comm-new
+          sprite: _Starlight/Structures/Machines/computers.rsi
+        - map: ["computerLayerKeys"]
+          state: generic_keys
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          state: generic_panel_open
+    - type: AccessReader
+      access: [[ "Command" ]]
+    - type: StationGoalConsole
+    - type: ActivatableUI
+      key: enum.StationGoalConsoleUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.StationGoalConsoleUiKey.Key:
+          type: StationGoalConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+    - type: Computer
+      board: StationGoalsComputerCircuitboard
+    - type: PointLight
+      radius: 2.5
+      energy: 1.5
+      color: "#4fb3ff"
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerBluespaceArtillery
+  name: bluespace artillery control
+  description: A computer for managing life of nearest constructions.
+  components:
+  - type: GuideHelp
+    guides:
+    - BluespaceArtillery
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/bluespace_artillery_parts.rsi
+    layers:
+    - state: console_idle
+      map: [ "enum.BluespaceArtilleryConsoleLayers.Base" ]
+  - type: EdgeConnection
+    connectionKey: other
+  - type: GenericVisualizer
+    visuals:
+      enum.BluespaceArtilleryConsoleVisuals.State:
+        enum.BluespaceArtilleryConsoleLayers.Base:
+          Unpowered: { state: console_unpowered }
+          Idle: { state: console_idle }
+          Charging: { state: console_charging }
+          Ready: { state: console_ready }
+  - type: BluespaceArtilleryConsole
+  - type: DeviceLinkSink
+    ports:
+    - ArtilleryLink
+  - type: ActivatableUI
+    key: enum.BluespaceArtilleryUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.BluespaceArtilleryUiKey.Key:
+        type: BluespaceArtilleryConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: BluespaceArtilleryComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.5
+    color: "#7fe7ff"
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerMeteorShield
+  name: meteor shield control
+  description: A computer for managing meteor shield satellites.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: accelerator
+      sprite: _Starlight/Structures/Machines/computers.rsi
+    - map: ["computerLayerKeys"]
+      state: rd_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: MeteorShieldConsole
+  - type: ActivatableUI
+    key: enum.MeteorShieldConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.MeteorShieldConsoleUiKey.Key:
+        type: MeteorShieldConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: MeteorShieldComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.5
+    color: "#ff8f5a"
