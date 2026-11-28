@@ -490,6 +490,11 @@ public abstract partial class SharedBorgSystem : EntitySystem
 
         var borg = container.Owner;
 
+        // Starlight-start
+        if (!TryComp<BorgChassisComponent>(borg, out var chassis) || chassis.BrainEntity != uid)
+            return;
+        // Starlight-end
+
         //load borg voice
         if (TryComp<TextToSpeechComponent>(uid, out var ttscomp))
 		{

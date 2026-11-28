@@ -65,6 +65,9 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
         if (remoteEyeActor.VirtualItem.HasValue)
             _virtualItem.DeleteInHandsMatching(actor, remoteEyeActor.VirtualItem.Value);
 
+        remoteEyeActor.RemoteEntity = null;
+        remoteEyeActor.VirtualItem = null;
+
         RemComp<StationAiOverlayComponent>(actor);
 
         _eye.SetTarget(actor, null);

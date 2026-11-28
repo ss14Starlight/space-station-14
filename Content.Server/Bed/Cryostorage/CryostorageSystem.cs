@@ -247,6 +247,9 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
         AdminLog.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(ent):player} was entered into cryostorage inside of {ToPrettyString(cryostorageEnt.Value)}");
 
         // Starlight-start
+        var cryoStored = new CryoStoredEvent();
+        RaiseLocalEvent(ent.Owner, ref cryoStored);
+
         RemComp<VampireThrallComponent>(ent.Owner);
         // Starlight-end
 

@@ -50,7 +50,7 @@ public sealed partial class HumanoidEMPEffect
 
     public static Dictionary<EntProtoId, TimeSpan> CombineEffects(Dictionary<EntProtoId, TimeSpan> a, Dictionary<EntProtoId, TimeSpan> b)
     {
-        var res = a;
+        var res = new Dictionary<EntProtoId, TimeSpan>(a); // Starlight-edit
         foreach (var (key, value) in b)
         {
             if (res.TryGetValue(key, out _))

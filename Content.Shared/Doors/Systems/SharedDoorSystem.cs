@@ -610,6 +610,10 @@ public abstract partial class SharedDoorSystem : EntitySystem
             // need to match upstream's exclusion of glass airlock collision from the following block.
             if (otherPhysics.Comp.CollisionLayer == (int) CollisionGroup.AirlockLayer)
                 continue;
+
+            // Decorative doors (such as curtains) shouldn't block doors from closing
+            if (Tags.HasTag(otherPhysics.Owner, DecorativeDoorTag))
+                continue;
             // Starlight end
 
             //TODO: Make only shutters ignore these objects upon colliding instead of all airlocks

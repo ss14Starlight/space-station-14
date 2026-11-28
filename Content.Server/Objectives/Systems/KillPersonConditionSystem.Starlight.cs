@@ -14,21 +14,25 @@ public sealed partial class KillPersonConditionSystem
     public float GetEliminationProgress(EntityUid target)
         => GetProgress(target, requireDead: false, requireMaroon: true);
 
-    private bool IsTargetRemoved(MindComponent mind)
+    public bool IsTargetRemoved(Entity<MindComponent?> mind)
     {
-        if (mind.OwnedEntity is not { } body || TerminatingOrDeleted(body))
+        var comp = mind.Comp;
+        if (comp == null && !TryComp(mind.Owner, out comp))
+            return true;
+
+        if (comp.OwnedEntity is not { } body || TerminatingOrDeleted(body))
             return true;
         if (HasComp<CryostorageContainedComponent>(body))
             return true;
 
         // Disconnecting keeps UserId, and a visiting ghost keeps ownership of the recoverable body.
-        if ((mind.UserId == null && mind.OriginalOwnerUserId != null) ||
+        if ((comp.UserId == null && comp.OriginalOwnerUserId != null) ||
             (TryComp<MindExaminableComponent>(body, out var examine) &&
             examine.State is MindState.Catatonic or MindState.Irrecoverable))
             return true;
         if (TryComp<GhostComponent>(body, out var ghost))
             return !ghost.CanReturnToBody;
-        return SLIsCharacterUnrevivable(mind);
+        return SLIsCharacterUnrevivable(comp);
     }
 
     private bool SLIsCharacterUnrevivable(MindComponent mind)

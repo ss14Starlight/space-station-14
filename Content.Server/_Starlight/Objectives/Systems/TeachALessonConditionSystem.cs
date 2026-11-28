@@ -1,12 +1,18 @@
 ﻿using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Server.Objectives.Components;
+using Content.Server.Objectives.Systems;
+using Content.Server._Starlight.Bed.Cryostorage;
 using Content.Server._Starlight.Objectives.Components;
 using Content.Shared.Destructible;
+using Content.Shared.Ghost;
 using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Silicons.StationAi;
+using Content.Shared._Starlight.Mind.Events;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Objectives;
 using Content.Server._Starlight.Railroading;
@@ -23,12 +29,16 @@ public sealed partial class TeachALessonConditionSystem : EntitySystem
     [Dependency] private RailroadingSystem _railroad = default!;
     [Dependency] private SharedStationAiSystem _stationAi = default!;
     [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private KillPersonConditionSystem _killPerson = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<TeachALessonTargetComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<TeachALessonTargetComponent, CryoStoredEvent>(OnCryoStored);
+        SubscribeLocalEvent<TeachALessonTargetComponent, MindRemovedMessage>(OnTargetMindRemoved);
+        SubscribeLocalEvent<TeachALessonTargetComponent, MindUserIdChangedEvent>(OnTargetMindUserIdChanged);
         SubscribeLocalEvent<TeachALessonConditionComponent, ObjectiveAfterAssignEvent>((ent, ref _) => OnAfterAssign(ent));
         SubscribeLocalEvent<TeachALessonConditionComponent, ObjectiveGetProgressEvent>(OnGetProgress);
 
@@ -46,7 +56,7 @@ public sealed partial class TeachALessonConditionSystem : EntitySystem
         {
             Title = target.Title,
             Icon = target.Icon,
-            Progress = ent.Comp.HasDied ? 1.0f : 0.0f,
+            Progress = IsComplete(ent) ? 1.0f : 0.0f,
         });
     }
 
@@ -54,11 +64,23 @@ public sealed partial class TeachALessonConditionSystem : EntitySystem
     {
         if (args.IsCompleted == false) return;
 
-        args.IsCompleted = ent.Comp.HasDied;
+        args.IsCompleted = IsComplete(ent);
     }
 
     private void OnGetProgress(Entity<TeachALessonConditionComponent> ent, ref ObjectiveGetProgressEvent args)
-        => args.Progress = ent.Comp.HasDied ? 1.0f : 0.0f;
+        => args.Progress = IsComplete(ent) ? 1.0f : 0.0f;
+
+    private bool IsComplete(Entity<TeachALessonConditionComponent> ent)
+    {
+        if (ent.Comp.HasDied)
+            return true;
+
+        if (!TryComp(ent.Owner, out TargetObjectiveComponent? targetObjective) ||
+            targetObjective.Target is not { } targetMindUid)
+            return false;
+
+        return _killPerson.IsTargetRemoved(new Entity<MindComponent?>(targetMindUid, null));
+    }
 
     private void OnAfterAssign(Entity<TeachALessonConditionComponent> ent)
     {
@@ -93,6 +115,39 @@ public sealed partial class TeachALessonConditionSystem : EntitySystem
         foreach (var teacher in ent.Comp.Teachers)
             MarkTeacherComplete(teacher);
     }
+
+    private void OnCryoStored(Entity<TeachALessonTargetComponent> ent, ref CryoStoredEvent args)
+    {
+        foreach (var teacher in ent.Comp.Teachers)
+            MarkTeacherComplete(teacher);
+    }
+
+    private void OnTargetMindRemoved(Entity<TeachALessonTargetComponent> ent, ref MindRemovedMessage args)
+    {
+        if (IsLiveBody(args.TransferEntity))
+            return;
+
+        ReevaluateTeachers(ent);
+    }
+
+    private void OnTargetMindUserIdChanged(Entity<TeachALessonTargetComponent> ent, ref MindUserIdChangedEvent args)
+        => ReevaluateTeachers(ent);
+
+    private void ReevaluateTeachers(Entity<TeachALessonTargetComponent> ent)
+    {
+        foreach (var teacher in ent.Comp.Teachers)
+        {
+            if (TryComp(teacher, out TeachALessonConditionComponent? cond) && IsComplete((teacher, cond)))
+                MarkTeacherComplete(teacher);
+        }
+    }
+
+    private bool IsLiveBody(EntityUid? entity) =>
+        entity is { } body
+        && !TerminatingOrDeleted(body)
+        && !HasComp<GhostComponent>(body)
+        && TryComp<MobStateComponent>(body, out var mobState)
+        && mobState.CurrentState is not MobState.Dead;
     [SubscribeLocalEvent]
     private void OnDamageThresholdReached(
         EntityUid uid,

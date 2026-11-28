@@ -133,7 +133,7 @@ public sealed partial class DigitalLockSystem : EntitySystem
             UpdateUserInterface(uid, component);
         }
         else if (!IsAwaitingInput(component.Status)
-            || component.EnteredCode.Length >= component.MaxCodeLength)
+            || component.EnteredCode.Length >= GetCodeLength(component))
             return;
 
         component.EnteredCode += args.Value.ToString();
@@ -292,7 +292,7 @@ public sealed partial class DigitalLockSystem : EntitySystem
         {
             Status = component.Status,
             EnteredCodeLength = component.EnteredCode.Length,
-            MaxCodeLength = component.Code.Length == 0 ? component.MaxCodeLength : component.Code.Length,
+            MaxCodeLength = GetCodeLength(component),
         };
 
         _ui.SetUiState(uid, DigitalLockUiKey.Key, state);
@@ -331,6 +331,9 @@ public sealed partial class DigitalLockSystem : EntitySystem
         // Don't double-dip on the octave shifting
         return number == 0 ? lastPlayedKeypadSemitones : semitoneShift;
     }
+
+    private static int GetCodeLength(DigitalLockComponent component) =>
+        component.Code.Length == 0 ? component.MaxCodeLength : component.Code.Length;
 
     /// <summary>
     /// Returns true if we waiting input

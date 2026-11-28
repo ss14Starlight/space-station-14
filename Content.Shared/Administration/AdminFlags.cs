@@ -142,6 +142,14 @@
         Explosion = 1 << 24,
 
         /// <summary>
+        /// General bypass flag for systems we don't want normal admins to abuse for whatever reason.
+        /// </summary>
+        /// <remarks>
+        /// Currently just for SpriteControl to prevent bypassing ghost themes.
+        /// </remarks>
+        Bypass = 1 << 25,
+
+        /// <summary>
         ///     Dangerous permissions like loading prototypes.
         /// </summary>
         Danger = 1u << 30,

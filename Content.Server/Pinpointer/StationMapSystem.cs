@@ -17,19 +17,10 @@ public sealed partial class StationMapSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<StationMapComponent, MapInitEvent>(OnMapInit);
-        // Starlight: Parent changes no longer close an open Station Map.
-
-        SubscribeLocalEvent<NukeopsStationMapComponent, NukeopsTargetStationSelectedEvent>(OnNukeopsStationSelected);
-
-        // Starlight - start
-        Subs.BuiEvents<StationMapComponent>(StationMapUiKey.Key, subs =>
-        {
-            subs.Event<BoundUIOpenedEvent>(OnStationMapOpened);
-        });
-        // Starlight - end
+        Subs.BuiEvents<StationMapComponent>(StationMapUiKey.Key, subs => subs.Event<BoundUIOpenedEvent>(OnStationMapOpened)); // Starlight-edit
     }
 
+    [SubscribeLocalEvent] // Starlight-edit
     private void OnMapInit(Entity<StationMapComponent> ent, ref MapInitEvent args)
     {
         if (!ent.Comp.InitializeWithStation)
@@ -67,18 +58,26 @@ public sealed partial class StationMapSystem : EntitySystem
         // Starlight - end
     }
 
-    private void OnNukeopsStationSelected(Entity<NukeopsStationMapComponent> ent, ref NukeopsTargetStationSelectedEvent args)
+    // Starlight-start
+    [SubscribeLocalEvent]
+    private void OnNukeopsStationSelected(ref NukeopsTargetStationSelectedEvent args)
     {
         if (args.TargetStation == null)
             return;
 
-        if (!TryComp<StationMapComponent>(ent, out var stationMap) || !TryComp<RuleGridsComponent>(args.RuleEntity, out var ruleGrids))
+        if (!TryComp<RuleGridsComponent>(args.RuleEntity, out var ruleGrids))
             return;
 
-        if (Transform(ent).MapID != ruleGrids.Map)
-            return;
+        var targetGrid = GetMainStationGrid(args.TargetStation.Value);
+        var query = EntityQueryEnumerator<NukeopsStationMapComponent, StationMapComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out _, out var stationMap, out var xform))
+        {
+            if (xform.MapID != ruleGrids.Map)
+                continue;
 
-        stationMap.TargetGrid = GetMainStationGrid(args.TargetStation.Value); // Starlight
-        Dirty(ent);
+            stationMap.TargetGrid = targetGrid;
+            Dirty(uid, stationMap);
+        }
     }
+    // Starlight-end
 }

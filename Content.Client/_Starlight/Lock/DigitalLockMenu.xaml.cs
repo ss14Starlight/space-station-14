@@ -117,7 +117,7 @@ public sealed partial class DigitalLockMenu : DefaultWindow
     private string VisualizeCode(int codeLength, int maxLength)
     {
         var code = new string('*', codeLength);
-        var blanksCount = maxLength - codeLength;
+        var blanksCount = Math.Max(0, maxLength - codeLength);
         var blanks = new string('_', blanksCount);
         return code + blanks;
     }
