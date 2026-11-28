@@ -1,13 +1,6 @@
 Entries:
 - author: Ohelig
   changes:
-  - message: (Cluster) Added airlock controller to TEG. Enjoy!
-    type: Add
-  id: 410491
-  time: '2026-11-16T04:32:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7246
-- author: Ohelig
-  changes:
   - message: (Cluster) Added a missing disposal unit to the Space Bar.
     type: Add
   id: 410492
@@ -2799,4 +2792,11 @@ Entries:
   id: 410890
   time: '2026-11-28T10:12:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7503
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Teach a Lesson targets entering cryogenic storage or becoming catatonic now count as completing the objective.
+    type: Tweak
+  id: 410891
+  time: '2026-11-28T10:12:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7440
 Order: -1
