@@ -389,7 +389,7 @@
 # Cosmic Cult End
 
 - type: parallax
-  id: RedStarTest
+  id: RedStar
   starlightColor: "#ffcc89"
   layers:
     - texture:
@@ -428,6 +428,7 @@
         path: "/Textures/_Starlight/Parallaxes/star01.png"
       slowness: 0.9929
       scale: "0.8, 0.8"
+      worldHomePosition: "200, -300"
       tiled: false
     - texture:
         !type:ImageParallaxTextureSource
