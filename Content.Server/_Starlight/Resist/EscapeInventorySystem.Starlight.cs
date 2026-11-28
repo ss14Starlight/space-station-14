@@ -24,8 +24,8 @@ public sealed partial class EscapeInventorySystem
         var owner = container.Owner;
 
         return _handsSystem.IsHolding(owner, uid, out _)
-            || TryComp<StorageComponent>(owner, out var storage) && storage.Container == container
-            || TryComp<InventoryComponent>(owner, out var inventory) && inventory.Containers.Any(slot => slot == container)
+            || (TryComp<StorageComponent>(owner, out var storage) && storage.Container == container)
+            || (TryComp<InventoryComponent>(owner, out var inventory) && inventory.Containers.Any(slot => slot == container))
             || HasComp<SecretStashComponent>(owner)
             || _tagSystem.HasTag(owner, PersonnelStorageTag);
     }
