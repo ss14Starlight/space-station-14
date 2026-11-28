@@ -24,12 +24,19 @@ public sealed partial class AdminGhostSystem : EntitySystem
         SubscribeLocalEvent<AdminGhostComponent, GetVisMaskEvent>(OnGhostVis);
     }
 
-    private void OnMapInit(Entity<AdminGhostComponent> entity, ref MapInitEvent args) =>
+    private void OnMapInit(Entity<AdminGhostComponent> entity, ref MapInitEvent args)
+    {
         _actions.AddAction(entity.Owner, ref entity.Comp.ToggleAGhostHideActionEntity,
             entity.Comp.ToggleAGhostHideActionId);
+        _actions.AddAction(entity.Owner, ref entity.Comp.ToggleAGhostAdminOverlayActionEntity,
+            entity.Comp.ToggleAGhostAdminOverlayActionId);
+    }
 
-    private void OnShutdown(Entity<AdminGhostComponent> entity, ref ComponentShutdown args) =>
+    private void OnShutdown(Entity<AdminGhostComponent> entity, ref ComponentShutdown args)
+    {
         _actions.RemoveAction(entity.Owner, entity.Comp.ToggleAGhostHideActionEntity);
+        _actions.RemoveAction(entity.Owner, entity.Comp.ToggleAGhostAdminOverlayActionEntity);
+    }
 
     private void OnToggleAGhostHide(ToggleAGhostHideEvent args)
     {

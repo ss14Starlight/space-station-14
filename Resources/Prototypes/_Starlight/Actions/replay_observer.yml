@@ -14,7 +14,7 @@
   description: Show usernames and antagonist status above players in this replay.
   components:
   - type: Action
-    icon: Interface/VerbIcons/information.svg.192dpi.png
+    icon: { sprite: _Starlight/Clothing/Eyes/Hud/centcomm.rsi, state: icon }
     clientExclusive: true
   - type: InstantAction
     event: !type:ReplayTogglePlayerOverlayActionEvent

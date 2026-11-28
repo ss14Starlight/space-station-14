@@ -61,6 +61,7 @@ namespace Content.Client.Ghost
         public event Action<GhostWarpsResponseEvent>? GhostWarpsResponse;
         public event Action<GhostUpdateGhostRoleCountEvent>? GhostRoleCountUpdated;
 
+        partial void InitializeStarlight(); // Starlight
         public override void Initialize()
         {
             base.Initialize();
@@ -80,6 +81,7 @@ namespace Content.Client.Ghost
             SubscribeLocalEvent<GhostComponent, ToggleGhostsActionEvent>(OnToggleGhosts);
             SubscribeNetworkEvent<GhostCorporealEvent>(OnCorporeal); // Starlight
             SubscribeNetworkEvent<AdminGhostEvent>(OnAdminGhost); // Starlight
+            InitializeStarlight(); // Starlight
         }
 
         private void OnStartup(EntityUid uid, GhostComponent component, ComponentStartup args)
@@ -227,7 +229,6 @@ namespace Content.Client.Ghost
         {
             GhostVisibility = visibility ?? !GhostVisibility;
         }
-
         #region Starlight
 
         private void OnCorporeal(GhostCorporealEvent ev)
