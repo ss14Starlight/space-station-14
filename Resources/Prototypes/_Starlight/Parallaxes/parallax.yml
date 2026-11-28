@@ -436,3 +436,24 @@
       slowness: 0.95046875
       scale: "0.8, 0.8"
       scrolling: "0.05, 0.02"
+  layersLQ:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Parallaxes/DeltaParallaxNeb.png"
+      scale: "1, 1"
+      tiled: false
+      slowness: 0.9929
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Parallaxes/star01.png"
+      slowness: 0.9929
+      scale: "0.8, 0.8"
+      worldHomePosition: "200, -300"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Parallaxes/Asteroids.png"
+      slowness: 0.95046875
+      scale: "0.8, 0.8"
+      scrolling: "0.05, 0.02"
+  layersLQUseHQ: false
