@@ -1,0 +1,10 @@
+- type: !PartialOnly entity
+  id: BaseMagazineBoxMagnum
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeMagnum
+    proto: CartridgeMagnumSP
+    capacity: 20
